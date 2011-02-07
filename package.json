@@ -1,0 +1,16 @@
+{
+  "name": "clean-css",
+  "author": "Jakub Pawlowicz <contact@jakubpawlowicz.com> (http://twitter.com/JakubPawlowicz)",
+  "description": "A well-tested CSS minifier",
+  "keywords": ["css", "minifier"],
+  "homepage": "http://github.com/jakubpawlowicz/clean-css",
+  "repository": {
+    "type" : "git",
+    "url" : "http://github.com/jakubpawlowicz/clean-css.git"
+  },
+  "version": "0.1.0",
+  "main": "index.js",
+  "bin": {
+    "purifycss": "./bin/cleancss"
+  }
+}

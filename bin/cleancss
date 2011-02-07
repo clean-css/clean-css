@@ -1,0 +1,47 @@
+#!/usr/bin/env node
+
+global.sys = require(/^v0\.[012]/.test(process.version) ? "sys" : "util");
+var CleanCSS = require('clean-css').CleanCSS,
+  fs = require('fs');
+
+var options = {
+  source: null,
+  target: null
+};
+
+var args = process.argv.slice(2);
+out: while (args.length > 0) {
+  var p = args.shift();
+  switch(p) {
+    case '-o':
+      options.target = args.shift();
+      break;
+    default:
+      options.source = args.shift();
+  }
+}
+
+if (options.source) {
+  fs.readFile(options.source, 'utf8', function(error, text) {
+    if (error) throw error;
+    output(CleanCSS.process(text));
+  });
+} else {
+  var stdin = process.openStdin();
+  stdin.setEncoding('utf-8');
+  var text = '';
+  stdin.on('data', function(chunk) { text += chunk; });
+  stdin.on('end', function() { output(CleanCSS.process(text)); });
+}
+
+function output(cleaned) {
+  var out;
+  if (options.target) {
+    out = fs.createWriteStream(options.target, { flags: 'w', encoding: 'utf-8', mode: 0644 });
+  } else {
+    out = process.stdout;
+  }
+  
+  out.write(cleaned);
+  out.end();
+};

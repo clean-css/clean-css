@@ -1,0 +1,252 @@
+var vows = require('vows'),
+  assert = require('assert');
+
+var CleanCSS = require('../lib/clean').CleanCSS;
+
+var cssContext = function(groups) {
+  var context = {};
+  var clean = function(cleanCss) {
+    return function(css) {
+      assert.equal(CleanCSS.process(css), cleanCss);
+    }
+  };
+  
+  for (var g in groups) {
+    var transformation = groups[g];
+    if (typeof transformation == 'string') transformation = [transformation, transformation];
+    if (!transformation[0].push) {
+      transformation = [[transformation[0], transformation[1]]];
+    }
+    
+    for (var i = 0, c = transformation.length; i < c; i++) {
+      context[g + ' #' + (i + 1)] = {
+        topic: transformation[i][0],
+        clean: clean(transformation[i][1])
+      };
+    }
+  }
+  
+  return context;
+};
+
+vows.describe('clean-units').addBatch({
+  'identity': cssContext({
+    'preserve minified content': 'a{color:#f10}'
+  }),
+  'semicolons': cssContext({
+    'multiple semicolons': [
+      'a{color:#fff;;;width:0; ;}',
+      'a{color:#fff;width:0}'
+    ],
+    'trailing semicolon': [
+      'a{color:#fff;}',
+      'a{color:#fff}'
+    ],
+    'trailing semicolon and space': [
+      'a{color:#fff ; }',
+      'a{color:#fff}'
+    ],
+    'comma and space': [
+      'a{color:rgba(0, 0,  5, .5)}',
+      'a{color:rgba(0,0,5,.5)}'
+    ]
+  }),
+  'whitespace': cssContext({
+    'one argument': [
+      'div  a  { color:#fff  }',
+      'div a{color:#fff}'
+    ],
+    'line breaks': [
+      'div \na\r\n { width:500px }',
+      'div a{width:500px}'
+    ],
+    'line breaks #2': [
+      'div \na\r\n, p { width:500px }',
+      'div a,p{width:500px}'
+    ],
+    'multiple arguments': [
+      'a{color:#fff ;  font-weight:  bolder }',
+      'a{color:#fff;font-weight:bolder}'
+    ],
+    'space delimited arguments': [
+      'a {border: 1px solid #f10; margin: 0 auto }',
+      'a{border:1px solid #f10;margin:0 auto}'
+    ],
+    'at beginning': [
+      ' a {color:#fff}',
+      'a{color:#fff}'
+    ],
+    'at end': [
+      'a{color:#fff } ',
+      'a{color:#fff}'
+    ]
+  }),
+  'empty elements': cssContext({
+    'single': [
+      ' div p {  \n}',
+      ''
+    ],
+    'between non-empty': [
+      'div {color:#fff}  a{  } p{  line-height:1.35em}',
+      'div{color:#fff}p{line-height:1.35em}'
+    ],
+    'just a semicolon': [
+      'div { ; }',
+      ''
+    ]
+  }),
+  'selectors': cssContext({
+    'remove spaces around selectors': [
+      'div + span >   em',
+      'div+span>em'
+    ],
+    'not remove spaces for pseudo-classes': [
+      'div :first-child',
+      'div :first-child'
+    ],
+    'strip universal selector when coming with id/class/attribute selectors': [
+      [
+        '* > *#id > *.class',
+        '*>#id>.class'
+      ],[
+        '*:first-child > *[data-id]',
+        ':first-child>[data-id]'
+      ]
+    ],
+    'not strip standalone universal selector': [
+      'label ~ * + span',
+      'label~*+span'
+    ]
+  }),
+  'comments': cssContext({
+    'single line': [
+      'a{color:#fff}/* some comment*/p{height:10px/* other comment */}',
+      'a{color:#fff}p{height:10px}'
+    ],
+    'multiline': [
+      '/* \r\n multiline \n comment */a{color:rgba(0,0,0,0.8)}',
+      'a{color:rgba(0,0,0,.8)}'
+    ],
+    'comment chars in comments': [
+      '/* \r\n comment chars * inside / comments */a{color:#fff}',
+      'a{color:#fff}'
+    ],
+    'comment inside block': [
+      'a{/* \r\n some comments */color:#fff}',
+      'a{color:#fff}'
+    ],
+    'special comments': [
+      '/*! special comment */a{color:#f10} /* normal comment */',
+      '/*! special comment */a{color:#f10}'
+    ],
+    'should keep exact structure': [
+      '/*!  \n  a > span { } with some content */',
+      '/*!  \n  a > span { } with some content */'
+    ]
+  }),
+  'text content': cssContext({
+    'normal': 'a{content:"."}',
+    'open quote': [
+      'a{content : open-quote;opacity:1}',
+      'a{content:open-quote;opacity:1}'
+    ],
+    'close quote': [
+      'a{content:  close-quote;clear:left}',
+      'a{content:close-quote;clear:left}'
+    ],
+    'special characters': [
+      'a{content : "  a > div { }  "}',
+      'a{content:"  a > div { }  "}'
+    ]
+  }),
+  'zero values': cssContext({
+    'with units': [
+      'a{margin:0px 0pt 0em 0%;padding: 0in 0cm 0mm 0pc;border-top-width:0ex}',
+      'a{margin:0;padding:0;border-top-width:0}'
+    ],
+    'multiple into one': [
+      'a{margin:0 0 0 0;padding:0 0 0 0;border-width:0 0 0 0}',
+      'a{margin:0;padding:0;border-width:0}'
+    ],
+    'none to zeros': [
+      'a{border:none;background:none}',
+      'a{border:0;background:0}'
+    ],
+    'outline:none to outline:0': [
+      'a{outline:none}',
+      'a{outline:0}'
+    ],
+    'display:none not changed': 'a{display:none}',
+    'mixed zeros not changed': 'div{margin:0 0 1px 0}',
+    'mixed zeros not changed #2': 'div{padding:0 1px 0 0}'
+  }),
+  'floats': cssContext({
+    'strips zero in fractions': [
+      'a{ margin-bottom: 0.5em}',
+      'a{margin-bottom:.5em}'
+    ],
+    'not strips zero in fractions of numbers greater than zero': [
+      'a{ margin-bottom: 20.5em}',
+      'a{margin-bottom:20.5em}'
+    ]
+  }),
+  'colors': cssContext({
+    'shorten rgb to standard hexadecimal format': [
+      'a{ color:rgb (5, 10, 15) }',
+      'a{color:#050a0f}'
+    ],
+    'skip rgba shortening': [
+      'a{ color:rgba(5, 10, 15, 0.5)}',
+      'a{color:rgba(5,10,15,.5)}'
+    ],
+    'shorten colors to 3 digit hex instead of 6 digit': [
+      'a{ background-color: #aa0000; color:rgb(0, 17, 255)}',
+      'a{background-color:#a00;color:#01f}'
+    ],
+    'skip shortening IE filter colors': [
+      'a{ filter: chroma(color = "#ff0000")}',
+      'a{filter:chroma(color="#ff0000")}'
+    ],
+    'color names to hex values': [
+      'a{color:white;border-color:black;background-color:fuchsia}p{background:yellow}',
+      'a{color:#fff;border-color:#000;background-color:#f0f}p{background:#ff0}'
+    ],
+    'hex value to color name': [
+      'p{color:#f00}',
+      'p{color:red}'
+    ]
+  }),
+  'font weights': cssContext({
+    'font-weight:normal to 400': [
+      'p{font-weight:normal}',
+      'p{font-weight:400}'
+    ],
+    'font-weight:bold to 700': [
+      'p{font-weight:bold}',
+      'p{font-weight:700}'
+    ]
+  }),
+  'ie filters': cssContext({
+    'short alpha': [
+      "a{ filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=80); -ms-filter:'progid:DXImageTransform.Microsoft.Alpha(Opacity=50)';}",
+      "a{filter:alpha(Opacity=80);-ms-filter:'alpha(Opacity=50)'}"
+    ],
+    'short chroma': [
+      'progid:DXImageTransform.Microsoft.Chroma(color=#919191)', 'chroma(color=#919191)'
+    ],
+    'matrix filter spaces': [
+      "progid:DXImageTransform.Microsoft.Matrix(M11=0.984, M22=0.984, M12=0.17, M21=-0.17, SizingMethod='auto expand')",
+      "progid:DXImageTransform.Microsoft.Matrix(M11=.984, M22=.984, M12=.17, M21=-.17, SizingMethod='auto expand')"
+    ]
+  }),
+  'charsets': cssContext({
+    'not at beginning': [
+      "a{ color: #f10; }@charset 'utf-8';b { font-weight: bolder}",
+      "@charset 'utf-8';a{color:#f10}b{font-weight:bolder}"
+    ],
+    'multiple charsets': [
+      "@charset 'utf-8';div :before { display: block }@charset 'utf-8';a { color: #f10 }",
+      "@charset 'utf-8';div :before{display:block}a{color:#f10}"
+    ]
+  })
+}).export(module);

@@ -11,6 +11,6 @@
   "version": "0.1.0",
   "main": "index.js",
   "bin": {
-    "purifycss": "./bin/cleancss"
+    "cleancss": "./bin/cleancss"
   }
 }

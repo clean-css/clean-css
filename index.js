@@ -1,1 +1,1 @@
-exports.CleanCSS = require("./lib/clean");
+module.exports = require("./lib/clean");

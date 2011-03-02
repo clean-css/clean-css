@@ -1,13 +1,12 @@
 var vows = require('vows'),
-  assert = require('assert');
-
-var CleanCSS = require('../lib/clean').CleanCSS;
+  assert = require('assert'),
+  cleanCSS = require('../index');
 
 var cssContext = function(groups) {
   var context = {};
-  var clean = function(cleanCss) {
+  var clean = function(cleanedCSS) {
     return function(css) {
-      assert.equal(CleanCSS.process(css), cleanCss);
+      assert.equal(cleanCSS.process(css), cleanedCSS);
     }
   };
   

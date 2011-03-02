@@ -1,8 +1,7 @@
 var vows = require('vows'),
   fs = require('fs'),
-  assert = require('assert');
-
-var CleanCSS = require('../lib/clean').CleanCSS;
+  assert = require('assert'),
+  cleanCSS = require('../index');
 
 var batchContexts = function() {
   var context = {};
@@ -19,7 +18,7 @@ var batchContexts = function() {
       }
     }
     context[testName]['minimizing ' + testName + '.css'] = function(data) {
-      assert.equal(CleanCSS.process(data.plain), data.minimized)
+      assert.equal(cleanCSS.process(data.plain), data.minimized)
     };
   });
 

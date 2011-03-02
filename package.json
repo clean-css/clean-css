@@ -8,9 +8,12 @@
     "type" : "git",
     "url" : "http://github.com/jakubpawlowicz/clean-css.git"
   },
-  "version": "0.1.0",
+  "version": "0.2.0",
   "main": "index.js",
   "bin": {
     "cleancss": "./bin/cleancss"
+  },
+  "dependencies": {
+    "optimist": "0.1.x"
   }
 }

@@ -29,10 +29,10 @@ Or even gzip it at once:
 
 ### How to use clean-css programatically ###
 
-    var CleanCSS = require('clean-css').CleanCSS;
+    var cleanCSS = require('clean-css');
     
-    var source = "a{font-weight:bold}";
-    var minimized = CleanCSS.process(source);
+    var source = "a{font-weight:bold;}";
+    var minimized = cleanCSS.process(source);
 
 ### How to run clean-css tests? ###
 

@@ -1,3 +1,9 @@
+0.2.1 / 2011-03-19
+==================
+
+  * Added stripping space before !important keyword.
+  * Updated repository location and author information in package.json.
+
 0.2.0 / 2011-03-02 
 ==================
 

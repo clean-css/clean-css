@@ -247,5 +247,11 @@ vows.describe('clean-units').addBatch({
       "@charset 'utf-8';div :before { display: block }@charset 'utf-8';a { color: #f10 }",
       "@charset 'utf-8';div :before{display:block}a{color:#f10}"
     ]
+  }),
+  'important': cssContext({
+    'space before': [
+      "body{background-color:#fff  !important}",
+      "body{background-color:#fff!important}"
+    ]
   })
 }).export(module);

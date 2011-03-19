@@ -1,14 +1,14 @@
 {
   "name": "clean-css",
-  "author": "Jakub Pawlowicz <contact@jakubpawlowicz.com> (http://twitter.com/JakubPawlowicz)",
+  "author": "Jakub Pawlowicz <jakub@goalsmashers.com> (http://twitter.com/GoalSmashers)",
   "description": "A well-tested CSS minifier",
   "keywords": ["css", "minifier"],
-  "homepage": "http://github.com/jakubpawlowicz/clean-css",
+  "homepage": "http://github.com/GoalSmashers/clean-css",
   "repository": {
     "type" : "git",
-    "url" : "http://github.com/jakubpawlowicz/clean-css.git"
+    "url" : "http://github.com/GoalSmashers/clean-css.git"
   },
-  "version": "0.2.0",
+  "version": "0.2.1",
   "main": "index.js",
   "bin": {
     "cleancss": "./bin/cleancss"

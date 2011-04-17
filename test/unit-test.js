@@ -213,6 +213,10 @@ vows.describe('clean-units').addBatch({
     'hex value to color name': [
       'p{color:#f00}',
       'p{color:red}'
+    ],
+    'border color': [
+      'p{border:1px solid #f94311}',
+      'p{border:1px solid #f94311}'
     ]
   }),
   'font weights': cssContext({

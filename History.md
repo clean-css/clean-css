@@ -1,3 +1,8 @@
+0.2.2 / 2011-04-17
+==================
+
+  * Fixed problem with space before color in 'border' property.
+
 0.2.1 / 2011-03-19
 ==================
 

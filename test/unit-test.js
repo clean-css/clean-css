@@ -235,11 +235,15 @@ vows.describe('clean-units').addBatch({
       "a{filter:alpha(Opacity=80);-ms-filter:'alpha(Opacity=50)'}"
     ],
     'short chroma': [
-      'progid:DXImageTransform.Microsoft.Chroma(color=#919191)', 'chroma(color=#919191)'
+      'a{filter:progid:DXImageTransform.Microsoft.Chroma(color=#919191)}', 'a{filter:chroma(color=#919191)}'
     ],
     'matrix filter spaces': [
-      "progid:DXImageTransform.Microsoft.Matrix(M11=0.984, M22=0.984, M12=0.17, M21=-0.17, SizingMethod='auto expand')",
-      "progid:DXImageTransform.Microsoft.Matrix(M11=.984, M22=.984, M12=.17, M21=-.17, SizingMethod='auto expand')"
+      "a{filter:progid:DXImageTransform.Microsoft.Matrix(M11=0.984, M22=0.984, M12=0.17, M21=-0.17, SizingMethod='auto expand')",
+      "a{filter:progid:DXImageTransform.Microsoft.Matrix(M11=.984, M22=.984, M12=.17, M21=-.17, SizingMethod='auto expand')"
+    ],
+    'multiple filters (IE7 issue)': [
+      "a{filter:progid:DXImageTransform.Microsoft.Chroma(color=#919191) progid:DXImageTransform.Microsoft.Matrix(M11=0.984, M22=0.984, M12=0.17, M21=-0.17, SizingMethod='auto expand')}",
+      "a{filter:progid:DXImageTransform.Microsoft.Chroma(color=#919191) progid:DXImageTransform.Microsoft.Matrix(M11=.984, M22=.984, M12=.17, M21=-.17, SizingMethod='auto expand')}"
     ]
   }),
   'charsets': cssContext({

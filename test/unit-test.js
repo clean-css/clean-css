@@ -176,6 +176,7 @@ vows.describe('clean-units').addBatch({
       'a{outline:0}'
     ],
     'display:none not changed': 'a{display:none}',
+    'longer background declaration not changed': 'html{background:none repeat scroll 0 0 white}',
     'mixed zeros not changed': 'div{margin:0 0 1px 0}',
     'mixed zeros not changed #2': 'div{padding:0 1px 0 0}'
   }),

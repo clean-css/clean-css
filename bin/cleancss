@@ -2,7 +2,7 @@
 
 global.sys = require(/^v0\.[012]/.test(process.version) ? "sys" : "util");
 var argv = require('optimist').argv,
-  cleanCss = require('clean-css'),
+  cleanCss = require('../index'),
   fs = require('fs');
 
 var options = {

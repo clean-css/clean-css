@@ -1,3 +1,9 @@
+0.2.4 / 2011-05-25
+==================
+
+  * Fixed problem with expanding 'none' to '0' in partial/full background declarations.
+  * Fixed including clean-css library from binary (global to local).
+
 0.2.3 / 2011-04-18
 ==================
 

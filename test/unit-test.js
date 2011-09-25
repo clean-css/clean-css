@@ -211,9 +211,21 @@ vows.describe('clean-units').addBatch({
       'a{color:white;border-color:black;background-color:fuchsia}p{background:yellow}',
       'a{color:#fff;border-color:#000;background-color:#f0f}p{background:#ff0}'
     ],
-    'hex value to color name': [
+    'hex value to color name if shorter': [
       'p{color:#f00}',
       'p{color:red}'
+    ],
+    'hex value to color name in borders': [
+      'p{border:1px solid #f00}',
+      'p{border:1px solid red}'
+    ],
+    'hex value to color name in gradients': [
+      'p{background:-moz-linear-gradient(-90deg,#000,#f00)}',
+      'p{background:-moz-linear-gradient(-90deg,#000,red)}'
+    ],
+    'hex value to color name in gradients #2': [
+      'p{background:-webkit-gradient(linear, left top, left bottom, from(#000), to(#f00))}',
+      'p{background:-webkit-gradient(linear,left top,left bottom,from(#000),to(red))}'
     ],
     'border color': [
       'p{border:1px solid #f94311}',

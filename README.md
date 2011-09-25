@@ -39,3 +39,7 @@ Or even gzip it at once:
 You need vows testing framework (npm install vows) then simply run:
 
     make test
+
+## License ##
+
+Clean-css is released under the MIT license.

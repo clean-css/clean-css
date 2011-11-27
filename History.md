@@ -1,3 +1,9 @@
+0.2.5 / 2011-11-27
+==================
+
+  * Fixed issue with cleaning up spaces inside calc/-moz-calc declarations (thanks to @cvan for reporting it).
+  * Fixed converting #f00 to red in borders and gradients.
+
 0.2.4 / 2011-05-25
 ==================
 

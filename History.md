@@ -1,3 +1,8 @@
+0.2.6 / 2011-11-27
+==================
+
+  * Fixed expanding + signs in calc() when mixed up with adjacent (+) selector.
+
 0.2.5 / 2011-11-27
 ==================
 

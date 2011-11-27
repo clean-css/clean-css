@@ -78,6 +78,22 @@ vows.describe('clean-units').addBatch({
     'at end': [
       'a{color:#fff } ',
       'a{color:#fff}'
+    ],
+    'not inside calc method #1': [
+      'a{width:-moz-calc(100% - 1em);width:calc(100% - 1em)}',
+      'a{width:-moz-calc(100% - 1em);width:calc(100% - 1em)}'
+    ],
+    'not inside calc method #2': [
+      'div{margin:-moz-calc(50% + 15px) -moz-calc(50% + 15px);margin:calc(50% + .5rem) calc(50% + .5rem)}',
+      'div{margin:-moz-calc(50% + 15px) -moz-calc(50% + 15px);margin:calc(50% + .5rem) calc(50% + .5rem)}'
+    ],
+    'not inside calc method with more parentheses': [
+      'div{height:-moz-calc((10% + 12px)/2 + 10em)}',
+      'div{height:-moz-calc((10% + 12px)/2 + 10em)}'
+    ],
+    'not inside calc method with multiplication': [
+      'div{height:-moz-calc(3 * 2em + 10px)}',
+      'div{height:-moz-calc(3 * 2em + 10px)}'
     ]
   }),
   'empty elements': cssContext({

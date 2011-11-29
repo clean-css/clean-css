@@ -4,10 +4,13 @@ Clean-css is a node.js library for minifying CSS files. It does the same job as 
 
 ## Usage ##
 
+### What are the requirements? ###
+
+    node 0.4.0+
+
 ### How to install clean-css? ###
 
     npm install clean-css
-
 
 ### How to use clean-css? ###
 
@@ -27,7 +30,7 @@ Or even gzip it at once:
 
     cat one.css two.css three.css | cleancss | gzip -9 -c > merged-minified-and-gzipped.css.gz
 
-### How to use clean-css programatically ###
+### How to use clean-css programatically? ###
 
     var cleanCSS = require('clean-css');
     

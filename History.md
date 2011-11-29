@@ -1,3 +1,9 @@
+0.3.0 / 2011-11-29
+==================
+  
+  * Clean-css requires node 0.4.0+ to run.
+  * Removed node's 0.2.x 'sys' package dependency (thanks to @jmalonzo for a patch).
+
 0.2.6 / 2011-11-27
 ==================
 

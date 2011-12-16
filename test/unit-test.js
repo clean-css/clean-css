@@ -198,7 +198,16 @@ vows.describe('clean-units').addBatch({
     'display:none not changed': 'a{display:none}',
     'longer background declaration not changed': 'html{background:none repeat scroll 0 0 white}',
     'mixed zeros not changed': 'div{margin:0 0 1px 0}',
-    'mixed zeros not changed #2': 'div{padding:0 1px 0 0}'
+    'mixed zeros not changed #2': 'div{padding:0 1px 0 0}',
+    'mixed zeros not changed #3': 'div{padding:10px 0 0 0}',
+    'multiple zeros with fractions #1': [
+      'div{padding:0 0 0 0.5em}',
+      'div{padding:0 0 0 .5em}'
+    ],
+    'multiple zeros with fractions #2': [
+      'div{padding:0 0 0 .5em}',
+      'div{padding:0 0 0 .5em}'
+    ]
   }),
   'floats': cssContext({
     'strips zero in fractions': [

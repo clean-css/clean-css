@@ -32,13 +32,11 @@ if (options.source) {
 }
 
 function output(cleaned) {
-  var out;
   if (options.target) {
-    out = fs.createWriteStream(options.target, { flags: 'w', encoding: 'utf-8', mode: 0644 });
+    var out = fs.createWriteStream(options.target, { flags: 'w', encoding: 'utf-8', mode: 0644 });
+    out.write(cleaned);
+    out.end();
   } else {
-    out = process.stdout;
+    process.stdout.write(cleaned);
   }
-  
-  out.write(cleaned);
-  out.end();
 };

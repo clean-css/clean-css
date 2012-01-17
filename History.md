@@ -1,3 +1,8 @@
+0.3.2 / 2012-01-17
+==================
+  
+  * Fixed output method under node 0.6 which incorrectly tried to close process.stdout.
+
 0.3.1 / 2011-12-16
 ==================
   

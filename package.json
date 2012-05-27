@@ -16,6 +16,9 @@
   "dependencies": {
     "optimist": "0.1.x"
   },
+  "devDependencies": {
+    "vows": "0.6.x"
+  },
   "engines": {
     "node": ">=0.4.0"
   }

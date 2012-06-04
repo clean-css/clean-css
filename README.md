@@ -17,7 +17,7 @@ Clean-css is a node.js library for minifying CSS files. It does the same job as 
 You can minify one file **public.css** into **public-min.css** via:
 
     cleancss -o public-min.css public.css
-    
+
 To minify the same **public.css** into standard output skip the -o parameter:
 
     cleancss public.css
@@ -25,7 +25,7 @@ To minify the same **public.css** into standard output skip the -o parameter:
 Or more likely you would like to do something like this:
 
     cat one.css two.css three.css | cleancss -o merged-and-minified.css
-    
+
 Or even gzip it at once:
 
     cat one.css two.css three.css | cleancss | gzip -9 -c > merged-minified-and-gzipped.css.gz
@@ -33,7 +33,7 @@ Or even gzip it at once:
 ### How to use clean-css programatically? ###
 
     var cleanCSS = require('clean-css');
-    
+
     var source = "a{font-weight:bold;}";
     var minimized = cleanCSS.process(source);
 
@@ -42,6 +42,11 @@ Or even gzip it at once:
 You need vows testing framework (npm install vows) then simply run:
 
     make test
+
+### Acknowledgments ###
+
+* Vincent Voyer (@vvo) for a patch with better empty element regex and for inspiring us to do many performance improvements in 0.4 release.
+* Jan Michael Alonzo (@jmalonzo) for a patch removing node's old 'sys' package.
 
 ## License ##
 

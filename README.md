@@ -43,7 +43,7 @@ You need vows testing framework (npm install vows) then simply run:
 
     make test
 
-### Acknowledgments ###
+## Acknowledgments ##
 
 * Vincent Voyer (@vvo) for a patch with better empty element regex and for inspiring us to do many performance improvements in 0.4 release.
 * Jan Michael Alonzo (@jmalonzo) for a patch removing node's old 'sys' package.

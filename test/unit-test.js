@@ -2,21 +2,21 @@ var vows = require('vows'),
   assert = require('assert'),
   cleanCSS = require('../index');
 
-var cssContext = function(groups) {
+var cssContext = function(groups, options) {
   var context = {};
   var clean = function(cleanedCSS) {
     return function(css) {
-      assert.equal(cleanCSS.process(css), cleanedCSS);
+      assert.equal(cleanCSS.process(css, options), cleanedCSS);
     }
   };
-  
+
   for (var g in groups) {
     var transformation = groups[g];
     if (typeof transformation == 'string') transformation = [transformation, transformation];
     if (!transformation[0].push) {
       transformation = [[transformation[0], transformation[1]]];
     }
-    
+
     for (var i = 0, c = transformation.length; i < c; i++) {
       context[g + ' #' + (i + 1)] = {
         topic: transformation[i][0],
@@ -24,7 +24,7 @@ var cssContext = function(groups) {
       };
     }
   }
-  
+
   return context;
 };
 
@@ -96,20 +96,6 @@ vows.describe('clean-units').addBatch({
       'div{height:-moz-calc(3 * 2em + 10px)}'
     ]
   }),
-  'empty elements': cssContext({
-    'single': [
-      ' div p {  \n}',
-      ''
-    ],
-    'between non-empty': [
-      'div {color:#fff}  a{  } p{  line-height:1.35em}',
-      'div{color:#fff}p{line-height:1.35em}'
-    ],
-    'just a semicolon': [
-      'div { ; }',
-      ''
-    ]
-  }),
   'selectors': cssContext({
     'remove spaces around selectors': [
       'div + span >   em',
@@ -164,7 +150,11 @@ vows.describe('clean-units').addBatch({
     ]
   }),
   'text content': cssContext({
-    'normal': 'a{content:"."}',
+    'normal #1': 'a{content:"."}',
+    'normal #2': [
+      'a:before{content : "test\'s test"; }',
+      'a:before{content:"test\'s test"}'
+    ],
     'open quote': [
       'a{content : open-quote;opacity:1}',
       'a{content:open-quote;opacity:1}'
@@ -303,5 +293,25 @@ vows.describe('clean-units').addBatch({
       "body{background-color:#fff  !important}",
       "body{background-color:#fff!important}"
     ]
+  }),
+  'empty elements': cssContext({
+    'single': [
+      ' div p {  \n}',
+      ''
+    ],
+    'between non-empty': [
+      'div {color:#fff}  a{  } p{  line-height:1.35em}',
+      'div{color:#fff}p{line-height:1.35em}'
+    ],
+    'just a semicolon': [
+      'div { ; }',
+      ''
+    ]
+  }, { removeEmpty: true }),
+  'skip empty elements': cssContext({
+    'empty #1': 'a{}',
+    'empty #2': 'div>a{}',
+    'empty #3': 'div:nth-child(2n){}',
+    'empty #3': 'a{color:#fff}div{}p{line-height:2em}'
   })
 }).export(module);

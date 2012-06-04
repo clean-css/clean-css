@@ -9,12 +9,14 @@ var options = {
   source: null,
   target: null
 };
+var cleanOptions = {};
 
 if (argv.o) options.target = argv.o;
 if (argv._) options.source = argv._[0];
+if (argv.e) cleanOptions.removeEmpty = true;
 
 if (argv.h || argv.help) {
-  global.util.print('Usage: cleancss -o <output-file> <input-file>\n');
+  global.util.print('Usage: cleancss [-e] -o <output-file> <input-file>\n');
   process.exit(0);
 }
 
@@ -28,7 +30,7 @@ if (options.source) {
   stdin.setEncoding('utf-8');
   var text = '';
   stdin.on('data', function(chunk) { text += chunk; });
-  stdin.on('end', function() { output(cleanCss.process(text)); });
+  stdin.on('end', function() { output(cleanCss.process(text, cleanOptions)); });
 }
 
 function output(cleaned) {

@@ -19,7 +19,7 @@ var batchContexts = function() {
       }
     }
     context[testName]['minimizing ' + testName + '.css'] = function(data) {
-      assert.equal(cleanCSS.process(data.plain), data.minimized)
+      assert.equal(cleanCSS.process(data.plain, { removeEmpty: true }), data.minimized)
     };
   });
 

@@ -1,3 +1,11 @@
+0.4.0 / 2012-06-04
+==================
+
+ * Speed improvements (up to 4x) thanks to rewrite of comments and CSS' content processing.
+ * Stripping empty CSS tags is now optional (see ./bin/cleancss for details).
+ * Improved debugging mode (see ./test/bench.js)
+ * Added `make bench` for a one-pass benchmark.
+
 0.3.3 / 2012-05-27
 ==================
 

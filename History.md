@@ -1,3 +1,8 @@
+0.4.1 / 2012-06-10
+==================
+
+ * Fixed stateless mode where calling CleanCSS#process directly was giving errors (reported by @facelessuser).
+
 0.4.0 / 2012-06-04
 ==================
 

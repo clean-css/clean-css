@@ -37,6 +37,13 @@ Or even gzip it at once:
     var source = "a{font-weight:bold;}";
     var minimized = cleanCSS.process(source);
 
+### How do you preserve a comment block? ###
+
+    /*!
+
+    Important comments included in minified output.
+    */
+
 ### How to run clean-css tests? ###
 
 You need vows testing framework (npm install vows) then simply run:

@@ -1,3 +1,10 @@
+0.4.2 / 2012-06-28
+==================
+
+ * Updated binary -v option (version).
+ * Updated binary to output help when no options given (but not in piped mode).
+ * Added binary tests.
+
 0.4.1 / 2012-06-10
 ==================
 

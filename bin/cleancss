@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
-global.util = require("util");
-var argv = require('optimist').argv,
-  cleanCss = require('../index'),
+var util = require("util");
   fs = require('fs'),
-  path = require('path');
+  path = require('path'),
+  argv = require('optimist').argv,
+  CleanCSS = require('../index');
 
 var options = {
   source: null,
@@ -24,28 +24,30 @@ if (argv.v) {
 }
 
 if (argv.h || argv.help || (!fromStdin && argv._.length == 0)) {
-  global.util.print('usage: cleancss [-e] -o <output-file> <input-file>\n');
+  util.print('usage: cleancss [-e] -o <output-file> <input-file>\n');
   process.exit(0);
 }
 
 if (options.source) {
   fs.readFile(options.source, 'utf8', function(error, text) {
     if (error) throw error;
-    output(cleanCss.process(text));
+    output(CleanCSS.process(text));
   });
 } else {
   var stdin = process.openStdin();
   stdin.setEncoding('utf-8');
   var text = '';
-  stdin.on('data', function(chunk) { text += chunk; });
-  stdin.on('end', function() { output(cleanCss.process(text, cleanOptions)); });
+  stdin.on('data', function(chunk) {
+    text += chunk;
+  });
+  stdin.on('end', function() {
+    output(CleanCSS.process(text, cleanOptions));
+  });
 }
 
 function output(cleaned) {
   if (options.target) {
-    var out = fs.createWriteStream(options.target, { flags: 'w', encoding: 'utf-8', mode: 0644 });
-    out.write(cleaned);
-    out.end();
+    fs.writeFileSync(options.target, cleaned, 'utf8');
   } else {
     process.stdout.write(cleaned);
   }

@@ -1,3 +1,9 @@
+0.5.0 / 2012-08-02
+==================
+
+ * Made path to vows local.
+ * Explicit node 0.6 requirement.
+
 0.4.2 / 2012-06-28
 ==================
 

@@ -4,6 +4,8 @@ var vows = require('vows'),
   assert = require('assert'),
   cleanCSS = require('../index');
 
+var lineBreak = process.platform == 'win32' ? /\r\n/g : /\n/g;
+
 var batchContexts = function() {
   var context = {};
   fs.readdirSync(path.join(__dirname, 'data')).forEach(function(filename) {
@@ -13,8 +15,8 @@ var batchContexts = function() {
     context[testName] = {
       topic: function() {
         return {
-          plain: fs.readFileSync(path.join(__dirname, 'data', testName + '.css')).toString('utf-8'),
-          minimized: fs.readFileSync(path.join(__dirname, 'data', testName + '-min.css')).toString('utf-8').replace(/\n/g, '')
+          plain: fs.readFileSync(path.join(__dirname, 'data', testName + '.css'), 'utf-8').replace(lineBreak, ''),
+          minimized: fs.readFileSync(path.join(__dirname, 'data', testName + '-min.css'), 'utf-8').replace(lineBreak, '')
         };
       }
     }

@@ -20,12 +20,12 @@ if (argv.e) cleanOptions.removeEmpty = true;
 if (argv.v) {
   var packageConfig = fs.readFileSync(path.join(path.dirname(fs.realpathSync(process.argv[1])), '../package.json'));
   util.puts(JSON.parse(packageConfig).version);
-  process.exit(0);
+  return 0;
 }
 
 if (argv.h || argv.help || (!fromStdin && argv._.length == 0)) {
   util.print('usage: cleancss [-e] -o <output-file> <input-file>\n');
-  process.exit(0);
+  return 0;
 }
 
 if (options.source) {

@@ -6,7 +6,8 @@ Clean-css is a node.js library for minifying CSS files. It does the same job as 
 
 ### What are the requirements? ###
 
-    node 0.4.0+
+    node 0.6.0+ on *nix (fully tested on OS X 10.6+ and CentOS)
+    node 0.8.0+ on Windows
 
 ### How to install clean-css? ###
 
@@ -22,7 +23,7 @@ To minify the same **public.css** into standard output skip the -o parameter:
 
     cleancss public.css
 
-Or more likely you would like to do something like this:
+Or more likely you would like to do something like this (if you are on *nix system):
 
     cat one.css two.css three.css | cleancss -o merged-and-minified.css
 
@@ -49,6 +50,10 @@ Or even gzip it at once:
 You need vows testing framework (npm install vows) then simply run:
 
     make test
+
+on *nix systems. If you are under Windows then run:
+
+    ./test.bat
 
 ## Acknowledgments ##
 

@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/GoalSmashers/clean-css.png)](http://travis-ci.org/GoalSmashers/clean-css)
 ## What is clean-css? ##
 
 Clean-css is a node.js library for minifying CSS files. It does the same job as YUI Compressor's CSS minifier but much faster thanks to many speed optimizations and the node.js itself.

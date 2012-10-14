@@ -16,6 +16,8 @@ var fromStdin = !process.env['__DIRECT__'] && process.stdin.readable;
 if (argv.o) options.target = argv.o;
 if (argv._) options.source = argv._[0];
 if (argv.e) cleanOptions.removeEmpty = true;
+if (argv.s1) cleanOptions.keepSpecialComments = 1;
+if (argv.s0) cleanOptions.keepSpecialComments = 0;
 
 if (argv.v) {
   var packageConfig = fs.readFileSync(path.join(path.dirname(fs.realpathSync(process.argv[1])), '../package.json'));
@@ -24,7 +26,11 @@ if (argv.v) {
 }
 
 if (argv.h || argv.help || (!fromStdin && argv._.length == 0)) {
-  util.print('usage: cleancss [-e] -o <output-file> <input-file>\n');
+  util.puts("usage: cleancss [options] -o <output-file> <input-file>\n");
+  util.puts("options:");
+  util.puts("  -e\tRemove empty declarations (e.g. a{})");
+  util.puts("  --s0\tRemove all special comments (i.e. /*! special comment */)");
+  util.puts("  --s1\tRemove all special comments but the first one");
   return 0;
 }
 

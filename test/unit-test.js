@@ -149,6 +149,18 @@ vows.describe('clean-units').addBatch({
       '/*!  \n  a > span { } with some content */'
     ]
   }),
+  'important comments - one': cssContext({
+    'strip all but first': [
+      '/*! important comment */a{color:red}/* some comment *//*! important comment */',
+      '/*! important comment */a{color:red}'
+    ]
+  }, { keepSpecialComments: 1 }),
+  'important comments - none': cssContext({
+    'strip all': [
+      '/*! important comment */a{color:red}/* some comment *//*! important comment */',
+      'a{color:red}'
+    ]
+  }, { keepSpecialComments: 0 }),
   'text content': cssContext({
     'normal #1': 'a{content:"."}',
     'normal #2': [

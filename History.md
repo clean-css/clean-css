@@ -1,7 +1,13 @@
+0.7.0 / 2012-10-14
+==================
+
+ * Added stripping special comments to CLI (--s0 and --s1 options).
+ * Added stripping special comments to programatic interface (keepSpecialComments option).
+
 0.6.0 / 2012-08-05
 ==================
 
- * Full Windows support with tests (./test.bat)
+ * Full Windows support with tests (./test.bat).
 
 0.5.0 / 2012-08-02
 ==================

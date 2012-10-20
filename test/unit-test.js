@@ -55,12 +55,20 @@ vows.describe('clean-units').addBatch({
       'div  a  { color:#fff  }',
       'div a{color:#fff}'
     ],
+    'tabs': [
+      'div\t\ta{}\tp{color:red}',
+      'div a{}p{color:red}'
+    ],
     'line breaks': [
       'div \na\r\n { width:500px }',
       'div a{width:500px}'
     ],
     'line breaks #2': [
       'div \na\r\n, p { width:500px }',
+      'div a,p{width:500px}'
+    ],
+    'line breaks with whitespace lines': [
+      'div \n \t\n \na\r\n, p { width:500px }',
       'div a,p{width:500px}'
     ],
     'multiple arguments': [
@@ -96,6 +104,18 @@ vows.describe('clean-units').addBatch({
       'div{height:-moz-calc(3 * 2em + 10px)}'
     ]
   }),
+  'line breaks': cssContext({
+    'line breaks': 'div\na\r\n{width:500px}',
+    'line breaks #2': 'div\na\r\n,p{width:500px}',
+    'multiple line breaks #2': [
+      'div \r\n\r\na\r\n,p{width:500px}',
+      'div\r\na\r\n,p{width:500px}'
+    ],
+    'line breaks with whitespace lines': [
+      'div \n \t\n \na\r\n, p { width:500px }',
+      'div\na\r\n,p{width:500px}'
+    ]
+  }, { keepBreaks: true }),
   'selectors': cssContext({
     'remove spaces around selectors': [
       'div + span >   em',

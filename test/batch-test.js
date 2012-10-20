@@ -14,14 +14,28 @@ var batchContexts = function() {
 
     context[testName] = {
       topic: function() {
+        var plainPath = path.join(__dirname, 'data', testName + '.css');
+        var minPath = path.join(__dirname, 'data', testName + '-min.css');
+
         return {
-          plain: fs.readFileSync(path.join(__dirname, 'data', testName + '.css'), 'utf-8').replace(lineBreak, ''),
-          minimized: fs.readFileSync(path.join(__dirname, 'data', testName + '-min.css'), 'utf-8').replace(lineBreak, '')
+          plain: fs.readFileSync(plainPath, 'utf-8'),
+          minimized: fs.readFileSync(minPath, 'utf-8')
         };
       }
     }
     context[testName]['minimizing ' + testName + '.css'] = function(data) {
-      assert.equal(cleanCSS.process(data.plain, { removeEmpty: true }), data.minimized)
+      var processed = cleanCSS.process(data.plain, {
+        removeEmpty: true,
+        keepBreaks: true
+      });
+
+      var processedTokens = processed.split(lineBreak);
+      var minimizedTokens = data.minimized.split(lineBreak);
+      assert.equal(processedTokens.length, minimizedTokens.length);
+
+      processedTokens.forEach(function(line, i) {
+        assert.equal(line, minimizedTokens[i]);
+      });
     };
   });
 

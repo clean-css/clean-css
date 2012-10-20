@@ -16,6 +16,7 @@ var fromStdin = !process.env['__DIRECT__'] && process.stdin.readable;
 if (argv.o) options.target = argv.o;
 if (argv._) options.source = argv._[0];
 if (argv.e) cleanOptions.removeEmpty = true;
+if (argv.b) cleanOptions.keepBreaks = true;
 if (argv.s1) cleanOptions.keepSpecialComments = 1;
 if (argv.s0) cleanOptions.keepSpecialComments = 0;
 
@@ -29,6 +30,7 @@ if (argv.h || argv.help || (!fromStdin && argv._.length == 0)) {
   util.puts("usage: cleancss [options] -o <output-file> <input-file>\n");
   util.puts("options:");
   util.puts("  -e\tRemove empty declarations (e.g. a{})");
+  util.puts("  -b\tKeep line breaks");
   util.puts("  --s0\tRemove all special comments (i.e. /*! special comment */)");
   util.puts("  --s1\tRemove all special comments but the first one");
   return 0;
@@ -37,7 +39,7 @@ if (argv.h || argv.help || (!fromStdin && argv._.length == 0)) {
 if (options.source) {
   fs.readFile(options.source, 'utf8', function(error, text) {
     if (error) throw error;
-    output(CleanCSS.process(text));
+    output(CleanCSS.process(text, cleanOptions));
   });
 } else {
   var stdin = process.openStdin();

@@ -1,3 +1,12 @@
+0.8.0 / 2012-10-21
+==================
+
+ * Added removing url parentheses if possible.
+ * Rewrote breaks processing.
+ * Added (keepBreaks/-b) option to keep breaks in minimized file.
+ * Reformatted lib/clean.js so it's eaasier to follow the rules.
+ * Minimized test data is now kept with breaks so it's easier to compare the changes.
+
 0.7.0 / 2012-10-14
 ==================
 

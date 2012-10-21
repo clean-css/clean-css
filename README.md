@@ -16,7 +16,7 @@ Clean-css is a node.js library for minifying CSS files. It does the same job as 
 
 ### How to use clean-css? ###
 
-You can minify one file **public.css** into **public-min.css** via:
+To minify a **public.css** file into **public-min.css** do:
 
     cleancss -o public-min.css public.css
 
@@ -48,9 +48,9 @@ Or even gzip it at once:
 
 ### How to run clean-css tests? ###
 
-You need vows testing framework (npm install vows) then simply run:
+First clone the source, then run:
 
-    make test
+    npm test
 
 on *nix systems. If you are under Windows then run:
 
@@ -61,6 +61,7 @@ on *nix systems. If you are under Windows then run:
 * Vincent Voyer (@vvo) for a patch with better empty element regex and for inspiring us to do many performance improvements in 0.4 release.
 * Isaac (@facelessuser) for pointing out a flaw in clean-css' stateless mode.
 * Jan Michael Alonzo (@jmalonzo) for a patch removing node's old 'sys' package.
+* @XhmikosR for suggesting new features: option to remove special comments and strip out url's parentheses.
 
 ## License ##
 

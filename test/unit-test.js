@@ -293,13 +293,33 @@ vows.describe('clean-units').addBatch({
       'p{font-weight:700}'
     ]
   }),
+  'urls': cssContext({
+    'keep urls without parentheses unchanged': 'a{background:url(/images/blank.png) 0 0 no-repeat}',
+    'strip single parentheses': [
+      "a{background:url('/images/blank.png') 0 0 no-repeat}",
+      "a{background:url(/images/blank.png) 0 0 no-repeat}"
+    ],
+    'strip double parentheses': [
+      'a{background:url("/images/blank.png") 0 0 no-repeat}',
+      'a{background:url(/images/blank.png) 0 0 no-repeat}'
+    ],
+    'strip more': [
+      'a{background:url("/images/blank.png") 0 0 no-repeat}a{}a{background:url("/images/blank.png") 0 0 no-repeat}',
+      'a{background:url(/images/blank.png) 0 0 no-repeat}a{}a{background:url(/images/blank.png) 0 0 no-repeat}'
+    ],
+    'not strip comments if spaces inside': [
+      'a{background:url("/images/long image name.png") 0 0 no-repeat}a{}a{background:url("/images/no-spaces.png") 0 0 no-repeat}',
+      'a{background:url("/images/long image name.png") 0 0 no-repeat}a{}a{background:url(/images/no-spaces.png) 0 0 no-repeat}'
+    ]
+  }),
   'ie filters': cssContext({
     'short alpha': [
       "a{ filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=80); -ms-filter:'progid:DXImageTransform.Microsoft.Alpha(Opacity=50)';}",
       "a{filter:alpha(Opacity=80);-ms-filter:'alpha(Opacity=50)'}"
     ],
     'short chroma': [
-      'a{filter:progid:DXImageTransform.Microsoft.Chroma(color=#919191)}', 'a{filter:chroma(color=#919191)}'
+      'a{filter:progid:DXImageTransform.Microsoft.Chroma(color=#919191)}',
+      'a{filter:chroma(color=#919191)}'
     ],
     'matrix filter spaces': [
       "a{filter:progid:DXImageTransform.Microsoft.Matrix(M11=0.984, M22=0.984, M12=0.17, M21=-0.17, SizingMethod='auto expand')",

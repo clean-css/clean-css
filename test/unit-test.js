@@ -229,6 +229,27 @@ vows.describe('clean-units').addBatch({
     'multiple zeros with fractions #2': [
       'div{padding:0 0 0 .5em}',
       'div{padding:0 0 0 .5em}'
+    ],
+    'rect zeros #1': 'div{clip:rect(0 0 0 0)}',
+    'rect zeros #2': [
+      'div{clip:rect(0px 0px 0px 0px)}',
+      'div{clip:rect(0 0 0 0)}'
+    ],
+    'rect zeros #3': [
+      'div{clip:rect( 0px 0px 0px 0px )}',
+      'div{clip:rect(0 0 0 0)}'
+    ],
+    'rect zeros #4': [
+      'div{clip:rect(0px, 0px, 0px, 0px)}',
+      'div{clip:rect(0,0,0,0)}'
+    ],
+    'rect zeros #5': [
+      'div{clip:rect(0.5% 0px 0px 0px)}',
+      'div{clip:rect(0.5% 0 0 0)}'
+    ],
+    'rect zeros #6': [
+      'div{clip:rect(0px 0px 0px 10px)}',
+      'div{clip:rect(0 0 0 10px)}'
     ]
   }),
   'floats': cssContext({

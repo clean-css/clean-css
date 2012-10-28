@@ -8,7 +8,7 @@
     "type" : "git",
     "url" : "http://github.com/GoalSmashers/clean-css.git"
   },
-  "version": "0.8.0",
+  "version": "0.8.1",
   "main": "index.js",
   "bin": {
     "cleancss": "./bin/cleancss"

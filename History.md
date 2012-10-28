@@ -1,3 +1,8 @@
+0.8.1 / 2012-10-28
+==================
+
+ * Added better zeros processing for rect(...) syntax (clip property).
+
 0.8.0 / 2012-10-21
 ==================
 

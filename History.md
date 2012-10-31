@@ -1,3 +1,9 @@
+0.8.2 / 2012-10-31
+==================
+
+ * Fixed shortening hex colors and their relation to hashes in urls.
+ * Cleanup by @XhmikosR.
+
 0.8.1 / 2012-10-28
 ==================
 

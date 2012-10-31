@@ -3,10 +3,10 @@
   "author": "Jakub Pawlowicz <jakub@goalsmashers.com> (http://twitter.com/GoalSmashers)",
   "description": "A well-tested CSS minifier",
   "keywords": ["css", "minifier"],
-  "homepage": "http://github.com/GoalSmashers/clean-css",
+  "homepage": "https://github.com/GoalSmashers/clean-css",
   "repository": {
     "type" : "git",
-    "url" : "http://github.com/GoalSmashers/clean-css.git"
+    "url" : "https://github.com/GoalSmashers/clean-css.git"
   },
   "version": "0.8.1",
   "main": "index.js",

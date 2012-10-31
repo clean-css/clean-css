@@ -302,7 +302,9 @@ vows.describe('clean-units').addBatch({
     'border color': [
       'p{border:1px solid #f94311}',
       'p{border:1px solid #f94311}'
-    ]
+    ],
+    'colors and colons': 'a{background-image:linear-gradient(top,red,#e6e6e6)}',
+    'colors and parentheses': 'a{background-image:-webkit-gradient(linear,0 0,0 100%,from(#fff),to(#e6e6e6))}'
   }),
   'font weights': cssContext({
     'font-weight:normal to 400': [
@@ -331,6 +333,10 @@ vows.describe('clean-units').addBatch({
     'not strip comments if spaces inside': [
       'a{background:url("/images/long image name.png") 0 0 no-repeat}a{}a{background:url("/images/no-spaces.png") 0 0 no-repeat}',
       'a{background:url("/images/long image name.png") 0 0 no-repeat}a{}a{background:url(/images/no-spaces.png) 0 0 no-repeat}'
+    ],
+    'not add a space before url\'s hash': [
+      "url(\"../fonts/d90b3358-e1e2-4abb-ba96-356983a54c22.svg#d90b3358-e1e2-4abb-ba96-356983a54c22\")",
+      "url(../fonts/d90b3358-e1e2-4abb-ba96-356983a54c22.svg#d90b3358-e1e2-4abb-ba96-356983a54c22)",
     ]
   }),
   'ie filters': cssContext({

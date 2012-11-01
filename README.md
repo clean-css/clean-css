@@ -65,4 +65,4 @@ on *nix systems. If you are under Windows then run:
 
 ## License ##
 
-Clean-css is released under the MIT license.
+Clean-css is released under the MIT License.

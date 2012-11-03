@@ -171,6 +171,10 @@ vows.describe('clean-units').addBatch({
     'should keep exact structure': [
       '/*!  \n  a > span { } with some content */',
       '/*!  \n  a > span { } with some content */'
+    ],
+    'should remove comments with forward slashes inside': [
+      '/*////*/a{color:red}',
+      'a{color:red}'
     ]
   }),
   'important comments - one': cssContext({

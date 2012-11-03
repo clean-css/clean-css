@@ -102,6 +102,10 @@ vows.describe('clean-units').addBatch({
     'not inside calc method with multiplication': [
       'div{height:-moz-calc(3 * 2em + 10px)}',
       'div{height:-moz-calc(3 * 2em + 10px)}'
+    ],
+    'windows breaks': [
+      'div>a{color:red\r\n }',
+      'div>a{color:red}'
     ]
   }),
   'line breaks': cssContext({

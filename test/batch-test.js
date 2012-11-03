@@ -31,7 +31,6 @@ var batchContexts = function() {
 
       var processedTokens = processed.split(lineBreak);
       var minimizedTokens = data.minimized.split(lineBreak);
-      assert.equal(processedTokens.length, minimizedTokens.length);
 
       processedTokens.forEach(function(line, i) {
         assert.equal(line, minimizedTokens[i]);

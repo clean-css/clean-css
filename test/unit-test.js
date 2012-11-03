@@ -106,6 +106,10 @@ vows.describe('clean-units').addBatch({
     'windows breaks': [
       'div>a{color:red\r\n }',
       'div>a{color:red}'
+    ],
+    'whitespace in media queries': [
+      '@media (   min-width: 980px ) {\n#page .span4 {\nwidth: 250px;\n}\n\n.row {\nmargin-left: -10px;\n}\n}',
+      '@media (min-width:980px){#page .span4{width:250px}.row{margin-left:-10px}}',
     ]
   }),
   'line breaks': cssContext({

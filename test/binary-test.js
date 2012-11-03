@@ -3,8 +3,8 @@ var vows = require('vows'),
   exec = require('child_process').exec,
   fs = require('fs');
 
-var isWindows = process.platform == 'win32',
-  lineBreak = isWindows ? /\r\n/g : /\n/g;
+var isWindows = process.platform == 'win32';
+var lineBreak = isWindows ? /\r\n/g : /\n/g;
 
 var binaryContext = function(options, context) {
   context.topic = function() {
@@ -85,7 +85,10 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
       assert.equal(minimized, target);
     },
     teardown: function() {
-      exec('rm reset-min.css');
+      if (isWindows)
+        exec('del /q /f reset-min.css');
+      else
+        exec('rm reset-min.css');
     }
   })
 });

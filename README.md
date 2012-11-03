@@ -1,7 +1,7 @@
 [![build status](https://secure.travis-ci.org/GoalSmashers/clean-css.png)](http://travis-ci.org/GoalSmashers/clean-css)
 ## What is clean-css? ##
 
-Clean-css is a node.js library for minifying CSS files. It does the same job as YUI Compressor's CSS minifier but much faster thanks to many speed optimizations and the node.js itself.
+Clean-css is a node.js library for minifying CSS files. It does the same job as YUI Compressor's CSS minifier but much faster thanks to many speed optimizations and the node.js' V8 engine.
 
 ## Usage ##
 
@@ -20,30 +20,37 @@ To minify a **public.css** file into **public-min.css** do:
 
     cleancss -o public-min.css public.css
 
-To minify the same **public.css** into standard output skip the -o parameter:
+To minify the same **public.css** into the standard output skip the -o parameter:
 
     cleancss public.css
 
-Or more likely you would like to do something like this (if you are on *nix system):
+More likely you would like to concatenate couple files like this (if you are on *nix system):
 
     cat one.css two.css three.css | cleancss -o merged-and-minified.css
 
-Or even gzip it at once:
+Or even gzip the result at once:
 
     cat one.css two.css three.css | cleancss | gzip -9 -c > merged-minified-and-gzipped.css.gz
 
 ### How to use clean-css programatically? ###
 
     var cleanCSS = require('clean-css');
-
     var source = "a{font-weight:bold;}";
     var minimized = cleanCSS.process(source);
 
+Process method accepts a hash as a second parameter (i.e. `cleanCSS.process(source, options)`), with the following options available:
+
+* `keepSpecialComments` - `*` for keeping all, `1` for keeping first one, `0` for removing all (default is `*`)
+* `keepBreaks` - whether to keep line breaks (default is false)
+* `removeEmpty` - whether to remove empty elements (default is false)
+* `debug` - turns on debug mode (measuring time spent on cleaning up - run `make bench` to see example)
+
 ### How do you preserve a comment block? ###
 
-    /*!
+Use `/*!` notation instead of standard one (i.e. `/*`):
 
-    Important comments included in minified output.
+    /*!
+      Important comments included in minified output.
     */
 
 ### How to run clean-css tests? ###
@@ -61,7 +68,7 @@ on *nix systems. If you are under Windows then run:
 * Vincent Voyer (@vvo) for a patch with better empty element regex and for inspiring us to do many performance improvements in 0.4 release.
 * Isaac (@facelessuser) for pointing out a flaw in clean-css' stateless mode.
 * Jan Michael Alonzo (@jmalonzo) for a patch removing node's old 'sys' package.
-* @XhmikosR for suggesting new features: option to remove special comments and strip out url's parentheses.
+* @XhmikosR for suggesting new features (option to remove special comments and strip out url's parentheses) and pointing out numerous improvement (JSHint, media queries). 
 
 ## License ##
 

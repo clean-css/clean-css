@@ -34,7 +34,7 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
     }
   }),
   'help': binaryContext('-h', {
-    'should output help': function(error, stdout, stderr) {
+    'should output help': function(error, stdout) {
       assert.equal(/usage:/.test(stdout), true);
     }
   }),
@@ -79,7 +79,7 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
     'should give no output': function(error, stdout) {
       assert.equal(stdout, '');
     },
-    'should minimize': function(stdout) {
+    'should minimize': function() {
       var minimized = fs.readFileSync('./test/data/reset-min.css', 'utf-8').replace(lineBreak, '');
       var target = fs.readFileSync('./reset-min.css', 'utf-8').replace(lineBreak, '');
       assert.equal(minimized, target);

@@ -20,7 +20,8 @@
     "optimist": "0.3.x"
   },
   "devDependencies": {
-    "vows": "0.6.x"
+    "vows": "0.6.x",
+    "jshint": "0.9.x"
   },
   "engines": {
     "node": ">=0.6.0"

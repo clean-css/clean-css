@@ -7,7 +7,7 @@ var cssContext = function(groups, options) {
   var clean = function(cleanedCSS) {
     return function(css) {
       assert.equal(cleanCSS.process(css, options), cleanedCSS);
-    }
+    };
   };
 
   for (var g in groups) {
@@ -340,7 +340,7 @@ vows.describe('clean-units').addBatch({
     ],
     'not add a space before url\'s hash': [
       "url(\"../fonts/d90b3358-e1e2-4abb-ba96-356983a54c22.svg#d90b3358-e1e2-4abb-ba96-356983a54c22\")",
-      "url(../fonts/d90b3358-e1e2-4abb-ba96-356983a54c22.svg#d90b3358-e1e2-4abb-ba96-356983a54c22)",
+      "url(../fonts/d90b3358-e1e2-4abb-ba96-356983a54c22.svg#d90b3358-e1e2-4abb-ba96-356983a54c22)"
     ]
   }),
   'ie filters': cssContext({
@@ -395,6 +395,6 @@ vows.describe('clean-units').addBatch({
     'empty #1': 'a{}',
     'empty #2': 'div>a{}',
     'empty #3': 'div:nth-child(2n){}',
-    'empty #3': 'a{color:#fff}div{}p{line-height:2em}'
+    'empty #4': 'a{color:#fff}div{}p{line-height:2em}'
   })
 }).export(module);

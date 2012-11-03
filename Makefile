@@ -1,5 +1,6 @@
 TEST_DIR = test
-VOWS = ./node_modules/vows/bin/vows
+VOWS = ./node_modules/.bin/vows
+JSHINT = ./node_modules/.bin/jshint
 
 all: test
 
@@ -11,4 +12,8 @@ bench:
 	@@echo "Running benchmark on big.css file"
 	@@node test/bench.js
 
-.PHONY: all test bench
+check:
+	@@echo "Running JSHint on all project files..."
+	@@${JSHINT} .
+
+.PHONY: all test bench check

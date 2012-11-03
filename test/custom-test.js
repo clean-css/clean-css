@@ -13,5 +13,4 @@ vows.describe('clean-custom')
       }
     }
   })
-  .export(module)
-
+  .export(module);

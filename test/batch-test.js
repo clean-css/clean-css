@@ -22,7 +22,7 @@ var batchContexts = function() {
           minimized: fs.readFileSync(minPath, 'utf-8')
         };
       }
-    }
+    };
     context[testName]['minimizing ' + testName + '.css'] = function(data) {
       var processed = cleanCSS.process(data.plain, {
         removeEmpty: true,

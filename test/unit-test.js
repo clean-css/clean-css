@@ -265,17 +265,29 @@ vows.describe('clean-units').addBatch({
     ]
   }),
   'shorthands': cssContext({
-    'padding - same values': [
+    'padding - same 4 values': [
       'div{padding:1px 1px 1px 1px}',
       'div{padding:1px}'
     ],
-    'margin - same values': [
+    'margin - same 4 values': [
       'div{margin:1% 1% 1% 1%}',
       'div{margin:1%}'
     ],
-    'border-width - same values': [
+    'border-width - same 4 values': [
       'div{border-width:1em 1em 1em 1em}',
       'div{border-width:1em}'
+    ],
+    'padding - same 2 values': [
+      'div{padding:1px 1px}',
+      'div{padding:1px}'
+    ],
+    'margin - same 2 values': [
+      'div{margin:5% 5%}',
+      'div{margin:5%}'
+    ],
+    'border-width - same 2 values': [
+      'div{border-width:.5em .5em}',
+      'div{border-width:.5em}'
     ],
     'different units': 'div{padding:1px 1em 1% 1rem}',
     'fractions': [

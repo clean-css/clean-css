@@ -511,7 +511,7 @@ article .liste_carre_999{margin-top:5px}
 .fleuve .twit .texte_twit .nom,.article .twit .texte_twit .nom{display:block;color:#41c8f5;font-weight:700}
 .fleuve .grid_3.titre_video{font-weight:700}
 .fleuve section article{margin-bottom:0}
-.saisie{background-color:#f8f9fb;border:1px solid #b9c0c5;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;padding:3px 3px;font-size:1.2rem;color:#747b83;outline:0}
+.saisie{background-color:#f8f9fb;border:1px solid #b9c0c5;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;padding:3px;font-size:1.2rem;color:#747b83;outline:0}
 .saisie:focus{border-color:#8b9299}
 .radio_ou_checkbox,input[type="radio"],input[type="checkbox"]{cursor:pointer}
 input[type="radio"],input[type="checkbox"]{vertical-align:bottom;margin-bottom:.2rem}

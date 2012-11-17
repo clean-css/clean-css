@@ -231,9 +231,9 @@ vows.describe('clean-units').addBatch({
     ],
     'display:none not changed': 'a{display:none}',
     'longer background declaration not changed': 'html{background:none repeat scroll 0 0 white}',
-    'mixed zeros not changed': 'div{margin:0 0 1px 0}',
-    'mixed zeros not changed #2': 'div{padding:0 1px 0 0}',
-    'mixed zeros not changed #3': 'div{padding:10px 0 0 0}',
+    'mixed zeros not changed': 'div{margin:0 0 1px 2px}',
+    'mixed zeros not changed #2': 'div{padding:0 1px 0 3px}',
+    'mixed zeros not changed #3': 'div{padding:10px 0 0 1px}',
     'multiple zeros with fractions #1': [
       'div{padding:0 0 0 0.5em}',
       'div{padding:0 0 0 .5em}'
@@ -277,6 +277,25 @@ vows.describe('clean-units').addBatch({
       'div{border-width:1em 1em 1em 1em}',
       'div{border-width:1em}'
     ],
+    'padding - same pairs': [
+      'div{padding:15.5em 10.5em 15.5em 10.5em}',
+      'div{padding:15.5em 10.5em}'
+    ],
+    'margin - same 2nd and 4th value': [
+      'div{margin:1px 2px 3px 2px}',
+      'div{margin:1px 2px 3px}'
+    ],
+    'padding - same 3 values': [
+      'div{padding:1px 1px 1px}',
+      'div{padding:1px}'
+    ],
+    'padding - different 3 values': 'div{padding:1px 1em 1%}',
+    'margin - 3 callapsible values': [
+      'div{margin:1ex 2ex 1ex}',
+      'div{margin:1ex 2ex}'
+    ],
+    'margin - 3 different values': 'div{margin:1px 1px 3px}',
+    'border width - 3 different values': 'div{border-width:1px 2px 3px}',
     'padding - same 2 values': [
       'div{padding:1px 1px}',
       'div{padding:1px}'

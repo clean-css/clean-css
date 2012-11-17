@@ -39,7 +39,7 @@ li ul,li ol{margin:0}
 ul,ol{margin:0 1.5em 1.5em 0;padding-left:1.5em}
 ul{list-style-type:disc}
 ol{list-style-type:decimal}
-dl{margin:0 0 1.5em 0}
+dl{margin:0 0 1.5em}
 dl dt{font-weight:700}
 dd{margin-left:1.5em}
 table{margin-bottom:1.4em;width:100%}
@@ -62,7 +62,7 @@ caption{background:#eee}
 .top{margin-top:0;padding-top:0}
 .bottom{margin-bottom:0;padding-bottom:0}
 label{font-weight:700}
-fieldset{padding:0 1.4em 1.4em 1.4em;margin:0 0 1.5em 0;border:1px solid #ccc}
+fieldset{padding:0 1.4em 1.4em;margin:0 0 1.5em;border:1px solid #ccc}
 legend{font-weight:700;font-size:1.2em;margin-top:-.2em;margin-bottom:1em}
 fieldset,#IE8#HACK{padding-top:1.4em}
 legend,#IE8#HACK{margin-top:0;margin-bottom:0}

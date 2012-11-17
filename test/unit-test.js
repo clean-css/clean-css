@@ -264,6 +264,25 @@ vows.describe('clean-units').addBatch({
       'div{clip:rect(0 0 0 10px)}'
     ]
   }),
+  'shorthands': cssContext({
+    'padding - same values': [
+      'div{padding:1px 1px 1px 1px}',
+      'div{padding:1px}'
+    ],
+    'margin - same values': [
+      'div{margin:1% 1% 1% 1%}',
+      'div{margin:1%}'
+    ],
+    'border-width - same values': [
+      'div{border-width:1em 1em 1em 1em}',
+      'div{border-width:1em}'
+    ],
+    'different units': 'div{padding:1px 1em 1% 1rem}',
+    'fractions': [
+      'div{margin:.1em .1em .1em .1em}',
+      'div{margin:.1em}'
+    ]
+  }),
   'floats': cssContext({
     'strips zero in fractions': [
       'a{ margin-bottom: 0.5em}',

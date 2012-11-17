@@ -376,6 +376,14 @@ vows.describe('clean-units').addBatch({
     'font-weight:bold to 700': [
       'p{font-weight:bold}',
       'p{font-weight:700}'
+    ],
+    'font weight in font declarations': [
+      'font:normal 13px/20px "Helvetica Neue",Helvetica,Arial,sans-serif',
+      'font:400 13px/20px "Helvetica Neue",Helvetica,Arial,sans-serif'
+    ],
+    'multiple changes': [
+      'p{font-weight:bold;width:100%;font:normal}',
+      'p{font-weight:700;width:100%;font:400}'
     ]
   }),
   'urls': cssContext({

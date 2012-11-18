@@ -2,6 +2,7 @@ var vows = require('vows'),
   assert = require('assert'),
   cleanCSS = require('../index');
 
+var lineBreak = process.platform == 'win32' ? '\r\n' : '\n';
 var cssContext = function(groups, options) {
   var context = {};
   var clean = function(cleanedCSS) {
@@ -117,15 +118,21 @@ vows.describe('clean-units').addBatch({
     ]
   }),
   'line breaks': cssContext({
-    'line breaks': 'div\na\r\n{width:500px}',
-    'line breaks #2': 'div\na\r\n,p{width:500px}',
+    'line breaks': [
+      'div\na\r\n{width:500px}',
+      'div' + lineBreak + 'a' + lineBreak + '{width:500px}'
+    ],
+    'line breaks #2': [
+      'div\na\r\n,p{width:500px}',
+      'div' + lineBreak + 'a' + lineBreak + ',p{width:500px}'
+    ],
     'multiple line breaks #2': [
       'div \r\n\r\na\r\n,p{width:500px}',
-      'div\r\na\r\n,p{width:500px}'
+      'div' + lineBreak + 'a' + lineBreak + ',p{width:500px}'
     ],
     'line breaks with whitespace lines': [
       'div \n \t\n \na\r\n, p { width:500px }',
-      'div\na\r\n,p{width:500px}'
+      'div' + lineBreak + 'a' + lineBreak + ',p{width:500px}'
     ]
   }, { keepBreaks: true }),
   'selectors': cssContext({

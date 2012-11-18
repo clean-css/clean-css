@@ -2072,7 +2072,7 @@ body.auth-unlogged #core-liberation .form-monlibe-unlogged form{opacity:.3;-ms-f
 #core-liberation .block-comments .block-content .comment_reply_links .comment_flag .icon{position:static;display:block;width:13px;height:12px;float:left;background-image:url(http://s0.libe.com/libe/img/common/_sprites_icons/icons.png?9914d0d70a49);background-repeat:no-repeat;background-position:-33px -2px;margin:3px 6px 0 0}
 #core-liberation .block-comments .block-content .comment_reply_links .comment_flag:hover .icon{background-position:-33px -18px}
 #core-liberation .block-comments .block-content .comment_reply_links .comment_flag:hover{text-decoration:none}
-#core-liberation .block-comments .block-content .comment_reply_links .comment_reply{display:none;float:right;padding:5px 10px 7px;border-radius:5px 5px 5px 5px;-moz-border-radius:5px 5px 5px 5px;-webkit-border-radius:5px 5px 5px 5px}
+#core-liberation .block-comments .block-content .comment_reply_links .comment_reply{display:none;float:right;padding:5px 10px 7px;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px}
 #core-liberation .block-comments .block-content .comment_reply_links .comment_reply:hover{text-decoration:none}
 #core-liberation .block-comments .block-content .comment_libe>.comment_outer .meta .icon{position:absolute;right:0;top:0;display:block;width:36px;height:13px;background:url(http://s0.libe.com/libe/img/common/_sprites_icons/icons.png?9914d0d70a49) no-repeat 0 -84px}
 #core-liberation .block-comments .block-content .comment_libe>.comment_outer .meta .who,#core-liberation .block-comments .block-content .comment_libe>.comment_outer .meta .details,#core-liberation .block-comments .block-content .comment_libe>.comment_outer .meta .note{padding-right:41px}
@@ -2335,15 +2335,15 @@ a.god:hover{background:#3c3c3c;color:#fff;text-decoration:none}
 #core-liberation .block-item .cartridge-basic-bubble .btn-comment{width:100px}
 .btn-basic span,.btn-basic a{display:block;padding:2px 1px 4px;text-decoration:none;text-align:center;font-size:11px;border:1px solid}
 form .btn-basic input[type=button],form .btn-basic input[type=submit],form .btn-basic input[type=reset]{border:1px solid;padding:0 10px 4px;height:26px;cursor:pointer;cursor:hand;font-size:11px;font-family:Verdana,sans-serif}
-.btn-laune span,.btn-laune a,.btn-monlibe span,.btn-monlibe a,.btn-zoneabo span,.btn-zoneabo a{display:block;padding:5px 5px 7px;border-radius:5px 5px 5px 5px;-moz-border-radius:5px 5px 5px 5px;-webkit-border-radius:5px 5px 5px 5px;text-decoration:none}
+.btn-laune span,.btn-laune a,.btn-monlibe span,.btn-monlibe a,.btn-zoneabo span,.btn-zoneabo a{display:block;padding:5px 5px 7px;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;text-decoration:none}
 .btn-laune a:hover,.btn-monlibe a:hover,.btn-zoneabo a:hover{text-decoration:underline}
-form .btn-laune input[type=button],form .btn-laune input[type=submit],form .btn-laune input[type=reset],form .btn-monlibe input[type=button],form .btn-monlibe input[type=submit],form .btn-monlibe input[type=reset],form .btn-zoneabo input[type=button],form .btn-zoneabo input[type=submit],form .btn-zoneabo input[type=reset]{border-radius:5px 5px 5px 5px;-moz-border-radius:5px 5px 5px 5px;-webkit-border-radius:5px 5px 5px 5px;padding:0 10px 3px;height:25px;cursor:pointer;cursor:hand;font-size:12px;font-family:Verdana,sans-serif;border:0}
+form .btn-laune input[type=button],form .btn-laune input[type=submit],form .btn-laune input[type=reset],form .btn-monlibe input[type=button],form .btn-monlibe input[type=submit],form .btn-monlibe input[type=reset],form .btn-zoneabo input[type=button],form .btn-zoneabo input[type=submit],form .btn-zoneabo input[type=reset]{border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;padding:0 10px 3px;height:25px;cursor:pointer;cursor:hand;font-size:12px;font-family:Verdana,sans-serif;border:0}
 form .btn-monlibe input[type=reset]{opacity:.9}
-.btn-rounded-degraded span,.btn-rounded-degraded a{display:block;border-radius:5px 5px 5px 5px;-moz-border-radius:5px 5px 5px 5px;-webkit-border-radius:5px 5px 5px 5px;padding:7px 14px 11px;text-decoration:none;text-align:center;font-size:13px;font-weight:700}
+.btn-rounded-degraded span,.btn-rounded-degraded a{display:block;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;padding:7px 14px 11px;text-decoration:none;text-align:center;font-size:13px;font-weight:700}
 .btn-rounded-degraded span:hover,.btn-rounded-degraded a:hover{text-decoration:none!important}
-form .btn-rounded-degraded input[type=button],form .btn-rounded-degraded input[type=submit]{border-radius:5px 5px 5px 5px;-moz-border-radius:5px 5px 5px 5px;-webkit-border-radius:5px 5px 5px 5px;border:0;padding:0 10px 6px;height:35px;cursor:pointer;cursor:hand;font-size:13px;font-family:Verdana,sans-serif;font-weight:700}
+form .btn-rounded-degraded input[type=button],form .btn-rounded-degraded input[type=submit]{border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;border:0;padding:0 10px 6px;height:35px;cursor:pointer;cursor:hand;font-size:13px;font-family:Verdana,sans-serif;font-weight:700}
 form .btn-rounded-degraded input[type=button]:hover,form .btn-rounded-degraded input[type=submit]:hover,form .btn-rounded-degraded input[type=button]:focus,form .btn-rounded-degraded input[type=submit]:focus{text-decoration:none}
-.btn-read-digitalpaper{display:block;border:1px solid;border-radius:3px 3px 3px 3px;-moz-border-radius:3px 3px 3px 3px;-webkit-border-radius:3px 3px 3px 3px;padding:5px 7px 7px}
+.btn-read-digitalpaper{display:block;border:1px solid;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;padding:5px 7px 7px}
 .btn-read-digitalpaper span,.btn-read-digitalpaper a{display:block;min-height:32px;background:url(http://s0.libe.com/libe/img/common/reader_picto.png?8fdcc4850538) no-repeat right top;padding-right:50px;font-size:12px}
 #core-liberation .pagination{float:none;margin-bottom:14px;margin-top:21px;border-top:1px dotted;border-bottom:1px dotted;padding-top:3px;text-align:center}
 #core-liberation .pagination .first{float:left;background-image:url(http://s0.libe.com/libe/img/common/bg-search-pagination-first.png?71b3279ad5d6);background-repeat:no-repeat;background-position:0 5px;margin-left:10px;padding-left:20px}
@@ -2426,7 +2426,7 @@ body.init-bar-is-closed #bar-liberation{height:15px}
 #bar-liberation .content .open a .arrow{position:absolute;display:block;width:28px;height:100%;left:0;top:0;border-left:1px solid;border-right:1px solid;background:url(http://s0.libe.com/libe/img/common/_sprites_header/triangle_ouvert.png?c782eb482038) no-repeat center center}
 #bar-liberation .content .login{left:29px;width:1037px;z-index:10020}
 #bar-liberation .content .login h3{font-family:Verdana,sans-serif;font-weight:400;font-size:12px;padding:12px 10px 0}
-#bar-liberation .content .login a.subscribe{position:absolute;display:block;top:10px;right:230px;padding:3px 10px;border-radius:5px 5px 5px 5px;-moz-border-radius:5px 5px 5px 5px;-webkit-border-radius:5px 5px 5px 5px}
+#bar-liberation .content .login a.subscribe{position:absolute;display:block;top:10px;right:230px;padding:3px 10px;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px}
 #bar-liberation .content .login a.subscribe:hover{text-decoration:none}
 #bar-liberation .content .login span{position:absolute;display:block;top:13px;right:205px}
 #bar-liberation .content .login a.connect{position:absolute;display:block;top:13px;right:120px}

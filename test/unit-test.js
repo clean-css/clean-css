@@ -277,6 +277,34 @@ vows.describe('clean-units').addBatch({
       'div{border-width:1em 1em 1em 1em}',
       'div{border-width:1em}'
     ],
+    'border-style - same 4 values': [
+      'div{border-style:solid solid solid solid}',
+      'div{border-style:solid}'
+    ],
+    'border-color - same 4 values': [
+      'div{border-color:red red red red}',
+      'div{border-color:red}'
+    ],
+    'border-color - same 4 values as hex': [
+      'div{border-color:#f0f #f0f #f0f #f0f}',
+      'div{border-color:#f0f}'
+    ],
+    'border-color - same 4 values as rgb': [
+      'div{border-color:rgb(0,0,0) rgb(0,0,0) rgb(0,0,0) rgb(0,0,0)}',
+      'div{border-color:#000}'
+    ],
+    'border-color - same 4 values as rgba': [
+      'div{border-color:rgba(0,0,0,.5) rgba(0,0,0,.5) rgba(0,0,0,.5) rgba(0,0,0,.5)}',
+      'div{border-color:rgba(0,0,0,.5)}'
+    ],
+    'border-radius - same 4 values': [
+      'div{border-radius:3px 3px 3px 3px}',
+      'div{border-radius:3px}'
+    ],
+    'border-radius - same 4 values with vendor prefixes': [
+      'div{-moz-border-radius:3px 3px 3px 3px;-o-border-radius:3px 3px 3px 3px;-webkit-border-radius:3px 3px 3px 3px;border-radius:3px 3px 3px 3px}',
+      'div{-moz-border-radius:3px;-o-border-radius:3px;-webkit-border-radius:3px;border-radius:3px}'
+    ],
     'padding - same pairs': [
       'div{padding:15.5em 10.5em 15.5em 10.5em}',
       'div{padding:15.5em 10.5em}'
@@ -293,6 +321,14 @@ vows.describe('clean-units').addBatch({
     'margin - 3 callapsible values': [
       'div{margin:1ex 2ex 1ex}',
       'div{margin:1ex 2ex}'
+    ],
+    'border-radius - same 3 values with one vendor prefixe': [
+      'div{-webkit-border-radius:3px 3px 3px;border-radius:3px 3px 3px}',
+      'div{-webkit-border-radius:3px;border-radius:3px}'
+    ],
+    'border-color - same 2nd and 4th value as rgb': [
+      'div{border-color:rgb(0,0,0) rgb(34,0,0) rgb(255,0,0) rgb(34,0,0)}',
+      'div{border-color:#000 #200 red}'
     ],
     'margin - 3 different values': 'div{margin:1px 1px 3px}',
     'border width - 3 different values': 'div{border-width:1px 2px 3px}',

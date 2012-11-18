@@ -59,13 +59,17 @@ vows.describe('clean-units').addBatch({
       'div\t\ta{}\tp{color:red}',
       'div a{}p{color:red}'
     ],
-    'line breaks': [
+    'line breaks #1': [
       'div \na\r\n { width:500px }',
       'div a{width:500px}'
     ],
     'line breaks #2': [
       'div \na\r\n, p { width:500px }',
       'div a,p{width:500px}'
+    ],
+    'line breaks #3': [
+      'div a{width:500px\r\n}',
+      'div a{width:500px}'
     ],
     'line breaks with whitespace lines': [
       'div \n \t\n \na\r\n, p { width:500px }',

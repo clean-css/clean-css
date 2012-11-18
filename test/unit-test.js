@@ -230,7 +230,7 @@ vows.describe('clean-units').addBatch({
       'a{outline:0}'
     ],
     'display:none not changed': 'a{display:none}',
-    'longer background declaration not changed': 'html{background:none repeat scroll 0 0 white}',
+    'longer background declaration not changed': 'html{background:none repeat scroll 0 0 #fff}',
     'mixed zeros not changed': 'div{margin:0 0 1px 2px}',
     'mixed zeros not changed #2': 'div{padding:0 1px 0 3px}',
     'mixed zeros not changed #3': 'div{padding:10px 0 0 1px}',
@@ -381,6 +381,14 @@ vows.describe('clean-units').addBatch({
       'a{color:white;border-color:black;background-color:fuchsia}p{background:yellow}',
       'a{color:#fff;border-color:#000;background-color:#f0f}p{background:#ff0}'
     ],
+    'color names to hex values with important': [
+      'a{color:white !important}',
+      'a{color:#fff!important}'
+    ],
+    'color names to hex values in gradients': [
+      'p{background:linear-gradient(-90deg,black,white)}',
+      'p{background:linear-gradient(-90deg,#000,#fff)}'
+    ],
     'hex value to color name if shorter': [
       'p{color:#f00}',
       'p{color:red}'
@@ -397,9 +405,18 @@ vows.describe('clean-units').addBatch({
       'p{background:-webkit-gradient(linear, left top, left bottom, from(#000), to(#f00))}',
       'p{background:-webkit-gradient(linear,left top,left bottom,from(#000),to(red))}'
     ],
-    'border color': [
-      'p{border:1px solid #f94311}',
-      'p{border:1px solid #f94311}'
+    'border color - keep unchanged': 'p{border:1px solid #f94311}',
+    'border color - hex to name': [
+      'p{border:1em dotted #f00}',
+      'p{border:1em dotted red}'
+    ],
+    'border color - name to hex': [
+      'p{border:1em dotted white}',
+      'p{border:1em dotted #fff}'
+    ],
+    'border color - rgb': [
+      'p{border:1em dotted rgb(255,0,0)}',
+      'p{border:1em dotted red}'
     ],
     'colors and colons': 'a{background-image:linear-gradient(top,red,#e6e6e6)}',
     'colors and parentheses': 'a{background-image:-webkit-gradient(linear,0 0,0 100%,from(#fff),to(#e6e6e6))}'

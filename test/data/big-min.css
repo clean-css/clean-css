@@ -2103,7 +2103,7 @@ a.god:hover{background:#3c3c3c;color:#fff;text-decoration:none}
 #bar-liberation .god .godenabled a{background:#3c3c3c;color:#fff}
 #bar-liberation .god a.godenter{background:url(http://s0.libe.com/libe/img/common/icon_godenter.png?9ffa63824b5c) no-repeat center center #fff}
 #bar-liberation .god a.godquit{background:url(http://s0.libe.com/libe/img/common/icon_godquit.png?a59104f30cfb) no-repeat center center #000}
-#bar-liberation .god a.godquit:hover{background:url(http://s0.libe.com/libe/img/common/icon_godenter.png?9ffa63824b5c) no-repeat center center yellow}
+#bar-liberation .god a.godquit:hover{background:url(http://s0.libe.com/libe/img/common/icon_godenter.png?9ffa63824b5c) no-repeat center center #ff0}
 #bar-liberation .god a.jumptoadmin{background:url(http://s0.libe.com/back/img/icon_home.png?c1de55b52ccc) no-repeat center center #fff}
 #bar-liberation .god a.jumptoedit{background:url(http://s0.libe.com/back/img/icon_changelink.png?4a31d309d5db) no-repeat center center #fff}
 #mainContent .god{font-size:10px;padding:6px;border-radius:2px;-moz-border-radius:4px;-webkit-border-radius:4px}

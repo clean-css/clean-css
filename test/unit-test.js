@@ -304,7 +304,11 @@ vows.describe('clean-units').addBatch({
       'p{border:1px solid #f94311}'
     ],
     'colors and colons': 'a{background-image:linear-gradient(top,red,#e6e6e6)}',
-    'colors and parentheses': 'a{background-image:-webkit-gradient(linear,0 0,0 100%,from(#fff),to(#e6e6e6))}'
+    'colors and parentheses': 'a{background-image:-webkit-gradient(linear,0 0,0 100%,from(#fff),to(#e6e6e6))}',
+    'hsl percents': 'a{color:hsl(1,0%,0%)}',
+    'hsla percents': 'a{color:hsl(1,0%,0%)}',
+    'hsl one percent': 'a{color:hsl(80,100%,0%)}',
+    'hsla custom ': 'a{color:hsl(80,30%,50%,.5)}',
   }),
   'font weights': cssContext({
     'font-weight:normal to 400': [

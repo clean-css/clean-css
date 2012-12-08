@@ -510,6 +510,24 @@ vows.describe('clean-units').addBatch({
     'remove name quotes for vendor prefixes': [
       "@-moz-keyframes 'test'{}@-o-keyframes 'test'{}@-webkit-keyframes 'test'{}",
       "@-moz-keyframes test{}@-o-keyframes test{}@-webkit-keyframes test{}"
+    ],
+    'remove quotes in animation': [
+      "div{animation:'test' 2s ease-in .5s 3}",
+      "div{animation:test 2s ease-in .5s 3}"
+    ],
+    'not remove quotes in animation when name with space inside': "div{animation:'test 1' 2s ease-in .5s 3}",
+    'remove quotes in vendor prefixed animation name': [
+      "div{-moz-animation:'test' 2s ease-in;-o-animation:'test' 2s ease-in;-webkit-animation:'test' 2s ease-in}",
+      "div{-moz-animation:test 2s ease-in;-o-animation:test 2s ease-in;-webkit-animation:test 2s ease-in}"
+    ],
+    'remove quotes in animation-name': [
+      "div{animation-name:'test'}",
+      "div{animation-name:test}"
+    ],
+    'not remove quotes in animation when name with space inside': "div{animation-name:'test 1'}",
+    'remove quotes in vendor prefixed animation name': [
+      "div{-moz-animation-name:'test';-o-animation-name:'test';-webkit-animation-name:'test'}",
+      "div{-moz-animation-name:test;-o-animation-name:test;-webkit-animation-name:test}"
     ]
   }),
   'ie filters': cssContext({

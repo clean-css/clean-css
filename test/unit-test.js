@@ -497,6 +497,21 @@ vows.describe('clean-units').addBatch({
       "a{font:12px/16px Helvetica-Regular,Arial-Bold}"
     ]
   }),
+  'animations': cssContext({
+    'shorten': [
+      '@keyframes test\n{ from\n { width:100px; }\n to { width:200px; }\n}',
+      '@keyframes test{from{width:100px}to{width:200px}}'
+    ],
+    'remove name quotes': [
+      "@keyframes \"test1\"{}@keyframes 'test2'{}",
+      "@keyframes test1{}@keyframes test2{}"
+    ],
+    'not remove name quotes if whitespace inside': "@keyframes \"test 1\"{}@keyframes 'test 2'{}",
+    'remove name quotes for vendor prefixes': [
+      "@-moz-keyframes 'test'{}@-o-keyframes 'test'{}@-webkit-keyframes 'test'{}",
+      "@-moz-keyframes test{}@-o-keyframes test{}@-webkit-keyframes test{}"
+    ]
+  }),
   'ie filters': cssContext({
     'short alpha': [
       "a{ filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=80); -ms-filter:'progid:DXImageTransform.Microsoft.Alpha(Opacity=50)';}",

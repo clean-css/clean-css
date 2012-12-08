@@ -5,12 +5,12 @@
 
   "camelcase": true,
   "curly": false,
-  "eqeqeq": false,
+  "eqeqeq": true,
   "latedef": true,
   "noarg": true,
   "plusplus": false,
   "regexp": false,
   "strict": false,
-  "trailing": false,
+  "trailing": true,
   "unused": true
 }

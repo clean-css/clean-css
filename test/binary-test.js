@@ -3,7 +3,7 @@ var vows = require('vows'),
   exec = require('child_process').exec,
   fs = require('fs');
 
-var isWindows = process.platform == 'win32';
+var isWindows = process.platform === 'win32';
 var lineBreak = isWindows ? /\r\n/g : /\n/g;
 
 var binaryContext = function(options, context) {

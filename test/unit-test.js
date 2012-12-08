@@ -2,7 +2,7 @@ var vows = require('vows'),
   assert = require('assert'),
   cleanCSS = require('../index');
 
-var lineBreak = process.platform == 'win32' ? '\r\n' : '\n';
+var lineBreak = process.platform === 'win32' ? '\r\n' : '\n';
 var cssContext = function(groups, options) {
   var context = {};
   var clean = function(cleanedCSS) {
@@ -13,7 +13,7 @@ var cssContext = function(groups, options) {
 
   for (var g in groups) {
     var transformation = groups[g];
-    if (typeof transformation == 'string') transformation = [transformation, transformation];
+    if (typeof transformation === 'string') transformation = [transformation, transformation];
     if (!transformation[0].push) {
       transformation = [[transformation[0], transformation[1]]];
     }

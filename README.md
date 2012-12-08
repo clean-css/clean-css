@@ -28,11 +28,15 @@ More likely you would like to concatenate couple files like this (if you are on 
 
     cat one.css two.css three.css | cleancss -o merged-and-minified.css
 
+or on Windows:
+
+    type one.css two.css three.css | cleancss -o merged-and-minified.css
+
 Or even gzip the result at once:
 
     cat one.css two.css three.css | cleancss | gzip -9 -c > merged-minified-and-gzipped.css.gz
 
-### How to use clean-css programatically? ###
+### How to use clean-css programmatically? ###
 
     var cleanCSS = require('clean-css');
     var source = "a{font-weight:bold;}";
@@ -61,14 +65,14 @@ First clone the source, then run:
 
 on *nix systems. If you are under Windows then run:
 
-    ./test.bat
+    test.bat
 
 ## Acknowledgments ##
 
 * Vincent Voyer (@vvo) for a patch with better empty element regex and for inspiring us to do many performance improvements in 0.4 release.
 * Isaac (@facelessuser) for pointing out a flaw in clean-css' stateless mode.
 * Jan Michael Alonzo (@jmalonzo) for a patch removing node's old 'sys' package.
-* @XhmikosR for suggesting new features (option to remove special comments and strip out url's parentheses) and pointing out numerous improvement (JSHint, media queries). 
+* @XhmikosR for suggesting new features (option to remove special comments and strip out url's parentheses) and pointing out numerous improvement (JSHint, media queries).
 
 ## License ##
 

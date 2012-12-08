@@ -5,11 +5,11 @@ JSHINT = ./node_modules/.bin/jshint
 all: test
 
 test:
-	@@echo "Running all tests via vows"
+	@@echo "Running all tests via vows..."
 	@@${VOWS} ${TEST_DIR}/*-test.js
 
 bench:
-	@@echo "Running benchmark on big.css file"
+	@@echo "Running benchmark on big.css file..."
 	@@node test/bench.js
 
 check:

@@ -11,6 +11,6 @@
   "plusplus": false,
   "regexp": false,
   "strict": false,
-  "trailing": false,
+  "trailing": true,
   "unused": true
 }

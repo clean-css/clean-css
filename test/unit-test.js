@@ -516,7 +516,7 @@ vows.describe('clean-units').addBatch({
       "div{animation:test 2s ease-in .5s 3}"
     ],
     'not remove quotes in animation when name with space inside': "div{animation:'test 1' 2s ease-in .5s 3}",
-    'remove quotes in vendor prefixed animation name': [
+    'remove quotes in vendor prefixed animation': [
       "div{-moz-animation:'test' 2s ease-in;-o-animation:'test' 2s ease-in;-webkit-animation:'test' 2s ease-in}",
       "div{-moz-animation:test 2s ease-in;-o-animation:test 2s ease-in;-webkit-animation:test 2s ease-in}"
     ],
@@ -524,8 +524,8 @@ vows.describe('clean-units').addBatch({
       "div{animation-name:'test'}",
       "div{animation-name:test}"
     ],
-    'not remove quotes in animation when name with space inside': "div{animation-name:'test 1'}",
-    'remove quotes in vendor prefixed animation name': [
+    'not remove quotes in animation-name when name with space inside': "div{animation-name:'test 1'}",
+    'remove quotes in vendor prefixed animation-name': [
       "div{-moz-animation-name:'test';-o-animation-name:'test';-webkit-animation-name:'test'}",
       "div{-moz-animation-name:test;-o-animation-name:test;-webkit-animation-name:test}"
     ]

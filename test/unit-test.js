@@ -477,6 +477,26 @@ vows.describe('clean-units').addBatch({
       "url(../fonts/d90b3358-e1e2-4abb-ba96-356983a54c22.svg#d90b3358-e1e2-4abb-ba96-356983a54c22)"
     ]
   }),
+  'fonts': cssContext({
+    'keep format quotation': "@font-face{font-family:PublicVintage;src:url(./PublicVintage.otf) format('opentype')}",
+    'remove font family quotation': [
+      "a{font-family:\"Helvetica\",'Arial'}",
+      "a{font-family:Helvetica,Arial}"
+    ],
+    'do not remove font family double quotation if space inside': 'a{font-family:"Courier New"}',
+    'remove font quotation': [
+      "a{font:12px/16px \"Helvetica\",'Arial'}",
+      "a{font:12px/16px Helvetica,Arial}"
+    ],
+    'remove font quotation #2': [
+      "a{font:12px/16px \"Helvetica1_12\",'Arial_1451'}",
+      "a{font:12px/16px Helvetica1_12,Arial_1451}"
+    ],
+    'remove font quotation #3': [
+      "a{font:12px/16px \"Helvetica-Regular\",'Arial-Bold'}",
+      "a{font:12px/16px Helvetica-Regular,Arial-Bold}"
+    ]
+  }),
   'ie filters': cssContext({
     'short alpha': [
       "a{ filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=80); -ms-filter:'progid:DXImageTransform.Microsoft.Alpha(Opacity=50)';}",

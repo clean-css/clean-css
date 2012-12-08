@@ -42,27 +42,27 @@ input[type="search"]::-webkit-search-decoration,input[type="search"]::-webkit-se
 button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
 textarea{overflow:auto;vertical-align:top}
 table{border-collapse:collapse;border-spacing:0}
-@font-face{font-family:'TheSerifOffice';src:url(/medias/web/font/svg/TheSerifOffice-OT7_West.svgz#TheSerifOffice)format('svg');src:url(/medias/web/font/eot/TheSerifOffice-TT7_.eot);src:url(/medias/web/font/eot/TheSerifOffice-TT7_.eot?#iefix) format('embedded-opentype'),url(/medias/web/font/woff/TheSerifOffice-TT7_.woff) format('woff');font-weight:400;font-style:normal}
-@font-face{font-family:'FetteEngschrift';src:url(/medias/web/font/eot/fetteengschrift.eot);src:url(/medias/web/font/eot/fetteengschrift.eot?#iefix) format('embedded-opentype'),url(/medias/web/font/woff/fetteengschrift.woff) format('woff');font-weight:400;font-style:normal}
-.global .bloc_droit .bandeau,.global .bloc_bandeau .bandeau{font-family:'FetteEngschrift','Arial Narrow',sans-serif}
-.tt40{display:block;font-size:4rem;line-height:105%;font-family:'TheSerifOffice',georgia,serif;font-weight:400;margin:0 0 .5rem}
+@font-face{font-family:TheSerifOffice;src:url(/medias/web/font/svg/TheSerifOffice-OT7_West.svgz#TheSerifOffice)format('svg');src:url(/medias/web/font/eot/TheSerifOffice-TT7_.eot);src:url(/medias/web/font/eot/TheSerifOffice-TT7_.eot?#iefix) format('embedded-opentype'),url(/medias/web/font/woff/TheSerifOffice-TT7_.woff) format('woff');font-weight:400;font-style:normal}
+@font-face{font-family:FetteEngschrift;src:url(/medias/web/font/eot/fetteengschrift.eot);src:url(/medias/web/font/eot/fetteengschrift.eot?#iefix) format('embedded-opentype'),url(/medias/web/font/woff/fetteengschrift.woff) format('woff');font-weight:400;font-style:normal}
+.global .bloc_droit .bandeau,.global .bloc_bandeau .bandeau{font-family:FetteEngschrift,'Arial Narrow',sans-serif}
+.tt40{display:block;font-size:4rem;line-height:105%;font-family:TheSerifOffice,georgia,serif;font-weight:400;margin:0 0 .5rem}
 .ie .tt40{font-size:40px;margin:0 0 .5px}
-.tt32{display:block;font-size:3.2rem;line-height:105%;font-family:'TheSerifOffice',georgia,serif;font-weight:400}
+.tt32{display:block;font-size:3.2rem;line-height:105%;font-family:TheSerifOffice,georgia,serif;font-weight:400}
 .ie .tt32{font-size:32px;margin:0 0 10px}
-.tt28{display:block;font-size:2.8rem;line-height:105%;font-family:'TheSerifOffice',georgia,serif;font-weight:400;margin:0 0 1rem}
+.tt28{display:block;font-size:2.8rem;line-height:105%;font-family:TheSerifOffice,georgia,serif;font-weight:400;margin:0 0 1rem}
 .ie .tt28{font-size:28px;margin:0 0 10px}
-.tt26_capital{font-size:2.6rem;line-height:120%;font-family:'FetteEngschrift','Arial Narrow',sans-serif;font-weight:400;margin:0 0 .4rem;text-transform:uppercase}
+.tt26_capital{font-size:2.6rem;line-height:120%;font-family:FetteEngschrift,'Arial Narrow',sans-serif;font-weight:400;margin:0 0 .4rem;text-transform:uppercase}
 .ie .tt26_capital{font-size:26px;margin:0 0 4px}
-.tt24{display:block;font-size:2.4rem;line-height:105%;font-family:'TheSerifOffice',georgia,serif;font-weight:400;margin:0 0 .3rem}
+.tt24{display:block;font-size:2.4rem;line-height:105%;font-family:TheSerifOffice,georgia,serif;font-weight:400;margin:0 0 .3rem}
 .ie .tt24{font-size:24px;margin:0 0 3px}
-.tt20{display:block;font-size:2rem;line-height:105%;font-family:'TheSerifOffice',georgia,serif;font-weight:400;padding:0 0 .3rem}
+.tt20{display:block;font-size:2rem;line-height:105%;font-family:TheSerifOffice,georgia,serif;font-weight:400;padding:0 0 .3rem}
 .ie .tt20{font-size:20px;padding:0 0 3px}
-.tt17,.tt17_capital{display:block;font-size:1.7rem;line-height:120%;font-family:'TheSerifOffice',georgia,serif;font-weight:400;margin:0 0 .4rem}
-.tt17_capital{font-family:'FetteEngschrift','Arial Narrow',sans-serif;text-transform:uppercase;margin:0 0 4px}
+.tt17,.tt17_capital{display:block;font-size:1.7rem;line-height:120%;font-family:TheSerifOffice,georgia,serif;font-weight:400;margin:0 0 .4rem}
+.tt17_capital{font-family:FetteEngschrift,'Arial Narrow',sans-serif;text-transform:uppercase;margin:0 0 4px}
 .ie .tt17,.ie .tt17_capital{font-size:17px}
-.tt15_capital{display:block;font-size:1.5rem;line-height:120%;font-family:'FetteEngschrift','Arial Narrow',sans-serif;font-weight:400;text-transform:uppercase}
+.tt15_capital{display:block;font-size:1.5rem;line-height:120%;font-family:FetteEngschrift,'Arial Narrow',sans-serif;font-weight:400;text-transform:uppercase}
 .ie .tt15_capital{font-size:15px;margin:0 0 4px}
-.tt13_capital{display:block;font-size:1.3rem;line-height:120%;font-family:'FetteEngschrift','Arial Narrow',sans-serif;font-weight:400;margin:0 0 .4rem;text-transform:uppercase}
+.tt13_capital{display:block;font-size:1.3rem;line-height:120%;font-family:FetteEngschrift,'Arial Narrow',sans-serif;font-weight:400;margin:0 0 .4rem;text-transform:uppercase}
 .ie .tt13_capital{font-size:13px;margin:0 0 4px}
 .txt18{font-size:1.8rem;line-height:105%}
 .ie .txt18{font-size:18px}
@@ -207,7 +207,7 @@ figure img,article img,.img_bord{border:1px solid #eef1f5;vertical-align:bottom}
 .annotation{display:inline-block;font-size:10px;line-height:100%;color:#747b83}
 .type_element,.titre_blog,.nature_edito{font-size:11px;font-size:1.1rem;font-family:arial,sans-serif;font-weight:700;color:#a2a9ae;text-transform:uppercase}
 .type_element{white-space:nowrap}
-.nature_edito{display:block;font-weight:400;font-size:16px;font-family:'FetteEngschrift','Arial Narrow',sans-serif}
+.nature_edito{display:block;font-weight:400;font-size:16px;font-family:FetteEngschrift,'Arial Narrow',sans-serif}
 .titre_blog{display:block}
 .bloc_bg_gris2{background:#f8f9fb;padding:8px 16px}
 .mgl5{margin-left:5px}
@@ -881,7 +881,7 @@ label i{display:none;font-style:normal;display:none}
 .ombrelle.partenariats .tt_rubrique_ombrelle,.ombrelle.partenariats .tt_rubrique_ombrelle a{padding:0 4px 0 0;background-image:none;font-family:FetteEngschrift;text-transform:uppercase;font-size:55px;line-height:55px}
 .ombrelle.partenariats .tt_rubrique_ombrelle a,.ombrelle.export_interne .tt_rubrique_ombrelle a{color:#2e3942}
 .ombrelle.partenariats span{display:inline-block;padding:0 8px 0 0}
-.ombrelle .tt_rubrique_ombrelle,.ombrelle.style .tt_rubrique_ombrelle{display:inline-block;padding:0 0 0 67px;margin:25px 0 0;background:url(/medias/web/img/elements_lm/m54x44.png) no-repeat 0 20%;font-family:'TheSerifOffice',georgia,serif;font-size:55px;line-height:55px;color:#2E3942;font-weight:400;letter-spacing:-.01em}
+.ombrelle .tt_rubrique_ombrelle,.ombrelle.style .tt_rubrique_ombrelle{display:inline-block;padding:0 0 0 67px;margin:25px 0 0;background:url(/medias/web/img/elements_lm/m54x44.png) no-repeat 0 20%;font-family:TheSerifOffice,georgia,serif;font-size:55px;line-height:55px;color:#2E3942;font-weight:400;letter-spacing:-.01em}
 *+html .ombrelle .tt_rubrique_ombrelle,*+html .ombrelle.style .tt_rubrique_ombrelle{display:inline}
 .ombrelle .tt_rubrique_ombrelle a,.ombrelle .tt_rubrique_ombrelle h2 a:hover,.ombrelle .tt_rubrique_ombrelle .obf,.ombrelle .tt_rubrique_ombrelle .obf:hover{color:#2E3942;text-decoration:none}
 .ombrelle.style .tt_rubrique_ombrelle{background:url(/medias/web/img/elements_lm/m59x44.png) no-repeat 0 20%}
@@ -974,7 +974,7 @@ label i{display:none;font-style:normal;display:none}
 .article .tt32+p+.auteur{margin:6px 0 8px}
 .article p{margin:15px 0}
 .article blockquote{display:block;clear:both;width:424px;padding-left:16px;margin:20px 0;border-left:4px solid #b9c0c5;color:#5d666d}
-.article h2{font-size:2rem;line-height:105%;font-family:'TheSerifOffice';font-weight:400;margin:3rem 0 .5rem}
+.article h2{font-size:2rem;line-height:105%;font-family:TheSerifOffice;font-weight:400;margin:3rem 0 .5rem}
 .ie .article h2{font-size:20px}
 .article ol{list-style-type:decimal;margin:10px 0 10px 20px}
 .article ul{list-style-type:square;margin:10px 0 10px 25px}
@@ -1073,7 +1073,7 @@ label i{display:none;font-style:normal;display:none}
 .global.services .bloc_part:first-child{margin-left:0}
 .bloc_part .contenu{overflow:hidden}
 .bloc_part .entete{background:#2e3942;height:23px;line-height:23px;padding:0 15px;text-align:right}
-.bloc_part .entete .intitule{font-family:'FetteEngschrift','Arial Narrow',sans-serif;text-transform:uppercase;color:#fff;font-size:15px;float:left}
+.bloc_part .entete .intitule{font-family:FetteEngschrift,'Arial Narrow',sans-serif;text-transform:uppercase;color:#fff;font-size:15px;float:left}
 .bloc_part .entete .nom{float:right;color:#eef1f5}
 .bloc_part .accroche{display:block;margin:0 0 8px}
 .bloc_part .promo{color:#fe2f2f}

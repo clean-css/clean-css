@@ -530,6 +530,28 @@ vows.describe('clean-units').addBatch({
       "div{-moz-animation-name:test;-o-animation-name:test;-webkit-animation-name:test}"
     ]
   }),
+  'attributes': cssContext({
+    'should keep selector if no value': 'div[data-type]{border-color:red}',
+    'should keep selector if no quotation': 'div[data-type=something]{border-color:red}',
+    'should keep selector if equals in value': 'div[data-type="stupid=value"]{border-color:red}',
+    'should keep quotation if whitespace inside': 'div[data-type^=\'object 1\']{border-color:red}',
+    'should keep quotations if special characters inside': 'a[data-type="object_1"]{color:red}a[data-target="#some-place"]{color:red}',
+    'should keep quotation if is a number': 'div[data-number=\'1\']{border-color:red}',
+    'should keep quotation if starts with a number': 'div[data-type^=\'1something\']{border-color:red}',
+    'should keep quotation if starts with a hyphen': 'div[data-type$=\'-something\']{border-color:red}',
+    'should strip quotation if is a word': [
+      'a[data-href=\'object\']{border-color:red}',
+      'a[data-href=object]{border-color:red}'
+    ],
+    'should strip quotation if is a hyphen separated words': [
+      'a[data-href=\'object-1-two\']{border-color:red}',
+      'a[data-href=object-1-two]{border-color:red}'
+    ],
+    'should strip quotations if is less specific selectors': [
+      'a[data-href*=\'object1\']{border-color:red}a[data-href|=\'object2\']{border-color:#0f0}',
+      'a[data-href*=object1]{border-color:red}a[data-href|=object2]{border-color:#0f0}'
+    ]
+  }),
   'ie filters': cssContext({
     'short alpha': [
       "a{ filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=80); -ms-filter:'progid:DXImageTransform.Microsoft.Alpha(Opacity=50)';}",

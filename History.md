@@ -1,3 +1,10 @@
+0.9.0 / 2012-12-15
+==================
+
+ * Added stripping quotation from font names (if possible).
+ * Added stripping quotation from @keyframes declaration and animation/animation-name property.
+ * Added stripping quotations from attributes' value (e.g. [data-target='x']).
+
 0.8.3 / 2012-11-29
 ==================
 

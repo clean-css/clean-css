@@ -4,6 +4,15 @@
  * Added stripping quotation from font names (if possible).
  * Added stripping quotation from @keyframes declaration and animation/animation-name property.
  * Added stripping quotations from attributes' value (e.g. [data-target='x']).
+ * Added better hex->name and name->hex color shortening.
+ * Added shortening font:(normal|bold) the same way as font-weight is.
+ * Refactored shorthand selectors and added (border-radius|border-style|border-color) shortening.
+ * Added shortening (margin|padding|border-width).
+ * Added removing line break after commas.
+ * Fixed removing whitespace inside media query definition.
+ * Added removing line breaks after a comma, so all declarations are one-liners now.
+ * Speed optimizations (~10% despite many new features).
+ * Added JSHint validation rules (via `make check`).
 
 0.8.3 / 2012-11-29
 ==================

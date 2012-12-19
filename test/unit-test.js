@@ -392,6 +392,10 @@ vows.describe('clean-units').addBatch({
       'a{color:white;border-color:black;background-color:fuchsia}p{background:yellow}',
       'a{color:#fff;border-color:#000;background-color:#f0f}p{background:#ff0}'
     ],
+    'keep selectors with color name #1': ".black-and-white .foo{color:#fff;background-color:#000}",
+    'keep selectors with color name #2': ".go-blues{background:#000}",
+    'keep selectors with color name #3': "#top_white{background:#000}",
+    'keep selectors with color name #4': "a[data-sth=white]{background:#000}",
     'color names to hex values with important': [
       'a{color:white !important}',
       'a{color:#fff!important}'

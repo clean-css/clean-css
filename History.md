@@ -1,3 +1,8 @@
+0.9.1 / 2012-12-19
+==================
+
+ * Fixed issue #37 - converting 'white' and other colors in class names (reported by @malgorithms).
+
 0.9.0 / 2012-12-15
 ==================
 

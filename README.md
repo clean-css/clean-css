@@ -37,11 +37,11 @@ Or even gzip the result at once:
     cat one.css two.css three.css | cleancss | gzip -9 -c > merged-minified-and-gzipped.css.gz
 
 ### How to use clean-css programmatically? ###
-
+```javascript
     var cleanCSS = require('clean-css');
     var source = "a{font-weight:bold;}";
     var minimized = cleanCSS.process(source);
-
+```
 Process method accepts a hash as a second parameter (i.e. `cleanCSS.process(source, options)`), with the following options available:
 
 * `keepSpecialComments` - `*` for keeping all (default), `1` for keeping first one, `0` for removing all

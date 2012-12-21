@@ -14,7 +14,10 @@
     "cleancss": "./bin/cleancss"
   },
   "scripts": {
-    "test": "node_modules/.bin/vows test/*-test.js"
+    "bench": "node test/bench.js",
+    "check": "jshint .",
+    "prepublish": "jshint .",
+    "test": "vows"
   },
   "dependencies": {
     "optimist": "0.3.x"

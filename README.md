@@ -63,9 +63,6 @@ First clone the source, then run:
 
     npm test
 
-on *nix systems. If you are under Windows then run:
-
-    test.bat
 
 ## Acknowledgments ##
 

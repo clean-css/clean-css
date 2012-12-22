@@ -14,7 +14,7 @@ Clean-css is a node.js library for minifying CSS files. It does the same job as 
 
     npm install clean-css
 
-### How to use clean-css? ###
+### How to use clean-css CLI? ###
 
 To minify a **public.css** file into **public-min.css** do:
 
@@ -37,17 +37,27 @@ Or even gzip the result at once:
     cat one.css two.css three.css | cleancss | gzip -9 -c > merged-minified-and-gzipped.css.gz
 
 ### How to use clean-css programmatically? ###
+
 ```javascript
     var cleanCSS = require('clean-css');
     var source = "a{font-weight:bold;}";
     var minimized = cleanCSS.process(source);
 ```
+
 Process method accepts a hash as a second parameter (i.e. `cleanCSS.process(source, options)`), with the following options available:
 
 * `keepSpecialComments` - `*` for keeping all (default), `1` for keeping first one, `0` for removing all
 * `keepBreaks` - whether to keep line breaks (default is false)
 * `removeEmpty` - whether to remove empty elements (default is false)
-* `debug` - turns on debug mode (measuring time spent on cleaning up - run `make bench` to see example)
+* `debug` - turns on debug mode (measuring time spent on cleaning up - run `npm run bench` to see example)
+
+### What are the clean-css' dev commands? ###
+
+First clone the source, then run:
+
+* `npm run bench` for clean-css benchmarks (see test/bench,js for details)
+* `npm run check` to check JS sources with JSHint
+* `npm test` for the test suite
 
 ### How do you preserve a comment block? ###
 
@@ -57,15 +67,6 @@ Use `/*!` notation instead of standard one (i.e. `/*`):
       Important comments included in minified output.
     */
 
-### How to run clean-css tests? ###
-
-First clone the source, then run:
-
-    npm test
-
-on *nix systems. If you are under Windows then run:
-
-    test.bat
 
 ## Acknowledgments ##
 

@@ -41,7 +41,7 @@
 
 * Added removing URLs quotation if possible.
 * Rewrote breaks processing.
-* Added `keepBreaks`/`-b` option to keep breaks in minimized file.
+* Added `keepBreaks`/`-b` option to keep line breaks in the minimized file.
 * Reformatted lib/clean.js so it's easier to follow the rules.
 * Minimized test data is now minimized with line breaks so it's easier to
   compare the changes line by line.

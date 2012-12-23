@@ -1,16 +1,18 @@
 [![build status](https://secure.travis-ci.org/GoalSmashers/clean-css.png)](http://travis-ci.org/GoalSmashers/clean-css)
+
 ## What is clean-css? ##
 
 Clean-css is a [node.js](http://nodejs.org/) library for minifying CSS files.
 It does the same job as YUI Compressor's CSS minifier, but much faster thanks
 to many speed optimizations and node.js' V8 engine.
 
+
 ## Usage ##
 
 ### What are the requirements? ###
 
 ```
-node 0.6.0+ on *nix (fully tested on OS X 10.6+ and CentOS)
+node 0.6.0+ on UN*X (fully tested on OS X 10.6+ and CentOS)
 node 0.8.0+ on Windows
 ```
 
@@ -20,6 +22,15 @@ node 0.8.0+ on Windows
 
 ### How to use clean-css CLI? ###
 
+Clean-css accepts the following command line arguments:
+`cleancss [options] -o <output-file> <input-file>`
+* `-e`  Remove empty declarations (e.g. `.class {}`) (disabled by default)
+* `-b`  Keep line breaks (disabled by default)
+* `--s0` Remove all special comments (i.e. `/*! special comment */`) (disabled by default)
+* `--s1` Remove all special comments but the first one (disabled by default)
+
+#### Examples: ####
+
 To minify a **public.css** file into **public-min.css** do:
 
 `cleancss -o public-min.css public.css`
@@ -28,7 +39,7 @@ To minify the same **public.css** into the standard output skip the `-o` paramet
 
 `cleancss public.css`
 
-More likely you would like to concatenate a couple of files. Iif you are on a *nix system:
+More likely you would like to concatenate a couple of files. If you are on a Unix-like system:
 
 `cat one.css two.css three.css | cleancss -o merged-and-minified.css`
 

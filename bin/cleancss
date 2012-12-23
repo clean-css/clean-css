@@ -13,12 +13,18 @@ var options = {
 var cleanOptions = {};
 var fromStdin = !process.env['__DIRECT__'] && process.stdin.readable;
 
-if (argv.o) options.target = argv.o;
-if (argv._) options.source = argv._[0];
-if (argv.e) cleanOptions.removeEmpty = true;
-if (argv.b) cleanOptions.keepBreaks = true;
-if (argv.s1) cleanOptions.keepSpecialComments = 1;
-if (argv.s0) cleanOptions.keepSpecialComments = 0;
+if (argv.o)
+  options.target = argv.o;
+if (argv._)
+  options.source = argv._[0];
+if (argv.e || argv.empty || argv.removeempty)
+  cleanOptions.removeEmpty = true;
+if (argv.b || argv.keepbreaks || argv.keeplinebreaks)
+  cleanOptions.keepBreaks = true;
+if (argv.s1)
+  cleanOptions.keepSpecialComments = 1;
+if (argv.s0)
+  cleanOptions.keepSpecialComments = 0;
 
 if (argv.v) {
   var packageConfig = fs.readFileSync(path.join(path.dirname(fs.realpathSync(process.argv[1])), '../package.json'));

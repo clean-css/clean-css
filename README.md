@@ -23,11 +23,13 @@ node 0.8.0+ on Windows
 ### How to use clean-css CLI? ###
 
 Clean-css accepts the following command line arguments:
+
 `cleancss [options] -o <output-file> <input-file>`
-* `-e`  Remove empty declarations (e.g. `.class {}`) (disabled by default)
-* `-b`  Keep line breaks (disabled by default)
-* `--s0` Remove all special comments (i.e. `/*! special comment */`) (disabled by default)
-* `--s1` Remove all special comments but the first one (disabled by default)
+
+* `-e`, `-empty`, `-removeempty` Remove empty declarations (e.g. `.class {}`)
+* `-b`, `-keepbreaks`, `-keeplinebreaks` Keep line breaks
+* `--s0` Remove all special comments (i.e. `/*! special comment */`)
+* `--s1` Remove all special comments but the first one
 
 #### Examples: ####
 

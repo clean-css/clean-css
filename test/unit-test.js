@@ -133,6 +133,14 @@ vows.describe('clean-units').addBatch({
     'line breaks with whitespace lines': [
       'div \n \t\n \na\r\n, p { width:500px }',
       'div' + lineBreak + 'a' + lineBreak + ',p{width:500px}'
+    ],
+    'charset not at beginning': [
+      "a{ color: #f10; }\n@charset 'utf-8';\nb { font-weight: bolder}",
+      "@charset 'utf-8';\na{color:#f10}\nb{font-weight:bolder}"
+    ],
+    'charset multiple charsets': [
+      "@charset 'utf-8';\ndiv :before { display: block }\n@charset 'utf-8';\na { color: #f10 }",
+      "@charset 'utf-8';\ndiv :before{display:block}\na{color:#f10}"
     ]
   }, { keepBreaks: true }),
   'selectors': cssContext({

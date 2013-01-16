@@ -1,8 +1,8 @@
 0.9.2 / 2013-xx-xx
 ==================
 
-* Fixed performance issue with replacing multiple @charset declarations and issue with line break
-  after @charset when using keepLineBreaks option. By [@rrjaime](https://github.com/rrjamie)
+* Fixed performance issue with replacing multiple @charset declarations and issue
+  with line break after @charset when using keepLineBreaks option. By [@rrjaime](https://github.com/rrjamie).
 
 0.9.1 / 2012-12-19
 ==================

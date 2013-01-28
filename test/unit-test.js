@@ -122,6 +122,12 @@ vows.describe('clean-units').addBatch({
     'whitespace in media queries': [
       '@media (   min-width: 980px ) {\n#page .span4 {\nwidth: 250px;\n}\n\n.row {\nmargin-left: -10px;\n}\n}',
       '@media (min-width:980px){#page .span4{width:250px}.row{margin-left:-10px}}',
+    ],
+    'in content preceded by #content': '#content{}#foo{content:"\00BB  "}',
+    'in content preceded by .content': '.content{}#foo{content:"\00BB  "}',
+    'in content preceded by line break': [
+      '.content{}#foo{' + lineBreak + 'content:"\00BB  "}',
+      '.content{}#foo{content:"\00BB  "}'
     ]
   }),
   'line breaks': cssContext({

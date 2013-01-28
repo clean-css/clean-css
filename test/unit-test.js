@@ -644,6 +644,14 @@ vows.describe('clean-units').addBatch({
     'just a semicolon': [
       'div { ; }',
       ''
+    ],
+    'inside @media': [
+      "@media screen { .test {} } .test1 { color: green; }",
+      ".test1{color:green}"
+    ],
+    'inside not empty @media': [
+      "@media screen { .test {} .some { display:none } }",
+      "@media screen{.some{display:none}}"
     ]
   }, { removeEmpty: true }),
   'skip empty elements': cssContext({

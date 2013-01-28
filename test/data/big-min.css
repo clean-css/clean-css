@@ -900,7 +900,7 @@ label i{display:none;font-style:normal;display:none}
 #nav.accueil{width:auto;border-top:solid 3px #2E3942;background:#fff}
 #nav ul{margin-top:-3px;overflow:hidden;width:1000px;margin:-3px auto 0}
 #nav.acceuil ul{width:998px}
-#nav li{display:block;float:left;border-top-width :3px;border-top-style :solid}
+#nav li{display:block;float:left;border-top-width:3px;border-top-style:solid}
 #nav a,#nav span{display:inline-block;height:25px;padding:7px 10px 0 9px;border-left:1px solid #d2d6db;border-bottom:1px solid #d2d6db;font-size:12px;font-weight:700;text-transform:uppercase;color:#000}
 #nav li:hover a,#nav a:hover,#nav li:hover .obf,#nav .obf:hover{color:#fff}
 #nav .actif{background:#fff}
@@ -1098,11 +1098,11 @@ label i{display:none;font-style:normal;display:none}
 .bloc_part.attractive.format-text.chiffre .texte{width:284px}
 .bloc_part.attractive.format-text.exigeant .texte{padding:0 15px 9px;width:190px}
 .bloc_part.attractive.format-text.exigeant .btn_fonce{margin:0 0 26px 57px}
-.bloc_part.attractive.format-text.exigeant.grid_6 .btn_fonce{margin:0;right :15px}
+.bloc_part.attractive.format-text.exigeant.grid_6 .btn_fonce{margin:0;right:15px}
 .bloc_part.attractive.text{height:208px}
 .bloc_part.attractive.temoignage .img,.bloc_part.attractive.escapade .img{margin-right:0;padding:15px 0 15px 15px}
 .bloc_part.attractive.temoignage.petit .img{margin-right:0;padding:15px 0 15px 15px}
-.bloc_part.attractive.temoignage .texte,.bloc_part.attractive.escapade .texte{height:166px;margin :0;width :142px}
+.bloc_part.attractive.temoignage .texte,.bloc_part.attractive.escapade .texte{height:166px;margin:0;width:142px}
 .bloc_part.attractive.temoignage.petit .texte{height:108px}
 .bloc_part.attractive.temoignage.petit .texte{height:108px}
 .bloc_part.attractive.text{height:208px}

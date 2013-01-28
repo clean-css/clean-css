@@ -108,6 +108,13 @@ vows.describe('clean-units').addBatch({
       'div{height:-moz-calc(3 * 2em + 10px)}',
       'div{height:-moz-calc(3 * 2em + 10px)}'
     ],
+    'before colon': [
+      "#test{padding-left :0}",
+      "#test{padding-left:0}"
+    ],
+    'before colon but not selectors #1': "div :before{}",
+    'before colon but not selectors #2': "div ::-webkit-search-decoration{}",
+    'before colon but not selectors #3': "div :after{color:red}",
     'windows breaks': [
       'div>a{color:red\r\n }',
       'div>a{color:red}'

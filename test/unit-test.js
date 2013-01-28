@@ -390,6 +390,27 @@ vows.describe('clean-units').addBatch({
     'not strips zero in fractions of numbers greater than zero': [
       'a{ margin-bottom: 20.5em}',
       'a{margin-bottom:20.5em}'
+    ],
+    'strip fraction zero #1': [
+      'a{opacity:1.0}',
+      'a{opacity:1}'
+    ],
+    'strip fraction zero #2': [
+      'a{opacity:15.000%}',
+      'a{opacity:15%}'
+    ],
+    'strip fraction zero #3': [
+      'a{padding:15.55000em}',
+      'a{padding:15.55em}'
+    ],
+    'strip fraction zero #4': 'a{padding:15.101em}',
+    'strip fraction zero #5': [
+      'a{border-width:0.20em 20.30em}',
+      'a{border-width:.2em 20.3em}'
+    ],
+    'strip fraction zeros': [
+      'div{margin:1.000em 2.00em 3.100em 4.01em}',
+      'div{margin:1em 2em 3.1em 4.01em}'
     ]
   }),
   'colors': cssContext({

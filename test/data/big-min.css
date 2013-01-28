@@ -187,7 +187,7 @@ body{font-size:1.3rem;font-size:13px;line-height:140%;font-family:arial,sans-ser
 a{color:#036;text-decoration:none;cursor:pointer}
 a:hover,a:focus,a:active,.lien_focus,.flashy{color:#129af0}
 .bg_fonce a{color:#129af0;opacity:.85}
-.bg_fonce a:hover,.bg_fonce a:focus{opacity:1.0}
+.bg_fonce a:hover,.bg_fonce a:focus{opacity:1}
 .obf{cursor:pointer;color:#036}
 .lien_interne,.lien_interne:hover{color:#000}
 p{margin:0}
@@ -754,7 +754,7 @@ img[height="97"]+.ico29x29{bottom:6%;left:3.5%}
 .conteneur_carrousel .repere:hover,.conteneur_carrousel .repere.actif{background-position:-11px -24px;cursor:pointer}
 .conteneur_carrousel img{display:block;border:0}
 .portfolio_appel_revolutionnaire.conteneur_carrousel .navigation .reperes,.portfolio_appel_revolutionnaire .portfolio_data_container h2{display:none}
-.portfolio_appel_revolutionnaire .portfolio_data_container{position:absolute;left:0;right:0;bottom:0;background:#000;background:rgba(0,0,0,.8);color:#fff;text-shadow:0 1px 0 #000;padding:16px;-ms-filter:"alpha(Opacity=0)";opacity:.0;-webkit-transition:opacity 1s;-moz-transition:opacity 1s;-o-transition:opacity 1s;transition:opacity 1s}
+.portfolio_appel_revolutionnaire .portfolio_data_container{position:absolute;left:0;right:0;bottom:0;background:#000;background:rgba(0,0,0,.8);color:#fff;text-shadow:0 1px 0 #000;padding:16px;-ms-filter:"alpha(Opacity=0)";opacity:0;-webkit-transition:opacity 1s;-moz-transition:opacity 1s;-o-transition:opacity 1s;transition:opacity 1s}
 .portfolio_appel_revolutionnaire .elt.shown .portfolio_data_container{-ms-filter:"alpha(Opacity=80)";opacity:.8}
 .portfolio_appel_revolutionnaire .portfolio_data_container .credits{opacity:.5;padding-left:4px}
 .portfolio_appel_revolutionnaire .carrousel .elt{width:644px;height:322px}

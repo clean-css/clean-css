@@ -481,6 +481,9 @@ vows.describe('clean-units').addBatch({
     'hsla percents': 'a{color:hsl(1,0%,0%)}',
     'hsl one percent': 'a{color:hsl(80,100%,0%)}',
     'hsla custom ': 'a{color:hsl(80,30%,50%,.5)}',
+    'colors in ie filters': 'a{filter:chroma(color=#ffffff)}',
+    'colors in ie filters 2': "a{progid:DXImageTransform.Microsoft.gradient(startColorstr='#cccccc', endColorstr='#000000')}",
+    'colors in ie filters 3': "a{progid:DXImageTransform.Microsoft.gradient(startColorstr='#DDDDDD', endColorstr='#333333')}"
   }),
   'font weights': cssContext({
     'font-weight:normal to 400': [

@@ -24,7 +24,8 @@ npm install clean-css
 
 ### How to use clean-css CLI?
 
-Clean-css accepts the following command line arguments:
+Clean-css accepts the following command line arguments (please make sure you use `<source-file>` as the 
+very last argument to avoid potential issues):
 
 ```
 cleancss [options] <source-file>

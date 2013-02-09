@@ -27,13 +27,15 @@ npm install clean-css
 Clean-css accepts the following command line arguments:
 
 ```
-cleancss [options] -o <output-file> <input-file>
+cleancss [options] <source-file>
 ```
-
-* `-e`, `-empty`, `-removeempty` Remove empty declarations (e.g. `.class {}`)
-* `-b`, `-keepbreaks`, `-keeplinebreaks` Keep line breaks
+* `-h`, `--help` output usage information
+* `-v`, `--version` output the version number
+* `-e`, `--remove-empty` Remove empty declarations (e.g. `a{}`)
+* `-b`, `--keep-line-breaks` Keep line breaks
 * `--s0` Remove all special comments (i.e. `/*! special comment */`)
 * `--s1` Remove all special comments but the first one
+* `-o`, `--output [output-file]` Use [output-file] as output instead of stdout
 
 #### Examples:
 

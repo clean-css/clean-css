@@ -7,12 +7,12 @@ var isWindows = process.platform == 'win32';
 var lineBreak = isWindows ? /\r\n/g : /\n/g;
 
 var binaryContext = function(options, context) {
+  if (isWindows)
+    return {};
+
   context.topic = function() {
-    // We add __DIRECT__=1 to switch binary into 'non-piped' mode
-    if (isWindows)
-      exec("set __DIRECT__=1 & node .\\bin\\cleancss " + options, this.callback);
-    else
-      exec("__DIRECT__=1 ./bin/cleancss " + options, this.callback);
+    // We add __DIRECT__=1 to force binary into 'non-piped' mode
+    exec("__DIRECT__=1 ./bin/cleancss " + options, this.callback);
   };
   return context;
 };
@@ -30,12 +30,12 @@ var pipedContext = function(css, options, context) {
 exports.commandsSuite = vows.describe('binary commands').addBatch({
   'no options': binaryContext('', {
     'should output help': function(stdout) {
-      assert.equal(/usage:/.test(stdout), true);
+      assert.equal(/Usage:/.test(stdout), true);
     }
   }),
   'help': binaryContext('-h', {
     'should output help': function(error, stdout) {
-      assert.equal(/usage:/.test(stdout), true);
+      assert.equal(/Usage:/.test(stdout), true);
     }
   }),
   'version': binaryContext('-v', {

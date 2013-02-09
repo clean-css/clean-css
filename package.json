@@ -20,7 +20,7 @@
     "test": "vows"
   },
   "dependencies": {
-    "optimist": "0.3.x"
+    "commander": "1.1.x"
   },
   "devDependencies": {
     "vows": "0.7.x",

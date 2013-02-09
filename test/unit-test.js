@@ -126,8 +126,8 @@ vows.describe('clean-units').addBatch({
     'in content preceded by #content': '#content{}#foo{content:"\00BB  "}',
     'in content preceded by .content': '.content{}#foo{content:"\00BB  "}',
     'in content preceded by line break': [
-      '.content{}#foo{' + lineBreak + 'content:"\00BB  "}',
-      '.content{}#foo{content:"\00BB  "}'
+      '.content{}#foo{' + lineBreak + 'content:"x"}',
+      '.content{}#foo{content:"x"}'
     ]
   }),
   'line breaks': cssContext({
@@ -149,11 +149,11 @@ vows.describe('clean-units').addBatch({
     ],
     'charset not at beginning': [
       "a{ color: #f10; }\n@charset 'utf-8';\nb { font-weight: bolder}",
-      "@charset 'utf-8';\na{color:#f10}\nb{font-weight:bolder}"
+      "@charset 'utf-8';" + lineBreak + "a{color:#f10}" + lineBreak + "b{font-weight:bolder}"
     ],
     'charset multiple charsets': [
       "@charset 'utf-8';\ndiv :before { display: block }\n@charset 'utf-8';\na { color: #f10 }",
-      "@charset 'utf-8';\ndiv :before{display:block}\na{color:#f10}"
+      "@charset 'utf-8';" + lineBreak + "div :before{display:block}" + lineBreak + "a{color:#f10}"
     ]
   }, { keepBreaks: true }),
   'selectors': cssContext({

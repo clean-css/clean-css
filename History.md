@@ -1,4 +1,4 @@
-0.9.2 / 2013-xx-xx
+0.10.0 / 2013-02-09
 ==================
 
 * Switched from [optimist](https://github.com/substack/node-optimist) to

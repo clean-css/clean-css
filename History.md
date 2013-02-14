@@ -1,3 +1,9 @@
+0.10.1 / 2013-02-14
+==================
+
+* Fixed issue [#66](https://github.com/GoalSmashers/clean-css/issues/66) - line breaks without extra spaces should
+  be handled correctly.
+
 0.10.0 / 2013-02-09
 ==================
 

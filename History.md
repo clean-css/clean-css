@@ -12,9 +12,9 @@
 * Changed long options from `--removeempty` to `--remove-empty` and from `--keeplinebreaks` to `--keep-line-breaks`.
 * Fixed issue [#47](https://github.com/GoalSmashers/clean-css/issues/47) - commandline issues on Windows.
 * Fixed issue [#49](https://github.com/GoalSmashers/clean-css/issues/49) - remove empty selectors from media query.
-* Fixed issue [#52](https://github.com/GoalSmashers/clean-css/issues/49) - strip fraction zeros if not needed.
-* Fixed issue [#59](https://github.com/GoalSmashers/clean-css/issues/49) - content property handling.
-* Fixed issue [#58](https://github.com/GoalSmashers/clean-css/issues/49) - remove colon where possible.
+* Fixed issue [#52](https://github.com/GoalSmashers/clean-css/issues/52) - strip fraction zeros if not needed.
+* Fixed issue [#59](https://github.com/GoalSmashers/clean-css/issues/59) - content property handling.
+* Fixed issue [#58](https://github.com/GoalSmashers/clean-css/issues/58) - remove colon where possible.
 * Fixed performance issue with replacing multiple `@charset` declarations and issue
   with line break after `@charset` when using `keepLineBreaks` option. By [@rrjaime](https://github.com/rrjamie).
 * Removed Makefile in favor to npm run ... commands (e.g. `make check` -> `npm run check`).

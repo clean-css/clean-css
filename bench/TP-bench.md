@@ -10,7 +10,7 @@
 4. glyphicons.css [download](http://glyphicons.com/)
 5. font-awesome.css (icon-font) [download](http://fortawesome.github.com/Font-Awesome/)
 6. proximanova.css (font-family) [download](https://typekit.com/fonts/proxima-nova)
-7. onarbor.css (my site's styles) [download](https://onarbor.com/assets/css/onarbor.css)
+7. TP-site.css (my site's styles) 
 
 ### Clean-CSS minification
 ```

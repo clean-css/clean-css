@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "vows": "0.7.x",
-    "jshint": "0.9.x"
+    "jshint": "1.0.x"
   },
   "engines": {
     "node": ">=0.6.0"

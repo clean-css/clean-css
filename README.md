@@ -24,7 +24,7 @@ npm install clean-css
 
 ### How to use clean-css CLI?
 
-Clean-css accepts the following command line arguments (please make sure you use `<source-file>` as the 
+Clean-css accepts the following command line arguments (please make sure you use `<source-file>` as the
 very last argument to avoid potential issues):
 
 ```
@@ -122,4 +122,4 @@ Use the `/*!` notation instead of the standard one `/*`:
 
 ## License
 
-Clean-css is released under the [MIT License](http://opensource.org/licenses/MIT).
+Clean-css is released under the [MIT License](/LICENSE).

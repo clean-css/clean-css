@@ -17,7 +17,7 @@
 * Fixed issue [#58](https://github.com/GoalSmashers/clean-css/issues/58) - remove colon where possible.
 * Fixed performance issue with replacing multiple `@charset` declarations and issue
   with line break after `@charset` when using `keepLineBreaks` option. By [@rrjaime](https://github.com/rrjamie).
-* Removed Makefile in favor to npm run ... commands (e.g. `make check` -> `npm run check`).
+* Removed Makefile in favor to `npm run` commands (e.g. `make check` -> `npm run check`).
 
 0.9.1 / 2012-12-19
 ==================
@@ -29,11 +29,13 @@
 ==================
 
 * Added stripping quotation from font names (if possible).
-* Added stripping quotation from `@keyframes` declaration, `animation` and `animation-name` property.
+* Added stripping quotation from `@keyframes` declaration, `animation` and
+  `animation-name` property.
 * Added stripping quotations from attributes' value (e.g. `[data-target='x']`).
 * Added better hex->name and name->hex color shortening.
 * Added `font: normal` and `font: bold` shortening the same way as `font-weight` is.
-* Refactored shorthand selectors and added `border-radius`, `border-style` and `border-color` shortening.
+* Refactored shorthand selectors and added `border-radius`, `border-style`
+  and `border-color` shortening.
 * Added `margin`, `padding` and `border-width` shortening.
 * Added removing line break after commas.
 * Fixed removing whitespace inside media query definition.

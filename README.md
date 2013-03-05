@@ -1,4 +1,5 @@
-[![build status](https://secure.travis-ci.org/GoalSmashers/clean-css.png)](http://travis-ci.org/GoalSmashers/clean-css)
+[![Build Status](https://secure.travis-ci.org/GoalSmashers/clean-css.png)](http://travis-ci.org/GoalSmashers/clean-css)
+[![Dependency Status](https://gemnasium.com/GoalSmashers/clean-css.png)](https://gemnasium.com/GoalSmashers/clean-css)
 
 ## What is clean-css?
 

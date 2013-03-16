@@ -3,6 +3,7 @@
 
 * Fixed issue [#46](https://github.com/GoalSmashers/clean-css/issues/46) - preserving special characters in URLs
   and attributes.
+* Fixed issue [#44](https://github.com/GoalSmashers/clean-css/issues/46) - examples in --help.
 
 0.10.1 / 2013-02-14
 ==================

@@ -36,7 +36,16 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
   'help': binaryContext('-h', {
     'should output help': function(error, stdout) {
       assert.equal(/Usage:/.test(stdout), true);
-    }
+    },
+    'should output one file example': function(error, stdout) {
+      assert.equal(stdout.indexOf('cleancss -o one-min.css one.css') > -1, true);
+    },
+    'should output multiple files example': function(error, stdout) {
+      assert.equal(stdout.indexOf('cat one.css two.css three.css | cleancss -o merged-and-minified.css') > -1, true);
+    },
+    'should output gzipping multiple files example': function(error, stdout) {
+      assert.equal(stdout.indexOf('cat one.css two.css three.css | cleancss | gzip -9 -c > merged-minified-and-gzipped.css.gz') > -1, true);
+    },
   }),
   'version': binaryContext('-v', {
     'should output help': function(error, stdout) {

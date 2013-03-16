@@ -532,7 +532,12 @@ vows.describe('clean-units').addBatch({
     'keep urls from being stripped down #1': 'a{background:url(/image-1.0.png)}',
     'keep urls from being stripped down #2': "a{background:url(/image-white.png)}",
     'keep urls from being stripped down #3': "a{background:#eee url(libraries/jquery-ui-1.10.1.custom/images/ui-bg_highlight-soft_100_eeeeee_1x100.png) 50% top repeat-x}",
-    'keep __URL__ in comments (so order is important)': '/*! __URL__ */a{}'
+    'keep __URL__ in comments (so order is important)': '/*! __URL__ */a{}',
+    'strip new line in urls': [
+      'a{background:url(/very/long/\
+path)}',
+      'a{background:url(/very/long/path)}'
+    ]
   }),
   'fonts': cssContext({
     'keep format quotation': "@font-face{font-family:PublicVintage;src:url(./PublicVintage.otf) format('opentype')}",
@@ -609,8 +614,12 @@ vows.describe('clean-units').addBatch({
       'a[data-href*=object1]{border-color:red}a[data-href|=object2]{border-color:#0f0}'
     ],
     'should keep special characters inside attributes #1': "a[data-css='color:white']",
-    'should keep special characters inside attributes #2': "a[data-text='a\nb\nc']",
-    'should keep special characters inside attributes #3': 'a[href="/version-0.01.html"]'
+    'should keep special characters inside attributes #2': 'a[href="/version-0.01.html"]',
+    'should strip new lines inside attributes': [
+      ".test[title='my very long\
+title']",
+      ".test[title='my very longtitle']"
+    ]
   }),
   'ie filters': cssContext({
     'short alpha': [

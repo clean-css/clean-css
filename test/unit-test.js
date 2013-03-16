@@ -528,7 +528,10 @@ vows.describe('clean-units').addBatch({
     'not add a space before url\'s hash': [
       "url(\"../fonts/d90b3358-e1e2-4abb-ba96-356983a54c22.svg#d90b3358-e1e2-4abb-ba96-356983a54c22\")",
       "url(../fonts/d90b3358-e1e2-4abb-ba96-356983a54c22.svg#d90b3358-e1e2-4abb-ba96-356983a54c22)"
-    ]
+    ],
+    'keep urls from being stripped down #1': 'a{background:url(/image-1.0.png)}',
+    'keep urls from being stripped down #2': "a{background:url(/image-white.png)}",
+    'keep __URL__ in comments (so order is important)': '/*! __URL__ */a{}'
   }),
   'fonts': cssContext({
     'keep format quotation': "@font-face{font-family:PublicVintage;src:url(./PublicVintage.otf) format('opentype')}",
@@ -603,7 +606,10 @@ vows.describe('clean-units').addBatch({
     'should strip quotations if is less specific selectors': [
       'a[data-href*=\'object1\']{border-color:red}a[data-href|=\'object2\']{border-color:#0f0}',
       'a[data-href*=object1]{border-color:red}a[data-href|=object2]{border-color:#0f0}'
-    ]
+    ],
+    'should keep special characters inside attributes #1': "a[data-css='color:white']",
+    'should keep special characters inside attributes #2': "a[data-text='a\nb\nc']",
+    'should keep special characters inside attributes #3': 'a[href="/version-0.01.html"]'
   }),
   'ie filters': cssContext({
     'short alpha': [

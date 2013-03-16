@@ -1,3 +1,9 @@
+1.0 / 2013-xx-xx
+==================
+
+* Fixed issue [#46](https://github.com/GoalSmashers/clean-css/issues/46) - preserving special characters in URLs
+  and attributes.
+
 0.10.1 / 2013-02-14
 ==================
 

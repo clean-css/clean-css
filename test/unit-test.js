@@ -616,9 +616,9 @@ path)}',
     'should keep special characters inside attributes #1': "a[data-css='color:white']",
     'should keep special characters inside attributes #2': 'a[href="/version-0.01.html"]',
     'should strip new lines inside attributes': [
-      ".test[title='my very long\
+      ".test[title='my very long \
 title']",
-      ".test[title='my very longtitle']"
+      ".test[title='my very long title']"
     ]
   }),
   'ie filters': cssContext({

@@ -14,8 +14,8 @@ to many speed optimizations and node.js' V8 engine.
 ### What are the requirements?
 
 ```
-node 0.6.0+ on UN*X (fully tested on OS X 10.6+ and CentOS)
-node 0.8.0+ on Windows
+node.js 0.6.0+ on UN*X (fully tested on OS X 10.6+ and CentOS)
+node.js 0.8.0+ on Windows
 ```
 
 ### How to install clean-css?
@@ -118,7 +118,7 @@ Use the `/*!` notation instead of the standard one `/*`:
 * Isaac ([@facelessuser](https://github.com/facelessuser)) for pointing out
   a flaw in clean-css' stateless mode.
 * Jan Michael Alonzo ([@jmalonzo](https://github.com/jmalonzo)) for a patch
-  removing node's old 'sys' package.
+  removing node.js's old 'sys' package.
 * [@XhmikosR](https://github.com/XhmikosR) for suggesting new features
   (option to remove special comments and strip out URLs quotation) and pointing
   out numerous improvements (JSHint, media queries).

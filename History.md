@@ -100,7 +100,7 @@
 ==================
 
 * Made path to vows local.
-* Explicit node 0.6 requirement.
+* Explicit node.js 0.6 requirement.
 
 0.4.2 / 2012-06-28
 ==================
@@ -133,7 +133,7 @@
 0.3.2 / 2012-01-17
 ==================
 
-* Fixed output method under node 0.6 which incorrectly tried to close
+* Fixed output method under node.js 0.6 which incorrectly tried to close
   `process.stdout`.
 
 0.3.1 / 2011-12-16
@@ -144,8 +144,8 @@
 0.3.0 / 2011-11-29
 ==================
 
-* Clean-css requires node 0.4.0+ to run.
-* Removed node's 0.2.x 'sys' package dependency
+* Clean-css requires node.js 0.4.0+ to run.
+* Removed node.js's 0.2.x 'sys' package dependency
   (thanks to [@jmalonzo](https://github.com/jmalonzo) for a patch).
 
 0.2.6 / 2011-11-27

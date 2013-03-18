@@ -3,7 +3,7 @@
 
 * Fixed issue [#46](https://github.com/GoalSmashers/clean-css/issues/46) - preserving special characters in URLs
   and attributes.
-* Fixed issue [#44](https://github.com/GoalSmashers/clean-css/issues/44) - examples in --help.
+* Fixed issue [#44](https://github.com/GoalSmashers/clean-css/issues/44) - examples in `--help`.
 * Fixed issue [#83](https://github.com/GoalSmashers/clean-css/issues/83) - HSL to hex color conversions.
 * Fixed issue [#2](https://github.com/GoalSmashers/clean-css/issues/2) - resolving @import rules.
 * Fixed issue [#80](https://github.com/GoalSmashers/clean-css/issues/80) - quotation in multi line strings.
@@ -80,7 +80,7 @@
 * Added removing URLs quotation if possible.
 * Rewrote breaks processing.
 * Added `keepBreaks`/`-b` option to keep line breaks in the minimized file.
-* Reformatted lib/clean.js so it's easier to follow the rules.
+* Reformatted [lib/clean.js](/lib/clean.js) so it's easier to follow the rules.
 * Minimized test data is now minimized with line breaks so it's easier to
   compare the changes line by line.
 
@@ -120,8 +120,8 @@
 
 * Speed improvements up to 4x thanks to the rewrite of comments and CSS' content
   processing.
-* Stripping empty CSS tags is now optional (see ./bin/cleancss for details).
-* Improved debugging mode (see ./test/bench.js)
+* Stripping empty CSS tags is now optional (see [bin/cleancss](/bin/cleancss) for details).
+* Improved debugging mode (see [test/bench.js](/test/bench.js))
 * Added `make bench` for a one-pass benchmark.
 
 0.3.3 / 2012-05-27

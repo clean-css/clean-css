@@ -14,10 +14,10 @@ var cssContext = function(groups, options) {
 
   for (var g in groups) {
     var transformation = groups[g];
-    if (typeof transformation == 'string') transformation = [transformation, transformation];
-    if (!transformation[0].push) {
+    if (typeof transformation == 'string')
+      transformation = [transformation, transformation];
+    if (!transformation[0].push)
       transformation = [[transformation[0], transformation[1]]];
-    }
 
     for (var i = 0, c = transformation.length; i < c; i++) {
       context[g + ' #' + (i + 1)] = {

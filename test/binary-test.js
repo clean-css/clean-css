@@ -12,7 +12,7 @@ var binaryContext = function(options, context) {
 
   context.topic = function() {
     // We add __DIRECT__=1 to force binary into 'non-piped' mode
-    exec("__DIRECT__=1 ./bin/cleancss " + options, this.callback);
+    exec('__DIRECT__=1 ./bin/cleancss ' + options, this.callback);
   };
   return context;
 };
@@ -22,7 +22,7 @@ var pipedContext = function(css, options, context) {
     return {};
 
   context.topic = function() {
-    exec("echo \"" + css + "\" | ./bin/cleancss " + options, this.callback);
+    exec('echo "' + css + '" | ./bin/cleancss ' + options, this.callback);
   };
   return context;
 };
@@ -94,7 +94,7 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
       assert.equal(stdout, minimized);
     }
   }),
-  'to file': binaryContext('-o reset-min.css ./test/data/reset.css', {
+  'to file': binaryContext('-o ./reset-min.css ./test/data/reset.css', {
     'should give no output': function(error, stdout) {
       assert.equal(stdout, '');
     },
@@ -105,9 +105,9 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
     },
     teardown: function() {
       if (isWindows)
-        exec('del /q /f reset-min.css');
+        exec('del /q /f ./reset-min.css');
       else
-        exec('rm reset-min.css');
+        exec('rm ./reset-min.css');
     }
   })
 });

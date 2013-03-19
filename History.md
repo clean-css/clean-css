@@ -5,6 +5,11 @@
   and attributes.
 * Fixed issue [#44](https://github.com/GoalSmashers/clean-css/issues/46) - examples in --help.
 
+0.10.2 / 2013-03-19
+==================
+
+* Fixed issue [#79](https://github.com/GoalSmashers/clean-css/issues/79) - node.js 0.10.x compatibility.
+
 0.10.1 / 2013-02-14
 ==================
 

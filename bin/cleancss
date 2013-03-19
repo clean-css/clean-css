@@ -43,7 +43,7 @@ var options = {
   target: null
 };
 var cleanOptions = {};
-var fromStdin = !process.env['__DIRECT__'] && process.stdin.writable;
+var fromStdin = !process.env['__DIRECT__'] && !process.stdin.isTTY;
 
 // If no sensible data passed in just print help and exit
 if (!fromStdin && commands.args.length == 0) {

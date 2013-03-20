@@ -487,10 +487,6 @@ vows.describe('clean-units').addBatch({
     'hsla percents': 'a{color:hsla(1,0%,0%,.5)}',
     'hsla custom ': 'a{color:hsl(80,30%,50%,.5)}',
     'hsl to hex #1': [
-      'a{color:hsl(360,100%,50%)}',
-      'a{color:red}'
-    ],
-    'hsl to hex #1': [
       'a{color:hsl(0,0%,0%)}',
       'a{color:#000}'
     ],
@@ -513,6 +509,10 @@ vows.describe('clean-units').addBatch({
     'hsl to hex #6': [
       'a{color:hsl(99,66%,33%)}',
       'a{color:#438b1c}'
+    ],
+    'hsl to hex #7': [
+      'a{color:hsl(360,100%,50%)}',
+      'a{color:red}'
     ],
     'hsla not to hex': 'a{color:hsl(99,66%,33%,.5)}'
   }),

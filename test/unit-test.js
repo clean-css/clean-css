@@ -419,7 +419,7 @@ vows.describe('clean-units').addBatch({
   }),
   'colors': cssContext({
     'shorten rgb to standard hexadecimal format': [
-      'a{ color:rgb (5, 10, 15) }',
+      'a{ color:rgb(5, 10, 15) }',
       'a{color:#050a0f}'
     ],
     'skip rgba shortening': [

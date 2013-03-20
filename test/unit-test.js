@@ -481,13 +481,40 @@ vows.describe('clean-units').addBatch({
     ],
     'colors and colons': 'a{background-image:linear-gradient(top,red,#e6e6e6)}',
     'colors and parentheses': 'a{background-image:-webkit-gradient(linear,0 0,0 100%,from(#fff),to(#e6e6e6))}',
-    'hsl percents': 'a{color:hsl(1,0%,0%)}',
-    'hsla percents': 'a{color:hsl(1,0%,0%)}',
-    'hsl one percent': 'a{color:hsl(80,100%,0%)}',
-    'hsla custom ': 'a{color:hsl(80,30%,50%,.5)}',
     'colors in ie filters': 'a{filter:chroma(color=#ffffff)}',
     'colors in ie filters 2': "a{progid:DXImageTransform.Microsoft.gradient(startColorstr='#cccccc', endColorstr='#000000')}",
-    'colors in ie filters 3': "a{progid:DXImageTransform.Microsoft.gradient(startColorstr='#DDDDDD', endColorstr='#333333')}"
+    'colors in ie filters 3': "a{progid:DXImageTransform.Microsoft.gradient(startColorstr='#DDDDDD', endColorstr='#333333')}",
+    'hsla percents': 'a{color:hsla(1,0%,0%,.5)}',
+    'hsla custom ': 'a{color:hsl(80,30%,50%,.5)}',
+    'hsl to hex #1': [
+      'a{color:hsl(360,100%,50%)}',
+      'a{color:red}'
+    ],
+    'hsl to hex #1': [
+      'a{color:hsl(0,0%,0%)}',
+      'a{color:#000}'
+    ],
+    'hsl to hex #2': [
+      'a{color:hsl(0,100%,100%)}',
+      'a{color:#fff}'
+    ],
+    'hsl to hex #3': [
+      'a{color:hsl(240,100%,50%)}',
+      'a{color:#00f}'
+    ],
+    'hsl to hex #4': [
+      'a{color:hsl(240,100%,50%)}',
+      'a{color:#00f}'
+    ],
+    'hsl to hex #5': [
+      'a{color:hsl(120,100%,25%)}',
+      'a{color:#007f00}'
+    ],
+    'hsl to hex #6': [
+      'a{color:hsl(99,66%,33%)}',
+      'a{color:#438b1c}'
+    ],
+    'hsla not to hex': 'a{color:hsl(99,66%,33%,.5)}'
   }),
   'font weights': cssContext({
     'font-weight:normal to 400': [

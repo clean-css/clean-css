@@ -3,7 +3,8 @@
 
 * Fixed issue [#46](https://github.com/GoalSmashers/clean-css/issues/46) - preserving special characters in URLs
   and attributes.
-* Fixed issue [#44](https://github.com/GoalSmashers/clean-css/issues/46) - examples in --help.
+* Fixed issue [#44](https://github.com/GoalSmashers/clean-css/issues/44) - examples in --help.
+* Fixed issue [#83](https://github.com/GoalSmashers/clean-css/issues/83) - HSL to hex color conversions.
 
 0.10.2 / 2013-03-19
 ==================

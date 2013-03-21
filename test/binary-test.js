@@ -78,6 +78,16 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
       assert.equal(stdout, "");
     }
   }),
+  'no relative to path': binaryContext('./test/data/partials-absolute/base.css', {
+    'should not be able to resolve it fully': function(error, stdout) {
+      assert.equal(stdout, ".sub{padding:0}.base{margin:0}");
+    }
+  }),
+  'relative to path': binaryContext('-r ./test/data ./test/data/partials-absolute/base.css', {
+    'should be able to resolve it': function(error, stdout) {
+      assert.equal(stdout, ".base2{border-width:0}.sub{padding:0}.base{margin:0}");
+    }
+  }),
   'from source': binaryContext('./test/data/reset.css', {
     'should minimize': function(error, stdout) {
       var minimized = fs.readFileSync('./test/data/reset-min.css', 'utf-8').replace(lineBreak, '');

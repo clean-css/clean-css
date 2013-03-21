@@ -8,8 +8,9 @@ var lineBreak = process.platform == 'win32' ? /\r\n/g : /\n/g;
 
 var batchContexts = function() {
   var context = {};
-  fs.readdirSync(path.join(__dirname, 'data')).forEach(function(filename) {
-    if (/min.css$/.exec(filename)) return;
+  var dir = path.join(__dirname, 'data');
+  fs.readdirSync(dir).forEach(function(filename) {
+    if (/min.css$/.exec(filename) || !fs.statSync(path.join(dir, filename)).isFile()) return;
     var testName = filename.split('.')[0];
 
     context[testName] = {
@@ -19,14 +20,16 @@ var batchContexts = function() {
 
         return {
           plain: fs.readFileSync(plainPath, 'utf-8'),
-          minimized: fs.readFileSync(minPath, 'utf-8')
+          minimized: fs.readFileSync(minPath, 'utf-8'),
+          root: path.dirname(plainPath)
         };
       }
     };
     context[testName]['minimizing ' + testName + '.css'] = function(data) {
       var processed = cleanCSS.process(data.plain, {
         removeEmpty: true,
-        keepBreaks: true
+        keepBreaks: true,
+        root: data.root
       });
 
       var processedTokens = processed.split(lineBreak);

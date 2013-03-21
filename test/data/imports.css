@@ -1,0 +1,4 @@
+@import url('./partials/one.css');
+@import url("./partials/two.css");
+
+.imports { color: #000; }

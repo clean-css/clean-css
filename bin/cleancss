@@ -20,6 +20,7 @@ commands
   .option('-b, --keep-line-breaks', 'Keep line breaks')
   .option('--s0', 'Remove all special comments (i.e. /*! special comment */)')
   .option('--s1', 'Remove all special comments but the first one')
+  .option('-r, --root [root-path]', 'Set a root path to which resolve absolute @import rules')
   .option('-o, --output [output-file]', 'Use [output-file] as output instead of stdout');
 
 commands.on('--help', function() {
@@ -54,8 +55,6 @@ if (!fromStdin && commands.args.length == 0) {
 // Now coerce commands into CleanCSS configuration...
 if (commands.output)
   options.target = commands.output;
-if (commands.args.length > 0)
-  options.source = commands.args[0];
 if (commands.removeEmpty)
   cleanOptions.removeEmpty = true;
 if (commands.keepLineBreaks)
@@ -64,6 +63,13 @@ if (commands.s1)
   cleanOptions.keepSpecialComments = 1;
 if (commands.s0)
   cleanOptions.keepSpecialComments = 0;
+if (commands.root)
+  cleanOptions.root = commands.root;
+if (commands.args.length > 0) {
+  var source = commands.args[0];
+  options.source = source;
+  cleanOptions.relativeTo = path.dirname(path.resolve(source));
+}
 
 // ... and do the magic!
 if (options.source) {

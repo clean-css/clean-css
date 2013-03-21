@@ -38,6 +38,7 @@ cleancss [options] <source-file>
 * `-b`, `--keep-line-breaks` Keep line breaks
 * `--s0` Remove all special comments (i.e. `/*! special comment */`)
 * `--s1` Remove all special comments but the first one
+* `-r`, `--root [root-path]` Set a root path to which resolve absolute @import rules
 * `-o`, `--output [output-file]` Use [output-file] as output instead of stdout
 
 #### Examples:

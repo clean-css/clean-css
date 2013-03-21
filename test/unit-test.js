@@ -1,6 +1,7 @@
-var vows = require('vows'),
-  assert = require('assert'),
-  cleanCSS = require('../index');
+var vows = require('vows');
+var assert = require('assert');
+var path = require('path');
+var cleanCSS = require('../index');
 
 var lineBreak = process.platform == 'win32' ? '\r\n' : '\n';
 var cssContext = function(groups, options) {
@@ -709,5 +710,69 @@ title']",
     'empty #2': 'div>a{}',
     'empty #3': 'div:nth-child(2n){}',
     'empty #4': 'a{color:#fff}div{}p{line-height:2em}'
-  })
+  }),
+  '@import': cssContext({
+    'empty': [
+      "@import url();",
+      ""
+    ],
+    'of unknown file': [
+      "@import url('fake.css');",
+      ""
+    ],
+    'of a directory': [
+      "@import url(test/data/partials);",
+      ""
+    ],
+    'of a real file': [
+      "@import url(test/data/partials/one.css);",
+      ".one{color:red}"
+    ],
+    'of a real file twice': [
+      "@import url(test/data/partials/one.css);@import url(test/data/partials/one.css);",
+      ".one{color:red}"
+    ],
+    'of a real file with current path prefix': [
+      "@import url(./test/data/partials/one.css);",
+      ".one{color:red}"
+    ],
+    'of a real file with quoted path': [
+      "@import url('test/data/partials/one.css');",
+      ".one{color:red}"
+    ],
+    'of more files': [
+      "@import url(test/data/partials/one.css);\n\na{}\n\n@import url(test/data/partials/extra/three.css);",
+      ".one{color:red}a{}.three{color:#0f0}"
+    ],
+    'of multi-level, circular dependency file': [
+      "@import url(test/data/partials/two.css);",
+      ".one{color:red}.three{color:#0f0}.four{color:#00f}.two{color:#fff}"
+    ]
+  }),
+  '@import with absolute paths': cssContext({
+    'of an unknown file': [
+      "@import url(/fake.css);",
+      ""
+    ],
+    'of a real file': [
+      "@import url(/partials/one.css);",
+      ".one{color:red}"
+    ],
+    'of a real file with quoted paths': [
+      "@import url(\"/partials/one.css\");",
+      ".one{color:red}"
+    ],
+    'of two files with mixed paths': [
+      "@import url(/partials/one.css);a{}@import url(partials/extra/three.css);",
+      ".one{color:red}a{}.three{color:#0f0}"
+    ],
+    'of a multi-level, circular dependency file': [
+      "@import url(/partials/two.css);",
+      ".one{color:red}.three{color:#0f0}.four{color:#00f}.two{color:#fff}"
+    ],
+    'of a multi-level, circular dependency file with mixed paths': [
+      "@import url(/partials-absolute/base.css);",
+      ".base2{border-width:0}.sub{padding:0}.base{margin:0}"
+    ]
+  }, { root: path.join(process.cwd(), 'test', 'data') })
 }).export(module);

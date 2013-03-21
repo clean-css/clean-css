@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-var util = require("util");
+var util = require('util');
 var fs = require('fs');
 var path = require('path');
 var CleanCSS = require('../index');
@@ -74,7 +74,8 @@ if (commands.args.length > 0) {
 // ... and do the magic!
 if (options.source) {
   fs.readFile(options.source, 'utf8', function(error, text) {
-    if (error) throw error;
+    if (error)
+      throw error;
     output(CleanCSS.process(text, cleanOptions));
   });
 } else {
@@ -90,9 +91,8 @@ if (options.source) {
 }
 
 function output(cleaned) {
-  if (options.target) {
+  if (options.target)
     fs.writeFileSync(options.target, cleaned, 'utf8');
-  } else {
+  else
     process.stdout.write(cleaned);
-  }
 };

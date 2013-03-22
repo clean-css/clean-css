@@ -1002,7 +1002,7 @@ label i{display:none;font-style:normal;display:none}
 .liste_reactions .bulle span{display:block;-webkit-box-shadow:0 3px 2px 1px rgba(0,11,21,.2);-moz-box-shadow:0 3px 2px 1px rgba(0,11,21,.2);box-shadow:0 3px 2px 1px rgba(0,11,21,.2);border-radius:4px;padding:10px;background:#fff}
 .liste_reactions .references{font-weight:700}
 .liste_reactions .references .date{color:#8b9299}
-.liste_reactions input[class=btn],.liste_reactions input[class="btn_abo"]{margin:5px 0 10px}
+.liste_reactions input[class=btn],.liste_reactions input[class=btn_abo]{margin:5px 0 10px}
 .reaction_identifier,.reaction_redaction{margin:20px 0;background:#f5f8f9;border-top:3px solid #e9ecf0}
 .reaction_redaction{padding:0 0 10px}
 .reaction_identifier .deja_abo{float:left;width:275px;border-left:1px solid #ebeff0}

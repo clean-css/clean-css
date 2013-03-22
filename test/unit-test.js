@@ -565,6 +565,11 @@ vows.describe('clean-units').addBatch({
       'a{background:url(/very/long/\
 path)}',
       'a{background:url(/very/long/path)}'
+    ],
+    'strip new line in urls which could be unquoted': [
+      'a{background:url("/very/long/\
+path")}',
+      'a{background:url(/very/long/path)}'
     ]
   }),
   'fonts': cssContext({
@@ -625,7 +630,7 @@ path)}',
     'should keep selector if no quotation': 'div[data-type=something]{border-color:red}',
     'should keep selector if equals in value': 'div[data-type="stupid=value"]{border-color:red}',
     'should keep quotation if whitespace inside': 'div[data-type^=\'object 1\']{border-color:red}',
-    'should keep quotations if special characters inside': 'a[data-type="object_1"]{color:red}a[data-target="#some-place"]{color:red}',
+    'should keep quotations if special characters inside': 'a[data-type="object+1"]{color:red}a[data-target="#some-place"]{color:red}',
     'should keep quotation if is a number': 'div[data-number=\'1\']{border-color:red}',
     'should keep quotation if starts with a number': 'div[data-type^=\'1something\']{border-color:red}',
     'should keep quotation if starts with a hyphen': 'div[data-type$=\'-something\']{border-color:red}',
@@ -647,6 +652,11 @@ path)}',
       ".test[title='my very long \
 title']",
       ".test[title='my very long title']"
+    ],
+    'should strip new lines inside attributes which can be unquoted': [
+      ".test[title='my_very_long_\
+title']",
+      ".test[title=my_very_long_title]"
     ]
   }),
   'ie filters': cssContext({

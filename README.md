@@ -14,8 +14,8 @@ to many speed optimizations and node.js' V8 engine.
 ### What are the requirements?
 
 ```
-node 0.6.0+ on UN*X (fully tested on OS X 10.6+ and CentOS)
-node 0.8.0+ on Windows
+node.js 0.6.0+ on UN*X (fully tested on OS X 10.6+ and CentOS)
+node.js 0.8.0+ on Windows
 ```
 
 ### How to install clean-css?
@@ -26,20 +26,21 @@ npm install clean-css
 
 ### How to use clean-css CLI?
 
-Clean-css accepts the following command line arguments (please make sure you use `<source-file>` as the
-very last argument to avoid potential issues):
+Clean-css accepts the following command line arguments (please make sure
+you use `<source-file>` as the very last argument to avoid potential issues):
 
 ```
 cleancss [options] <source-file>
+
+-h, --help                  Output usage information
+-v, --version               Output the version number
+-e, --remove-empty          Remove empty declarations (e.g. a{})
+-b, --keep-line-breaks      Keep line breaks
+--s0                        Remove all special comments (i.e. /*! special comment */)
+--s1                        Remove all special comments but the first one
+-r, --root [root-path]      Set a root path to which resolve absolute @import rules
+-o, --output [output-file]  Use [output-file] as output instead of STDOUT
 ```
-* `-h`, `--help` output usage information
-* `-v`, `--version` output the version number
-* `-e`, `--remove-empty` Remove empty declarations (e.g. `a{}`)
-* `-b`, `--keep-line-breaks` Keep line breaks
-* `--s0` Remove all special comments (i.e. `/*! special comment */`)
-* `--s1` Remove all special comments but the first one
-* `-r`, `--root [root-path]` Set a root path to which resolve absolute @import rules
-* `-o`, `--output [output-file]` Use [output-file] as output instead of stdout
 
 #### Examples:
 
@@ -58,19 +59,19 @@ cleancss public.css
 More likely you would like to concatenate a couple of files.
 If you are on a Unix-like system:
 
-```
+```bash
 cat one.css two.css three.css | cleancss -o merged-and-minified.css
 ```
 
 On Windows:
 
-```
+```bat
 type one.css two.css three.css | cleancss -o merged-and-minified.css
 ```
 
 Or even gzip the result at once:
 
-```
+```bash
 cat one.css two.css three.css | cleancss | gzip -9 -c > merged-minified-and-gzipped.css.gz
 ```
 
@@ -95,7 +96,7 @@ Process method accepts a hash as a second parameter, i.e.,
 
 First clone the source, then run:
 
-* `npm run bench` for clean-css benchmarks (see test/bench.js for details)
+* `npm run bench` for clean-css benchmarks (see [test/bench.js](/test/bench.js) for details)
 * `npm run check` to check JS sources with [JSHint](https://github.com/jshint/jshint/)
 * `npm test` for the test suite
 
@@ -118,7 +119,7 @@ Use the `/*!` notation instead of the standard one `/*`:
 * Isaac ([@facelessuser](https://github.com/facelessuser)) for pointing out
   a flaw in clean-css' stateless mode.
 * Jan Michael Alonzo ([@jmalonzo](https://github.com/jmalonzo)) for a patch
-  removing node's old 'sys' package.
+  removing node.js's old 'sys' package.
 * [@XhmikosR](https://github.com/XhmikosR) for suggesting new features
   (option to remove special comments and strip out URLs quotation) and pointing
   out numerous improvements (JSHint, media queries).

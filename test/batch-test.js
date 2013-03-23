@@ -10,7 +10,8 @@ var batchContexts = function() {
   var context = {};
   var dir = path.join(__dirname, 'data');
   fs.readdirSync(dir).forEach(function(filename) {
-    if (/min.css$/.exec(filename) || !fs.statSync(path.join(dir, filename)).isFile()) return;
+    if (/min.css$/.exec(filename) || !fs.statSync(path.join(dir, filename)).isFile())
+      return;
     var testName = filename.split('.')[0];
 
     context[testName] = {

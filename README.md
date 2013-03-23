@@ -26,20 +26,21 @@ npm install clean-css
 
 ### How to use clean-css CLI?
 
-Clean-css accepts the following command line arguments (please make sure you use `<source-file>` as the
-very last argument to avoid potential issues):
+Clean-css accepts the following command line arguments (please make sure
+you use `<source-file>` as the very last argument to avoid potential issues):
 
 ```
 cleancss [options] <source-file>
+
+-h, --help                  Output usage information
+-v, --version               Output the version number
+-e, --remove-empty          Remove empty declarations (e.g. a{})
+-b, --keep-line-breaks      Keep line breaks
+--s0                        Remove all special comments (i.e. /*! special comment */)
+--s1                        Remove all special comments but the first one
+-r, --root [root-path]      Set a root path to which resolve absolute @import rules
+-o, --output [output-file]  Use [output-file] as output instead of STDOUT
 ```
-* `-h`, `--help` output usage information
-* `-v`, `--version` output the version number
-* `-e`, `--remove-empty` Remove empty declarations (e.g. `a{}`)
-* `-b`, `--keep-line-breaks` Keep line breaks
-* `--s0` Remove all special comments (i.e. `/*! special comment */`)
-* `--s1` Remove all special comments but the first one
-* `-r`, `--root [root-path]` Set a root path to which resolve absolute @import rules
-* `-o`, `--output [output-file]` Use [output-file] as output instead of stdout
 
 #### Examples:
 
@@ -58,19 +59,19 @@ cleancss public.css
 More likely you would like to concatenate a couple of files.
 If you are on a Unix-like system:
 
-```
+```bash
 cat one.css two.css three.css | cleancss -o merged-and-minified.css
 ```
 
 On Windows:
 
-```
+```bat
 type one.css two.css three.css | cleancss -o merged-and-minified.css
 ```
 
 Or even gzip the result at once:
 
-```
+```bash
 cat one.css two.css three.css | cleancss | gzip -9 -c > merged-minified-and-gzipped.css.gz
 ```
 
@@ -95,7 +96,7 @@ Process method accepts a hash as a second parameter, i.e.,
 
 First clone the source, then run:
 
-* `npm run bench` for clean-css benchmarks (see test/bench.js for details)
+* `npm run bench` for clean-css benchmarks (see [test/bench.js](/test/bench.js) for details)
 * `npm run check` to check JS sources with [JSHint](https://github.com/jshint/jshint/)
 * `npm test` for the test suite
 

@@ -5,7 +5,7 @@
   and attributes.
 * Fixed issue [#44](https://github.com/GoalSmashers/clean-css/issues/44) - examples in `--help`.
 * Fixed issue [#83](https://github.com/GoalSmashers/clean-css/issues/83) - HSL to hex color conversions.
-* Fixed issue [#2](https://github.com/GoalSmashers/clean-css/issues/2) - resolving @import rules.
+* Fixed issue [#2](https://github.com/GoalSmashers/clean-css/issues/2) - resolving `@import` rules.
 * Fixed issue [#80](https://github.com/GoalSmashers/clean-css/issues/80) - quotation in multi line strings.
 
 0.10.2 / 2013-03-19
@@ -61,7 +61,7 @@
 0.8.3 / 2012-11-29
 ==================
 
-* Fixed hsl/hsla colors processing.
+* Fixed HSL/HSLA colors processing.
 
 0.8.2 / 2012-10-31
 ==================
@@ -127,8 +127,8 @@
 0.3.3 / 2012-05-27
 ==================
 
-* Fixed tests, package.json for development, and regex for removing empty
-  declarations (thanks to [@vvo](https://github.com/vvo)).
+* Fixed tests, [package.json](/package.json) for development, and regex
+  for removing empty declarations (thanks to [@vvo](https://github.com/vvo)).
 
 0.3.2 / 2012-01-17
 ==================
@@ -181,7 +181,7 @@
 ==================
 
 * Added stripping space before `!important` keyword.
-* Updated repository location and author information in package.json.
+* Updated repository location and author information in [package.json](/package.json).
 
 0.2.0 / 2011-03-02
 ==================

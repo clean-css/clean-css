@@ -1,5 +1,5 @@
-var cleanCSS = require('../index'),
-  bigcss = require('fs').readFileSync(require('path').join(__dirname, 'data', 'big.css'), 'utf8');
+var cleanCSS = require('../index');
+var bigcss = require('fs').readFileSync(require('path').join(__dirname, 'data', 'big.css'), 'utf8');
 
 if (!process.hrtime) {
   console.log('process.hrtime() (node.js > 0.7.6) is required for benchmarking');

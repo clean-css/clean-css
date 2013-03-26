@@ -1,8 +1,8 @@
-var vows = require('vows'),
-  path = require('path'),
-  fs = require('fs'),
-  assert = require('assert'),
-  cleanCSS = require('../index');
+var vows = require('vows');
+var path = require('path');
+var fs = require('fs');
+var assert = require('assert');
+var cleanCSS = require('../index');
 
 var lineBreak = process.platform == 'win32' ? /\r\n/g : /\n/g;
 

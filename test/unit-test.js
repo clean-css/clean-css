@@ -734,9 +734,14 @@ title']",
       "@import url();",
       ""
     ],
-    'of unknown file': [
+    'of an unknown file': [
       "@import url('fake.css');",
       ""
+    ],
+    'of a http file': "@import url(http://pro.goalsmashers.com/test.css);",
+    'of a https file': [
+      "@import url('https://pro.goalsmashers.com/test.css');",
+      "@import url(https://pro.goalsmashers.com/test.css);"
     ],
     'of a directory': [
       "@import url(test/data/partials);",

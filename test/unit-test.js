@@ -455,6 +455,14 @@ vows.describe('clean-units').addBatch({
       'p{color:#f00}',
       'p{color:red}'
     ],
+    'upper case hex value to color name if shorter': [
+      'p{color:#F00}',
+      'p{color:red}'
+    ],
+    'upper case long hex value to color name if shorter': [
+      'p{color:#FF0000}',
+      'p{color:red}'
+    ],
     'hex value to color name in borders': [
       'p{border:1px solid #f00}',
       'p{border:1px solid red}'

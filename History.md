@@ -7,6 +7,7 @@
 * Fixed issue [#83](https://github.com/GoalSmashers/clean-css/issues/83) - HSL to hex color conversions.
 * Fixed issue [#2](https://github.com/GoalSmashers/clean-css/issues/2) - resolving `@import` rules.
 * Fixed issue [#80](https://github.com/GoalSmashers/clean-css/issues/80) - quotation in multi line strings.
+* Fixed issue [#92](https://github.com/GoalSmashers/clean-css/issues/92) - uppercase hex to short versions.
 
 0.10.2 / 2013-03-19
 ==================

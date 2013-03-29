@@ -699,6 +699,10 @@ title']",
     'space before': [
       "body{background-color:#fff  !important}",
       "body{background-color:#fff!important}"
+    ],
+    'space between ! and important': [
+      "body{background-color:#fff  ! important}",
+      "body{background-color:#fff!important}"
     ]
   }),
   'empty elements': cssContext({

@@ -50,42 +50,42 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
   'version': binaryContext('-v', {
     'should output help': function(error, stdout) {
       var version = JSON.parse(fs.readFileSync('./package.json')).version;
-      assert.equal(stdout, version + "\n");
+      assert.equal(stdout, version + '\n');
     }
   }),
-  'stdin': pipedContext("a{color: #f00}", '', {
+  'stdin': pipedContext('a{color: #f00}', '', {
     'should output data': function(error, stdout) {
-      assert.equal(stdout, "a{color:red}");
+      assert.equal(stdout, 'a{color:red}');
     }
   }),
   'no empty by default': pipedContext('a{}', '', {
     'should preserve content': function(error, stdout) {
-      assert.equal(stdout, "a{}");
+      assert.equal(stdout, 'a{}');
     }
   }),
   'strip all but first comment': pipedContext('/*!1st*//*! 2nd */a{}', '--s1', {
     'should keep the 2nd comment': function(error, stdout) {
-      assert.equal(stdout, "/*!1st*/a{}");
+      assert.equal(stdout, '/*!1st*/a{}');
     }
   }),
   'strip all comments': pipedContext('/*!1st*//*! 2nd */a{}', '--s0', {
     'should keep the 2nd comment': function(error, stdout) {
-      assert.equal(stdout, "a{}");
+      assert.equal(stdout, 'a{}');
     }
   }),
   'empty': pipedContext('a{}', '-e', {
     'should preserve content': function(error, stdout) {
-      assert.equal(stdout, "");
+      assert.equal(stdout, '');
     }
   }),
   'no relative to path': binaryContext('./test/data/partials-absolute/base.css', {
     'should not be able to resolve it fully': function(error, stdout) {
-      assert.equal(stdout, ".sub{padding:0}.base{margin:0}");
+      assert.equal(stdout, '.sub{padding:0}.base{margin:0}');
     }
   }),
   'relative to path': binaryContext('-r ./test/data ./test/data/partials-absolute/base.css', {
     'should be able to resolve it': function(error, stdout) {
-      assert.equal(stdout, ".base2{border-width:0}.sub{padding:0}.base{margin:0}");
+      assert.equal(stdout, '.base2{border-width:0}.sub{padding:0}.base{margin:0}');
     }
   }),
   'from source': binaryContext('./test/data/reset.css', {

@@ -1,6 +1,6 @@
-var vows = require('vows'),
-  assert = require('assert'),
-  CleanCSS = require('../index');
+var vows = require('vows');
+var assert = require('assert');
+var CleanCSS = require('../index');
 
 vows.describe('clean-custom')
   .addBatch({

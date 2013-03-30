@@ -1,4 +1,4 @@
-1.0 / 2013-xx-xx
+1.0.0 / 2013-03-30
 ==================
 
 * Fixed issue [#2](https://github.com/GoalSmashers/clean-css/issues/2) - resolving `@import` rules.

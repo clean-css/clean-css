@@ -165,6 +165,12 @@ vows.describe('clean-units').addBatch({
       "@charset 'utf-8';" + lineBreak + "a{}"
     ]
   }, { keepBreaks: true }),
+  'line breaks and important comments': cssContext({
+    'charset to beginning with comment removal': [
+      "/*! some comment */" + lineBreak + lineBreak + "@charset 'utf-8';" + lineBreak + lineBreak + "a{}",
+      "@charset 'utf-8';" + lineBreak + "a{}"
+    ]
+  }, { keepBreaks: true, keepSpecialComments: 0 }),
   'selectors': cssContext({
     'remove spaces around selectors': [
       'div + span >   em',

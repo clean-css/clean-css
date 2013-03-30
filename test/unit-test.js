@@ -238,6 +238,10 @@ vows.describe('clean-units').addBatch({
     'strip all': [
       '/*! important comment */a{color:red}/* some comment *//*! important comment */',
       'a{color:red}'
+    ],
+    'move charset before': [
+      "/*! some comment */" + lineBreak + lineBreak + "@charset 'utf-8';" + lineBreak + lineBreak + "a{}",
+      "@charset 'utf-8';a{}"
     ]
   }, { keepSpecialComments: 0 }),
   'text content': cssContext({

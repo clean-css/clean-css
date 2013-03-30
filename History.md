@@ -1,15 +1,14 @@
 1.0 / 2013-xx-xx
 ==================
 
-* Fixed issue [#46](https://github.com/GoalSmashers/clean-css/issues/46) - preserving special characters in URLs
-  and attributes.
-* Fixed issue [#44](https://github.com/GoalSmashers/clean-css/issues/44) - examples in `--help`.
-* Fixed issue [#83](https://github.com/GoalSmashers/clean-css/issues/83) - HSL to hex color conversions.
 * Fixed issue [#2](https://github.com/GoalSmashers/clean-css/issues/2) - resolving `@import` rules.
+* Fixed issue [#44](https://github.com/GoalSmashers/clean-css/issues/44) - examples in `--help`.
+* Fixed issue [#46](https://github.com/GoalSmashers/clean-css/issues/46) - preserving special characters in URLs and attributes.
 * Fixed issue [#80](https://github.com/GoalSmashers/clean-css/issues/80) - quotation in multi line strings.
+* Fixed issue [#83](https://github.com/GoalSmashers/clean-css/issues/83) - HSL to hex color conversions.
+* Fixed issue [#86](https://github.com/GoalSmashers/clean-css/issues/86) - broken `@charset` replacing.
+* Fixed issue [#88](https://github.com/GoalSmashers/clean-css/issues/88) - removes space in `! important`.
 * Fixed issue [#92](https://github.com/GoalSmashers/clean-css/issues/92) - uppercase hex to short versions.
-* Fixed issue [#88](https://github.com/GoalSmashers/clean-css/issues/88) - removes space in '! important'.
-* Fixed issue [#86](https://github.com/GoalSmashers/clean-css/issues/86) - broken @charset replacing.
 
 0.10.2 / 2013-03-19
 ==================
@@ -31,8 +30,8 @@
 * Fixed issue [#47](https://github.com/GoalSmashers/clean-css/issues/47) - commandline issues on Windows.
 * Fixed issue [#49](https://github.com/GoalSmashers/clean-css/issues/49) - remove empty selectors from media query.
 * Fixed issue [#52](https://github.com/GoalSmashers/clean-css/issues/52) - strip fraction zeros if not needed.
-* Fixed issue [#59](https://github.com/GoalSmashers/clean-css/issues/59) - content property handling.
 * Fixed issue [#58](https://github.com/GoalSmashers/clean-css/issues/58) - remove colon where possible.
+* Fixed issue [#59](https://github.com/GoalSmashers/clean-css/issues/59) - content property handling.
 * Fixed performance issue with replacing multiple `@charset` declarations and issue
   with line break after `@charset` when using `keepLineBreaks` option. By [@rrjaime](https://github.com/rrjamie).
 * Removed Makefile in favor to `npm run` commands (e.g. `make check` -> `npm run check`).

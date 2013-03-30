@@ -9,6 +9,7 @@
 * Fixed issue [#80](https://github.com/GoalSmashers/clean-css/issues/80) - quotation in multi line strings.
 * Fixed issue [#92](https://github.com/GoalSmashers/clean-css/issues/92) - uppercase hex to short versions.
 * Fixed issue [#88](https://github.com/GoalSmashers/clean-css/issues/88) - removes space in '! important'.
+* Fixed issue [#86](https://github.com/GoalSmashers/clean-css/issues/86) - broken @charset replacing.
 
 0.10.2 / 2013-03-19
 ==================

@@ -1,0 +1,14 @@
+@font-face {
+  font-family: 'ProximaNova-Regular';
+  src: url('/assets/thirdParty/css/1415F2_1.eot');
+  src: url('/assets/thirdParty/css/1415F2_1IE.eot') format('embedded-opentype'),
+    url('/assets/thirdParty/css/1415F2_1.woff') format('woff'),
+    url('/assets/thirdParty/css/1415F2_1.ttf') format('truetype'),
+    url('/assets/thirdParty/css/1415F2_1.svg') format('svg');
+}
+
+@charset "UTF-8";
+/* (c) 2012 Instagram, Inc, */
+blockquote small:before {
+  content: '\2014 \00A0';
+}

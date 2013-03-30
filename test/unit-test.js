@@ -159,6 +159,10 @@ vows.describe('clean-units').addBatch({
     'charset multiple charsets': [
       "@charset 'utf-8';\ndiv :before { display: block }\n@charset 'utf-8';\na { color: #f10 }",
       "@charset 'utf-8';" + lineBreak + "div :before{display:block}" + lineBreak + "a{color:#f10}"
+    ],
+    'charset with double line break': [
+      "@charset 'utf-8';" + lineBreak + lineBreak + "a{}",
+      "@charset 'utf-8';" + lineBreak + "a{}"
     ]
   }, { keepBreaks: true }),
   'selectors': cssContext({
@@ -693,6 +697,10 @@ title']",
     'multiple charsets': [
       "@charset 'utf-8';div :before { display: block }@charset 'utf-8';a { color: #f10 }",
       "@charset 'utf-8';div :before{display:block}a{color:#f10}"
+    ],
+    'charset and space after': [
+      "@charset 'utf-8';" + lineBreak + lineBreak + "a{}",
+      "@charset 'utf-8';a{}"
     ]
   }),
   'important': cssContext({

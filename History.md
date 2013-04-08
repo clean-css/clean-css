@@ -1,3 +1,9 @@
+1.0.1 / 2013-04-08
+==================
+
+* Do not pick up `bench` and `test` while building `npm` package.
+  By [@sindresorhus](https://https://github.com/sindresorhus).
+
 1.0.0 / 2013-03-30
 ==================
 

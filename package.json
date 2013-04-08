@@ -1,6 +1,6 @@
 {
   "name": "clean-css",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Jakub Pawlowicz <jakub@goalsmashers.com> (http://twitter.com/GoalSmashers)",
   "description": "A well-tested CSS minifier",
   "keywords": [

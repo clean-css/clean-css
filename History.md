@@ -17,18 +17,18 @@
 * Fixed issue [#92](https://github.com/GoalSmashers/clean-css/issues/92) - uppercase hex to short versions.
 
 0.10.2 / 2013-03-19
-==================
+===================
 
 * Fixed issue [#79](https://github.com/GoalSmashers/clean-css/issues/79) - node.js 0.10.x compatibility.
 
 0.10.1 / 2013-02-14
-==================
+===================
 
 * Fixed issue [#66](https://github.com/GoalSmashers/clean-css/issues/66) - line breaks without extra spaces should
   be handled correctly.
 
 0.10.0 / 2013-02-09
-==================
+===================
 
 * Switched from [optimist](https://github.com/substack/node-optimist) to
   [commander](https://github.com/visionmedia/commander.js) for CLI processing.

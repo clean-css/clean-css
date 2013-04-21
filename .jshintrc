@@ -1,17 +1,22 @@
 {
-  "node" : true,
-  "es5" : true,
-  "browser" : false,
+  "browser": false,
+  "es5": true,
+  "maxerr": 100,
+  "node": true,
 
   "camelcase": true,
   "curly": false,
   "eqeqeq": false,
+  "eqnull": false,
+  "immed": true,
   "latedef": true,
   "multistr": true,
   "noarg": true,
   "plusplus": false,
+  "quotmark": "true",
   "regexp": false,
   "strict": false,
   "trailing": true,
+  "undef": true,
   "unused": true
 }

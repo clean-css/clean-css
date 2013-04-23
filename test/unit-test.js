@@ -122,7 +122,7 @@ vows.describe('clean-units').addBatch({
     ],
     'whitespace in media queries': [
       '@media (   min-width: 980px ) {\n#page .span4 {\nwidth: 250px;\n}\n\n.row {\nmargin-left: -10px;\n}\n}',
-      '@media (min-width:980px){#page .span4{width:250px}.row{margin-left:-10px}}',
+      '@media (min-width:980px){#page .span4{width:250px}.row{margin-left:-10px}}'
     ],
     'line breaks in media queries': [
       '@media\nonly screen and (max-width: 1319px) and (min--moz-device-pixel-ratio: 1.5),\nonly screen and (max-width: 1319px) and (-moz-min-device-pixel-ratio: 1.5)\n{ a { color:#000 } }',

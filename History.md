@@ -1,3 +1,8 @@
+1.0.2 / 2013-04-29
+==================
+
+* Fixed issue [#97](https://github.com/GoalSmashers/clean-css/issues/97) - --remove-empty & FontAwesome.
+
 1.0.1 / 2013-04-08
 ==================
 

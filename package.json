@@ -17,7 +17,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "bench": "node test/bench.js",
+    "bench": "node ./test/bench.js",
     "check": "jshint .",
     "prepublish": "jshint .",
     "test": "vows"

@@ -1,3 +1,9 @@
+1.0.3 / 2013-05-20
+==================
+
+* Support alternative `@import` syntax with file name not wrapped inside url() statement.
+  By [@bluej100](https://github.com/bluej100).
+
 1.0.2 / 2013-04-29
 ==================
 

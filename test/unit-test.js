@@ -785,6 +785,22 @@ title']",
       "@import url('test/data/partials/one.css');",
       ".one{color:red}"
     ],
+    'of a real file with double-quoted path': [
+      '@import url("test/data/partials/one.css");',
+      ".one{color:red}"
+    ],
+    'of a real file with bare path': [
+      "@import test/data/partials/one.css;",
+      ".one{color:red}"
+    ],
+    'of a real file with bare quoted path': [
+      "@import 'test/data/partials/one.css';",
+      ".one{color:red}"
+    ],
+    'of a real file with bare double-quoted path': [
+      '@import "test/data/partials/one.css";',
+      ".one{color:red}"
+    ],
     'of more files': [
       "@import url(test/data/partials/one.css);\n\na{}\n\n@import url(test/data/partials/extra/three.css);",
       ".one{color:red}a{}.three{color:#0f0}"

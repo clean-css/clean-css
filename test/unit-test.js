@@ -808,6 +808,10 @@ title']",
     'of multi-level, circular dependency file': [
       "@import url(test/data/partials/two.css);",
       ".one{color:red}.three{color:#0f0}.four{color:#00f}.two{color:#fff}"
+    ],
+    'of a file with a relative resource path': [
+      "@import url(test/data/partials/three.css);",
+      ".three{background-image:url(test/data/partials/extra/down.gif)}",
     ]
   }),
   '@import with absolute paths': cssContext({

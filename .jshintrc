@@ -1,6 +1,5 @@
 {
   "browser": false,
-  "es5": true,
   "maxerr": 100,
   "node": true,
 

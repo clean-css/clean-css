@@ -12,6 +12,9 @@
     "type": "git",
     "url": "https://github.com/GoalSmashers/clean-css.git"
   },
+  "bugs": {
+    "url": "https://github.com/GoalSmashers/clean-css/issues"
+  },
   "bin": {
     "cleancss": "./bin/cleancss"
   },

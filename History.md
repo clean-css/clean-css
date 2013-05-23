@@ -1,3 +1,9 @@
+1.0.4 / 2013-05-23
+==================
+
+* Rewrite relative urls in imported stylesheets.
+  By [@bluej100](https://github.com/bluej100).
+
 1.0.3 / 2013-05-20
 ==================
 

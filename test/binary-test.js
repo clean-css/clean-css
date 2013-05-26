@@ -45,7 +45,7 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
     },
     'should output gzipping multiple files example': function(error, stdout) {
       assert.equal(stdout.indexOf('cat one.css two.css three.css | cleancss | gzip -9 -c > merged-minified-and-gzipped.css.gz') > -1, true);
-    },
+    }
   }),
   'version': binaryContext('-v', {
     'should output help': function(error, stdout) {

@@ -816,6 +816,10 @@ title']",
     'of a file with an absolute resource path': [
       "@import url(test/data/partials/four.css);",
       ".four{background-image:url(/partials/extra/down.gif)}",
+    ],
+    'of a file with a resource URI': [
+      "@import url(test/data/partials/five.css);",
+      ".five{background:url(data:image/jpeg;base64,/9j/)}"
     ]
   }),
   '@import with absolute paths': cssContext({

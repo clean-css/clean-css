@@ -811,11 +811,11 @@ title']",
     ],
     'of a file with a relative resource path': [
       "@import url(test/data/partials/three.css);",
-      ".three{background-image:url(test/data/partials/extra/down.gif)}",
+      ".three{background-image:url(test/data/partials/extra/down.gif)}"
     ],
     'of a file with an absolute resource path': [
       "@import url(test/data/partials/four.css);",
-      ".four{background-image:url(/partials/extra/down.gif)}",
+      ".four{background-image:url(/partials/extra/down.gif)}"
     ],
     'of a file with a resource URI': [
       "@import url(test/data/partials/five.css);",

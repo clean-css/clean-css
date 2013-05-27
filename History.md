@@ -1,3 +1,8 @@
+1.0.5 / 2013-05-26
+==================
+
+* Fixed issue [#107](https://github.com/GoalSmashers/clean-css/issues/107) - data URIs in imported stylesheets.
+
 1.0.4 / 2013-05-23
 ==================
 

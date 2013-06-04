@@ -1,3 +1,8 @@
+1.0.6 / 2013-06-04
+==================
+
+* Fixed issue [#110](https://github.com/GoalSmashers/clean-css/issues/110) - data URIs in urls.
+
 1.0.5 / 2013-05-26
 ==================
 

@@ -559,6 +559,7 @@ vows.describe('clean-units').addBatch({
   }),
   'urls': cssContext({
     'keep urls without parentheses unchanged': 'a{background:url(/images/blank.png) 0 0 no-repeat}',
+    'keep urls with data URI unchanged': ".icon-logo{background-image:url('data:image/svg+xml;charset=US-ASCII')}",
     'strip single parentheses': [
       "a{background:url('/images/blank.png') 0 0 no-repeat}",
       "a{background:url(/images/blank.png) 0 0 no-repeat}"

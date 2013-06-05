@@ -1,3 +1,9 @@
+1.0.7 / 2013-06-05
+==================
+
+* Support for `@import` urls starting with //.
+  By [@petetak](https://github.com/petetak)
+
 1.0.6 / 2013-06-04
 ==================
 

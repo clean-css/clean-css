@@ -766,6 +766,10 @@ title']",
       "@import url('https://pro.goalsmashers.com/test.css');",
       "@import url(https://pro.goalsmashers.com/test.css);"
     ],
+    'of a url starting with //': [
+      "@import url(//fonts.googleapis.com/css?family=Lato:400,700,400italic|Merriweather:400,700);",
+      "@import url(//fonts.googleapis.com/css?family=Lato:400,700,400italic|Merriweather:400,700);"
+    ],
     'of a directory': [
       "@import url(test/data/partials);",
       ""

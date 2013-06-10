@@ -313,6 +313,14 @@ vows.describe('clean-units').addBatch({
     'rect zeros #6': [
       'div{clip:rect(0px 0px 0px 10px)}',
       'div{clip:rect(0 0 0 10px)}'
+    ],
+    'box shadow zeros': [
+      'a{box-shadow:0 0 0 0}',
+      'a{box-shadow:0 0}'
+    ],
+    'prefixed box shadow zeros': [
+      'a{-webkit-box-shadow:0 0 0 0; -moz-box-shadow:0 0 0 0}',
+      'a{-webkit-box-shadow:0 0;-moz-box-shadow:0 0}'
     ]
   }),
   'shorthands': cssContext({

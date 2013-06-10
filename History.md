@@ -1,3 +1,8 @@
+1.0.8 / 2013-06-10
+==================
+
+* Fixed issue [#112](https://github.com/GoalSmashers/clean-css/issues/112) - reducing box-shadow zeros.
+
 1.0.7 / 2013-06-05
 ==================
 

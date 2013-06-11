@@ -833,6 +833,10 @@ title']",
     'of a file with a resource URI': [
       "@import url(test/data/partials/five.css);",
       ".five{background:url(data:image/jpeg;base64,/9j/)}"
+    ],
+    'inside a comment': [
+      '/* @import */a { color: red; }',
+      'a{color:red}'
     ]
   }),
   '@import with absolute paths': cssContext({

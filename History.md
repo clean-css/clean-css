@@ -1,3 +1,8 @@
+1.0.9 / 2013-06-xx
+==================
+
+* Fixed issue [#113](https://github.com/GoalSmashers/clean-css/issues/113) - @import in comments.
+
 1.0.8 / 2013-06-10
 ==================
 

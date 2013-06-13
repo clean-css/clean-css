@@ -837,6 +837,10 @@ title']",
     'inside a comment': [
       '/* @import */a { color: red; }',
       'a{color:red}'
+    ],
+    'of a file with a comment': [
+      '@import url(test/data/partials/comment.css);',
+      ''
     ]
   }),
   '@import with absolute paths': cssContext({

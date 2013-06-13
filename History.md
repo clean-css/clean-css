@@ -1,4 +1,4 @@
-1.0.10 / 2013-xx-xx
+1.0.10 / 2013-06-13
 ==================
 
 * Fixed issue [#114](https://github.com/GoalSmashers/clean-css/issues/114) - comments in imported stylesheets.

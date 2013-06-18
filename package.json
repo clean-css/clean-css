@@ -26,7 +26,7 @@
     "test": "vows"
   },
   "dependencies": {
-    "commander": "1.1.x"
+    "commander": "1.2.x"
   },
   "devDependencies": {
     "vows": "0.7.x",

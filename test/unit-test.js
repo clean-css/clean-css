@@ -226,6 +226,10 @@ vows.describe('clean-units').addBatch({
     'should remove comments with forward slashes inside': [
       '/*////*/a{color:red}',
       'a{color:red}'
+    ],
+    'should properly handle line breaks and ** characters inside comments': [
+      '/**====**\\\n/**2nd comment line/**===**/a{color:red}',
+      'a{color:red}'
     ]
   }),
   'important comments - one': cssContext({

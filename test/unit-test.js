@@ -758,6 +758,20 @@ title']",
       "@media screen{.some{display:none}}"
     ]
   }, { removeEmpty: true }),
+  'empty @media': cssContext({
+    'simple': [
+      '@media print{}',
+      ''
+    ],
+    'simple with and': [
+      '@media print and screen{}',
+      ''
+    ],
+    'complex': [
+      '@media print, (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {\n}',
+      ''
+    ]
+  }, { removeEmpty: true }),
   'skip empty elements': cssContext({
     'empty #1': 'a{}',
     'empty #2': 'div>a{}',

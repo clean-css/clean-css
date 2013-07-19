@@ -892,5 +892,5 @@ title']",
       "@import url(/fake.css);",
       "@import url(/fake.css);"
     ]
-  }, {processImport : false})
+  }, { processImport: false })
 }).export(module);

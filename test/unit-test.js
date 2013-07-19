@@ -886,5 +886,11 @@ title']",
       "@import url(/partials-absolute/base.css);",
       ".base2{border-width:0}.sub{padding:0}.base{margin:0}"
     ]
-  }, { root: path.join(process.cwd(), 'test', 'data') })
+  }, { root: path.join(process.cwd(), 'test', 'data') }),
+  '@import with option processImport': cssContext({
+    'of an unknown file': [
+      "@import url(/fake.css);",
+      "@import url(/fake.css);"
+    ]
+  }, { processImport: false })
 }).export(module);

@@ -40,6 +40,7 @@ cleancss [options] <source-file>
 --s1                        Remove all special comments but the first one
 -r, --root [root-path]      Set a root path to which resolve absolute @import rules
 -o, --output [output-file]  Use [output-file] as output instead of STDOUT
+-s, --skip-import,          Disable the @import processing
 ```
 
 #### Examples:

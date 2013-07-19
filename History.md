@@ -1,3 +1,8 @@
+1.0.12 / 2013-07-19
+==================
+
+* Fixed issue [#121](https://github.com/GoalSmashers/clean-css/issues/121) - ability to skip `@import` processing.
+
 1.0.11 / 2013-07-08
 ==================
 

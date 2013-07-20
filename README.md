@@ -99,7 +99,7 @@ Process method accepts a hash as a second parameter, i.e.,
 
 First clone the source, then run:
 
-* `npm run bench` for clean-css benchmarks (see [test/bench.js](/test/bench.js) for details)
+* `npm run bench` for clean-css benchmarks (see [test/bench.js](https://github.com/GoalSmashers/clean-css/blob/master/test/bench.js) for details)
 * `npm run check` to check JS sources with [JSHint](https://github.com/jshint/jshint/)
 * `npm test` for the test suite
 
@@ -129,4 +129,4 @@ Use the `/*!` notation instead of the standard one `/*`:
 
 ## License
 
-Clean-css is released under the [MIT License](/LICENSE).
+Clean-css is released under the [MIT License](https://github.com/GoalSmashers/clean-css/blob/master/LICENSE).

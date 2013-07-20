@@ -40,7 +40,7 @@ cleancss [options] <source-file>
 --s1                        Remove all special comments but the first one
 -r, --root [root-path]      Set a root path to which resolve absolute @import rules
 -o, --output [output-file]  Use [output-file] as output instead of STDOUT
--s, --skip-import,          Disable the @import processing
+-s, --skip-import           Disable the @import processing
 ```
 
 #### Examples:
@@ -80,7 +80,7 @@ cat one.css two.css three.css | cleancss | gzip -9 -c > merged-minified-and-gzip
 
 ```js
 var cleanCSS = require('clean-css');
-var source = "a{font-weight:bold;}";
+var source = 'a{font-weight:bold;}';
 var minimized = cleanCSS.process(source);
 ```
 
@@ -122,10 +122,10 @@ Use the `/*!` notation instead of the standard one `/*`:
 * Isaac ([@facelessuser](https://github.com/facelessuser)) for pointing out
   a flaw in clean-css' stateless mode.
 * Jan Michael Alonzo ([@jmalonzo](https://github.com/jmalonzo)) for a patch
-  removing node.js's old 'sys' package.
+  removing node.js' old `sys` package.
 * [@XhmikosR](https://github.com/XhmikosR) for suggesting new features
-  (option to remove special comments and strip out URLs quotation) and pointing
-  out numerous improvements (JSHint, media queries).
+  (option to remove special comments and strip out URLs quotation) and
+  pointing out numerous improvements (JSHint, media queries).
 
 ## License
 

@@ -126,6 +126,9 @@ Use the `/*!` notation instead of the standard one `/*`:
 * [@XhmikosR](https://github.com/XhmikosR) for suggesting new features
   (option to remove special comments and strip out URLs quotation) and
   pointing out numerous improvements (JSHint, media queries).
+* Anthony Barre ([@abarre](https://github.com/abarre)) for improvements to
+  `@import` processing, namely introducing the `--skip-import` /
+  `processImport` options.
 
 ## License
 

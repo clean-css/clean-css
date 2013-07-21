@@ -1,5 +1,5 @@
-.jshintignore
-.jshintrc
-.travis.yml
-bench
-test
+/.jshintignore
+/.jshintrc
+/.travis.yml
+/bench
+/test

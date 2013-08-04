@@ -30,7 +30,27 @@
   },
   "devDependencies": {
     "vows": "0.7.x",
-    "jshint": "2.1.x"
+    "jshint": "~2.1.9"
+  },
+  "jshintConfig": {
+    "browser": false,
+    "maxerr": 100,
+    "node": true,
+    "camelcase": true,
+    "curly": false,
+    "eqeqeq": false,
+    "eqnull": false,
+    "immed": true,
+    "latedef": true,
+    "multistr": true,
+    "noarg": true,
+    "plusplus": false,
+    "quotmark": "true",
+    "regexp": false,
+    "strict": false,
+    "trailing": true,
+    "undef": true,
+    "unused": true
   },
   "engines": {
     "node": ">=0.6.0"

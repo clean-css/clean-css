@@ -1,15 +1,15 @@
 1.0.12 / 2013-07-19
-==================
+===================
 
 * Fixed issue [#121](https://github.com/GoalSmashers/clean-css/issues/121) - ability to skip `@import` processing.
 
 1.0.11 / 2013-07-08
-==================
+===================
 
 * Fixed issue [#117](https://github.com/GoalSmashers/clean-css/issues/117) - line break escaping in comments.
 
 1.0.10 / 2013-06-13
-==================
+===================
 
 * Fixed issue [#114](https://github.com/GoalSmashers/clean-css/issues/114) - comments in imported stylesheets.
 

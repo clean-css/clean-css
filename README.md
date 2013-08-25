@@ -94,6 +94,7 @@ Process method accepts a hash as a second parameter, i.e.,
   (run `npm run bench` to see example)
 * `root` - path with which to resolve absolute `@import` rules
 * `relativeTo` - path with which to resolve relative `@import` rules
+* `processImport` - whether to process @import
 
 ### What are the clean-css' dev commands?
 

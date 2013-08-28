@@ -1,6 +1,7 @@
 1.1.0 / 2013-xx-xx (UNRELEASED)
 ===================
 
+* Fixed issue [#130](https://github.com/GoalSmashers/clean-css/issues/130) - better code modularity.
 * Fixed issue [#65](https://github.com/GoalSmashers/clean-css/issues/65) - full color name / hex shortening.
 
 1.0.12 / 2013-07-19

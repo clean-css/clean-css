@@ -2,7 +2,7 @@ var vows = require('vows');
 var assert = require('assert');
 var path = require('path');
 var cleanCSS = require('../index');
-var colorShortening = require('../lib/color-shortening');
+var ColorShortener = require('../lib/colors/shortener');
 
 var lineBreak = process.platform == 'win32' ? '\r\n' : '\n';
 var cssContext = function(groups, options) {
@@ -33,10 +33,11 @@ var cssContext = function(groups, options) {
 
 var colorShorteningContext = function() {
   var shortenerContext = {};
+  var shortener = new ColorShortener();
 
   ['toName', 'toHex'].forEach(function(type) {
-    for (var from in colorShortening[type]) {
-      var to = colorShortening[type][from];
+    for (var from in shortener[type]) {
+      var to = shortener[type][from];
       shortenerContext['should turn ' + from + ' into ' + to] = [
         'a{color:' + from + '}',
         'a{color:' + to + '}'

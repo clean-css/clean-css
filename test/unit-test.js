@@ -2,6 +2,7 @@ var vows = require('vows');
 var assert = require('assert');
 var path = require('path');
 var cleanCSS = require('../index');
+var colorShortening = require('../lib/color-shortening');
 
 var lineBreak = process.platform == 'win32' ? '\r\n' : '\n';
 var cssContext = function(groups, options) {
@@ -28,6 +29,22 @@ var cssContext = function(groups, options) {
   }
 
   return context;
+};
+
+var colorShorteningContext = function() {
+  var shortenerContext = {};
+
+  ['toName', 'toHex'].forEach(function(type) {
+    for (var from in colorShortening[type]) {
+      var to = colorShortening[type][from];
+      shortenerContext['should turn ' + from + ' into ' + to] = [
+        'a{color:' + from + '}',
+        'a{color:' + to + '}'
+      ];
+    }
+  });
+
+  return cssContext(shortenerContext);
 };
 
 vows.describe('clean-units').addBatch({
@@ -551,6 +568,7 @@ vows.describe('clean-units').addBatch({
     ],
     'hsla not to hex': 'a{color:hsl(99,66%,33%,.5)}'
   }),
+  'shortening colors': colorShorteningContext(),
   'font weights': cssContext({
     'font-weight:normal to 400': [
       'p{font-weight:normal}',

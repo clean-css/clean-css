@@ -1,5 +1,5 @@
-[![NPM version](https://badge.fury.io/js/clean-css.png)](http://badge.fury.io/js/clean-css)
-[![Build Status](https://secure.travis-ci.org/GoalSmashers/clean-css.png)](http://travis-ci.org/GoalSmashers/clean-css)
+[![NPM version](https://badge.fury.io/js/clean-css.png)](https://badge.fury.io/js/clean-css)
+[![Build Status](https://secure.travis-ci.org/GoalSmashers/clean-css.png)](https://travis-ci.org/GoalSmashers/clean-css)
 [![Dependency Status](https://gemnasium.com/GoalSmashers/clean-css.png)](https://gemnasium.com/GoalSmashers/clean-css)
 
 ## What is clean-css?
@@ -94,7 +94,7 @@ Process method accepts a hash as a second parameter, i.e.,
   (run `npm run bench` to see example)
 * `root` - path with which to resolve absolute `@import` rules
 * `relativeTo` - path with which to resolve relative `@import` rules
-* `processImport` - whether to process @import
+* `processImport` - whether to process `@import` rules
 
 ### What are the clean-css' dev commands?
 

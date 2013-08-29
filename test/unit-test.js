@@ -266,6 +266,16 @@ vows.describe('clean-units').addBatch({
       "@charset 'utf-8';a{}"
     ]
   }, { keepSpecialComments: 0 }),
+  'expressions': cssContext({
+    'empty': 'a{color:expression()}',
+    'method call': 'a{color:expression(this.parentNode.currentStyle.color)}',
+    'multiple call': 'a{color:expression(x = 0 , this.parentNode.currentStyle.color)}',
+    'mixed content': "a{*zoom:expression(this.runtimeStyle[\"zoom\"] = '1', this.innerHTML = '&#xf187;')}",
+    'in comment': "/*! expression(this.runtimeStyle['zoom']) */",
+    'complex': 'a{width:expression((this.parentNode.innerWidth + this.parentNode.innerHeight) / 2 )}',
+    'with parentheses': "a{width:expression(this.parentNode.innerText == ')' ? '5px' : '10px' )}",
+    'open ended (broken)': "a{width:expression(this.parentNode.innerText == }"
+  }),
   'text content': cssContext({
     'normal #1': 'a{content:"."}',
     'normal #2': [

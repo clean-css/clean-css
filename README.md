@@ -14,8 +14,7 @@ to many speed optimizations and node.js' V8 engine.
 ### What are the requirements?
 
 ```
-node.js 0.6.0+ on UN*X (fully tested on OS X 10.6+ and CentOS)
-node.js 0.8.0+ on Windows
+node.js 0.8.0+ (tested on CentOS, Ubuntu, OS X 10.6+, and Windows 7+)
 ```
 
 ### How to install clean-css?

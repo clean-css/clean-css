@@ -1,10 +1,10 @@
 1.1.0 / 2013-xx-xx (UNRELEASED)
-===================
+==================
 
+* Fixed issue [#65](https://github.com/GoalSmashers/clean-css/issues/65) - full color name / hex shortening.
 * Fixed issue [#126](https://github.com/GoalSmashers/clean-css/issues/126) - proper CSS expressions handling.
 * Fixed issue [#130](https://github.com/GoalSmashers/clean-css/issues/130) - better code modularity.
 * Fixed issue [#135](https://github.com/GoalSmashers/clean-css/issues/135) - require node.js 0.8+.
-* Fixed issue [#65](https://github.com/GoalSmashers/clean-css/issues/65) - full color name / hex shortening.
 
 1.0.12 / 2013-07-19
 ===================

@@ -2,6 +2,7 @@
 ==================
 
 * Fixed issue [#65](https://github.com/GoalSmashers/clean-css/issues/65) - full color name / hex shortening.
+* Fixed issue [#84](https://github.com/GoalSmashers/clean-css/issues/84) - support for @import with media queries.
 * Fixed issue [#126](https://github.com/GoalSmashers/clean-css/issues/126) - proper CSS expressions handling.
 * Fixed issue [#130](https://github.com/GoalSmashers/clean-css/issues/130) - better code modularity.
 * Fixed issue [#135](https://github.com/GoalSmashers/clean-css/issues/135) - require node.js 0.8+.

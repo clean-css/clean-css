@@ -861,9 +861,25 @@ title']",
       '@import "test/data/partials/one.css";',
       ".one{color:red}"
     ],
+    'of a real file with single simple media': [
+      '@import url(test/data/partials/one.css) screen;',
+      "@media screen{.one{color:red}}"
+    ],
+    'of a real file with multiple simple media': [
+      '@import "test/data/partials/one.css" screen, tv, print;',
+      "@media screen,tv,print{.one{color:red}}"
+    ],
+    'of a real file with complex media': [
+      '@import \'test/data/partials/one.css\' screen and (orientation:landscape);',
+      "@media screen and (orientation:landscape){.one{color:red}}"
+    ],
     'of more files': [
       "@import url(test/data/partials/one.css);\n\na{}\n\n@import url(test/data/partials/extra/three.css);",
       ".one{color:red}a{}.three{color:#0f0}"
+    ],
+    'of more files with media': [
+      "@import url(test/data/partials/one.css) screen;@import url(test/data/partials/extra/three.css) tv;",
+      "@media screen{.one{color:red}}@media tv{.three{color:#0f0}}"
     ],
     'of multi-level, circular dependency file': [
       "@import url(test/data/partials/two.css);",
@@ -888,6 +904,10 @@ title']",
     'of a file with a comment': [
       '@import url(test/data/partials/comment.css);',
       ''
+    ],
+    'of a file (with media) with a comment': [
+      '@import url(test/data/partials/comment.css) screen and (device-height: 600px);',
+      '@media screen and (device-height:600px){}'
     ]
   }),
   '@import with absolute paths': cssContext({

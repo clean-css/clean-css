@@ -37,7 +37,7 @@ cleancss [options] <source-file>
 -b, --keep-line-breaks      Keep line breaks
 --s0                        Remove all special comments (i.e. /*! special comment */)
 --s1                        Remove all special comments but the first one
--r, --root [root-path]      A root path to which resolve absolute @import rules and rebase relative URLs.
+-r, --root [root-path]      A root path to which resolve absolute @import rules and rebase relative URLs
 -o, --output [output-file]  Use [output-file] as output instead of STDOUT
 -s, --skip-import           Disable the @import processing
 ```
@@ -121,12 +121,12 @@ Clean-css will handle it automatically for you (since version 1.1) in the follow
 
 * When using the CLI:
   1. Use an output path via `-o/--output` to rebase URLs as relative to the output file.
-  1. Use a root path via `-r/--root` to rebase URLs as absolute from the given root path.
-  1. If you specify both then `-r/--root` takes precendence.
+  2. Use a root path via `-r/--root` to rebase URLs as absolute from the given root path.
+  3. If you specify both then `-r/--root` takes precendence.
 * When using clean-css as a library:
   1. Use a combination of `relativeTo` and `target` options for relative rebase (same as 1 in CLI).
-  1. Use a combination of `relativeTo` and `root` options for absolute rebase (same as 2 in CLI).
-  1. `root` takes precendence over `target` as in CLI.
+  2. Use a combination of `relativeTo` and `root` options for absolute rebase (same as 2 in CLI).
+  3. `root` takes precendence over `target` as in CLI.
 
 ## Acknowledgments
 

@@ -624,13 +624,10 @@ vows.describe('clean-units').addBatch({
       'a{background:url("/images/long image name.png") 0 0 no-repeat}a{}a{background:url("/images/no-spaces.png") 0 0 no-repeat}',
       'a{background:url("/images/long image name.png") 0 0 no-repeat}a{}a{background:url(/images/no-spaces.png) 0 0 no-repeat}'
     ],
-    'not add a space before url\'s hash': [
-      "url(\"../fonts/d90b3358-e1e2-4abb-ba96-356983a54c22.svg#d90b3358-e1e2-4abb-ba96-356983a54c22\")",
-      "url(../fonts/d90b3358-e1e2-4abb-ba96-356983a54c22.svg#d90b3358-e1e2-4abb-ba96-356983a54c22)"
-    ],
+    'not add a space before url\'s hash': "url(/fonts/d90b3358-e1e2-4abb-ba96-356983a54c22.svg#d90b3358-e1e2-4abb-ba96-356983a54c22)",
     'keep urls from being stripped down #1': 'a{background:url(/image-1.0.png)}',
     'keep urls from being stripped down #2': "a{background:url(/image-white.png)}",
-    'keep urls from being stripped down #3': "a{background:#eee url(libraries/jquery-ui-1.10.1.custom/images/ui-bg_highlight-soft_100_eeeeee_1x100.png) 50% top repeat-x}",
+    'keep urls from being stripped down #3': "a{background:#eee url(/libraries/jquery-ui-1.10.1.custom/images/ui-bg_highlight-soft_100_eeeeee_1x100.png) 50% top repeat-x}",
     'keep __URL__ in comments (so order is important)': '/*! __URL__ */a{}',
     'strip new line in urls': [
       'a{background:url(/very/long/\
@@ -643,8 +640,64 @@ path")}',
       'a{background:url(/very/long/path)}'
     ]
   }),
+  'urls rewriting - no root or target': cssContext({
+    'no @import': [
+      'a{background:url(test/data/partials/extra/down.gif) 0 0 no-repeat}',
+      null
+    ],
+    'relative @import': [
+      '@import url(test/data/partials-relative/base.css);',
+      null
+    ],
+    'absolute @import': [
+      '@import url(/test/data/partials-relative/base.css);',
+      null
+    ]
+  }),
+  'urls rewriting - root but no target': cssContext({
+    'no @import': [
+      'a{background:url(../partials/extra/down.gif) 0 0 no-repeat}',
+      'a{background:url(/test/data/partials/extra/down.gif) 0 0 no-repeat}'
+    ],
+    'relative @import': [
+      '@import url(base.css);',
+      'a{background:url(/test/data/partials/extra/down.gif) 0 0 no-repeat}'
+    ],
+    'absolute @import': [
+      '@import url(/test/data/partials-relative/base.css);',
+      'a{background:url(/test/data/partials/extra/down.gif) 0 0 no-repeat}'
+    ]
+  }, { root: process.cwd(), relativeTo: path.join('test', 'data', 'partials-relative') }),
+  'urls rewriting - no root but target': cssContext({
+    'no @import': [
+      'a{background:url(../partials/extra/down.gif) 0 0 no-repeat}',
+      'a{background:url(test/data/partials/extra/down.gif) 0 0 no-repeat}'
+    ],
+    'relative @import': [
+      '@import url(base.css);',
+      'a{background:url(test/data/partials/extra/down.gif) 0 0 no-repeat}'
+    ],
+    'absolute @import': [
+      '@import url(/test/data/partials-relative/base.css);',
+      'a{background:url(test/data/partials/extra/down.gif) 0 0 no-repeat}'
+    ]
+  }, { target: path.join(process.cwd(), 'test.css'), relativeTo: path.join('test', 'data', 'partials-relative') }),
+  'urls rewriting - root and target': cssContext({
+    'no @import': [
+      'a{background:url(../partials/extra/down.gif) 0 0 no-repeat}',
+      'a{background:url(/test/data/partials/extra/down.gif) 0 0 no-repeat}'
+    ],
+    'relative @import': [
+      '@import url(base.css);',
+      'a{background:url(/test/data/partials/extra/down.gif) 0 0 no-repeat}'
+    ],
+    'absolute @import': [
+      '@import url(/test/data/partials-relative/base.css);',
+      'a{background:url(/test/data/partials/extra/down.gif) 0 0 no-repeat}'
+    ]
+  }, { root: process.cwd(), target: path.join(process.cwd(), 'test.css'), relativeTo: path.join('test', 'data', 'partials-relative') }),
   'fonts': cssContext({
-    'keep format quotation': "@font-face{font-family:PublicVintage;src:url(./PublicVintage.otf) format('opentype')}",
+    'keep format quotation': "@font-face{font-family:PublicVintage;src:url(/PublicVintage.otf) format('opentype')}",
     'remove font family quotation': [
       "a{font-family:\"Helvetica\",'Arial'}",
       "a{font-family:Helvetica,Arial}"
@@ -918,7 +971,7 @@ title']",
       '@import url(test/data/partials/comment.css) screen and (device-height: 600px);',
       '@media screen and (device-height:600px){}'
     ]
-  }),
+  }, { root: process.cwd() }),
   '@import with absolute paths': cssContext({
     'of an unknown file': [
       "@import url(/fake.css);",

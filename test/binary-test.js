@@ -27,6 +27,17 @@ var pipedContext = function(css, options, context) {
   return context;
 };
 
+var readFile = function(filename) {
+  return fs.readFileSync(filename, 'utf-8').replace(lineBreak, '');
+};
+
+var deleteFile = function(filename) {
+  if (isWindows)
+    exec('del /q /f ' + filename);
+  else
+    exec('rm ' + filename);
+};
+
 exports.commandsSuite = vows.describe('binary commands').addBatch({
   'no options': binaryContext('', {
     'should output help': function(stdout) {
@@ -95,25 +106,74 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
       assert.equal(stdout, minimized);
     }
   }),
-  'to file': binaryContext('-o ./reset-min.css ./test/data/reset.css', {
+  'to file': binaryContext('-o ./reset1-min.css ./test/data/reset.css', {
     'should give no output': function(error, stdout) {
       assert.equal(stdout, '');
     },
     'should minimize': function() {
-      var minimized = fs.readFileSync('./test/data/reset-min.css', 'utf-8').replace(lineBreak, '');
-      var target = fs.readFileSync('./reset-min.css', 'utf-8').replace(lineBreak, '');
+      var minimized = readFile('./test/data/reset-min.css');
+      var target = readFile('./reset1-min.css');
       assert.equal(minimized, target);
     },
     teardown: function() {
-      if (isWindows)
-        exec('del /q /f ./reset-min.css');
-      else
-        exec('rm ./reset-min.css');
+      deleteFile('./reset1-min.css');
     }
   }),
   'disable @import': binaryContext('-s ./test/data/imports.css', {
     'should disable the import processing': function(error, stdout) {
       assert.equal(stdout, "@import url(./partials/one.css);@import url(./partials/two.css);.imports{color:#000}");
     }
-  })
+  }),
+  'relative image paths': {
+    'no root & output': binaryContext('./test/data/partials-relative/base.css', {
+      'should raise error': function(error, stdout) {
+        assert.equal(stdout, '');
+        assert.notEqual(error, null);
+      }
+    }),
+    'root but no output': binaryContext('-r ./test ./test/data/partials-relative/base.css', {
+      'should rewrite path relative to ./test': function(error, stdout) {
+        assert.equal(stdout, 'a{background:url(/data/partials/extra/down.gif) 0 0 no-repeat}');
+      }
+    }),
+    'no root but output': binaryContext('-o ./base1-min.css ./test/data/partials-relative/base.css', {
+      'should rewrite path relative to current path': function() {
+        var minimized = readFile('./base1-min.css');
+        assert.equal(minimized, 'a{background:url(test/data/partials/extra/down.gif) 0 0 no-repeat}');
+      },
+      teardown: function() {
+        deleteFile('./base1-min.css');
+      }
+    }),
+    'root and output': binaryContext('-r ./test/data -o ./base2-min.css ./test/data/partials-relative/base.css', {
+      'should rewrite path relative to ./test/data/': function() {
+        var minimized = readFile('./base2-min.css');
+        assert.equal(minimized, 'a{background:url(/partials/extra/down.gif) 0 0 no-repeat}');
+      },
+      teardown: function() {
+        deleteFile('./base2-min.css');
+      }
+    })
+  },
+  'complex import and url rebasing': {
+    absolute: binaryContext('-r ./test/data/129-assets ./test/data/129-assets/assets/ui.css', {
+      'should rebase urls correctly': function(error, stdout) {
+        assert.equal(error, null);
+        assert.include(stdout, 'url(/components/bootstrap/images/glyphs.gif)');
+        assert.include(stdout, 'url(/components/jquery-ui/images/prev.gif)');
+        assert.include(stdout, 'url(/components/jquery-ui/images/next.gif)');
+      }
+    }),
+    relative: binaryContext('-o ./test/data/129-assets/assets/ui.bundled.css ./test/data/129-assets/assets/ui.css', {
+      'should rebase urls correctly': function() {
+        var minimized = readFile('./test/data/129-assets/assets/ui.bundled.css');
+        assert.include(minimized, 'url(../components/bootstrap/images/glyphs.gif)');
+        assert.include(minimized, 'url(../components/jquery-ui/images/prev.gif)');
+        assert.include(minimized, 'url(../components/jquery-ui/images/next.gif)');
+      },
+      teardown: function() {
+        deleteFile('./test/data/129-assets/assets/ui.bundled.css');
+      }
+    })
+  }
 });

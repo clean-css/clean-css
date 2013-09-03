@@ -55,7 +55,7 @@ if (!fromStdin && commands.args.length == 0) {
 
 // Now coerce commands into CleanCSS configuration...
 if (commands.output)
-  options.target = commands.output;
+  cleanOptions.target = options.target = commands.output;
 if (commands.removeEmpty)
   cleanOptions.removeEmpty = true;
 if (commands.keepLineBreaks)

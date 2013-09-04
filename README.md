@@ -37,7 +37,7 @@ cleancss [options] <source-file>
 -b, --keep-line-breaks      Keep line breaks
 --s0                        Remove all special comments (i.e. /*! special comment */)
 --s1                        Remove all special comments but the first one
--r, --root [root-path]      Set a root path to which resolve absolute @import rules
+-r, --root [root-path]      A root path to which resolve absolute @import rules and rebase relative URLs.
 -o, --output [output-file]  Use [output-file] as output instead of STDOUT
 -s, --skip-import           Disable the @import processing
 ```
@@ -91,8 +91,8 @@ Process method accepts a hash as a second parameter, i.e.,
 * `removeEmpty` - whether to remove empty elements (default is false)
 * `debug` - turns on debug mode measuring time spent on cleaning up
   (run `npm run bench` to see example)
-* `root` - path with which to resolve absolute `@import` rules
-* `relativeTo` - path with which to resolve relative `@import` rules
+* `root` - path to resolve absolute `@import` rules and rebase relative URLs
+* `relativeTo` - path with which to resolve relative `@import` rules and URLs
 * `processImport` - whether to process `@import` rules
 
 ### What are the clean-css' dev commands?
@@ -103,7 +103,9 @@ First clone the source, then run:
 * `npm run check` to check JS sources with [JSHint](https://github.com/jshint/jshint/)
 * `npm test` for the test suite
 
-### How do you preserve a comment block?
+## Tips & Tricks
+
+### How to preserve a comment block?
 
 Use the `/*!` notation instead of the standard one `/*`:
 
@@ -113,6 +115,18 @@ Use the `/*!` notation instead of the standard one `/*`:
 */
 ```
 
+### How to rebase relative image URLs
+
+Clean-css will handle it automatically for you (since version 1.1) in the following cases:
+
+* When using the CLI:
+  1. Use an output path via `-o/--output` to rebase URLs as relative to the output file.
+  1. Use a root path via `-r/--root` to rebase URLs as absolute from the given root path.
+  1. If you specify both then `-r/--root` takes precendence.
+* When using clean-css as a library:
+  1. Use a combination of `relativeTo` and `target` options for relative rebase (same as 1 in CLI).
+  1. Use a combination of `relativeTo` and `root` options for absolute rebase (same as 2 in CLI).
+  1. `root` takes precendence over `target` as in CLI.
 
 ## Acknowledgments
 

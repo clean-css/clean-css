@@ -16,14 +16,14 @@ var isWindows = process.platform == 'win32';
 commands
   .version(buildVersion, '-v, --version')
   .usage('[options] <source-file>')
-  .option('-d, --debug', 'Shows debug information (minification time & compression efficiency)')
-  .option('-e, --remove-empty', 'Remove empty declarations (e.g. a{})')
+  .option('-e, --remove-empty', 'Remove empty declarations, e.g. .a{}')
   .option('-b, --keep-line-breaks', 'Keep line breaks')
-  .option('--s0', 'Remove all special comments (i.e. /*! special comment */)')
+  .option('--s0', 'Remove all special comments, i.e. /*! comment */')
   .option('--s1', 'Remove all special comments but the first one')
   .option('-r, --root [root-path]', 'Set a root path to which resolve absolute @import rules')
-  .option('-o, --output [output-file]', 'Use [output-file] as output instead of stdout')
-  .option('-s, --skip-import', 'Disable the @import processing');
+  .option('-o, --output [output-file]', 'Use [output-file] as output instead of STDOUT')
+  .option('-s, --skip-import', 'Disable the @import processing')
+  .option('-d, --debug', 'Shows debug information (minification time & compression efficiency)');
 
 commands.on('--help', function() {
   util.puts('  Examples:\n');

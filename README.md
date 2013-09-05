@@ -33,14 +33,14 @@ cleancss [options] <source-file>
 
 -h, --help                  Output usage information
 -v, --version               Output the version number
--d, --debug                 Shows debug information (minification time & compression efficiency)
--e, --remove-empty          Remove empty declarations (e.g. a{})
+-e, --remove-empty          Remove empty declarations, e.g. a{}
 -b, --keep-line-breaks      Keep line breaks
---s0                        Remove all special comments (i.e. /*! special comment */)
+--s0                        Remove all special comments, i.e. /*! comment */
 --s1                        Remove all special comments but the first one
 -r, --root [root-path]      A root path to which resolve absolute @import rules and rebase relative URLs
 -o, --output [output-file]  Use [output-file] as output instead of STDOUT
 -s, --skip-import           Disable the @import processing
+-d, --debug                 Shows debug information (minification time & compression efficiency)
 ```
 
 #### Examples:

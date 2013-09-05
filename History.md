@@ -1,6 +1,7 @@
 1.1.0 / 2013-xx-xx (UNRELEASED)
 ==================
 
+* Fixed issue [#43](https://github.com/GoalSmashers/clean-css/issues/43) - `--debug` switch for minification stats.
 * Fixed issue [#65](https://github.com/GoalSmashers/clean-css/issues/65) - full color name / hex shortening.
 * Fixed issue [#84](https://github.com/GoalSmashers/clean-css/issues/84) - support for `@import` with media queries.
 * Fixed issue [#124](https://github.com/GoalSmashers/clean-css/issues/124) - raise error on broken imports.

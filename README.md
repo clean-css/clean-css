@@ -33,6 +33,7 @@ cleancss [options] <source-file>
 
 -h, --help                  Output usage information
 -v, --version               Output the version number
+-d, --debug                 Shows debug information (minification time & compression efficiency)
 -e, --remove-empty          Remove empty declarations (e.g. a{})
 -b, --keep-line-breaks      Keep line breaks
 --s0                        Remove all special comments (i.e. /*! special comment */)

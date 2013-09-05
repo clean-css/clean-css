@@ -85,8 +85,32 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
     }
   }),
   'empty': pipedContext('a{}', '-e', {
-    'should preserve content': function(error, stdout) {
+    'should preserve content': function(error, stdout, stderr) {
       assert.equal(stdout, '');
+      assert.equal(stderr, '');
+    }
+  }),
+  'piped with debug info': pipedContext('a{color:#f00}', '-d', {
+    'should output content to stdout and debug info to stderr': function(error, stdout, stderr) {
+      assert.equal(stdout, 'a{color:red}');
+      assert.notEqual(stderr, '');
+      assert.include(stderr, 'Minification time:');
+      assert.include(stderr, 'Compression efficiency:');
+    }
+  }),
+  'to output file with debug info': pipedContext('a{color:#f00}', '-d -o debug.css', {
+    'should output nothing to stdout and debug info to stderr': function(error, stdout, stderr) {
+      assert.equal(stdout, '');
+      assert.notEqual(stderr, '');
+      assert.include(stderr, 'Minification time:');
+      assert.include(stderr, 'Compression efficiency:');
+    },
+    'should output content to file': function() {
+      var minimized = readFile('debug.css');
+      assert.equal(minimized, 'a{color:red}');
+    },
+    teardown: function() {
+      deleteFile('debug.css');
     }
   }),
   'no relative to path': binaryContext('./test/data/partials-absolute/base.css', {

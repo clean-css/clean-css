@@ -9,6 +9,7 @@
 * Fixed issue [#129](https://github.com/GoalSmashers/clean-css/issues/129) - rebasing imported urls.
 * Fixed issue [#130](https://github.com/GoalSmashers/clean-css/issues/130) - better code modularity.
 * Fixed issue [#135](https://github.com/GoalSmashers/clean-css/issues/135) - require node.js 0.8+.
+* Renamed lib's `debug` option to `benchmark` when doing per-minification benchmarking.
 
 1.0.12 / 2013-07-19
 ===================

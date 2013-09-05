@@ -90,7 +90,7 @@ Process method accepts a hash as a second parameter, i.e.,
 * `keepSpecialComments` - `*` for keeping all (default), `1` for keeping first one, `0` for removing all
 * `keepBreaks` - whether to keep line breaks (default is false)
 * `removeEmpty` - whether to remove empty elements (default is false)
-* `debug` - turns on debug mode measuring time spent on cleaning up
+* `benchmark` - turns on benchmarking mode measuring time spent on cleaning up
   (run `npm run bench` to see example)
 * `root` - path to resolve absolute `@import` rules and rebase relative URLs
 * `relativeTo` - path with which to resolve relative `@import` rules and URLs

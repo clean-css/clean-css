@@ -7,7 +7,7 @@ if (!process.hrtime) {
 }
 
 var start = process.hrtime();
-cleanCSS.process(bigcss, { debug: true });
+cleanCSS.process(bigcss, { benchmark: true });
 
 var itTook = process.hrtime(start);
 console.log('complete minification: %d ms', 1000 * itTook[0] + itTook[1] / 1000000.0);

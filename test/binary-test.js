@@ -177,6 +177,15 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
       teardown: function() {
         deleteFile('./base2-min.css');
       }
+    }),
+    'piped with output': pipedContext('a{background:url(test/data/partials/extra/down.gif)}', '-o base3-min.css', {
+      'should keep paths as they are': function() {
+        var minimized = readFile('base3-min.css');
+        assert.equal(minimized, 'a{background:url(test/data/partials/extra/down.gif)}');
+      },
+      teardown: function() {
+        deleteFile('base3-min.css');
+      }
     })
   },
   'complex import and url rebasing': {

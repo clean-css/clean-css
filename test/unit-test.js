@@ -641,17 +641,14 @@ path")}',
     ]
   }),
   'urls rewriting - no root or target': cssContext({
-    'no @import': [
-      'a{background:url(test/data/partials/extra/down.gif) 0 0 no-repeat}',
-      null
-    ],
+    'no @import': 'a{background:url(test/data/partials/extra/down.gif) 0 0 no-repeat}',
     'relative @import': [
       '@import url(test/data/partials-relative/base.css);',
-      null
+      'a{background:url(test/data/partials/extra/down.gif) 0 0 no-repeat}'
     ],
     'absolute @import': [
       '@import url(/test/data/partials-relative/base.css);',
-      null
+      'a{background:url(test/data/partials/extra/down.gif) 0 0 no-repeat}'
     ]
   }),
   'urls rewriting - root but no target': cssContext({

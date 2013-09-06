@@ -150,9 +150,8 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
   }),
   'relative image paths': {
     'no root & output': binaryContext('./test/data/partials-relative/base.css', {
-      'should raise error': function(error, stdout) {
-        assert.equal(stdout, '');
-        assert.notEqual(error, null);
+      'should leave paths': function(error, stdout) {
+        assert.equal(stdout, 'a{background:url(../partials/extra/down.gif) 0 0 no-repeat}');
       }
     }),
     'root but no output': binaryContext('-r ./test ./test/data/partials-relative/base.css', {

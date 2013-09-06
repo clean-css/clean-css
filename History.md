@@ -1,3 +1,8 @@
+1.1.1 / 2013-xx-xx
+==================
+
+* Fixed issue [#144](https://github.com/GoalSmashers/clean-css/issues/144) - skip URLs rebasing by default.
+
 1.1.0 / 2013-09-06
 ==================
 

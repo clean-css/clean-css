@@ -960,7 +960,7 @@ title']",
       ".five{background:url(data:image/jpeg;base64,/9j/)}"
     ],
     'inside a comment': [
-      '/* @import */a { color: red; }',
+      '/* @import url(test/data/partials/five.css); */a { color: red; }',
       'a{color:red}'
     ],
     'of a file with a comment': [

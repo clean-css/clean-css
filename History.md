@@ -1,4 +1,4 @@
-1.1.0 / 2013-xx-xx (UNRELEASED)
+1.1.0 / 2013-09-06
 ==================
 
 * Fixed issue [#43](https://github.com/GoalSmashers/clean-css/issues/43) - `--debug` switch for minification stats.

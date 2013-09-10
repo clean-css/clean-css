@@ -28,36 +28,16 @@
   ],
   "scripts": {
     "bench": "node ./test/bench.js",
-    "check": "jshint .",
-    "prepublish": "jshint .",
-    "test": "vows"
+    "test": "grunt test"
   },
   "dependencies": {
     "commander": "2.0.x"
   },
   "devDependencies": {
-    "vows": "0.7.x",
-    "jshint": "~2.1.9"
-  },
-  "jshintConfig": {
-    "browser": false,
-    "maxerr": 100,
-    "node": true,
-    "camelcase": true,
-    "curly": false,
-    "eqeqeq": false,
-    "eqnull": false,
-    "immed": true,
-    "latedef": true,
-    "multistr": true,
-    "noarg": true,
-    "plusplus": false,
-    "quotmark": "true",
-    "regexp": false,
-    "strict": false,
-    "trailing": true,
-    "undef": true,
-    "unused": true
+    "grunt": "~0.4.1",
+    "grunt-contrib-jshint": "~0.6.4",
+    "grunt-contrib-uglify": "~0.2.4",
+    "grunt-vows": "~0.4.0"
   },
   "engines": {
     "node": ">=0.8.0"

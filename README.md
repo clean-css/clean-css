@@ -98,11 +98,12 @@ Process method accepts a hash as a second parameter, i.e.,
 
 ### What are the clean-css' dev commands?
 
-First clone the source, then run:
+First clone the source, then install [Grunt](https://github.com/gruntjs/grunt)
+and the other dependencies with `npm install`.
 
 * `npm run bench` for clean-css benchmarks (see [test/bench.js](https://github.com/GoalSmashers/clean-css/blob/master/test/bench.js) for details)
-* `npm run check` to check JS sources with [JSHint](https://github.com/jshint/jshint/)
 * `npm test` for the test suite
+* `grunt --help` for the available Grunt tasks
 
 ## Tips & Tricks
 

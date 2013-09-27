@@ -600,10 +600,15 @@ vows.describe('clean-units').addBatch({
       'font:normal 13px/20px "Helvetica Neue",Helvetica,Arial,sans-serif',
       'font:400 13px/20px "Helvetica Neue",Helvetica,Arial,sans-serif'
     ],
+    'font weight in font declarations with fraction units': [
+      'font:bold .9rem Helvetica',
+      'font:700 .9rem Helvetica'
+    ],
     'multiple changes': [
-      'p{font-weight:bold;width:100%;font:normal}',
-      'p{font-weight:700;width:100%;font:400}'
-    ]
+      'p{font-weight:bold;width:100%;font:normal 12px Helvetica}',
+      'p{font-weight:700;width:100%;font:400 12px Helvetica}'
+    ],
+    'font weight in extended font declarations': 'font:normal normal normal 13px/20px Helvetica'
   }),
   'urls': cssContext({
     'keep urls without parentheses unchanged': 'a{background:url(/images/blank.png) 0 0 no-repeat}',

@@ -3,6 +3,11 @@
 
 * Adds simplified and more advanced text escaping / restoring via EscapeStore class.
 
+1.1.2 / 2013-xx-xx (UNRELEASED)
+==================
+
+* Fixed issue [#149](https://github.com/GoalSmashers/clean-css/issues/149) - shorthand font property.
+
 1.1.1 / 2013-09-07
 ==================
 

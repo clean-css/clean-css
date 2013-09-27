@@ -1,3 +1,8 @@
+2.0.0 / 2013-xx-xx (UNRELEASED)
+==================
+
+* Adds simplified and more advanced text escaping / restoring via EscapeStore class.
+
 1.1.1 / 2013-09-07
 ==================
 

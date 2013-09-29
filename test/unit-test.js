@@ -1035,5 +1035,27 @@ title']{display:block}",
       "@import url(/fake.css);",
       "@import url(/fake.css);"
     ]
-  }, { processImport: false })
+  }, { processImport: false }),
+  'duplicate selectors in a list': cssContext({
+    'of a duplicate selector': [
+      'a,a{color:red}',
+      'a{color:red}'
+    ],
+    'of an unordered multiply repeated selector': [
+      'a,b,p,a{color:red}',
+      'a,b,p{color:red}'
+    ],
+    'of an unordered multiply repeated selector within a block': [
+      '@media screen{a,b,p,a{color:red}}',
+      '@media screen{a,b,p{color:red}}'
+    ],
+    'of an unordered multiply repeated complex selector within a block #1': [
+      '@media screen{a,.link[data-path],p,.link[data-path]{color:red}}',
+      '@media screen{a,.link[data-path],p{color:red}}'
+    ],
+    'of an unordered multiply repeated complex selector within a block #2': [
+      '@media screen{a,#foo[data-path^="bar bar"],p,#foo[data-path^="bar bar"]{color:red}}',
+      '@media screen{a,#foo[data-path^="bar bar"],p{color:red}}'
+    ]
+  })
 }).export(module);

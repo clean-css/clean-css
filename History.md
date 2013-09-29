@@ -1,4 +1,4 @@
-1.1.2 / 2013-xx-xx (UNRELEASED)
+1.1.2 / 2013-09-29
 ==================
 
 * Fixed issue [#149](https://github.com/GoalSmashers/clean-css/issues/149) - shorthand font property.

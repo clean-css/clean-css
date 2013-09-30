@@ -648,7 +648,7 @@ vows.describe('clean-units').addBatch({
     'keep urls from being stripped down #1': 'a{background:url(/image-1.0.png)}',
     'keep urls from being stripped down #2': "a{background:url(/image-white.png)}",
     'keep urls from being stripped down #3': "a{background:#eee url(/libraries/jquery-ui-1.10.1.custom/images/ui-bg_highlight-soft_100_eeeeee_1x100.png) 50% top repeat-x}",
-    'keep __URL__ in comments (so order is important)': '/*! __URL__ */a{display:block}',
+    'keep special markers in comments (so order is important)': '/*! __ESCAPED_URL_CLEAN_CSS0__ */a{display:block}',
     'strip new line in urls': [
       'a{background:url(/very/long/\
 path)}',

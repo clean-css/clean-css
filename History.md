@@ -1,4 +1,4 @@
-1.1.3 / 2013-xx-xx (UNRELEASED)
+1.1.3 / 2013-10-04
 ==================
 
 * Fixed issue [#150](https://github.com/GoalSmashers/clean-css/issues/150) - minifying background:none.

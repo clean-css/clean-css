@@ -313,7 +313,7 @@ vows.describe('clean-units').addBatch({
     ],
     'none to zeros': [
       'a{border:none;background:none}',
-      'a{border:0;background:0}'
+      'a{border:0;background:0 0}'
     ],
     'outline:none to outline:0': [
       'a{outline:none}',

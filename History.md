@@ -1,12 +1,12 @@
 2.0.0 / 2013-xx-xx (UNRELEASED)
 ==================
 
-* Adds simplified and more advanced text escaping / restoring via EscapeStore class.
+* Adds simplified and more advanced text escaping / restoring via `EscapeStore` class.
 
 1.1.3 / 2013-10-04
 ==================
 
-* Fixed issue [#150](https://github.com/GoalSmashers/clean-css/issues/150) - minifying background:none.
+* Fixed issue [#150](https://github.com/GoalSmashers/clean-css/issues/150) - minifying `background:none`.
 
 1.1.2 / 2013-09-29
 ==================

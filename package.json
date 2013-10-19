@@ -38,7 +38,7 @@
   },
   "devDependencies": {
     "vows": "0.7.x",
-    "jshint": "~2.1.9"
+    "jshint": "2.2.x"
   },
   "jshintConfig": {
     "browser": false,

@@ -39,7 +39,8 @@ cleancss [options] <source-file>
 --s1                        Remove all special comments but the first one
 -r, --root [root-path]      A root path to which resolve absolute @import rules and rebase relative URLs
 -o, --output [output-file]  Use [output-file] as output instead of STDOUT
--s, --skip-import           Disable the @import processing
+-s, --skip-import           Disable @import processing
+--skip-rebase               Disable URLs rebasing
 -d, --debug                 Shows debug information (minification time & compression efficiency)
 ```
 
@@ -95,6 +96,7 @@ Process method accepts a hash as a second parameter, i.e.,
 * `root` - path to resolve absolute `@import` rules and rebase relative URLs
 * `relativeTo` - path with which to resolve relative `@import` rules and URLs
 * `processImport` - whether to process `@import` rules
+* `noRebase` - whether to skip URLs rebasing
 
 ### What are the clean-css' dev commands?
 

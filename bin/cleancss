@@ -22,7 +22,8 @@ commands
   .option('--s1', 'Remove all special comments but the first one')
   .option('-r, --root [root-path]', 'Set a root path to which resolve absolute @import rules')
   .option('-o, --output [output-file]', 'Use [output-file] as output instead of STDOUT')
-  .option('-s, --skip-import', 'Disable the @import processing')
+  .option('-s, --skip-import', 'Disable @import processing')
+  .option('--skip-rebase', 'Disable URLs rebasing')
   .option('-d, --debug', 'Shows debug information (minification time & compression efficiency)');
 
 commands.on('--help', function() {
@@ -69,6 +70,8 @@ if (commands.root)
   cleanOptions.root = commands.root;
 if (commands.skipImport)
   cleanOptions.processImport = false;
+if (commands.skipRebase)
+  cleanOptions.noRebase = true;
 if (commands.debug)
   options.debug = true;
 if (commands.args.length > 0) {

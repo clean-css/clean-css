@@ -3,6 +3,7 @@
   "version": "1.1.4",
   "author": "Jakub Pawlowicz <jakub@goalsmashers.com> (http://twitter.com/GoalSmashers)",
   "description": "A well-tested CSS minifier",
+  "license": "MIT",
   "keywords": [
     "css",
     "minifier"
@@ -37,12 +38,10 @@
   },
   "devDependencies": {
     "vows": "0.7.x",
-    "jshint": "~2.1.9"
+    "jshint": "2.2.x"
   },
   "jshintConfig": {
     "browser": false,
-    "maxerr": 100,
-    "node": true,
     "camelcase": true,
     "curly": false,
     "eqeqeq": false,
@@ -51,6 +50,7 @@
     "latedef": true,
     "multistr": true,
     "noarg": true,
+    "node": true,
     "plusplus": false,
     "quotmark": "true",
     "regexp": false,
@@ -61,6 +61,5 @@
   },
   "engines": {
     "node": ">=0.8.0"
-  },
-  "license": "MIT"
+  }
 }

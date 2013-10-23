@@ -273,6 +273,12 @@ vows.describe('clean-units').addBatch({
       "@charset 'utf-8';a{}"
     ]
   }, { keepSpecialComments: 0 }),
+  'important comments - keepSpecialComments when a string': cssContext({
+    'strip all': [
+      '/*! important comment */a{color:red}/* some comment *//*! important comment */',
+      'a{color:red}'
+    ]
+  }, { keepSpecialComments: '0' }),
   'expressions': cssContext({
     'empty': 'a{color:expression()}',
     'method call': 'a{color:expression(this.parentNode.currentStyle.color)}',

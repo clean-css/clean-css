@@ -207,5 +207,15 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
         deleteFile('./test/data/129-assets/assets/ui.bundled.css');
       }
     })
+  },
+  'complex import and skipped url rebasing': {
+    absolute: binaryContext('-r ./test/data/129-assets --skip-rebase ./test/data/129-assets/assets/ui.css', {
+      'should rebase urls correctly': function(error, stdout) {
+        assert.equal(error, null);
+        assert.include(stdout, 'url(../components/bootstrap/images/glyphs.gif)');
+        assert.include(stdout, 'url(../components/jquery-ui/images/prev.gif)');
+        assert.include(stdout, 'url(../components/jquery-ui/images/next.gif)');
+      }
+    })
   }
 });

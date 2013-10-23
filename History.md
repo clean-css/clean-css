@@ -1,4 +1,4 @@
-1.1.4 / 2013-xx-xx (UNRELEASED)
+1.1.4 / 2013-10-23
 ==================
 
 * Fixed issue [#152](https://github.com/GoalSmashers/clean-css/issues/152) - adds an option to disable rebasing.

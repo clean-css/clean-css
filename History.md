@@ -1,3 +1,8 @@
+1.1.5 / 2013-10-24
+==================
+
+* Fixed issue [#153](https://github.com/GoalSmashers/clean-css/issues/153) - keepSpecialComments 0/1 as a string.
+
 1.1.4 / 2013-10-23
 ==================
 

@@ -852,9 +852,17 @@ title']",
       "@media screen { .test {} } .test1 { color: green; }",
       ".test1{color:green}"
     ],
+    'inside nested @media': [
+      '@media screen { @media (orientation:landscape) { @media (max-width:999px) { .test {} } } }',
+      ''
+    ],
     'inside not empty @media': [
       "@media screen { .test {} .some { display:none } }",
       "@media screen{.some{display:none}}"
+    ],
+    'inside nested not empty @media': [
+      '@media screen { @media (orientation:landscape) { @media (max-width:999px) { .test {} } a {color:red} } }',
+      '@media screen{@media (orientation:landscape){a{color:red}}}'
     ]
   }, { removeEmpty: true }),
   'empty @media': cssContext({

@@ -1,3 +1,8 @@
+1.1.6 / 2013-xx-xx
+==================
+
+* Fixed issue [#155](https://github.com/GoalSmashers/clean-css/issues/155) - broken irregular CSS content.
+
 1.1.5 / 2013-10-24
 ==================
 

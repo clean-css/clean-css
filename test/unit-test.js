@@ -306,7 +306,8 @@ vows.describe('clean-units').addBatch({
     'special characters': [
       'a{content : "  a > div { }  "}',
       'a{content:"  a > div { }  "}'
-    ]
+    ],
+    'with JSON': 'body::before{content:\'{ "current" : "small", "all" : ["small"], "position" : 0 }\'}'
   }),
   'zero values': cssContext({
     'with units': [
@@ -766,6 +767,7 @@ path")}',
     'should keep quotation if is a number': 'div[data-number=\'1\']{border-color:red}',
     'should keep quotation if starts with a number': 'div[data-type^=\'1something\']{border-color:red}',
     'should keep quotation if starts with a hyphen': 'div[data-type$=\'-something\']{border-color:red}',
+    'should keep quotation if key only (which is invalid)': 'div["data-type"]',
     'should strip quotation if is a word': [
       'a[data-href=\'object\']{border-color:red}',
       'a[data-href=object]{border-color:red}'

@@ -637,8 +637,8 @@ vows.describe('clean-units').addBatch({
       'a{background:url(/images/blank.png) 0 0 no-repeat}'
     ],
     'strip more': [
-      'a{background:url("/images/blank.png") 0 0 no-repeat}a{display:block}a{background:url("/images/blank.png") 0 0 no-repeat}',
-      'a{background:url(/images/blank.png) 0 0 no-repeat}a{display:block}a{background:url(/images/blank.png) 0 0 no-repeat}'
+      'a{background:url("/images/blank.png") 0 0 no-repeat}a{display:block}a{background:url("/images/blank2.png") 0 0 no-repeat}',
+      'a{background:url(/images/blank.png) 0 0 no-repeat}a{display:block}a{background:url(/images/blank2.png) 0 0 no-repeat}'
     ],
     'not strip comments if spaces inside': [
       'a{background:url("/images/long image name.png") 0 0 no-repeat}a{display:block}a{background:url("/images/no-spaces.png") 0 0 no-repeat}',
@@ -1056,6 +1056,36 @@ title']{display:block}",
     'of an unordered multiply repeated complex selector within a block #2': [
       '@media screen{a,#foo[data-path^="bar bar"],p,#foo[data-path^="bar bar"]{color:red}}',
       '@media screen{a,#foo[data-path^="bar bar"],p{color:red}}'
+    ]
+  }),
+  'duplicate selectors in a scope': cssContext({
+    'of two successive selectors': [
+      'a{color:red}a{color:red}',
+      'a{color:red}'
+    ],
+    'of two successive selectors with different body': [
+      'a{color:red}a{display:block}',
+      'a{color:red}a{display:block}'
+    ],
+    'of many successive selectors': [
+      'a{color:red}a{color:red}a{color:red}a{color:red}',
+      'a{color:red}'
+    ],
+    'of two non-successive selectors': [
+      'a{color:red}p{color:#fff}a{color:red}',
+      'p{color:#fff}a{color:red}'
+    ],
+    'of many non-successive selectors': [
+      'div{width:100%}a{color:red}a{color:red}p{color:#fff}div{width:100%}ol{margin:0}p{color:#fff}',
+      'a{color:red}div{width:100%}ol{margin:0}p{color:#fff}'
+    ],
+    'with global and media scope': [
+      'a{color:red}@media screen{a{color:red}p{width:100px}a{color:red}}',
+      'a{color:red}@media screen{p{width:100px}a{color:red}}'
+    ],
+    'with two media scopes': [
+      '@media (min-width:100px){a{color:red}}@media screen{a{color:red}p{width:100px}a{color:red}}',
+      '@media (min-width:100px){a{color:red}}@media screen{p{width:100px}a{color:red}}'
     ]
   })
 }).export(module);

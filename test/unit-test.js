@@ -637,12 +637,12 @@ vows.describe('clean-units').addBatch({
       'a{background:url(/images/blank.png) 0 0 no-repeat}'
     ],
     'strip more': [
-      'a{background:url("/images/blank.png") 0 0 no-repeat}a{display:block}a{background:url("/images/blank2.png") 0 0 no-repeat}',
-      'a{background:url(/images/blank.png) 0 0 no-repeat}a{display:block}a{background:url(/images/blank2.png) 0 0 no-repeat}'
+      'a{background:url("/images/blank.png") 0 0 no-repeat}b{display:block}a{background:url("/images/blank2.png") 0 0 no-repeat}',
+      'a{background:url(/images/blank.png) 0 0 no-repeat}b{display:block}a{background:url(/images/blank2.png) 0 0 no-repeat}'
     ],
     'not strip comments if spaces inside': [
-      'a{background:url("/images/long image name.png") 0 0 no-repeat}a{display:block}a{background:url("/images/no-spaces.png") 0 0 no-repeat}',
-      'a{background:url("/images/long image name.png") 0 0 no-repeat}a{display:block}a{background:url(/images/no-spaces.png) 0 0 no-repeat}'
+      'a{background:url("/images/long image name.png") 0 0 no-repeat}b{display:block}a{background:url("/images/no-spaces.png") 0 0 no-repeat}',
+      'a{background:url("/images/long image name.png") 0 0 no-repeat}b{display:block}a{background:url(/images/no-spaces.png) 0 0 no-repeat}'
     ],
     'not add a space before url\'s hash': "a{background:url(/fonts/d90b3358-e1e2-4abb-ba96-356983a54c22.svg#d90b3358-e1e2-4abb-ba96-356983a54c22)}",
     'keep urls from being stripped down #1': 'a{background:url(/image-1.0.png)}',
@@ -1065,7 +1065,7 @@ title']{display:block}",
     ],
     'of two successive selectors with different body': [
       'a{color:red}a{display:block}',
-      'a{color:red}a{display:block}'
+      'a{color:red;display:block}'
     ],
     'of many successive selectors': [
       'a{color:red}a{color:red}a{color:red}a{color:red}',
@@ -1109,6 +1109,33 @@ title']{display:block}",
     'of many properties in one declaration': [
       'a{display:inline-block;color:red;font-weight:bolder;font-weight:700;display:block!important;color:#fff}',
       'a{font-weight:bolder;font-weight:700;display:block!important;color:#fff}'
+    ]
+  }),
+  'same selectors': cssContext({
+    'of two non-adjacent selectors': '.one{color:red}.two{color:#00f}.one{font-weight:700}',
+    'of two adjacent single selectors': [
+      '.one{color:red}.one{font-weight:700}',
+      '.one{color:red;font-weight:700}'
+    ],
+    'of three adjacent single selectors': [
+      '.one{color:red}.one{font-weight:700}.one{font-size:12px}',
+      '.one{color:red;font-weight:700;font-size:12px}'
+    ],
+    'of two adjacent single, complex selectors': [
+      '#box>.one{color:red}#box>.one{font-weight:700}',
+      '#box>.one{color:red;font-weight:700}'
+    ],
+    'of two adjacent multiple, complex selectors': [
+      '.zero,#box>.one{color:red}.zero,#box>.one{font-weight:700}',
+      '.zero,#box>.one{color:red;font-weight:700}'
+    ],
+    'of two adjacent selectors with duplicate properties #1': [
+      '.one{color:red}.one{color:#fff}',
+      '.one{color:#fff}'
+    ],
+    'of two adjacent selectors with duplicate properties #2': [
+      '.one{color:red;font-weight:bold}.one{color:#fff;font-weight:400}',
+      '.one{color:#fff;font-weight:400}'
     ]
   })
 }).export(module);

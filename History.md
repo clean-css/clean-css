@@ -10,6 +10,7 @@
 * Adds CSS tokenizer which will make it possible to optimize content by reordering and/or merging selectors.
 * Adds basic optimizer removing duplicate selectors from a list.
 * Adds merging duplicate properties within a single selector's body.
+* Adds merging adjacent selectors within a scope (single and multiple ones).
 
 1.1.7 / 2013-10-28
 ==================

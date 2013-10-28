@@ -483,8 +483,7 @@ article .liste_carre_999{margin-top:5px}
 .fleuve .urgent .grid_1 .tt13_capital{padding:0 0 10px;border-bottom:1px solid #cb2626}
 .fleuve .conteneur_fleuve{background:#fff;margin-left:0;padding:0;width:605px}
 .fleuve .urgent .conteneur_fleuve{padding-top:10px}
-.fleuve .jour_parution{background:#fff}
-.fleuve .jour_parution{display:block;padding:0 0 20px;color:#2e3942;text-transform:uppercase;font-weight:700}
+.fleuve .jour_parution{background:#fff;display:block;padding:0 0 20px;color:#2e3942;text-transform:uppercase;font-weight:700}
 .fleuve .atome{margin:0 0 10px}
 .fleuve .liens{margin:16px 0 0;color:#a2a9ae}
 .fleuve .liens>span:first-child{float:left}
@@ -826,8 +825,7 @@ img[height="97"]+.ico29x29{bottom:6%;left:3.5%}
 #header .acces_compte .avatar_nom{height:26px;margin:3px 0 0;background-color:#fafafa;background-image:-webkit-gradient(linear,0 0,0 100%,from(#fefefe),color-stop(25%,#fefefe),to(#e4e6e9));background-image:-webkit-linear-gradient(#fefefe,#fefefe 25%,#e4e6e9);background-image:-moz-linear-gradient(top,#fefefe,#fefefe 25%,#e4e6e9);background-image:-ms-linear-gradient(#fefefe,#fefefe 25%,#e4e6e9);background-image:-o-linear-gradient(#fefefe,#fefefe 25%,#e4e6e9);background-image:linear-gradient(#fefefe,#fefefe 25%,#e4e6e9);background-repeat:no-repeat;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#e4e6e9', GradientType=0);border:1px solid #d2d6db;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px}
 #header .acces_compte .avatar_nom span{display:block;height:26px;line-height:26px;float:left}
 #header .acces_compte .avatar{width:28px;border-right:1px solid #d2d6db}
-#header .acces_compte .avatar img{display:block;margin:4px auto 0}
-#header .acces_compte .avatar img{vertical-align:middle}
+#header .acces_compte .avatar img{display:block;margin:4px auto 0;vertical-align:middle}
 #header .acces_compte .nom{padding:0 16px;border-right:1px solid #d2d6db;border-left:1px solid #fff}
 #header .acces_compte .fle{width:28px;background:url(/medias/web/img/pictos/fle_bas_noir7x4.png) no-repeat 50% 50%}
 #header .acces_compte ul{position:absolute;right:0;top:29px;width:98%;background:#fff;list-style-type:none;text-align:left;display:none;border:1px solid #d2d6db;border-radius:0 0 3px 3px}
@@ -1188,8 +1186,7 @@ label i{font-style:normal;display:none}
 .col_droite .bloc_element .ligne_titre{display:block;overflow:hidden;position:relative;border-top:3px solid #16212c;border-bottom:1px solid #eef1f5;border-left:1px solid #eef1f5;background:#e9ecf0}
 .col_droite .bloc_element .titre{float:left;width:238px;padding:8px 16px 6px;border-right:1px solid #fff;background:#fafbfc}
 .col_droite .bloc_element .element:hover .titre{background:#e9ecf0}
-.col_droite .bloc_element .fleche{display:block;float:right;width:42px;border-left:1px solid #e4e6e9}
-.col_droite .bloc_element .fleche{position:absolute;right:13px;top:33%;background:url(/medias/web/img/sprites/icos_petites.png) no-repeat -1px -108px;width:13px;height:22px}
+.col_droite .bloc_element .fleche{display:block;float:right;border-left:1px solid #e4e6e9;position:absolute;right:13px;top:33%;background:url(/medias/web/img/sprites/icos_petites.png) no-repeat -1px -108px;width:13px;height:22px}
 .col_droite .bloc_element .element:hover .fleche{background-position:-15px -108px}
 .contenu_bloc_droit{padding:7px 16px 10px;overflow:hidden}
 .contenu_bloc_droit .liste_chevron li{padding:8px 0 6px}
@@ -1878,8 +1875,7 @@ body.auth-unlogged #core-liberation .form-monlibe-unlogged form{opacity:.3;-ms-f
 #core-liberation ul.list-items li.arround h5,#core-liberation ul.list-items li.arround h4,#core-liberation ul.list-items li.arround p{margin-left:0}
 #core-liberation ul.list-items li.chat p{display:block;clear:both;margin-left:0}
 #core-liberation ul.list-items li.chat h5{margin-bottom:5px}
-#core-liberation ul.list-items-mosts li{margin-bottom:5px}
-#core-liberation ul.list-items-mosts li{font-family:Georgia,"Times New Roman",Times,serif}
+#core-liberation ul.list-items-mosts li{margin-bottom:5px;font-family:Georgia,"Times New Roman",Times,serif}
 #core-liberation ul.list-rss-stream{list-style:none}
 #core-liberation ul.list-rss-stream li{list-style:none;margin-bottom:20px}
 #core-liberation ul.list-rss-stream li h5{margin-bottom:7px;font-weight:400;text-decoration:underline}
@@ -2318,8 +2314,7 @@ form .btn-rounded-degraded input[type=button]:hover,form .btn-rounded-degraded i
 #core-liberation .bg-sprites-icons .arrow-grey-l,#core-liberation .bg-sprites-icons .arrow-grey-b{display:block;background-image:url(http://s0.libe.com/libe/img/common/_sprites_icons/icons.png?9914d0d70a49);background-repeat:no-repeat}
 #core-liberation .bg-sprites-icons .arrow-grey-l{background-position:0 -66px;width:6px;height:8px}
 #core-liberation .bg-sprites-icons .arrow-grey-b{background-position:0 -75px;width:8px;height:7px}
-#core-liberation .bg-sprites-icons .community-bubble{display:block;background-image:url(http://s0.libe.com/libe/img/common/_sprites_icons/icons.png?9914d0d70a49);background-repeat:no-repeat}
-#core-liberation .bg-sprites-icons .community-bubble{background-position:0 -36px;width:21px;height:18px}
+#core-liberation .bg-sprites-icons .community-bubble{display:block;background-image:url(http://s0.libe.com/libe/img/common/_sprites_icons/icons.png?9914d0d70a49);background-repeat:no-repeat;background-position:0 -36px;width:21px;height:18px}
 .site-liberation .toolbox{border-top:1px solid;border-bottom:1px solid;display:block;height:30px;letter-spacing:-1px}
 .site-liberation .toolbox li{float:left;display:block;margin:0 4px;height:30px}
 #core-liberation .toolbox>li:first-child{margin-left:0}
@@ -2379,8 +2374,7 @@ body.init-bar-is-closed #bar-liberation{height:15px}
 #bar-liberation .content .login a.subscribe{position:absolute;display:block;top:10px;right:230px;padding:3px 10px;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px}
 #bar-liberation .content .login a.subscribe:hover{text-decoration:none}
 #bar-liberation .content .login span{position:absolute;display:block;top:13px;right:205px}
-#bar-liberation .content .login a.connect{position:absolute;display:block;top:13px;right:120px}
-#bar-liberation .content .login a.connect{font-weight:700}
+#bar-liberation .content .login a.connect{position:absolute;display:block;top:13px;right:120px;font-weight:700}
 #bar-liberation #login-box-content{display:none;position:absolute;border-left:1px solid;border-right:1px solid;border-bottom:1px solid;top:40px;right:0;z-index:10025;width:184px;padding:10px}
 #bar-liberation #login-box-content form ul li{margin-bottom:10px;clear:both}
 #bar-liberation #login-box-content form label{display:block;float:left;width:150px;margin-bottom:3px}

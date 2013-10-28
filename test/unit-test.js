@@ -1054,12 +1054,12 @@ title']{display:block}",
       '@media screen{a,b,p{color:red}}'
     ],
     'of an unordered multiply repeated complex selector within a block #1': [
-      '@media screen{a,.link[data-path],p,.link[data-path]{color:red}}',
-      '@media screen{a,.link[data-path],p{color:red}}'
+      '@media screen{.link[data-path],a,p,.link[data-path]{color:red}}',
+      '@media screen{.link[data-path],a,p{color:red}}'
     ],
     'of an unordered multiply repeated complex selector within a block #2': [
-      '@media screen{a,#foo[data-path^="bar bar"],p,#foo[data-path^="bar bar"]{color:red}}',
-      '@media screen{a,#foo[data-path^="bar bar"],p{color:red}}'
+      '@media screen{#foo[data-path^="bar bar"],a,p,#foo[data-path^="bar bar"]{color:red}}',
+      '@media screen{#foo[data-path^="bar bar"],a,p{color:red}}'
     ]
   }),
   'duplicate selectors in a scope': cssContext({
@@ -1130,8 +1130,8 @@ title']{display:block}",
       '#box>.one{color:red;font-weight:700}'
     ],
     'of two adjacent multiple, complex selectors': [
-      '.zero,#box>.one{color:red}.zero,#box>.one{font-weight:700}',
-      '.zero,#box>.one{color:red;font-weight:700}'
+      '#box>.one,.zero{color:red}#box>.one,.zero{font-weight:700}',
+      '#box>.one,.zero{color:red;font-weight:700}'
     ],
     'of two adjacent selectors with duplicate properties #1': [
       '.one{color:red}.one{color:#fff}',
@@ -1140,6 +1140,10 @@ title']{display:block}",
     'of two adjacent selectors with duplicate properties #2': [
       '.one{color:red;font-weight:bold}.one{color:#fff;font-weight:400}',
       '.one{color:#fff;font-weight:400}'
+    ],
+    'of two adjacent complex selectors with different selector order': [
+      '.one,.two{color:red}.two,.one{line-height:1em}',
+      '.one,.two{color:red;line-height:1em}'
     ]
   })
 }).export(module);

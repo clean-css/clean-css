@@ -21,19 +21,19 @@
  *  Work: Lead Product Designer @ http://kyruus.com
  */
 @font-face{font-family:FontAwesome;src:url(../font/fontawesome-webfont.eot?v=3.0.1);src:url(../font/fontawesome-webfont.eot?#iefix&v=3.0.1) format('embedded-opentype'),url(../font/fontawesome-webfont.woff?v=3.0.1) format('woff'),url(../font/fontawesome-webfont.ttf?v=3.0.1) format('truetype');font-weight:400;font-style:normal}
-[class^=icon-],[class*=" icon-"]{font-family:FontAwesome;font-weight:400;font-style:normal;text-decoration:inherit;-webkit-font-smoothing:antialiased;display:inline;width:auto;height:auto;line-height:normal;vertical-align:baseline;background-image:none;background-position:0 0;background-repeat:repeat;margin-top:0}
-.icon-white,.nav-pills>.active>a>[class^=icon-],.nav-pills>.active>a>[class*=" icon-"],.nav-list>.active>a>[class^=icon-],.nav-list>.active>a>[class*=" icon-"],.navbar-inverse .nav>.active>a>[class^=icon-],.navbar-inverse .nav>.active>a>[class*=" icon-"],.dropdown-menu>li>a:hover>[class^=icon-],.dropdown-menu>li>a:hover>[class*=" icon-"],.dropdown-menu>.active>a>[class^=icon-],.dropdown-menu>.active>a>[class*=" icon-"],.dropdown-submenu:hover>a>[class^=icon-],.dropdown-submenu:hover>a>[class*=" icon-"]{background-image:none}
-[class^=icon-]:before,[class*=" icon-"]:before{text-decoration:inherit;display:inline-block;speak:none}
-a [class^=icon-],a [class*=" icon-"]{display:inline-block}
+[class*=" icon-"],[class^=icon-]{font-family:FontAwesome;font-weight:400;font-style:normal;text-decoration:inherit;-webkit-font-smoothing:antialiased;display:inline;width:auto;height:auto;line-height:normal;vertical-align:baseline;background-image:none;background-position:0 0;background-repeat:repeat;margin-top:0}
+.dropdown-menu>.active>a>[class*=" icon-"],.dropdown-menu>.active>a>[class^=icon-],.dropdown-menu>li>a:hover>[class*=" icon-"],.dropdown-menu>li>a:hover>[class^=icon-],.dropdown-submenu:hover>a>[class*=" icon-"],.dropdown-submenu:hover>a>[class^=icon-],.icon-white,.nav-list>.active>a>[class*=" icon-"],.nav-list>.active>a>[class^=icon-],.nav-pills>.active>a>[class*=" icon-"],.nav-pills>.active>a>[class^=icon-],.navbar-inverse .nav>.active>a>[class*=" icon-"],.navbar-inverse .nav>.active>a>[class^=icon-]{background-image:none}
+[class*=" icon-"]:before,[class^=icon-]:before{text-decoration:inherit;display:inline-block;speak:none}
+a [class*=" icon-"],a [class^=icon-]{display:inline-block}
 .icon-large:before{vertical-align:-10%;font-size:1.3333333333333333em}
-.btn [class^=icon-],.nav [class^=icon-],.btn [class*=" icon-"],.nav [class*=" icon-"]{display:inline}
-.btn [class^=icon-].icon-large,.nav [class^=icon-].icon-large,.btn [class*=" icon-"].icon-large,.nav [class*=" icon-"].icon-large{line-height:.9em}
-.btn [class^=icon-].icon-spin,.nav [class^=icon-].icon-spin,.btn [class*=" icon-"].icon-spin,.nav [class*=" icon-"].icon-spin{display:inline-block}
-.nav-tabs [class^=icon-],.nav-pills [class^=icon-],.nav-tabs [class*=" icon-"],.nav-pills [class*=" icon-"],.nav-tabs [class^=icon-].icon-large,.nav-pills [class^=icon-].icon-large,.nav-tabs [class*=" icon-"].icon-large,.nav-pills [class*=" icon-"].icon-large{line-height:.9em}
-li [class^=icon-],.nav li [class^=icon-],li [class*=" icon-"],.nav li [class*=" icon-"]{display:inline-block;width:1.25em;text-align:center}
-li [class^=icon-].icon-large,.nav li [class^=icon-].icon-large,li [class*=" icon-"].icon-large,.nav li [class*=" icon-"].icon-large{width:1.5625em}
+.btn [class*=" icon-"],.btn [class^=icon-],.nav [class*=" icon-"],.nav [class^=icon-]{display:inline}
+.btn [class*=" icon-"].icon-large,.btn [class^=icon-].icon-large,.nav [class*=" icon-"].icon-large,.nav [class^=icon-].icon-large{line-height:.9em}
+.btn [class*=" icon-"].icon-spin,.btn [class^=icon-].icon-spin,.nav [class*=" icon-"].icon-spin,.nav [class^=icon-].icon-spin{display:inline-block}
+.nav-pills [class*=" icon-"],.nav-pills [class*=" icon-"].icon-large,.nav-pills [class^=icon-],.nav-pills [class^=icon-].icon-large,.nav-tabs [class*=" icon-"],.nav-tabs [class*=" icon-"].icon-large,.nav-tabs [class^=icon-],.nav-tabs [class^=icon-].icon-large{line-height:.9em}
+.nav li [class*=" icon-"],.nav li [class^=icon-],li [class*=" icon-"],li [class^=icon-]{display:inline-block;width:1.25em;text-align:center}
+.nav li [class*=" icon-"].icon-large,.nav li [class^=icon-].icon-large,li [class*=" icon-"].icon-large,li [class^=icon-].icon-large{width:1.5625em}
 ul.icons{list-style-type:none;text-indent:-.75em}
-ul.icons li [class^=icon-],ul.icons li [class*=" icon-"]{width:.75em}
+ul.icons li [class*=" icon-"],ul.icons li [class^=icon-]{width:.75em}
 .icon-muted{color:#eee}
 .icon-border{border:solid 1px #eee;padding:.2em .25em .15em;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px}
 .icon-2x{font-size:2em}
@@ -44,15 +44,15 @@ ul.icons li [class^=icon-],ul.icons li [class*=" icon-"]{width:.75em}
 .icon-4x.icon-border{border-width:4px;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px}
 .pull-right{float:right}
 .pull-left{float:left}
-[class^=icon-].pull-left,[class*=" icon-"].pull-left{margin-right:.3em}
-[class^=icon-].pull-right,[class*=" icon-"].pull-right{margin-left:.3em}
-.btn [class^=icon-].pull-left.icon-2x,.btn [class*=" icon-"].pull-left.icon-2x,.btn [class^=icon-].pull-right.icon-2x,.btn [class*=" icon-"].pull-right.icon-2x{margin-top:.18em}
-.btn [class^=icon-].icon-spin.icon-large,.btn [class*=" icon-"].icon-spin.icon-large{line-height:.8em}
-.btn.btn-small [class^=icon-].pull-left.icon-2x,.btn.btn-small [class*=" icon-"].pull-left.icon-2x,.btn.btn-small [class^=icon-].pull-right.icon-2x,.btn.btn-small [class*=" icon-"].pull-right.icon-2x{margin-top:.25em}
-.btn.btn-large [class^=icon-],.btn.btn-large [class*=" icon-"]{margin-top:0}
-.btn.btn-large [class^=icon-].pull-left.icon-2x,.btn.btn-large [class*=" icon-"].pull-left.icon-2x,.btn.btn-large [class^=icon-].pull-right.icon-2x,.btn.btn-large [class*=" icon-"].pull-right.icon-2x{margin-top:.05em}
-.btn.btn-large [class^=icon-].pull-left.icon-2x,.btn.btn-large [class*=" icon-"].pull-left.icon-2x{margin-right:.2em}
-.btn.btn-large [class^=icon-].pull-right.icon-2x,.btn.btn-large [class*=" icon-"].pull-right.icon-2x{margin-left:.2em}
+[class*=" icon-"].pull-left,[class^=icon-].pull-left{margin-right:.3em}
+[class*=" icon-"].pull-right,[class^=icon-].pull-right{margin-left:.3em}
+.btn [class*=" icon-"].pull-left.icon-2x,.btn [class*=" icon-"].pull-right.icon-2x,.btn [class^=icon-].pull-left.icon-2x,.btn [class^=icon-].pull-right.icon-2x{margin-top:.18em}
+.btn [class*=" icon-"].icon-spin.icon-large,.btn [class^=icon-].icon-spin.icon-large{line-height:.8em}
+.btn.btn-small [class*=" icon-"].pull-left.icon-2x,.btn.btn-small [class*=" icon-"].pull-right.icon-2x,.btn.btn-small [class^=icon-].pull-left.icon-2x,.btn.btn-small [class^=icon-].pull-right.icon-2x{margin-top:.25em}
+.btn.btn-large [class*=" icon-"],.btn.btn-large [class^=icon-]{margin-top:0}
+.btn.btn-large [class*=" icon-"].pull-left.icon-2x,.btn.btn-large [class*=" icon-"].pull-right.icon-2x,.btn.btn-large [class^=icon-].pull-left.icon-2x,.btn.btn-large [class^=icon-].pull-right.icon-2x{margin-top:.05em}
+.btn.btn-large [class*=" icon-"].pull-left.icon-2x,.btn.btn-large [class^=icon-].pull-left.icon-2x{margin-right:.2em}
+.btn.btn-large [class*=" icon-"].pull-right.icon-2x,.btn.btn-large [class^=icon-].pull-right.icon-2x{margin-left:.2em}
 .icon-spin{display:inline-block;-moz-animation:spin 2s infinite linear;-o-animation:spin 2s infinite linear;-webkit-animation:spin 2s infinite linear;animation:spin 2s infinite linear}
 @-moz-keyframes spin{0%{-moz-transform:rotate(0deg)}
 100%{-moz-transform:rotate(359deg)}}

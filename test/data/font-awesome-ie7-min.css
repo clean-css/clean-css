@@ -24,12 +24,12 @@
  *  Work: Lead Product Designer @ Kyruus - http://kyruus.com
  */
 .icon-large{font-size:1.3333333333333333em;margin-top:-4px;padding-top:3px;margin-bottom:-4px;padding-bottom:3px;vertical-align:middle}
-.nav [class^=icon-],.nav [class*=" icon-"]{vertical-align:inherit;margin-top:-4px;padding-top:3px;margin-bottom:-4px;padding-bottom:3px}
-.nav [class^=icon-].icon-large,.nav [class*=" icon-"].icon-large{vertical-align:-25%}
-.nav-pills [class^=icon-].icon-large,.nav-tabs [class^=icon-].icon-large,.nav-pills [class*=" icon-"].icon-large,.nav-tabs [class*=" icon-"].icon-large{line-height:.75em;margin-top:-7px;padding-top:5px;margin-bottom:-5px;padding-bottom:4px}
-.btn [class^=icon-].pull-left,.btn [class*=" icon-"].pull-left,.btn [class^=icon-].pull-right,.btn [class*=" icon-"].pull-right{vertical-align:inherit}
-.btn [class^=icon-].icon-large,.btn [class*=" icon-"].icon-large{margin-top:-.5em}
-a [class^=icon-],a [class*=" icon-"]{cursor:pointer}
+.nav [class*=" icon-"],.nav [class^=icon-]{vertical-align:inherit;margin-top:-4px;padding-top:3px;margin-bottom:-4px;padding-bottom:3px}
+.nav [class*=" icon-"].icon-large,.nav [class^=icon-].icon-large{vertical-align:-25%}
+.nav-pills [class*=" icon-"].icon-large,.nav-pills [class^=icon-].icon-large,.nav-tabs [class*=" icon-"].icon-large,.nav-tabs [class^=icon-].icon-large{line-height:.75em;margin-top:-7px;padding-top:5px;margin-bottom:-5px;padding-bottom:4px}
+.btn [class*=" icon-"].pull-left,.btn [class*=" icon-"].pull-right,.btn [class^=icon-].pull-left,.btn [class^=icon-].pull-right{vertical-align:inherit}
+.btn [class*=" icon-"].icon-large,.btn [class^=icon-].icon-large{margin-top:-.5em}
+a [class*=" icon-"],a [class^=icon-]{cursor:pointer}
 .icon-glass{*zoom:expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf000;')}
 .icon-music{*zoom:expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf001;')}
 .icon-search{*zoom:expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf002;')}

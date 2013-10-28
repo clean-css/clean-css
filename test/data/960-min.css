@@ -1,6 +1,6 @@
 .container_24{margin-right:auto;margin-left:auto;width:960px}
-.grid_1,.grid_2,.grid_3,.grid_4,.grid_5,.grid_6,.grid_7,.grid_8,.grid_9,.grid_10,.grid_11,.grid_12,.grid_13,.grid_14,.grid_15,.grid_16,.grid_17,.grid_18,.grid_19,.grid_20,.grid_21,.grid_22,.grid_23,.grid_24{display:inline;float:right;margin-right:5px;margin-left:5px}
-.push_1,.pull_1,.push_2,.pull_2,.push_3,.pull_3,.push_4,.pull_4,.push_5,.pull_5,.push_6,.pull_6,.push_7,.pull_7,.push_8,.pull_8,.push_9,.pull_9,.push_10,.pull_10,.push_11,.pull_11,.push_12,.pull_12,.push_13,.pull_13,.push_14,.pull_14,.push_15,.pull_15,.push_16,.pull_16,.push_17,.pull_17,.push_18,.pull_18,.push_19,.pull_19,.push_20,.pull_20,.push_21,.pull_21,.push_22,.pull_22,.push_23,.pull_23{position:relative}
+.grid_1,.grid_10,.grid_11,.grid_12,.grid_13,.grid_14,.grid_15,.grid_16,.grid_17,.grid_18,.grid_19,.grid_2,.grid_20,.grid_21,.grid_22,.grid_23,.grid_24,.grid_3,.grid_4,.grid_5,.grid_6,.grid_7,.grid_8,.grid_9{display:inline;float:right;margin-right:5px;margin-left:5px}
+.pull_1,.pull_10,.pull_11,.pull_12,.pull_13,.pull_14,.pull_15,.pull_16,.pull_17,.pull_18,.pull_19,.pull_2,.pull_20,.pull_21,.pull_22,.pull_23,.pull_3,.pull_4,.pull_5,.pull_6,.pull_7,.pull_8,.pull_9,.push_1,.push_10,.push_11,.push_12,.push_13,.push_14,.push_15,.push_16,.push_17,.push_18,.push_19,.push_2,.push_20,.push_21,.push_22,.push_23,.push_3,.push_4,.push_5,.push_6,.push_7,.push_8,.push_9{position:relative}
 .alpha{margin-right:0}
 .omega{margin-left:0}
 .container_24 .grid_1{width:30px}
@@ -120,6 +120,6 @@
 .container_24 .pull_22{right:-880px}
 .container_24 .pull_23{right:-920px}
 .clear{clear:both;display:block;overflow:hidden;visibility:hidden;width:0;height:0}
-.clearfix:before,.clearfix:after{content:'\0020';display:block;overflow:hidden;visibility:hidden;width:0;height:0}
+.clearfix:after,.clearfix:before{content:'\0020';display:block;overflow:hidden;visibility:hidden;width:0;height:0}
 .clearfix:after{clear:both}
 .clearfix{zoom:1}

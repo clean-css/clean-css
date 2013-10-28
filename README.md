@@ -147,6 +147,8 @@ Clean-css will handle it automatically for you (since version 1.1) in the follow
 * Anthony Barre ([@abarre](https://github.com/abarre)) for improvements to
   `@import` processing, namely introducing the `--skip-import` /
   `processImport` options.
+* Simon Altschuler ([@altschuler](https://github.com/altschuler)) for fixing
+  `@import` processing inside comments.
 
 ## License
 

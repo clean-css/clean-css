@@ -1087,5 +1087,28 @@ title']{display:block}",
       '@media (min-width:100px){a{color:red}}@media screen{a{color:red}p{width:100px}a{color:red}}',
       '@media (min-width:100px){a{color:red}}@media screen{p{width:100px}a{color:red}}'
     ]
+  }),
+  'duplicate properties': cssContext({
+    'of two properties one after another': 'a{display:-moz-inline-box;display:inline-block}',
+    'of two properties in one declaration': [
+      'a{display:inline-block;color:red;display:block}',
+      'a{color:red;display:block}'
+    ],
+    'of two properties in one declaration with former as !important': [
+      'a{display:inline-block!important;color:red;display:block}',
+      'a{display:inline-block!important;color:red}'
+    ],
+    'of two properties in one declaration with latter as !important': [
+      'a{display:inline-block;color:red;display:block!important}',
+      'a{color:red;display:block!important}'
+    ],
+    'of two properties in one declaration with both as !important': [
+      'a{display:inline-block!important;color:red;display:block!important}',
+      'a{color:red;display:block!important}'
+    ],
+    'of many properties in one declaration': [
+      'a{display:inline-block;color:red;font-weight:bolder;font-weight:700;display:block!important;color:#fff}',
+      'a{font-weight:bolder;font-weight:700;display:block!important;color:#fff}'
+    ]
   })
 }).export(module);

@@ -9,6 +9,7 @@
 * Fixed issue [#162](https://github.com/GoalSmashers/clean-css/issues/162) - strip quotes from base64 encoded URLs.
 * Adds CSS tokenizer which will make it possible to optimize content by reordering and/or merging selectors.
 * Adds basic optimizer removing duplicate selectors from a list.
+* Adds merging duplicate properties within a single selector's body.
 
 1.1.7 / 2013-10-28
 ==================

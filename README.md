@@ -34,16 +34,17 @@ you use `<source-file>` as the very last argument to avoid potential issues):
 ```
 cleancss [options] <source-file>
 
--h, --help                  Output usage information
--v, --version               Output the version number
--b, --keep-line-breaks      Keep line breaks
---s0                        Remove all special comments, i.e. /*! comment */
---s1                        Remove all special comments but the first one
--r, --root [root-path]      A root path to which resolve absolute @import rules and rebase relative URLs
--o, --output [output-file]  Use [output-file] as output instead of STDOUT
--s, --skip-import           Disable @import processing
---skip-rebase               Disable URLs rebasing
--d, --debug                 Shows debug information (minification time & compression efficiency)
+-h, --help                      Output usage information
+-v, --version                   Output the version number
+-b, --keep-line-breaks          Keep line breaks
+--s0                            Remove all special comments, i.e. /*! comment */
+--s1                            Remove all special comments but the first one
+-r, --root [root-path]          A root path to which resolve absolute @import rules and rebase relative URLs
+-o, --output [output-file]      Use [output-file] as output instead of STDOUT
+-s, --skip-import               Disable @import processing
+--skip-rebase                   Disable URLs rebasing
+--selectors-merge-mode [ie8|*]  Use `ie8` for compatibility mode, `*` for merge all (default).
+-d, --debug                     Shows debug information (minification time & compression efficiency)
 ```
 
 #### Examples:
@@ -98,6 +99,7 @@ Process method accepts a hash as a second parameter, i.e.,
 * `relativeTo` - path with which to resolve relative `@import` rules and URLs
 * `processImport` - whether to process `@import` rules
 * `noRebase` - whether to skip URLs rebasing
+* `selectorsMergeMode` - `ie8` for IE8 compatibility mode, `*` for merging all (default)
 
 ### What are the clean-css' dev commands?
 

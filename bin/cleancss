@@ -23,6 +23,7 @@ commands
   .option('-o, --output [output-file]', 'Use [output-file] as output instead of STDOUT')
   .option('-s, --skip-import', 'Disable @import processing')
   .option('--skip-rebase', 'Disable URLs rebasing')
+  .option('--selectors-merge-mode [ie8|*]', 'Use `ie8` for compatibility mode, `*` for merge all (default).')
   .option('-d, --debug', 'Shows debug information (minification time & compression efficiency)');
 
 commands.on('--help', function() {
@@ -69,6 +70,8 @@ if (commands.skipImport)
   cleanOptions.processImport = false;
 if (commands.skipRebase)
   cleanOptions.noRebase = true;
+if (commands.selectorsMergeMode)
+  cleanOptions.selectorsMergeMode = commands.selectorsMergeMode;
 if (commands.debug)
   options.debug = true;
 if (commands.args.length > 0) {

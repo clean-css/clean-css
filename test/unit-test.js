@@ -775,7 +775,7 @@ path")}',
     'should keep selector if no quotation': 'div[data-type=something]{border-color:red}',
     'should keep selector if equals in value': 'div[data-type="stupid=value"]{border-color:red}',
     'should keep quotation if whitespace inside': 'div[data-type^=\'object 1\']{border-color:red}',
-    'should keep quotations if special characters inside': 'a[data-type="object+1"]{color:red}a[data-target="#some-place"]{color:red}',
+    'should keep quotations if special characters inside': 'a[data-type="object+1"]{color:red}p[data-target="#some-place"]{color:#0f0}',
     'should keep quotation if is a number': 'div[data-number=\'1\']{border-color:red}',
     'should keep quotation if starts with a number': 'div[data-type^=\'1something\']{border-color:red}',
     'should keep quotation if starts with a hyphen': 'div[data-type$=\'-something\']{border-color:red}',
@@ -992,8 +992,8 @@ title']{display:block}",
       'a{color:red}'
     ],
     'used arbitrarily in comment multiple times': [
-      '/* @import foo */a { color: red; }\n/* @import bar */p { color: red; }',
-      'a{color:red}p{color:red}'
+      '/* @import foo */a { color: red; }\n/* @import bar */p { color: #fff; }',
+      'a{color:red}p{color:#fff}'
     ],
     'used arbitrarily in comment including unrelated comment': [
       '/* foo */a { color: red; }/* bar *//* @import */',
@@ -1145,5 +1145,28 @@ title']{display:block}",
       '.one,.two{color:red}.two,.one{line-height:1em}',
       '.one,.two{color:red;line-height:1em}'
     ]
-  })
+  }),
+  'same bodies': cssContext({
+    'of two non-adjacent selectors': '.one{color:red}.two{color:#00f}.three{color:red}',
+    'of two adjacent single selectors': [
+      '.one{color:red}.two{color:red}',
+      '.one,.two{color:red}'
+    ],
+    'of three adjacent complex, multiple selectors': [
+      '.one{color:red}#two.three{color:red}.four>.five{color:red}',
+      '#two.three,.four>.five,.one{color:red}'
+    ],
+    'with repeated selectors': [
+      '#zero>p,.one,.two{color:red}.two,#zero>p,.three{color:red}',
+      '#zero>p,.one,.three,.two{color:red}'
+    ]
+  }),
+  'same bodies - IE8 compat': cssContext({
+    'of two supported selectors': [
+      '.one:first-child{color:red}.two>.three{color:red}',
+      '.one:first-child,.two>.three{color:red}'
+    ],
+    'of supported and unsupported selector': '.one:first-child{color:red}.two:last-child{color:red}',
+    'of two unsupported selectors': '.one:nth-child(5){color:red}.two:last-child{color:red}'
+  }, { selectorsMergeMode: 'ie8' })
 }).export(module);

@@ -981,6 +981,18 @@ title']",
       '/* @import url(test/data/partials/five.css); */a { color: red; }',
       'a{color:red}'
     ],
+    'used arbitrarily in comment': [
+      '/* @import foo */a { color: red; }',
+      'a{color:red}'
+    ],
+    'used arbitrarily in comment multiple times': [
+      '/* @import foo */a { color: red; }\n/* @import bar */p { color: red; }',
+      'a{color:red}p{color:red}'
+    ],
+    'used arbitrarily in comment including unrelated comment': [
+      '/* foo */a { color: red; }/* bar *//* @import */',
+      'a{color:red}'
+    ],
     'of a file with a comment': [
       '@import url(test/data/partials/comment.css);',
       ''

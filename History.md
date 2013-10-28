@@ -1,3 +1,8 @@
+1.1.7 / 2013-10-28
+==================
+
+* Fixed issue [#156](https://github.com/GoalSmashers/clean-css/issues/156) - `@import`s inside comments.
+
 1.1.6 / 2013-10-26
 ==================
 

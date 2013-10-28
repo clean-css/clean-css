@@ -6,6 +6,11 @@
 * Adds simplified and much faster empty elements removal.
 * Adds missing `@import` processing to our benchmark (run via `npm run bench`).
 
+1.1.7 / 2013-10-28
+==================
+
+* Fixed issue [#156](https://github.com/GoalSmashers/clean-css/issues/156) - `@import`s inside comments.
+
 1.1.6 / 2013-10-26
 ==================
 

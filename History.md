@@ -3,6 +3,8 @@
 
 * Adds simplified and more advanced text escaping / restoring via `EscapeStore` class.
 * Adds simplified and much faster empty elements removal.
+* Adds simplified and much faster empty elements removal.
+* Adds missing `@import` processing to our benchmark (run via `npm run bench`).
 
 1.1.6 / 2013-10-26
 ==================

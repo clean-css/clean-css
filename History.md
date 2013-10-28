@@ -11,6 +11,7 @@
 * Adds basic optimizer removing duplicate selectors from a list.
 * Adds merging duplicate properties within a single selector's body.
 * Adds merging adjacent selectors within a scope (single and multiple ones).
+* Changes behavior of `--keep-line-breaks`/`keepBreaks` option to keep breaks after trailing braces only.
 
 1.1.7 / 2013-10-28
 ==================

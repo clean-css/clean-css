@@ -163,19 +163,23 @@ vows.describe('clean-units').addBatch({
   'line breaks': cssContext({
     'line breaks': [
       'div\na\r\n{width:500px}',
-      'div' + lineBreak + 'a' + lineBreak + '{width:500px}'
+      'div a{width:500px}'
     ],
     'line breaks #2': [
       'div\na\r\n,p{width:500px}',
-      'div' + lineBreak + 'a' + lineBreak + ',p{width:500px}'
+      'div a,p{width:500px}'
     ],
     'multiple line breaks #2': [
       'div \r\n\r\na\r\n,p{width:500px}',
-      'div' + lineBreak + 'a' + lineBreak + ',p{width:500px}'
+      'div a,p{width:500px}'
     ],
     'line breaks with whitespace lines': [
       'div \n \t\n \na\r\n, p { width:500px }',
-      'div' + lineBreak + 'a' + lineBreak + ',p{width:500px}'
+      'div a,p{width:500px}'
+    ],
+    'line breaks with multiple selectors': [
+      'p{width:500px}a{color:red}span{font-style:italic}',
+      'p{width:500px}' + lineBreak + 'a{color:red}' + lineBreak + 'span{font-style:italic}'
     ],
     'charset not at beginning': [
       "a{ color: #f10; }\n@charset 'utf-8';\nb { font-weight: bolder}",

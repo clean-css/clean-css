@@ -28,7 +28,6 @@ var batchContexts = function() {
     };
     context[testName]['minimizing ' + testName + '.css'] = function(data) {
       var processed = cleanCSS.process(data.plain, {
-        removeEmpty: true,
         keepBreaks: true,
         root: data.root
       });

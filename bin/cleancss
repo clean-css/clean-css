@@ -16,7 +16,6 @@ var isWindows = process.platform == 'win32';
 commands
   .version(buildVersion, '-v, --version')
   .usage('[options] <source-file>')
-  .option('-e, --remove-empty', 'Remove empty declarations, e.g. .a{}')
   .option('-b, --keep-line-breaks', 'Keep line breaks')
   .option('--s0', 'Remove all special comments, i.e. /*! comment */')
   .option('--s1', 'Remove all special comments but the first one')
@@ -58,8 +57,6 @@ if (!fromStdin && commands.args.length == 0) {
 // Now coerce commands into CleanCSS configuration...
 if (commands.output)
   cleanOptions.target = options.target = commands.output;
-if (commands.removeEmpty)
-  cleanOptions.removeEmpty = true;
 if (commands.keepLineBreaks)
   cleanOptions.keepBreaks = true;
 if (commands.s1)

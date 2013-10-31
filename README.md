@@ -36,7 +36,6 @@ cleancss [options] <source-file>
 
 -h, --help                  Output usage information
 -v, --version               Output the version number
--e, --remove-empty          Remove empty declarations, e.g. a{}
 -b, --keep-line-breaks      Keep line breaks
 --s0                        Remove all special comments, i.e. /*! comment */
 --s1                        Remove all special comments but the first one
@@ -93,7 +92,6 @@ Process method accepts a hash as a second parameter, i.e.,
 
 * `keepSpecialComments` - `*` for keeping all (default), `1` for keeping first one, `0` for removing all
 * `keepBreaks` - whether to keep line breaks (default is false)
-* `removeEmpty` - whether to remove empty elements (default is false)
 * `benchmark` - turns on benchmarking mode measuring time spent on cleaning up
   (run `npm run bench` to see example)
 * `root` - path to resolve absolute `@import` rules and rebase relative URLs

@@ -69,25 +69,14 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
       assert.equal(stdout, 'a{color:red}');
     }
   }),
-  'no empty by default': pipedContext('a{}', '', {
-    'should preserve content': function(error, stdout) {
-      assert.equal(stdout, 'a{}');
-    }
-  }),
-  'strip all but first comment': pipedContext('/*!1st*//*! 2nd */a{}', '--s1', {
+  'strip all but first comment': pipedContext('/*!1st*//*! 2nd */a{display:block}', '--s1', {
     'should keep the 2nd comment': function(error, stdout) {
-      assert.equal(stdout, '/*!1st*/a{}');
+      assert.equal(stdout, '/*!1st*/a{display:block}');
     }
   }),
-  'strip all comments': pipedContext('/*!1st*//*! 2nd */a{}', '--s0', {
+  'strip all comments': pipedContext('/*!1st*//*! 2nd */a{display:block}', '--s0', {
     'should keep the 2nd comment': function(error, stdout) {
-      assert.equal(stdout, 'a{}');
-    }
-  }),
-  'empty': pipedContext('a{}', '-e', {
-    'should preserve content': function(error, stdout, stderr) {
-      assert.equal(stdout, '');
-      assert.equal(stderr, '');
+      assert.equal(stdout, 'a{display:block}');
     }
   }),
   'piped with debug info': pipedContext('a{color:#f00}', '-d', {

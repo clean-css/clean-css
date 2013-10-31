@@ -83,8 +83,8 @@ vows.describe('clean-units').addBatch({
       'div a{color:#fff}'
     ],
     'tabs': [
-      'div\t\ta{}\tp{color:red}',
-      'div a{}p{color:red}'
+      'div\t\ta{display:block}\tp{color:red}',
+      'div a{display:block}p{color:red}'
     ],
     'line breaks #1': [
       'div \na\r\n { width:500px }',
@@ -138,8 +138,8 @@ vows.describe('clean-units').addBatch({
       '#test{padding-left :0}',
       '#test{padding-left:0}'
     ],
-    'before colon but not selectors #1': 'div :before{}',
-    'before colon but not selectors #2': 'div ::-webkit-search-decoration{}',
+    'before colon but not selectors #1': 'div :before{display:block}',
+    'before colon but not selectors #2': 'div ::-webkit-search-decoration{display:block}',
     'before colon but not selectors #3': 'div :after{color:red}',
     'windows breaks': [
       'div>a{color:red\r\n }',
@@ -153,11 +153,11 @@ vows.describe('clean-units').addBatch({
       '@media\nonly screen and (max-width: 1319px) and (min--moz-device-pixel-ratio: 1.5),\nonly screen and (max-width: 1319px) and (-moz-min-device-pixel-ratio: 1.5)\n{ a { color:#000 } }',
       '@media only screen and (max-width:1319px) and (min--moz-device-pixel-ratio:1.5),only screen and (max-width:1319px) and (-moz-min-device-pixel-ratio:1.5){a{color:#000}}'
     ],
-    'in content preceded by #content': '#content{}#foo{content:"\00BB  "}',
-    'in content preceded by .content': '.content{}#foo{content:"\00BB  "}',
+    'in content preceded by #content': '#content{display:block}#foo{content:"\00BB  "}',
+    'in content preceded by .content': '.content{display:block}#foo{content:"\00BB  "}',
     'in content preceded by line break': [
-      '.content{}#foo{' + lineBreak + 'content:"x"}',
-      '.content{}#foo{content:"x"}'
+      '.content{display:block}#foo{' + lineBreak + 'content:"x"}',
+      '.content{display:block}#foo{content:"x"}'
     ]
   }),
   'line breaks': cssContext({
@@ -186,14 +186,14 @@ vows.describe('clean-units').addBatch({
       "@charset 'utf-8';" + lineBreak + "div :before{display:block}" + lineBreak + "a{color:#f10}"
     ],
     'charset with double line break': [
-      "@charset 'utf-8';" + lineBreak + lineBreak + "a{}",
-      "@charset 'utf-8';" + lineBreak + "a{}"
+      "@charset 'utf-8';" + lineBreak + lineBreak + "a{display:block}",
+      "@charset 'utf-8';" + lineBreak + "a{display:block}"
     ]
   }, { keepBreaks: true }),
   'line breaks and important comments': cssContext({
     'charset to beginning with comment removal': [
-      "/*! some comment */" + lineBreak + lineBreak + "@charset 'utf-8';" + lineBreak + lineBreak + "a{}",
-      "@charset 'utf-8';" + lineBreak + "a{}"
+      "/*! some comment */" + lineBreak + lineBreak + "@charset 'utf-8';" + lineBreak + lineBreak + "a{display:block}",
+      "@charset 'utf-8';" + lineBreak + "a{display:block}"
     ]
   }, { keepBreaks: true, keepSpecialComments: 0 }),
   'selectors': cssContext({
@@ -269,8 +269,8 @@ vows.describe('clean-units').addBatch({
       'a{color:red}'
     ],
     'move charset before': [
-      "/*! some comment */" + lineBreak + lineBreak + "@charset 'utf-8';" + lineBreak + lineBreak + "a{}",
-      "@charset 'utf-8';a{}"
+      "/*! some comment */" + lineBreak + lineBreak + "@charset 'utf-8';" + lineBreak + lineBreak + "a{display:block}",
+      "@charset 'utf-8';a{display:block}"
     ]
   }, { keepSpecialComments: 0 }),
   'important comments - keepSpecialComments when a string': cssContext({
@@ -629,18 +629,18 @@ vows.describe('clean-units').addBatch({
       'a{background:url(/images/blank.png) 0 0 no-repeat}'
     ],
     'strip more': [
-      'a{background:url("/images/blank.png") 0 0 no-repeat}a{}a{background:url("/images/blank.png") 0 0 no-repeat}',
-      'a{background:url(/images/blank.png) 0 0 no-repeat}a{}a{background:url(/images/blank.png) 0 0 no-repeat}'
+      'a{background:url("/images/blank.png") 0 0 no-repeat}a{display:block}a{background:url("/images/blank.png") 0 0 no-repeat}',
+      'a{background:url(/images/blank.png) 0 0 no-repeat}a{display:block}a{background:url(/images/blank.png) 0 0 no-repeat}'
     ],
     'not strip comments if spaces inside': [
-      'a{background:url("/images/long image name.png") 0 0 no-repeat}a{}a{background:url("/images/no-spaces.png") 0 0 no-repeat}',
-      'a{background:url("/images/long image name.png") 0 0 no-repeat}a{}a{background:url(/images/no-spaces.png) 0 0 no-repeat}'
+      'a{background:url("/images/long image name.png") 0 0 no-repeat}a{display:block}a{background:url("/images/no-spaces.png") 0 0 no-repeat}',
+      'a{background:url("/images/long image name.png") 0 0 no-repeat}a{display:block}a{background:url(/images/no-spaces.png) 0 0 no-repeat}'
     ],
     'not add a space before url\'s hash': "url(/fonts/d90b3358-e1e2-4abb-ba96-356983a54c22.svg#d90b3358-e1e2-4abb-ba96-356983a54c22)",
     'keep urls from being stripped down #1': 'a{background:url(/image-1.0.png)}',
     'keep urls from being stripped down #2': "a{background:url(/image-white.png)}",
     'keep urls from being stripped down #3': "a{background:#eee url(/libraries/jquery-ui-1.10.1.custom/images/ui-bg_highlight-soft_100_eeeeee_1x100.png) 50% top repeat-x}",
-    'keep __URL__ in comments (so order is important)': '/*! __URL__ */a{}',
+    'keep __URL__ in comments (so order is important)': '/*! __URL__ */a{display:block}',
     'strip new line in urls': [
       'a{background:url(/very/long/\
 path)}',
@@ -731,13 +731,13 @@ path")}',
       '@keyframes test{from{width:100px}to{width:200px}}'
     ],
     'remove name quotes': [
-      "@keyframes \"test1\"{}@keyframes 'test2'{}",
-      "@keyframes test1{}@keyframes test2{}"
+      "@keyframes \"test1\"{a{display:block}}@keyframes 'test2'{a{display:block}}",
+      "@keyframes test1{a{display:block}}@keyframes test2{a{display:block}}"
     ],
-    'not remove name quotes if whitespace inside': "@keyframes \"test 1\"{}@keyframes 'test 2'{}",
+    'not remove name quotes if whitespace inside': "@keyframes \"test 1\"{a{display:block}}@keyframes 'test 2'{a{display:block}}",
     'remove name quotes for vendor prefixes': [
-      "@-moz-keyframes 'test'{}@-o-keyframes 'test'{}@-webkit-keyframes 'test'{}",
-      "@-moz-keyframes test{}@-o-keyframes test{}@-webkit-keyframes test{}"
+      "@-moz-keyframes 'test'{a{display:block}}@-o-keyframes 'test'{a{display:block}}@-webkit-keyframes 'test'{a{display:block}}",
+      "@-moz-keyframes test{a{display:block}}@-o-keyframes test{a{display:block}}@-webkit-keyframes test{a{display:block}}"
     ],
     'remove quotes in animation': [
       "div{animation:'test' 2s ease-in .5s 3}",
@@ -821,8 +821,8 @@ title']",
       "@charset 'utf-8';div :before{display:block}a{color:#f10}"
     ],
     'charset and space after': [
-      "@charset 'utf-8';" + lineBreak + lineBreak + "a{}",
-      "@charset 'utf-8';a{}"
+      "@charset 'utf-8';" + lineBreak + lineBreak + "a{display:block}",
+      "@charset 'utf-8';a{display:block}"
     ]
   }),
   'important': cssContext({
@@ -864,7 +864,7 @@ title']",
       '@media screen { @media (orientation:landscape) { @media (max-width:999px) { .test {} } a {color:red} } }',
       '@media screen{@media (orientation:landscape){a{color:red}}}'
     ]
-  }, { removeEmpty: true }),
+  }),
   'empty @media': cssContext({
     'simple': [
       '@media print{}',
@@ -878,12 +878,6 @@ title']",
       '@media print, (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {\n}',
       ''
     ]
-  }, { removeEmpty: true }),
-  'skip empty elements': cssContext({
-    'empty #1': 'a{}',
-    'empty #2': 'div>a{}',
-    'empty #3': 'div:nth-child(2n){}',
-    'empty #4': 'a{color:#fff}div{}p{line-height:2em}'
   }),
   '@import': cssContext({
     'empty': [
@@ -954,8 +948,8 @@ title']",
       "@media screen and (orientation:landscape){.one{color:red}}"
     ],
     'of more files': [
-      "@import url(test/data/partials/one.css);\n\na{}\n\n@import url(test/data/partials/extra/three.css);",
-      ".one{color:red}a{}.three{color:#0f0}"
+      "@import url(test/data/partials/one.css);\n\na{display:block}\n\n@import url(test/data/partials/extra/three.css);",
+      ".one{color:red}a{display:block}.three{color:#0f0}"
     ],
     'of more files with media': [
       "@import url(test/data/partials/one.css) screen;@import url(test/data/partials/extra/three.css) tv;",
@@ -995,11 +989,11 @@ title']",
     ],
     'of a file with a comment': [
       '@import url(test/data/partials/comment.css);',
-      ''
+      'a{display:block}'
     ],
     'of a file (with media) with a comment': [
       '@import url(test/data/partials/comment.css) screen and (device-height: 600px);',
-      '@media screen and (device-height:600px){}'
+      '@media screen and (device-height:600px){a{display:block}}'
     ]
   }, { root: process.cwd() }),
   '@import with absolute paths': cssContext({
@@ -1016,8 +1010,8 @@ title']",
       ".one{color:red}"
     ],
     'of two files with mixed paths': [
-      "@import url(/partials/one.css);a{}@import url(partials/extra/three.css);",
-      ".one{color:red}a{}.three{color:#0f0}"
+      "@import url(/partials/one.css);a{display:block}@import url(partials/extra/three.css);",
+      ".one{color:red}a{display:block}.three{color:#0f0}"
     ],
     'of a multi-level, circular dependency file': [
       "@import url(/partials/two.css);",

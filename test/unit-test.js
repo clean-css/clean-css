@@ -667,12 +667,12 @@ vows.describe('clean-units').addBatch({
       'a{background:url(/images/blank.png) 0 0 no-repeat}'
     ],
     'strip more': [
-      'a{background:url("/images/blank.png") 0 0 no-repeat}b{display:block}a{background:url("/images/blank2.png") 0 0 no-repeat}',
-      'a{background:url(/images/blank.png) 0 0 no-repeat}b{display:block}a{background:url(/images/blank2.png) 0 0 no-repeat}'
+      'p{background:url("/images/blank.png") 0 0 no-repeat}b{display:block}a{background:url("/images/blank2.png") 0 0 no-repeat}',
+      'p{background:url(/images/blank.png) 0 0 no-repeat}b{display:block}a{background:url(/images/blank2.png) 0 0 no-repeat}'
     ],
     'not strip comments if spaces inside': [
-      'a{background:url("/images/long image name.png") 0 0 no-repeat}b{display:block}a{background:url("/images/no-spaces.png") 0 0 no-repeat}',
-      'a{background:url("/images/long image name.png") 0 0 no-repeat}b{display:block}a{background:url(/images/no-spaces.png) 0 0 no-repeat}'
+      'p{background:url("/images/long image name.png") 0 0 no-repeat}b{display:block}a{background:url("/images/no-spaces.png") 0 0 no-repeat}',
+      'p{background:url("/images/long image name.png") 0 0 no-repeat}b{display:block}a{background:url(/images/no-spaces.png) 0 0 no-repeat}'
     ],
     'not add a space before url\'s hash': "a{background:url(/fonts/d90b3358-e1e2-4abb-ba96-356983a54c22.svg#d90b3358-e1e2-4abb-ba96-356983a54c22)}",
     'keep urls from being stripped down #1': 'a{background:url(/image-1.0.png)}',
@@ -1170,6 +1170,25 @@ title']{display:block}",
     'of two adjacent complex selectors with different selector order': [
       '.one,.two{color:red}.two,.one{line-height:1em}',
       '.one,.two{color:red;line-height:1em}'
+    ]
+  }),
+  'same non-adjacent selectors': cssContext({
+    'with different properties': 'a{color:red;display:block}.one{font-size:12px}a{margin:2px}',
+    'with one redefined property': [
+      'a{color:red;display:block}.one{font-size:12px}a{color:#fff;margin:2px}',
+      'a{display:block}.one{font-size:12px}a{color:#fff;margin:2px}'
+    ],
+    'with intentionally redefined properties on joins': [
+      'a{display:inline-block;display:-moz-inline-box;color:red}.one{font-size:12px}a{color:#fff;margin:2px}',
+      'a{display:inline-block;display:-moz-inline-box}.one{font-size:12px}a{color:#fff;margin:2px}'
+    ],
+    'with all redefined properties': [
+      'a{color:red;display:block}.one{font-size:12px}a{color:#fff;display:inline-block;margin:2px}',
+      '.one{font-size:12px}a{color:#fff;display:inline-block;margin:2px}'
+    ],
+    'many with all redefined properties': [
+      'a{padding:10px}.zero{color:transparent}a{color:red;display:block}.one{font-size:12px}a{color:#fff;display:inline-block;margin:2px}',
+      'a{padding:10px}.zero{color:transparent}.one{font-size:12px}a{color:#fff;display:inline-block;margin:2px}'
     ]
   }),
   'same bodies': cssContext({

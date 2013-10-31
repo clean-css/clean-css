@@ -3,6 +3,8 @@
 [![Dependency Status](https://david-dm.org/GoalSmashers/clean-css.png)](https://david-dm.org/GoalSmashers/clean-css)
 [![devDependency Status](https://david-dm.org/GoalSmashers/clean-css/dev-status.png)](https://david-dm.org/GoalSmashers/clean-css#info=devDependencies)
 
+## Important: all the documentation below covers the upcoming 2.0 release. Check out [1.1 branch](https://github.com/GoalSmashers/clean-css/tree/1.1) for current, 1.1.x release docs.
+
 ## What is clean-css?
 
 Clean-css is a [node.js](http://nodejs.org/) library for minifying CSS files.

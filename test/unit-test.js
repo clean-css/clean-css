@@ -55,6 +55,32 @@ var colorShorteningContext = function() {
   return cssContext(shortenerContext);
 };
 
+var redefineContext = function(redefinitions, options) {
+  var context = {};
+  var vendorPrefixes = ['', '-moz-', '-o-', '-webkit-']; // there is no -ms-animation nor -ms-transition.
+
+  for (var property in redefinitions) {
+    for (var i = 0; i < redefinitions[property].length; i++) {
+      var by = redefinitions[property][i];
+      var prefixes = options.vendorPrefixes.indexOf(by) > -1 ? vendorPrefixes : [''];
+
+      for (var j = 0, m = prefixes.length; j < m; j++) {
+        var prefixedProperty = prefixes[j] + property;
+        var prefixedBy = prefixes[j] + by;
+
+        context['should override ' + prefixedProperty + ' by ' + prefixedBy] = [
+          'a{' + prefixedProperty + ':inherit;' + prefixedBy + ':0}',
+          'a{' + prefixedBy + ':0}'
+        ];
+        context['should not override ' + prefixedBy + ' by ' + prefixedProperty] =
+          'a{' + prefixedBy + ':0;' + prefixedProperty + ':inherit}';
+      }
+    }
+  }
+
+  return cssContext(context);
+};
+
 vows.describe('clean-units').addBatch({
   'identity': cssContext({
     'preserve minified content': 'a{color:#f10}'
@@ -616,8 +642,8 @@ vows.describe('clean-units').addBatch({
       'font:700 .9rem Helvetica'
     ],
     'multiple changes': [
-      'p{font-weight:bold;width:100%;font:normal 12px Helvetica}',
-      'p{font-weight:700;width:100%;font:400 12px Helvetica}'
+      'p{font-weight:bold!important;width:100%;font:normal 12px Helvetica}',
+      'p{font-weight:700!important;width:100%;font:400 12px Helvetica}'
     ],
     'font weight in extended font declarations': 'font:normal normal normal 13px/20px Helvetica'
   }),
@@ -1168,5 +1194,82 @@ title']{display:block}",
     ],
     'of supported and unsupported selector': '.one:first-child{color:red}.two:last-child{color:red}',
     'of two unsupported selectors': '.one:nth-child(5){color:red}.two:last-child{color:red}'
-  }, { selectorsMergeMode: 'ie8' })
+  }, { selectorsMergeMode: 'ie8' }),
+  'redefined more granular properties': redefineContext({
+    'animation-delay': ['animation'],
+    'animation-direction': ['animation'],
+    'animation-duration': ['animation'],
+    'animation-fill-mode': ['animation'],
+    'animation-iteration-count': ['animation'],
+    'animation-name': ['animation'],
+    'animation-play-state': ['animation'],
+    'animation-timing-function': ['animation'],
+    'background-attachment': ['background'],
+    'background-clip': ['background'],
+    'background-color': ['background'],
+    'background-image': ['background'],
+    'background-origin': ['background'],
+    'background-position': ['background'],
+    'background-repeat': ['background'],
+    'background-size': ['background'],
+    'border-color': ['border'],
+    'border-style': ['border'],
+    'border-width': ['border'],
+    'border-bottom': ['border'],
+    'border-bottom-color': ['border-bottom', 'border-color', 'border'],
+    'border-bottom-style': ['border-bottom', 'border-style', 'border'],
+    'border-bottom-width': ['border-bottom', 'border-width', 'border'],
+    'border-left': ['border'],
+    'border-left-color': ['border-left', 'border-color', 'border'],
+    'border-left-style': ['border-left', 'border-style', 'border'],
+    'border-left-width': ['border-left', 'border-width', 'border'],
+    'border-right': ['border'],
+    'border-right-color': ['border-right', 'border-color', 'border'],
+    'border-right-style': ['border-right', 'border-style', 'border'],
+    'border-right-width': ['border-right', 'border-width', 'border'],
+    'border-top': ['border'],
+    'border-top-color': ['border-top', 'border-color', 'border'],
+    'border-top-style': ['border-top', 'border-style', 'border'],
+    'border-top-width': ['border-top', 'border-width', 'border'],
+    'font-family': ['font'],
+    'font-size': ['font'],
+    'font-style': ['font'],
+    'font-variant': ['font'],
+    'font-weight': ['font'],
+    'list-style-image': ['list'],
+    'list-style-position': ['list'],
+    'list-style-type': ['list'],
+    'margin-bottom': ['margin'],
+    'margin-left': ['margin'],
+    'margin-right': ['margin'],
+    'margin-top': ['margin'],
+    'outline-color': ['outline'],
+    'outline-style': ['outline'],
+    'outline-width': ['outline'],
+    'padding-bottom': ['padding'],
+    'padding-left': ['padding'],
+    'padding-right': ['padding'],
+    'padding-top': ['padding'],
+    'transition-delay': ['transition'],
+    'transition-duration': ['transition'],
+    'transition-property': ['transition'],
+    'transition-timing-function': ['transition']
+  }, { vendorPrefixes: ['animation', 'transition'] }),
+  'complex granular properties': cssContext({
+    'two granular properties': 'a{border-bottom:1px solid red;border-color:red}',
+    'two same granular properties': 'a{border-color:rgba(0,0,0,.5);border-color:red}',
+    'two same granular properties redefined': [
+      'a{border-color:rgba(0,0,0,.5);border-color:red;border:0}',
+      'a{border:0}'
+    ],
+    'important granular property redefined': 'a{border-color:red!important;border:0}',
+    'important granular property redefined with important': [
+      'a{border-color:red!important;border:0!important}',
+      'a{border:0!important}'
+    ],
+    'mix of border properties': [
+      'a{border-top:1px solid red;border-top-color:#0f0;color:red;border-top-width:2px;border-bottom-width:1px;border:0;border-left:1px solid red}',
+      'a{color:red;border:0;border-left:1px solid red}'
+    ]
+  })
 }).export(module);

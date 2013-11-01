@@ -1069,6 +1069,16 @@ title']{display:block}",
   'duplicate selectors with disabled advanced processing': cssContext({
     'of a duplicate selector': 'a,a{color:red}'
   }, { noAdvanced: true }),
+  'invalid data tokenization': cssContext({
+    'extra top-level closing brace': [
+      'a{color:red}}p{width:auto}',
+      'a{color:red}p{width:auto}'
+    ],
+    'extra top-level closing braces': [
+      'a{color:red}}}}p{width:auto}',
+      'a{color:red}p{width:auto}'
+    ]
+  }),
   'duplicate selectors in a list': cssContext({
     'of a duplicate selector': [
       'a,a{color:red}',

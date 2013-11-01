@@ -102,6 +102,11 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
       deleteFile('debug.css');
     }
   }),
+  'skip advanced optimizations': pipedContext('a{color:red}p{color:red}', '--skip-advanced', {
+    'should do basic optimizations only': function(error, stdout) {
+      assert.equal(stdout, 'a{color:red}p{color:red}');
+    }
+  }),
   'no relative to path': binaryContext('./test/data/partials-absolute/base.css', {
     'should not be able to resolve it fully': function(error, stdout) {
       assert.equal(stdout, '');

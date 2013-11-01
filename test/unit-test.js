@@ -1066,6 +1066,9 @@ title']{display:block}",
       "@import url(/fake.css);"
     ]
   }, { processImport: false }),
+  'duplicate selectors with disabled advanced processing': cssContext({
+    'of a duplicate selector': 'a,a{color:red}'
+  }, { noAdvanced: true }),
   'duplicate selectors in a list': cssContext({
     'of a duplicate selector': [
       'a,a{color:red}',

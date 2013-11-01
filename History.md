@@ -15,6 +15,7 @@
 * Makes all multiple selectors ordered alphabetically (aids merging).
 * Adds property overriding so more coarse properties override more granular ones.
 * Adds reducing non-adjacent selectors.
+* Adds `--skip-advanced`/`noAdvanced` switch to disable advanced optimizations.
 
 1.1.7 / 2013-10-28
 ==================

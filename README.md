@@ -43,6 +43,7 @@ cleancss [options] <source-file>
 -o, --output [output-file]      Use [output-file] as output instead of STDOUT
 -s, --skip-import               Disable @import processing
 --skip-rebase                   Disable URLs rebasing
+--skip-advanced                 Disable advanced optimizations - selector & property merging, reduction, etc.
 --selectors-merge-mode [ie8|*]  Use `ie8` for compatibility mode, `*` for merge all (default).
 -d, --debug                     Shows debug information (minification time & compression efficiency)
 ```
@@ -99,6 +100,7 @@ Process method accepts a hash as a second parameter, i.e.,
 * `relativeTo` - path with which to resolve relative `@import` rules and URLs
 * `processImport` - whether to process `@import` rules
 * `noRebase` - whether to skip URLs rebasing
+* `noAdvanced` - set to true to disable advanced optimizations - selector & property merging, reduction, etc.
 * `selectorsMergeMode` - `ie8` for IE8 compatibility mode, `*` for merging all (default)
 
 ### What are the clean-css' dev commands?

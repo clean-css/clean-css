@@ -1152,7 +1152,19 @@ title']{display:block}",
     'of many properties in one declaration': [
       'a{display:inline-block;color:red;font-weight:bolder;font-weight:700;display:block!important;color:#fff}',
       'a{font-weight:bolder;font-weight:700;display:block!important;color:#fff}'
-    ]
+    ],
+    'both redefined and overridden': [
+      'p{display:block;display:-moz-inline-box;color:red;display:table-cell}',
+      'p{color:red;display:table-cell}'
+    ],
+    'background redefined with merging': [
+      '.one{display:block}.one{background:#fff;background:-webkit-gradient();background:-moz-linear-gradient();filter:progid:DXImageTransform}',
+      '.one{display:block;background:#fff;background:-webkit-gradient();background:-moz-linear-gradient();filter:progid:DXImageTransform}'
+    ],
+    'filter treated as background': 'p{background:-moz-linear-gradient();background:-webkit-linear-gradient();filter:"progid:DXImageTransform";background:linear-gradient()}',
+    'filter treated as background-image': 'p{background-image:-moz-linear-gradient();background-image:-webkit-linear-gradient();filter:"progid:DXImageTransform";background-image:linear-gradient()}',
+    '-ms-filter treated as background': 'p{background:-moz-linear-gradient();background:-webkit-linear-gradient();-ms-filter:"progid:DXImageTransform";background:linear-gradient()}',
+    '-ms-filter treated as background-image': 'p{background-image:-moz-linear-gradient();background-image:-webkit-linear-gradient();-ms-filter:"progid:DXImageTransform";background-image:linear-gradient()}'
   }),
   'same selectors': cssContext({
     'of two non-adjacent selectors': '.one{color:red}.two{color:#00f}.one{font-weight:700}',

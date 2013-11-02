@@ -1183,6 +1183,10 @@ title']{display:block}",
     'of two adjacent complex selectors with different selector order': [
       '.one,.two{color:red}.two,.one{line-height:1em}',
       '.one,.two{color:red;line-height:1em}'
+    ],
+    'two adjacent with hex color definitions': [
+      "a:link,a:visited{color:#fff}.one{display:block}a:link,a:visited{color:red}",
+      ".one{display:block}a:link,a:visited{color:red}"
     ]
   }),
   'same non-adjacent selectors': cssContext({
@@ -1195,6 +1199,10 @@ title']{display:block}",
       'a{display:inline-block;display:-moz-inline-box;color:red}.one{font-size:12px}a{color:#fff;margin:2px}',
       'a{display:inline-block;display:-moz-inline-box}.one{font-size:12px}a{color:#fff;margin:2px}'
     ],
+    'with intentionally redefined properties on nultiple joins': [
+      'a{color:red}.one{font-size:12px}a{color:#fff;margin:2px}.two{font-weight:400}a{margin:0}',
+      '.one{font-size:12px}a{color:#fff}.two{font-weight:400}a{margin:0}'
+    ],
     'with all redefined properties': [
       'a{color:red;display:block}.one{font-size:12px}a{color:#fff;display:inline-block;margin:2px}',
       '.one{font-size:12px}a{color:#fff;display:inline-block;margin:2px}'
@@ -1202,6 +1210,28 @@ title']{display:block}",
     'many with all redefined properties': [
       'a{padding:10px}.zero{color:transparent}a{color:red;display:block}.one{font-size:12px}a{color:#fff;display:inline-block;margin:2px}',
       'a{padding:10px}.zero{color:transparent}.one{font-size:12px}a{color:#fff;display:inline-block;margin:2px}'
+    ],
+    'when overriden by an empty selector': [
+      'a{padding:10px}.one{color:red}a{}',
+      'a{padding:10px}.one{color:red}'
+    ],
+    'when overriden by a complex selector': [
+      'a{padding:10px;margin:0;color:red}.one{color:red}a,p{color:red;padding:0}',
+      'a{margin:0}.one{color:red}a,p{color:red;padding:0}'
+    ],
+    'when overriden by complex selectors': [
+      'a{padding:10px;margin:0;color:red}.one{color:red}a,p{color:red;padding:0}.one,a{color:#fff}',
+      'a{margin:0}a,p{color:red;padding:0}.one,a{color:#fff}'
+    ],
+    'when complex selector overriden by simple selectors': 'a,p{margin:0;color:red}a{color:#fff}',
+    // Pending re-run selectors merge - see #160
+    'when complex selector overriden by complex and simple selectors': [
+      'a,p{margin:0;color:red}a{color:#fff}a,p{color:#00f}p{color:#0f0}',
+      'a,p{margin:0}a,p{color:#00f}p{color:#0f0}'
+    ],
+    'when complex selector overriden by complex selectors': [
+      '.one>.two,.three{color:red;line-height:1rem}#zero,.one>.two,.three,.www{color:#fff;margin:0}a{color:red}.one>.two,.three{line-height:2rem;font-size:1.5rem}',
+      '#zero,.one>.two,.three,.www{color:#fff;margin:0}a{color:red}.one>.two,.three{line-height:2rem;font-size:1.5rem}'
     ]
   }),
   'same bodies': cssContext({

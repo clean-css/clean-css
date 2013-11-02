@@ -25,7 +25,7 @@ sub{bottom:-.25em}
 ol,ul{margin:0;padding:0;list-style-type:none}
 dd{margin:0 0 0 40px}
 nav ol,nav ul{list-style:none;list-style-image:none}
-img{border:0;-ms-interpolation-mode:bicubic}
+img{-ms-interpolation-mode:bicubic}
 svg:not(:root){overflow:hidden}
 figure,form{margin:0}
 fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
@@ -829,7 +829,7 @@ img[height="97"]+.ico29x29{bottom:6%;left:3.5%}
 #header .acces_compte a{display:block;color:#000}
 #header .acces_compte a:hover{color:#000;font-weight:700}
 .filtre_page{position:fixed;width:100%;height:100%;z-index:15;left:0;top:0;background:rgba(0,0,0,.5)}
-.lightbox_ext{background:#fff;width:770px;margin:0 auto;position:absolute;top:100px;left:25%;z-index:15;-webkit-box-shadow:0 0 15px #000;-moz-box-shadow:0 0 15px #000;box-shadow:0 0 15px #000}
+.lightbox_ext{width:770px;margin:0 auto;position:absolute;top:100px;left:25%;z-index:15;-webkit-box-shadow:0 0 15px #000;-moz-box-shadow:0 0 15px #000;box-shadow:0 0 15px #000}
 .lightbox_ext,.loginbox{overflow:hidden;background:#f5f8f9}
 .lightbox_ext h2,.loginbox h2{padding:7px 16px 5px;background:#16212c;border-top:3px solid #747b83;color:#fff}
 .lightbox_ext .fermer,.loginbox .fermer{float:right;font-size:11px;line-height:18px;color:#747b83;cursor:pointer}
@@ -881,12 +881,12 @@ label i{font-style:normal;display:none}
 .ombrelle .autopromo_edito{overflow:hidden;width:314px;height:64px}
 .autopromo_edito img{border:1px solid #eef1f5}
 .autopromo_edito .nature_edito{display:inline}
-#nav{clear:both;height:32px;margin:0 auto;width:1000px;background:#fafbfc;border-top:3px solid transparent;border-bottom:1px solid #dddee0}
+#nav{clear:both;height:32px;margin:0 auto;width:1000px;background:#fafbfc;border-bottom:1px solid #dddee0}
 #nav .conteneur_bordure{width:998px;margin:-3px auto 0;border-top:3px solid #ffd500;border-left:1px solid #d2d6db;border-right:1px solid #d2d6db}
 #nav.accueil{width:auto;background:#fff}
 #nav ul{overflow:hidden;width:1000px;margin:-3px auto 0}
 #nav.acceuil ul{width:998px}
-#nav li{display:block;float:left;border-top-width:3px;border-top-style:solid}
+#nav li{display:block;float:left}
 #nav a,#nav span{display:inline-block;height:25px;padding:7px 10px 0 9px;border-left:1px solid #d2d6db;border-bottom:1px solid #d2d6db;font-size:12px;font-weight:700;text-transform:uppercase;color:#000}
 #nav .obf:hover,#nav a:hover,#nav li:hover .obf,#nav li:hover a{color:#fff}
 #nav .actif{background:#fff}
@@ -1093,7 +1093,6 @@ label i{font-style:normal;display:none}
 .bloc_part.gymglish .exercice .texte,.bloc_part.gymglish .mot_mois .texte{width:166px;height:126px;padding:0}
 .bloc_part.gymglish .mot_mois .texte{width:155px;padding:4px 15px 0 0}
 .bloc_part.gymglish .cours .texte{width:145px;height:170px;padding:0 15px 0 0}
-.bloc_part.gymglish .cours .img{width:120px}
 .bloc_part.gymglish .mot_mois .enonce{display:block;overflow:hidden;height:45px;clear:both}
 .bloc_part.gymglish .exercice.contenu{position:relative;background:#FFF}
 .bloc_part.gymglish .exercice.contenu .btn_fonce{left:16px}
@@ -1644,7 +1643,7 @@ ul.errorlist li{font-size:11px;font-weight:400;color:#e20000}
 #core-liberation .pagination{height:21px}
 #core-liberation .pagination a{display:block;float:left;background:#e6e6e6;height:19px;margin-right:5px;padding:1px 6px}
 #core-liberation .pagination span{display:inline;height:19px;margin-right:5px;padding:1px 6px}
-#core-liberation .pagination .current,#core-liberation .pagination .disabled{background:#7d7d7d;color:#fff}
+#core-liberation .pagination .current,#core-liberation .pagination .disabled{background:#7d7d7d}
 #core-liberation .js-loader{width:0;height:0}
 img#hit-count{position:absolute;bottom:0;right:0;margin:0;padding:0;height:0}
 #DOMWindow iframe{height:96%!important}
@@ -2778,7 +2777,7 @@ body.slideshow .ad-top .megaban{background:#333}
 .site-liberation .block-call-items .tpl-search-results .object-picture .np a.date{background-color:#c8c8c8}
 #core-liberation .block-item .object-picture .legende{color:#838383}
 .site-liberation .block-item .object-content a:hover{color:#e20000}
-#core-liberation .block-item-locked{border-top-color:#c1b0bb;border-bottom-color:#c1b0bb;background:-moz-linear-gradient(top,#dbdad6 0,#fff 2%,#fff 98%,#e1e0de 100%);background:-webkit-gradient(linear,left top,left bottom,color-stop(0%,#dbdad6),color-stop(2%,#fff),color-stop(98%,#fff),color-stop(100%,#e1e0de));background:-o-linear-gradient(top,#dbdad6 0,#fff 2%,#fff 98%,#e1e0de 100%)}
+#core-liberation .block-item-locked{border-top-color:#c1b0bb;border-bottom-color:#c1b0bb;background:#fff;background:-moz-linear-gradient(top,#dbdad6 0,#fff 2%,#fff 98%,#e1e0de 100%);background:-webkit-gradient(linear,left top,left bottom,color-stop(0%,#dbdad6),color-stop(2%,#fff),color-stop(98%,#fff),color-stop(100%,#e1e0de));background:-o-linear-gradient(top,#dbdad6 0,#fff 2%,#fff 98%,#e1e0de 100%)}
 #core-liberation .block-item-locked .block-top span{background-color:#fff}
 #core-liberation .block-item-locked .btn-zoneabo a:hover{color:#fff}
 #core-liberation .block-item-read-more{border-color:#ddd}

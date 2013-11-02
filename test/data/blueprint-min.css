@@ -63,7 +63,7 @@ caption{background:#eee}
 .bottom{margin-bottom:0;padding-bottom:0}
 label{font-weight:700}
 fieldset{padding:0 1.4em 1.4em;margin:0 0 1.5em;border:1px solid #ccc}
-legend{font-weight:700;font-size:1.2em;margin-top:-.2em;margin-bottom:1em}
+legend{font-weight:700;font-size:1.2em}
 #IE8#HACK,fieldset{padding-top:1.4em}
 #IE8#HACK,legend{margin-top:0;margin-bottom:0}
 input.text,input.title,input[type=password],input[type=text],textarea{background-color:#fff;border:1px solid #bbb}

@@ -6,6 +6,7 @@
 * Adds simplified and much faster empty elements removal.
 * Adds missing `@import` processing to our benchmark (run via `npm run bench`).
 * Fixed issue [#157](https://github.com/GoalSmashers/clean-css/issues/157) - gets rid of `removeEmpty` option.
+* Fixed issue [#159](https://github.com/GoalSmashers/clean-css/issues/159) - escaped quotes inside content.
 
 1.1.7 / 2013-10-28
 ==================

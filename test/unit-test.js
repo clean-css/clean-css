@@ -619,7 +619,15 @@ vows.describe('clean-units').addBatch({
   }),
   'urls': cssContext({
     'keep urls without parentheses unchanged': 'a{background:url(/images/blank.png) 0 0 no-repeat}',
-    'keep urls with data URI unchanged': ".icon-logo{background-image:url('data:image/svg+xml;charset=US-ASCII')}",
+    'keep non-encoded data URI unchanged': ".icon-logo{background-image:url('data:image/svg+xml;charset=US-ASCII')}",
+    'strip quotes from base64 encoded PNG data URI': [
+      ".icon-logo{background-image:url('data:image/png;base64,iVBORw0')}",
+      ".icon-logo{background-image:url(data:image/png;base64,iVBORw0)}"
+    ],
+    'strip quotes from base64 encoded ICO data URI': [
+      '.icon-logo{background-image:url("data:image/x-icon;base64,AAABAAEAEBA")}',
+      '.icon-logo{background-image:url(data:image/x-icon;base64,AAABAAEAEBA)}'
+    ],
     'strip single parentheses': [
       "a{background:url('/images/blank.png') 0 0 no-repeat}",
       "a{background:url(/images/blank.png) 0 0 no-repeat}"

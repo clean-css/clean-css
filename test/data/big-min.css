@@ -977,7 +977,7 @@ label i{font-style:normal;display:none}
 .liste_reactions .grid_9{width:424px}
 .liste_reactions .reaction:hover{background:#f5f8f9}
 .liste_reactions .premier{color:#a2a9ae;font-weight:700}
-.liste_reactions .premier:hover{background:transparent}
+.liste_reactions .premier:hover{background:0 0}
 .liste_reactions .reaction .btn{visibility:hidden;margin:5px 0 0}
 .liste_reactions .reaction:hover .btn{visibility:visible}
 .infobulle{position:relative}

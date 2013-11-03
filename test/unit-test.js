@@ -352,6 +352,10 @@ vows.describe('clean-units').addBatch({
       'a{border:none;background:none}',
       'a{border:0;background:0 0}'
     ],
+    'background:transparent to zero': [
+      'a{background:transparent}p{background transparent url(logo.png)}',
+      'a{background:0 0}p{background transparent url(logo.png)}'
+    ],
     'outline:none to outline:0': [
       'a{outline:none}',
       'a{outline:0}'

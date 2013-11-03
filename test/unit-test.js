@@ -1,7 +1,7 @@
 var vows = require('vows');
 var assert = require('assert');
 var path = require('path');
-var cleanCSS = require('../index');
+var CleanCSS = require('../index');
 var ColorShortener = require('../lib/colors/shortener');
 
 var lineBreak = process.platform == 'win32' ? '\r\n' : '\n';
@@ -9,14 +9,14 @@ var cssContext = function(groups, options) {
   var context = {};
   var clean = function(expectedCSS) {
     return function(css) {
-      var cleanedCSS = null;
+      var minifiedCSS = null;
       try {
-        cleanedCSS = cleanCSS.process(css, options);
+        minifiedCSS = new CleanCSS(options).minify(css);
       } catch (e) {
-        // swallow - cleanedCSS is set to null and that's the new expected value
+        // swallow - minifiedCSS is set to null and that's the new expected value
       }
 
-      assert.equal(cleanedCSS, expectedCSS);
+      assert.equal(minifiedCSS, expectedCSS);
     };
   };
 

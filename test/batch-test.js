@@ -2,7 +2,7 @@ var vows = require('vows');
 var path = require('path');
 var fs = require('fs');
 var assert = require('assert');
-var cleanCSS = require('../index');
+var CleanCSS = require('../index');
 
 var lineBreak = process.platform == 'win32' ? /\r\n/g : /\n/g;
 
@@ -27,10 +27,10 @@ var batchContexts = function() {
       }
     };
     context[testName]['minimizing ' + testName + '.css'] = function(data) {
-      var processed = cleanCSS.process(data.plain, {
+      var processed = new CleanCSS({
         keepBreaks: true,
         root: data.root
-      });
+      }).minify(data.plain);
 
       var processedTokens = processed.split(lineBreak);
       var minimizedTokens = data.minimized.split(lineBreak);

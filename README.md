@@ -26,6 +26,33 @@ node.js 0.8.0+ (tested on CentOS, Ubuntu, OS X 10.6+, and Windows 7+)
 npm install clean-css
 ```
 
+### How to upgrade clean-css from 1.x to 2.x?
+
+#### Command-line interface (CLI)
+
+```
+npm update clean-css
+```
+
+or point `package.json` to version 2.x. That's it!
+
+#### Node.js module
+
+Update `clean-css` as for CLI above.
+Then change your JavaScript code from:
+
+```js
+var minimized = CleanCSS.process(source, options);
+```
+
+into
+
+```js
+var minimized = new CleanCSS(options).minify(source);
+```
+
+And you are done.
+
 ### How to use clean-css CLI?
 
 Clean-css accepts the following command line arguments (please make sure
@@ -84,15 +111,15 @@ cat one.css two.css three.css | cleancss | gzip -9 -c > merged-minified-and-gzip
 ### How to use clean-css programmatically?
 
 ```js
-var cleanCSS = require('clean-css');
+var CleanCSS = require('clean-css');
 var source = 'a{font-weight:bold;}';
-var minimized = cleanCSS.process(source);
+var minimized = new CleanCSS().minify(source);
 ```
 
-Process method accepts a hash as a second parameter, i.e.,
-`cleanCSS.process(source, options)` with the following options available:
+CleanCSS constructor accepts a hash as a parameter, i.e.,
+`new CleanCSS(options).minify(source)` with the following options available:
 
-* `keepSpecialComments` - `*` for keeping all (default), `1` for keeping first one, `0` for removing all
+* `keepSpecialComments` - `*` for keeping all (default), `1` for keeping first one only, `0` for removing all
 * `keepBreaks` - whether to keep line breaks (default is false)
 * `benchmark` - turns on benchmarking mode measuring time spent on cleaning up
   (run `npm run bench` to see example)

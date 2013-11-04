@@ -143,7 +143,7 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
   }),
   'disable @import': binaryContext('-s ./test/data/imports.css', {
     'should disable the import processing': function(error, stdout) {
-      assert.equal(stdout, "@import url(./partials/one.css);@import url(./partials/two.css);.imports{color:#000}");
+      assert.equal(stdout, '@import url(./partials/one.css);@import url(./partials/two.css);.imports{color:#000}');
     }
   }),
   'relative image paths': {

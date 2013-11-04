@@ -37,23 +37,22 @@
     "commander": "2.0.x"
   },
   "devDependencies": {
-    "vows": "0.7.x",
-    "jshint": "2.3.x"
+    "jshint": "2.3.x",
+    "vows": "0.7.x"
   },
   "jshintConfig": {
     "browser": false,
     "camelcase": true,
     "curly": false,
     "eqeqeq": false,
-    "eqnull": false,
+    "eqnull": true,
     "immed": true,
     "latedef": true,
     "multistr": true,
     "noarg": true,
     "node": true,
     "plusplus": false,
-    "quotmark": "true",
-    "regexp": false,
+    "quotmark": "single",
     "strict": false,
     "trailing": true,
     "undef": true,

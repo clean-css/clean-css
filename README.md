@@ -7,7 +7,7 @@
 
 Clean-css is a fast and efficient [node.js](http://nodejs.org/) library for minifying CSS files.
 
-According to [tests](https://github.com/GoalSmashers/css-minification-benchmark) it is one of the best available.
+According to [tests](https://rawgithub.com/GoalSmashers/css-minification-benchmark/master/results.html) it is one of the best available.
 
 
 ## Usage

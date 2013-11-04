@@ -7,9 +7,9 @@
 
 ## What is clean-css?
 
-Clean-css is a [node.js](http://nodejs.org/) library for minifying CSS files.
-It does the same job as YUI Compressor's CSS minifier, but much faster thanks
-to many speed optimizations and node.js' V8 engine.
+Clean-css is a fast and efficient [node.js](http://nodejs.org/) library for minifying CSS files.
+
+According to [tests](https://github.com/GoalSmashers/css-minification-benchmark) it is one of the best available.
 
 
 ## Usage

@@ -131,6 +131,7 @@ CleanCSS constructor accepts a hash as a parameter, i.e.,
 * `noRebase` - whether to skip URLs rebasing
 * `noAdvanced` - set to true to disable advanced optimizations - selector & property merging, reduction, etc.
 * `selectorsMergeMode` - `ie8` for IE8 compatibility mode, `*` for merging all (default)
+* `debug` - set to true to get minification statistics under `stats` property (see `test/custom-test.js` for examples)
 
 ### What are the clean-css' dev commands?
 

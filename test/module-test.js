@@ -2,13 +2,13 @@ var vows = require('vows');
 var assert = require('assert');
 var CleanCSS = require('../index');
 
-vows.describe('clean-custom').addBatch({
+vows.describe('module tests').addBatch({
   'imported as a function': {
     topic: function() {
       return new CleanCSS().minify;
     },
-    'should process CSS correctly': function(process) {
-      assert.equal(process('a{  color: #f00;  }'), 'a{color:red}');
+    'should minify CSS correctly': function(minify) {
+      assert.equal(minify('a{  color: #f00;  }'), 'a{color:red}');
     }
   },
   'no debug': {

@@ -29,7 +29,7 @@
   ],
   "scripts": {
     "bench": "node ./test/bench.js",
-    "check": "jshint .",
+    "check": "jshint ./bin/cleancss .",
     "prepublish": "jshint .",
     "test": "vows"
   },
@@ -44,7 +44,7 @@
     "browser": false,
     "camelcase": true,
     "curly": false,
-    "eqeqeq": false,
+    "eqeqeq": true,
     "eqnull": true,
     "immed": true,
     "latedef": true,

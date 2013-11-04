@@ -3,7 +3,7 @@ var assert = require('assert');
 var exec = require('child_process').exec;
 var fs = require('fs');
 
-var isWindows = process.platform == 'win32';
+var isWindows = process.platform === 'win32';
 var lineBreak = isWindows ? /\r\n/g : /\n/g;
 
 var binaryContext = function(options, context) {

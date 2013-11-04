@@ -6,7 +6,7 @@ var path = require('path');
 var CleanCSS = require('../index');
 var ColorShortener = require('../lib/colors/shortener');
 
-var lineBreak = process.platform == 'win32' ? '\r\n' : '\n';
+var lineBreak = process.platform === 'win32' ? '\r\n' : '\n';
 var cssContext = function(groups, options) {
   var context = {};
   var clean = function(expectedCSS) {
@@ -24,7 +24,7 @@ var cssContext = function(groups, options) {
 
   for (var g in groups) {
     var transformation = groups[g];
-    if (typeof transformation == 'string')
+    if (typeof transformation === 'string')
       transformation = [transformation, transformation];
     if (!transformation[0].push)
       transformation = [[transformation[0], transformation[1]]];

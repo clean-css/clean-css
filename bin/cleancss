@@ -107,8 +107,10 @@ function minify(data) {
   var minified = minifier.minify(data);
 
   if (cleanOptions.debug) {
-    console.error('Minification time: %dms', minifier.stats.timeSpent);
-    console.error('Compression efficiency: %d%', ~~(minifier.stats.efficiency * 100));
+    console.error('Original: %d bytes', minifier.stats.originalSize);
+    console.error('Minified: %d bytes', minifier.stats.minifiedSize);
+    console.error('Efficiency: %d%', ~~(minifier.stats.efficiency * 10000) / 100.0);
+    console.error('Time spent: %dms', minifier.stats.timeSpent);
   }
 
   return minified;

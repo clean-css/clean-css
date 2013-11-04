@@ -1,4 +1,4 @@
-2.0.0 / 2013-xx-xx (UNRELEASED)
+[2.0.0 / 2013-xx-xx (UNRELEASED)](https://github.com/GoalSmashers/clean-css/compare/v1.1.7...v2.0.0)
 ==================
 
 * Adds simplified and more advanced text escaping / restoring via `EscapeStore` class.
@@ -7,7 +7,7 @@
 * Fixed issue [#138](https://github.com/GoalSmashers/clean-css/issues/138) - makes CleanCSS interface OO.
 * Fixed issue [#157](https://github.com/GoalSmashers/clean-css/issues/157) - gets rid of `removeEmpty` option.
 * Fixed issue [#159](https://github.com/GoalSmashers/clean-css/issues/159) - escaped quotes inside content.
-* Fixed issue [#162](https://github.com/GoalSmashers/clean-css/issues/162) - strip quotes from base64 encoded URLs.
+* Fixed issue [#162](https://github.com/GoalSmashers/clean-css/issues/162) - strip quotes from Base64 encoded URLs.
 * Fixed issue [#167](https://github.com/GoalSmashers/clean-css/issues/167) - `background:transparent` minification.
 * Adds CSS tokenizer which will make it possible to optimize content by reordering and/or merging selectors.
 * Adds basic optimizer removing duplicate selectors from a list.
@@ -20,42 +20,42 @@
 * Adds `--skip-advanced`/`noAdvanced` switch to disable advanced optimizations.
 * Adds reducing non-adjacent selectors when overridden by more complex selectors.
 
-1.1.7 / 2013-10-28
+[1.1.7 / 2013-10-28](https://github.com/GoalSmashers/clean-css/compare/v1.1.6...v1.1.7)
 ==================
 
 * Fixed issue [#156](https://github.com/GoalSmashers/clean-css/issues/156) - `@import`s inside comments.
 
-1.1.6 / 2013-10-26
+[1.1.6 / 2013-10-26](https://github.com/GoalSmashers/clean-css/compare/v1.1.5...v1.1.6)
 ==================
 
 * Fixed issue [#155](https://github.com/GoalSmashers/clean-css/issues/155) - broken irregular CSS content.
 
-1.1.5 / 2013-10-24
+[1.1.5 / 2013-10-24](https://github.com/GoalSmashers/clean-css/compare/v1.1.4...v1.1.5)
 ==================
 
 * Fixed issue [#153](https://github.com/GoalSmashers/clean-css/issues/153) - keepSpecialComments 0/1 as a string.
 
-1.1.4 / 2013-10-23
+[1.1.4 / 2013-10-23](https://github.com/GoalSmashers/clean-css/compare/v1.1.3...v1.1.4)
 ==================
 
 * Fixed issue [#152](https://github.com/GoalSmashers/clean-css/issues/152) - adds an option to disable rebasing.
 
-1.1.3 / 2013-10-04
+[1.1.3 / 2013-10-04](https://github.com/GoalSmashers/clean-css/compare/v1.1.2...v1.1.3)
 ==================
 
 * Fixed issue [#150](https://github.com/GoalSmashers/clean-css/issues/150) - minifying `background:none`.
 
-1.1.2 / 2013-09-29
+[1.1.2 / 2013-09-29](https://github.com/GoalSmashers/clean-css/compare/v1.1.1...v1.1.2)
 ==================
 
 * Fixed issue [#149](https://github.com/GoalSmashers/clean-css/issues/149) - shorthand font property.
 
-1.1.1 / 2013-09-07
+[1.1.1 / 2013-09-07](https://github.com/GoalSmashers/clean-css/compare/v1.1.0...v1.1.1)
 ==================
 
 * Fixed issue [#144](https://github.com/GoalSmashers/clean-css/issues/144) - skip URLs rebasing by default.
 
-1.1.0 / 2013-09-06
+[1.1.0 / 2013-09-06](https://github.com/GoalSmashers/clean-css/compare/v1.0.12...v1.1.0)
 ==================
 
 * Fixed issue [#43](https://github.com/GoalSmashers/clean-css/issues/43) - `--debug` switch for minification stats.
@@ -69,43 +69,43 @@
 * Renamed lib's `debug` option to `benchmark` when doing per-minification benchmarking.
 * Added simplified comments processing & imports.
 
-1.0.12 / 2013-07-19
+[1.0.12 / 2013-07-19](https://github.com/GoalSmashers/clean-css/compare/v1.0.11...v1.0.12)
 ===================
 
 * Fixed issue [#121](https://github.com/GoalSmashers/clean-css/issues/121) - ability to skip `@import` processing.
 
-1.0.11 / 2013-07-08
+[1.0.11 / 2013-07-08](https://github.com/GoalSmashers/clean-css/compare/v1.0.10...v1.0.11)
 ===================
 
 * Fixed issue [#117](https://github.com/GoalSmashers/clean-css/issues/117) - line break escaping in comments.
 
-1.0.10 / 2013-06-13
+[1.0.10 / 2013-06-13](https://github.com/GoalSmashers/clean-css/compare/v1.0.9...v1.0.10)
 ===================
 
 * Fixed issue [#114](https://github.com/GoalSmashers/clean-css/issues/114) - comments in imported stylesheets.
 
-1.0.9 / 2013-06-11
+[1.0.9 / 2013-06-11](https://github.com/GoalSmashers/clean-css/compare/v1.0.8...v1.0.9)
 ==================
 
 * Fixed issue [#113](https://github.com/GoalSmashers/clean-css/issues/113) - `@import` in comments.
 
-1.0.8 / 2013-06-10
+[1.0.8 / 2013-06-10](https://github.com/GoalSmashers/clean-css/compare/v1.0.7...v1.0.8)
 ==================
 
 * Fixed issue [#112](https://github.com/GoalSmashers/clean-css/issues/112) - reducing `box-shadow` zeros.
 
-1.0.7 / 2013-06-05
+[1.0.7 / 2013-06-05](https://github.com/GoalSmashers/clean-css/compare/v1.0.6...v1.0.7)
 ==================
 
 * Support for `@import` URLs starting with `//`.
   By [@petetak](https://github.com/petetak).
 
-1.0.6 / 2013-06-04
+[1.0.6 / 2013-06-04](https://github.com/GoalSmashers/clean-css/compare/v1.0.5...v1.0.6)
 ==================
 
 * Fixed issue [#110](https://github.com/GoalSmashers/clean-css/issues/110) - data URIs in URLs.
 
-1.0.5 / 2013-05-26
+[1.0.5 / 2013-05-26](https://github.com/GoalSmashers/clean-css/compare/v1.0.4...v1.0.5)
 ==================
 
 * Fixed issue [#107](https://github.com/GoalSmashers/clean-css/issues/107) - data URIs in imported stylesheets.

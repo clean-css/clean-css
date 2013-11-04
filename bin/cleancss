@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+/* jshint latedef: false */
+
 var util = require('util');
 var fs = require('fs');
 var path = require('path');
@@ -48,10 +50,10 @@ var options = {
   target: null
 };
 var cleanOptions = {};
-var fromStdin = !process.env['__DIRECT__'] && !process.stdin.isTTY;
+var fromStdin = !process.env.__DIRECT__ && !process.stdin.isTTY;
 
 // If no sensible data passed in just print help and exit
-if (!fromStdin && commands.args.length == 0) {
+if (!fromStdin && commands.args.length === 0) {
   commands.outputHelp();
   return 0;
 }
@@ -127,7 +129,7 @@ function output(minified) {
     fs.writeFileSync(options.target, minified, 'utf8');
   else
     process.stdout.write(minified);
-};
+}
 
 function outputFeedback(messages, isError) {
   var prefix = isError ? '\x1B[31mERROR\x1B[39m:' : 'WARNING:';
@@ -135,4 +137,4 @@ function outputFeedback(messages, isError) {
   messages.forEach(function(message) {
     console.error('%s %s', prefix, message);
   });
-};
+}

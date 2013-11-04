@@ -20,15 +20,11 @@ var cssContext = function(groups, options) {
     var transformation = groups[g];
     if (typeof transformation == 'string')
       transformation = [transformation, transformation];
-    if (!transformation[0].push)
-      transformation = [[transformation[0], transformation[1]]];
 
-    for (var i = 0, c = transformation.length; i < c; i++) {
-      context[g + ' #' + (i + 1)] = {
-        topic: transformation[i][0],
-        clean: clean(transformation[i][1])
-      };
-    }
+    context[g] = {
+      topic: transformation[0],
+      clean: clean(transformation[1])
+    };
   }
 
   return context;
@@ -231,14 +227,13 @@ vows.describe('clean-units').addBatch({
       'div :first-child{display:block}',
       'div :first-child{display:block}'
     ],
-    'strip universal selector when coming with id/class/attribute selectors': [
-      [
-        '* > *#id > *.class{display:block}',
-        '*>#id>.class{display:block}'
-      ],[
-        '*:first-child > *[data-id]{display:block}',
-        ':first-child>[data-id]{display:block}'
-      ]
+    'strip universal selector from id and class selectors': [
+      '* > *#id > *.class{display:block}',
+      '*>#id>.class{display:block}'
+    ],
+    'strip universal selector from attribute selectors': [
+      '*:first-child > *[data-id]{display:block}',
+      ':first-child>[data-id]{display:block}'
     ],
     'not strip standalone universal selector': [
       'label ~ * + span{display:block}',

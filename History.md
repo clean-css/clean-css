@@ -9,6 +9,7 @@
 * Fixed issue [#157](https://github.com/GoalSmashers/clean-css/issues/157) - gets rid of `removeEmpty` option.
 * Fixed issue [#159](https://github.com/GoalSmashers/clean-css/issues/159) - escaped quotes inside content.
 * Fixed issue [#162](https://github.com/GoalSmashers/clean-css/issues/162) - strip quotes from Base64 encoded URLs.
+* Fixed issue [#166](https://github.com/GoalSmashers/clean-css/issues/166) - `debug` formatting in CLI
 * Fixed issue [#167](https://github.com/GoalSmashers/clean-css/issues/167) - `background:transparent` minification.
 * Adds CSS tokenizer which will make it possible to optimize content by reordering and/or merging selectors.
 * Adds basic optimizer removing duplicate selectors from a list.

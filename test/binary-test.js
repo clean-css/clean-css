@@ -79,20 +79,24 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
       assert.equal(stdout, 'a{display:block}');
     }
   }),
-  'piped with debug info': pipedContext('a{color:#f00}', '-d', {
+  'piped with debug info': pipedContext('a{color: #f00;}', '-d', {
     'should output content to stdout and debug info to stderr': function(error, stdout, stderr) {
       assert.equal(stdout, 'a{color:red}');
       assert.notEqual(stderr, '');
-      assert.include(stderr, 'Minification time:');
-      assert.include(stderr, 'Compression efficiency:');
+      assert.include(stderr, 'Time spent:');
+      assert.include(stderr, 'Original: 16 bytes');
+      assert.include(stderr, 'Minified: 12 bytes');
+      assert.include(stderr, 'Efficiency: 25%');
     }
   }),
-  'to output file with debug info': pipedContext('a{color:#f00}', '-d -o debug.css', {
+  'to output file with debug info': pipedContext('a{color: #f00;}', '-d -o debug.css', {
     'should output nothing to stdout and debug info to stderr': function(error, stdout, stderr) {
       assert.equal(stdout, '');
       assert.notEqual(stderr, '');
-      assert.include(stderr, 'Minification time:');
-      assert.include(stderr, 'Compression efficiency:');
+      assert.include(stderr, 'Time spent:');
+      assert.include(stderr, 'Original: 16 bytes');
+      assert.include(stderr, 'Minified: 12 bytes');
+      assert.include(stderr, 'Efficiency: 25%');
     },
     'should output content to file': function() {
       var minimized = readFile('debug.css');

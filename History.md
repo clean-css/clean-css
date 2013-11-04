@@ -4,14 +4,6 @@
 * Adds simplified and more advanced text escaping / restoring via `EscapeStore` class.
 * Adds simplified and much faster empty elements removal.
 * Adds missing `@import` processing to our benchmark (run via `npm run bench`).
-* Fixed issue [#138](https://github.com/GoalSmashers/clean-css/issues/138) - makes CleanCSS interface OO.
-* Fixed issue [#139](https://github.com/GoalSmashers/clean-css/issues/138) - consistent error & warning handling.
-* Fixed issue [#145](https://github.com/GoalSmashers/clean-css/issues/145) - debug mode in library too.
-* Fixed issue [#157](https://github.com/GoalSmashers/clean-css/issues/157) - gets rid of `removeEmpty` option.
-* Fixed issue [#159](https://github.com/GoalSmashers/clean-css/issues/159) - escaped quotes inside content.
-* Fixed issue [#162](https://github.com/GoalSmashers/clean-css/issues/162) - strip quotes from Base64 encoded URLs.
-* Fixed issue [#166](https://github.com/GoalSmashers/clean-css/issues/166) - `debug` formatting in CLI
-* Fixed issue [#167](https://github.com/GoalSmashers/clean-css/issues/167) - `background:transparent` minification.
 * Adds CSS tokenizer which will make it possible to optimize content by reordering and/or merging selectors.
 * Adds basic optimizer removing duplicate selectors from a list.
 * Adds merging duplicate properties within a single selector's body.
@@ -22,6 +14,14 @@
 * Adds reducing non-adjacent selectors.
 * Adds `--skip-advanced`/`noAdvanced` switch to disable advanced optimizations.
 * Adds reducing non-adjacent selectors when overridden by more complex selectors.
+* Fixed issue [#138](https://github.com/GoalSmashers/clean-css/issues/138) - makes CleanCSS interface OO.
+* Fixed issue [#139](https://github.com/GoalSmashers/clean-css/issues/138) - consistent error & warning handling.
+* Fixed issue [#145](https://github.com/GoalSmashers/clean-css/issues/145) - debug mode in library too.
+* Fixed issue [#157](https://github.com/GoalSmashers/clean-css/issues/157) - gets rid of `removeEmpty` option.
+* Fixed issue [#159](https://github.com/GoalSmashers/clean-css/issues/159) - escaped quotes inside content.
+* Fixed issue [#162](https://github.com/GoalSmashers/clean-css/issues/162) - strip quotes from Base64 encoded URLs.
+* Fixed issue [#166](https://github.com/GoalSmashers/clean-css/issues/166) - `debug` formatting in CLI
+* Fixed issue [#167](https://github.com/GoalSmashers/clean-css/issues/167) - `background:transparent` minification.
 
 [1.1.7 / 2013-10-28](https://github.com/GoalSmashers/clean-css/compare/v1.1.6...v1.1.7)
 ==================
@@ -61,6 +61,8 @@
 [1.1.0 / 2013-09-06](https://github.com/GoalSmashers/clean-css/compare/v1.0.12...v1.1.0)
 ==================
 
+* Renamed lib's `debug` option to `benchmark` when doing per-minification benchmarking.
+* Added simplified comments processing & imports.
 * Fixed issue [#43](https://github.com/GoalSmashers/clean-css/issues/43) - `--debug` switch for minification stats.
 * Fixed issue [#65](https://github.com/GoalSmashers/clean-css/issues/65) - full color name / hex shortening.
 * Fixed issue [#84](https://github.com/GoalSmashers/clean-css/issues/84) - support for `@import` with media queries.
@@ -69,8 +71,6 @@
 * Fixed issue [#129](https://github.com/GoalSmashers/clean-css/issues/129) - rebasing imported URLs.
 * Fixed issue [#130](https://github.com/GoalSmashers/clean-css/issues/130) - better code modularity.
 * Fixed issue [#135](https://github.com/GoalSmashers/clean-css/issues/135) - require node.js 0.8+.
-* Renamed lib's `debug` option to `benchmark` when doing per-minification benchmarking.
-* Added simplified comments processing & imports.
 
 [1.0.12 / 2013-07-19](https://github.com/GoalSmashers/clean-css/compare/v1.0.11...v1.0.12)
 ===================
@@ -165,14 +165,14 @@
 * Switched from [optimist](https://github.com/substack/node-optimist) to
   [commander](https://github.com/visionmedia/commander.js) for CLI processing.
 * Changed long options from `--removeempty` to `--remove-empty` and from `--keeplinebreaks` to `--keep-line-breaks`.
+* Fixed performance issue with replacing multiple `@charset` declarations and issue
+  with line break after `@charset` when using `keepLineBreaks` option. By [@rrjaime](https://github.com/rrjamie).
+* Removed Makefile in favor to `npm run` commands (e.g. `make check` -> `npm run check`).
 * Fixed issue [#47](https://github.com/GoalSmashers/clean-css/issues/47) - commandline issues on Windows.
 * Fixed issue [#49](https://github.com/GoalSmashers/clean-css/issues/49) - remove empty selectors from media query.
 * Fixed issue [#52](https://github.com/GoalSmashers/clean-css/issues/52) - strip fraction zeros if not needed.
 * Fixed issue [#58](https://github.com/GoalSmashers/clean-css/issues/58) - remove colon where possible.
 * Fixed issue [#59](https://github.com/GoalSmashers/clean-css/issues/59) - content property handling.
-* Fixed performance issue with replacing multiple `@charset` declarations and issue
-  with line break after `@charset` when using `keepLineBreaks` option. By [@rrjaime](https://github.com/rrjamie).
-* Removed Makefile in favor to `npm run` commands (e.g. `make check` -> `npm run check`).
 
 0.9.1 / 2012-12-19
 ==================

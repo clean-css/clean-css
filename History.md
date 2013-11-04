@@ -1,4 +1,4 @@
-[2.0.0 / 2013-xx-xx (UNRELEASED)](https://github.com/GoalSmashers/clean-css/compare/v1.1.7...v2.0.0)
+[2.0.0 / 2013-11-04](https://github.com/GoalSmashers/clean-css/compare/v1.1.7...v2.0.0)
 ==================
 
 * Adds simplified and more advanced text escaping / restoring via `EscapeStore` class.

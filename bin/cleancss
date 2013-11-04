@@ -113,6 +113,12 @@ function minify(data) {
     console.error('Time spent: %dms', minifier.stats.timeSpent);
   }
 
+  outputFeedback(minifier.errors, true);
+  outputFeedback(minifier.warnings);
+
+  if (minifier.errors.length > 0)
+    process.exit(1);
+
   return minified;
 }
 
@@ -121,4 +127,12 @@ function output(minified) {
     fs.writeFileSync(options.target, minified, 'utf8');
   else
     process.stdout.write(minified);
+};
+
+function outputFeedback(messages, isError) {
+  var prefix = isError ? '\x1B[31mERROR\x1B[39m:' : 'WARNING:';
+
+  messages.forEach(function(message) {
+    console.error('%s %s', prefix, message);
+  });
 };

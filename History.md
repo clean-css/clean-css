@@ -5,6 +5,7 @@
 * Adds simplified and much faster empty elements removal.
 * Adds missing `@import` processing to our benchmark (run via `npm run bench`).
 * Fixed issue [#138](https://github.com/GoalSmashers/clean-css/issues/138) - makes CleanCSS interface OO.
+* Fixed issue [#139](https://github.com/GoalSmashers/clean-css/issues/138) - consistent error & warning handling.
 * Fixed issue [#145](https://github.com/GoalSmashers/clean-css/issues/145) - debug mode in library too.
 * Fixed issue [#157](https://github.com/GoalSmashers/clean-css/issues/157) - gets rid of `removeEmpty` option.
 * Fixed issue [#159](https://github.com/GoalSmashers/clean-css/issues/159) - escaped quotes inside content.

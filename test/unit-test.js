@@ -9,16 +9,10 @@ var ColorShortener = require('../lib/colors/shortener');
 var lineBreak = process.platform == 'win32' ? '\r\n' : '\n';
 var cssContext = function(groups, options) {
   var context = {};
-  var clean = function(expectedCSS) {
+  var clean = function(expectedCss) {
     return function(css) {
-      var minifiedCSS = null;
-      try {
-        minifiedCSS = new CleanCSS(options).minify(css);
-      } catch (e) {
-        // swallow - minifiedCSS is set to null and that's the new expected value
-      }
-
-      assert.equal(minifiedCSS, expectedCSS);
+      var minifiedCss = new CleanCSS(options).minify(css);
+      assert.equal(minifiedCss, expectedCss);
     };
   };
 
@@ -926,11 +920,11 @@ title']{display:block}",
   '@import': cssContext({
     'empty': [
       "@import url();",
-      null
+      ''
     ],
     'of an unknown file': [
       "@import url('fake.css');",
-      null
+      ''
     ],
     'of a http file': "@import url(http://pro.goalsmashers.com/test.css);",
     'of a https file': [
@@ -945,7 +939,7 @@ title']{display:block}",
     'of a remote file via // url with media': "@import url(//pro.goalsmashers.com/test.css) screen,tv;",
     'of a directory': [
       "@import url(test/data/partials);",
-      null
+      ''
     ],
     'of a real file': [
       "@import url(test/data/partials/one.css);",
@@ -1043,7 +1037,7 @@ title']{display:block}",
   '@import with absolute paths': cssContext({
     'of an unknown file': [
       "@import url(/fake.css);",
-      null
+      ''
     ],
     'of a real file': [
       "@import url(/partials/one.css);",

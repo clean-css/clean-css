@@ -29,7 +29,7 @@
   ],
   "scripts": {
     "bench": "node ./test/bench.js",
-    "check": "jshint .",
+    "check": "jshint ./bin/cleancss .",
     "prepublish": "jshint .",
     "test": "vows"
   },

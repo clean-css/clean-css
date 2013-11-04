@@ -52,7 +52,7 @@
     "noarg": true,
     "node": true,
     "plusplus": false,
-    "quotmark": "true",
+    "quotmark": "single",
     "regexp": false,
     "strict": false,
     "trailing": true,

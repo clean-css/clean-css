@@ -10,7 +10,7 @@ var commands = require('commander');
 var packageConfig = fs.readFileSync(path.join(path.dirname(fs.realpathSync(process.argv[1])), '../package.json'));
 var buildVersion = JSON.parse(packageConfig).version;
 
-var isWindows = process.platform == 'win32';
+var isWindows = process.platform === 'win32';
 
 // Specify commander options to parse command line params correctly
 commands

@@ -1,4 +1,4 @@
-/* jshint quotmark: false */
+/* jshint indent: false, multistr: true, quotmark: false */
 
 var vows = require('vows');
 var assert = require('assert');

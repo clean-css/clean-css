@@ -52,7 +52,10 @@ vows.describe('module tests').addBatch({
   },
   'warnings': {
     topic: function() {
-      var minifier = new CleanCSS({ root: 'test/data', target: 'custom-warnings.css' });
+      var minifier = new CleanCSS({
+          root: 'test/data',
+          target: 'custom-warnings.css'
+        });
       minifier.minify('a{color:red}');
       return minifier;
     },
@@ -82,5 +85,5 @@ vows.describe('module tests').addBatch({
       assert.equal(minifier.errors.length, 1);
       assert.equal(minifier.errors[0], 'Broken @import declaration of "/some/fake/file"');
     }
-  },
+  }
 }).export(module);

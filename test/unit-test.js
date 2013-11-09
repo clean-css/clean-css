@@ -171,8 +171,8 @@ vows.describe('clean-units').addBatch({
       '@media\nonly screen and (max-width: 1319px) and (min--moz-device-pixel-ratio: 1.5),\nonly screen and (max-width: 1319px) and (-moz-min-device-pixel-ratio: 1.5)\n{ a { color:#000 } }',
       '@media only screen and (max-width:1319px) and (min--moz-device-pixel-ratio:1.5),only screen and (max-width:1319px) and (-moz-min-device-pixel-ratio:1.5){a{color:#000}}'
     ],
-    'in content preceded by #content': '#content{display:block}#foo{content:"\00BB  "}',
-    'in content preceded by .content': '.content{display:block}#foo{content:"\00BB  "}',
+    'in content preceded by #content': '#content{display:block}#foo{content:"\0BB  "}',
+    'in content preceded by .content': '.content{display:block}#foo{content:"\0BB  "}',
     'in content preceded by line break': [
       '.content{display:block}#foo{' + lineBreak + 'content:"x"}',
       '.content{display:block}#foo{content:"x"}'
@@ -709,7 +709,10 @@ path")}',
       '@import url(/test/data/partials-relative/base.css);',
       'a{background:url(/test/data/partials/extra/down.gif) 0 0 no-repeat}'
     ]
-  }, { root: process.cwd(), relativeTo: path.join('test', 'data', 'partials-relative') }),
+  }, {
+    root: process.cwd(),
+    relativeTo: path.join('test', 'data', 'partials-relative')
+  }),
   'urls rewriting - no root but target': cssContext({
     'no @import': [
       'a{background:url(../partials/extra/down.gif) 0 0 no-repeat}',
@@ -723,7 +726,10 @@ path")}',
       '@import url(/test/data/partials-relative/base.css);',
       'a{background:url(test/data/partials/extra/down.gif) 0 0 no-repeat}'
     ]
-  }, { target: path.join(process.cwd(), 'test.css'), relativeTo: path.join('test', 'data', 'partials-relative') }),
+  }, {
+    target: path.join(process.cwd(), 'test.css'),
+    relativeTo: path.join('test', 'data', 'partials-relative')
+  }),
   'urls rewriting - root and target': cssContext({
     'no @import': [
       'a{background:url(../partials/extra/down.gif) 0 0 no-repeat}',
@@ -737,7 +743,11 @@ path")}',
       '@import url(/test/data/partials-relative/base.css);',
       'a{background:url(/test/data/partials/extra/down.gif) 0 0 no-repeat}'
     ]
-  }, { root: process.cwd(), target: path.join(process.cwd(), 'test.css'), relativeTo: path.join('test', 'data', 'partials-relative') }),
+  }, {
+    root: process.cwd(),
+    target: path.join(process.cwd(), 'test.css'),
+    relativeTo: path.join('test', 'data', 'partials-relative')
+  }),
   'fonts': cssContext({
     'keep format quotation': "@font-face{font-family:PublicVintage;src:url(/PublicVintage.otf) format('opentype')}",
     'remove font family quotation': [
@@ -1192,8 +1202,8 @@ title']{display:block}",
       '.one,.two{color:red;line-height:1em}'
     ],
     'two adjacent with hex color definitions': [
-      "a:link,a:visited{color:#fff}.one{display:block}a:link,a:visited{color:red}",
-      ".one{display:block}a:link,a:visited{color:red}"
+      'a:link,a:visited{color:#fff}.one{display:block}a:link,a:visited{color:red}',
+      '.one{display:block}a:link,a:visited{color:red}'
     ]
   }),
   'same non-adjacent selectors': cssContext({

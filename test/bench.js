@@ -13,4 +13,4 @@ var start = process.hrtime();
 new CleanCSS({ benchmark: true, root: benchDir }).minify(cssData);
 
 var itTook = process.hrtime(start);
-console.log('complete minification: %d ms', 1000 * itTook[0] + itTook[1] / 1000000.0);
+console.log('complete minification: %d ms', 1000 * itTook[0] + itTook[1] / 1000000);

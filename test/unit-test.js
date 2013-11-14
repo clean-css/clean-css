@@ -1249,6 +1249,11 @@ title']{display:block}",
     'when complex selector overriden by complex selectors': [
       '.one>.two,.three{color:red;line-height:1rem}#zero,.one>.two,.three,.www{color:#fff;margin:0}a{color:red}.one>.two,.three{line-height:2rem;font-size:1.5rem}',
       '#zero,.one>.two,.three,.www{color:#fff;margin:0}a{color:red}.one>.two,.three{line-height:2rem;font-size:1.5rem}'
+    ],
+    'when undefined is used as a value': '.one{text-shadow:undefined}p{color:red}.one{font-size:12px}',
+    'when undefined is used as a value with reduction': [
+      '.one{text-shadow:undefined}p{color:red}.one{font-size:12px;text-shadow:none}',
+      'p{color:red}.one{font-size:12px;text-shadow:none}'
     ]
   }),
   'same bodies': cssContext({

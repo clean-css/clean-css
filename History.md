@@ -1,3 +1,8 @@
+[2.0.1 / 2013-xx-xx](https://github.com/GoalSmashers/clean-css/compare/v2.0.0...HEAD)
+==================
+
+* Fixed issue [#176](https://github.com/GoalSmashers/clean-css/issues/176) - hangs on `undefined` keyword.
+
 [2.0.0 / 2013-11-04](https://github.com/GoalSmashers/clean-css/compare/v1.1.7...v2.0.0)
 ==================
 

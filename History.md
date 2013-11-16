@@ -1,6 +1,7 @@
 [2.1.0 / 2013-xx-xx (UNRELEASED)](https://github.com/GoalSmashers/clean-css/compare/v2.0.0...HEAD)
 ==================
 
+* Fixed issue [#163](https://github.com/GoalSmashers/clean-css/issues/163) - round pixels to 2nd decimal place.
 * Fixed issue [#165](https://github.com/GoalSmashers/clean-css/issues/165) - extra space after trailing parenthesis.
 
 [2.0.1 / 2013-11-14](https://github.com/GoalSmashers/clean-css/compare/v2.0.0...v2.0.1)

@@ -525,7 +525,18 @@ vows.describe('clean-units').addBatch({
     'strip fraction zeros': [
       'div{margin:1.000em 2.00em 3.100em 4.01em}',
       'div{margin:1em 2em 3.1em 4.01em}'
-    ]
+    ],
+    'round pixels up to 2nd decimal place': [
+      'div{transform:translateY(-418.505123px)}',
+      'div{transform:translateY(-418.51px)}'
+    ],
+    'round pixels down to 2nd decimal place': [
+      'div{transform:translateY(0.504123px)}',
+      'div{transform:translateY(0.5px)}'
+    ],
+    'do not round 2nd decimal place pixels': 'div{transform:translateY(20.55px)}',
+    'do not round percentages': 'div{left:20.505%}',
+    'do not round ems': 'div{font-size:1.505em}'
   }),
   'colors': cssContext({
     'shorten rgb to standard hexadecimal format': [

@@ -949,6 +949,16 @@ title']{display:block}",
       ''
     ]
   }),
+  'empty with disabled advanced optimizations': cssContext({
+    'selector': [
+      'a{}p{}',
+      ''
+    ],
+    'media': [
+      '@media screen{}',
+      ''
+    ]
+  }, { noAdvanced: true }),
   '@import': cssContext({
     'empty': [
       "@import url();",

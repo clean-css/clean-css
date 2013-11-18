@@ -75,10 +75,6 @@ cleancss [options] <source-file>
 -d, --debug                     Shows debug information (minification time & compression efficiency)
 ```
 
-### How to use clean-css with [grunt](http://gruntjs.com)?
-
-See [grunt-contrib-cssmin](https://github.com/gruntjs/grunt-contrib-cssmin) plugin.
-
 #### Examples:
 
 To minify a **public.css** file into **public-min.css** do:
@@ -134,6 +130,10 @@ CleanCSS constructor accepts a hash as a parameter, i.e.,
 * `noAdvanced` - set to true to disable advanced optimizations - selector & property merging, reduction, etc.
 * `selectorsMergeMode` - `ie8` for IE8 compatibility mode, `*` for merging all (default)
 * `debug` - set to true to get minification statistics under `stats` property (see `test/custom-test.js` for examples)
+
+### How to use clean-css with [grunt](http://gruntjs.com)?
+
+See [grunt-contrib-cssmin](https://github.com/gruntjs/grunt-contrib-cssmin) plugin.
 
 ### What are the clean-css' dev commands?
 

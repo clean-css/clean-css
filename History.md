@@ -2,6 +2,7 @@
 ==================
 
 * Skips empty removal if advanced processing is enabled.
+* Fixed issue [#160](https://github.com/GoalSmashers/clean-css/issues/160) - re-runs optimizer until a clean pass.
 * Fixed issue [#161](https://github.com/GoalSmashers/clean-css/issues/161) - improves tokenizer performance.
 * Fixed issue [#163](https://github.com/GoalSmashers/clean-css/issues/163) - round pixels to 2nd decimal place.
 * Fixed issue [#165](https://github.com/GoalSmashers/clean-css/issues/165) - extra space after trailing parenthesis.

@@ -2526,8 +2526,7 @@ body.access-ess #page-paywall .content .arguments .arg{float:none;margin:auto}
 .site-liberation .w14unit .block-call-items .mini-tpl .big{width:392px;height:261px}
 .site-liberation .w14unit .block-call-items .mini-tpl .pano{width:392px;height:85px}
 .site-liberation .w11unit .block-call-items .mini-tpl .pano{width:300px;height:65px}
-.site-liberation .block-call-items .tpl-visual-square-left h5,.site-liberation .block-call-items .tpl-visual-square-left-arround h5{text-transform:none}
-.site-liberation .block-call-items .tpl-visual-square-left h5,.site-liberation .block-call-items .tpl-visual-square-left-arround h5{font-family:Georgia,"Times New Roman",Times,serif;font-size:13px;font-weight:700}
+.site-liberation .block-call-items .tpl-visual-square-left h5,.site-liberation .block-call-items .tpl-visual-square-left-arround h5{text-transform:none;font-family:Georgia,"Times New Roman",Times,serif;font-size:13px;font-weight:700}
 .site-liberation .block-call-items .mini-tpl h4{font-size:16px;font-weight:700}
 .site-liberation .block-call-items .tpl-flash-news-29unit,.site-liberation .block-call-items .tpl-flash-news-29unit:last-of-type{border-bottom:1px dotted #ddd;margin:0 0 14px;clear:both}
 .site-liberation .block-call-items .tpl-flash-news-29unit .big{margin-right:28px}

@@ -1293,6 +1293,12 @@ title']{display:block}",
       'p{color:red}.one{font-size:12px;text-shadow:none}'
     ]
   }),
+  'rerun optimizers': cssContext({
+    'selectors reducible once': [
+      '.one{color:red;margin:0}.two{color:red}.one{margin:0}',
+      '.one,.two{color:red}.one{margin:0}'
+    ]
+  }),
   'same bodies': cssContext({
     'of two non-adjacent selectors': '.one{color:red}.two{color:#00f}.three{color:red}',
     'of two adjacent single selectors': [

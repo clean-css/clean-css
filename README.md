@@ -75,6 +75,10 @@ cleancss [options] <source-file>
 -d, --debug                     Shows debug information (minification time & compression efficiency)
 ```
 
+### How to use clean-css with [grunt](http://gruntjs.com)?
+
+See [grunt-contrib-cssmin](https://github.com/gruntjs/grunt-contrib-cssmin) plugin.
+
 #### Examples:
 
 To minify a **public.css** file into **public-min.css** do:

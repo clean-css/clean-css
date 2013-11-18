@@ -61,6 +61,40 @@ vows.describe('module tests').addBatch({
       assert.match(minifier.warnings[0], /Both 'root' and output file given/);
     }
   },
+  'warnings on extra closing brace': {
+    topic: function() {
+      var minifier = new CleanCSS();
+      var minified = minifier.minify('a{display:block}}');
+      this.callback(null, minified, minifier);
+    },
+    'should minify correctly': function(error, minified) {
+      assert.equal(minified, 'a{display:block}');
+    },
+    'should raise no errors': function(error, minified, minifier) {
+      assert.equal(minifier.errors.length, 0);
+    },
+    'should raise one warning': function(error, minified, minifier) {
+      assert.equal(minifier.warnings.length, 1);
+      assert.equal(minifier.warnings[0], 'Unexpected \'}\' in \'a{display:block}}\'. Ignoring.');
+    }
+  },
+  'warnings on unexpected body': {
+    topic: function() {
+      var minifier = new CleanCSS();
+      var minified = minifier.minify('a{display:block}color:#535353}p{color:red}');
+      this.callback(null, minified, minifier);
+    },
+    'should minify correctly': function(error, minified) {
+      assert.equal(minified, 'a{display:block}p{color:red}');
+    },
+    'should raise no errors': function(error, minified, minifier) {
+      assert.equal(minifier.errors.length, 0);
+    },
+    'should raise one warning': function(error, minified, minifier) {
+      assert.equal(minifier.warnings.length, 1);
+      assert.equal(minifier.warnings[0], 'Unexpected content: \'color:#535353}\'. Ignoring.');
+    }
+  },
   'no errors': {
     topic: function() {
       var minifier = new CleanCSS();

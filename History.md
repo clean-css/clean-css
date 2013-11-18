@@ -1,4 +1,4 @@
-[2.0.2 / 2013-xx-xx (UNRELEASED)](https://github.com/GoalSmashers/clean-css/compare/v2.0.1...HEAD)
+[2.0.2 / 2013-11-18](https://github.com/GoalSmashers/clean-css/compare/v2.0.1...v2.0.2)
 ==================
 
 * Fixed issue [#177](https://github.com/GoalSmashers/clean-css/issues/177) - process broken content correctly.

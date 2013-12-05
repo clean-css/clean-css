@@ -5,10 +5,39 @@ var CleanCSS = require('../index');
 vows.describe('module tests').addBatch({
   'imported as a function': {
     topic: function() {
-      return new CleanCSS().minify;
+      var css = new CleanCSS();
+      return css.minify.bind(css);
     },
     'should minify CSS correctly': function(minify) {
       assert.equal(minify('a{  color: #f00;  }'), 'a{color:red}');
+    }
+  },
+  'initialization without new (back-compat)': {
+    topic: function() {
+      return CleanCSS();
+    },
+    'should have stats, errors, etc.': function(css) {
+      assert.isObject(css.stats);
+      assert.isArray(css.errors);
+      assert.isArray(css.warnings);
+      assert.isString(css.lineBreak);
+    },
+    'should minify CSS correctly': function(css) {
+      assert.equal(css.minify('a{  color: #f00;  }'), 'a{color:red}');
+    }
+  },
+  'extended via prototype': {
+    topic: function() {
+      CleanCSS.prototype.foo = function(data, callback) {
+        callback(null, this.minify(data));
+      };
+      new CleanCSS().foo('a{  color: #f00;  }', this.callback);
+    },
+    'should minify CSS correctly': function(error, minified) {
+      assert.equal(minified, 'a{color:red}');
+    },
+    teardown: function() {
+      delete CleanCSS.prototype.foo;
     }
   },
   'no debug': {

@@ -40,6 +40,30 @@ vows.describe('module tests').addBatch({
       delete CleanCSS.prototype.foo;
     }
   },
+  'with callback passed and no errors': {
+    topic: function() {
+      new CleanCSS().minify('a{color:#f00}', this.callback);
+    },
+    'should correctly set context': function() {
+      assert.equal(true, this instanceof CleanCSS);
+    },
+    'should yield no error': function(errors, minified) {
+      /* jshint unused: false */
+      assert.equal(errors, null);
+    },
+    'should yield minified data': function(errors, minified) {
+      assert.equal(minified, 'a{color:red}');
+    }
+  },
+  'with callback passed and one error': {
+    topic: function() {
+      new CleanCSS().minify('@import "missing.css";', this.callback);
+    },
+    'should yield no error and minify': function(errors, minified) {
+      /* jshint unused: false */
+      assert.equal(errors.length, 1);
+    }
+  },
   'no debug': {
     topic: function() {
       var minifier = new CleanCSS();

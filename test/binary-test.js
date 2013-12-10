@@ -2,6 +2,7 @@ var vows = require('vows');
 var assert = require('assert');
 var exec = require('child_process').exec;
 var fs = require('fs');
+var http = require('http');
 
 var isWindows = process.platform == 'win32';
 var lineBreak = isWindows ? /\r\n/g : /\n/g;
@@ -25,6 +26,10 @@ var pipedContext = function(css, options, context) {
     exec('echo "' + css + '" | ./bin/cleancss ' + options, this.callback);
   };
   return context;
+};
+
+var unixOnlyContext = function(context) {
+  return isWindows ? {} : context;
 };
 
 var readFile = function(filename) {
@@ -216,5 +221,27 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
         assert.include(stdout, 'url(../components/jquery-ui/images/next.gif)');
       }
     })
-  }
+  },
+  'timeout': unixOnlyContext({
+    topic: function() {
+      var self = this;
+      var source = '@import url(http://localhost:24682/timeout.css);';
+
+      this.server = http.createServer(function() {
+        setTimeout(function() {}, 1000);
+      });
+      this.server.listen('24682', function() {
+        exec('echo "' + source + '" | ./bin/cleancss --timeout 0.01', self.callback);
+      });
+    },
+    'should raise warning': function(error, stdout, stderr) {
+      assert.include(stderr, 'Broken @import declaration of "http://localhost:24682/timeout.css" - timeout');
+    },
+    'should output empty response': function(error, stdout) {
+      assert.equal(stdout, '');
+    },
+    teardown: function() {
+      this.server.close();
+    }
+  })
 });

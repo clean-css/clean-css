@@ -167,10 +167,11 @@ vows.describe('module tests').addBatch({
     },
     'if both root and output used reasons given': function(minifier) {
       assert.doesNotThrow(function() {
-        minifier.minify('@import url(/some/fake/file);');
+        minifier.minify('@import url(/some/fake/file);', function(errors) {
+          assert.equal(errors.length, 1);
+          assert.equal(errors[0], 'Broken @import declaration of "/some/fake/file"');
+        });
       });
-      assert.equal(minifier.errors.length, 1);
-      assert.equal(minifier.errors[0], 'Broken @import declaration of "/some/fake/file"');
     }
   },
   'buffer passed in': {

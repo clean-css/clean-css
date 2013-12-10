@@ -38,6 +38,7 @@
   },
   "devDependencies": {
     "jshint": "2.4.x",
+    "nock": "0.25.x",
     "vows": "0.7.x"
   },
   "jshintConfig": {

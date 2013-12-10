@@ -4,6 +4,7 @@
 * Adds an optional callback to minify method.
 * Deprecates --selectors-merge-mode / selectorsMergeMode in favor to --compatibility / compatibility.
 * Skips empty removal if advanced processing is enabled.
+* Fixed issue [#85](https://github.com/GoalSmashers/clean-css/issues/85) - resolving protocol `@import`s.
 * Fixed issue [#160](https://github.com/GoalSmashers/clean-css/issues/160) - re-runs optimizer until a clean pass.
 * Fixed issue [#161](https://github.com/GoalSmashers/clean-css/issues/161) - improves tokenizer performance.
 * Fixed issue [#163](https://github.com/GoalSmashers/clean-css/issues/163) - round pixels to 2nd decimal place.

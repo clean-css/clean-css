@@ -21,22 +21,22 @@ var batchContexts = function() {
 
         return {
           plain: fs.readFileSync(plainPath, 'utf-8'),
-          minimized: fs.readFileSync(minPath, 'utf-8'),
+          preminified: fs.readFileSync(minPath, 'utf-8'),
           root: path.dirname(plainPath)
         };
       }
     };
     context[testName]['minimizing ' + testName + '.css'] = function(data) {
-      var processed = new CleanCSS({
+      new CleanCSS({
         keepBreaks: true,
         root: data.root
-      }).minify(data.plain);
+      }).minify(data.plain, function(errors, minified) {
+        var minifiedTokens = minified.split(lineBreak);
+        var preminifiedTokens = data.preminified.split(lineBreak);
 
-      var processedTokens = processed.split(lineBreak);
-      var minimizedTokens = data.minimized.split(lineBreak);
-
-      processedTokens.forEach(function(line, i) {
-        assert.equal(line, minimizedTokens[i]);
+        minifiedTokens.forEach(function(line, i) {
+          assert.equal(line, preminifiedTokens[i]);
+        });
       });
     };
   });

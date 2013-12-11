@@ -7,6 +7,7 @@
 * Fixed issue [#161](https://github.com/GoalSmashers/clean-css/issues/161) - improves tokenizer performance.
 * Fixed issue [#163](https://github.com/GoalSmashers/clean-css/issues/163) - round pixels to 2nd decimal place.
 * Fixed issue [#165](https://github.com/GoalSmashers/clean-css/issues/165) - extra space after trailing parenthesis.
+* Fixed issue [#186](https://github.com/GoalSmashers/clean-css/issues/186) - strip unit from 0rem.
 
 [2.0.2 / 2013-11-18](https://github.com/GoalSmashers/clean-css/compare/v2.0.1...v2.0.2)
 ==================

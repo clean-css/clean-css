@@ -405,11 +405,24 @@ vows.describe('clean-units').addBatch({
       'a{box-shadow:0 0 0 0}',
       'a{box-shadow:0 0}'
     ],
+    'rems': [
+      'div{width:0rem;height:0rem}',
+      'div{width:0;height:0}'
+    ],
     'prefixed box shadow zeros': [
       'a{-webkit-box-shadow:0 0 0 0; -moz-box-shadow:0 0 0 0}',
       'a{-webkit-box-shadow:0 0;-moz-box-shadow:0 0}'
     ]
   }),
+  'zero values in ie8 compatibility mode': cssContext({
+    'rems': 'div{width:0rem;height:0rem}'
+  }, { compatibility: 'ie8' }),
+  'zero values in any other compatibility mode': cssContext({
+    'rems': [
+      'div{width:0rem;height:0rem}',
+      'div{width:0;height:0}'
+    ]
+  }, { compatibility: '*' }),
   'shorthands': cssContext({
     'padding - same 4 values': [
       'div{padding:1px 1px 1px 1px}',

@@ -1321,7 +1321,7 @@ title']{display:block}",
     ],
     'of supported and unsupported selector': '.one:first-child{color:red}.two:last-child{color:red}',
     'of two unsupported selectors': '.one:nth-child(5){color:red}.two:last-child{color:red}'
-  }, { selectorsMergeMode: 'ie8' }),
+  }, { compatibility: 'ie8' }),
   'redefined more granular properties': redefineContext({
     'animation-delay': ['animation'],
     'animation-direction': ['animation'],

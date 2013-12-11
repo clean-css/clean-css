@@ -71,7 +71,8 @@ cleancss [options] <source-file>
 --skip-rebase                   Disable URLs rebasing
 --skip-advanced                 Disable advanced optimizations - selector & property merging,
                                 reduction, etc.
---selectors-merge-mode [ie8|*]  Use `ie8` for compatibility mode, `*` for merge all (default)
+--selectors-merge-mode [ie8|*]  DEPRECATED: Use --compatibility switch
+-c, --compatibility [ie8]       Force compatibility mode
 -d, --debug                     Shows debug information (minification time & compression efficiency)
 ```
 

@@ -1,6 +1,7 @@
 [2.1.0 / 2013-xx-xx (UNRELEASED)](https://github.com/GoalSmashers/clean-css/compare/v2.0.0...HEAD)
 ==================
 
+* Deprecates --selectors-merge-mode / selectorsMergeMode in favor to --compatibility / compatibility.
 * Skips empty removal if advanced processing is enabled.
 * Fixed issue [#160](https://github.com/GoalSmashers/clean-css/issues/160) - re-runs optimizer until a clean pass.
 * Fixed issue [#161](https://github.com/GoalSmashers/clean-css/issues/161) - improves tokenizer performance.

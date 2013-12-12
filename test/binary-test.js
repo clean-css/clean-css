@@ -3,6 +3,7 @@ var assert = require('assert');
 var exec = require('child_process').exec;
 var fs = require('fs');
 var http = require('http');
+var path = require('path');
 
 var isWindows = process.platform == 'win32';
 var lineBreak = isWindows ? /\r\n/g : /\n/g;
@@ -93,6 +94,11 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
       assert.include(stderr, 'Minified: 12 bytes');
       assert.include(stderr, 'Efficiency: 25%');
     }
+  }),
+  'piped with debug info on inlining': pipedContext('@import url(test/data/imports-min.css);', '-d', {
+    'should output inlining info': function(error, stdout, stderr) {
+      assert.include(stderr, path.join(process.cwd(), 'test/data/imports-min.css'));
+    },
   }),
   'to output file with debug info': pipedContext('a{color: #f00;}', '-d -o debug.css', {
     'should output nothing to stdout and debug info to stderr': function(error, stdout, stderr) {

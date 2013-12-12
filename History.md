@@ -3,6 +3,7 @@
 
 * Adds an optional callback to minify method.
 * Deprecates --selectors-merge-mode / selectorsMergeMode in favor to --compatibility / compatibility.
+* Fixes debug mode stats for stylesheets using `@import` statements.
 * Skips empty removal if advanced processing is enabled.
 * Fixed issue [#85](https://github.com/GoalSmashers/clean-css/issues/85) - resolving protocol `@import`s.
 * Fixed issue [#160](https://github.com/GoalSmashers/clean-css/issues/160) - re-runs optimizer until a clean pass.

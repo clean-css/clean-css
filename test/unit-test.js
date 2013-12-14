@@ -12,6 +12,8 @@ var cssContext = function(groups, options) {
   var clean = function(expectedCss) {
     return function(css) {
       var minifiedCss = new CleanCSS(options).minify(css);
+      // Uncomment for debugging purposes
+      //if (minifiedCss != expectedCss) console.log("\n> input:\n", css, "\n> output:\n", minifiedCss, "\n> expected:\n", expectedCss, "\n----------");
       assert.equal(minifiedCss, expectedCss);
     };
   };

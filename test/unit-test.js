@@ -616,7 +616,35 @@ vows.describe('clean-units').addBatch({
       'a{color:hsl(360,100%,50%)}',
       'a{color:red}'
     ],
-    'hsla not to hex': 'a{color:hsl(99,66%,33%,.5)}'
+    'hsla not to hex': 'a{color:hsl(99,66%,33%,.5)}',
+    'hsl out of bounds #1': [
+      'a{color:hsl(120,200%,50%)}',
+      'a{color:#0f0}'
+    ],
+    'hsl out of bounds #2': [
+      'a{color:hsl(120,-100%,50%)}',
+      'a{color:#7f7f7f}'
+    ],
+    'hsl out of bounds #3': [
+      'a{color:hsl(480,100%,25%)}',
+      'a{color:#007f00}'
+    ],
+    'hsl out of bounds #4': [
+      'a{color:hsl(-240,100%,75%)}',
+      'a{color:#7fff7f}'
+    ],
+    'hsl out of bounds #5': [
+      'a{color:hsl(-600,100%,75%)}',
+      'a{color:#7fff7f}'
+    ],
+    'hsl out of bounds #6': [
+      'a{color:hsl(0,0%,122%)}',
+      'a{color:#fff}'
+    ],
+    'hsl out of bounds #7': [
+      'a{color:hsl(0,0%,-10%)}',
+      'a{color:#000}'
+    ]
   }),
   'shortening colors': colorShorteningContext(),
   'font weights': cssContext({

@@ -1,4 +1,4 @@
-[2.0.3 / 2013-xx-xx (UNRELEASED)](https://github.com/GoalSmashers/clean-css/compare/v2.0.2...v2.0.3)
+[2.0.3 / 2013-12-18](https://github.com/GoalSmashers/clean-css/compare/v2.0.2...v2.0.3)
 ==================
 
 * Fixed issue [#191](https://github.com/GoalSmashers/clean-css/issues/191) - leading numbers in font/animation names.

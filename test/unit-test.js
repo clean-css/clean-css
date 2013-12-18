@@ -745,6 +745,8 @@ path")}',
       "a{font-family:Helvetica,Arial}"
     ],
     'do not remove font family double quotation if space inside': 'a{font-family:"Courier New"}',
+    'do not remove font quotation if starts with a number': 'a{font:\'123font\'}',
+    'do not remove font family quotation if starts with a number': 'a{font-family:\'123font\'}',
     'remove font quotation': [
       "a{font:12px/16px \"Helvetica\",'Arial'}",
       "a{font:12px/16px Helvetica,Arial}"

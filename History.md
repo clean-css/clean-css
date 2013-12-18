@@ -13,6 +13,7 @@
 ==================
 
 * Fixed issue [#191](https://github.com/GoalSmashers/clean-css/issues/191) - leading numbers in font/animation names.
+* Fixed issue [#192](https://github.com/GoalSmashers/clean-css/issues/192) - many `@import`s inside a comment.
 
 [2.0.2 / 2013-11-18](https://github.com/GoalSmashers/clean-css/compare/v2.0.1...v2.0.2)
 ==================

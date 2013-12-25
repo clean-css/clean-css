@@ -1094,6 +1094,12 @@ title']{display:block}",
   'duplicate selectors with disabled advanced processing': cssContext({
     'of a duplicate selector': 'a,a{color:red}'
   }, { noAdvanced: true }),
+  'line breaks with disabled advanced processing': cssContext({
+    'should be applied': [
+      'a{color:red}p{display:block}',
+      'a{color:red}' + lineBreak + 'p{display:block}',
+    ]
+  }, { noAdvanced: true, keepBreaks: true }),
   'invalid data tokenization': cssContext({
     'extra top-level closing brace': [
       'a{color:red}}p{width:auto}',

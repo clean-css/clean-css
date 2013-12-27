@@ -1,13 +1,13 @@
 [![NPM version](https://badge.fury.io/js/clean-css.png)](https://badge.fury.io/js/clean-css)
 [![Build Status](https://secure.travis-ci.org/GoalSmashers/clean-css.png)](https://travis-ci.org/GoalSmashers/clean-css)
-[![Dependency Status](https://david-dm.org/GoalSmashers/clean-css.png)](https://david-dm.org/GoalSmashers/clean-css)
-[![devDependency Status](https://david-dm.org/GoalSmashers/clean-css/dev-status.png)](https://david-dm.org/GoalSmashers/clean-css#info=devDependencies)
+[![Dependency Status](https://david-dm.org/GoalSmashers/clean-css.png?theme=shields.io)](https://david-dm.org/GoalSmashers/clean-css)
+[![devDependency Status](https://david-dm.org/GoalSmashers/clean-css/dev-status.png?theme=shields.io)](https://david-dm.org/GoalSmashers/clean-css#info=devDependencies)
 
 ## What is clean-css?
 
-Clean-css is a fast and efficient [node.js](http://nodejs.org/) library for minifying CSS files.
+Clean-css is a fast and efficient [Node.js](http://nodejs.org/) library for minifying CSS files.
 
-According to [tests](https://rawgithub.com/GoalSmashers/css-minification-benchmark/master/results.html) it is one of the best available.
+According to [tests](http://goalsmashers.github.io/css-minification-benchmark/) it is one of the best available.
 
 
 ## Usage
@@ -15,7 +15,7 @@ According to [tests](https://rawgithub.com/GoalSmashers/css-minification-benchma
 ### What are the requirements?
 
 ```
-node.js 0.8.0+ (tested on CentOS, Ubuntu, OS X 10.6+, and Windows 7+)
+Node.js 0.8.0+ (tested on CentOS, Ubuntu, OS X 10.6+, and Windows 7+)
 ```
 
 ### How to install clean-css?
@@ -132,7 +132,7 @@ CleanCSS constructor accepts a hash as a parameter, i.e.,
 * `selectorsMergeMode` - `ie8` for IE8 compatibility mode, `*` for merging all (default)
 * `debug` - set to true to get minification statistics under `stats` property (see `test/custom-test.js` for examples)
 
-### How to use clean-css with [grunt](http://gruntjs.com)?
+### How to use clean-css with [Grunt](http://gruntjs.com)?
 
 See [grunt-contrib-cssmin](https://github.com/gruntjs/grunt-contrib-cssmin) plugin.
 

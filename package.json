@@ -37,7 +37,7 @@
     "commander": "2.1.x"
   },
   "devDependencies": {
-    "jshint": "2.3.x",
+    "jshint": "2.4.x",
     "vows": "0.7.x"
   },
   "jshintConfig": {

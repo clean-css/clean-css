@@ -1011,6 +1011,10 @@ title']{display:block}",
       "@import url('fake.css');",
       ''
     ],
+    'of an unknown file with a missing trailing semicolon': [
+      "@import url(fake.css)",
+      ''
+    ],
     'of a http file': "@import url(http://pro.goalsmashers.com/test.css);",
     'of a https file': [
       "@import url('https://pro.goalsmashers.com/test.css');",
@@ -1069,6 +1073,14 @@ title']{display:block}",
     'of a real file with complex media': [
       '@import \'test/data/partials/one.css\' screen and (orientation:landscape);',
       "@media screen and (orientation:landscape){.one{color:red}}"
+    ],
+    'of a real file with a missing trailing semicolon': [
+      "@import url(test/data/partials/one.css)",
+      ''
+    ],
+    'of a real files with a missing trailing semicolon': [
+      "@import url(test/data/partials/one.css)@import url(test/data/partials/two.css)",
+      ''
     ],
     'of more files': [
       "@import url(test/data/partials/one.css);\n\na{display:block}\n\n@import url(test/data/partials/extra/three.css);",

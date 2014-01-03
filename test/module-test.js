@@ -148,5 +148,13 @@ vows.describe('module tests').addBatch({
       assert.equal(minifier.errors.length, 1);
       assert.equal(minifier.errors[0], 'Broken @import declaration of "/some/fake/file"');
     }
+  },
+  'buffer passed in': {
+    'topic': function() {
+      return new CleanCSS().minify(new Buffer('@import url(test/data/partials/one.css);'));
+    },
+    'should be processed correctly': function(minified) {
+      assert.equal('.one{color:red}', minified);
+    }
   }
 }).export(module);

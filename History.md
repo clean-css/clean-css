@@ -2,6 +2,7 @@
 ==================
 
 * Fixed issue [#199](https://github.com/GoalSmashers/clean-css/issues/199) - keep line breaks with no advanced optimizations.
+* Fixed issue [#203](https://github.com/GoalSmashers/clean-css/issues/203) - Buffer as a first argument to minify method.
 
 [2.0.4 / 2013-12-19](https://github.com/GoalSmashers/clean-css/compare/v2.0.3...v2.0.4)
 ==================

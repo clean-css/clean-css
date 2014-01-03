@@ -1,3 +1,8 @@
+[2.0.6 / 2014-xx-xx (UNRELEASED)](https://github.com/GoalSmashers/clean-css/compare/v2.0.5...v2.0.6)
+==================
+
+* Fixed issue [#205](https://github.com/GoalSmashers/clean-css/issues/205) - freeze on broken @import declaration.
+
 [2.0.5 / 2014-01-03](https://github.com/GoalSmashers/clean-css/compare/v2.0.4...v2.0.5)
 ==================
 

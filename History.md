@@ -1,4 +1,4 @@
-[2.0.6 / 2014-xx-xx (UNRELEASED)](https://github.com/GoalSmashers/clean-css/compare/v2.0.5...v2.0.6)
+[2.0.6 / 2014-01-04](https://github.com/GoalSmashers/clean-css/compare/v2.0.5...v2.0.6)
 ==================
 
 * Fixed issue [#198](https://github.com/GoalSmashers/clean-css/issues/198) - process comments and `@import`s correctly.

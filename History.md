@@ -9,7 +9,7 @@
 * Fixed issue [#165](https://github.com/GoalSmashers/clean-css/issues/165) - extra space after trailing parenthesis.
 * Fixed issue [#186](https://github.com/GoalSmashers/clean-css/issues/186) - strip unit from 0rem.
 
-[2.0.6 / 2014-xx-xx (UNRELEASED)](https://github.com/GoalSmashers/clean-css/compare/v2.0.5...v2.0.6)
+[2.0.6 / 2014-01-04](https://github.com/GoalSmashers/clean-css/compare/v2.0.5...v2.0.6)
 ==================
 
 * Fixed issue [#198](https://github.com/GoalSmashers/clean-css/issues/198) - process comments and `@import`s correctly.

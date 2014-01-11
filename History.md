@@ -11,6 +11,7 @@
 * Fixed issue [#163](https://github.com/GoalSmashers/clean-css/issues/163) - round pixels to 2nd decimal place.
 * Fixed issue [#165](https://github.com/GoalSmashers/clean-css/issues/165) - extra space after trailing parenthesis.
 * Fixed issue [#186](https://github.com/GoalSmashers/clean-css/issues/186) - strip unit from 0rem.
+* Fixed issue [#207](https://github.com/GoalSmashers/clean-css/issues/207) - bug in parsing protocol `@import`s.
 
 [2.0.6 / 2014-01-04](https://github.com/GoalSmashers/clean-css/compare/v2.0.5...v2.0.6)
 ==================

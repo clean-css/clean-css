@@ -50,6 +50,25 @@ vows.describe('protocol imports').addBatch({
       nock.restore();
     }
   },
+  'of an existing file with spaces in path': {
+    topic: function() {
+      this.reqMocks = nock('http://fonts.googleapis.com')
+        .get('/css?family=Oleo%20Script%20Swash%20Caps')
+        .reply(200, 'p{font-size:13px}');
+
+      new CleanCSS().minify('@import url(\'//fonts.googleapis.com/css?family=Oleo Script Swash Caps\');', this.callback);
+    },
+    'should not raise errors': function(errors, minified) {
+      assert.isNull(errors);
+    },
+    'should process @import': function(errors, minified) {
+      assert.equal(minified, 'p{font-size:13px}');
+    },
+    teardown: function() {
+      assert.equal(this.reqMocks.isDone(), true);
+      nock.restore();
+    }
+  },
   'of an existing file via HTTPS': {
     topic: function() {
       this.reqMocks = nock('https://goalsmashers.com')

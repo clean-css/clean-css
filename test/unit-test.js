@@ -1393,5 +1393,14 @@ title']{display:block}",
       'a{border-top:1px solid red;border-top-color:#0f0;color:red;border-top-width:2px;border-bottom-width:1px;border:0;border-left:1px solid red}',
       'a{color:red;border:0;border-left:1px solid red}'
     ]
+  }),
+  'grouping with advanced optimizations': cssContext({
+    '@-moz-document': '@-moz-document domain(mozilla.org){a{color:red}}',
+    '@media': '@media{a{color:red}}',
+    '@page': '@page{margin:.5em}',
+    '@supports': '@supports (display:flexbox){.flex{display:flexbox}}',
+    '@-ms-viewport': '@-ms-viewport{width:device-width}',
+    '@-o-viewport': '@-o-viewport{width:device-width}',
+    '@viewport': '@viewport{width:device-width}'
   })
 }).export(module);

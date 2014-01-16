@@ -1,3 +1,8 @@
+[2.0.7 / 2014-xx-xx (UNRELEASED)](https://github.com/GoalSmashers/clean-css/compare/v2.0.6...v2.0.7)
+==================
+
+* Fixed issue [#208](https://github.com/GoalSmashers/clean-css/issues/208) - don't swallow @page and @viewport.
+
 [2.0.6 / 2014-01-04](https://github.com/GoalSmashers/clean-css/compare/v2.0.5...v2.0.6)
 ==================
 

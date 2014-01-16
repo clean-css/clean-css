@@ -13,6 +13,11 @@
 * Fixed issue [#186](https://github.com/GoalSmashers/clean-css/issues/186) - strip unit from 0rem.
 * Fixed issue [#207](https://github.com/GoalSmashers/clean-css/issues/207) - bug in parsing protocol `@import`s.
 
+[2.0.7 / 2014-xx-xx (UNRELEASED)](https://github.com/GoalSmashers/clean-css/compare/v2.0.6...v2.0.7)
+==================
+
+* Fixed issue [#208](https://github.com/GoalSmashers/clean-css/issues/208) - don't swallow @page and @viewport.
+
 [2.0.6 / 2014-01-04](https://github.com/GoalSmashers/clean-css/compare/v2.0.5...v2.0.6)
 ==================
 

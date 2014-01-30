@@ -12,6 +12,7 @@
 * Fixed issue [#165](https://github.com/GoalSmashers/clean-css/issues/165) - extra space after trailing parenthesis.
 * Fixed issue [#186](https://github.com/GoalSmashers/clean-css/issues/186) - strip unit from 0rem.
 * Fixed issue [#207](https://github.com/GoalSmashers/clean-css/issues/207) - bug in parsing protocol `@import`s.
+* Fixed issue [#213](https://github.com/GoalSmashers/clean-css/issues/213) - faster rgb to hex transforms.
 
 [2.0.7 / 2014-01-16](https://github.com/GoalSmashers/clean-css/compare/v2.0.6...v2.0.7)
 ==================

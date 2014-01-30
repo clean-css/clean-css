@@ -686,6 +686,14 @@ vows.describe('clean-units').addBatch({
     'hsl out of bounds #7': [
       'a{color:hsl(0,0%,-10%)}',
       'a{color:#000}'
+    ],
+    'rgb out of a lower bound': [
+      'a{color:rgb(-1,-1,-1)}',
+      'a{color:#000}'
+    ],
+    'rgb out of an upper bound': [
+      'a{color:rgb(256,256,256)}',
+      'a{color:#fff}'
     ]
   }),
   'shortening colors': colorShorteningContext(),

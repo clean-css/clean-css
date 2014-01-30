@@ -626,6 +626,8 @@ vows.describe('clean-units').addBatch({
     'colors in ie filters': 'a{filter:chroma(color=#ffffff)}',
     'colors in ie filters 2': "a{progid:DXImageTransform.Microsoft.gradient(startColorstr='#cccccc', endColorstr='#000000')}",
     'colors in ie filters 3': "a{progid:DXImageTransform.Microsoft.gradient(startColorstr='#DDDDDD', endColorstr='#333333')}",
+    'rgb percents': 'a{color:rgb(100%,0%,0%)}',
+    'rgba percents': 'a{color:rgba(100%,0%,0%,.5)}',
     'hsla percents': 'a{color:hsla(1,0%,0%,.5)}',
     'hsla custom ': 'a{color:hsl(80,30%,50%,.5)}',
     'hsl to hex #1': [

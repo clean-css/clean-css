@@ -918,6 +918,14 @@ title']{display:block}",
       ".test[title='my_very_long_\
 title']{display:block}",
       ".test[title=my_very_long_title]{display:block}"
+    ],
+    'should strip whitespace between square brackets': [
+      'body[  data-title ]{color:red}',
+      'body[data-title]{color:red}'
+    ],
+    'should strip whitespace inside square brackets': [
+      'body[  data-title  = x ]{color:red}',
+      'body[data-title=x]{color:red}'
     ]
   }),
   'ie filters': cssContext({
@@ -1171,6 +1179,10 @@ title']{display:block}",
   '@import with option processImport': cssContext({
     'of an unknown file': [
       "@import url(/fake.css);",
+      "@import url(/fake.css);"
+    ],
+    'of an unknown file with extra whitespace': [
+      "@import url(  /fake.css );",
       "@import url(/fake.css);"
     ]
   }, { processImport: false }),

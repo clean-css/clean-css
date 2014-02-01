@@ -13,6 +13,7 @@
 * Fixed issue [#186](https://github.com/GoalSmashers/clean-css/issues/186) - strip unit from 0rem.
 * Fixed issue [#207](https://github.com/GoalSmashers/clean-css/issues/207) - bug in parsing protocol `@import`s.
 * Fixed issue [#213](https://github.com/GoalSmashers/clean-css/issues/213) - faster rgb to hex transforms.
+* Fixed issue [#217](https://github.com/GoalSmashers/clean-css/issues/217) - whitespace inside attribute selectors and urls.
 * Fixed issue [#218](https://github.com/GoalSmashers/clean-css/issues/218) - `@import` statements cleanup.
 * Fixed issue [#220](https://github.com/GoalSmashers/clean-css/issues/220) - selector between comments.
 

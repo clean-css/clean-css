@@ -292,6 +292,10 @@ vows.describe('clean-units').addBatch({
     'should properly handle line breaks and ** characters inside comments': [
       '/**====**\\\n/**2nd comment line/**===**/a{color:red}',
       'a{color:red}'
+    ],
+    'selector between comments': [
+      '/*comment*/*/*comment*/{color:red}',
+      '*{color:red}'
     ]
   }),
   'important comments - one': cssContext({

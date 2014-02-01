@@ -14,6 +14,7 @@
 * Fixed issue [#207](https://github.com/GoalSmashers/clean-css/issues/207) - bug in parsing protocol `@import`s.
 * Fixed issue [#213](https://github.com/GoalSmashers/clean-css/issues/213) - faster rgb to hex transforms.
 * Fixed issue [#218](https://github.com/GoalSmashers/clean-css/issues/218) - `@import` statements cleanup.
+* Fixed issue [#220](https://github.com/GoalSmashers/clean-css/issues/220) - selector between comments.
 
 [2.0.7 / 2014-01-16](https://github.com/GoalSmashers/clean-css/compare/v2.0.6...v2.0.7)
 ==================

@@ -1082,8 +1082,8 @@ title']{display:block}",
       ''
     ],
     'of more files': [
-      "@import url(test/data/partials/one.css);\n\na{display:block}\n\n@import url(test/data/partials/extra/three.css);",
-      ".one{color:red}a{display:block}.three{color:#0f0}"
+      "@import url(test/data/partials/one.css);\n\n@import url(test/data/partials/extra/three.css);\n\na{display:block}",
+      ".one{color:red}.three{color:#0f0}a{display:block}"
     ],
     'of more files with media': [
       "@import url(test/data/partials/one.css) screen;@import url(test/data/partials/extra/three.css) tv;",
@@ -1128,6 +1128,14 @@ title']{display:block}",
     'of a file (with media) with a comment': [
       '@import url(test/data/partials/comment.css) screen and (device-height: 600px);',
       '@media screen and (device-height:600px){a{display:block}}'
+    ],
+    'after standard content': [
+      "a{display:block}@import url(test/data/partials/one.css);body{margin:0}",
+      "a{display:block}body{margin:0}"
+    ],
+    'after quoted content': [
+      "/*a{display:block}*/@import url(test/data/partials/one.css);",
+      ".one{color:red}"
     ]
   }, { root: process.cwd() }),
   '@import with absolute paths': cssContext({
@@ -1144,8 +1152,8 @@ title']{display:block}",
       ".one{color:red}"
     ],
     'of two files with mixed paths': [
-      "@import url(/partials/one.css);a{display:block}@import url(partials/extra/three.css);",
-      ".one{color:red}a{display:block}.three{color:#0f0}"
+      "@import url(/partials/one.css);@import url(partials/extra/three.css);a{display:block}",
+      ".one{color:red}.three{color:#0f0}a{display:block}"
     ],
     'of a multi-level, circular dependency file': [
       "@import url(/partials/two.css);",

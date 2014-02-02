@@ -1333,13 +1333,8 @@ title']{display:block}",
     'animation-name': ['animation'],
     'animation-play-state': ['animation'],
     'animation-timing-function': ['animation'],
-    'background-attachment': ['background'],
     'background-clip': ['background'],
-    'background-color': ['background'],
-    'background-image': ['background'],
     'background-origin': ['background'],
-    'background-position': ['background'],
-    'background-repeat': ['background'],
     'background-size': ['background'],
     'border-color': ['border'],
     'border-style': ['border'],
@@ -1372,9 +1367,6 @@ title']{display:block}",
     'margin-left': ['margin'],
     'margin-right': ['margin'],
     'margin-top': ['margin'],
-    'outline-color': ['outline'],
-    'outline-style': ['outline'],
-    'outline-width': ['outline'],
     'padding-bottom': ['padding'],
     'padding-left': ['padding'],
     'padding-right': ['padding'],
@@ -1384,6 +1376,40 @@ title']{display:block}",
     'transition-property': ['transition'],
     'transition-timing-function': ['transition']
   }, { vendorPrefixes: ['animation', 'transition'] }),
+  'redefined more granular properties with property merging': cssContext({
+    'should merge background with background-attachment': [
+      'a{background:0;background-attachment:inherit}',
+      'a{background:0 inherit}'
+    ],
+    'should merge background with background-color': [
+      'a{background:0;background-color:inherit}',
+      'a{background:inherit 0}'
+    ],
+    'should merge background with background-image': [
+      'a{background:0;background-image:inherit}',
+      'a{background:inherit 0}'
+    ],
+    'should merge background with background-position': [
+      'a{background:0;background-position:inherit}',
+      'a{background:inherit}'
+    ],
+    'should merge background with background-repeat': [
+      'a{background:0;background-repeat:inherit}',
+      'a{background:inherit 0}'
+    ],
+    'should merge outline with outline-color': [
+      'a{outline:0;outline-color:inherit}',
+      'a{outline:0 inherit}'
+    ],
+    'should merge outline with outline-style': [
+      'a{outline:0;outline-style:inherit}',
+      'a{outline:0 inherit 0}'
+    ],
+    'should merge outline with outline-width': [
+      'a{outline:0;outline-width:inherit}',
+      'a{outline:inherit 0}'
+    ],
+  }),
   'complex granular properties': cssContext({
     'two granular properties': 'a{border-bottom:1px solid red;border-color:red}',
     'two same granular properties': 'a{border-color:rgba(0,0,0,.5);border-color:red}',

@@ -416,6 +416,22 @@ vows.describe('clean-units').addBatch({
     'prefixed box shadow zeros': [
       'a{-webkit-box-shadow:0 0 0 0; -moz-box-shadow:0 0 0 0}',
       'a{-webkit-box-shadow:0 0;-moz-box-shadow:0 0}'
+    ],
+    'zero as .0 #1': [
+      'a{color:rgba(0,0,0,.0)}',
+      'a{color:rgba(0,0,0,0)}'
+    ],
+    'zero as .0 #2': [
+      'body{margin:.0}',
+      'body{margin:0}'
+    ],
+    'missing #1': [
+      'body{margin:2.em}',
+      'body{margin:2em}'
+    ],
+    'missing #2': [
+      'p{opacity:1.}',
+      'p{opacity:1}'
     ]
   }),
   'zero values in ie8 compatibility mode': cssContext({

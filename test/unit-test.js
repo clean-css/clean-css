@@ -432,6 +432,22 @@ vows.describe('clean-units').addBatch({
     'missing #2': [
       'p{opacity:1.}',
       'p{opacity:1}'
+    ],
+    'minus zero as value to zero': [
+      'body{margin:-0}',
+      'body{margin:0}'
+    ],
+    'minus zero in function to zero': [
+      'body{color:rgba(-0,-0,-0,-0)}',
+      'body{color:rgba(0,0,0,0)}'
+    ],
+    'minus zero px to zero': [
+      'body{margin:-0px}',
+      'body{margin:0}'
+    ],
+    'zero em to zero': [
+      'body{margin:0.0em}',
+      'body{margin:0}'
     ]
   }),
   'zero values in ie8 compatibility mode': cssContext({

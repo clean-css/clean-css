@@ -18,6 +18,7 @@
 * Fixed issue [#218](https://github.com/GoalSmashers/clean-css/issues/218) - `@import` statements cleanup.
 * Fixed issue [#220](https://github.com/GoalSmashers/clean-css/issues/220) - selector between comments.
 * Fixed issue [#229](https://github.com/GoalSmashers/clean-css/issues/229) - improved processing of fraction numbers.
+* Fixed issue [#230](https://github.com/GoalSmashers/clean-css/issues/230) - better handling of zero values.
 
 [2.0.7 / 2014-01-16](https://github.com/GoalSmashers/clean-css/compare/v2.0.6...v2.0.7)
 ==================

@@ -1,4 +1,4 @@
-[2.0.8 / 2014-xx-xx (UNRELEASED)](https://github.com/GoalSmashers/clean-css/compare/v2.0.7...v2.0.8)
+[2.0.8 / 2014-02-07](https://github.com/GoalSmashers/clean-css/compare/v2.0.7...v2.0.8)
 ==================
 
 * Fixed issue [#232](https://github.com/GoalSmashers/clean-css/issues/232) - edge case in non-adjacent selectors merging.

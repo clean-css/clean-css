@@ -20,6 +20,11 @@
 * Fixed issue [#229](https://github.com/GoalSmashers/clean-css/issues/229) - improved processing of fraction numbers.
 * Fixed issue [#230](https://github.com/GoalSmashers/clean-css/issues/230) - better handling of zero values.
 
+[2.0.8 / 2014-xx-xx (UNRELEASED)](https://github.com/GoalSmashers/clean-css/compare/v2.0.7...v2.0.8)
+==================
+
+* Fixed issue [#232](https://github.com/GoalSmashers/clean-css/issues/232) - edge case in non-adjacent selectors merging.
+
 [2.0.7 / 2014-01-16](https://github.com/GoalSmashers/clean-css/compare/v2.0.6...v2.0.7)
 ==================
 

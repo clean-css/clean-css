@@ -1,0 +1,17 @@
+.bug-selector,
+.bug-selector1
+{
+  background: red;
+}
+
+.bar
+{
+  padding: 0;
+}
+
+.bug-selector,
+.bug-selector1
+{
+  background: black url('images/b-toolbar.gif');
+  background: linear-gradient(#5e6081, #353340);
+}

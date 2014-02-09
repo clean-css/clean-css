@@ -1365,6 +1365,10 @@ title']{display:block}",
     'two adjacent with hex color definitions': [
       'a:link,a:visited{color:#fff}.one{display:block}a:link,a:visited{color:red}',
       '.one{display:block}a:link,a:visited{color:red}'
+    ],
+    'in two passes': [
+      'a{color:red}a{background:red}b{color:red}b{background:red}',
+      'a,b{color:red;background:red}'
     ]
   }),
   'same non-adjacent selectors': cssContext({

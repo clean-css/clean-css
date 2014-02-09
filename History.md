@@ -17,6 +17,7 @@
 * Fixed issue [#217](https://github.com/GoalSmashers/clean-css/issues/217) - whitespace inside attribute selectors and urls.
 * Fixed issue [#218](https://github.com/GoalSmashers/clean-css/issues/218) - `@import` statements cleanup.
 * Fixed issue [#220](https://github.com/GoalSmashers/clean-css/issues/220) - selector between comments.
+* Fixed issue [#223](https://github.com/GoalSmashers/clean-css/issues/223) - two-pass adjacent selectors merging.
 * Fixed issue [#229](https://github.com/GoalSmashers/clean-css/issues/229) - improved processing of fraction numbers.
 * Fixed issue [#230](https://github.com/GoalSmashers/clean-css/issues/230) - better handling of zero values.
 

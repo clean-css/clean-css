@@ -359,10 +359,11 @@ vows.describe('clean-units').addBatch({
       'a{margin:0 0 0 0;padding:0 0 0 0;border-width:0 0 0 0}',
       'a{margin:0;padding:0;border-width:0}'
     ],
-    'none to zeros': [
-      'a{border:none;background:none}',
-      'a{border:0;background:0 0}'
+    'background\'s none to zero': [
+      'a{background:none}',
+      'a{background:0 0}'
     ],
+    'border\'s none to none': 'a{border:none}p{border-top:none}',
     'background:transparent to zero': [
       'a{background:transparent}p{background transparent url(logo.png)}',
       'a{background:0 0}p{background transparent url(logo.png)}'

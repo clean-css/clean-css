@@ -7,7 +7,7 @@ caption,td,th{text-align:left;font-weight:400;float:none!important}
 table,td,th{vertical-align:middle}
 blockquote:after,blockquote:before,q:after,q:before{content:''}
 blockquote,q{quotes:"" ""}
-a img{border:0}
+a img{border:none}
 :focus{outline:0}
 html{font-size:100.01%}
 body{font-size:75%;color:#222;background:#fff;font-family:"Helvetica Neue",Arial,Helvetica,sans-serif}
@@ -238,7 +238,7 @@ input.span-24,textarea.span-24{width:938px}
 .prepend-top,div.prepend-top{margin-top:1.5em}
 .append-bottom,div.append-bottom{margin-bottom:1.5em}
 .box{padding:1.5em;margin-bottom:1.5em;background:#e5eCf9}
-hr{background:#ddd;color:#ddd;clear:both;float:none;width:100%;height:1px;margin:0 0 1.45em;border:0}
+hr{background:#ddd;color:#ddd;clear:both;float:none;width:100%;height:1px;margin:0 0 1.45em;border:none}
 hr.space{background:#fff;color:#fff;visibility:hidden}
 .clearfix:after,.container:after{content:"\0020";display:block;height:0;clear:both;visibility:hidden;overflow:hidden}
 .clearfix,.container{display:block}

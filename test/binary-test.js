@@ -256,5 +256,15 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
     teardown: function() {
       this.server.close();
     }
+  }),
+  'ie7 compatibility': binaryContext('--compatibility ie7 ./test/data/unsupported/selectors-ie7.css', {
+    'should not transform source': function(error, stdout) {
+      assert.equal(stdout, readFile('./test/data/unsupported/selectors-ie7.css'));
+    }
+  }),
+  'ie8 compatibility': binaryContext('--compatibility ie8 ./test/data/unsupported/selectors-ie8.css', {
+    'should not transform source': function(error, stdout) {
+      assert.equal(stdout, readFile('./test/data/unsupported/selectors-ie8.css'));
+    }
   })
 });

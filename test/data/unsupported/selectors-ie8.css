@@ -1,0 +1,17 @@
+p:root{top:0}
+p:nth-of-type(1){top:0}
+p:nth-last-of-type(1){top:0}
+p:first-of-type{top:0}
+p:last-of-type{top:0}
+p:only-of-type{top:0}
+p:only-child{top:0}
+p:last-child{top:0}
+p:nth-child(1){top:0}
+p:nth-last-child(1){top:0}
+p:empty{top:0}
+p:target{top:0}
+p:checked{top:0}
+p::selection{top:0}
+input:enabled{top:0}
+input:disabled{top:0}
+p:not(.x){top:0}

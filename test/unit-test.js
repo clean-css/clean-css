@@ -814,6 +814,10 @@ path")}',
       '@import url(test/data/partials-relative/base.css);',
       'a{background:url(test/data/partials/extra/down.gif) 0 0 no-repeat}'
     ],
+    'relative @import twice': [
+      '@import url(test/data/partials-relative/extra/included.css);',
+      'a{background:url(test/data/partials/extra/down.gif) 0 0 no-repeat}'
+    ],
     'absolute @import': [
       '@import url(/test/data/partials-relative/base.css);',
       'a{background:url(test/data/partials/extra/down.gif) 0 0 no-repeat}'

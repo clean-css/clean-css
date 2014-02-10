@@ -1455,6 +1455,14 @@ title']{display:block}",
     'of supported and unsupported selector': '.one:first-child{color:red}.two:last-child{color:red}',
     'of two unsupported selectors': '.one:nth-child(5){color:red}.two:last-child{color:red}'
   }, { compatibility: 'ie8' }),
+  'same bodies - IE7 compat': cssContext({
+    'of two supported selectors': [
+      '.one{color:red}.two>.three{color:red}',
+      '.one,.two>.three{color:red}'
+    ],
+    'of supported and unsupported selector': '.one{color:red}.two:last-child{color:red}',
+    'of two unsupported selectors': '.one:before{color:red}.two:last-child{color:red}'
+  }, { compatibility: 'ie7' }),
   'redefined more granular properties': redefineContext({
     'animation-delay': ['animation'],
     'animation-direction': ['animation'],

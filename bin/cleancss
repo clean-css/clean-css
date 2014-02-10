@@ -27,7 +27,7 @@ commands
   .option('--skip-rebase', 'Disable URLs rebasing')
   .option('--skip-advanced', 'Disable advanced optimizations - selector & property merging, reduction, etc.')
   .option('--selectors-merge-mode [ie8|*]', 'DEPRECATED: Use --compatibility switch')
-  .option('-c, --compatibility [ie8]', 'Force compatibility mode')
+  .option('-c, --compatibility [ie7|ie8]', 'Force compatibility mode')
   .option('-t, --timeout [seconds]', 'Per connection timeout when fetching remote @imports (defaults to 5 seconds)')
   .option('-d, --debug', 'Shows debug information (minification time & compression efficiency)');
 

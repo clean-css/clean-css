@@ -21,6 +21,7 @@
 * Fixed issue [#226](https://github.com/GoalSmashers/clean-css/issues/226) - don't minify border:none to border:0.
 * Fixed issue [#229](https://github.com/GoalSmashers/clean-css/issues/229) - improved processing of fraction numbers.
 * Fixed issue [#230](https://github.com/GoalSmashers/clean-css/issues/230) - better handling of zero values.
+* Fixed issue [#235](https://github.com/GoalSmashers/clean-css/issues/235) - IE7 compatibility mode.
 * Fixed issue [#236](https://github.com/GoalSmashers/clean-css/issues/236) - incorrect rebasing with nested `import`s.
 
 [2.0.8 / 2014-02-07](https://github.com/GoalSmashers/clean-css/compare/v2.0.7...v2.0.8)

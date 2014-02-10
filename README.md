@@ -72,7 +72,7 @@ cleancss [options] <source-file>
 --skip-advanced                 Disable advanced optimizations - selector & property merging,
                                 reduction, etc.
 --selectors-merge-mode [ie8|*]  DEPRECATED: Use --compatibility switch
--c, --compatibility [ie8]       Force compatibility mode
+-c, --compatibility [ie7|ie8]   Force compatibility mode
 -d, --debug                     Shows debug information (minification time & compression efficiency)
 ```
 
@@ -149,7 +149,7 @@ First clone the source, then run:
 1. Fork it.
 2. Add test(s) veryfying the problem.
 3. Fix the problem.
-4. Make sure all tests still pass (`npm test`). 
+4. Make sure all tests still pass (`npm test`).
 5. Make sure your code doesn't break style rules (`npm run check`).
 6. Send a PR.
 

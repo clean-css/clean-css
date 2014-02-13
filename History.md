@@ -1,4 +1,4 @@
-[2.1.0 / 2013-xx-xx (UNRELEASED)](https://github.com/GoalSmashers/clean-css/compare/v2.0.0...HEAD)
+[2.1.0 / 2014-02-13](https://github.com/GoalSmashers/clean-css/compare/v2.0.8...v2.1.0)
 ==================
 
 * Adds an optional callback to minify method.

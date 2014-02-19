@@ -1,6 +1,7 @@
 [2.1.1 / 2014-xx-xx (UNRELEASED)](https://github.com/GoalSmashers/clean-css/compare/v2.1.0...v2.1.1)
 ==================
 
+* Adds faster selectors processing in advanced optimizer.
 * Fixed issue [#241](https://github.com/GoalSmashers/clean-css/issues/241) - incorrect handling of :not() selectors.
 
 [2.1.0 / 2014-02-13](https://github.com/GoalSmashers/clean-css/compare/v2.0.8...v2.1.0)

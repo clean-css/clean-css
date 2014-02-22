@@ -1,3 +1,8 @@
+[2.2.0 / 2014-xx-xx (UNRELEASED)](https://github.com/GoalSmashers/clean-css/compare/v2.1.1...HEAD)
+==================
+
+* Adds a better non-adjacent optimizer compatible with the upcoming new property optimizer.
+
 [2.1.1 / 2014-02-18](https://github.com/GoalSmashers/clean-css/compare/v2.1.0...v2.1.1)
 ==================
 

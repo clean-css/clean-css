@@ -12,6 +12,8 @@ var cssContext = function(groups, options) {
   var clean = function(expectedCss) {
     return function(css) {
       var minifiedCss = new CleanCSS(options).minify(css);
+      // Uncomment for debugging purposes
+      if (minifiedCss != expectedCss) console.log("\n> input:\n", css, "\n> output:\n", minifiedCss, "\n> expected:\n", expectedCss, "\n----------");
       assert.equal(minifiedCss, expectedCss);
     };
   };
@@ -141,8 +143,8 @@ vows.describe('clean-units').addBatch({
       'a{width:-moz-calc(100% - 1em);width:calc(100% - 1em)}'
     ],
     'not inside calc method #2': [
-      'div{margin:-moz-calc(50% + 15px) -moz-calc(50% + 15px);margin:calc(50% + .5rem) calc(50% + .5rem)}',
-      'div{margin:-moz-calc(50% + 15px) -moz-calc(50% + 15px);margin:calc(50% + .5rem) calc(50% + .5rem)}'
+      'div{margin:-moz-calc(50% + 15px);margin:calc(50% + .5rem)}',
+      'div{margin:-moz-calc(50% + 15px);margin:calc(50% + .5rem)}'
     ],
     'not inside calc method with more parentheses': [
       'div{height:-moz-calc((10% + 12px)/2 + 10em)}',
@@ -1330,7 +1332,7 @@ title']{display:block}",
     ],
     'background redefined with merging': [
       '.one{display:block}.one{background:#fff;background:-webkit-gradient();background:-moz-linear-gradient();filter:progid:DXImageTransform}',
-      '.one{display:block;background:#fff;background:-webkit-gradient();background:-moz-linear-gradient();filter:progid:DXImageTransform}'
+      '.one{display:block;background:-webkit-gradient();background:-moz-linear-gradient();filter:progid:DXImageTransform}'
     ],
     'filter treated as background': 'p{background:-moz-linear-gradient();background:-webkit-linear-gradient();filter:"progid:DXImageTransform";background:linear-gradient()}',
     'filter treated as background-image': 'p{background-image:-moz-linear-gradient();background-image:-webkit-linear-gradient();filter:"progid:DXImageTransform";background-image:linear-gradient()}',
@@ -1472,13 +1474,8 @@ title']{display:block}",
     'animation-name': ['animation'],
     'animation-play-state': ['animation'],
     'animation-timing-function': ['animation'],
-    'background-attachment': ['background'],
     'background-clip': ['background'],
-    'background-color': ['background'],
-    'background-image': ['background'],
     'background-origin': ['background'],
-    'background-position': ['background'],
-    'background-repeat': ['background'],
     'background-size': ['background'],
     'border-color': ['border'],
     'border-style': ['border'],
@@ -1511,9 +1508,6 @@ title']{display:block}",
     'margin-left': ['margin'],
     'margin-right': ['margin'],
     'margin-top': ['margin'],
-    'outline-color': ['outline'],
-    'outline-style': ['outline'],
-    'outline-width': ['outline'],
     'padding-bottom': ['padding'],
     'padding-left': ['padding'],
     'padding-right': ['padding'],
@@ -1523,6 +1517,146 @@ title']{display:block}",
     'transition-property': ['transition'],
     'transition-timing-function': ['transition']
   }, { vendorPrefixes: ['animation', 'transition'] }),
+  'redefined more granular properties with property merging': cssContext({
+    'should merge background with background-attachment': [
+      'a{background:0;background-attachment:fixed}',
+      'a{background:0 fixed}'
+    ],
+    'should NOT merge background with inherited background-attachment': [
+      'a{background:0;background-attachment:inherit}',
+      'a{background:0;background-attachment:inherit}'
+    ],
+    'should merge background with background-color': [
+      'a{background:0;background-color:#9fce00}',
+      'a{background:#9fce00 0}'
+    ],
+    'should NOT merge background with inherited background-color': [
+      'a{background:0;background-color:inherit}',
+      'a{background:0;background-color:inherit}'
+    ],
+    'should merge background with background-image': [
+      'a{background:0;background-image:url(hello_world)}',
+      'a{background:url(hello_world) 0}'
+    ],
+    'should NOT merge background with inherited background-image': [
+      'a{background:0;background-image:inherit}',
+      'a{background:0;background-image:inherit}'
+    ],
+    'should merge background with background-position': [
+      'a{background:0;background-position:3px 4px}',
+      'a{background:3px 4px}'
+    ],
+    'should NOT merge background with inherited background-position': [
+      'a{background:0;background-position:inherit}',
+      'a{background:0;background-position:inherit}',
+    ],
+    'should merge background with background-repeat': [
+      'a{background:0;background-repeat:repeat-y}',
+      'a{background:repeat-y 0}'
+    ],
+    'should NOT merge background with inherited background-repeat': [
+      'a{background:0;background-repeat:inherit}',
+      'a{background:0;background-repeat:inherit}',
+    ],
+    'should merge outline with outline-color': [
+      'a{outline:1px;outline-color:#9fce00}',
+      'a{outline:#9fce00 1px}'
+    ],
+    'should NOT merge outline with inherited outline-color': [
+      'a{outline:0;outline-color:inherit}',
+      'a{outline:0;outline-color:inherit}'
+    ],
+    'should merge outline with outline-style': [
+      'a{outline:0;outline-style:dashed}',
+      'a{outline:dashed 0}'
+    ],
+    'should NOT merge outline with inherited outline-style': [
+      'a{outline:0;outline-style:inherit}',
+      'a{outline:0;outline-style:inherit}'
+    ],
+    'should merge outline with outline-width': [
+      'a{outline:0;outline-width:5px}',
+      'a{outline:5px}'
+    ],
+    'should NOT merge outline with inherited outline-width': [
+      'a{outline:0;outline-width:inherit}',
+      'a{outline:0;outline-width:inherit}'
+    ],
+  }),
+  'shorthand granular properties when other granular properties are already covered by the shorthand': cssContext({
+    'should consider the already existing margin to shorthand margin-top and margin-bottom': [
+      'p{margin:5px;margin-top:foo(1);margin-left:foo(2)}',
+      'p{margin:5px;margin:foo(1) 5px 5px foo(2)}'
+    ],
+    'should merge margin-top and margin-left with shorthand if their understandability is the same': [
+      'p{margin:5px;margin-top:1px;margin-left:2px}',
+      'p{margin:1px 5px 5px 2px}'
+    ],
+    'should NOT shorthand to margin-top if the result would be longer than the input': [
+      'p{margin:5px;margin-top:foo(1)}',
+      'p{margin:5px;margin-top:foo(1)}'
+    ],
+    'should consider the already existing background to shorthand background-color': [
+      'p{background:#9fce00;background-color:rgba(1,2,3,.4)}',
+      'p{background:#9fce00;background:rgba(1,2,3,.4)}',
+    ],
+    'should NOT touch important outline-color but should minify default value of outline to 0': [
+      'p{outline:medium;outline-color:#9fce00!important}',
+      'p{outline:0;outline-color:#9fce00!important}',
+    ]
+  }),
+  'take advantage of importants for optimalization opportunities': cssContext({
+    'should take into account important margin-left to shorthand non-important margin-top, margin-right and margin-bottom': [
+      'p{margin-top:1px;margin-right:2px;margin-bottom:3px;margin-left:4px !important}',
+      'p{margin:1px 2px 3px;margin-left:4px!important}'
+    ],
+    'should take into account important margin-bottom and margin-left to shorten shorthanded non-important margin-top and margin-bottom': [
+      'p{margin-top:1px;margin-right:2px;margin-bottom:3px!important;margin-left:4px !important}',
+      'p{margin:1px 2px;margin-bottom:3px!important;margin-left:4px!important}'
+    ],
+    'should take into account important margin-right and margin-left to shorten shorthanded non-important margin-top and margin-bottom': [
+      'p{margin-top:1px;margin-bottom:3px;margin-right:2px!important;margin-left:4px !important}',
+      'p{margin:1px 0 3px;margin-right:2px!important;margin-left:4px!important}'
+    ],
+    'should take into account important margin-right and margin-left to shorten shorthanded non-important margin-top and margin-bottom #2': [
+      'p{margin-top:1px;margin-bottom:1px;margin-right:2px!important;margin-left:4px !important}',
+      'p{margin:1px;margin-right:2px!important;margin-left:4px!important}'
+    ],
+    'should take into account important background-color and shorthand others into background': [
+      'p{background-color:#9fce00!important;background-image:url(hello);background-attachment:scroll;background-position:1px 2px;background-repeat:repeat-y}',
+      'p{background-color:#9fce00!important;background:url(hello) repeat-y 1px 2px}'
+    ],
+    'should take into account important outline-color and default value of outline-width': [
+      'p{outline:inset medium;outline-color:#9fce00!important;outline-style:inset!important}',
+      'p{outline:0;outline-color:#9fce00!important;outline-style:inset!important}'
+    ],
+    'should take into account important background-position remove its irrelevant counterpart': [
+      'p{background:#9fce00 url(hello) 4px 5px;background-position:5px 3px!important}',
+      'p{background:#9fce00 url(hello);background-position:5px 3px!important}',
+    ],
+    'should take into account important background-position and assign the shortest possible value for its irrelevant counterpart': [
+      'p{background:transparent;background-position:5px 3px!important}',
+      'p{background:0;background-position:5px 3px!important}',
+    ]
+  }),
+  'propery care about inherit': cssContext({
+    'merge multiple inherited margin granular properties into one inherited shorthand': [
+      'p{margin-top:inherit;margin-right:inherit;margin-bottom:inherit;margin-left:inherit}',
+      'p{margin:inherit}'
+    ],
+    'merge multiple inherited background granular properties into one inherited shorthand': [
+      'p{background-color:inherit;background-image:inherit;background-attachment:inherit;background-position:inherit;background-repeat:inherit}',
+      'p{background:inherit}'
+    ],
+    'when shorter, optimize inherited/non-inherited background granular properties into an inherited shorthand and some non-inherited granular properties': [
+      'p{background-color:inherit;background-image:inherit;background-attachment:inherit;background-position:inherit;background-repeat:repeat-y}',
+      'p{background:inherit;background-repeat:repeat-y}'
+    ],
+    'when shorter, optimize inherited/non-inherited background granular properties into a non-inherited shorthand and some inherited granular properties': [
+      'p{background-color:#9fce00;background-image:inherit;background-attachment:scroll;background-position:1px 2px;background-repeat:repeat-y}',
+      'p{background:#9fce00 repeat-y 1px 2px;background-image:inherit}'
+    ]
+  }),
   'complex granular properties': cssContext({
     'two granular properties': 'a{border-bottom:1px solid red;border-color:red}',
     'two same granular properties': 'a{border-color:rgba(0,0,0,.5);border-color:red}',

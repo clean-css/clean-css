@@ -71,7 +71,6 @@ cleancss [options] <source-file>
 --skip-rebase                   Disable URLs rebasing
 --skip-advanced                 Disable advanced optimizations - selector & property merging,
                                 reduction, etc.
---selectors-merge-mode [ie8|*]  DEPRECATED: Use --compatibility switch
 -c, --compatibility [ie7|ie8]   Force compatibility mode
 -d, --debug                     Shows debug information (minification time & compression efficiency)
 ```
@@ -129,7 +128,6 @@ CleanCSS constructor accepts a hash as a parameter, i.e.,
 * `processImport` - whether to process `@import` rules
 * `noRebase` - whether to skip URLs rebasing
 * `noAdvanced` - set to true to disable advanced optimizations - selector & property merging, reduction, etc.
-* `selectorsMergeMode` - DEPRECATED: Use compatibility option
 * `compatibility` - Force compatibility mode to `ie7` or `ie8`. Defaults to not set.
 * `debug` - set to true to get minification statistics under `stats` property (see `test/custom-test.js` for examples)
 

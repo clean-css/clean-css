@@ -365,8 +365,8 @@ vows.describe('clean-units').addBatch({
     ],
     'border\'s none to none': 'a{border:none}p{border-top:none}',
     'background:transparent to zero': [
-      'a{background:transparent}p{background transparent url(logo.png)}',
-      'a{background:0 0}p{background transparent url(logo.png)}'
+      'a{background:transparent}p{background:transparent url(logo.png)}',
+      'a{background:0 0}p{background:transparent url(logo.png)}'
     ],
     'outline:none to outline:0': [
       'a{outline:none}',
@@ -895,6 +895,43 @@ path")}',
     'remove font quotation #3': [
       "a{font:12px/16px \"Helvetica-Regular\",'Arial-Bold'}",
       "a{font:12px/16px Helvetica-Regular,Arial-Bold}"
+    ]
+  }),
+  'IE hacks': cssContext({
+    'star': 'a{*color:#fff}',
+    'unserscore': 'a{_color:#fff}',
+    'backslash': 'a{color:#fff\\9}',
+    'overriding by a star': 'a{color:red;display:block;*color:#fff}',
+    'overriding by a unserscore': 'a{color:red;display:block;_color:#fff}',
+    'overriding by a backslash': 'a{color:red;display:block;color:#fff\\9}',
+    'overriding !important by a star': 'a{color:red!important;display:block;*color:#fff}',
+    'overriding !important by a unserscore': 'a{color:red!important;display:block;_color:#fff}',
+    'overriding !important by a backslash': [
+      'a{color:red!important;display:block;color:#fff\\9}',
+      'a{color:red!important;display:block}',
+    ],
+    'overriding a star': [
+      'a{*color:red;display:block;*color:#fff}',
+      'a{display:block;*color:#fff}'
+    ],
+    'overriding a unserscore': [
+      'a{_color:red;display:block;_color:#fff}',
+      'a{display:block;_color:#fff}'
+    ],
+    'overriding a backslash': [
+      'a{color:red\\9;display:block;color:#fff\\9}',
+      'a{display:block;color:#fff\\9}'
+    ],
+    'overriding a star by a non-ajacent selector': 'a{color:red}.one{display:block}a{*color:#fff}',
+    'overriding a unserscore by a non-ajacent selector': 'a{color:red}.one{display:block}a{_color:#fff}',
+    'overriding a backslash by a non-ajacent selector': 'a{color:red}.one{display:block}a{color:#fff\\9}'
+  }, { compatibility: 'ie8' }),
+  'IE hacks without IE compatibility': cssContext({
+    'star': 'a{*color:#fff}', // See #246
+    'unserscore': 'a{_color:#fff}', // See #246
+    'backslash': [
+      'a{color:#fff\\9}',
+      ''
     ]
   }),
   'animations': cssContext({

@@ -3,6 +3,11 @@
 
 * Adds a better non-adjacent optimizer compatible with the upcoming new property optimizer.
 
+[2.1.2 / 2014-xx-xx (UNRELEASED)](https://github.com/GoalSmashers/clean-css/compare/v2.1.1...v2.1.2)
+==================
+
+* Fixed issue [#245](https://github.com/GoalSmashers/clean-css/issues/245) - incorrect handling of backslash IE hack.
+
 [2.1.1 / 2014-02-18](https://github.com/GoalSmashers/clean-css/compare/v2.1.0...v2.1.1)
 ==================
 

@@ -1,4 +1,4 @@
-[2.1.3 / 2014-xx-xx (UNRELEASED)](https://github.com/GoalSmashers/clean-css/compare/v2.1.2...v2.1.3)
+[2.1.3 / 2014-02-26](https://github.com/GoalSmashers/clean-css/compare/v2.1.2...v2.1.3)
 ==================
 
 * Fixed issue [#248](https://github.com/GoalSmashers/clean-css/issues/248) - incorrect merging for vendor selectors.

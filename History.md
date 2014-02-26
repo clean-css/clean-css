@@ -4,6 +4,11 @@
 * Adds a better non-adjacent optimizer compatible with the upcoming new property optimizer.
 * Fixed issue [#247](https://github.com/GoalSmashers/clean-css/issues/247) - removes deprecated `selectorsMergeMode` switch.
 
+[2.1.3 / 2014-xx-xx (UNRELEASED)](https://github.com/GoalSmashers/clean-css/compare/v2.1.2...v2.1.3)
+==================
+
+* Fixed issue [#248](https://github.com/GoalSmashers/clean-css/issues/248) - incorrect merging for vendor selectors.
+
 [2.1.2 / 2014-02-25](https://github.com/GoalSmashers/clean-css/compare/v2.1.1...v2.1.2)
 ==================
 

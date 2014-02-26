@@ -1411,7 +1411,8 @@ title']{display:block}",
     'in two passes': [
       'a{color:red}a{background:red}b{color:red}b{background:red}',
       'a,b{color:red;background:red}'
-    ]
+    ],
+    'when overriden with a browser specific selector': 'a{color:red}::-webkit-scrollbar,a{color:#fff}'
   }),
   'same non-adjacent selectors': cssContext({
     'with different properties': 'a{color:red;display:block}.one{font-size:12px}a{margin:2px}',
@@ -1461,6 +1462,11 @@ title']{display:block}",
     'when undefined is used as a value with reduction': [
       '.one{text-shadow:undefined}p{color:red}.one{font-size:12px;text-shadow:none}',
       'p{color:red}.one{font-size:12px;text-shadow:none}'
+    ],
+    'when overriden with a browser specific selector': 'a{color:red}p{display:block}::-moz-selection,a{color:#fff}',
+    'when same browser specific selector more than once': [
+      'a,::-moz-selection{color:red}p{display:block}a,::-moz-selection{color:#fff}',
+      'p{display:block}::-moz-selection,a{color:#fff}'
     ]
   }),
   'rerun optimizers': cssContext({

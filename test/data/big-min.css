@@ -2194,7 +2194,7 @@ a.god:hover{background:#3c3c3c;color:#fff;text-decoration:none}
 #core-liberation .block-search-results .block-content .object-picture img{display:block;width:87px}
 #core-liberation .block-search-results .block-content .article .object-picture,#core-liberation .block-search-results .block-content .article .object-picture img{height:116px}
 #core-liberation .block-search-results .block-content .object-picture .np{position:relative}
-#core-liberation .block-search-results .block-content .object-picture .np .p1,#core-liberation .block-search-results .block-content .object-picture .np .p2{position:absolute;width:79px;height:102px;border-style:solid;border-top-width:7px;border-bottom-width:7px;border-left-width:4px;border-right-width:4px}
+#core-liberation .block-search-results .block-content .object-picture .np .p1,#core-liberation .block-search-results .block-content .object-picture .np .p2{position:absolute;width:79px;height:102px;border-style:solid;border-width:7px 4px}
 #core-liberation .block-search-results .block-content .object-picture .np a.date{position:absolute;display:block;width:80px;top:10px;padding:2px 2px 3px 4px}
 #core-liberation .block-search-results .block-content .object-picture .np .p1{z-index:2000}
 #core-liberation .block-search-results .block-content .object-picture .np .p2{z-index:1000}

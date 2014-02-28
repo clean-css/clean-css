@@ -1633,13 +1633,33 @@ title']{display:block}",
     ]
   }),
   'shorthand properties': cssContext({
-    'shorthand background' : [
+    'shorthand background #1' : [
       'div{background-color:#111;background-image:url(aaa);background-repeat:repeat;background-position:0 0;background-attachment:scroll}',
       'div{background:#111 url(aaa)}'
+    ],
+    'shorthand background #2' : [
+      'div{background-color:#111;background-image:url(aaa);background-repeat:no-repeat;background-position:0 0;background-attachment:scroll}',
+      'div{background:#111 url(aaa) no-repeat}'
     ],
     'shorthand important background' : [
       'div{background-color:#111!important;background-image:url(aaa)!important;background-repeat:repeat!important;background-position:0 0!important;background-attachment:scroll!important}',
       'div{background:#111 url(aaa)!important}'
+    ],
+    'shorthand border-width': [
+      '.t{border-top-width:7px;border-bottom-width:7px;border-left-width:4px;border-right-width:4px}',
+      '.t{border-width:7px 4px}'
+    ],
+    'shorthand border-color #1': [
+      '.t{border-top-color:#9fce00;border-bottom-color:#9fce00;border-left-color:#9fce00;border-right-color:#9fce00}',
+      '.t{border-color:#9fce00}'
+    ],
+    'shorthand border-color #2': [
+      '.t{border-right-color:#002;border-bottom-color:#003;border-top-color:#001;border-left-color:#004}',
+      '.t{border-color:#001 #002 #003 #004}'
+    ],
+    'shorthand border-radius': [
+      '.t{border-top-left-radius:7px;border-bottom-right-radius:6px;border-bottom-left-radius:5px;border-top-right-radius:3px}',
+      '.t{border-radius:7px 3px 6px 5px}'
     ]
   }),
   'care about understandability of shorthand components': cssContext({
@@ -1788,7 +1808,14 @@ title']{display:block}",
   }),
   'complex granular properties': cssContext({
     'two granular properties': 'a{border-bottom:1px solid red;border-color:red}',
-    'two same granular properties': 'a{border-color:rgba(0,0,0,.5);border-color:red}',
+    'more understandable granular property should override less understandable': [
+      'a{border-color:rgba(0,0,0,.5);border-color:red}',
+      'a{border-color:red}'
+    ],
+    'less understandable granular property should NOT override more understandable': [
+      'a{border-color:red;border-color:rgba(0,0,0,.5)}',
+      'a{border-color:red;border-color:rgba(0,0,0,.5)}'
+    ],
     'two same granular properties redefined': [
       'a{border-color:rgba(0,0,0,.5);border-color:red;border:0}',
       'a{border:0}'

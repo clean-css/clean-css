@@ -1630,6 +1630,10 @@ title']{display:block}",
     'should NOT merge outline with inherited outline-width': [
       'a{outline:0;outline-width:inherit}',
       'a{outline:0;outline-width:inherit}'
+    ],
+    'should merge list-style with list-style-type': [
+      'li{list-style-type:disc;list-style:inside}',
+      'li{list-style:inside}'
     ]
   }),
   'shorthand properties': cssContext({
@@ -1660,6 +1664,14 @@ title']{display:block}",
     'shorthand border-radius': [
       '.t{border-top-left-radius:7px;border-bottom-right-radius:6px;border-bottom-left-radius:5px;border-top-right-radius:3px}',
       '.t{border-radius:7px 3px 6px 5px}'
+    ],
+    'shorthand list-style #1': [
+      '.t{list-style-type:circle;list-style-position:outside;list-style-image:url(aaa)}',
+      '.t{list-style:circle url(aaa)}'
+    ],
+    'shorthand list-style #2': [
+      '.t{list-style-image:url(aaa);list-style-type:circle;list-style-position:inside}',
+      '.t{list-style:circle inside url(aaa)}'
     ]
   }),
   'care about understandability of shorthand components': cssContext({

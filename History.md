@@ -1,10 +1,10 @@
-[2.2.0 / 2014-xx-xx (UNRELEASED)](https://github.com/GoalSmashers/clean-css/compare/v2.1.3...HEAD)
+[2.2.0 / 2014-xx-xx (UNRELEASED)](https://github.com/GoalSmashers/clean-css/compare/v2.1.4...HEAD)
 ==================
 
 * Adds a better non-adjacent optimizer compatible with the upcoming new property optimizer.
 * Fixed issue [#247](https://github.com/GoalSmashers/clean-css/issues/247) - removes deprecated `selectorsMergeMode` switch.
 
-[2.1.4 / 2014-xx-xx](https://github.com/GoalSmashers/clean-css/compare/v2.1.3...v2.1.4)
+[2.1.4 / 2014-03-01](https://github.com/GoalSmashers/clean-css/compare/v2.1.3...v2.1.4)
 ==================
 
 * Fixed issue [#250](https://github.com/GoalSmashers/clean-css/issues/250) - correctly handle JSON data in quotations.

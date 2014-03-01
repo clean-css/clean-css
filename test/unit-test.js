@@ -806,7 +806,8 @@ path)}',
       'a{background:url("/very/long/\
 path")}',
       'a{background:url(/very/long/path)}'
-    ]
+    ],
+    'do not remove quotation from enclosed JSON (weird, I know)': "p{font-family:'{ \"current\" : \"large\", \"all\" : [\"small\", \"medium\", \"large\"], \"position\" : 2 }'}"
   }),
   'urls rewriting - no root or target': cssContext({
     'no @import': 'a{background:url(test/data/partials/extra/down.gif) 0 0 no-repeat}',

@@ -895,7 +895,8 @@ path")}',
     'remove font quotation #3': [
       "a{font:12px/16px \"Helvetica-Regular\",'Arial-Bold'}",
       "a{font:12px/16px Helvetica-Regular,Arial-Bold}"
-    ]
+    ],
+    'do not remove quotation from enclosed JSON (weird, I know)': "p{font-family:'{ \"current\" : \"large\", \"all\" : [\"small\", \"medium\", \"large\"], \"position\" : 2 }'}"
   }),
   'IE hacks': cssContext({
     'star': 'a{*color:#fff}',

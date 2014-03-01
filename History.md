@@ -1,6 +1,7 @@
 [2.2.0 / 2014-xx-xx (UNRELEASED)](https://github.com/GoalSmashers/clean-css/compare/v2.1.4...HEAD)
 ==================
 
+* Adds a better algorithm for quotation marks' removal.
 * Adds a better non-adjacent optimizer compatible with the upcoming new property optimizer.
 * Moves quotation matching into a QuoteScanner class.
 * Fixed issue [#247](https://github.com/GoalSmashers/clean-css/issues/247) - removes deprecated `selectorsMergeMode` switch.

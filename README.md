@@ -149,7 +149,7 @@ First clone the source, then run:
 2. Add test(s) veryfying the problem.
 3. Fix the problem.
 4. Make sure all tests still pass (`npm test`).
-5. Make sure your code doesn't break style rules (`npm run check`).
+5. Make sure your code doesn't break style rules (`npm run check`) and follow all [other ones](https://github.com/GoalSmashers/clean-css/wiki/Style-Guide) too.
 6. Send a PR.
 
 If you wonder where to add tests, go for:

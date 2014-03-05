@@ -185,23 +185,25 @@ Clean-css will handle it automatically for you (since version 1.1) in the follow
   2. Use a combination of `relativeTo` and `root` options for absolute rebase (same as 2 in CLI).
   3. `root` takes precendence over `target` as in CLI.
 
-## Acknowledgments
+## Acknowledgments (sorted alphabetically)
 
-* Vincent Voyer ([@vvo](https://github.com/vvo)) for a patch with better
-  empty element regex and for inspiring us to do many performance improvements
-  in 0.4 release.
-* Isaac ([@facelessuser](https://github.com/facelessuser)) for pointing out
-  a flaw in clean-css' stateless mode.
-* Jan Michael Alonzo ([@jmalonzo](https://github.com/jmalonzo)) for a patch
-  removing node.js' old `sys` package.
-* [@XhmikosR](https://github.com/XhmikosR) for suggesting new features
-  (option to remove special comments and strip out URLs quotation) and
-  pointing out numerous improvements (JSHint, media queries).
 * Anthony Barre ([@abarre](https://github.com/abarre)) for improvements to
   `@import` processing, namely introducing the `--skip-import` /
   `processImport` options.
 * Simon Altschuler ([@altschuler](https://github.com/altschuler)) for fixing
   `@import` processing inside comments.
+* Isaac ([@facelessuser](https://github.com/facelessuser)) for pointing out
+  a flaw in clean-css' stateless mode.
+* Jan Michael Alonzo ([@jmalonzo](https://github.com/jmalonzo)) for a patch
+  removing node.js' old `sys` package.
+* Timur Kristóf ([@Venemo](https://github.com/Venemo)) for an outstanding
+  contribution of advanced property optimizer for 2.2 release.
+* Vincent Voyer ([@vvo](https://github.com/vvo)) for a patch with better
+  empty element regex and for inspiring us to do many performance improvements
+  in 0.4 release.
+* [@XhmikosR](https://github.com/XhmikosR) for suggesting new features
+  (option to remove special comments and strip out URLs quotation) and
+  pointing out numerous improvements (JSHint, media queries).
 
 ## License
 

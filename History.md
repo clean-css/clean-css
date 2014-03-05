@@ -4,6 +4,12 @@
 * Adds a better algorithm for quotation marks' removal.
 * Adds a better non-adjacent optimizer compatible with the upcoming new property optimizer.
 * Moves quotation matching into a QuoteScanner class.
+* Fixed issue [#134](https://github.com/GoalSmashers/clean-css/issues/134) - merges properties into shorthand form.
+* Fixed issue [#164](https://github.com/GoalSmashers/clean-css/issues/164) - removes default values if not needed.
+* Fixed issue [#168](https://github.com/GoalSmashers/clean-css/issues/168) - adds better property merging algorithm.
+* Fixed issue [#173](https://github.com/GoalSmashers/clean-css/issues/173) - merges same properties if grouped.
+* Fixed issue [#184](https://github.com/GoalSmashers/clean-css/issues/184) - uses !important for optimization opportunities.
+* Fixed issue [#190](https://github.com/GoalSmashers/clean-css/issues/190) - uses shorthand to override another shorthand.
 * Fixed issue [#247](https://github.com/GoalSmashers/clean-css/issues/247) - removes deprecated `selectorsMergeMode` switch.
 * Refixed issue [#250](https://github.com/GoalSmashers/clean-css/issues/250) - based on new quotation marks removal.
 

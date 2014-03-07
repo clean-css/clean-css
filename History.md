@@ -1,3 +1,8 @@
+[2.1.5 / 2014-xx-xx (UNRELEASED)](https://github.com/GoalSmashers/clean-css/compare/v2.1.4...v2.1.5)
+==================
+
+* Fixed issue [#255](https://github.com/GoalSmashers/clean-css/issues/255) - incorrect processing of a trailing '-0'.
+
 [2.1.4 / 2014-03-01](https://github.com/GoalSmashers/clean-css/compare/v2.1.3...v2.1.4)
 ==================
 

@@ -1,4 +1,4 @@
-[2.2.0 / 2014-xx-xx (UNRELEASED)](https://github.com/GoalSmashers/clean-css/compare/v2.1.4...HEAD)
+[2.2.0 / 2014-xx-xx (UNRELEASED)](https://github.com/GoalSmashers/clean-css/compare/v2.1.5...HEAD)
 ==================
 
 * Adds a better algorithm for quotation marks' removal.
@@ -12,6 +12,11 @@
 * Fixed issue [#190](https://github.com/GoalSmashers/clean-css/issues/190) - uses shorthand to override another shorthand.
 * Fixed issue [#247](https://github.com/GoalSmashers/clean-css/issues/247) - removes deprecated `selectorsMergeMode` switch.
 * Refixed issue [#250](https://github.com/GoalSmashers/clean-css/issues/250) - based on new quotation marks removal.
+
+[2.1.5 / 2014-xx-xx (UNRELEASED)](https://github.com/GoalSmashers/clean-css/compare/v2.1.4...v2.1.5)
+==================
+
+* Fixed issue [#255](https://github.com/GoalSmashers/clean-css/issues/255) - incorrect processing of a trailing '-0'.
 
 [2.1.4 / 2014-03-01](https://github.com/GoalSmashers/clean-css/compare/v2.1.3...v2.1.4)
 ==================

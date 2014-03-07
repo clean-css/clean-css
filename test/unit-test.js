@@ -258,7 +258,9 @@ vows.describe('clean-units').addBatch({
     'not expand + in selectors mixed with calc methods': [
       'div{width:calc(50% + 3em)}div + div{width:100%}div:hover{width:calc(50% + 4em)}* > div {border:1px solid #f0f}',
       'div{width:calc(50% + 3em)}div+div{width:100%}div:hover{width:calc(50% + 4em)}*>div{border:1px solid #f0f}'
-    ]
+    ],
+    'process selectors ending with -0 correctly': '.selector-0,a{display:block}',
+    'process selectors ending with -1 correctly': '.selector-1,a{display:block}'
   }),
   'comments': cssContext({
     'single line': [

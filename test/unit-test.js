@@ -1275,6 +1275,13 @@ title']{display:block}",
       "@import url(/fake.css);"
     ]
   }, { processImport: false }),
+  '@import with no import and no advanced': cssContext({
+    'empty body': [
+      '@import url(//fonts.googleapis.com/css?family=Domine:700);body{/* comment */}body h1{font-family:Domine}',
+      '@import url(//fonts.googleapis.com/css?family=Domine:700);body h1{font-family:Domine}'
+    ],
+    'no empty body': '@import url(//fonts.googleapis.com/css?family=Domine:700);body{color:red}body h1{font-family:Domine}'
+  }, { processImport: false, noAdvanced: true }),
   'duplicate selectors with disabled advanced processing': cssContext({
     'of a duplicate selector': 'a,a{color:red}'
   }, { noAdvanced: true }),

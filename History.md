@@ -1,3 +1,8 @@
+[2.1.6 / 2014-xx-xx (UNRELEASED)](https://github.com/GoalSmashers/clean-css/compare/v2.1.5...v2.1.6)
+==================
+
+* Fixed issue [#258](https://github.com/GoalSmashers/clean-css/issues/258) - wrong @import handling in EmptyRemoval.
+
 [2.1.5 / 2014-03-07](https://github.com/GoalSmashers/clean-css/compare/v2.1.4...v2.1.5)
 ==================
 

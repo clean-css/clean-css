@@ -1,7 +1,5 @@
 #!/usr/bin/env node
 
-/* jshint latedef: false */
-
 var util = require('util');
 var fs = require('fs');
 var path = require('path');

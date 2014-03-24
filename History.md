@@ -1,3 +1,8 @@
+[2.1.7 / 2014-xx-xx (UNRELEASED)](https://github.com/GoalSmashers/clean-css/compare/v2.1.6...v2.1.7)
+==================
+
+* Fixed issue [#264](https://github.com/GoalSmashers/clean-css/issues/264) - `@import` statements inside comments.
+
 [2.1.6 / 2014-03-10](https://github.com/GoalSmashers/clean-css/compare/v2.1.5...v2.1.6)
 ==================
 

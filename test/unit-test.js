@@ -1206,6 +1206,10 @@ title']{display:block}",
       '/* @import url(test/data/partials/five.css); */a { color: red; }',
       'a{color:red}'
     ],
+    'after a comment': [
+      '/* @import url(test/data/partials/one.css); */@import url(test/data/partials/one.css);a { color: red; }',
+      '.one,a{color:red}'
+    ],
     'used arbitrarily in comment': [
       '/* @import foo */a { color: red; }',
       'a{color:red}'

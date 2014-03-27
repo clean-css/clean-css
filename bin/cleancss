@@ -4,6 +4,7 @@ var util = require('util');
 var fs = require('fs');
 var path = require('path');
 var CleanCSS = require('../index');
+var Q = require('q');
 
 var commands = require('commander');
 
@@ -81,17 +82,27 @@ if (commands.debug)
 if (commands.timeout)
   cleanOptions.inliner = { timeout: parseFloat(commands.timeout) * 1000 };
 if (commands.args.length > 0) {
-  var source = commands.args[0];
+  var source = commands.args;
   options.source = source;
-  cleanOptions.relativeTo = path.dirname(path.resolve(source));
+  cleanOptions.relativeTo = path.dirname(path.resolve(source[0]));
 }
 
 // ... and do the magic!
 if (options.source) {
-  fs.readFile(options.source, 'utf8', function(error, data) {
-    if (error)
-      throw error;
-    minify(data);
+  var promises = options.source.map(function (src) {
+    var deferred = Q.defer();
+
+    fs.readFile(src, 'utf8', function(error, data) {
+      if (error)
+        throw error;
+      deferred.resolve(data);
+    });
+
+    return deferred.promise;
+  });
+
+  Q.all(promises).then(function (res) {
+    minify(res.join(''));
   });
 } else {
   var stdin = process.openStdin();

@@ -1485,7 +1485,8 @@ title']{display:block}",
     'when same browser specific selector more than once': [
       'a,::-moz-selection{color:red}p{display:block}a,::-moz-selection{color:#fff}',
       'p{display:block}::-moz-selection,a{color:#fff}'
-    ]
+    ],
+    'with full property comparison': '.one{height:7rem}.two{height:auto}.one{line-height:7rem;color:red}'
   }),
   'rerun optimizers': cssContext({
     'selectors reducible once': [

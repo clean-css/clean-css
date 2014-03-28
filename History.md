@@ -1,3 +1,8 @@
+[2.1.8 / 2014-xx-xx (UNRELEASED)](https://github.com/GoalSmashers/clean-css/compare/v2.1.7...v2.1.8)
+==================
+
+* Fixed issue [#267](https://github.com/GoalSmashers/clean-css/issues/267) - incorrect non-adjacent selector merging.
+
 [2.1.7 / 2014-03-24](https://github.com/GoalSmashers/clean-css/compare/v2.1.6...v2.1.7)
 ==================
 

@@ -98,14 +98,14 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
   'piped with debug info on inlining': pipedContext('@import url(test/data/imports-min.css);', '-d', {
     'should output inlining info': function(error, stdout, stderr) {
       assert.include(stderr, path.join(process.cwd(), 'test/data/imports-min.css'));
-    },
+    }
   }),
   'piped with correct debug info on inlining': pipedContext('@import url(test/data/imports.css);', '-d', {
     'should output correct info': function(error, stdout, stderr) {
       assert.include(stderr, 'Original: 120 bytes');
       assert.include(stderr, 'Minified: 86 bytes');
       assert.include(stderr, 'Efficiency: 28.33%');
-    },
+    }
   }),
   'to output file with debug info': pipedContext('a{color: #f00;}', '-d -o debug.css', {
     'should output nothing to stdout and debug info to stderr': function(error, stdout, stderr) {

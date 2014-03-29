@@ -915,7 +915,7 @@ path")}',
     'overriding !important by a unserscore': 'a{color:red!important;display:block;_color:#fff}',
     'overriding !important by a backslash': [
       'a{color:red!important;display:block;color:#fff\\9}',
-      'a{color:red!important;display:block}',
+      'a{color:red!important;display:block}'
     ],
     'overriding a star': [
       'a{*color:red;display:block;*color:#fff}',
@@ -1292,7 +1292,7 @@ title']{display:block}",
   'line breaks with disabled advanced processing': cssContext({
     'should be applied': [
       'a{color:red}p{display:block}',
-      'a{color:red}' + lineBreak + 'p{display:block}',
+      'a{color:red}' + lineBreak + 'p{display:block}'
     ]
   }, { noAdvanced: true, keepBreaks: true }),
   'invalid data tokenization': cssContext({
@@ -1616,7 +1616,7 @@ title']{display:block}",
     ],
     'should NOT merge background with inherited background-position': [
       'a{background:0;background-position:inherit}',
-      'a{background:0;background-position:inherit}',
+      'a{background:0;background-position:inherit}'
     ],
     'should merge background with background-repeat': [
       'a{background:0;background-repeat:repeat-y}',
@@ -1624,7 +1624,7 @@ title']{display:block}",
     ],
     'should NOT merge background with inherited background-repeat': [
       'a{background:0;background-repeat:inherit}',
-      'a{background:0;background-repeat:inherit}',
+      'a{background:0;background-repeat:inherit}'
     ],
     'should merge outline with outline-color': [
       'a{outline:1px;outline-color:#9fce00}',
@@ -1709,7 +1709,7 @@ title']{display:block}",
     'a background-image with a none and a linear-gradient should result in two shorthands' : [
       'div{background-color:#111;background-image:none;background-image:linear-gradient(aaa);background-repeat:repeat;background-position:0 0;background-attachment:scroll}',
       'div{background:#111;background:#111 linear-gradient(aaa)}'
-    ],
+    ]
   }),
   'merge same properties sensibly': cssContext({
     'should merge color values with same understandability #1': [
@@ -1760,11 +1760,11 @@ title']{display:block}",
     ],
     'should consider the already existing background to shorthand background-color': [
       'p{background:#9fce00;background-color:rgba(1,2,3,.4)}',
-      'p{background:#9fce00;background:rgba(1,2,3,.4)}',
+      'p{background:#9fce00;background:rgba(1,2,3,.4)}'
     ],
     'should NOT touch important outline-color but should minify default value of outline to 0': [
       'p{outline:medium;outline-color:#9fce00!important}',
-      'p{outline:0;outline-color:#9fce00!important}',
+      'p{outline:0;outline-color:#9fce00!important}'
     ]
   }),
   'take advantage of importants for optimalization opportunities': cssContext({
@@ -1794,11 +1794,11 @@ title']{display:block}",
     ],
     'should take into account important background-position remove its irrelevant counterpart': [
       'p{background:#9fce00 url(hello) 4px 5px;background-position:5px 3px!important}',
-      'p{background:#9fce00 url(hello);background-position:5px 3px!important}',
+      'p{background:#9fce00 url(hello);background-position:5px 3px!important}'
     ],
     'should take into account important background-position and assign the shortest possible value for its irrelevant counterpart': [
       'p{background:transparent;background-position:5px 3px!important}',
-      'p{background:0;background-position:5px 3px!important}',
+      'p{background:0;background-position:5px 3px!important}'
     ]
   }),
   'properly care about inherit': cssContext({

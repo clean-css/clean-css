@@ -3,12 +3,12 @@
 
 * Adds a better algorithm for quotation marks' removal.
 * Adds a better non-adjacent optimizer compatible with the upcoming new property optimizer.
-* Moves quotation matching into a QuoteScanner class.
+* Moves quotation matching into a `QuoteScanner` class.
 * Fixed issue [#134](https://github.com/GoalSmashers/clean-css/issues/134) - merges properties into shorthand form.
 * Fixed issue [#164](https://github.com/GoalSmashers/clean-css/issues/164) - removes default values if not needed.
 * Fixed issue [#168](https://github.com/GoalSmashers/clean-css/issues/168) - adds better property merging algorithm.
 * Fixed issue [#173](https://github.com/GoalSmashers/clean-css/issues/173) - merges same properties if grouped.
-* Fixed issue [#184](https://github.com/GoalSmashers/clean-css/issues/184) - uses !important for optimization opportunities.
+* Fixed issue [#184](https://github.com/GoalSmashers/clean-css/issues/184) - uses `!important` for optimization opportunities.
 * Fixed issue [#190](https://github.com/GoalSmashers/clean-css/issues/190) - uses shorthand to override another shorthand.
 * Fixed issue [#247](https://github.com/GoalSmashers/clean-css/issues/247) - removes deprecated `selectorsMergeMode` switch.
 * Refixed issue [#250](https://github.com/GoalSmashers/clean-css/issues/250) - based on new quotation marks removal.
@@ -26,12 +26,12 @@
 [2.1.6 / 2014-03-10](https://github.com/GoalSmashers/clean-css/compare/v2.1.5...v2.1.6)
 ==================
 
-* Fixed issue [#258](https://github.com/GoalSmashers/clean-css/issues/258) - wrong @import handling in EmptyRemoval.
+* Fixed issue [#258](https://github.com/GoalSmashers/clean-css/issues/258) - wrong `@import` handling in `EmptyRemoval`.
 
 [2.1.5 / 2014-03-07](https://github.com/GoalSmashers/clean-css/compare/v2.1.4...v2.1.5)
 ==================
 
-* Fixed issue [#255](https://github.com/GoalSmashers/clean-css/issues/255) - incorrect processing of a trailing '-0'.
+* Fixed issue [#255](https://github.com/GoalSmashers/clean-css/issues/255) - incorrect processing of a trailing `-0`.
 
 [2.1.4 / 2014-03-01](https://github.com/GoalSmashers/clean-css/compare/v2.1.3...v2.1.4)
 ==================
@@ -52,13 +52,13 @@
 ==================
 
 * Adds faster selectors processing in advanced optimizer.
-* Fixed issue [#241](https://github.com/GoalSmashers/clean-css/issues/241) - incorrect handling of :not() selectors.
+* Fixed issue [#241](https://github.com/GoalSmashers/clean-css/issues/241) - incorrect handling of `:not()` selectors.
 
 [2.1.0 / 2014-02-13](https://github.com/GoalSmashers/clean-css/compare/v2.0.8...v2.1.0)
 ==================
 
 * Adds an optional callback to minify method.
-* Deprecates --selectors-merge-mode / selectorsMergeMode in favor to --compatibility / compatibility.
+* Deprecates `--selectors-merge-mode` / `selectorsMergeMode` in favor to `--compatibility` / `compatibility`.
 * Fixes debug mode stats for stylesheets using `@import` statements.
 * Skips empty removal if advanced processing is enabled.
 * Fixed issue [#85](https://github.com/GoalSmashers/clean-css/issues/85) - resolving protocol `@import`s.
@@ -66,7 +66,7 @@
 * Fixed issue [#161](https://github.com/GoalSmashers/clean-css/issues/161) - improves tokenizer performance.
 * Fixed issue [#163](https://github.com/GoalSmashers/clean-css/issues/163) - round pixels to 2nd decimal place.
 * Fixed issue [#165](https://github.com/GoalSmashers/clean-css/issues/165) - extra space after trailing parenthesis.
-* Fixed issue [#186](https://github.com/GoalSmashers/clean-css/issues/186) - strip unit from 0rem.
+* Fixed issue [#186](https://github.com/GoalSmashers/clean-css/issues/186) - strip unit from `0rem`.
 * Fixed issue [#207](https://github.com/GoalSmashers/clean-css/issues/207) - bug in parsing protocol `@import`s.
 * Fixed issue [#213](https://github.com/GoalSmashers/clean-css/issues/213) - faster rgb to hex transforms.
 * Fixed issue [#215](https://github.com/GoalSmashers/clean-css/issues/215) - leading zeros in numerical values.
@@ -74,7 +74,7 @@
 * Fixed issue [#218](https://github.com/GoalSmashers/clean-css/issues/218) - `@import` statements cleanup.
 * Fixed issue [#220](https://github.com/GoalSmashers/clean-css/issues/220) - selector between comments.
 * Fixed issue [#223](https://github.com/GoalSmashers/clean-css/issues/223) - two-pass adjacent selectors merging.
-* Fixed issue [#226](https://github.com/GoalSmashers/clean-css/issues/226) - don't minify border:none to border:0.
+* Fixed issue [#226](https://github.com/GoalSmashers/clean-css/issues/226) - don't minify `border:none` to `border:0`.
 * Fixed issue [#229](https://github.com/GoalSmashers/clean-css/issues/229) - improved processing of fraction numbers.
 * Fixed issue [#230](https://github.com/GoalSmashers/clean-css/issues/230) - better handling of zero values.
 * Fixed issue [#235](https://github.com/GoalSmashers/clean-css/issues/235) - IE7 compatibility mode.

@@ -9,7 +9,6 @@
   "plusplus": false,
   "quotmark": "single",
   "strict": false,
-  "trailing": true,
   "undef": true,
   "unused": true
 }

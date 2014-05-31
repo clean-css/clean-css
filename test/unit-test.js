@@ -1390,7 +1390,11 @@ title']{display:block}",
     'filter treated as background': 'p{background:-moz-linear-gradient();background:-webkit-linear-gradient();filter:"progid:DXImageTransform";background:linear-gradient()}',
     'filter treated as background-image': 'p{background-image:-moz-linear-gradient();background-image:-webkit-linear-gradient();filter:"progid:DXImageTransform";background-image:linear-gradient()}',
     '-ms-filter treated as background': 'p{background:-moz-linear-gradient();background:-webkit-linear-gradient();-ms-filter:"progid:DXImageTransform";background:linear-gradient()}',
-    '-ms-filter treated as background-image': 'p{background-image:-moz-linear-gradient();background-image:-webkit-linear-gradient();-ms-filter:"progid:DXImageTransform";background-image:linear-gradient()}'
+    '-ms-filter treated as background-image': 'p{background-image:-moz-linear-gradient();background-image:-webkit-linear-gradient();-ms-filter:"progid:DXImageTransform";background-image:linear-gradient()}',
+    '-ms-transform with different values #1': 'div{-ms-transform:translate(0,0);-ms-transform:translate3d(0,0,0)}',
+    '-ms-transform with different values #2': 'div{-ms-transform:translate(0,0);-webkit-transform:translate3d(0,0,0);-ms-transform:translate3d(0,0,0)}',
+    'transform with different values #1': 'div{transform:translate(0,0);transform:translate3d(0,0,0)}',
+    'transform with different values #2': 'div{transform:translate(0,0);-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}'
   }),
   'same selectors': cssContext({
     'of two non-adjacent selectors': '.one{color:red}.two{color:#00f}.one{font-weight:700}',

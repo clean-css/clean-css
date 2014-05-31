@@ -37,7 +37,7 @@
     "commander": "2.2.x"
   },
   "devDependencies": {
-    "jshint": "2.5.x",
+    "jshint": "GoalSmashers/jshint",
     "nock": "0.28.x",
     "vows": "0.7.x"
   },

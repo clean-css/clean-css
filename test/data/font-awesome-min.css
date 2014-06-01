@@ -35,7 +35,7 @@ a [class*=" icon-"],a [class^=icon-]{display:inline-block}
 ul.icons{list-style-type:none;text-indent:-.75em}
 ul.icons li [class*=" icon-"],ul.icons li [class^=icon-]{width:.75em}
 .icon-muted{color:#eee}
-.icon-border{border:solid 1px #eee;padding:.2em .25em .15em;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px}
+.icon-border{border:1px solid #eee;padding:.2em .25em .15em;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px}
 .icon-2x{font-size:2em}
 .icon-2x.icon-border{border-width:2px;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px}
 .icon-3x{font-size:3em}

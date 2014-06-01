@@ -238,7 +238,7 @@ section article{margin:0 0 16px}
 .bord_top3_gris{border-top:3px solid #e9edf0;padding-top:15px}
 .bord_top3_politique{border-top:3px solid #1f0d67}
 .bord_bot3_gris{border-bottom:3px solid #e9edf0}
-.bord1_gris{border:solid 1px #eef1f5}
+.bord1_gris{border:1px solid #eef1f5}
 .bord_lrb1_gris_clair{border-left:1px solid #eef1f5;border-right:1px solid #eef1f5;border-bottom:1px solid #eef1f5}
 .bord_top1_gris{border-top:1px solid #e9edf0;padding-top:10px}
 .bord_bot1_gris{border-bottom:1px solid #e9edf0;padding-bottom:10px}
@@ -799,7 +799,7 @@ img[height="97"]+.ico29x29{bottom:6%;left:3.5%}
 #header_utilisateur #header_twitter_contenu .txt15_140{margin:0 0 5px;padding:0 0 5px;color:#000;border-bottom:solid 1px #d2d6db}
 #header_twitter_contenu .liste_img_lien{margin:9px 0 0;overflow:hidden;white-space:nowrap}
 #header_twitter_contenu .liste_img_lien .block{display:block;margin:0 0 5px}
-#header_twitter_contenu{padding:10px;border:solid 1px #d2d6db}
+#header_twitter_contenu{padding:10px;border:1px solid #d2d6db}
 #header_utilisateur .identifier{float:right;margin:3px 0 0}
 #header_utilisateur .nl{float:left;margin:7px 0 0}
 #header_utilisateur .nl:hover{background-position:right -20px}
@@ -847,7 +847,7 @@ label i{font-style:normal;display:none}
 .saisie_erreur label i{display:inline}
 .boite_formulaire .erreur{display:none}
 .loginbox .back{padding:0 15px;line-height:4rem;border-top:1px solid #d2d6db}
-.loginbox #login_error_email{background:#f2dede;border:solid 1px #c00;color:#c00;text-align:center}
+.loginbox #login_error_email{background:#f2dede;border:1px solid #c00;color:#c00;text-align:center}
 .loginbox .signup{float:left;width:180px;height:230px;padding:10px 40px 10px 15px;border-right:1px solid #fff;border-left:1px solid #e4e6e9;font-size:14px;line-height:140%}
 .loginbox .accroche{display:block;margin:20px 0 15px;color:#464f57}
 .loginbox .abonne_journal{position:relative;float:left;width:185px;height:235px;padding:10px 55px 10px 16px;font-size:14px;line-height:140%;background:url(/medias/web/img/elements_lm/login_box_journal.jpg) no-repeat right 130px;border-left:1px solid #e4e6e9}
@@ -1233,7 +1233,7 @@ label i{font-style:normal;display:none}
 .bloc_je .tt_dossier_meilleur_monde{background:url(/medias/www/img/tit/tt_dossiers_meilleur_monde.png) left center no-repeat;display:block;width:250px;margin:0 9px;font-size:13px;color:#222;text-indent:-9999px}
 .bloc_je .centrer{color:#747b83}
 .bloc_couvs{position:relative;margin:10px auto 3px}
-.bloc_couvs a{cursor:pointer;display:block;width:208px;left:35px;height:145px;overflow:hidden;border:solid 1px #e7e7e7;box-shadow:0 0 3px #e7e7e7;position:absolute}
+.bloc_couvs a{cursor:pointer;display:block;width:208px;left:35px;height:145px;overflow:hidden;border:1px solid #e7e7e7;box-shadow:0 0 3px #e7e7e7;position:absolute}
 .bloc_couvs.bloc_1_couv{height:145px}
 .bloc_couvs .couv_petite{width:146px;height:74px}
 .bloc_couvs b{top:146px;display:block;width:280px;height:44px;background:url(/medias/www/img/plus_une_lemonde.png) left center no-repeat;position:relative}
@@ -1512,7 +1512,7 @@ label i{font-style:normal;display:none}
 .boite_inline .boite_recherche>p,.une_edito .boite_recherche>p{display:inline}
 .une_edito .grid_12 .boite_recherche>p{display:block;margin:5px 0 0}
 .boite_inline .btn.adroite,.une_edito .btn.adroite{margin-top:5px}
-.reception_alertes_resultats{border:solid 1px #eef1f5}
+.reception_alertes_resultats{border:1px solid #eef1f5}
 .reception_alertes_resultats h1{border-top:solid 3px #1f0d67}
 .reception_alertes_resultats .conteneur_hors_grille{margin:16px 54px 54px}
 .reception_alertes_resultats .saisie{display:block;width:282px}
@@ -1522,7 +1522,7 @@ label i{font-style:normal;display:none}
 #alertes_confirmation_newsletter form *{vertical-align:top}
 #alertes_confirmation_newsletter form input{margin-top:3px}
 .reception_alertes_resultats .rnd4{overflow:hidden}
-.reception_alertes_resultats table td,.reception_alertes_resultats table th{padding:8px;border:solid 1px #b9c0c5}
+.reception_alertes_resultats table td,.reception_alertes_resultats table th{padding:8px;border:1px solid #b9c0c5}
 .reception_alertes_resultats table th{text-align:left;background:#f1f5f8}
 .reception_alertes_resultats td span{display:block;cursor:pointer}
 .reception_alertes_resultats .conteneur_autocompletion{width:282px}

@@ -1394,7 +1394,16 @@ title']{display:block}",
     '-ms-transform with different values #1': 'div{-ms-transform:translate(0,0);-ms-transform:translate3d(0,0,0)}',
     '-ms-transform with different values #2': 'div{-ms-transform:translate(0,0);-webkit-transform:translate3d(0,0,0);-ms-transform:translate3d(0,0,0)}',
     'transform with different values #1': 'div{transform:translate(0,0);transform:translate3d(0,0,0)}',
-    'transform with different values #2': 'div{transform:translate(0,0);-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}'
+    'transform with different values #2': 'div{transform:translate(0,0);-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}',
+    'border(hex) with border(rgba)': 'a{border:1px solid #fff;display:none;border:1px solid rgba(1,0,0,0)}',
+    'border(hex !important) with border(hex)': [
+      'a{border:1px solid #fff!important;display:none;border:1px solid #fff}',
+      'a{border:1px solid #fff!important;display:none}'
+    ],
+    'border(hex) with border(hex !important)': [
+      'a{border:1px solid #fff;display:none;border:1px solid #fff!important}',
+      'a{display:none;border:1px solid #fff!important}'
+    ]
   }),
   'same selectors': cssContext({
     'of two non-adjacent selectors': '.one{color:red}.two{color:#00f}.one{font-weight:700}',
@@ -1714,6 +1723,11 @@ title']{display:block}",
       'div{background-color:#111;background-image:none;background-image:linear-gradient(aaa);background-repeat:repeat;background-position:0 0;background-attachment:scroll}',
       'div{background:#111;background:#111 linear-gradient(aaa)}'
     ]
+  }),
+  'cares about understandability of border components': cssContext({
+    'border(none) with border(rgba)': 'a{border:none;border:1px solid rgba(1,0,0,0)}',
+    'border(rgba) with border(none)': 'a{border:1px solid rgba(1,0,0,0);border:none}',
+    'border(hex) with border(rgba)': 'a{border:1px solid #fff;border:1px solid rgba(1,0,0,0)}'
   }),
   'merge same properties sensibly': cssContext({
     'should merge color values with same understandability #1': [

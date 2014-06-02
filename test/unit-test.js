@@ -425,8 +425,8 @@ vows.describe('clean-units').addBatch({
       'a{-webkit-box-shadow:0 0;-moz-box-shadow:0 0}'
     ],
     'zero as .0 #1': [
-      'a{color:rgba(0,0,0,.0)}',
-      'a{color:rgba(0,0,0,0)}'
+      'a{color:rgba(0,0,.0,1)}',
+      'a{color:rgba(0,0,0,1)}'
     ],
     'zero as .0 #2': [
       'body{margin:.0}',
@@ -446,7 +446,7 @@ vows.describe('clean-units').addBatch({
     ],
     'minus zero in function to zero': [
       'body{color:rgba(-0,-0,-0,-0)}',
-      'body{color:rgba(0,0,0,0)}'
+      'body{color:transparent}'
     ],
     'minus zero px to zero': [
       'body{margin:-0px}',
@@ -745,7 +745,30 @@ vows.describe('clean-units').addBatch({
     'rgb out of an upper bound': [
       'a{color:rgb(256,256,256)}',
       'a{color:#fff}'
-    ]
+    ],
+    'turns rgba(0,0,0,0) to transparent': [
+      'a{color:rgba(0,0,0,0)}',
+      'a{color:transparent}'
+    ],
+    'turns rgba(0.0,0.0,.0,0) to transparent': [
+      'a{color:rgba(0.0,0.0,.0,0)}',
+      'a{color:transparent}'
+    ],
+    'turns rgba(255,255,255,0) to transparent': [
+      'a{color:rgba(255,255,255,0)}',
+      'a{color:transparent}'
+    ],
+    'turns rgba(255,0,255,0) to transparent': [
+      'a{color:rgba(255,0,255,0)}',
+      'a{color:transparent}'
+    ],
+    'turns hsla(120,100%,50%,0) to transparent': [
+      'a{color:hsla(120,100%,50%,0)}',
+      'a{color:transparent}'
+    ],
+    'keeps rgba(0,0,0,.5)': 'a{color:rgba(0,0,0,.5)}',
+    'keeps rgba(0,255,0,.5)': 'a{color:rgba(0,255,0,.5)}',
+    'keeps hsla(120,100%,50%,.5)': 'a{color:hsla(120,100%,50%,.5)}'
   }),
   'shortening colors': colorShorteningContext(),
   'font weights': cssContext({
@@ -931,7 +954,10 @@ path")}',
     ],
     'overriding a star by a non-ajacent selector': 'a{color:red}.one{display:block}a{*color:#fff}',
     'overriding a unserscore by a non-ajacent selector': 'a{color:red}.one{display:block}a{_color:#fff}',
-    'overriding a backslash by a non-ajacent selector': 'a{color:red}.one{display:block}a{color:#fff\\9}'
+    'overriding a backslash by a non-ajacent selector': 'a{color:red}.one{display:block}a{color:#fff\\9}',
+    'keeps rgba(0,0,0,0)': 'a{color:rgba(0,0,0,0)}',
+    'keeps rgba(255,255,255,0)': 'a{color:rgba(255,255,255,0)}',
+    'keeps hsla(120,100%,50%,0)': 'a{color:hsla(120,100%,50%,0)}'
   }, { compatibility: 'ie8' }),
   'IE hacks without IE compatibility': cssContext({
     'star': 'a{*color:#fff}', // See #246
@@ -1395,7 +1421,7 @@ title']{display:block}",
     '-ms-transform with different values #2': 'div{-ms-transform:translate(0,0);-webkit-transform:translate3d(0,0,0);-ms-transform:translate3d(0,0,0)}',
     'transform with different values #1': 'div{transform:translate(0,0);transform:translate3d(0,0,0)}',
     'transform with different values #2': 'div{transform:translate(0,0);-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}',
-    'border(hex) with border(rgba)': 'a{border:1px solid #fff;display:none;border:1px solid rgba(1,0,0,0)}',
+    'border(hex) with border(rgba)': 'a{border:1px solid #fff;display:none;border:1px solid rgba(1,0,0,.5)}',
     'border(hex !important) with border(hex)': [
       'a{border:1px solid #fff!important;display:none;border:1px solid #fff}',
       'a{border:1px solid #fff!important;display:none}'
@@ -1725,9 +1751,9 @@ title']{display:block}",
     ]
   }),
   'cares about understandability of border components': cssContext({
-    'border(none) with border(rgba)': 'a{border:none;border:1px solid rgba(1,0,0,0)}',
-    'border(rgba) with border(none)': 'a{border:1px solid rgba(1,0,0,0);border:none}',
-    'border(hex) with border(rgba)': 'a{border:1px solid #fff;border:1px solid rgba(1,0,0,0)}'
+    'border(none) with border(rgba)': 'a{border:none;border:1px solid rgba(1,0,0,.5)}',
+    'border(rgba) with border(none)': 'a{border:1px solid rgba(1,0,0,.5);border:none}',
+    'border(hex) with border(rgba)': 'a{border:1px solid #fff;border:1px solid rgba(1,0,0,.5)}'
   }),
   'merge same properties sensibly': cssContext({
     'should merge color values with same understandability #1': [

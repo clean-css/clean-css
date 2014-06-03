@@ -326,7 +326,7 @@ vows.describe('clean-units').addBatch({
     'empty': 'a{color:expression()}',
     'method call': 'a{color:expression(this.parentNode.currentStyle.color)}',
     'multiple call': 'a{color:expression(x = 0 , this.parentNode.currentStyle.color)}',
-    'mixed content': "a{*zoom:expression(this.runtimeStyle[\"zoom\"] = '1', this.innerHTML = '&#xf187;')}",
+    'mixed content': "a{zoom:expression(this.runtimeStyle[\"zoom\"] = '1', this.innerHTML = '&#xf187;')}",
     'in comment': "/*! expression(this.runtimeStyle['zoom']) */",
     'complex': 'a{width:expression((this.parentNode.innerWidth + this.parentNode.innerHeight) / 2 )}',
     'with parentheses': "a{width:expression(this.parentNode.innerText == ')' ? '5px' : '10px' )}",
@@ -960,8 +960,22 @@ path")}',
     'keeps hsla(120,100%,50%,0)': 'a{color:hsla(120,100%,50%,0)}'
   }, { compatibility: 'ie8' }),
   'IE hacks without IE compatibility': cssContext({
-    'star': 'a{*color:#fff}', // See #246
-    'unserscore': 'a{_color:#fff}', // See #246
+    'star': [
+      'a{*color:#fff}',
+      ''
+    ],
+    'unserscore': [
+      'a{_color:#fff}',
+      ''
+    ],
+    'two in a row': [
+      'a{padding:0;*height:13px;*width:13px}',
+      'a{padding:0}'
+    ],
+    'two in a row mixed': [
+      'a{padding:0;*height:13px;_width:13px}',
+      'a{padding:0}'
+    ],
     'backslash': [
       'a{color:#fff\\9}',
       ''

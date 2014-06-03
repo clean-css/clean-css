@@ -11,6 +11,7 @@
 * Fixed issue [#184](https://github.com/GoalSmashers/clean-css/issues/184) - uses `!important` for optimization opportunities.
 * Fixed issue [#190](https://github.com/GoalSmashers/clean-css/issues/190) - uses shorthand to override another shorthand.
 * Fixed issue [#197](https://github.com/GoalSmashers/clean-css/issues/197) - adds borders merging by understandability.
+* Fixed issue [#246](https://github.com/GoalSmashers/clean-css/issues/246) - removes IE hacks when not in compatibility mode.
 * Fixed issue [#247](https://github.com/GoalSmashers/clean-css/issues/247) - removes deprecated `selectorsMergeMode` switch.
 * Refixed issue [#250](https://github.com/GoalSmashers/clean-css/issues/250) - based on new quotation marks removal.
 * Fixed issue [#257](https://github.com/GoalSmashers/clean-css/issues/257) - turns hsla/rgba to transparent if possible.

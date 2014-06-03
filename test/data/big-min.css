@@ -1,6 +1,6 @@
 /*! normalize.css 2012-01-31T16:06 UTC - http://github.com/necolas/normalize.css */
 article,aside,details,figcaption,figure,footer,header,hgroup,nav,section{display:block}
-audio,canvas,video{display:inline-block;*display:inline;*zoom:1}
+audio,canvas,video{display:inline-block}
 [hidden],audio:not([controls]){display:none}
 html{-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}
 button,html,input,select,textarea{font-family:sans-serif}
@@ -14,7 +14,7 @@ b,strong{font-weight:700}
 blockquote{margin:1em 40px}
 dfn{font-style:italic}
 mark{background:#ff0;color:#000}
-code,kbd,pre,samp{font-family:monospace,serif;_font-family:'courier new',monospace;font-size:1em}
+code,kbd,pre,samp{font-family:monospace,serif;font-size:1em}
 pre{white-space:pre;white-space:pre-wrap;word-wrap:break-word}
 q{quotes:none}
 q:after,q:before{content:'';content:none}
@@ -29,12 +29,12 @@ img{-ms-interpolation-mode:bicubic}
 svg:not(:root){overflow:hidden}
 figure,form{margin:0}
 fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
-legend{border:0;padding:0;white-space:normal;*margin-left:-7px}
-button,input,select,textarea{font-size:100%;margin:0;vertical-align:baseline;*vertical-align:middle}
+legend{border:0;padding:0;white-space:normal}
+button,input,select,textarea{font-size:100%;margin:0;vertical-align:baseline}
 button,input{line-height:normal}
-button,input[type=button],input[type=reset],input[type=submit]{cursor:pointer;-webkit-appearance:button;*overflow:visible}
+button,input[type=button],input[type=reset],input[type=submit]{cursor:pointer;-webkit-appearance:button}
 button[disabled],input[disabled]{cursor:default}
-input[type=checkbox],input[type=radio]{box-sizing:border-box;padding:0;*height:13px;*width:13px}
+input[type=checkbox],input[type=radio]{box-sizing:border-box;padding:0}
 input[type=search]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box}
 input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-search-decoration{-webkit-appearance:none}
 button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
@@ -267,7 +267,6 @@ img[width="202"]{margin-bottom:4px}
 .btn_abo:active{background-color:#ffc600}
 input.btn,input.btn_abo,input.btn_fonce,input.btn_petit{-webkit-box-sizing:content-box;-moz-box-sizing:content-box;box-sizing:content-box}
 button::-moz-focus-inner,input[type=submit]::-moz-focus-inner{padding:0;border:0}
-input[type=submit].btn_petit{*padding-top:3px;*padding-bottom:3px}
 .bt_abo{display:inline-block;padding:3px 12px;background:#ffd500;font-weight:700;color:#650}
 .bt_abo:hover{background:#ffc600;color:#000;font-weight:700;cursor:pointer;text-decoration:none}
 .titre_bt_fleche{display:inline-block;overflow:hidden;background:#f5f8f9}

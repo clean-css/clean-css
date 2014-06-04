@@ -147,6 +147,11 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
       assert.equal(stdout, minimized);
     }
   }),
+  'from multiple sources': binaryContext('./test/data/partials/one.css ./test/data/partials/five.css', {
+    'should minimize all': function(error, stdout) {
+      assert.equal(stdout, '.one{color:red}.five{background:url(data:image/jpeg;base64,/9j/)}');
+    }
+  }),
   'to file': binaryContext('-o ./reset1-min.css ./test/data/reset.css', {
     'should give no output': function(error, stdout) {
       assert.equal(stdout, '');

@@ -57,7 +57,7 @@ Clean-css accepts the following command line arguments (please make sure
 you use `<source-file>` as the very last argument to avoid potential issues):
 
 ```
-cleancss [options] <source-file>
+cleancss [options] source-file, [source-file, ...]
 
 -h, --help                      Output usage information
 -v, --version                   Output the version number

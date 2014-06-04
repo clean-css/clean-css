@@ -15,6 +15,7 @@
 * Fixed issue [#247](https://github.com/GoalSmashers/clean-css/issues/247) - removes deprecated `selectorsMergeMode` switch.
 * Refixed issue [#250](https://github.com/GoalSmashers/clean-css/issues/250) - based on new quotation marks removal.
 * Fixed issue [#257](https://github.com/GoalSmashers/clean-css/issues/257) - turns hsla/rgba to transparent if possible.
+* Fixed issue [#265](https://github.com/GoalSmashers/clean-css/issues/265) - adds support for multiple input files.
 * Fixed issue [#275](https://github.com/GoalSmashers/clean-css/issues/275) - handling transform properties.
 
 [2.1.8 / 2014-03-28](https://github.com/GoalSmashers/clean-css/compare/v2.1.7...v2.1.8)

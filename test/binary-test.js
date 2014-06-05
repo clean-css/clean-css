@@ -290,5 +290,22 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
     'should not transform source': function(error, stdout) {
       assert.equal(stdout, readFile('./test/data/unsupported/selectors-ie8.css'));
     }
-  })
+  }),
+  'rounding precision': {
+    defaults: pipedContext('div{width:0.10051px}', '', {
+      'should keep 2 decimal places': function(error, stdout) {
+        assert.equal(stdout, 'div{width:.1px}');
+      }
+    }),
+    custom: pipedContext('div{width:0.00051px}', '--rounding-precision 4', {
+      'should keep 4 decimal places': function(error, stdout) {
+        assert.equal(stdout, 'div{width:.0005px}');
+      }
+    }),
+    zero: pipedContext('div{width:1.5051px}', '--rounding-precision 0', {
+      'should keep 0 decimal places': function(error, stdout) {
+        assert.equal(stdout, 'div{width:1px}');
+      }
+    })
+  }
 });

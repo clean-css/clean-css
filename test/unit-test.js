@@ -602,6 +602,12 @@ vows.describe('clean-units').addBatch({
     'do not round percentages': 'div{left:20.505%}',
     'do not round ems': 'div{font-size:1.505em}'
   }),
+  'floats custom rounding': cssContext({
+    'rounds to 4 values': [
+      'div{transform:translateY(-418.505123px)}',
+      'div{transform:translateY(-418.5051px)}'
+    ]
+  }, { roundingPrecision: 4 }),
   'colors': cssContext({
     'shorten rgb to standard hexadecimal format': [
       'a{ color:rgb(5, 10, 15) }',

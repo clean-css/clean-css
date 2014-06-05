@@ -4,6 +4,7 @@
 * Adds a better algorithm for quotation marks' removal.
 * Adds a better non-adjacent optimizer compatible with the upcoming new property optimizer.
 * Adds minifying remote files directly from CLI.
+* Adds `--rounding-precision` to control rounding precision.
 * Moves quotation matching into a `QuoteScanner` class.
 * Fixed issue [#134](https://github.com/GoalSmashers/clean-css/issues/134) - merges properties into shorthand form.
 * Fixed issue [#164](https://github.com/GoalSmashers/clean-css/issues/164) - removes default values if not needed.

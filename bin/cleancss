@@ -24,6 +24,7 @@ commands
   .option('-s, --skip-import', 'Disable @import processing')
   .option('--skip-rebase', 'Disable URLs rebasing')
   .option('--skip-advanced', 'Disable advanced optimizations - selector & property merging, reduction, etc.')
+  .option('--rounding-precision [value]', 'Rounding precision, defaults to 2', parseInt)
   .option('-c, --compatibility [ie7|ie8]', 'Force compatibility mode')
   .option('-t, --timeout [seconds]', 'Per connection timeout when fetching remote @imports (defaults to 5 seconds)')
   .option('-d, --debug', 'Shows debug information (minification time & compression efficiency)');
@@ -76,6 +77,8 @@ if (commands.skipAdvanced)
   cleanOptions.noAdvanced = true;
 if (commands.compatibility)
   cleanOptions.compatibility = commands.compatibility;
+if (commands.roundingPrecision !== undefined)
+  cleanOptions.roundingPrecision = commands.roundingPrecision;
 if (commands.debug)
   cleanOptions.debug = true;
 if (commands.timeout)

@@ -71,6 +71,7 @@ cleancss [options] source-file, [source-file, ...]
 --skip-rebase                   Disable URLs rebasing
 --skip-advanced                 Disable advanced optimizations - selector & property merging,
                                 reduction, etc.
+--rounding-precision [value]    Rounding precision, defaults to 2
 -c, --compatibility [ie7|ie8]   Force compatibility mode
 -d, --debug                     Shows debug information (minification time & compression efficiency)
 ```

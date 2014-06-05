@@ -82,18 +82,25 @@ if (commands.timeout)
   cleanOptions.inliner = { timeout: parseFloat(commands.timeout) * 1000 };
 if (commands.args.length > 0) {
   var relativeTo = (cleanOptions.noRebase ? false : cleanOptions.root) || commands.args[0];
-  options.sources = commands.args;
   cleanOptions.relativeTo = path.dirname(path.resolve(relativeTo));
+
+  options.sources = commands.args.map(function(source) {
+    var isRemote = /^https?:\/\//.test(source);
+
+    if (cleanOptions.processImport === false)
+      source += '@shallow';
+
+    return isRemote ?
+      source :
+      path.relative(cleanOptions.relativeTo, path.resolve(source));
+  });
 }
 
 // ... and do the magic!
 if (options.sources) {
   var data = options.sources
     .map(function(source) {
-      if (cleanOptions.processImport === false)
-        source += '@shallow';
-
-      return '@import url(' + path.relative(cleanOptions.relativeTo, path.resolve(source)) + ');';
+      return '@import url(' + source + ');';
     })
     .join('');
   minify(data);

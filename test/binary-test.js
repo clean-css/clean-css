@@ -240,6 +240,25 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
       }
     })
   },
+  'remote import': {
+    topic: function() {
+      this.server = http.createServer(function (req, res) {
+        res.writeHead(200);
+        res.end('p{font-size:13px}');
+      }).listen(31991, '127.0.0.1');
+
+      this.callback(null);
+    },
+    'of a file': binaryContext('http://127.0.0.1:31991/present.css', {
+      succeeds: function(error, stdout) {
+        assert.equal(error, null);
+        assert.equal(stdout, 'p{font-size:13px}');
+      }
+    }),
+    teardown: function() {
+      this.server.close();
+    }
+  },
   'timeout': unixOnlyContext({
     topic: function() {
       var self = this;

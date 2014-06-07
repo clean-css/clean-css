@@ -330,7 +330,8 @@ vows.describe('clean-units').addBatch({
     'in comment': "/*! expression(this.runtimeStyle['zoom']) */",
     'complex': 'a{width:expression((this.parentNode.innerWidth + this.parentNode.innerHeight) / 2 )}',
     'with parentheses': "a{width:expression(this.parentNode.innerText == ')' ? '5px' : '10px' )}",
-    'open ended (broken)': "a{width:expression(this.parentNode.innerText == }"
+    'open ended (broken)': "a{width:expression(this.parentNode.innerText == }",
+    'function call & advanced': 'a{zoom:expression(function(el){el.style.zoom="1"}(this))}'
   }),
   'text content': cssContext({
     'normal #1': 'a{content:"."}',

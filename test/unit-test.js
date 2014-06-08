@@ -1452,6 +1452,13 @@ title']{display:block}",
       'a{display:none;border:1px solid #fff!important}'
     ]
   }),
+  'duplicate properties with aggressive merging disabled': cssContext({
+    'of (yet) unmergeable properties': 'a{display:inline-block;color:red;display:-moz-block}',
+    'of mergeable properties': [
+      'a{background:red;display:block;background:white}',
+      'a{display:block;background:#fff}'
+    ]
+  }, { noAggressiveMerging: true }),
   'same selectors': cssContext({
     'of two non-adjacent selectors': '.one{color:red}.two{color:#00f}.one{font-weight:700}',
     'of two adjacent single selectors': [

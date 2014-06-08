@@ -307,5 +307,17 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
         assert.equal(stdout, 'div{width:1px}');
       }
     })
+  },
+  'neighbour merging': {
+    'of (yet) unmergeable properties': pipedContext('a{display:inline-block;color:red;display:-moz-block}', '--skip-aggressive-merging', {
+      'gets right result': function(error, stdout) {
+        assert.equal(stdout, 'a{display:inline-block;color:red;display:-moz-block}');
+      }
+    }),
+    'of mergeable properties': pipedContext('a{background:red;display:block;background:white}', '--skip-aggressive-merging', {
+      'gets right result': function(error, stdout) {
+        assert.equal(stdout, 'a{display:block;background:#fff}');
+      }
+    })
   }
 });

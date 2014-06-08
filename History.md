@@ -7,6 +7,7 @@
 * Adds `--rounding-precision` to control rounding precision.
 * Moves quotation matching into a `QuoteScanner` class.
 * Adds `npm run browserify` for creating embeddable version of clean-css.
+* Fixed list-style-* advanced processing.
 * Fixed issue [#134](https://github.com/GoalSmashers/clean-css/issues/134) - merges properties into shorthand form.
 * Fixed issue [#164](https://github.com/GoalSmashers/clean-css/issues/164) - removes default values if not needed.
 * Fixed issue [#168](https://github.com/GoalSmashers/clean-css/issues/168) - adds better property merging algorithm.

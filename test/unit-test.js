@@ -59,13 +59,14 @@ var redefineContext = function(redefinitions, options) {
       for (var j = 0, m = prefixes.length; j < m; j++) {
         var prefixedProperty = prefixes[j] + property;
         var prefixedBy = prefixes[j] + by;
+        var zeroValue = options.noneFor.indexOf(prefixedProperty) > -1 ? 'none' : '0';
 
         context['should override ' + prefixedProperty + ' by ' + prefixedBy] = [
-          'a{' + prefixedProperty + ':inherit;' + prefixedBy + ':0}',
-          'a{' + prefixedBy + ':0}'
+          'a{' + prefixedProperty + ':inherit;' + prefixedBy + ':' + zeroValue + '}',
+          'a{' + prefixedBy + ':' + zeroValue + '}'
         ];
         context['should not override ' + prefixedBy + ' by ' + prefixedProperty] =
-          'a{' + prefixedBy + ':0;' + prefixedProperty + ':inherit}';
+          'a{' + prefixedBy + ':' + zeroValue + ';' + prefixedProperty + ':inherit}';
       }
     }
   }
@@ -1633,9 +1634,9 @@ title']{display:block}",
     'font-style': ['font'],
     'font-variant': ['font'],
     'font-weight': ['font'],
-    'list-style-image': ['list'],
-    'list-style-position': ['list'],
-    'list-style-type': ['list'],
+    'list-style-image': ['list-style'],
+    'list-style-position': ['list-style'],
+    'list-style-type': ['list-style'],
     'margin-bottom': ['margin'],
     'margin-left': ['margin'],
     'margin-right': ['margin'],
@@ -1651,7 +1652,7 @@ title']{display:block}",
     'transition-duration': ['transition'],
     'transition-property': ['transition'],
     'transition-timing-function': ['transition']
-  }, { vendorPrefixes: ['animation', 'transition'] }),
+  }, { vendorPrefixes: ['animation', 'transition'], noneFor: ['list-style-image'] }),
   'redefined more granular properties with property merging': cssContext({
     'should merge background with background-attachment': [
       'a{background:0;background-attachment:fixed}',

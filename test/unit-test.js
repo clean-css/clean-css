@@ -301,6 +301,10 @@ vows.describe('clean-units').addBatch({
       '*{color:red}'
     ]
   }),
+  'escaping': cssContext({
+    'escaped @ symbol in class name': '.pad--all0\\@sm{padding:0}',
+    'escaped @ symbol in id': '#id\\@sm{padding:0}'
+  }),
   'important comments - one': cssContext({
     'strip all but first': [
       '/*! important comment */a{color:red}/* some comment *//*! important comment */',
@@ -1942,7 +1946,5 @@ title']{display:block}",
     '@-ms-viewport': '@-ms-viewport{width:device-width}',
     '@-o-viewport': '@-o-viewport{width:device-width}',
     '@viewport': '@viewport{width:device-width}'
-  }),
-  'escaped @ symbol in class name': '.pad--all0\\@sm{padding:0}',
-  'escaped @ symbol in id': '#id\\@sm{padding:0}'
+  })
 }).export(module);

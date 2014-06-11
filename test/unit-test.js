@@ -806,6 +806,9 @@ vows.describe('clean-units').addBatch({
     ],
     'font weight in extended font declarations': 'font:normal normal normal 13px/20px Helvetica'
   }),
+  'unicode': cssContext({
+    'font-names': 'body{font-family:\\5FAE\\8F6F\\96C5\\9ED1,\\5B8B\\4F53,sans-serif}'
+  }),
   'urls': cssContext({
     'keep urls without parentheses unchanged': 'a{background:url(/images/blank.png) 0 0 no-repeat}',
     'keep non-encoded data URI unchanged': ".icon-logo{background-image:url('data:image/svg+xml;charset=US-ASCII')}",

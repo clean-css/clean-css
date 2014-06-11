@@ -22,6 +22,7 @@
 * Fixed issue [#257](https://github.com/GoalSmashers/clean-css/issues/257) - turns hsla/rgba to transparent if possible.
 * Fixed issue [#265](https://github.com/GoalSmashers/clean-css/issues/265) - adds support for multiple input files.
 * Fixed issue [#275](https://github.com/GoalSmashers/clean-css/issues/275) - handling transform properties.
+* Fixed issue [#276](https://github.com/GoalSmashers/clean-css/issues/276) - corrects unicode handling.
 * Fixed issue [#288](https://github.com/GoalSmashers/clean-css/issues/288) - adds smarter expression parsing.
 * Fixed issue [#293](https://github.com/GoalSmashers/clean-css/issues/293) - handles escaped @ symbols in classnames and ids.
 

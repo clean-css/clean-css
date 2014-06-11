@@ -1,4 +1,4 @@
-[2.2.0 / 2014-xx-xx (UNRELEASED)](https://github.com/GoalSmashers/clean-css/compare/v2.1.6...HEAD)
+[2.2.0 / 2014-06-11](https://github.com/GoalSmashers/clean-css/compare/v2.1.8...2.2.0)
 ==================
 
 * Adds a better algorithm for quotation marks' removal.

@@ -182,18 +182,12 @@ vows.describe('clean-units').addBatch({
       'a{text-shadow:rgb(255,0,1) 1px 1px}',
       'a{text-shadow:#ff0001 1px 1px}'
     ],
-    'after rgba': [
-      'a{text-shadow:rgba(255,0,0,1) 0 1px}',
-      'a{text-shadow:rgba(255,0,0,1)0 1px}'
-    ],
+    'after rgba': 'a{text-shadow:rgba(255,0,0,1) 0 1px}',
     'after hsl': [
       'a{text-shadow:hsl(240,100%,40%) -1px 1px}',
       'a{text-shadow:#00c -1px 1px}'
     ],
-    'after hsla': [
-      'a{text-shadow:hsla(240,100%,40%,.5) -1px 1px}',
-      'a{text-shadow:hsla(240,100%,40%,.5)-1px 1px}'
-    ]
+    'after hsla': 'a{text-shadow:hsla(240,100%,40%,.5) -1px 1px}'
   }),
   'line breaks': cssContext({
     'line breaks': [

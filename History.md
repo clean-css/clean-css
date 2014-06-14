@@ -2,6 +2,7 @@
 ==================
 
 * Fixes new property optimizer for 'none' values.
+* Fixed issue [#294](https://github.com/GoalSmashers/clean-css/issues/294) - space after rgba/hsla in IE<=11.
 
 [2.2.0 / 2014-06-11](https://github.com/GoalSmashers/clean-css/compare/v2.1.8...2.2.0)
 ==================

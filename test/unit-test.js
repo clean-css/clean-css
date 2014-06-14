@@ -1759,6 +1759,7 @@ title']{display:block}",
       '.t{border-top-left-radius:7px;border-bottom-right-radius:6px;border-bottom-left-radius:5px;border-top-right-radius:3px}',
       '.t{border-radius:7px 3px 6px 5px}'
     ],
+    'shorthand border-radius none': 'li{border-radius:none}',
     'shorthand list-style #1': [
       '.t{list-style-type:circle;list-style-position:outside;list-style-image:url(aaa)}',
       '.t{list-style:circle url(aaa)}'

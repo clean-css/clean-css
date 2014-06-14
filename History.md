@@ -1,3 +1,8 @@
+[2.2.1 / 2014-xx-xx](https://github.com/GoalSmashers/clean-css/compare/v2.2.0...2.2.1)
+==================
+
+* Fixes new property optimizer for 'none' values.
+
 [2.2.0 / 2014-06-11](https://github.com/GoalSmashers/clean-css/compare/v2.1.8...2.2.0)
 ==================
 

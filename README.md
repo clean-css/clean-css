@@ -135,12 +135,10 @@ CleanCSS constructor accepts a hash as a parameter, i.e.,
 
 ### How to use clean-css with build tools?
 
-* [Broccoli](https://github.com/broccolijs/broccoli#broccoli) : [broccoli-uncss](https://github.com/sindresorhus/broccoli-uncss)
-* [Brunch](http://brunch.io/) : [uncss-brunch](https://github.com/jakubburkiewicz/uncss-brunch)
+* [Broccoli](https://github.com/broccolijs/broccoli#broccoli) : [broccoli-clean-css](https://github.com/shinnn/broccoli-clean-css)
+* [Brunch](http://brunch.io/) : [clean-css-brunch](https://github.com/brunch/clean-css-brunch)
 * [Grunt](http://gruntjs.com) : [grunt-contrib-cssmin](https://github.com/gruntjs/grunt-contrib-cssmin)
-* [Gulp](http://gulpjs.com/) : [https://github.com/ben-eb/gulp-uncss](https://github.com/ben-eb/gulp-uncss)
-
-For a tutorial how to use Grunt, Gulp, Broccoli or Brunch with clean-css, read Addy Osmani's ["Spring cleaning unused CSS"](http://addyosmani.com/blog/removing-unused-css/).
+* [Gulp](http://gulpjs.com/) : [gulp-minify-css](https://github.com/jonathanepollack/gulp-minify-css)
 
 ### What are the clean-css' dev commands?
 

@@ -1,3 +1,8 @@
+[2.2.2 / 2014-xx-xx](https://github.com/GoalSmashers/clean-css/compare/v2.2.1...v2.2.2)
+==================
+
+* Fixed issue [#297](https://github.com/GoalSmashers/clean-css/issues/297) - box-shadow zeros minification.
+
 [2.2.1 / 2014-06-14](https://github.com/GoalSmashers/clean-css/compare/v2.2.0...2.2.1)
 ==================
 

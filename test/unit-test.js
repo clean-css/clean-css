@@ -412,10 +412,12 @@ vows.describe('clean-units').addBatch({
       'a{box-shadow:0 0 0 0}',
       'a{box-shadow:0 0}'
     ],
-    'box shadow with three zeros ': [
-      'a{box-shadow:0 0 0}',
-      'a{box-shadow:0 0}'
+    'box shadow with two zeros': 'a{box-shadow:0 0}',
+    'box shadow with three zeros and a fraction': [
+      'a{box-shadow:0 0 0 0.15em #EBEBEB}',
+      'a{box-shadow:0 0 0 .15em #EBEBEB}'
     ],
+    'box shadow with three zeros and a value': 'a{box-shadow:0 0 0 15px #EBEBEB}',
     'rems': [
       'div{width:0rem;height:0rem}',
       'div{width:0;height:0}'

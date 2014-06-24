@@ -260,7 +260,7 @@ img[width="202"]{margin-bottom:4px}
 .btn.disabled:hover,input[type=submit].disabled{background-image:none;background-color:#e6e6e6;cursor:default}
 .btn_fonce.active,.btn_fonce.disabled,.btn_fonce:active,.btn_fonce:hover,.btn_fonce[disabled]{color:#fff;background-color:#16212c}
 .btn_abo.active,.btn_abo.disabled,.btn_abo:active,.btn_abo:hover,.btn_abo[disabled]{color:#2e3942;background-color:#ffc600}
-.btn:focus{outline:#333 dotted thin;outline:-webkit-focus-ring-color 5px;outline-offset:-2px}
+.btn:focus{outline:#333 dotted thin;outline:-webkit-focus-ring-color auto 5px;outline-offset:-2px}
 .btn:active,.btn_abo:active,.btn_fonce:active,.btn_petit:active{background-image:none;-webkit-box-shadow:inset 0 2px 4px rgba(0,0,0,.15),0 1px 2px rgba(0,0,0,.05);-moz-box-shadow:inset 0 2px 4px rgba(0,0,0,.15),0 1px 2px rgba(0,0,0,.05);box-shadow:inset 0 2px 4px rgba(0,0,0,.15),0 1px 2px rgba(0,0,0,.05);outline:0}
 .btn:active,.btn_petit:active{background-color:#e6e6e6}
 .btn_fonce:active{background-color:#000b15}

@@ -1946,5 +1946,11 @@ title']{display:block}",
     '@-ms-viewport': '@-ms-viewport{width:device-width}',
     '@-o-viewport': '@-o-viewport{width:device-width}',
     '@viewport': '@viewport{width:device-width}'
+  }),
+  'misc advanced': cssContext({
+    'outline auto': [
+      'a{outline:5px auto -webkit-focus-ring-color}',
+      'a{outline:-webkit-focus-ring-color auto 5px}'
+    ]
   })
 }).export(module);

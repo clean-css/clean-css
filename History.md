@@ -1,4 +1,4 @@
-[2.2.3 / 2014-xx-xx](https://github.com/GoalSmashers/clean-css/compare/v2.2.2...v2.2.3)
+[2.2.3 / 2014-06-24](https://github.com/GoalSmashers/clean-css/compare/v2.2.2...v2.2.3)
 ==================
 
 * Fixed issue [#302](https://github.com/GoalSmashers/clean-css/issues/302) - handling of outline-style: auto.

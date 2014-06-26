@@ -1952,5 +1952,8 @@ title']{display:block}",
       'a{outline:5px auto -webkit-focus-ring-color}',
       'a{outline:-webkit-focus-ring-color auto 5px}'
     ]
+  }),
+  'viewport units': cssContext({
+    'shorthand margin with viewport width not changed': 'div{margin:5vw}'
   })
 }).export(module);

@@ -1,3 +1,8 @@
+[2.2.5 / 2014-xx-xx](https://github.com/GoalSmashers/clean-css/compare/v2.2.4...v2.2.5)
+==================
+
+* Fixed issue [#305](https://github.com/GoalSmashers/clean-css/issues/305) - allows width keywords in border-width.
+
 [2.2.4 / 2014-06-27](https://github.com/GoalSmashers/clean-css/compare/v2.2.3...v2.2.4)
 ==================
 

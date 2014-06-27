@@ -1951,7 +1951,18 @@ title']{display:block}",
     'outline auto': [
       'a{outline:5px auto -webkit-focus-ring-color}',
       'a{outline:-webkit-focus-ring-color auto 5px}'
-    ]
+    ],
+    'border radius side H+V': 'a{border-top-left-radius:1em / 1em}',
+    'border radius expanded H+V': [
+      'a{border-radius:1em 1em 1em 1em / 2em 2em 2em 2em}',
+      'a{border-radius:1em / 2em}'
+    ],
+    'border radius expanded H+V with mixed values #1': [
+      'a{border-radius:1em 2em 1em 2em / 1em 2em 3em 2em}',
+      'a{border-radius:1em 2em / 1em 2em 3em}'
+    ],
+    'border radius expanded H+V with mixed values #2': 'a{border-radius:1em / 1em 1em 1em 2em}',
+    'border radius H+V': 'a{border-radius:50% / 100%}'
   }),
   'viewport units': cssContext({
     'shorthand margin with viewport width not changed': 'div{margin:5vw}'

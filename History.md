@@ -1,7 +1,8 @@
-[2.2.4 / 2014-xx-xx](https://github.com/GoalSmashers/clean-css/compare/v2.2.3...v2.2.4)
+[2.2.4 / 2014-06-27](https://github.com/GoalSmashers/clean-css/compare/v2.2.3...v2.2.4)
 ==================
 
 * Fixed issue [#301](https://github.com/GoalSmashers/clean-css/issues/301) - proper border radius processing.
+* Fixed issue [#303](https://github.com/GoalSmashers/clean-css/issues/303) - correctly preserves viewport units.
 
 [2.2.3 / 2014-06-24](https://github.com/GoalSmashers/clean-css/compare/v2.2.2...v2.2.3)
 ==================

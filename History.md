@@ -1,4 +1,4 @@
-[2.2.5 / 2014-xx-xx](https://github.com/GoalSmashers/clean-css/compare/v2.2.4...v2.2.5)
+[2.2.5 / 2014-06-29](https://github.com/GoalSmashers/clean-css/compare/v2.2.4...v2.2.5)
 ==================
 
 * Adds removing extra spaces around / in border-radius.

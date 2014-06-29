@@ -778,6 +778,28 @@ vows.describe('clean-units').addBatch({
     'keeps rgba(0,255,0,.5)': 'a{color:rgba(0,255,0,.5)}',
     'keeps hsla(120,100%,50%,.5)': 'a{color:hsla(120,100%,50%,.5)}'
   }),
+  'border-radius': cssContext({
+    'border radius H+V 0/0': [
+      'a{border-radius:0 / 0}',
+      'a{border-radius:0}'
+    ],
+    'border radius side H+V 0/0': [
+      'a{border-top-left-radius:0 / 0}',
+      'a{border-top-left-radius:0}'
+    ],
+    'border radius H+V same values': [
+      'a{border-radius:5px / 5px}',
+      'a{border-radius:5px}'
+    ],
+    'border radius side H+V same values': [
+      'a{border-top-left-radius:1em / 1em}',
+      'a{border-top-left-radius:1em}'
+    ],
+    'border radius H+V same expanded values': [
+      'a{border-radius:5px 5px 5px 5px / 5px 5px}',
+      'a{border-radius:5px}'
+    ]
+  }),
   'shortening colors': colorShorteningContext(),
   'font weights': cssContext({
     'font-weight:normal to 400': [
@@ -1953,8 +1975,8 @@ title']{display:block}",
       'a{outline:-webkit-focus-ring-color auto 5px}'
     ],
     'border radius side H+V': [
-      'a{border-top-left-radius:1em / 1em}',
-      'a{border-top-left-radius:1em/1em}'
+      'a{border-top-left-radius:2em / 1em}',
+      'a{border-top-left-radius:2em/1em}'
     ],
     'border radius expanded H+V': [
       'a{border-radius:1em 1em 1em 1em / 2em 2em 2em 2em}',

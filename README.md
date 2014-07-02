@@ -1,7 +1,7 @@
 [![NPM version](https://badge.fury.io/js/clean-css.svg)](https://badge.fury.io/js/clean-css)
-[![Build Status](https://secure.travis-ci.org/GoalSmashers/clean-css.svg)](https://travis-ci.org/GoalSmashers/clean-css)
-[![Dependency Status](https://david-dm.org/GoalSmashers/clean-css.svg?theme=shields.io)](https://david-dm.org/GoalSmashers/clean-css)
-[![devDependency Status](https://david-dm.org/GoalSmashers/clean-css/dev-status.svg?theme=shields.io)](https://david-dm.org/GoalSmashers/clean-css#info=devDependencies)
+[![Build Status](https://secure.travis-ci.org/ksgy/clean-css.svg)](https://travis-ci.org/ksgy/clean-css)
+[![Dependency Status](https://david-dm.org/ksgy/clean-css.svg?theme=shields.io)](https://david-dm.org/ksgy/clean-css)
+[![devDependency Status](https://david-dm.org/ksgy/clean-css/dev-status.svg?theme=shields.io)](https://david-dm.org/ksgy/clean-css#info=devDependencies)
 
 ## What is clean-css?
 

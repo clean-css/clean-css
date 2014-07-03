@@ -434,6 +434,14 @@ vows.describe('clean-units').addBatch({
       'body{margin:.0}',
       'body{margin:0}'
     ],
+    'zero as .0 #3': [
+      'body{margin:.0em}',
+      'body{margin:0}'
+    ],
+    'zero as .0 #4': [
+      'body{margin:.0 1em .0 .0}',
+      'body{margin:0 1em 0 0}'
+    ],
     'missing #1': [
       'body{margin:2.em}',
       'body{margin:2em}'
@@ -441,6 +449,10 @@ vows.describe('clean-units').addBatch({
     'missing #2': [
       'p{opacity:1.}',
       'p{opacity:1}'
+    ],
+    'missing #3': [
+      'p{opacity:11.px}',
+      'p{opacity:11px}'
     ],
     'minus zero as value to zero': [
       'body{margin:-0}',

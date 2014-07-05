@@ -1,6 +1,7 @@
 [2.2.6 / 2014-xx-xx](https://github.com/GoalSmashers/clean-css/compare/v2.2.5...v2.2.6)
 ==================
 
+* Adds faster quote matching in QuoteScanner.
 * Improves QuoteScanner to handle comments correctly.
 * Fixed issue [#308](https://github.com/GoalSmashers/clean-css/issues/308) - parsing comments in quoted urls.
 * Fixed issue [#311](https://github.com/GoalSmashers/clean-css/issues/311) - leading/trailing decimal points.

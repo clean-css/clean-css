@@ -1,6 +1,7 @@
 [2.2.6 / 2014-xx-xx](https://github.com/GoalSmashers/clean-css/compare/v2.2.5...v2.2.6)
 ==================
 
+* Improves QuoteScanner to handle comments correctly.
 * Fixed issue [#311](https://github.com/GoalSmashers/clean-css/issues/311) - leading/trailing decimal points.
 
 [2.2.5 / 2014-06-29](https://github.com/GoalSmashers/clean-css/compare/v2.2.4...v2.2.5)

@@ -1,4 +1,4 @@
-[2.2.6 / 2014-xx-xx](https://github.com/GoalSmashers/clean-css/compare/v2.2.5...v2.2.6)
+[2.2.6 / 2014-07-05](https://github.com/GoalSmashers/clean-css/compare/v2.2.5...v2.2.6)
 ==================
 
 * Adds faster quote matching in QuoteScanner.

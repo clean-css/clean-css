@@ -2,6 +2,7 @@
 ==================
 
 * Improves QuoteScanner to handle comments correctly.
+* Fixed issue [#308](https://github.com/GoalSmashers/clean-css/issues/308) - parsing comments in quoted urls.
 * Fixed issue [#311](https://github.com/GoalSmashers/clean-css/issues/311) - leading/trailing decimal points.
 
 [2.2.5 / 2014-06-29](https://github.com/GoalSmashers/clean-css/compare/v2.2.4...v2.2.5)

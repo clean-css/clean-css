@@ -293,6 +293,22 @@ vows.describe('clean-units').addBatch({
     'selector between comments': [
       '/*comment*/*/*comment*/{color:red}',
       '*{color:red}'
+    ],
+    'inside url': [
+      "p{background-image:url('/*')}/* */",
+      "p{background-image:url(/*)}"
+    ],
+    'inside url twice': [
+      "p{background-image:url('/* */\" /*')}/* */",
+      "p{background-image:url('/* */\" /*')}"
+    ],
+    'inside url with more quotation': [
+      "p{background-image:url('/*');content:\"\"/* */}",
+      "p{background-image:url(/*);content:\"\"}"
+    ],
+    'with quote marks': [
+      '/*"*//* */',
+      ''
     ]
   }),
   'escaping': cssContext({

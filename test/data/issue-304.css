@@ -1,0 +1,4 @@
+.test {
+  background: url(top.png) no-repeat, url(bottom.png) no-repeat, url(middle.png) no-repeat;
+  background-position: left 0px top -12px, left 0px bottom -12px, left 0px top 0px;
+}

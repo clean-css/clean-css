@@ -1,0 +1,7 @@
+.envelope {
+  background: url(one.png), url(one.png), url(two.png);
+  background-color: #eee;
+  background-repeat: repeat-x, repeat-x, no-repeat;
+  background-size: 35px 4px, 35px 4px, 101px 61px;
+  background-position: top center, bottom center, 110% 10px;
+}

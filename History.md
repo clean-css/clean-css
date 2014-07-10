@@ -1,3 +1,9 @@
+[2.2.7 / 2014-07-10](https://github.com/GoalSmashers/clean-css/compare/v2.2.6...v2.2.7)
+==================
+
+* Fixed issue [#304](https://github.com/GoalSmashers/clean-css/issues/304) - merging multiple backgrounds.
+* Fixed issue [#312](https://github.com/GoalSmashers/clean-css/issues/312) - merging with mixed repeat.
+
 [2.2.6 / 2014-07-05](https://github.com/GoalSmashers/clean-css/compare/v2.2.5...v2.2.6)
 ==================
 

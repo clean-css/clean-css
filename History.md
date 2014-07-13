@@ -1,3 +1,8 @@
+[2.2.8 / 2014-xx-xx](https://github.com/GoalSmashers/clean-css/compare/v2.2.7...v2.2.8)
+==================
+
+* Fixed issue [#315](https://github.com/GoalSmashers/clean-css/issues/315) - rgba/hsla -> transparent in gradients.
+
 [2.2.7 / 2014-07-10](https://github.com/GoalSmashers/clean-css/compare/v2.2.6...v2.2.7)
 ==================
 

@@ -1,4 +1,4 @@
-[2.2.8 / 2014-xx-xx](https://github.com/GoalSmashers/clean-css/compare/v2.2.7...v2.2.8)
+[2.2.8 / 2014-07-14](https://github.com/GoalSmashers/clean-css/compare/v2.2.7...v2.2.8)
 ==================
 
 * Fixed issue [#313](https://github.com/GoalSmashers/clean-css/issues/313) - processing comment marks in urls.

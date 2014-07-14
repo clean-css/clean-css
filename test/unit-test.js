@@ -1384,7 +1384,8 @@ title']{display:block}",
     'of an unknown file with extra whitespace': [
       "@import url(  /fake.css );",
       "@import url(/fake.css);"
-    ]
+    ],
+    'of comment chars within import url': "@import 'necolas/normalize.css@*/normalize.css';"
   }, { processImport: false }),
   '@import with no import and no advanced': cssContext({
     'empty body': [

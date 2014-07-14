@@ -6,7 +6,7 @@ var path = require('path');
 var CleanCSS = require('../index');
 var ColorShortener = require('../lib/colors/shortener');
 
-var lineBreak = process.platform == 'win32' ? '\r\n' : '\n';
+var lineBreak = require('os').EOL;
 var cssContext = function(groups, options) {
   var context = {};
   var clean = function(expectedCss) {

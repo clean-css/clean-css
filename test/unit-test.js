@@ -391,7 +391,6 @@ vows.describe('clean-units').addBatch({
       'a{outline:0}'
     ],
     'display:none not changed': 'a{display:none}',
-    'longer background declaration not changed': 'html{background:none repeat scroll 0 0 #fff}',
     'mixed zeros not changed': 'div{margin:0 0 1px 2px}',
     'mixed zeros not changed #2': 'div{padding:0 1px 0 3px}',
     'mixed zeros not changed #3': 'div{padding:10px 0 0 1px}',
@@ -862,7 +861,7 @@ vows.describe('clean-units').addBatch({
     'font-names': 'body{font-family:\\5FAE\\8F6F\\96C5\\9ED1,\\5B8B\\4F53,sans-serif}'
   }),
   'urls': cssContext({
-    'keep urls without parentheses unchanged': 'a{background:url(/images/blank.png) 0 0 no-repeat}',
+    'keep urls without parentheses unchanged': 'a{background:url(/images/blank.png)}',
     'keep non-encoded data URI unchanged': ".icon-logo{background-image:url('data:image/svg+xml;charset=US-ASCII')}",
     'strip quotes from base64 encoded PNG data URI': [
       ".icon-logo{background-image:url('data:image/png;base64,iVBORw0')}",
@@ -873,25 +872,25 @@ vows.describe('clean-units').addBatch({
       '.icon-logo{background-image:url(data:image/x-icon;base64,AAABAAEAEBA)}'
     ],
     'strip single parentheses': [
-      "a{background:url('/images/blank.png') 0 0 no-repeat}",
-      "a{background:url(/images/blank.png) 0 0 no-repeat}"
+      "a{background:url('/images/blank.png')}",
+      "a{background:url(/images/blank.png)}"
     ],
     'strip double parentheses': [
-      'a{background:url("/images/blank.png") 0 0 no-repeat}',
-      'a{background:url(/images/blank.png) 0 0 no-repeat}'
+      'a{background:url("/images/blank.png")}',
+      'a{background:url(/images/blank.png)}'
     ],
     'strip more': [
-      'p{background:url("/images/blank.png") 0 0 no-repeat}b{display:block}a{background:url("/images/blank2.png") 0 0 no-repeat}',
-      'p{background:url(/images/blank.png) 0 0 no-repeat}b{display:block}a{background:url(/images/blank2.png) 0 0 no-repeat}'
+      'p{background:url("/images/blank.png")}b{display:block}a{background:url("/images/blank2.png")}',
+      'p{background:url(/images/blank.png)}b{display:block}a{background:url(/images/blank2.png)}'
     ],
     'not strip comments if spaces inside': [
-      'p{background:url("/images/long image name.png") 0 0 no-repeat}b{display:block}a{background:url("/images/no-spaces.png") 0 0 no-repeat}',
-      'p{background:url("/images/long image name.png") 0 0 no-repeat}b{display:block}a{background:url(/images/no-spaces.png) 0 0 no-repeat}'
+      'p{background:url("/images/long image name.png")}b{display:block}a{background:url("/images/no-spaces.png")}',
+      'p{background:url("/images/long image name.png")}b{display:block}a{background:url(/images/no-spaces.png)}'
     ],
     'not add a space before url\'s hash': "a{background:url(/fonts/d90b3358-e1e2-4abb-ba96-356983a54c22.svg#d90b3358-e1e2-4abb-ba96-356983a54c22)}",
     'keep urls from being stripped down #1': 'a{background:url(/image-1.0.png)}',
     'keep urls from being stripped down #2': "a{background:url(/image-white.png)}",
-    'keep urls from being stripped down #3': "a{background:#eee url(/libraries/jquery-ui-1.10.1.custom/images/ui-bg_highlight-soft_100_eeeeee_1x100.png) 50% top repeat-x}",
+    'keep urls from being stripped down #3': "a{background:#eee url(/libraries/jquery-ui-1.10.1.custom/images/ui-bg_highlight-soft_100_eeeeee_1x100.png) repeat-x 50% top}",
     'keep special markers in comments (so order is important)': '/*! __ESCAPED_URL_CLEAN_CSS0__ */a{display:block}',
     'strip new line in urls': [
       'a{background:url(/very/long/\
@@ -905,32 +904,32 @@ path")}',
     ]
   }),
   'urls rewriting - no root or target': cssContext({
-    'no @import': 'a{background:url(test/data/partials/extra/down.gif) 0 0 no-repeat}',
+    'no @import': 'a{background:url(test/data/partials/extra/down.gif) no-repeat}',
     'relative @import': [
       '@import url(test/data/partials-relative/base.css);',
-      'a{background:url(test/data/partials/extra/down.gif) 0 0 no-repeat}'
+      'a{background:url(test/data/partials/extra/down.gif) no-repeat}'
     ],
     'relative @import twice': [
       '@import url(test/data/partials-relative/extra/included.css);',
-      'a{background:url(test/data/partials/extra/down.gif) 0 0 no-repeat}'
+      'a{background:url(test/data/partials/extra/down.gif) no-repeat}'
     ],
     'absolute @import': [
       '@import url(/test/data/partials-relative/base.css);',
-      'a{background:url(test/data/partials/extra/down.gif) 0 0 no-repeat}'
+      'a{background:url(test/data/partials/extra/down.gif) no-repeat}'
     ]
   }),
   'urls rewriting - root but no target': cssContext({
     'no @import': [
-      'a{background:url(../partials/extra/down.gif) 0 0 no-repeat}',
-      'a{background:url(/test/data/partials/extra/down.gif) 0 0 no-repeat}'
+      'a{background:url(../partials/extra/down.gif) no-repeat}',
+      'a{background:url(/test/data/partials/extra/down.gif) no-repeat}'
     ],
     'relative @import': [
       '@import url(base.css);',
-      'a{background:url(/test/data/partials/extra/down.gif) 0 0 no-repeat}'
+      'a{background:url(/test/data/partials/extra/down.gif) no-repeat}'
     ],
     'absolute @import': [
       '@import url(/test/data/partials-relative/base.css);',
-      'a{background:url(/test/data/partials/extra/down.gif) 0 0 no-repeat}'
+      'a{background:url(/test/data/partials/extra/down.gif) no-repeat}'
     ]
   }, {
     root: process.cwd(),
@@ -938,16 +937,16 @@ path")}',
   }),
   'urls rewriting - no root but target': cssContext({
     'no @import': [
-      'a{background:url(../partials/extra/down.gif) 0 0 no-repeat}',
-      'a{background:url(test/data/partials/extra/down.gif) 0 0 no-repeat}'
+      'a{background:url(../partials/extra/down.gif) no-repeat}',
+      'a{background:url(test/data/partials/extra/down.gif) no-repeat}'
     ],
     'relative @import': [
       '@import url(base.css);',
-      'a{background:url(test/data/partials/extra/down.gif) 0 0 no-repeat}'
+      'a{background:url(test/data/partials/extra/down.gif) no-repeat}'
     ],
     'absolute @import': [
       '@import url(/test/data/partials-relative/base.css);',
-      'a{background:url(test/data/partials/extra/down.gif) 0 0 no-repeat}'
+      'a{background:url(test/data/partials/extra/down.gif) no-repeat}'
     ]
   }, {
     target: path.join(process.cwd(), 'test.css'),
@@ -955,16 +954,16 @@ path")}',
   }),
   'urls rewriting - root and target': cssContext({
     'no @import': [
-      'a{background:url(../partials/extra/down.gif) 0 0 no-repeat}',
-      'a{background:url(/test/data/partials/extra/down.gif) 0 0 no-repeat}'
+      'a{background:url(../partials/extra/down.gif) no-repeat}',
+      'a{background:url(/test/data/partials/extra/down.gif) no-repeat}'
     ],
     'relative @import': [
       '@import url(base.css);',
-      'a{background:url(/test/data/partials/extra/down.gif) 0 0 no-repeat}'
+      'a{background:url(/test/data/partials/extra/down.gif) no-repeat}'
     ],
     'absolute @import': [
       '@import url(/test/data/partials-relative/base.css);',
-      'a{background:url(/test/data/partials/extra/down.gif) 0 0 no-repeat}'
+      'a{background:url(/test/data/partials/extra/down.gif) no-repeat}'
     ]
   }, {
     root: process.cwd(),
@@ -2022,7 +2021,11 @@ title']{display:block}",
       'a{border-radius:1em 2em/1em 2em 3em}'
     ],
     'border radius expanded H+V with mixed values #2': 'a{border-radius:1em/1em 1em 1em 2em}',
-    'border radius H+V': 'a{border-radius:50%/100%}'
+    'border radius H+V': 'a{border-radius:50%/100%}',
+    'lost background position': [
+      '.one{background:50% no-repeat}.one{background-image:url(/img.png)}',
+      '.one{background:url(/img.png) no-repeat 50%}'
+    ]
   }),
   'viewport units': cssContext({
     'shorthand margin with viewport width not changed': 'div{margin:5vw}'

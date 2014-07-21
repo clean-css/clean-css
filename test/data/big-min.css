@@ -451,7 +451,7 @@ article .liste_carre_999{margin-top:5px}
 .global.audience .container>div:first-child{margin-left:0}
 #carousel_footer_serviciel img:hover,.global.audience .container img:hover{opacity:.7;-ms-filter:"alpha(Opacity=70)"}
 .global.supp_partenaires .entete_deroule{padding:6px 16px;margin-bottom:0;text-align:left;font-weight:700;font-size:16px;font-family:arial,sans serif}
-.global.supp_partenaires .entete_deroule .logo{float:right;padding-left:40px;background:url(/medias/web/img/textes/marqueur_pub_gris43x5.png) 0 12px no-repeat}
+.global.supp_partenaires .entete_deroule .logo{float:right;padding-left:40px;background:url(/medias/web/img/textes/marqueur_pub_gris43x5.png) no-repeat 0 12px}
 .global.supp_partenaires .position_pub div{float:left;width:301px;padding:16px 12px 16px 16px;line-height:140%}
 .global.supp_partenaires .position_pub div~div{width:285px}
 .global.supp_partenaires .position_pub div~div~div{width:330px}
@@ -1195,7 +1195,7 @@ label i{font-style:normal;display:none}
 .col_droite .plus_partages .texte{float:left;width:190px;padding:0 10px 0 8px}
 .col_droite .sociaux .pictos{overflow:hidden;margin:10px 15px}
 .col_droite .sociaux .pictos span.text{float:left;width:130px;padding:0 15px 0 0;color:#464f57;line-height:120%}
-.col_droite .recherche_resultat_pres.bloc_base{background:#0b0423 url(/medias/web/img/evenementiel/presidentielle_2012/bg_recherche_elections_col_droite.png) center 0 no-repeat;color:#fff}
+.col_droite .recherche_resultat_pres.bloc_base{background:#0b0423 url(/medias/web/img/evenementiel/presidentielle_2012/bg_recherche_elections_col_droite.png) no-repeat center 0;color:#fff}
 .col_droite .boite_recherche{background:0 0;padding:8px 16px 10px}
 .col_droite .recherche_resultat_pres.bloc_base .entete{border-top:0!important;border-bottom:0!important;padding-top:16px}
 .col_droite .recherche_resultat_pres .entete span{display:inline-block;height:30px;background:url(/medias/web/img/textes/elections/bulle_2012_39x27_bg_fonce.png) no-repeat;padding-left:50px}
@@ -1229,17 +1229,17 @@ label i{font-style:normal;display:none}
 .bloc_je .annonce{display:block;padding:8px 9px;background:#2e3942;color:#fff}
 .bloc_je .annonce .intro{display:block;text-transform:uppercase;font-weight:700}
 .bloc_je .previsu .bt_blanc_gris_32{margin:20px 0 0}
-.bloc_je .tt_dossier_meilleur_monde{background:url(/medias/www/img/tit/tt_dossiers_meilleur_monde.png) left center no-repeat;display:block;width:250px;margin:0 9px;font-size:13px;color:#222;text-indent:-9999px}
+.bloc_je .tt_dossier_meilleur_monde{background:url(/medias/www/img/tit/tt_dossiers_meilleur_monde.png) no-repeat left center;display:block;width:250px;margin:0 9px;font-size:13px;color:#222;text-indent:-9999px}
 .bloc_je .centrer{color:#747b83}
 .bloc_couvs{position:relative;margin:10px auto 3px}
 .bloc_couvs a{cursor:pointer;display:block;width:208px;left:35px;height:145px;overflow:hidden;border:1px solid #e7e7e7;box-shadow:0 0 3px #e7e7e7;position:absolute}
 .bloc_couvs.bloc_1_couv{height:145px}
 .bloc_couvs .couv_petite{width:146px;height:74px}
-.bloc_couvs b{top:146px;display:block;width:280px;height:44px;background:url(/medias/www/img/plus_une_lemonde.png) left center no-repeat;position:relative}
+.bloc_couvs b{top:146px;display:block;width:280px;height:44px;background:url(/medias/www/img/plus_une_lemonde.png) no-repeat left center;position:relative}
 .bloc_couvs.bloc_2_couv{width:247px;height:185px}
 .bloc_couvs.bloc_2_couv a{left:0}
 .bloc_couvs.bloc_2_couv .couv_petite{left:auto;top:auto;right:0;bottom:0}
-.bloc_couvs.bloc_2_couv b{right:153px;top:153px;width:15px;height:15px;background:url(/medias/www/img/plus_une_lemonde.png) right center no-repeat;position:absolute}
+.bloc_couvs.bloc_2_couv b{right:153px;top:153px;width:15px;height:15px;background:url(/medias/www/img/plus_une_lemonde.png) no-repeat right center;position:absolute}
 .bloc_couvs.bloc_3_couv{width:280px;height:278px}
 .bloc_couvs.bloc_3_couv .couv_petite{width:125px;height:86px;right:auto;top:auto;left:0;bottom:0}
 .bloc_couvs.bloc_3_couv .couv_petite.petite_1{left:auto;right:0}
@@ -1500,7 +1500,7 @@ label i{font-style:normal;display:none}
 .col_droite .erreur{display:block;width:292px}
 #alerte_election_coldroite .conteneur_autocompletion,.col_droite .inscription_alerte_election .saisie{width:272px}
 #alerte_election_coldroite .contenu_bloc_droit{overflow:visible}
-.boite_recherche{background:#f8f9fb url(/medias/web/img/evenementiel/presidentielle_2012/bg_recherche_elections.png) center 0 no-repeat;overflow:visible;padding:16px 16px 10px;color:#fff}
+.boite_recherche{background:#f8f9fb url(/medias/web/img/evenementiel/presidentielle_2012/bg_recherche_elections.png) no-repeat center 0;overflow:visible;padding:16px 16px 10px;color:#fff}
 .boite_recherche .bord_double_gris_blanc{margin:0 4px;display:inline-block;line-height:20px;font-weight:700}
 .bord_top3_politique .boite_recherche input:first-child{width:265px}
 .boite_recherche .bord_double_gris_blanc span{padding:0 3px}
@@ -2026,11 +2026,11 @@ a.god:hover{background:#3c3c3c;color:#fff;text-decoration:none}
 #bar-liberation .other .god a{padding:5px;-moz-box-sizing:border-box;-webkit-box-sizing:border-box}
 #bar-liberation .other .god a:hover{background-color:#ff0;color:#000}
 #bar-liberation .god .godenabled a{background:#3c3c3c;color:#fff}
-#bar-liberation .god a.godenter{background:url(http://s0.libe.com/libe/img/common/icon_godenter.png?9ffa63824b5c) no-repeat center center #fff}
-#bar-liberation .god a.godquit{background:url(http://s0.libe.com/libe/img/common/icon_godquit.png?a59104f30cfb) no-repeat center center #000}
-#bar-liberation .god a.godquit:hover{background:url(http://s0.libe.com/libe/img/common/icon_godenter.png?9ffa63824b5c) no-repeat center center #ff0}
-#bar-liberation .god a.jumptoadmin{background:url(http://s0.libe.com/back/img/icon_home.png?c1de55b52ccc) no-repeat center center #fff}
-#bar-liberation .god a.jumptoedit{background:url(http://s0.libe.com/back/img/icon_changelink.png?4a31d309d5db) no-repeat center center #fff}
+#bar-liberation .god a.godenter{background:#fff url(http://s0.libe.com/libe/img/common/icon_godenter.png?9ffa63824b5c) no-repeat center center}
+#bar-liberation .god a.godquit{background:#000 url(http://s0.libe.com/libe/img/common/icon_godquit.png?a59104f30cfb) no-repeat center center}
+#bar-liberation .god a.godquit:hover{background:#ff0 url(http://s0.libe.com/libe/img/common/icon_godenter.png?9ffa63824b5c) no-repeat center center}
+#bar-liberation .god a.jumptoadmin{background:#fff url(http://s0.libe.com/back/img/icon_home.png?c1de55b52ccc) no-repeat center center}
+#bar-liberation .god a.jumptoedit{background:#fff url(http://s0.libe.com/back/img/icon_changelink.png?4a31d309d5db) no-repeat center center}
 #mainContent .god{font-size:10px;padding:6px;border-radius:2px;-moz-border-radius:4px;-webkit-border-radius:4px}
 #core-liberation .block-partnership .block-content img.visual{display:block;float:left;width:140px;margin-top:4px;margin-bottom:10px}
 #core-liberation .block-partnership .block-content h4{font-family:Verdana,sans-serif;font-size:12px;font-weight:700;margin:0 0 11px 150px}

@@ -140,6 +140,7 @@ CleanCSS constructor accepts a hash as a parameter, i.e.,
 * [Grunt](http://gruntjs.com) : [grunt-contrib-cssmin](https://github.com/gruntjs/grunt-contrib-cssmin)
 * [Gulp](http://gulpjs.com/) : [gulp-minify-css](https://github.com/jonathanepollack/gulp-minify-css)
 * [component-builder2](https://github.com/component/builder2.js) : [builder-clean-css](https://github.com/poying/builder-clean-css)
+* [Metalsmith](http://metalsmith.io) : [metalsmith-clean-css](https://github.com/aymericbeaumet/metalsmith-clean-css)
 
 ### What are the clean-css' dev commands?
 

@@ -173,18 +173,18 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
   'relative image paths': {
     'no root & output': binaryContext('./test/data/partials-relative/base.css', {
       'should leave paths': function(error, stdout) {
-        assert.equal(stdout, 'a{background:url(../partials/extra/down.gif) 0 0 no-repeat}');
+        assert.equal(stdout, 'a{background:url(../partials/extra/down.gif) no-repeat}');
       }
     }),
     'root but no output': binaryContext('-r ./test ./test/data/partials-relative/base.css', {
       'should rewrite path relative to ./test': function(error, stdout) {
-        assert.equal(stdout, 'a{background:url(/data/partials/extra/down.gif) 0 0 no-repeat}');
+        assert.equal(stdout, 'a{background:url(/data/partials/extra/down.gif) no-repeat}');
       }
     }),
     'no root but output': binaryContext('-o ./base1-min.css ./test/data/partials-relative/base.css', {
       'should rewrite path relative to current path': function() {
         var minimized = readFile('./base1-min.css');
-        assert.equal(minimized, 'a{background:url(test/data/partials/extra/down.gif) 0 0 no-repeat}');
+        assert.equal(minimized, 'a{background:url(test/data/partials/extra/down.gif) no-repeat}');
       },
       teardown: function() {
         deleteFile('./base1-min.css');
@@ -193,7 +193,7 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
     'root and output': binaryContext('-r ./test/data -o ./base2-min.css ./test/data/partials-relative/base.css', {
       'should rewrite path relative to ./test/data/': function() {
         var minimized = readFile('./base2-min.css');
-        assert.equal(minimized, 'a{background:url(/partials/extra/down.gif) 0 0 no-repeat}');
+        assert.equal(minimized, 'a{background:url(/partials/extra/down.gif) no-repeat}');
       },
       teardown: function() {
         deleteFile('./base2-min.css');

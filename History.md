@@ -1,3 +1,8 @@
+[2.2.9 / 2014-xx-xx](https://github.com/GoalSmashers/clean-css/compare/v2.2.8...v2.2.9)
+==================
+
+* Fixed issue [#316](https://github.com/GoalSmashers/clean-css/issues/316) - incorrect background processing.
+
 [2.2.8 / 2014-07-14](https://github.com/GoalSmashers/clean-css/compare/v2.2.7...v2.2.8)
 ==================
 

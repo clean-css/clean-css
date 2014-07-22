@@ -35,7 +35,7 @@
     "test": "vows"
   },
   "dependencies": {
-    "commander": "2.2.x"
+    "commander": "2.3.x"
   },
   "devDependencies": {
     "browserify": "4.x",

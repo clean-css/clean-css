@@ -1,4 +1,4 @@
-[2.2.9 / 2014-xx-xx](https://github.com/GoalSmashers/clean-css/compare/v2.2.8...v2.2.9)
+[2.2.9 / 2014-07-23](https://github.com/GoalSmashers/clean-css/compare/v2.2.8...v2.2.9)
 ==================
 
 * Adds `background` normalization according to W3C spec.

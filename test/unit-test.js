@@ -890,7 +890,7 @@ vows.describe('clean-units').addBatch({
     'not add a space before url\'s hash': "a{background:url(/fonts/d90b3358-e1e2-4abb-ba96-356983a54c22.svg#d90b3358-e1e2-4abb-ba96-356983a54c22)}",
     'keep urls from being stripped down #1': 'a{background:url(/image-1.0.png)}',
     'keep urls from being stripped down #2': "a{background:url(/image-white.png)}",
-    'keep urls from being stripped down #3': "a{background:#eee url(/libraries/jquery-ui-1.10.1.custom/images/ui-bg_highlight-soft_100_eeeeee_1x100.png) repeat-x 50% top}",
+    'keep urls from being stripped down #3': "a{background:url(/libraries/jquery-ui-1.10.1.custom/images/ui-bg_highlight-soft_100_eeeeee_1x100.png) 50% top #eee}",
     'keep special markers in comments (so order is important)': '/*! __ESCAPED_URL_CLEAN_CSS0__ */a{display:block}',
     'strip new line in urls': [
       'a{background:url(/very/long/\
@@ -1723,7 +1723,7 @@ title']{display:block}",
     ],
     'should merge background with background-color': [
       'a{background:0;background-color:#9fce00}',
-      'a{background:#9fce00 0}'
+      'a{background:0 #9fce00}'
     ],
     'should NOT merge background with inherited background-color': [
       'a{background:0;background-color:inherit}',
@@ -1747,7 +1747,7 @@ title']{display:block}",
     ],
     'should merge background with background-repeat': [
       'a{background:0;background-repeat:repeat-y}',
-      'a{background:repeat-y 0}'
+      'a{background:0 repeat-y}'
     ],
     'should NOT merge background with inherited background-repeat': [
       'a{background:0;background-repeat:inherit}',
@@ -1785,15 +1785,15 @@ title']{display:block}",
   'shorthand properties': cssContext({
     'shorthand background #1' : [
       'div{background-color:#111;background-image:url(aaa);background-repeat:repeat;background-position:0 0;background-attachment:scroll}',
-      'div{background:#111 url(aaa)}'
+      'div{background:url(aaa) #111}'
     ],
     'shorthand background #2' : [
       'div{background-color:#111;background-image:url(aaa);background-repeat:no-repeat;background-position:0 0;background-attachment:scroll}',
-      'div{background:#111 url(aaa) no-repeat}'
+      'div{background:url(aaa) no-repeat #111}'
     ],
     'shorthand important background' : [
       'div{background-color:#111!important;background-image:url(aaa)!important;background-repeat:repeat!important;background-position:0 0!important;background-attachment:scroll!important}',
-      'div{background:#111 url(aaa)!important}'
+      'div{background:url(aaa) #111!important}'
     ],
     'shorthand border-width': [
       '.t{border-top-width:7px;border-bottom-width:7px;border-left-width:4px;border-right-width:4px}',
@@ -1827,8 +1827,8 @@ title']{display:block}",
       'div{background:#fff;background:linear-gradient(whatever)}'
     ],
     'linear-gradient should NOT clear out background with color only, even if it has a color' : [
-      'div{background:#fff;background:#222 linear-gradient(whatever)}',
-      'div{background:#fff;background:#222 linear-gradient(whatever)}'
+      'div{background:#fff;background:linear-gradient(whatever) #222}',
+      'div{background:#fff;background:linear-gradient(whatever) #222}'
     ],
     'a background-image with just a linear-gradient should not be compacted to a shorthand' : [
       'div{background-color:#111;background-image:linear-gradient(aaa);background-repeat:no-repeat;background-position:0 0;background-attachment:scroll}',
@@ -1836,7 +1836,7 @@ title']{display:block}",
     ],
     'a background-image with a none and a linear-gradient should result in two shorthands' : [
       'div{background-color:#111;background-image:none;background-image:linear-gradient(aaa);background-repeat:repeat;background-position:0 0;background-attachment:scroll}',
-      'div{background:#111;background:#111 linear-gradient(aaa)}'
+      'div{background:#111;background:linear-gradient(aaa) #111}'
     ]
   }),
   'cares about understandability of border components': cssContext({
@@ -1919,7 +1919,7 @@ title']{display:block}",
     ],
     'should take into account important background-color and shorthand others into background': [
       'p{background-color:#9fce00!important;background-image:url(hello);background-attachment:scroll;background-position:1px 2px;background-repeat:repeat-y}',
-      'p{background-color:#9fce00!important;background:url(hello) repeat-y 1px 2px}'
+      'p{background-color:#9fce00!important;background:url(hello) 1px 2px repeat-y}'
     ],
     'should take into account important outline-color and default value of outline-width': [
       'p{outline:inset medium;outline-color:#9fce00!important;outline-style:inset!important}',
@@ -1927,7 +1927,7 @@ title']{display:block}",
     ],
     'should take into account important background-position remove its irrelevant counterpart': [
       'p{background:#9fce00 url(hello) 4px 5px;background-position:5px 3px!important}',
-      'p{background:#9fce00 url(hello);background-position:5px 3px!important}'
+      'p{background:url(hello) #9fce00;background-position:5px 3px!important}'
     ],
     'should take into account important background-position and assign the shortest possible value for its irrelevant counterpart': [
       'p{background:transparent;background-position:5px 3px!important}',
@@ -1949,7 +1949,7 @@ title']{display:block}",
     ],
     'when shorter, optimize inherited/non-inherited background granular properties into a non-inherited shorthand and some inherited granular properties': [
       'p{background-color:#9fce00;background-image:inherit;background-attachment:scroll;background-position:1px 2px;background-repeat:repeat-y}',
-      'p{background:#9fce00 repeat-y 1px 2px;background-image:inherit}'
+      'p{background:1px 2px repeat-y #9fce00;background-image:inherit}'
     ],
     'put inherit to the place where it consumes the least space': [
       'div{padding:0;padding-bottom:inherit;padding-right:inherit}',
@@ -2024,7 +2024,7 @@ title']{display:block}",
     'border radius H+V': 'a{border-radius:50%/100%}',
     'lost background position': [
       '.one{background:50% no-repeat}.one{background-image:url(/img.png)}',
-      '.one{background:url(/img.png) no-repeat 50%}'
+      '.one{background:url(/img.png) 50% no-repeat}'
     ]
   }),
   'viewport units': cssContext({

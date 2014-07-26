@@ -221,6 +221,10 @@ vows.describe('clean-units').addBatch({
     'charset with double line break': [
       "@charset 'utf-8';" + lineBreak + lineBreak + "a{display:block}",
       "@charset 'utf-8';" + lineBreak + "a{display:block}"
+    ],
+    'uppercase charset': [
+      "@CHARSET 'utf-8';h1{color:red}",
+      'h1{color:red}'
     ]
   }, { keepBreaks: true }),
   'line breaks and important comments': cssContext({

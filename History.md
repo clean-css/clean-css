@@ -1,3 +1,8 @@
+[2.2.10 / 2014-xx-xx](https://github.com/GoalSmashers/clean-css/compare/v2.2.9...v2.2.10)
+==================
+
+* Fixed issue [#325](https://github.com/GoalSmashers/clean-css/issues/325) - removing invalid @charset declarations.
+
 [2.2.9 / 2014-07-23](https://github.com/GoalSmashers/clean-css/compare/v2.2.8...v2.2.9)
 ==================
 

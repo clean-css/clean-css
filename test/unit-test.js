@@ -2029,6 +2029,10 @@ title']{display:block}",
     'lost background position': [
       '.one{background:50% no-repeat}.one{background-image:url(/img.png)}',
       '.one{background:url(/img.png) 50% no-repeat}'
+    ],
+    'merging color with backgrounds': [
+      'p{background:red;background-image:url(1.png),url(2.png)}',
+      'p{background:url(1.png),url(2.png) red}'
     ]
   }),
   'viewport units': cssContext({

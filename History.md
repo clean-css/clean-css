@@ -1,4 +1,4 @@
-[2.2.10 / 2014-xx-xx](https://github.com/GoalSmashers/clean-css/compare/v2.2.9...v2.2.10)
+[2.2.10 / 2014-07-27](https://github.com/GoalSmashers/clean-css/compare/v2.2.9...v2.2.10)
 ==================
 
 * Improved performance of advanced mode validators.

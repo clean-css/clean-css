@@ -1,6 +1,7 @@
 [2.2.10 / 2014-xx-xx](https://github.com/GoalSmashers/clean-css/compare/v2.2.9...v2.2.10)
 ==================
 
+* Improved performance of advanced mode validators.
 * Fixed issue [#323](https://github.com/GoalSmashers/clean-css/issues/323) - stripping variable references.
 * Fixed issue [#325](https://github.com/GoalSmashers/clean-css/issues/325) - removing invalid @charset declarations.
 

@@ -1,1 +1,1 @@
-.envelope{background:url(one.png) top center repeat-x,url(one.png) bottom center repeat-x,url(two.png) 110% 10px no-repeat #eee;background-size:35px 4px,35px 4px,101px 61px}
+.envelope{background:url(one.png) top center/35px 4px repeat-x,url(one.png) bottom center/35px 4px repeat-x,url(two.png) 110% 10px/101px 61px no-repeat #eee}

@@ -2033,5 +2033,9 @@ title']{display:block}",
   }),
   'viewport units': cssContext({
     'shorthand margin with viewport width not changed': 'div{margin:5vw}'
+  }),
+  'variables': cssContext({
+    'stripping': 'a{--border:#000}.one{border:1px solid var(--border)}',
+    'all values': 'a{--width:1px;--style:solid;--color:#000}.one{border:var(--width) var(--style) var(--color)}'
   })
 }).export(module);

@@ -1,3 +1,8 @@
+[2.2.11 / 2014-xx-xx](https://github.com/GoalSmashers/clean-css/compare/v2.2.10...v2.2.11)
+==================
+
+* Fixed issue [#326](https://github.com/GoalSmashers/clean-css/issues/326) - background-size regression.
+
 [2.2.10 / 2014-07-27](https://github.com/GoalSmashers/clean-css/compare/v2.2.9...v2.2.10)
 ==================
 

@@ -211,26 +211,38 @@ vows.describe('clean-units').addBatch({
       'p{width:500px}' + lineBreak + 'a{color:red}' + lineBreak + 'span{font-style:italic}'
     ],
     'charset not at beginning': [
-      "a{ color: #f10; }\n@charset 'utf-8';\nb { font-weight: bolder}",
-      "@charset 'utf-8';" + lineBreak + "a{color:#f10}" + lineBreak + "b{font-weight:bolder}"
+      'a{ color: #f10; }\n@charset "utf-8";\nb { font-weight: bolder}',
+      '@charset "utf-8";' + lineBreak + "a{color:#f10}" + lineBreak + "b{font-weight:bolder}"
     ],
     'charset multiple charsets': [
-      "@charset 'utf-8';\ndiv :before { display: block }\n@charset 'utf-8';\na { color: #f10 }",
-      "@charset 'utf-8';" + lineBreak + "div :before{display:block}" + lineBreak + "a{color:#f10}"
+      '@charset "utf-8";\ndiv :before { display: block }\n@charset "utf-8";\na { color: #f10 }',
+      '@charset "utf-8";' + lineBreak + "div :before{display:block}" + lineBreak + "a{color:#f10}"
     ],
     'charset with double line break': [
-      "@charset 'utf-8';" + lineBreak + lineBreak + "a{display:block}",
-      "@charset 'utf-8';" + lineBreak + "a{display:block}"
+      '@charset "utf-8";' + lineBreak + lineBreak + "a{display:block}",
+      '@charset "utf-8";' + lineBreak + "a{display:block}"
     ],
     'uppercase charset': [
-      "@CHARSET 'utf-8';h1{color:red}",
-      'h1{color:red}'
+      '@CHARSET "utf-8";\nh1{color:red}',
+      '@charset "utf-8";' + lineBreak + "h1{color:red}"
+    ],
+    'mixed case charset': [
+      '@cHARSET "utf-8";\nh1{color:red}',
+      '@charset "utf-8";' + lineBreak + "h1{color:red}"
+    ],
+    'charset with single quotes': [
+      "@charset 'utf-8';\nh1{color:red}",
+      '@charset "utf-8";' + lineBreak + "h1{color:red}"
+    ],
+    'mixed case charset with single quotes': [
+      "@cHARSET 'utf-8';\nh1{color:red}",
+      '@charset "utf-8";' + lineBreak + "h1{color:red}"
     ]
   }, { keepBreaks: true }),
   'line breaks and important comments': cssContext({
     'charset to beginning with comment removal': [
-      "/*! some comment */" + lineBreak + lineBreak + "@charset 'utf-8';" + lineBreak + lineBreak + "a{display:block}",
-      "@charset 'utf-8';" + lineBreak + "a{display:block}"
+      "/*! some comment */" + lineBreak + lineBreak + '@charset "utf-8";' + lineBreak + lineBreak + "a{display:block}",
+      '@charset "utf-8";' + lineBreak + "a{display:block}"
     ]
   }, { keepBreaks: true, keepSpecialComments: 0 }),
   'selectors': cssContext({
@@ -331,8 +343,8 @@ vows.describe('clean-units').addBatch({
       'a{color:red}'
     ],
     'move charset before': [
-      "/*! some comment */" + lineBreak + lineBreak + "@charset 'utf-8';" + lineBreak + lineBreak + "a{display:block}",
-      "@charset 'utf-8';a{display:block}"
+      "/*! some comment */" + lineBreak + lineBreak + '@charset "utf-8";' + lineBreak + lineBreak + "a{display:block}",
+      '@charset "utf-8";a{display:block}'
     ]
   }, { keepSpecialComments: 0 }),
   'important comments - keepSpecialComments when a string': cssContext({
@@ -1147,16 +1159,40 @@ title']{display:block}",
   }),
   'charsets': cssContext({
     'not at beginning': [
-      "a{ color: #f10; }@charset 'utf-8';b { font-weight: bolder}",
-      "@charset 'utf-8';a{color:#f10}b{font-weight:bolder}"
+      'a{ color: #f10; }@charset "utf-8";b { font-weight: bolder}',
+      '@charset "utf-8";a{color:#f10}b{font-weight:bolder}'
     ],
     'multiple charsets': [
-      "@charset 'utf-8';div :before { display: block }@charset 'utf-8';a { color: #f10 }",
-      "@charset 'utf-8';div :before{display:block}a{color:#f10}"
+      '@charset "utf-8";div :before { display: block }@charset "utf-8";a { color: #f10 }',
+      '@charset "utf-8";div :before{display:block}a{color:#f10}'
     ],
     'charset and space after': [
-      "@charset 'utf-8';" + lineBreak + lineBreak + "a{display:block}",
-      "@charset 'utf-8';a{display:block}"
+      '@charset "utf-8";' + lineBreak + lineBreak + "a{display:block}",
+      '@charset "utf-8";a{display:block}'
+    ],
+    'uppercase charset': [
+      '@CHARSET "utf-8";h1{color:red}',
+      '@charset "utf-8";h1{color:red}'
+    ],
+    'mixed case charset': [
+      '@cHARSET "utf-8";h1{color:red}',
+      '@charset "utf-8";h1{color:red}'
+    ],
+    'charset with single quotes': [
+      "@charset 'utf-8';h1{color:red}",
+      '@charset "utf-8";h1{color:red}'
+    ],
+    'mixed case charset with single quotes': [
+      "@cHARSET 'utf-8';h1{color:red}",
+      '@charset "utf-8";h1{color:red}'
+    ],
+    'charset without middle space': [
+      '@charset"utf-8";h1{color:red}',
+      '@charset "utf-8";h1{color:red}'
+    ],
+    'charset with double middle space': [
+      '@charset  "utf-8";h1{color: red}',
+      '@charset "utf-8";h1{color:red}'
     ]
   }),
   'important': cssContext({

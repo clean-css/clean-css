@@ -2017,6 +2017,10 @@ title']{display:block}",
     'with background-position shorthands and spaces': [
       'a{background:url(top.jpg) 0 / cover no-repeat}',
       'a{background:url(top.jpg) 0/cover no-repeat}'
+    ],
+    'with background-size property': [
+      'a{background:none;background-image:url(1.png);background-size:28px 28px}',
+      'a{background:url(1.png) 0 0/28px 28px}'
     ]
   }),
   'misc advanced': cssContext({

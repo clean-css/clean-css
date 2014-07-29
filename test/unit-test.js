@@ -2049,7 +2049,8 @@ title']{display:block}",
     'merging color with backgrounds': [
       'p{background:red;background-image:url(1.png),url(2.png)}',
       'p{background:url(1.png),url(2.png) red}'
-    ]
+    ],
+    'unknown @ rule': '@unknown "test";h1{color:red}'
   }),
   'viewport units': cssContext({
     'shorthand margin with viewport width not changed': 'div{margin:5vw}'

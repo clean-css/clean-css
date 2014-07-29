@@ -1,3 +1,8 @@
+[2.2.12 / 2014-xx-xx](https://github.com/GoalSmashers/clean-css/compare/v2.2.11...v2.2.12)
+==================
+
+* Fixed issue with tokenizer removing first selector after an unknown @ rule.
+
 [2.2.11 / 2014-07-28](https://github.com/GoalSmashers/clean-css/compare/v2.2.10...v2.2.11)
 ==================
 

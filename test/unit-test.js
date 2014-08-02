@@ -1977,6 +1977,10 @@ title']{display:block}",
     'default background components should be removed #2': [
       'body{background:transparent none 1px 5px scroll}',
       'body{background:1px 5px}'
+    ],
+    'default background components should be removed #3': [
+      'body{background:none repeat scroll 0 0 #000}',
+      'body{background:#000}'
     ]
   }),
   'complex granular properties': cssContext({

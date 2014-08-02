@@ -225,6 +225,10 @@ vows.describe('clean-units').addBatch({
     'uppercase charset': [
       "@CHARSET 'utf-8';h1{color:red}",
       'h1{color:red}'
+    ],
+    'mixed case charset': [
+      "@chArSET 'utf-8';h1{color:red}",
+      'h1{color:red}'
     ]
   }, { keepBreaks: true }),
   'line breaks and important comments': cssContext({

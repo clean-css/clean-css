@@ -2,6 +2,7 @@
 ==================
 
 * Fixed issue with tokenizer removing first selector after an unknown @ rule.
+* Fixed issue [#329](https://github.com/GoalSmashers/clean-css/issues/329) - font shorthands incorrectly processed.
 
 [2.2.11 / 2014-07-28](https://github.com/GoalSmashers/clean-css/compare/v2.2.10...v2.2.11)
 ==================

@@ -859,7 +859,8 @@ vows.describe('clean-units').addBatch({
       'p{font-weight:bold!important;width:100%;font:normal 12px Helvetica}',
       'p{font-weight:700!important;width:100%;font:400 12px Helvetica}'
     ],
-    'font weight in extended font declarations': 'font:normal normal normal 13px/20px Helvetica'
+    'font weight in extended font declarations': 'font:normal normal normal 13px/20px Helvetica',
+    'font weight where style and weight are declared': 'a{font:normal 300 100%/1.5 sans-serif}'
   }),
   'unicode': cssContext({
     'font-names': 'body{font-family:\\5FAE\\8F6F\\96C5\\9ED1,\\5B8B\\4F53,sans-serif}'

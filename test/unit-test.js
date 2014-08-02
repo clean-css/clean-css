@@ -852,14 +852,14 @@ vows.describe('clean-units').addBatch({
       'body{font:400 13px/20px "Helvetica Neue",Helvetica,Arial,sans-serif}'
     ],
     'font weight in font declarations with fraction units': [
-      'font:bold .9rem Helvetica',
-      'font:700 .9rem Helvetica'
+      'p{font:bold .9rem Helvetica}',
+      'p{font:700 .9rem Helvetica}'
     ],
     'multiple changes': [
       'p{font-weight:bold!important;width:100%;font:normal 12px Helvetica}',
       'p{font-weight:700!important;width:100%;font:400 12px Helvetica}'
     ],
-    'font weight in extended font declarations': 'font:normal normal normal 13px/20px Helvetica',
+    'font weight in extended font declarations': 'a{font:normal normal normal 13px/20px Helvetica}',
     'font weight where style and weight are declared': 'a{font:normal 300 100%/1.5 sans-serif}'
   }),
   'unicode': cssContext({
@@ -1094,7 +1094,7 @@ path")}',
     'should keep quotation if is a number': 'div[data-number=\'1\']{border-color:red}',
     'should keep quotation if starts with a number': 'div[data-type^=\'1something\']{border-color:red}',
     'should keep quotation if starts with a hyphen': 'div[data-type$=\'-something\']{border-color:red}',
-    'should keep quotation if key only (which is invalid)': 'div["data-type"]',
+    'should keep quotation if key only (which is invalid)': 'div["data-type"]{color:red}',
     'should strip quotation if is a word': [
       'a[data-href=\'object\']{border-color:red}',
       'a[data-href=object]{border-color:red}'

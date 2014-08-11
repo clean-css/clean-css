@@ -1,3 +1,8 @@
+[2.2.13 / 2014-xx-xx](https://github.com/GoalSmashers/clean-css/compare/v2.2.12...v2.2.13)
+==================
+
+* Fixed issue [#337](https://github.com/GoalSmashers/clean-css/issues/337) - handling component importance.
+
 [2.2.12 / 2014-08-02](https://github.com/GoalSmashers/clean-css/compare/v2.2.11...v2.2.12)
 ==================
 

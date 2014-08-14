@@ -130,6 +130,7 @@ CleanCSS constructor accepts a hash as a parameter, i.e.,
 * `processImport` - whether to process `@import` rules
 * `noRebase` - whether to skip URLs rebasing
 * `noAdvanced` - set to true to disable advanced optimizations - selector & property merging, reduction, etc.
+* `roundingPrecision` - Rounding precision, defaults to 2.
 * `compatibility` - Force compatibility mode to `ie7` or `ie8`. Defaults to not set.
 * `debug` - set to true to get minification statistics under `stats` property (see `test/custom-test.js` for examples)
 

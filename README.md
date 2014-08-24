@@ -1,7 +1,7 @@
 [![NPM version](https://badge.fury.io/js/clean-css.svg)](https://badge.fury.io/js/clean-css)
-[![Build Status](https://secure.travis-ci.org/GoalSmashers/clean-css.svg)](https://travis-ci.org/GoalSmashers/clean-css)
-[![Dependency Status](https://david-dm.org/GoalSmashers/clean-css.svg?theme=shields.io)](https://david-dm.org/GoalSmashers/clean-css)
-[![devDependency Status](https://david-dm.org/GoalSmashers/clean-css/dev-status.svg?theme=shields.io)](https://david-dm.org/GoalSmashers/clean-css#info=devDependencies)
+[![Build Status](https://secure.travis-ci.org/jakubpawlowicz/clean-css.svg)](https://travis-ci.org/jakubpawlowicz/clean-css)
+[![Dependency Status](https://david-dm.org/jakubpawlowicz/clean-css.svg?theme=shields.io)](https://david-dm.org/jakubpawlowicz/clean-css)
+[![devDependency Status](https://david-dm.org/jakubpawlowicz/clean-css/dev-status.svg?theme=shields.io)](https://david-dm.org/jakubpawlowicz/clean-css#info=devDependencies)
 
 ## What is clean-css?
 
@@ -147,7 +147,7 @@ CleanCSS constructor accepts a hash as a parameter, i.e.,
 
 First clone the source, then run:
 
-* `npm run bench` for clean-css benchmarks (see [test/bench.js](https://github.com/GoalSmashers/clean-css/blob/master/test/bench.js) for details)
+* `npm run bench` for clean-css benchmarks (see [test/bench.js](https://github.com/jakubpawlowicz/clean-css/blob/master/test/bench.js) for details)
 * `npm run check` to check JS sources with [JSHint](https://github.com/jshint/jshint/)
 * `npm test` for the test suite
 
@@ -157,7 +157,7 @@ First clone the source, then run:
 2. Add test(s) veryfying the problem.
 3. Fix the problem.
 4. Make sure all tests still pass (`npm test`).
-5. Make sure your code doesn't break style rules (`npm run check`) and follow all [other ones](https://github.com/GoalSmashers/clean-css/wiki/Style-Guide) too.
+5. Make sure your code doesn't break style rules (`npm run check`) and follow all [other ones](https://github.com/jakubpawlowicz/clean-css/wiki/Style-Guide) too.
 6. Send a PR.
 
 If you wonder where to add tests, go for:
@@ -215,4 +215,4 @@ Clean-css will handle it automatically for you (since version 1.1) in the follow
 
 ## License
 
-Clean-css is released under the [MIT License](https://github.com/GoalSmashers/clean-css/blob/master/LICENSE).
+Clean-css is released under the [MIT License](https://github.com/jakubpawlowicz/clean-css/blob/master/LICENSE).

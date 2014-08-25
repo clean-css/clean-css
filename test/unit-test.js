@@ -793,22 +793,29 @@ vows.describe('clean-units').addBatch({
       'a{color:rgba(0,0,0,0)}',
       'a{color:transparent}'
     ],
-    'turns rgba(0.0,0.0,.0,0) to transparent': [
-      'a{color:rgba(0.0,0.0,.0,0)}',
+    'turns rgba(0.0,0.0,0.0,0) to transparent': [
+      'a{color:rgba(0.0,0.0,0.0,0)}',
       'a{color:transparent}'
     ],
-    'turns rgba(255,255,255,0) to transparent': [
-      'a{color:rgba(255,255,255,0)}',
+    'turns hsla(0,0%,0%,0) to transparent': [
+      'a{color:hsla(0,0%,0%,0)}',
       'a{color:transparent}'
     ],
-    'turns rgba(255,0,255,0) to transparent': [
-      'a{color:rgba(255,0,255,0)}',
+    'turns hsla(0,0,0,0) to transparent': [
+      'a{color:hsla(0,0,0,0)}',
       'a{color:transparent}'
     ],
-    'turns hsla(120,100%,50%,0) to transparent': [
-      'a{color:hsla(120,100%,50%,0)}',
+    'turns hsla(0.0,0.0%,0.0%,0) to transparent': [
+      'a{color:hsla(0.0,0.0%,0.0%,0)}',
       'a{color:transparent}'
     ],
+    'turns hsla(0.0,0.0,0.0,0) to transparent': [
+      'a{color:hsla(0.0,0.0,0.0,0)}',
+      'a{color:transparent}'
+    ],
+    'keeps rgba(255,255,255,0)': 'a{color:rgba(255,255,255,0)}',
+    'keeps rgba(255,0,255,0)': 'a{color:rgba(255,0,255,0)}',
+    'keeps hsla(120,100%,50%,0)': 'a{color:hsla(120,100%,50%,0)}',
     'keeps rgba(0,0,0,.5)': 'a{color:rgba(0,0,0,.5)}',
     'keeps rgba(0,255,0,.5)': 'a{color:rgba(0,255,0,.5)}',
     'keeps hsla(120,100%,50%,.5)': 'a{color:hsla(120,100%,50%,.5)}',

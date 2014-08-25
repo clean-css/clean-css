@@ -2062,7 +2062,15 @@ title']{display:block}",
       'p{background:red;background-image:url(1.png),url(2.png)}',
       'p{background:url(1.png),url(2.png) red}'
     ],
-    'unknown @ rule': '@unknown "test";h1{color:red}'
+    'unknown @ rule': '@unknown "test";h1{color:red}',
+    'property without a value': [
+      'a{color:}',
+      ''
+    ],
+    'properties without values': [
+      'a{padding:;border-radius: ;background:red}',
+      'a{background:red}'
+    ]
   }),
   'viewport units': cssContext({
     'shorthand margin with viewport width not changed': 'div{margin:5vw}'

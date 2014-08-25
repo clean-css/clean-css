@@ -2032,6 +2032,9 @@ title']{display:block}",
       'a{background:url(1.png) 0 0/28px 28px}'
     ]
   }),
+  'multiple backgrounds': cssContext({
+    'should not produce longer values': 'p{background:no-repeat;background-position:100% 0,0 100%,100% 100%,50% 50%}'
+  }),
   'misc advanced': cssContext({
     'outline auto': [
       'a{outline:5px auto -webkit-focus-ring-color}',

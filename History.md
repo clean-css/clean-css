@@ -2,6 +2,7 @@
 ==================
 
 * Makes multival operations idempotent.
+* Fixed issue [#339](https://github.com/GoalSmashers/clean-css/issues/339) - skips invalid properties.
 * Fixed issue [#341](https://github.com/GoalSmashers/clean-css/issues/341) - ensure output is shorter than input.
 
 [2.2.13 / 2014-08-12](https://github.com/GoalSmashers/clean-css/compare/v2.2.12...v2.2.13)

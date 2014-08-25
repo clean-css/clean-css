@@ -151,6 +151,23 @@ vows.describe('module tests').addBatch({
       assert.equal(minifier.warnings[0], 'Unexpected content: \'color:#535353}\'. Ignoring.');
     }
   },
+  'warnings on invalid properties': {
+    topic: function() {
+      var minifier = new CleanCSS();
+      var minified = minifier.minify('a{color:}');
+      this.callback(null, minified, minifier);
+    },
+    'should minify correctly': function(error, minified) {
+      assert.equal(minified, '');
+    },
+    'should raise no errors': function(error, minified, minifier) {
+      assert.equal(minifier.errors.length, 0);
+    },
+    'should raise one warning': function(error, minified, minifier) {
+      assert.equal(minifier.warnings.length, 1);
+      assert.equal(minifier.warnings[0], 'Empty property \'color\' inside \'a\' selector. Ignoring.');
+    }
+  },
   'no errors': {
     topic: function() {
       var minifier = new CleanCSS();

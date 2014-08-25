@@ -1,3 +1,8 @@
+[2.2.15 / 2014-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v2.2.14...v2.2.15)
+==================
+
+* Fixed issue [#343](https://github.com/GoalSmashers/clean-css/issues/343) - too aggressive rgba/hsla minification.
+
 [2.2.14 / 2014-08-25](https://github.com/GoalSmashers/clean-css/compare/v2.2.13...v2.2.14)
 ==================
 

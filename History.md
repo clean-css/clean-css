@@ -1,4 +1,4 @@
-[2.2.14 / 2014-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v2.2.13...v2.2.14)
+[2.2.14 / 2014-08-25](https://github.com/jakubpawlowicz/clean-css/compare/v2.2.13...v2.2.14)
 ==================
 
 * Makes multival operations idempotent.

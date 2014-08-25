@@ -1,4 +1,10 @@
+[2.2.14 / 2014-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v2.2.13...v2.2.14)
+==================
+
+* Makes multival operations idempotent.
+
 [2.2.13 / 2014-08-12](https://github.com/jakubpawlowicz/clean-css/compare/v2.2.12...v2.2.13)
+
 ==================
 
 * Fixed issue [#337](https://github.com/jakubpawlowicz/clean-css/issues/337) - handling component importance.

@@ -968,6 +968,23 @@ path")}',
     target: path.join(process.cwd(), 'test.css'),
     relativeTo: path.join('test', 'data', 'partials-relative')
   }),
+  'urls rewriting - no root but target as a directory': cssContext({
+    'no @import': [
+      'a{background:url(../partials/extra/down.gif) no-repeat}',
+      'a{background:url(test/data/partials/extra/down.gif) no-repeat}'
+    ],
+    'relative @import': [
+      '@import url(base.css);',
+      'a{background:url(test/data/partials/extra/down.gif) no-repeat}'
+    ],
+    'absolute @import': [
+      '@import url(/test/data/partials-relative/base.css);',
+      'a{background:url(test/data/partials/extra/down.gif) no-repeat}'
+    ]
+  }, {
+    target: process.cwd(),
+    relativeTo: path.join('test', 'data', 'partials-relative')
+  }),
   'urls rewriting - root and target': cssContext({
     'no @import': [
       'a{background:url(../partials/extra/down.gif) no-repeat}',

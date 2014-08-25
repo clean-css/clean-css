@@ -1,3 +1,8 @@
+[2.3.0 / 2014-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v2.2.15...v2.3.0)
+==================
+
+* Allows `target` option to be a path to a folder instead of a file.
+
 [2.2.15 / 2014-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v2.2.14...v2.2.15)
 ==================
 

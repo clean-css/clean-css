@@ -125,8 +125,9 @@ CleanCSS constructor accepts a hash as a parameter, i.e.,
 * `keepBreaks` - whether to keep line breaks (default is false)
 * `benchmark` - turns on benchmarking mode measuring time spent on cleaning up
   (run `npm run bench` to see example)
-* `root` - path to resolve absolute `@import` rules and rebase relative URLs
-* `relativeTo` - path with which to resolve relative `@import` rules and URLs
+* `root` - path to __resolve__ absolute `@import` rules and __rebase__ relative URLs
+* `relativeTo` - path to __resolve__ relative `@import` rules and URLs
+* `target` - path to a folder or an output file to which __rebase__ all URLs
 * `processImport` - whether to process `@import` rules
 * `noRebase` - whether to skip URLs rebasing
 * `noAdvanced` - set to true to disable advanced optimizations - selector & property merging, reduction, etc.

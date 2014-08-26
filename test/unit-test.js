@@ -932,6 +932,9 @@ path")}',
     'absolute @import': [
       '@import url(/test/data/partials-relative/base.css);',
       'a{background:url(test/data/partials/extra/down.gif) no-repeat}'
+    ],
+    'document-local reference': [
+      'svg{marker-end:url(#arrow)}', 'svg{marker-end:url(#arrow)}'
     ]
   }),
   'urls rewriting - root but no target': cssContext({
@@ -946,6 +949,9 @@ path")}',
     'absolute @import': [
       '@import url(/test/data/partials-relative/base.css);',
       'a{background:url(/test/data/partials/extra/down.gif) no-repeat}'
+    ],
+    'document-local reference': [
+      'svg{marker-end:url(#arrow)}', 'svg{marker-end:url(#arrow)}'
     ]
   }, {
     root: process.cwd(),
@@ -963,6 +969,9 @@ path")}',
     'absolute @import': [
       '@import url(/test/data/partials-relative/base.css);',
       'a{background:url(test/data/partials/extra/down.gif) no-repeat}'
+    ],
+    'document-local reference': [
+      'svg{marker-end:url(#arrow)}', 'svg{marker-end:url(#arrow)}'
     ]
   }, {
     target: path.join(process.cwd(), 'test.css'),
@@ -980,6 +989,9 @@ path")}',
     'absolute @import': [
       '@import url(/test/data/partials-relative/base.css);',
       'a{background:url(/test/data/partials/extra/down.gif) no-repeat}'
+    ],
+    'document-local reference': [
+      'svg{marker-end:url(#arrow)}', 'svg{marker-end:url(#arrow)}'
     ]
   }, {
     root: process.cwd(),

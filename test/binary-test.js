@@ -216,6 +216,7 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
         assert.include(stdout, 'url(/components/bootstrap/images/glyphs.gif)');
         assert.include(stdout, 'url(/components/jquery-ui/images/prev.gif)');
         assert.include(stdout, 'url(/components/jquery-ui/images/next.gif)');
+        assert.include(stdout, 'url(#arrow)');
       }
     }),
     relative: binaryContext('-o ./test/data/129-assets/assets/ui.bundled.css ./test/data/129-assets/assets/ui.css', {
@@ -224,6 +225,7 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
         assert.include(minimized, 'url(../components/bootstrap/images/glyphs.gif)');
         assert.include(minimized, 'url(../components/jquery-ui/images/prev.gif)');
         assert.include(minimized, 'url(../components/jquery-ui/images/next.gif)');
+        assert.include(minimized, 'url(#arrow)');
       },
       teardown: function() {
         deleteFile('./test/data/129-assets/assets/ui.bundled.css');

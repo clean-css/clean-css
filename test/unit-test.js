@@ -1530,6 +1530,8 @@ title']{display:block}",
       'a{display:inline-block!important;color:red;display:block!important}',
       'a{color:red;display:block!important}'
     ],
+    'of two properties in one declaration with both as !important but 2nd less understandable': 'a{color:red!important;display:block;color:rgba(0,255,0,.5)!important}',
+    'of two properties in one declaration with both as !important but 2nd more understandable': 'a{color:rgba(0,255,0,.5)!important;display:block;color:red!important}',
     'of many properties in one declaration': [
       'a{display:inline-block;color:red;font-weight:bolder;font-weight:700;display:block!important;color:#fff}',
       'a{font-weight:bolder;font-weight:700;display:block!important;color:#fff}'

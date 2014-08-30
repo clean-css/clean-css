@@ -1377,6 +1377,52 @@ title']{display:block}",
       ".one{color:red}"
     ]
   }, { root: process.cwd() }),
+  'malformed but still valid @import': cssContext({
+    'prefixed with whitespace': [
+      "    @import 'test/data/partials/one.css';",
+      ".one{color:red}"
+    ],
+    'no whitespace between @import and filename': [
+      "@import'test/data/partials/one.css';",
+      ".one{color:red}"
+    ],
+    'extra whitespace between @import and filename': [
+      "@import   'test/data/partials/one.css';",
+      ".one{color:red}"
+    ],
+    'line break between @import and filename': [
+      "@import " + lineBreak + "'test/data/partials/one.css';",
+      ".one{color:red}"
+    ],
+    'extra whitespace prefix in file name': [
+      "@import '  test/data/partials/one.css';",
+      ".one{color:red}"
+    ],
+    'extra whitespace suffix in file name': [
+      "@import 'test/data/partials/one.css   ';",
+      ".one{color:red}"
+    ],
+    'extra whitespace after': [
+      "@import 'test/data/partials/one.css'   ;",
+      ".one{color:red}"
+    ],
+    'uppercase @import': [
+      "@IMPORT 'test/data/partials/one.css';",
+      ".one{color:red}"
+    ],
+    'extra whitespace between url and filename': [
+      "@import url(  test/data/partials/one.css);",
+      ".one{color:red}"
+    ],
+    'extra whitespace prefix in file name - url': [
+      "@import url('   test/data/partials/one.css');",
+      ".one{color:red}"
+    ],
+    'extra whitespace suffix in file name - url': [
+      "@import url('test/data/partials/one.css   ');",
+      ".one{color:red}"
+    ]
+  }, { root: process.cwd() }),
   '@import with absolute paths': cssContext({
     'of an unknown file': [
       "@import url(/fake.css);",

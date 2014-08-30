@@ -6,6 +6,7 @@
 [2.2.15 / 2014-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v2.2.14...v2.2.15)
 ==================
 
+* Fixed issue [#350](https://github.com/GoalSmashers/clean-css/issues/350) - edge cases in `@import` processing.
 * Fixed issue [#346](https://github.com/GoalSmashers/clean-css/issues/346) - overriding !important by !important.
 * Fixed issue [#345](https://github.com/GoalSmashers/clean-css/issues/345) - URL rebasing for document relative ones.
 * Fixed issue [#343](https://github.com/GoalSmashers/clean-css/issues/343) - too aggressive rgba/hsla minification.

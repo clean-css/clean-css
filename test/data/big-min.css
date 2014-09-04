@@ -278,7 +278,6 @@ button::-moz-focus-inner,input[type=submit]::-moz-focus-inner{padding:0;border:0
 .titre_bt_fleche img{margin:0}
 .titre_bt_fleche .titre{padding:6px 0 8px;width:50%;font-weight:700;margin-left:9px}
 .fb20x20,.google20x20,.mobile20x20,.rss20x20,.tw20x20{background:url(/medias/web/img/sprites/pictos20x20.png) no-repeat;display:inline-block;text-indent:-9999px;height:20px;width:20px;vertical-align:middle;margin-left:4px}
-*+html .fb20x20,*+html .google20x20,*+html .mobile20x20,*+html .rss20x20,*+html .tw20x20{display:inline}
 .fb20x20{background-position:0 -40px}
 .fb20x20:hover{background-position:0 -60px}
 .tw20x20{background-position:0 -80px}
@@ -764,7 +763,7 @@ img[height="97"]+.ico29x29{bottom:6%;left:3.5%}
 #surheader a,#surheader span{color:#fff;font-size:11px}
 #surheader .gauche a,#surheader .gauche span{display:block;float:left;padding:0 10px;border-left:1px solid #626a72;border-right:1px solid #16212c}
 #surheader .gauche .actif,#surheader .gauche .obf:hover,#surheader .gauche a:hover{background:#000b15;color:#fff}
-#surheader .bt_abo,*+html #surheader>a{display:block;float:right;padding:0 16px;color:#000}
+#surheader .bt_abo{display:block;float:right;padding:0 16px;color:#000}
 #surheader .droit .services{float:right;height:25px}
 #surheader .droit .services>li{border-left:1px solid #626a72;border-right:1px solid #16212c}
 #surheader .droit .services>li:hover{border-right:1px solid #fff}
@@ -789,7 +788,6 @@ img[height="97"]+.ico29x29{bottom:6%;left:3.5%}
 #header_utilisateur .recherche input[type=search]{border:none;background:0 0;width:165px;float:left;-webkit-box-sizing:border-box}
 #header_utilisateur .recherche input[type=search]:focus{outline:0}
 #header_utilisateur .loupe{width:15px;height:15px;margin:0 0 0 5px;border:none;background:url(/medias/web/img/sprites/icos_petites.png) -17px -173px no-repeat;text-indent:-9999px;font-size:0;color:#f8f9fb;float:right}
-*+html #header_utilisateur .loupe{float:none}
 #header_utilisateur .sociaux{float:left;margin:7px 20px 0;color:#747b83;font-weight:700;font-size:12px}
 #header_utilisateur .sociaux a,#header_utilisateur .sociaux span{vertical-align:middle;margin-right:7px}
 .sociaux .obf,.sociaux .obf span,.sociaux .obf strong,.sociaux .obf:focus span,.sociaux .obf:focus strong,.sociaux .obf:hover span,.sociaux .obf:hover strong{color:#000;text-decoration:none}
@@ -867,7 +865,6 @@ label i{font-style:normal;display:none}
 .ombrelle.export_interne .tt_rubrique_ombrelle a,.ombrelle.partenariats .tt_rubrique_ombrelle a{color:#2e3942}
 .ombrelle.partenariats span{display:inline-block;padding:0 8px 0 0}
 .ombrelle .tt_rubrique_ombrelle,.ombrelle.style .tt_rubrique_ombrelle{display:inline-block;padding:0 0 0 67px;margin:25px 0 0;background:url(/medias/web/img/elements_lm/m54x44.png) 0 20% no-repeat;font-family:TheSerifOffice,georgia,serif;font-size:55px;line-height:55px;color:#2E3942;font-weight:400;letter-spacing:-.01em}
-*+html .ombrelle .tt_rubrique_ombrelle,*+html .ombrelle.style .tt_rubrique_ombrelle{display:inline}
 .ombrelle .tt_rubrique_ombrelle .obf,.ombrelle .tt_rubrique_ombrelle .obf:hover,.ombrelle .tt_rubrique_ombrelle a,.ombrelle .tt_rubrique_ombrelle h2 a:hover{color:#2E3942;text-decoration:none}
 .ombrelle.style .tt_rubrique_ombrelle{background:url(/medias/web/img/elements_lm/m59x44.png) 0 20% no-repeat}
 .ombrelle .tt_rubrique_ombrelle.max24,.ombrelle .tt_rubrique_ombrelle.max32,.ombrelle .tt_rubrique_ombrelle.max38{background-position:0 0;font-size:43px;line-height:57px}
@@ -1762,7 +1759,7 @@ body.iframe{padding-top:0}
 #header-liberation .header-annex h1 a:hover:before{content:"< retour sur";display:inline-block;padding-right:20px;text-transform:none;font-size:13px}
 #header-liberation .header-annex ul{display:table;width:750px;margin-top:10px;margin-bottom:10px}
 #header-liberation .header-annex ul li{display:table-cell;text-align:center}
-* html #header-liberation .header-annex ul li,:first-child+html #header-liberation .header-annex ul li{display:block;float:left}
+* html #header-liberation .header-annex ul li{display:block;float:left}
 #header-liberation .header-annex ul li a{margin:0 10px;display:inline-block;font-size:15px}
 .site-liberation #footer-liberation h2,.site-liberation #footer-liberation h3{font-family:Verdana,Arial,Helvetica,sans-serif}
 #footer-liberation .footer-base{margin:0 10px}
@@ -2480,8 +2477,6 @@ body.access-ess #page-paywall .content .arguments .arg{float:none;margin:auto}
 .site-liberation .block-call-items .mini-tpl .list-linked-items a.lnk-libeplus:after,.site-liberation .block-call-items .mini-tpl h5.lnk-libeplus:after{content:'';display:inline-block;width:56px;height:10px;margin-left:5px;background:url(http://s0.libe.com/libe/img/common/ico-lnk-libeplus2.png?39fe048f4782) no-repeat}
 * html .site-liberation .block-call-items .mini-tpl h2.lnk-libeplus,* html .site-liberation .block-call-items .mini-tpl h3.lnk-libeplus{background-image:url(http://s0.libe.com/libe/img/common/ico-lnk-libeplus-big2.png?d4d49ea9ef21);background-repeat:no-repeat;background-position:right 4px;padding-right:60px}
 * html .site-liberation .block-call-items .mini-tpl .list-linked-items a.lnk-libeplus,* html .site-liberation .block-call-items .mini-tpl h5.lnk-libeplus{background-image:url(http://s0.libe.com/libe/img/common/ico-lnk-libeplus2.png?39fe048f4782);background-repeat:no-repeat;background-position:right 4px;padding-right:60px}
-:first-child+html .site-liberation .block-call-items .mini-tpl h2.lnk-libeplus,:first-child+html .site-liberation .block-call-items .mini-tpl h3.lnk-libeplus{background-image:url(http://s0.libe.com/libe/img/common/ico-lnk-libeplus-big2.png?d4d49ea9ef21);background-repeat:no-repeat;background-position:right 4px;padding-right:60px}
-:first-child+html .site-liberation .block-call-items .mini-tpl .list-linked-items a.lnk-libeplus,:first-child+html .site-liberation .block-call-items .mini-tpl h5.lnk-libeplus{background-image:url(http://s0.libe.com/libe/img/common/ico-lnk-libeplus2.png?39fe048f4782);background-repeat:no-repeat;background-position:right 4px;padding-right:60px}
 .site-liberation .block-call-items .mini-tpl h1,.site-liberation .block-call-items .mini-tpl h2{margin-bottom:14px}
 .site-liberation .block-call-items .mini-tpl h3{margin-bottom:14px;font-weight:400;font-size:21px}
 .site-liberation .block-call-items .mini-tpl h4{margin-bottom:7px}

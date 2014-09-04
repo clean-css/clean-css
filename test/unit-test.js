@@ -265,6 +265,25 @@ vows.describe('clean-units').addBatch({
     'process selectors ending with -0 correctly': '.selector-0,a{display:block}',
     'process selectors ending with -1 correctly': '.selector-1,a{display:block}'
   }),
+  'universal selector in ie8 compatibility mode': cssContext({
+    '+html': [
+      '*+html .foo{display:inline}',
+      ''
+    ],
+    '+html:first-child': [
+      '*:first-child+html .foo{display:inline}',
+      ''
+    ],
+    'complex': [
+      '*:first-child+html .foo,.bar{display:inline}',
+      '.bar{display:inline}'
+    ]
+  }, { compatibility: 'ie8' }),
+  'universal selector in ie7 compatibility mode': cssContext({
+    '+html': '*+html .foo{display:inline}',
+    ':first-child+html': '*:first-child+html .foo{display:inline}',
+    'complex': '*:first-child+html .foo,.bar{display:inline}'
+  }, { compatibility: 'ie7' }),
   'comments': cssContext({
     'single line': [
       'a{color:#fff}/* some comment*/p{height:10px/* other comment */}',

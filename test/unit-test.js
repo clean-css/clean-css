@@ -1580,6 +1580,8 @@ title']{display:block}",
     ],
     'of two properties in one declaration with both as !important but 2nd less understandable': 'a{color:red!important;display:block;color:rgba(0,255,0,.5)!important}',
     'of two properties in one declaration with both as !important but 2nd more understandable': 'a{color:rgba(0,255,0,.5)!important;display:block;color:red!important}',
+    'of two shorthand properties in one declaration with both as !important but 2nd less understandable': 'a{background:red!important;background:rgba(0,255,0,.5)!important}',
+    'of two shorthand properties in one declaration with both as !important but 2nd more understandable': 'a{background:rgba(0,255,0,.5)!important;background:red!important}',
     'of many properties in one declaration': [
       'a{display:inline-block;color:red;font-weight:bolder;font-weight:700;display:block!important;color:#fff}',
       'a{font-weight:bolder;font-weight:700;display:block!important;color:#fff}'

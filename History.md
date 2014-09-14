@@ -1,6 +1,7 @@
 [2.2.16 / 2014-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v2.2.15...v2.2.16)
 ==================
 
+* Fixed issue [#359](https://github.com/GoalSmashers/clean-css/issues/359) - handling escaped double backslash.
 * Fixed issue [#356](https://github.com/GoalSmashers/clean-css/issues/356) - preserving *+html hack.
 
 [2.2.15 / 2014-09-01](https://github.com/jakubpawlowicz/clean-css/compare/v2.2.14...v2.2.15)

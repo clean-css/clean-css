@@ -340,7 +340,10 @@ vows.describe('clean-units').addBatch({
   }),
   'escaping': cssContext({
     'escaped @ symbol in class name': '.pad--all0\\@sm{padding:0}',
-    'escaped @ symbol in id': '#id\\@sm{padding:0}'
+    'escaped @ symbol in id': '#id\\@sm{padding:0}',
+    'escaped slash': 'a{content:"\\\\"}',
+    'escaped quote': 'a{content:"\\\""}',
+    'escaped tab': 'a{content:"\\\t"}'
   }),
   'important comments - one': cssContext({
     'strip all but first': [

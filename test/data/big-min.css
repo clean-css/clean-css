@@ -1595,13 +1595,13 @@ img.spacer{width:1px;height:1px}
 #header-liberation .header-base .sites-info-search ul.sites li.boutique{width:84px}
 #header-liberation .header-base .sites-info-search ul.sites li.boutique span.logo{top:7px;left:14px;width:58px;height:27px;background-position:-36px 0}
 #header-liberation .header-base .sites-info-search .info{display:block;height:32px}
-#header-liberation .header-base .sites-info-search .info span{display:block;color:gray;font-size:11.2px;font-family:Arial,Verdana,sans-serif;padding-top:9px}
-#header-liberation .header-base .sites-info-search .search{display:block;width:278px;height:22px;border:1px solid gray}
-#header-liberation .header-base .sites-info-search .search input[type=text]{border:0;color:gray;height:22px;width:220px;padding:0 5px}
+#header-liberation .header-base .sites-info-search .info span{display:block;color:grey;font-size:11.2px;font-family:Arial,Verdana,sans-serif;padding-top:9px}
+#header-liberation .header-base .sites-info-search .search{display:block;width:278px;height:22px;border:1px solid grey}
+#header-liberation .header-base .sites-info-search .search input[type=text]{border:0;color:grey;height:22px;width:220px;padding:0 5px}
 #header-liberation .header-base .sites-info-search .search input[type=submit]{background:url(http://s0.libe.com/libe/img/common/_sprites_header/header.png?df8de01457fa) 0 -32px no-repeat;display:block;float:right;width:29px;height:22px;border:0}
 #header-liberation .header-base .links h2{font-weight:400;text-transform:uppercase;font-size:11px;height:16px}
 #header-liberation .header-base .links ul li{font-family:Arial,Verdana,sans-serif;font-size:11.5px}
-#header-liberation .header-base .links ul li a{color:gray}
+#header-liberation .header-base .links ul li a{color:grey}
 #header-liberation .header-base .nav{display:block;clear:both;position:relative}
 #header-liberation .header-base .nav li{display:block;float:left}
 #header-liberation .header-base .nav .nav1{font-weight:400;text-transform:uppercase;font-size:11px}
@@ -2649,8 +2649,8 @@ body.slideshow .ad-top .megaban{background:#333}
 #header-liberation .header-base .links .lnk2{box-shadow:-9px 0 10px -11px #6c6c6c;-moz-box-shadow:-9px 0 10px -11px #6c6c6c;-webkit-box-shadow:-9px 0 10px -11px #6c6c6c}
 #header-liberation .header-base .digitalpaper a.abo,#header-liberation .header-base .digitalpaper a.dl{color:#fff}
 #header-liberation .header-base .digitalpaper a.abo{background-color:#f2f2f2;color:#2e2e2e}
-#header-liberation .header-base .digitalpaper a.une{box-shadow:0 -1px 7px 0 gray;-webkit-box-shadow:0 -1px 7px 0 gray;-moz-box-shadow:0 -1px 7px 0 gray}
-#header-liberation .header-base .digitalpaper .mask{background:#fff;box-shadow:7px -12px 8px -10px gray;-webkit-box-shadow:7px -12px 8px -10px gray;-moz-box-shadow:7px -12px 8px -10px gray}
+#header-liberation .header-base .digitalpaper a.une{box-shadow:0 -1px 7px 0 grey;-webkit-box-shadow:0 -1px 7px 0 grey;-moz-box-shadow:0 -1px 7px 0 grey}
+#header-liberation .header-base .digitalpaper .mask{background:#fff;box-shadow:7px -12px 8px -10px grey;-webkit-box-shadow:7px -12px 8px -10px grey;-moz-box-shadow:7px -12px 8px -10px grey}
 #header-liberation .header-base .nav .nav1 a:hover,#header-liberation .header-base .nav .on .nav1 a,#header-liberation .header-base .nav-no-js>li:hover .nav1 a{color:#fff}
 #header-liberation .header-base .nav .nav1 a:hover span,#header-liberation .header-base .nav .on .nav1 a span,#header-liberation .header-base .nav-no-js>li:hover .nav1 a span{background-color:#fff}
 #header-liberation .header-base .nav .cat-laune .nav1 .on a,#header-liberation .header-base .nav .cat-laune .nav1 a:hover,#header-liberation .header-base .nav-no-js .cat-laune:hover .nav1 a{background-color:#e20000}
@@ -2706,7 +2706,7 @@ body.slideshow .ad-top .megaban{background:#333}
 .site-liberation h5 .theme{color:#e20000}
 .site-liberation a:hover h5 .theme,.site-liberation h5 a.theme:hover{color:#222}
 .site-liberation h5 .date{color:#bbbaba}
-#core-liberation .text-404 p{color:gray}
+#core-liberation .text-404 p{color:grey}
 .site-liberation .text-item p.others{border-color:#b3b3b3}
 .site-liberation .text-item p.others span{color:#e20000}
 .site-liberation .text-item p.others li a:hover{color:#222}
@@ -2913,8 +2913,8 @@ body.slideshow .ad-top .megaban{background:#333}
 .site-liberation .toolbox li a.facebook,.site-liberation .toolbox li a.twitter{background-color:#f7f7f7;border-color:#d7d7d7}
 .site-liberation .toolbox li a.facebook:hover,.site-liberation .toolbox li a.twitter:hover{background-color:#818181;color:#F7F7F7}
 .site-liberation .toolbox li.abo-1-euro,.site-liberation .toolbox li.btn-comment{background:#f8f8f8}
-.site-liberation .toolbox li.btn-comment a{color:gray}
-.site-liberation .toolbox li.btn-comment a:hover{color:#f8f8f8;background:gray;text-decoration:none}
+.site-liberation .toolbox li.btn-comment a{color:grey}
+.site-liberation .toolbox li.btn-comment a:hover{color:#f8f8f8;background:grey;text-decoration:none}
 .site-liberation .toolbox li.abo-1-euro a span{background:0 0}
 .site-liberation .toolbox li.fold-options,.site-liberation .toolbox li.fold-options ul{background:#f8f8f8}
 .site-liberation .toolbox li.fold-options ul,.site-liberation .toolbox li.fold-options+li.fold-options{border-color:#d7d7d7}
@@ -2938,8 +2938,8 @@ body.slideshow .ad-top .megaban{background:#333}
 #bar-liberation .content .unfolded{box-shadow:0 1px 1px 0 #E2E2E2;-webkit-box-shadow:0 1px 2px 0 #E2E2E2;-moz-box-shadow:0 1px 2px 0 #E2E2E2}
 #bar-liberation .content .other a span{color:#a40000}
 #page-404 .error{border-right-color:#ddd}
-#page-404 form{border-color:gray}
-#page-404 form input[type=text]{color:gray}
+#page-404 form{border-color:grey}
+#page-404 form input[type=text]{color:grey}
 #page-mailfriend .content a{color:#e20000}
 #page-mailfriend .content p.note{color:#999}
 #page-paywall .content a.close strong{color:#666}

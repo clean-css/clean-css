@@ -2,6 +2,7 @@
 ==================
 
 * Allows `target` option to be a path to a folder instead of a file.
+* Fixed issue [#360](https://github.com/GoalSmashers/clean-css/issues/360) - adds 7 extra CSS colors.
 
 [2.2.15 / 2014-09-01](https://github.com/jakubpawlowicz/clean-css/compare/v2.2.14...v2.2.15)
 ==================

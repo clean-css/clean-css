@@ -2,6 +2,7 @@
 ==================
 
 * Fixed issue [#359](https://github.com/GoalSmashers/clean-css/issues/359) - handling escaped double backslash.
+* Fixed issue [#358](https://github.com/GoalSmashers/clean-css/issues/358) - property merging in compatibility mode.
 * Fixed issue [#356](https://github.com/GoalSmashers/clean-css/issues/356) - preserving *+html hack.
 * Fixed issue [#354](https://github.com/GoalSmashers/clean-css/issues/354) - !important overriding in shorthands.
 

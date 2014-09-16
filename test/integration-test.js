@@ -74,7 +74,7 @@ var redefineContext = function(redefinitions, options) {
   return cssContext(context);
 };
 
-vows.describe('clean-units').addBatch({
+vows.describe('integration tests').addBatch({
   'identity': cssContext({
     'preserve minified content': 'a{color:#f10}'
   }),

@@ -4,7 +4,7 @@ var EscapeStore = require('../../lib/text/escape-store');
 
 vows.describe('escape-store')
   .addBatch({
-    'data': {
+    'no metadata': {
       topic: new EscapeStore('TEST'),
       store: function (escapeStore) {
         var placeholder = escapeStore.store('data');
@@ -13,6 +13,26 @@ vows.describe('escape-store')
       restore: function (escapeStore) {
         var data = escapeStore.restore('__ESCAPED_TEST_CLEAN_CSS0__');
         assert.equal(data, 'data');
+      }
+    },
+    'with metadata': {
+      topic: new EscapeStore('TEST'),
+      store: function (escapeStore) {
+        var placeholder = escapeStore.store('data', ['brown', 'fox', 'jumped', 'over']);
+        assert.equal(placeholder, '__ESCAPED_TEST_CLEAN_CSS0(brown,fox,jumped,over)__');
+      },
+      restore: function (escapeStore) {
+        var data = escapeStore.restore('__ESCAPED_TEST_CLEAN_CSS0(brown,fox,jumped,over)__');
+        assert.equal(data, 'data');
+      }
+    },
+    'same data with different metadata': {
+      topic: new EscapeStore('TEST'),
+      'store first': function (escapeStore) {
+        escapeStore.store('data1', [0, 1, 2]);
+        var placeholder = escapeStore.store('data1', [1, 2, 3]);
+
+        assert.equal(placeholder, '__ESCAPED_TEST_CLEAN_CSS1(1,2,3)__');
       }
     }
   })

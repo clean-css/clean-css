@@ -10,6 +10,12 @@ vows.describe('escape-store')
         var placeholder = escapeStore.store('data');
         assert.equal(placeholder, '__ESCAPED_TEST_CLEAN_CSS0__');
       },
+      match: function (escapeStore) {
+        var next = escapeStore.nextMatch('prefix__ESCAPED_TEST_CLEAN_CSS0__suffix');
+        assert.equal(next.start, 6);
+        assert.equal(next.end, 33);
+        assert.equal(next.match, '__ESCAPED_TEST_CLEAN_CSS0__');
+      },
       restore: function (escapeStore) {
         var data = escapeStore.restore('__ESCAPED_TEST_CLEAN_CSS0__');
         assert.equal(data, 'data');
@@ -20,6 +26,12 @@ vows.describe('escape-store')
       store: function (escapeStore) {
         var placeholder = escapeStore.store('data', ['brown', 'fox', 'jumped', 'over']);
         assert.equal(placeholder, '__ESCAPED_TEST_CLEAN_CSS0(brown,fox,jumped,over)__');
+      },
+      match: function (escapeStore) {
+        var next = escapeStore.nextMatch('prefix__ESCAPED_TEST_CLEAN_CSS0(brown,fox,jumped,over)__suffix');
+        assert.equal(next.start, 6);
+        assert.equal(next.end, 56);
+        assert.equal(next.match, '__ESCAPED_TEST_CLEAN_CSS0(brown,fox,jumped,over)__');
       },
       restore: function (escapeStore) {
         var data = escapeStore.restore('__ESCAPED_TEST_CLEAN_CSS0(brown,fox,jumped,over)__');

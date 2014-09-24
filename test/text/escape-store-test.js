@@ -2,7 +2,7 @@ var vows = require('vows');
 var assert = require('assert');
 var EscapeStore = require('../../lib/text/escape-store');
 
-vows.describe('escape-store')
+vows.describe(EscapeStore)
   .addBatch({
     'no metadata': {
       topic: new EscapeStore('TEST'),
@@ -44,7 +44,7 @@ vows.describe('escape-store')
         escapeStore.store('data1', [0, 1, 2]);
         var placeholder = escapeStore.store('data1', [1, 2, 3]);
 
-        assert.equal(placeholder, '__ESCAPED_TEST_CLEAN_CSS1(1,2,3)__');
+        assert.equal(placeholder, '__ESCAPED_TEST_CLEAN_CSS0(1,2,3)__');
       }
     }
   })

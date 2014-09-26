@@ -1,6 +1,6 @@
 var vows = require('vows');
 var assert = require('assert');
-var Splitter = require('../../lib/text/splitter');
+var Splitter = require('../../lib/utils/splitter');
 
 function split(value, expectedValue, separator) {
   return function () {

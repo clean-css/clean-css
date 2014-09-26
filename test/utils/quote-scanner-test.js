@@ -1,6 +1,6 @@
 var vows = require('vows');
 var assert = require('assert');
-var QuoteScanner = require('../../lib/text/quote-scanner');
+var QuoteScanner = require('../../lib/utils/quote-scanner');
 
 vows.describe(QuoteScanner)
   .addBatch({

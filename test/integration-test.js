@@ -238,26 +238,6 @@ vows.describe('integration tests').addBatch({
     ]
   }, { keepBreaks: true, keepSpecialComments: 0 }),
   'selectors': cssContext({
-    'remove spaces around selectors': [
-      'div + span >   em{display:block}',
-      'div+span>em{display:block}'
-    ],
-    'not remove spaces for pseudo-classes': [
-      'div :first-child{display:block}',
-      'div :first-child{display:block}'
-    ],
-    'strip universal selector from id and class selectors': [
-      '* > *#id > *.class{display:block}',
-      '*>#id>.class{display:block}'
-    ],
-    'strip universal selector from attribute selectors': [
-      '*:first-child > *[data-id]{display:block}',
-      ':first-child>[data-id]{display:block}'
-    ],
-    'not strip standalone universal selector': [
-      'label ~ * + span{display:block}',
-      'label~*+span{display:block}'
-    ],
     'not expand + in selectors mixed with calc methods': [
       'div{width:calc(50% + 3em)}div + div{width:100%}div:hover{width:calc(50% + 4em)}* > div {border:1px solid #f0f}',
       'div{width:calc(50% + 3em)}div+div{width:100%}div:hover{width:calc(50% + 4em)}*>div{border:1px solid #f0f}'

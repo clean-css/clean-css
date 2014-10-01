@@ -4,7 +4,6 @@ var vows = require('vows');
 var assert = require('assert');
 var path = require('path');
 var CleanCSS = require('../index');
-var ColorShortener = require('../lib/colors/shortener');
 
 var lineBreak = process.platform == 'win32' ? '\r\n' : '\n';
 var cssContext = function(groups, options) {
@@ -28,23 +27,6 @@ var cssContext = function(groups, options) {
   }
 
   return context;
-};
-
-var colorShorteningContext = function() {
-  var shortenerContext = {};
-  var shortener = new ColorShortener();
-
-  ['toName', 'toHex'].forEach(function(type) {
-    for (var from in shortener[type]) {
-      var to = shortener[type][from];
-      shortenerContext['should turn ' + from + ' into ' + to] = [
-        'a{color:' + from + '}',
-        'a{color:' + to + '}'
-      ];
-    }
-  });
-
-  return cssContext(shortenerContext);
 };
 
 var redefineContext = function(redefinitions, options) {
@@ -850,7 +832,6 @@ vows.describe('integration tests').addBatch({
       'a{border-radius:5px}'
     ]
   }),
-  'shortening colors': colorShorteningContext(),
   'font weights': cssContext({
     'font-weight:normal to 400': [
       'p{font-weight:normal}',

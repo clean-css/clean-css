@@ -130,11 +130,11 @@ vows.describe(SelectorsOptimizer)
       ],
       'duplicates - same context': [
         'a{color:red}div{color:blue}a{color:red}',
-        'div{color:blue}a{color:red}'
+        'div{color:#00f}a{color:red}'
       ],
       'duplicates - different contexts': [
         'a{color:red}div{color:blue}@media screen{a{color:red}}',
-        'a{color:red}div{color:blue}@media screen{a{color:red}}'
+        'a{color:red}div{color:#00f}@media screen{a{color:red}}'
       ],
       'adjacent': [
         'a{color:red}a{display:block;width:100px}div{color:#fff}',
@@ -170,11 +170,11 @@ vows.describe(SelectorsOptimizer)
       ],
       'duplicates - same context': [
         'a{color:red}div{color:blue}a{color:red}',
-        'a{color:red}div{color:blue}a{color:red}'
+        'a{color:red}div{color:#00f}a{color:red}'
       ],
       'duplicates - different contexts': [
         'a{color:red}div{color:blue}@media screen{a{color:red}}',
-        'a{color:red}div{color:blue}@media screen{a{color:red}}'
+        'a{color:red}div{color:#00f}@media screen{a{color:red}}'
       ],
       'adjacent': [
         'a{color:red}a{display:block;width:100px}div{color:#fff}',
@@ -185,5 +185,29 @@ vows.describe(SelectorsOptimizer)
         'a{color:red;display:block}.one{font-size:12px}a{color:#fff;margin:2px}'
       ]
     }, { noAdvanced: true })
+  )
+  .addBatch(
+    optimizerContext('@charset', {
+      'multiple': [
+        '@charset \'utf-8\';a{color:red}@charset \'utf-8\';',
+        '@charset \'utf-8\';a{color:red}'
+      ],
+      'not at beginning': [
+        'a{color:red}@charset \'utf-8\';',
+        '@charset \'utf-8\';a{color:red}'
+      ],
+      'different case': [
+        'a{color:red}@ChArSeT \'utf-8\';',
+        'a{color:red}'
+      ]
+    })
+  )
+  .addBatch(
+    optimizerContext('@font-face', {
+      'rebuilding': [
+        '@font-face{font-family:PublicVintage;src:url(/PublicVintage.otf) format(\'opentype\')}',
+        '@font-face{font-family:PublicVintage;src:url(/PublicVintage.otf) format(\'opentype\')}'
+      ]
+    })
   )
   .export(module);

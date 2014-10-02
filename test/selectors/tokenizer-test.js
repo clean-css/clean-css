@@ -57,6 +57,10 @@ vows.describe(Tokenizer)
         'a{color:red; ; ; ;}',
         [{ selector: ['a'], body: ['color:red'] }]
       ],
+      'a selector with quoted attribute': [
+        'a[data-kind=__ESCAPED_FREE_TEXT_CLEAN_CSS0__]{color:red}',
+        [{ selector: ['a[data-kind=__ESCAPED_FREE_TEXT_CLEAN_CSS0__]'], body: ['color:red'] }]
+      ],
       'a double selector': [
         'a,\n\ndiv.class > p {color:red}',
         [{ selector: ['a', 'div.class > p'], body: ['color:red'] }]
@@ -91,6 +95,10 @@ vows.describe(Tokenizer)
       'charset after a line break': [
         '\n@charset \n\'utf-8\';',
         ['@charset \'utf-8\';']
+      ],
+      'keyframes with quoted attribute': [
+        '@keyframes __ESCAPED_FREE_TEXT_CLEAN_CSS0__{}',
+        [{ block: '@keyframes __ESCAPED_FREE_TEXT_CLEAN_CSS0__', body: [], isFlatBlock: false }]
       ]
     })
   )

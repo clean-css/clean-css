@@ -70,19 +70,19 @@ vows.describe(Tokenizer)
       ],
       'media query': [
         '@media (min-width:980px){}',
-        [{ block: '@media (min-width:980px)', body: [] }]
+        [{ block: '@media (min-width:980px)', body: [], isFlatBlock: false }]
       ],
       'media query with selectors': [
         '@media (min-width:980px){a{color:red}}',
-        [{ block: '@media (min-width:980px)', body: [{ selector: ['a'], body: ['color:red'] }] }]
+        [{ block: '@media (min-width:980px)', body: [{ selector: ['a'], body: ['color:red'] }], isFlatBlock: false }]
       ],
       'media query spanning more than one chunk': [
         '@media only screen and (max-width:1319px) and (min--moz-device-pixel-ratio:1.5),only screen and (max-width:1319px) and (-moz-min-device-pixel-ratio:1.5){a{color:#000}}',
-        [{ block: '@media only screen and (max-width:1319px) and (min--moz-device-pixel-ratio:1.5),only screen and (max-width:1319px) and (-moz-min-device-pixel-ratio:1.5)', body: [{ selector: ['a'], body: ['color:#000'] }] }]
+        [{ block: '@media only screen and (max-width:1319px) and (min--moz-device-pixel-ratio:1.5),only screen and (max-width:1319px) and (-moz-min-device-pixel-ratio:1.5)', body: [{ selector: ['a'], body: ['color:#000'] }], isFlatBlock: false }]
       ],
       'font-face': [
         '@font-face{font-family: fontName;font-size:12px}',
-        [{ block: '@font-face', body: ['font-family:fontName', 'font-size:12px'] }]
+        [{ block: '@font-face', body: ['font-family:fontName', 'font-size:12px'], isFlatBlock: true }]
       ],
       'charset': [
         '@charset \'utf-8\';a{color:red}',

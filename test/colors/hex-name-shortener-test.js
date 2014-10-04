@@ -158,7 +158,7 @@ function colorShorteningContext() {
 
   function shortened(target) {
     return function (source) {
-      assert.equal(new HexNameShortener(source).shorten(), target);
+      assert.equal(HexNameShortener.shorten(source), target);
     };
   }
 

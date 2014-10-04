@@ -172,7 +172,7 @@ vows.describe('integration tests').addBatch({
     'after hsla': 'a{text-shadow:hsla(240,100%,40%,.5) -1px 1px}'
   }),
   'line breaks': cssContext({
-    'line breaks': [
+    'line breaks #1': [
       'div\na\r\n{width:500px}',
       'div a{width:500px}'
     ],
@@ -409,7 +409,7 @@ vows.describe('integration tests').addBatch({
     ],
     'rect zeros #5': [
       'div{clip:rect(0.5% 0px 0px 0px)}',
-      'div{clip:rect(0.5% 0 0 0)}'
+      'div{clip:rect(.5% 0 0 0)}'
     ],
     'rect zeros #6': [
       'div{clip:rect(0px 0px 0px 10px)}',
@@ -617,7 +617,7 @@ vows.describe('integration tests').addBatch({
     ],
     'round pixels down to 2nd decimal place': [
       'div{transform:translateY(0.504123px)}',
-      'div{transform:translateY(0.5px)}'
+      'div{transform:translateY(.5px)}'
     ],
     'do not round 2nd decimal place pixels': 'div{transform:translateY(20.55px)}',
     'do not round percentages': 'div{left:20.505%}',
@@ -702,8 +702,8 @@ vows.describe('integration tests').addBatch({
     'colors and colons': 'a{background-image:linear-gradient(top,red,#e6e6e6)}',
     'colors and parentheses': 'a{background-image:-webkit-gradient(linear,0 0,0 100%,from(#fff),to(#e6e6e6))}',
     'colors in ie filters': 'a{filter:chroma(color=#ffffff)}',
-    'colors in ie filters 2': "a{progid:DXImageTransform.Microsoft.gradient(startColorstr='#cccccc', endColorstr='#000000')}",
-    'colors in ie filters 3': "a{progid:DXImageTransform.Microsoft.gradient(startColorstr='#DDDDDD', endColorstr='#333333')}",
+    'colors in ie filters 2': "a{filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#cccccc', endColorstr='#000000')}",
+    'colors in ie filters 3': "a{filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#DDDDDD', endColorstr='#333333')}",
     'rgb percents': 'a{color:rgb(100%,0%,0%)}',
     'rgba percents': 'a{color:rgba(100%,0%,0%,.5)}',
     'hsla percents': 'a{color:hsla(1,0%,0%,.5)}',
@@ -1156,8 +1156,9 @@ title']{display:block}",
   }),
   'ie filters': cssContext({
     'short alpha': [
-      "a{ filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=80); -ms-filter:'progid:DXImageTransform.Microsoft.Alpha(Opacity=50)';}",
-      "a{filter:alpha(Opacity=80);-ms-filter:'alpha(Opacity=50)'}"
+      // "a{ filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=80); -ms-filter:'progid:DXImageTransform.Microsoft.Alpha(Opacity=50)';}",
+      "a{ filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=80)}",
+      "a{filter:alpha(Opacity=80)}"
     ],
     'short chroma': [
       'a{filter:progid:DXImageTransform.Microsoft.Chroma(color=#919191)}',
@@ -1240,16 +1241,6 @@ title']{display:block}",
       ''
     ]
   }),
-  'empty with disabled advanced optimizations': cssContext({
-    'selector': [
-      'a{}p{}',
-      ''
-    ],
-    'media': [
-      '@media screen{}',
-      ''
-    ]
-  }, { noAdvanced: true }),
   '@import': cssContext({
     'empty': [
       "@import url();",
@@ -1471,7 +1462,10 @@ title']{display:block}",
     'no empty body': '@import url(//fonts.googleapis.com/css?family=Domine:700);body{color:red}body h1{font-family:Domine}'
   }, { processImport: false, noAdvanced: true }),
   'duplicate selectors with disabled advanced processing': cssContext({
-    'of a duplicate selector': 'a,a{color:red}'
+    'of a duplicate selector': [
+      'a,a{color:red}',
+      'a{color:red}'
+    ]
   }, { noAdvanced: true }),
   'line breaks with disabled advanced processing': cssContext({
     'should be applied': [
@@ -1902,7 +1896,7 @@ title']{display:block}",
       '.t{list-style:circle inside url(aaa)}'
     ]
   }),
-  'care about understandability of shorthand components': cssContext({
+  'cares about understandability of shorthand components': cssContext({
     'linear-gradient should NOT clear out background with color only' : [
       'div{background:#fff;background:linear-gradient(whatever)}',
       'div{background:#fff;background:linear-gradient(whatever)}'

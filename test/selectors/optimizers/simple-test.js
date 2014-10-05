@@ -267,11 +267,11 @@ vows.describe(SimpleOptimizer)
     propertyContext('ie hacks', {
       'underscore': [
         'a{_width:100px}',
-        ['']
+        []
       ],
       'star': [
         'a{*width:100px}',
-        ['']
+        []
       ]
     })
   )

@@ -121,19 +121,20 @@ var minimized = new CleanCSS().minify(source);
 CleanCSS constructor accepts a hash as a parameter, i.e.,
 `new CleanCSS(options).minify(source)` with the following options available:
 
-* `keepSpecialComments` - `*` for keeping all (default), `1` for keeping first one only, `0` for removing all
-* `keepBreaks` - whether to keep line breaks (default is false)
-* `benchmark` - turns on benchmarking mode measuring time spent on cleaning up
-  (run `npm run bench` to see example)
-* `root` - path to __resolve__ absolute `@import` rules and __rebase__ relative URLs
-* `relativeTo` - path to __resolve__ relative `@import` rules and URLs
-* `target` - path to a folder or an output file to which __rebase__ all URLs
-* `processImport` - whether to process `@import` rules
-* `noRebase` - whether to skip URLs rebasing
-* `noAdvanced` - set to true to disable advanced optimizations - selector & property merging, reduction, etc.
-* `roundingPrecision` - Rounding precision, defaults to 2.
+* `benchmark` - turns on benchmarking mode measuring time spent on cleaning up (run `npm run bench` to see example)
 * `compatibility` - Force compatibility mode to `ie7` or `ie8`. Defaults to not set.
 * `debug` - set to true to get minification statistics under `stats` property (see `test/custom-test.js` for examples)
+* `inliner` - a hash of options for `@import` inliner, see test/protocol-imports-test.js for examples
+* `keepBreaks` - whether to keep line breaks (default is false)
+* `keepSpecialComments` - `*` for keeping all (default), `1` for keeping first one only, `0` for removing all
+* `noAdvanced` - set to true to disable advanced optimizations - selector & property merging, reduction, etc.
+* `noAggressiveMerging` - set to true to disable aggressive merging of properties.
+* `noRebase` - whether to skip URLs rebasing
+* `processImport` - whether to process `@import` rules
+* `relativeTo` - path to __resolve__ relative `@import` rules and URLs
+* `root` - path to __resolve__ absolute `@import` rules and __rebase__ relative URLs
+* `roundingPrecision` - Rounding precision, defaults to 2.
+* `target` - path to a folder or an output file to which __rebase__ all URLs
 
 ### How to use clean-css with build tools?
 

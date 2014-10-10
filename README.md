@@ -31,6 +31,7 @@ npm install clean-css
 #### Module interface
 
 * `noAdvanced` became `advanced` - make sure to reverse the value;
+* no longer possible to use `CleanCSS` as a function as `new CleanCSS` is always required;
 
 ### How to upgrade clean-css from 1.x to 2.x?
 

@@ -24,6 +24,14 @@ Node.js 0.8.0+ (tested on CentOS, Ubuntu, OS X 10.6+, and Windows 7+)
 npm install clean-css
 ```
 
+### How to upgrade clean-css from 2.x to 3.x?
+
+#### Command-line interface (CLI) - no breaking changes.
+
+#### Module interface
+
+* `noAdvanced` became `advanced` - make sure to reverse the value;
+
 ### How to upgrade clean-css from 1.x to 2.x?
 
 #### Command-line interface (CLI)
@@ -121,13 +129,13 @@ var minimized = new CleanCSS().minify(source);
 CleanCSS constructor accepts a hash as a parameter, i.e.,
 `new CleanCSS(options).minify(source)` with the following options available:
 
+* `advanced` - set to false to disable advanced optimizations - selector & property merging, reduction, etc.
 * `benchmark` - turns on benchmarking mode measuring time spent on cleaning up (run `npm run bench` to see example)
 * `compatibility` - Force compatibility mode to `ie7` or `ie8`. Defaults to not set.
 * `debug` - set to true to get minification statistics under `stats` property (see `test/custom-test.js` for examples)
 * `inliner` - a hash of options for `@import` inliner, see test/protocol-imports-test.js for examples
 * `keepBreaks` - whether to keep line breaks (default is false)
 * `keepSpecialComments` - `*` for keeping all (default), `1` for keeping first one only, `0` for removing all
-* `noAdvanced` - set to true to disable advanced optimizations - selector & property merging, reduction, etc.
 * `noAggressiveMerging` - set to true to disable aggressive merging of properties.
 * `noRebase` - whether to skip URLs rebasing
 * `processImport` - whether to process `@import` rules

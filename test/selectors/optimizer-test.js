@@ -148,7 +148,7 @@ vows.describe(SelectorsOptimizer)
         'a{padding:10px;margin:0;color:red}.one{color:red}a,p{color:red;padding:0}',
         'a{margin:0}.one{color:red}a,p{color:red;padding:0}'
       ]
-    }, { noAdvanced: false, aggressiveMerging: true })
+    }, { advanced: true, aggressiveMerging: true })
   )
   .addBatch(
     optimizerContext('advanced on & aggressive merging off', {
@@ -160,7 +160,7 @@ vows.describe(SelectorsOptimizer)
         'a{padding:10px;margin:0;color:red}.one{color:red}a,p{color:red;padding:0}',
         'a{padding:10px;margin:0}.one{color:red}a,p{color:red;padding:0}'
       ]
-    }, { noAdvanced: false, aggressiveMerging: false })
+    }, { advanced: true, aggressiveMerging: false })
   )
   .addBatch(
     optimizerContext('advanced off', {
@@ -184,7 +184,7 @@ vows.describe(SelectorsOptimizer)
         'a{color:red;display:block}.one{font-size:12px}a{color:#fff;margin:2px}',
         'a{color:red;display:block}.one{font-size:12px}a{color:#fff;margin:2px}'
       ]
-    }, { noAdvanced: true })
+    }, { advanced: false })
   )
   .addBatch(
     optimizerContext('@charset', {

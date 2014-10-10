@@ -8,6 +8,7 @@ var CleanCSS = require('../index');
 var lineBreak = process.platform == 'win32' ? '\r\n' : '\n';
 var cssContext = function(groups, options) {
   var context = {};
+
   var clean = function(expectedCss) {
     return function(css) {
       var minifiedCss = new CleanCSS(options).minify(css);
@@ -1460,19 +1461,19 @@ title']{display:block}",
       '@import url(//fonts.googleapis.com/css?family=Domine:700);body h1{font-family:Domine}'
     ],
     'no empty body': '@import url(//fonts.googleapis.com/css?family=Domine:700);body{color:red}body h1{font-family:Domine}'
-  }, { processImport: false, noAdvanced: true }),
+  }, { processImport: false, advanced: false }),
   'duplicate selectors with disabled advanced processing': cssContext({
     'of a duplicate selector': [
       'a,a{color:red}',
       'a{color:red}'
     ]
-  }, { noAdvanced: true }),
+  }, { advanced: false }),
   'line breaks with disabled advanced processing': cssContext({
     'should be applied': [
       'a{color:red}p{display:block}',
       'a{color:red}' + lineBreak + 'p{display:block}'
     ]
-  }, { noAdvanced: true, keepBreaks: true }),
+  }, { advanced: false, keepBreaks: true }),
   'invalid data tokenization': cssContext({
     'extra top-level closing brace': [
       'a{color:red}}p{width:auto}',

@@ -75,7 +75,7 @@ if (commands.skipImport)
 if (commands.skipRebase)
   cleanOptions.noRebase = true;
 if (commands.skipAdvanced)
-  cleanOptions.noAdvanced = true;
+  cleanOptions.advanced = false;
 if (commands.skipAggressiveMerging)
   cleanOptions.noAggressiveMerging = true;
 if (commands.compatibility)

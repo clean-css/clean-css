@@ -12,6 +12,8 @@ According to [tests](http://goalsmashers.github.io/css-minification-benchmark/) 
 
 ## Usage
 
+### This documentation refers to a pre-release version. See [2.2 branch](https://github.com/jakubpawlowicz/clean-css/tree/2.2) for the current release docs.
+
 ### What are the requirements?
 
 ```

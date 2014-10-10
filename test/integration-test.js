@@ -1594,7 +1594,7 @@ title']{display:block}",
       'a{background:red;display:block;background:white}',
       'a{display:block;background:#fff}'
     ]
-  }, { noAggressiveMerging: true }),
+  }, { aggressiveMerging: false }),
   'same selectors': cssContext({
     'of two non-adjacent selectors': '.one{color:red}.two{color:#00f}.one{font-weight:700}',
     'of two adjacent single selectors': [

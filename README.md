@@ -31,6 +31,7 @@ npm install clean-css
 #### Module interface
 
 * `noAdvanced` became `advanced` - make sure to reverse the value;
+* `noAggressiveMerging` became `aggressiveMerging` - make sure to reverse the value;
 * no longer possible to use `CleanCSS` as a function as `new CleanCSS` is always required;
 
 ### How to upgrade clean-css from 1.x to 2.x?
@@ -131,13 +132,13 @@ CleanCSS constructor accepts a hash as a parameter, i.e.,
 `new CleanCSS(options).minify(source)` with the following options available:
 
 * `advanced` - set to false to disable advanced optimizations - selector & property merging, reduction, etc.
+* `aggressiveMerging` - set to false to disable aggressive merging of properties.
 * `benchmark` - turns on benchmarking mode measuring time spent on cleaning up (run `npm run bench` to see example)
 * `compatibility` - Force compatibility mode to `ie7` or `ie8`. Defaults to not set.
 * `debug` - set to true to get minification statistics under `stats` property (see `test/custom-test.js` for examples)
 * `inliner` - a hash of options for `@import` inliner, see test/protocol-imports-test.js for examples
 * `keepBreaks` - whether to keep line breaks (default is false)
 * `keepSpecialComments` - `*` for keeping all (default), `1` for keeping first one only, `0` for removing all
-* `noAggressiveMerging` - set to true to disable aggressive merging of properties.
 * `noRebase` - whether to skip URLs rebasing
 * `processImport` - whether to process `@import` rules
 * `relativeTo` - path to __resolve__ relative `@import` rules and URLs

@@ -77,7 +77,7 @@ if (commands.skipRebase)
 if (commands.skipAdvanced)
   cleanOptions.advanced = false;
 if (commands.skipAggressiveMerging)
-  cleanOptions.noAggressiveMerging = true;
+  cleanOptions.aggressiveMerging = false;
 if (commands.compatibility)
   cleanOptions.compatibility = commands.compatibility;
 if (commands.roundingPrecision !== undefined)

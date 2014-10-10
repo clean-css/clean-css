@@ -6,7 +6,7 @@ var http = require('http');
 var path = require('path');
 
 var isWindows = process.platform == 'win32';
-var lineBreak = isWindows ? /\r\n/g : /\n/g;
+var lineBreak = require('os').EOL;
 
 var binaryContext = function(options, context) {
   if (isWindows)

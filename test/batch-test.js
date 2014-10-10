@@ -4,7 +4,7 @@ var fs = require('fs');
 var assert = require('assert');
 var CleanCSS = require('../index');
 
-var lineBreak = process.platform == 'win32' ? /\r\n/g : /\n/g;
+var lineBreak = require('os').EOL;
 
 var batchContexts = function() {
   var context = {};

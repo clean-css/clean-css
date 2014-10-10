@@ -73,7 +73,7 @@ if (commands.root)
 if (commands.skipImport)
   cleanOptions.processImport = false;
 if (commands.skipRebase)
-  cleanOptions.noRebase = true;
+  cleanOptions.rebase = false;
 if (commands.skipAdvanced)
   cleanOptions.advanced = false;
 if (commands.skipAggressiveMerging)
@@ -87,7 +87,7 @@ if (commands.debug)
 if (commands.timeout)
   cleanOptions.inliner = { timeout: parseFloat(commands.timeout) * 1000 };
 if (commands.args.length > 0) {
-  var relativeTo = (cleanOptions.noRebase ? false : cleanOptions.root) || commands.args[0];
+  var relativeTo = (cleanOptions.rebase ? cleanOptions.root : false) || commands.args[0];
   cleanOptions.relativeTo = path.dirname(path.resolve(relativeTo));
 
   options.sources = commands.args.map(function(source) {

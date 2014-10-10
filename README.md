@@ -32,6 +32,7 @@ npm install clean-css
 
 * `noAdvanced` became `advanced` - make sure to reverse the value;
 * `noAggressiveMerging` became `aggressiveMerging` - make sure to reverse the value;
+* `noRebase` became `rebase` - make sure to reverse the value;
 * no longer possible to use `CleanCSS` as a function as `new CleanCSS` is always required;
 
 ### How to upgrade clean-css from 1.x to 2.x?
@@ -139,8 +140,8 @@ CleanCSS constructor accepts a hash as a parameter, i.e.,
 * `inliner` - a hash of options for `@import` inliner, see test/protocol-imports-test.js for examples
 * `keepBreaks` - whether to keep line breaks (default is false)
 * `keepSpecialComments` - `*` for keeping all (default), `1` for keeping first one only, `0` for removing all
-* `noRebase` - whether to skip URLs rebasing
 * `processImport` - whether to process `@import` rules
+* `rebase` - set to false to skip URL rebasing
 * `relativeTo` - path to __resolve__ relative `@import` rules and URLs
 * `root` - path to __resolve__ absolute `@import` rules and __rebase__ relative URLs
 * `roundingPrecision` - Rounding precision, defaults to 2.

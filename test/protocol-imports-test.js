@@ -221,7 +221,7 @@ vows.describe('protocol imports').addBatch({
     },
     'should not raise errors': function(errors, minified) {
       assert.equal(errors.length, 1);
-      assert.equal(errors[0], 'Broken @import declaration of "http://notdefined.127.0.0.1/custom.css" - getaddrinfo ENOTFOUND');
+      assert.include(errors[0], 'Broken @import declaration of "http://notdefined.127.0.0.1/custom.css"');
     },
     'should process @import': function(errors, minified) {
       assert.equal(minified, '@import url(http://notdefined.127.0.0.1/custom.css);a{color:red}');

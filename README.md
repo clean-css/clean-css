@@ -1,5 +1,5 @@
 [![NPM version](https://badge.fury.io/js/clean-css.svg)](https://badge.fury.io/js/clean-css)
-[![Build Status](https://secure.travis-ci.org/jakubpawlowicz/clean-css.svg)](https://travis-ci.org/jakubpawlowicz/clean-css)
+[![Build Status](https://secure.travis-ci.org/jakubpawlowicz/clean-css.svg?branch=master)](https://travis-ci.org/jakubpawlowicz/clean-css)
 [![Dependency Status](https://david-dm.org/jakubpawlowicz/clean-css.svg?theme=shields.io)](https://david-dm.org/jakubpawlowicz/clean-css)
 [![devDependency Status](https://david-dm.org/jakubpawlowicz/clean-css/dev-status.svg?theme=shields.io)](https://david-dm.org/jakubpawlowicz/clean-css#info=devDependencies)
 

@@ -3,6 +3,7 @@ var assert = require('assert');
 var CommentsProcessor = require('../../lib/text/comments-processor');
 
 var lineBreak = require('os').EOL;
+var otherLineBreak = lineBreak == '\n' ? '\r\n' : '\n';
 
 function processorContext(name, context, keepSpecialComments, keepBreaks) {
   var vowContext = {};
@@ -136,6 +137,11 @@ vows.describe(CommentsProcessor)
         'a{}/*! some text */' + lineBreak + 'p{}',
         'a{}__ESCAPED_COMMENT_CLEAN_CSS0__' + lineBreak + 'p{}',
         'a{}/*! some text */' + lineBreak + 'p{}'
+      ],
+      'if given an other platform break already': [
+        'a{}/*! some text */' + otherLineBreak + 'p{}',
+        'a{}__ESCAPED_COMMENT_CLEAN_CSS0__' + otherLineBreak + 'p{}',
+        'a{}/*! some text */' + otherLineBreak + 'p{}'
       ]
     }, '1', true)
   )

@@ -5,6 +5,7 @@
 * Breaks 2.x compatibility for using CleanCSS as a function.
 * Reworks minification to tokenize first then minify.
   See [changes](https://github.com/jakubpawlowicz/clean-css/compare/b06f37d...dd8c14a).
+* Removes support for node.js 0.8.x.
 * Renames `noAdvanced` option into `advanced`.
 * Renames `noAggressiveMerging` option into `aggressiveMerging`.
 * Renames `noRebase` option into `rebase`.

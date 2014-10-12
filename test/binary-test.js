@@ -34,7 +34,7 @@ var unixOnlyContext = function(context) {
 };
 
 var readFile = function(filename) {
-  return fs.readFileSync(filename, 'utf-8').replace(lineBreak, '');
+  return fs.readFileSync(filename, { encoding: 'utf-8' }).replace(lineBreak, '');
 };
 
 var deleteFile = function(filename) {

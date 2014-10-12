@@ -6,7 +6,7 @@ var http = require('http');
 var path = require('path');
 
 var isWindows = process.platform == 'win32';
-var lineBreak = isWindows ? /\r\n/g : /\n/g;
+var lineBreakRegExp = new RegExp(require('os').EOL, 'g');
 
 var binaryContext = function(options, context) {
   if (isWindows)
@@ -34,7 +34,7 @@ var unixOnlyContext = function(context) {
 };
 
 var readFile = function(filename) {
-  return fs.readFileSync(filename, { encoding: 'utf-8' }).replace(lineBreak, '');
+  return fs.readFileSync(filename, { encoding: 'utf-8' }).replace(lineBreakRegExp, '');
 };
 
 var deleteFile = function(filename) {
@@ -143,7 +143,7 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
   }),
   'from source': binaryContext('./test/data/reset.css', {
     'should minimize': function(error, stdout) {
-      var minimized = fs.readFileSync('./test/data/reset-min.css', 'utf-8').replace(lineBreak, '');
+      var minimized = fs.readFileSync('./test/data/reset-min.css', 'utf-8').replace(lineBreakRegExp, '');
       assert.equal(stdout, minimized);
     }
   }),

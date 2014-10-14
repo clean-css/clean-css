@@ -291,6 +291,11 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
       assert.equal(stdout, readFile('./test/data/unsupported/selectors-ie8.css'));
     }
   }),
+  'custom compatibility': pipedContext('a{_color:red}', '--compatibility "+properties.iePrefixHack"', {
+    'should not transform source': function(error, stdout) {
+      assert.equal(stdout, 'a{_color:red}');
+    }
+  }),
   'rounding precision': {
     defaults: pipedContext('div{width:0.10051px}', '', {
       'should keep 2 decimal places': function(error, stdout) {

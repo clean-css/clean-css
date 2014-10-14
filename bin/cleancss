@@ -26,7 +26,7 @@ commands
   .option('--skip-advanced', 'Disable advanced optimizations - selector & property merging, reduction, etc.')
   .option('--skip-aggressive-merging', 'Disable properties merging based on their order')
   .option('--rounding-precision [n]', 'Rounds pixel values to `N` decimal places, defaults to 2', parseInt)
-  .option('-c, --compatibility [ie7|ie8]', 'Force compatibility mode')
+  .option('-c, --compatibility [ie7|ie8]', 'Force compatibility mode (see Readme for advanced examples)')
   .option('-t, --timeout [seconds]', 'Per connection timeout when fetching remote @imports (defaults to 5 seconds)')
   .option('-d, --debug', 'Shows debug information (minification time & compression efficiency)');
 

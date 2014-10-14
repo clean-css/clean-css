@@ -86,7 +86,7 @@ cleancss [options] source-file, [source-file, ...]
                                 reduction, etc.
 --skip-aggressive-merging       Disable properties merging based on their order
 --rounding-precision [N]        Rounds pixel values to `N` decimal places, defaults to 2
--c, --compatibility [ie7|ie8]   Force compatibility mode
+-c, --compatibility [ie7|ie8]   Force compatibility mode (see Readme for advanced examples)
 -d, --debug                     Shows debug information (minification time & compression efficiency)
 ```
 
@@ -137,7 +137,7 @@ CleanCSS constructor accepts a hash as a parameter, i.e.,
 * `advanced` - set to false to disable advanced optimizations - selector & property merging, reduction, etc.
 * `aggressiveMerging` - set to false to disable aggressive merging of properties.
 * `benchmark` - turns on benchmarking mode measuring time spent on cleaning up (run `npm run bench` to see example)
-* `compatibility` - Force compatibility mode to `ie7` or `ie8`. Defaults to not set.
+* `compatibility` - enables compatibility mode, see [below for more examples](#how-to-set-compatibility-mode)
 * `debug` - set to true to get minification statistics under `stats` property (see `test/custom-test.js` for examples)
 * `inliner` - a hash of options for `@import` inliner, see test/protocol-imports-test.js for examples
 * `keepBreaks` - whether to keep line breaks (default is false)
@@ -208,6 +208,33 @@ Clean-css will handle it automatically for you (since version 1.1) in the follow
   1. Use a combination of `relativeTo` and `target` options for relative rebase (same as 1 in CLI).
   2. Use a combination of `relativeTo` and `root` options for absolute rebase (same as 2 in CLI).
   3. `root` takes precendence over `target` as in CLI.
+
+### How to set compatibility mode
+
+Compatibility settings are controlled by `--compatibility` switch (CLI) and `compatibility` option (library mode).
+
+In both modes the following values are allowed:
+
+* `'ie7'` - Internet Explorer 7 compatibility mode
+* `'ie8'` - Internet Explorer 8 compatibility mode
+* `''` or `'*'` (default) - Internet Explorer 9+ compatibility mode
+
+Since clean-css 3 a fine grained control is available over
+[those settings](https://github.com/jakubpawlowicz/clean-css/blob/master/lib/utils/compatibility.js),
+with the following options available:
+
+* `'[+-]colors.opacity'` - - turn on (+) / off (-) `rgba()` / `hsla()` declarations removal
+* `'[+-]properties.iePrefixHack'` - turn on / off IE prefix hack removal
+* `'[+-]properties.ieSuffixHack'` - turn on / off IE suffix hack removal
+* `'[+-]properties.merging'` - turn on / off property merging based on understandability
+* `'[+-]selectors.ie7Hack'` - turn on / off IE7 selector hack removal (`*+html...`)
+* `'[+-]units.rem'` - turn on / off treating `rem` as a proper unit
+
+For example, this declaration `--compatibility 'ie8,+units.rem'` will ensure IE8 compatiblity while enabling `rem` units so the following style `margin:0px 0rem` can be shortened to `margin:0`, while in pure IE8 mode it can't be.
+
+To pass a single off (-) switch in CLI please use the following syntax `--compatibility *,-units.rem`.
+
+In library mode you can also pass `compatiblity` as a hash of options.
 
 ## Acknowledgments (sorted alphabetically)
 

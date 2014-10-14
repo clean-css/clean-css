@@ -1,6 +1,7 @@
 [3.0.0 / 2014-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v2.2.15...v3.0.0)
 ==================
 
+* Adds more granular control over compatibility settings.
 * Allows `target` option to be a path to a folder instead of a file.
 * Breaks 2.x compatibility for using CleanCSS as a function.
 * Reworks minification to tokenize first then minify.

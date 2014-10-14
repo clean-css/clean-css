@@ -3,10 +3,12 @@ var assert = require('assert');
 
 var Tokenizer = require('../../../lib/selectors/tokenizer');
 var SimpleOptimizer = require('../../../lib/selectors/optimizers/simple');
+var Compatibility = require('../../../lib/utils/compatibility');
 
 function selectorContext(group, specs, options) {
   var context = {};
   options = options || {};
+  options.compatibility = new Compatibility(options.compatibility).toOptions();
 
   function optimized(selectors) {
     return function (source) {
@@ -30,6 +32,7 @@ function selectorContext(group, specs, options) {
 function propertyContext(group, specs, options) {
   var context = {};
   options = options || {};
+  options.compatibility = new Compatibility(options.compatibility).toOptions();
 
   function optimized(selectors) {
     return function (source) {

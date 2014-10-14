@@ -1,9 +1,12 @@
 var vows = require('vows');
 var assert = require('assert');
 var SelectorsOptimizer = require('../../lib/selectors/optimizer');
+var Compatibility = require('../../lib/utils/compatibility');
 
 function optimizerContext(group, specs, options) {
   var context = {};
+  options = options || {};
+  options.compatibility = new Compatibility(options.compatibility).toOptions();
 
   function optimized(target) {
     return function (source) {

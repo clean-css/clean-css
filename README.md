@@ -85,7 +85,7 @@ cleancss [options] source-file, [source-file, ...]
 --skip-advanced                 Disable advanced optimizations - selector & property merging,
                                 reduction, etc.
 --skip-aggressive-merging       Disable properties merging based on their order
---rounding-precision [N]        Rounds pixel values to `N` decimal places, defaults to 2
+--rounding-precision [N]        Rounds to `N` decimal places. -1 disables rounding. Defaults to 2.
 -c, --compatibility [ie7|ie8]   Force compatibility mode
 -d, --debug                     Shows debug information (minification time & compression efficiency)
 ```
@@ -146,7 +146,7 @@ CleanCSS constructor accepts a hash as a parameter, i.e.,
 * `rebase` - set to false to skip URL rebasing
 * `relativeTo` - path to __resolve__ relative `@import` rules and URLs
 * `root` - path to __resolve__ absolute `@import` rules and __rebase__ relative URLs
-* `roundingPrecision` - Rounding precision, defaults to 2.
+* `roundingPrecision` - rounding precision. `-1` to disables rounding. Defaults to `2`.
 * `target` - path to a folder or an output file to which __rebase__ all URLs
 
 ### How to use clean-css with build tools?

@@ -226,6 +226,7 @@ with the following options available:
 * `'[+-]colors.opacity'` - - turn on (+) / off (-) `rgba()` / `hsla()` declarations removal
 * `'[+-]properties.iePrefixHack'` - turn on / off IE prefix hack removal
 * `'[+-]properties.ieSuffixHack'` - turn on / off IE suffix hack removal
+* `'[+-]properties.backgroundSizeMerging'` - turn on / off background-size merging into shorthand
 * `'[+-]properties.merging'` - turn on / off property merging based on understandability
 * `'[+-]selectors.ie7Hack'` - turn on / off IE7 selector hack removal (`*+html...`)
 * `'[+-]units.rem'` - turn on / off treating `rem` as a proper unit

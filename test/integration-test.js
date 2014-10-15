@@ -630,6 +630,12 @@ vows.describe('integration tests').addBatch({
       'div{transform:translateY(-418.5051px)}'
     ]
   }, { roundingPrecision: 4 }),
+  'floats disabled rounding': cssContext({
+    'does not round': [
+      'div{transform:translateY(-418.505123px)}',
+      'div{transform:translateY(-418.505123px)}'
+    ]
+  }, { roundingPrecision: -1 }),
   'colors': cssContext({
     'shorten rgb to standard hexadecimal format': [
       'a{ color:rgb(5, 10, 15) }',

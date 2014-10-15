@@ -3,6 +3,7 @@
 
 * Adds more granular control over compatibility settings.
 * Allows `target` option to be a path to a folder instead of a file.
+* Allows disabling rounding precision. By [@superlukas](https://github.com/superlukas).
 * Breaks 2.x compatibility for using CleanCSS as a function.
 * Reworks minification to tokenize first then minify.
   See [changes](https://github.com/jakubpawlowicz/clean-css/compare/b06f37d...dd8c14a).

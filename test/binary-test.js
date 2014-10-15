@@ -311,6 +311,11 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
       'should keep 0 decimal places': function(error, stdout) {
         assert.equal(stdout, 'div{width:1px}');
       }
+    }),
+    disabled: pipedContext('div{width:0.12345px}', '--rounding-precision \\\\-1', {
+      'should keep all decimal places': function(error, stdout) {
+        assert.equal(stdout, 'div{width:.12345px}');
+      }
     })
   },
   'neighbour merging': {

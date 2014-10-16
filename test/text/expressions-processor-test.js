@@ -2,26 +2,28 @@ var vows = require('vows');
 var assert = require('assert');
 var ExpressionsProcessor = require('../../lib/text/expressions-processor');
 
-function processorContext(context) {
+var lineBreak = require('os').EOL;
+
+function processorContext(name, context, saveWaypoints) {
   var vowContext = {};
 
   function escaped (targetCSS) {
     return function (sourceCSS) {
-      var result = new ExpressionsProcessor().escape(sourceCSS);
+      var result = new ExpressionsProcessor(saveWaypoints).escape(sourceCSS);
       assert.equal(result, targetCSS);
     };
   }
 
   function restored (targetCSS) {
     return function (sourceCSS) {
-      var processor = new ExpressionsProcessor();
+      var processor = new ExpressionsProcessor(saveWaypoints);
       var result = processor.restore(processor.escape(sourceCSS));
       assert.equal(result, targetCSS);
     };
   }
 
   for (var key in context) {
-    vowContext[key] = {
+    vowContext[name + ' - ' + key] = {
       topic: context[key][0],
       escaped: escaped(context[key][1]),
       restored: restored(context[key][2])
@@ -33,7 +35,7 @@ function processorContext(context) {
 
 vows.describe(ExpressionsProcessor)
   .addBatch(
-    processorContext({
+    processorContext('basic', {
       'empty': [
         'a{color:expression()}',
         'a{color:__ESCAPED_EXPRESSION_CLEAN_CSS0__}',
@@ -80,5 +82,24 @@ vows.describe(ExpressionsProcessor)
         'a{color:red;zoom:expression(function(el){el.style.zoom="1"}(this));display:block}'
       ]
     })
+  )
+  .addBatch(
+    processorContext('waypoints', {
+      'empty': [
+        'a{color:expression()}',
+        'a{color:__ESCAPED_EXPRESSION_CLEAN_CSS0(0,12)__}',
+        'a{color:expression()}'
+      ],
+      'method call': [
+        'a{color:expression(this.parentNode.currentStyle.color)}',
+        'a{color:__ESCAPED_EXPRESSION_CLEAN_CSS0(0,46)__}',
+        'a{color:expression(this.parentNode.currentStyle.color)}'
+      ],
+      'line break call': [
+        'a{color:expression(' + lineBreak + 'this.parentNode.currentStyle.color)}',
+        'a{color:__ESCAPED_EXPRESSION_CLEAN_CSS0(1,35)__}',
+        'a{color:expression(' + lineBreak + 'this.parentNode.currentStyle.color)}'
+      ]
+    }, true)
   )
   .export(module);

@@ -5,19 +5,19 @@ var CommentsProcessor = require('../../lib/text/comments-processor');
 var lineBreak = require('os').EOL;
 var otherLineBreak = lineBreak == '\n' ? '\r\n' : '\n';
 
-function processorContext(name, context, keepSpecialComments, keepBreaks) {
+function processorContext(name, context, keepSpecialComments, keepBreaks, saveWaypoints) {
   var vowContext = {};
 
   function escaped (targetCSS) {
     return function (sourceCSS) {
-      var result = new CommentsProcessor(keepSpecialComments, keepBreaks).escape(sourceCSS);
+      var result = new CommentsProcessor(null, keepSpecialComments, keepBreaks, saveWaypoints).escape(sourceCSS);
       assert.equal(result, targetCSS);
     };
   }
 
   function restored (targetCSS) {
     return function (sourceCSS) {
-      var processor = new CommentsProcessor(null, keepSpecialComments, keepBreaks);
+      var processor = new CommentsProcessor(null, keepSpecialComments, keepBreaks, saveWaypoints);
       var result = processor.restore(processor.escape(sourceCSS));
       assert.equal(result, targetCSS);
     };
@@ -144,5 +144,44 @@ vows.describe(CommentsProcessor)
         'a{}/*! some text */' + otherLineBreak + 'p{}'
       ]
     }, '1', true)
+  )
+  .addBatch(
+    processorContext('waypoints', {
+      'one comment': [
+        '/* some text */',
+        '__ESCAPED_COMMENT_CLEAN_CSS0(0,15)__',
+        ''
+      ],
+      'one special comment': [
+        '/*! some text */',
+        '__ESCAPED_COMMENT_CLEAN_CSS0(0,16)__',
+        '/*! some text */'
+      ],
+      'two comments': [
+        '/* one text *//* another text */',
+        '__ESCAPED_COMMENT_CLEAN_CSS0(0,14)____ESCAPED_COMMENT_CLEAN_CSS1(0,33)__',
+        ''
+      ],
+      'two same comments': [
+        '/* one text *//* one text */',
+        '__ESCAPED_COMMENT_CLEAN_CSS0(0,14)____ESCAPED_COMMENT_CLEAN_CSS0(0,29)__',
+        ''
+      ],
+      'two special comments': [
+        '/*! one text *//*! another text */',
+        '__ESCAPED_COMMENT_CLEAN_CSS0(0,15)____ESCAPED_COMMENT_CLEAN_CSS1(0,35)__',
+        '/*! one text *//*! another text */'
+      ],
+      'two special comments with line breaks': [
+        '/*! one text' + lineBreak + '*//*! another' + lineBreak + ' text' + lineBreak + ' */',
+        '__ESCAPED_COMMENT_CLEAN_CSS0(1,2)____ESCAPED_COMMENT_CLEAN_CSS1(2,3)__',
+        '/*! one text' + lineBreak + '*//*! another' + lineBreak + ' text' + lineBreak + ' */'
+      ],
+      'three special comments with line breaks and content in between': [
+        '/*! one text' + lineBreak + '*/a{}/*! ' + lineBreak + 'test */p{color:red}/*! another' + lineBreak + ' text' + lineBreak + lineBreak + '  */',
+        '__ESCAPED_COMMENT_CLEAN_CSS0(1,2)__a{}__ESCAPED_COMMENT_CLEAN_CSS1(1,7)__p{color:red}__ESCAPED_COMMENT_CLEAN_CSS2(3,4)__',
+        '/*! one text' + lineBreak + '*/a{}/*! ' + lineBreak + 'test */p{color:red}/*! another' + lineBreak + ' text' + lineBreak + lineBreak + '  */'
+      ]
+    }, '*', false, true)
   )
   .export(module);

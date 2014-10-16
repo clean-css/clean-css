@@ -46,6 +46,18 @@ vows.describe(EscapeStore)
 
         assert.equal(placeholder, '__ESCAPED_TEST_CLEAN_CSS0(1,2,3)__');
       }
+    },
+    'with different metadata but same index': {
+      topic: function () {
+        var escapeStore = new EscapeStore('TEST');
+        escapeStore.store('data', ['brown', 'fox']);
+        escapeStore.store('data', ['jumped', 'over']);
+        return escapeStore;
+      },
+      restore: function (escapeStore) {
+        var data = escapeStore.restore('__ESCAPED_TEST_CLEAN_CSS0(a,lazy,dog)__');
+        assert.equal(data, 'data');
+      }
     }
   })
   .export(module);

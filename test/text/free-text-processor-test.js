@@ -2,26 +2,28 @@ var vows = require('vows');
 var assert = require('assert');
 var FreeTextProcessor = require('../../lib/text/free-text-processor');
 
-function processorContext(context) {
+var lineBreak = require('os').EOL;
+
+function processorContext(name, context, saveWaypoints) {
   var vowContext = {};
 
   function escaped (targetCSS) {
     return function (sourceCSS) {
-      var result = new FreeTextProcessor().escape(sourceCSS);
+      var result = new FreeTextProcessor(saveWaypoints).escape(sourceCSS);
       assert.equal(result, targetCSS);
     };
   }
 
   function restored (targetCSS) {
     return function (sourceCSS) {
-      var processor = new FreeTextProcessor();
+      var processor = new FreeTextProcessor(saveWaypoints);
       var result = processor.restore(processor.escape(sourceCSS));
       assert.equal(result, targetCSS);
     };
   }
 
   for (var key in context) {
-    vowContext[key] = {
+    vowContext[name + ' - ' + key] = {
       topic: context[key][0],
       escaped: escaped(context[key][1]),
       restored: restored(context[key][2])
@@ -33,7 +35,7 @@ function processorContext(context) {
 
 vows.describe(FreeTextProcessor)
   .addBatch(
-    processorContext({
+    processorContext('basic', {
       'no quotes': [
         'a{color:red;display:block}',
         'a{color:red;display:block}',
@@ -65,5 +67,29 @@ vows.describe(FreeTextProcessor)
         'a{font-family:Times,"Times New Roman",serif}'
       ]
     })
+  )
+  .addBatch(
+    processorContext('waypoints', {
+      'no quotes': [
+        'a{color:red;display:block}',
+        'a{color:red;display:block}',
+        'a{color:red;display:block}'
+      ],
+      'single quoted': [
+        'a{color:red;content:\'1234\';display:block}',
+        'a{color:red;content:__ESCAPED_FREE_TEXT_CLEAN_CSS0(0,6)__;display:block}',
+        'a{color:red;content:\'1234\';display:block}'
+      ],
+      'double quoted': [
+        'a{color:red;content:"1234";display:block}',
+        'a{color:red;content:__ESCAPED_FREE_TEXT_CLEAN_CSS0(0,6)__;display:block}',
+        'a{color:red;content:"1234";display:block}'
+      ],
+      'with breaks': [
+        'a{color:red;content:"1234' + lineBreak + '56";display:block}',
+        'a{color:red;content:__ESCAPED_FREE_TEXT_CLEAN_CSS0(1,3)__;display:block}',
+        'a{color:red;content:"1234' + lineBreak + '56";display:block}'
+      ]
+    }, true)
   )
   .export(module);

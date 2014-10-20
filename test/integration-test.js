@@ -1734,6 +1734,9 @@ title']{display:block}",
     'of supported and unsupported selector': '.one{color:red}.two:last-child{color:red}',
     'of two unsupported selectors': '.one:before{color:red}.two:last-child{color:red}'
   }, { compatibility: 'ie7' }),
+  'units - IE8 compatibility': cssContext({
+    'rems': 'div{padding-top:16px;padding-top:1rem}'
+  }, { compatibility: 'ie8' }),
   'redefined more granular properties': redefineContext({
     'animation-delay': ['animation'],
     'animation-direction': ['animation'],

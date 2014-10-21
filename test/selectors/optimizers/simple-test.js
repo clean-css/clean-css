@@ -15,7 +15,7 @@ function selectorContext(group, specs, options) {
       var tokens = new Tokenizer().toTokens(source);
       new SimpleOptimizer(options).optimize(tokens);
 
-      assert.deepEqual(tokens[0] ? tokens[0].selector : null, selectors);
+      assert.deepEqual(tokens[0] ? tokens[0].value : null, selectors);
     };
   }
 
@@ -38,8 +38,9 @@ function propertyContext(group, specs, options) {
     return function (source) {
       var tokens = new Tokenizer().toTokens(source);
       new SimpleOptimizer(options).optimize(tokens);
+      var value = tokens[0].body.map(function (property) { return property.value; });
 
-      assert.deepEqual(tokens[0].body, selectors);
+      assert.deepEqual(value, selectors);
     };
   }
 
@@ -58,15 +59,15 @@ vows.describe(SimpleOptimizer)
     selectorContext('default', {
       'optimized': [
         'a{}',
-        ['a']
+        [{ value: 'a' }]
       ],
       'whitespace': [
         ' div  > span{}',
-        ['div>span']
+        [{ value: 'div>span' }]
       ],
       'line breaks': [
         ' div  >\n\r\n span{}',
-        ['div>span']
+        [{ value: 'div>span' }]
       ],
       '+html': [
         '*+html .foo{display:inline}',
@@ -86,7 +87,7 @@ vows.describe(SimpleOptimizer)
       ],
       '+html - complex': [
         '*+html .foo,.bar{display:inline}',
-        ['.bar']
+        [{ value: '.bar' }]
       ]
     }, { compatibility: 'ie8' })
   )
@@ -94,11 +95,11 @@ vows.describe(SimpleOptimizer)
     selectorContext('ie7', {
       '+html': [
         '*+html .foo{display:inline}',
-        ['*+html .foo']
+        [{ value: '*+html .foo' }]
       ],
       '+html - complex': [
         '*+html .foo,.bar{display:inline}',
-        ['*+html .foo', '.bar']
+        [{ value: '*+html .foo' }, { value: '.bar' }]
       ]
     }, { compatibility: 'ie7' })
   )

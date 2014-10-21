@@ -2,7 +2,7 @@ var vows = require('vows');
 var assert = require('assert');
 var Tokenizer = require('../../lib/selectors/tokenizer');
 
-function tokenizerContext(config) {
+function tokenizerContext(name, specs) {
   var ctx = {};
 
   function tokenized(target) {
@@ -12,10 +12,10 @@ function tokenizerContext(config) {
     };
   }
 
-  for (var test in config) {
+  for (var test in specs) {
     ctx[test] = {
-      topic: config[test][0],
-      tokenized: tokenized(config[test][1])
+      topic: specs[test][0],
+      tokenized: tokenized(specs[test][1])
     };
   }
 
@@ -24,81 +24,179 @@ function tokenizerContext(config) {
 
 vows.describe(Tokenizer)
   .addBatch(
-    tokenizerContext({
+    tokenizerContext('basic', {
       'no content': [
         '',
         []
       ],
       'an escaped content': [
         '__ESCAPED_COMMENT_CLEAN_CSS0__',
-        ['__ESCAPED_COMMENT_CLEAN_CSS0__']
+        [{
+          kind: 'text',
+          value: '__ESCAPED_COMMENT_CLEAN_CSS0__'
+        }]
       ],
       'an empty selector': [
         'a{}',
-        [{ selector: ['a'], body: [] }]
+        [{
+          kind: 'selector',
+          value: [{ value: 'a' }],
+          body: []
+        }]
       ],
       'an empty selector with whitespace': [
         'a{ \n  }',
-        [{ selector: ['a'], body: [] }]
+        [{
+          kind: 'selector',
+          value: [{ value: 'a' }],
+          body: []
+        }]
       ],
       'a selector': [
         'a{color:red}',
-        [{ selector: ['a'], body: ['color:red'] }]
+        [{
+          kind: 'selector',
+          value: [{ value: 'a' }],
+          body: [{ value: 'color:red' }]
+        }]
       ],
       'a selector with whitespace': [
         'a {color:red;\n\ndisplay :  block }',
-        [{ selector: ['a'], body: ['color:red', 'display:block'] }]
+        [{
+          kind: 'selector',
+          value: [{ value: 'a' }],
+          body: [
+            { value: 'color:red' },
+            { value: 'display:block'
+          }]
+        }]
       ],
       'a selector with whitespace in functions': [
         'a{color:rgba( 255, 255, 0, 0.5  )}',
-        [{ selector: ['a'], body: ['color:rgba(255,255,0,0.5)'] }]
+        [{
+          kind: 'selector',
+          value: [{ value: 'a' }],
+          body: [{ value: 'color:rgba(255,255,0,0.5)' }]
+        }]
       ],
       'a selector with empty properties': [
         'a{color:red; ; ; ;}',
-        [{ selector: ['a'], body: ['color:red'] }]
+        [{
+          kind: 'selector',
+          value: [{ value: 'a' }],
+          body: [{ value: 'color:red' }]
+        }]
       ],
       'a selector with quoted attribute': [
         'a[data-kind=__ESCAPED_FREE_TEXT_CLEAN_CSS0__]{color:red}',
-        [{ selector: ['a[data-kind=__ESCAPED_FREE_TEXT_CLEAN_CSS0__]'], body: ['color:red'] }]
+        [{
+          kind: 'selector',
+          value: [{ value: 'a[data-kind=__ESCAPED_FREE_TEXT_CLEAN_CSS0__]' }],
+          body: [{ value: 'color:red' }]
+        }]
       ],
       'a double selector': [
         'a,\n\ndiv.class > p {color:red}',
-        [{ selector: ['a', 'div.class > p'], body: ['color:red'] }]
+        [{
+          kind: 'selector',
+          value: [
+            { value: 'a' },
+            { value: 'div.class > p' }
+          ],
+          body: [{ value: 'color:red' }]
+        }]
       ],
       'two selectors': [
         'a{color:red}div{color:blue}',
         [
-          { selector: ['a'], body: ['color:red'] },
-          { selector: ['div'], body: ['color:blue'] }
+          {
+            kind: 'selector',
+            value: [{ value: 'a' }],
+            body: [{ value: 'color:red' }]
+          },
+          {
+            kind: 'selector',
+            value: [{ value: 'div' }],
+            body: [{ value: 'color:blue' }]
+          }
         ]
       ],
       'media query': [
         '@media (min-width:980px){}',
-        [{ block: '@media (min-width:980px)', body: [], isFlatBlock: false }]
+        [{
+          kind: 'block',
+          value: '@media (min-width:980px)',
+          body: [],
+          isFlatBlock: false
+        }]
       ],
       'media query with selectors': [
         '@media (min-width:980px){a{color:red}}',
-        [{ block: '@media (min-width:980px)', body: [{ selector: ['a'], body: ['color:red'] }], isFlatBlock: false }]
+        [{
+          kind: 'block',
+          value: '@media (min-width:980px)',
+          body: [{
+            kind: 'selector',
+            value: [{ value: 'a' }],
+            body: [{ value: 'color:red' }]
+          }],
+          isFlatBlock: false
+        }]
       ],
       'media query spanning more than one chunk': [
         '@media only screen and (max-width:1319px) and (min--moz-device-pixel-ratio:1.5),only screen and (max-width:1319px) and (-moz-min-device-pixel-ratio:1.5){a{color:#000}}',
-        [{ block: '@media only screen and (max-width:1319px) and (min--moz-device-pixel-ratio:1.5),only screen and (max-width:1319px) and (-moz-min-device-pixel-ratio:1.5)', body: [{ selector: ['a'], body: ['color:#000'] }], isFlatBlock: false }]
+        [{
+          kind: 'block',
+          value: '@media only screen and (max-width:1319px) and (min--moz-device-pixel-ratio:1.5),only screen and (max-width:1319px) and (-moz-min-device-pixel-ratio:1.5)',
+          body: [{
+            kind: 'selector',
+            value: [{ value: 'a' }],
+            body: [{ value: 'color:#000' }]
+          }],
+          isFlatBlock: false
+        }]
       ],
       'font-face': [
         '@font-face{font-family: fontName;font-size:12px}',
-        [{ block: '@font-face', body: ['font-family:fontName', 'font-size:12px'], isFlatBlock: true }]
+        [{
+          kind: 'block',
+          value: '@font-face',
+          body: [
+            { value: 'font-family:fontName' },
+            { value: 'font-size:12px' }
+          ],
+          isFlatBlock: true
+        }]
       ],
       'charset': [
         '@charset \'utf-8\';a{color:red}',
-        ['@charset \'utf-8\';', { selector: ['a'], body: ['color:red'] }]
+        [
+          {
+            kind: 'text',
+            value: '@charset \'utf-8\';'
+          },
+          {
+            kind: 'selector',
+            value: [{ value: 'a' }],
+            body: [{ value: 'color:red' }]
+          }
+        ]
       ],
       'charset after a line break': [
         '\n@charset \n\'utf-8\';',
-        ['@charset \'utf-8\';']
+        [{
+          kind: 'text',
+          value: '@charset \'utf-8\';'
+        }]
       ],
       'keyframes with quoted attribute': [
         '@keyframes __ESCAPED_FREE_TEXT_CLEAN_CSS0__{}',
-        [{ block: '@keyframes __ESCAPED_FREE_TEXT_CLEAN_CSS0__', body: [], isFlatBlock: false }]
+        [{
+          kind: 'block',
+          value: '@keyframes __ESCAPED_FREE_TEXT_CLEAN_CSS0__',
+          body: [],
+          isFlatBlock: false
+        }]
       ]
     })
   )

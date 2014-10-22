@@ -61,7 +61,7 @@ vows.describe(Tokenizer)
         }]
       ],
       'a selector with whitespace': [
-        'a {color:red;\n\ndisplay :  block }',
+        'a {color:red;\n\ndisplay :\r\n  block }',
         [{
           kind: 'selector',
           value: [{ value: 'a' }],
@@ -70,6 +70,10 @@ vows.describe(Tokenizer)
             { value: 'display:block'
           }]
         }]
+      ],
+      'a selector with suffix whitespace': [
+        'div a{color:red\r\n}',
+        [{ kind: 'selector', value: [{ value: 'div a' }], body: [{ value: 'color:red' }] }]
       ],
       'a selector with whitespace in functions': [
         'a{color:rgba( 255, 255, 0, 0.5  )}',

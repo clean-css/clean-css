@@ -96,10 +96,6 @@ vows.describe('integration tests').addBatch({
       'div \na\r\n, p { width:500px }',
       'div a,p{width:500px}'
     ],
-    'line breaks #3': [
-      'div a{width:500px\r\n}',
-      'div a{width:500px}'
-    ],
     'line breaks with whitespace lines': [
       'div \n \t\n \na\r\n, p { width:500px }',
       'div a,p{width:500px}'

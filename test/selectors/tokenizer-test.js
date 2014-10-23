@@ -2,12 +2,12 @@ var vows = require('vows');
 var assert = require('assert');
 var Tokenizer = require('../../lib/selectors/tokenizer');
 
-function tokenizerContext(name, specs) {
+function tokenizerContext(name, specs, addMetadata) {
   var ctx = {};
 
   function tokenized(target) {
     return function (source) {
-      var tokenized = new Tokenizer({}).toTokens(source);
+      var tokenized = new Tokenizer({}, addMetadata).toTokens(source);
       assert.deepEqual(target, tokenized);
     };
   }
@@ -203,5 +203,72 @@ vows.describe(Tokenizer)
         }]
       ]
     })
+  )
+  .addBatch(
+    tokenizerContext('metadata', {
+      'no content': [
+        '',
+        []
+      ],
+      'an escaped content': [
+        '__ESCAPED_COMMENT_CLEAN_CSS0__',
+        [{ kind: 'text', value: '__ESCAPED_COMMENT_CLEAN_CSS0__' }]
+      ],
+      'an empty selector': [
+        'a{}',
+        [{
+          kind: 'selector',
+          value: [{ value: 'a' }],
+          body: [],
+          metadata: {
+            body: '',
+            bodiesList: [],
+            selector: 'a',
+            selectorsList: ['a']
+          }
+        }]
+      ],
+      'a double selector': [
+        'a,\n\ndiv.class > p {color:red}',
+        [{
+          kind: 'selector',
+          value: [{ value: 'a' }, { value: 'div.class > p' }],
+          body: [{ value: 'color:red' }],
+          metadata: {
+            body: 'color:red',
+            bodiesList: ['color:red'],
+            selector: 'a,div.class > p',
+            selectorsList: ['a', 'div.class > p']
+          }
+        }],
+      ],
+      'two selectors': [
+        'a{color:red}div{color:blue}',
+        [
+          {
+            kind: 'selector',
+            value: [{ value: 'a' }],
+            body: [{ value: 'color:red' }],
+            metadata: {
+              body: 'color:red',
+              bodiesList: ['color:red'],
+              selector: 'a',
+              selectorsList: ['a']
+            }
+          },
+          {
+            kind: 'selector',
+            value: [{ value: 'div' }],
+            body: [{ value: 'color:blue' }],
+            metadata: {
+              body: 'color:blue',
+              bodiesList: ['color:blue'],
+              selector: 'div',
+              selectorsList: ['div']
+            }
+          }
+        ]
+      ]
+    }, true)
   )
   .export(module);

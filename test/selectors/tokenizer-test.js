@@ -64,7 +64,7 @@ vows.describe(Tokenizer)
         'a {color:red;\n\ndisplay :\r\n  block }',
         [{
           kind: 'selector',
-          value: [{ value: 'a' }],
+          value: [{ value: 'a ' }],
           body: [
             { value: 'color:red' },
             { value: 'display:block'
@@ -105,7 +105,7 @@ vows.describe(Tokenizer)
           kind: 'selector',
           value: [
             { value: 'a' },
-            { value: 'div.class > p' }
+            { value: '\n\ndiv.class > p ' }
           ],
           body: [{ value: 'color:red' }]
         }]
@@ -176,7 +176,7 @@ vows.describe(Tokenizer)
         '@charset \'utf-8\';a{color:red}',
         [
           {
-            kind: 'text',
+            kind: 'at-rule',
             value: '@charset \'utf-8\';'
           },
           {
@@ -189,8 +189,8 @@ vows.describe(Tokenizer)
       'charset after a line break': [
         '\n@charset \n\'utf-8\';',
         [{
-          kind: 'text',
-          value: '@charset \'utf-8\';'
+          kind: 'at-rule',
+          value: '\n@charset \n\'utf-8\';'
         }]
       ],
       'keyframes with quoted attribute': [
@@ -232,13 +232,13 @@ vows.describe(Tokenizer)
         'a,\n\ndiv.class > p {color:red}',
         [{
           kind: 'selector',
-          value: [{ value: 'a' }, { value: 'div.class > p' }],
+          value: [{ value: 'a' }, { value: '\n\ndiv.class > p ' }],
           body: [{ value: 'color:red' }],
           metadata: {
             body: 'color:red',
             bodiesList: ['color:red'],
-            selector: 'a,div.class > p',
-            selectorsList: ['a', 'div.class > p']
+            selector: 'a,\n\ndiv.class > p ',
+            selectorsList: ['a', '\n\ndiv.class > p ']
           }
         }],
       ],

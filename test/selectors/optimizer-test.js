@@ -1,16 +1,19 @@
 var vows = require('vows');
 var assert = require('assert');
 var SelectorsOptimizer = require('../../lib/selectors/optimizer');
+var Stringifier = require('../../lib/selectors/stringifier');
 var Compatibility = require('../../lib/utils/compatibility');
 
 function optimizerContext(group, specs, options) {
+  var stringifier = new Stringifier(false, function (data) { return data; });
+
   var context = {};
   options = options || {};
   options.compatibility = new Compatibility(options.compatibility).toOptions();
 
   function optimized(target) {
     return function (source) {
-      assert.equal(new SelectorsOptimizer(options).process(source), target);
+      assert.equal(new SelectorsOptimizer(options).process(source, stringifier), target);
     };
   }
 

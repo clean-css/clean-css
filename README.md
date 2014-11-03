@@ -36,6 +36,7 @@ npm install clean-css
 * `noAggressiveMerging` became `aggressiveMerging` - make sure to reverse the value;
 * `noRebase` became `rebase` - make sure to reverse the value;
 * no longer possible to use `CleanCSS` as a function as `new CleanCSS` is always required;
+* `minify` method returns a hash instead of a string now, so use `new CleanCSS().minify(source).styles` instead of `new CleanCSS().minify(source)`. This change is due to addition of source-maps.
 
 ### How to upgrade clean-css from 1.x to 2.x?
 
@@ -128,11 +129,11 @@ cat one.css two.css three.css | cleancss | gzip -9 -c > merged-minified-and-gzip
 ```js
 var CleanCSS = require('clean-css');
 var source = 'a{font-weight:bold;}';
-var minimized = new CleanCSS().minify(source);
+var minimized = new CleanCSS().minify(source).styles;
 ```
 
 CleanCSS constructor accepts a hash as a parameter, i.e.,
-`new CleanCSS(options).minify(source)` with the following options available:
+`new CleanCSS(options)` with the following options available:
 
 * `advanced` - set to false to disable advanced optimizations - selector & property merging, reduction, etc.
 * `aggressiveMerging` - set to false to disable aggressive merging of properties.

@@ -13,7 +13,7 @@ function optimizerContext(group, specs, options) {
 
   function optimized(target) {
     return function (source) {
-      assert.equal(new SelectorsOptimizer(options).process(source, stringifier), target);
+      assert.equal(new SelectorsOptimizer(options).process(source, stringifier).styles, target);
     };
   }
 

@@ -137,7 +137,7 @@ function minify(data) {
     if (this.errors.length > 0)
       process.exit(1);
 
-    output(minified);
+    output(minified.styles);
   });
 }
 

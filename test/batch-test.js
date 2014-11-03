@@ -33,7 +33,7 @@ var batchContexts = function() {
             keepBreaks: true,
             root: data.root
           }).minify(data.plain, function(errors, minified) {
-            self.callback(errors, minified, data);
+            self.callback(errors, minified.styles, data);
           });
         },
         'should output right content': function(errors, minified, data) {

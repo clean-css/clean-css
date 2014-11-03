@@ -24,7 +24,7 @@ vows.describe('protocol imports').addBatch({
       assert.equal(errors.length, 1);
     },
     'should ignore @import': function(errors, minified) {
-      assert.equal(minified, '@import url(http://127.0.0.1/missing.css);a{color:red}');
+      assert.equal(minified.styles, '@import url(http://127.0.0.1/missing.css);a{color:red}');
     },
     teardown: function() {
       assert.equal(this.reqMocks.isDone(), true);
@@ -43,7 +43,7 @@ vows.describe('protocol imports').addBatch({
       assert.isNull(errors);
     },
     'should process @import': function(errors, minified) {
-      assert.equal(minified, 'p{font-size:13px}a{color:red}');
+      assert.equal(minified.styles, 'p{font-size:13px}a{color:red}');
     },
     teardown: function() {
       assert.equal(this.reqMocks.isDone(), true);
@@ -62,7 +62,7 @@ vows.describe('protocol imports').addBatch({
       assert.isNull(errors);
     },
     'should process @import': function(errors, minified) {
-      assert.equal(minified, 'p{font-size:13px}');
+      assert.equal(minified.styles, 'p{font-size:13px}');
     },
     teardown: function() {
       assert.equal(this.reqMocks.isDone(), true);
@@ -81,7 +81,7 @@ vows.describe('protocol imports').addBatch({
       assert.isNull(errors);
     },
     'should process @import': function(errors, minified) {
-      assert.equal(minified, 'p{font-size:13px}a{color:red}');
+      assert.equal(minified.styles, 'p{font-size:13px}a{color:red}');
     },
     teardown: function() {
       assert.equal(this.reqMocks.isDone(), true);
@@ -100,7 +100,7 @@ vows.describe('protocol imports').addBatch({
       assert.isNull(errors);
     },
     'should process @import': function(errors, minified) {
-      assert.equal(minified, '@media screen{p{font-size:13px}}a{color:red}');
+      assert.equal(minified.styles, '@media screen{p{font-size:13px}}a{color:red}');
     },
     teardown: function() {
       assert.equal(this.reqMocks.isDone(), true);
@@ -124,7 +124,7 @@ vows.describe('protocol imports').addBatch({
       assert.isNull(errors);
     },
     'should process @import': function(errors, minified) {
-      assert.equal(minified, 'body{margin:0}div{padding:0}p{font-size:13px}a{color:red}');
+      assert.equal(minified.styles, 'body{margin:0}div{padding:0}p{font-size:13px}a{color:red}');
     },
     teardown: function() {
       assert.equal(this.reqMocks1.isDone(), true);
@@ -146,7 +146,7 @@ vows.describe('protocol imports').addBatch({
       assert.isNull(errors);
     },
     'should process @import': function(errors, minified) {
-      assert.equal(minified, 'body{margin:0}p{font-size:13px}a{color:red}');
+      assert.equal(minified.styles, 'body{margin:0}p{font-size:13px}a{color:red}');
     },
     teardown: function() {
       assert.equal(this.reqMocks.isDone(), true);
@@ -168,7 +168,7 @@ vows.describe('protocol imports').addBatch({
       assert.equal(errors[0], 'Broken @import declaration of "http://127.0.0.1/missing.css" - error 404');
     },
     'should process @import': function(errors, minified) {
-      assert.equal(minified, '@import url(http://127.0.0.1/missing.css);p{font-size:13px}a{color:red}');
+      assert.equal(minified.styles, '@import url(http://127.0.0.1/missing.css);p{font-size:13px}a{color:red}');
     },
     teardown: function() {
       assert.equal(this.reqMocks.isDone(), true);
@@ -187,7 +187,7 @@ vows.describe('protocol imports').addBatch({
       assert.isNull(errors);
     },
     'should process @import': function(errors, minified) {
-      assert.equal(minified, 'a{background:url(http://127.0.0.1/test.png)}');
+      assert.equal(minified.styles, 'a{background:url(http://127.0.0.1/test.png)}');
     },
     teardown: function() {
       assert.equal(this.reqMocks.isDone(), true);
@@ -208,7 +208,7 @@ vows.describe('protocol imports').addBatch({
       assert.isNull(errors);
     },
     'should process @import': function(errors, minified) {
-      assert.equal(minified, 'a{background:url(http://127.0.0.1/deeply/images/test.png)}');
+      assert.equal(minified.styles, 'a{background:url(http://127.0.0.1/deeply/images/test.png)}');
     },
     teardown: function() {
       assert.equal(this.reqMocks.isDone(), true);
@@ -224,7 +224,7 @@ vows.describe('protocol imports').addBatch({
       assert.include(errors[0], 'Broken @import declaration of "http://notdefined.127.0.0.1/custom.css"');
     },
     'should process @import': function(errors, minified) {
-      assert.equal(minified, '@import url(http://notdefined.127.0.0.1/custom.css);a{color:red}');
+      assert.equal(minified.styles, '@import url(http://notdefined.127.0.0.1/custom.css);a{color:red}');
     }
   },
   'of a 30x response with absolute URL': {
@@ -241,7 +241,7 @@ vows.describe('protocol imports').addBatch({
       assert.isNull(errors);
     },
     'should process @import': function(errors, minified) {
-      assert.equal(minified, 'body{margin:0}a{color:red}');
+      assert.equal(minified.styles, 'body{margin:0}a{color:red}');
     },
     teardown: function() {
       assert.equal(this.reqMocks.isDone(), true);
@@ -262,7 +262,7 @@ vows.describe('protocol imports').addBatch({
       assert.isNull(errors);
     },
     'should process @import': function(errors, minified) {
-      assert.equal(minified, 'body{margin:0}a{color:red}');
+      assert.equal(minified.styles, 'body{margin:0}a{color:red}');
     },
     teardown: function() {
       assert.equal(this.reqMocks.isDone(), true);
@@ -289,7 +289,7 @@ vows.describe('protocol imports').addBatch({
       assert.equal(errors[0], 'Broken @import declaration of "http://localhost:' + port + '/timeout.css" - timeout');
     },
     'should process @import': function(errors, minified) {
-      assert.equal(minified, '@import url(http://localhost:' + port + '/timeout.css);a{color:red}');
+      assert.equal(minified.styles, '@import url(http://localhost:' + port + '/timeout.css);a{color:red}');
     },
     teardown: function() {
       this.server.close();
@@ -309,7 +309,7 @@ vows.describe('protocol imports').addBatch({
       assert.isNull(errors);
     },
     'should process @import': function(errors, minified) {
-      assert.equal(minified, 'body{margin:0}div{padding:0}a{color:red}');
+      assert.equal(minified.styles, 'body{margin:0}div{padding:0}a{color:red}');
     },
     teardown: function() {
       assert.equal(this.reqMocks.isDone(), true);
@@ -328,7 +328,7 @@ vows.describe('protocol imports').addBatch({
       assert.isNull(errors);
     },
     'should process @import': function(errors, minified) {
-      assert.equal(minified, 'div{padding:0}a{color:red}');
+      assert.equal(minified.styles, 'div{padding:0}a{color:red}');
     },
     teardown: function() {
       assert.equal(this.reqMocks.isDone(), true);
@@ -353,7 +353,7 @@ vows.describe('protocol imports').addBatch({
       assert.isNull(errors);
     },
     'should process @import': function(errors, minified) {
-      assert.equal(minified, 'div{padding:0}a{color:red}');
+      assert.equal(minified.styles, 'div{padding:0}a{color:red}');
     },
     teardown: function() {
       assert.equal(this.reqMocks.isDone(), true);
@@ -373,7 +373,7 @@ vows.describe('protocol imports').addBatch({
       assert.isNull(errors);
     },
     'should process @import': function(errors, minified) {
-      assert.equal(minified, 'div{padding:0}.one{color:red}');
+      assert.equal(minified.styles, 'div{padding:0}.one{color:red}');
     },
     teardown: function() {
       assert.equal(this.reqMocks.isDone(), true);
@@ -399,7 +399,7 @@ vows.describe('protocol imports').addBatch({
       assert.match(minifier.warnings[0], /no callback given/);
     },
     'should process @import': function(error, minifier, minified) {
-      assert.equal(minified, '@import url(http://127.0.0.1/remote.css);.one{color:red}');
+      assert.equal(minified.styles, '@import url(http://127.0.0.1/remote.css);.one{color:red}');
     },
     teardown: function() {
       assert.equal(this.reqMocks.isDone(), false);

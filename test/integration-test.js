@@ -11,7 +11,7 @@ var cssContext = function(groups, options) {
 
   var clean = function(expectedCss) {
     return function(css) {
-      var minifiedCss = new CleanCSS(options).minify(css);
+      var minifiedCss = new CleanCSS(options).minify(css).styles;
       assert.equal(minifiedCss, expectedCss);
     };
   };

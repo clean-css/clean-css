@@ -267,12 +267,12 @@ vows.describe('source-maps/analyzer')
             body: [
               {
                 kind: 'selector',
-                value: [{ value: '\na', metadata: { line: 3, column: 1, source: undefined } }],
-                body: [{ value: 'color:red', metadata: { line: 4, column: 1, source: undefined } }]
+                value: [{ value: '\na', metadata: { line: 4, column: 1, source: undefined } }],
+                body: [{ value: 'color:red', metadata: { line: 5, column: 1, source: undefined } }]
               },
               {
                 kind: 'selector',
-                value: [{ value: 'p', metadata: { line: 5, column: 5, source: undefined } }],
+                value: [{ value: 'p', metadata: { line: 6, column: 5, source: undefined } }],
                 body: []
               }
             ]
@@ -298,6 +298,20 @@ vows.describe('source-maps/analyzer')
             kind: 'selector',
             value: [{ value: 'a', metadata: { line: 3, column: 40, source: undefined } }],
             body: []
+          }
+        ]
+      ],
+      '@font-face with breaks': [
+        '\n@font-face\n{font-family: "Font"}',
+        [
+          {
+            kind: 'block',
+            value: '@font-face',
+            metadata: { line: 2, column: 1, source: undefined },
+            isFlatBlock: true,
+            body: [
+              { value: 'font-family:"Font"', metadata: { line: 3, column: 2, source: undefined } },
+            ]
           }
         ]
       ]

@@ -148,6 +148,7 @@ CleanCSS constructor accepts a hash as a parameter, i.e.,
 * `relativeTo` - path to __resolve__ relative `@import` rules and URLs
 * `root` - path to __resolve__ absolute `@import` rules and __rebase__ relative URLs
 * `roundingPrecision` - rounding precision; defaults to `2`; `-1` disables rounding
+* `sourceMap` - exposes source map under `sourceMap` property, e.g. `new CleanCSS().minify(source).sourceMap` (default is false)
 * `target` - path to a folder or an output file to which __rebase__ all URLs
 
 ### How to use clean-css with build tools?

@@ -279,6 +279,29 @@ vows.describe('source-maps/analyzer')
           }
         ]
       ],
+      '@media - stray whitespace at end': [
+        '@media (min-width:980px){a{color:red} }p{color:red}',
+        [
+          {
+            kind: 'block',
+            value: '@media (min-width:980px)',
+            metadata: { line: 1, column: 1, source: undefined },
+            isFlatBlock: false,
+            body: [
+              {
+                kind: 'selector',
+                value: [{ value: 'a', metadata: { line: 1, column: 26, source: undefined } }],
+                body: [{ value: 'color:red', metadata: { line: 1, column: 28, source: undefined } }]
+              },
+            ]
+          },
+          {
+            kind: 'selector',
+            value: [{ value: 'p', metadata: { line: 1, column: 40, source: undefined } }],
+            body: [{ value: 'color:red', metadata: { line: 1, column: 42, source: undefined } }]
+          }
+        ]
+      ],
       '@font-face': [
         '@font-face{font-family: "Font";\nsrc: url("font.ttf");\nfont-weight: normal;font-style: normal}a{}',
         [

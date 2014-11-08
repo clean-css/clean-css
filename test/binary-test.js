@@ -329,5 +329,12 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
         assert.equal(stdout, 'a{display:block;background:#fff}');
       }
     })
+  },
+  'shorthand compacting': {
+    'of (yet) unmergeable properties': pipedContext('a{background:url(image.png);background-color:red}', '--skip-shorthand-compacting', {
+      'gets right result': function(error, stdout) {
+        assert.equal(stdout, 'a{background:url(image.png);background-color:red}');
+      }
+    })
   }
 });

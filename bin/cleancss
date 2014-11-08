@@ -25,6 +25,7 @@ commands
   .option('--skip-rebase', 'Disable URLs rebasing')
   .option('--skip-advanced', 'Disable advanced optimizations - selector & property merging, reduction, etc.')
   .option('--skip-aggressive-merging', 'Disable properties merging based on their order')
+  .option('--skip-shorthand-compacting', 'Disable shorthand compacting')
   .option('--rounding-precision [n]', 'Rounds to `N` decimal places. Defaults to 2. -1 disables rounding.', parseInt)
   .option('-c, --compatibility [ie7|ie8]', 'Force compatibility mode (see Readme for advanced examples)')
   .option('-t, --timeout [seconds]', 'Per connection timeout when fetching remote @imports (defaults to 5 seconds)')
@@ -78,6 +79,8 @@ if (commands.skipAdvanced)
   cleanOptions.advanced = false;
 if (commands.skipAggressiveMerging)
   cleanOptions.aggressiveMerging = false;
+if (commands.skipShorthandCompacting)
+  cleanOptions.shorthandCompacting = false;
 if (commands.compatibility)
   cleanOptions.compatibility = commands.compatibility;
 if (commands.roundingPrecision !== undefined)

@@ -86,6 +86,7 @@ cleancss [options] source-file, [source-file, ...]
 --skip-advanced                 Disable advanced optimizations - selector & property merging,
                                 reduction, etc.
 --skip-aggressive-merging       Disable properties merging based on their order
+--skip-shorthand-compacting     Disable shorthand compacting
 --rounding-precision [N]        Rounds to `N` decimal places. Defaults to 2. -1 disables rounding.
 -c, --compatibility [ie7|ie8]   Force compatibility mode (see Readme for advanced examples)
 -d, --debug                     Shows debug information (minification time & compression efficiency)
@@ -148,6 +149,7 @@ CleanCSS constructor accepts a hash as a parameter, i.e.,
 * `relativeTo` - path to __resolve__ relative `@import` rules and URLs
 * `root` - path to __resolve__ absolute `@import` rules and __rebase__ relative URLs
 * `roundingPrecision` - rounding precision; defaults to `2`; `-1` disables rounding
+* `shorthandCompacting` - set to false to skip shorthand compacting (default is true unless sourceMap is set when it's false)
 * `sourceMap` - exposes source map under `sourceMap` property, e.g. `new CleanCSS().minify(source).sourceMap` (default is false)
 * `target` - path to a folder or an output file to which __rebase__ all URLs
 

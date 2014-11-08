@@ -153,6 +153,45 @@ vows.describe('source-map')
         };
         assert.deepEqual(mapping, minified.sourceMap._mappings[6]);
       }
-    }
+    },
+    'shorthands': {
+      'topic': new CleanCSS({ sourceMap: true }).minify('a{background:url(image.png);background-color:red}'),
+      'should have 3 mappings': function(minified) {
+        assert.equal(3, minified.sourceMap._mappings.length);
+      },
+      'should have selector mapping': function (minified) {
+        var mapping = {
+          generatedLine: 1,
+          generatedColumn: 1,
+          originalLine: 1,
+          originalColumn: 1,
+          source: '__stdin__.css',
+          name: 'a'
+        };
+        assert.deepEqual(mapping, minified.sourceMap._mappings[0]);
+      },
+      'should have _background_ mapping': function (minified) {
+        var mapping = {
+          generatedLine: 1,
+          generatedColumn: 3,
+          originalLine: 1,
+          originalColumn: 3,
+          source: '__stdin__.css',
+          name: 'background:url(image.png)'
+        };
+        assert.deepEqual(mapping, minified.sourceMap._mappings[1]);
+      },
+      'should have _background-color_ mapping': function (minified) {
+        var mapping = {
+          generatedLine: 1,
+          generatedColumn: 29,
+          originalLine: 1,
+          originalColumn: 29,
+          source: '__stdin__.css',
+          name: 'background-color:red'
+        };
+        assert.deepEqual(mapping, minified.sourceMap._mappings[2]);
+      }
+    },
   })
   .export(module);

@@ -1,4 +1,4 @@
-[2.2.17 / 2014-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v2.2.16...v2.2.17)
+[2.2.17 / 2014-11-09](https://github.com/jakubpawlowicz/clean-css/compare/v2.2.16...v2.2.17)
 ==================
 
 * Fixed issue [#380](https://github.com/GoalSmashers/clean-css/issues/380) - rounding fractions to a whole number.

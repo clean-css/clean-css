@@ -3,6 +3,7 @@
 
 * Adds more granular control over compatibility settings.
 * Adds support for @counter-style at-rule.
+* Adds `--source-map`/`sourceMap` switch for building input's source map.
 * Adds `--skip-shorthand-compacting`/`shorthandComacting` option for disabling shorthand compacting.
 * Allows `target` option to be a path to a folder instead of a file.
 * Allows disabling rounding precision. By [@superlukas](https://github.com/superlukas).

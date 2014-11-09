@@ -89,6 +89,7 @@ cleancss [options] source-file, [source-file, ...]
 --skip-shorthand-compacting     Disable shorthand compacting
 --rounding-precision [N]        Rounds to `N` decimal places. Defaults to 2. -1 disables rounding.
 -c, --compatibility [ie7|ie8]   Force compatibility mode (see Readme for advanced examples)
+--source-map                    Enables building input's source map
 -d, --debug                     Shows debug information (minification time & compression efficiency)
 ```
 

@@ -28,6 +28,7 @@ commands
   .option('--skip-shorthand-compacting', 'Disable shorthand compacting')
   .option('--rounding-precision [n]', 'Rounds to `N` decimal places. Defaults to 2. -1 disables rounding.', parseInt)
   .option('-c, --compatibility [ie7|ie8]', 'Force compatibility mode (see Readme for advanced examples)')
+  .option('--source-map', 'Enables building input\'s source map')
   .option('-t, --timeout [seconds]', 'Per connection timeout when fetching remote @imports (defaults to 5 seconds)')
   .option('-d, --debug', 'Shows debug information (minification time & compression efficiency)');
 
@@ -83,6 +84,8 @@ if (commands.skipShorthandCompacting)
   cleanOptions.shorthandCompacting = false;
 if (commands.compatibility)
   cleanOptions.compatibility = commands.compatibility;
+if (commands.sourceMap)
+  cleanOptions.sourceMap = true;
 if (commands.roundingPrecision !== undefined)
   cleanOptions.roundingPrecision = commands.roundingPrecision;
 if (commands.debug)
@@ -140,7 +143,13 @@ function minify(data) {
     if (this.errors.length > 0)
       process.exit(1);
 
-    output(minified.styles);
+    if (minified.sourceMap && options.target) {
+      var mapFilename = path.basename(options.target) + '.map';
+      output(minified.styles + '/*# sourceMappingURL=' + mapFilename + ' */');
+      outputMap(minified.sourceMap, mapFilename);
+    } else {
+      output(minified.styles);
+    }
   });
 }
 
@@ -149,6 +158,11 @@ function output(minified) {
     fs.writeFileSync(options.target, minified, 'utf8');
   else
     process.stdout.write(minified);
+}
+
+function outputMap(sourceMap, mapFilename) {
+  var mapPath = path.join(path.dirname(options.target), mapFilename);
+  fs.writeFileSync(mapPath, sourceMap.toString(), 'utf-8');
 }
 
 function outputFeedback(messages, isError) {

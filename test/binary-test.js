@@ -4,6 +4,7 @@ var exec = require('child_process').exec;
 var fs = require('fs');
 var http = require('http');
 var path = require('path');
+var SourceMapConsumer = require('source-map').SourceMapConsumer;
 
 var isWindows = process.platform == 'win32';
 var lineBreakRegExp = new RegExp(require('os').EOL, 'g');
@@ -334,6 +335,32 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
     'of (yet) unmergeable properties': pipedContext('a{background:url(image.png);background-color:red}', '--skip-shorthand-compacting', {
       'gets right result': function(error, stdout) {
         assert.equal(stdout, 'a{background:url(image.png);background-color:red}');
+      }
+    })
+  },
+  'source maps': {
+    'output file': binaryContext('--source-map -o ./reset.min.css ./test/data/reset.css', {
+      'includes map in minified file': function() {
+        assert.include(readFile('./reset.min.css'), '/*# sourceMappingURL=reset.min.css.map */');
+      },
+      'creates a map file': function () {
+        assert.isTrue(fs.existsSync('./reset.min.css.map'));
+      },
+      'includes right content in map file': function () {
+        var sourceMap = new SourceMapConsumer(readFile('./reset.min.css.map'));
+        assert.deepEqual(
+          sourceMap.originalPositionFor({ line: 1, column: 1 }),
+          {
+            source: 'test/data/reset.css',
+            line: 4,
+            column: 1,
+            name: 'a'
+          }
+        );
+      },
+      'teardown': function () {
+        deleteFile('reset.min.css');
+        deleteFile('reset.min.css.map');
       }
     })
   }

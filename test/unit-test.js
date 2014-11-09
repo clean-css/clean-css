@@ -659,7 +659,11 @@ vows.describe('clean-units').addBatch({
     ],
     'do not round 2nd decimal place pixels': 'div{transform:translateY(20.55px)}',
     'do not round percentages': 'div{left:20.505%}',
-    'do not round ems': 'div{font-size:1.505em}'
+    'do not round ems': 'div{font-size:1.505em}',
+    'rounds .9999 correctly': [
+      'a{stroke-width:.99999px}',
+      'a{stroke-width:1px}'
+    ]
   }),
   'floats custom rounding': cssContext({
     'rounds to 4 values': [

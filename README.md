@@ -152,6 +152,7 @@ CleanCSS constructor accepts a hash as a parameter, i.e.,
 * `roundingPrecision` - rounding precision; defaults to `2`; `-1` disables rounding
 * `shorthandCompacting` - set to false to skip shorthand compacting (default is true unless sourceMap is set when it's false)
 * `sourceMap` - exposes source map under `sourceMap` property, e.g. `new CleanCSS().minify(source).sourceMap` (default is false)
+  If input styles are a product of CSS preprocessor (LESS, SASS) an input source map can be passed as a string.
 * `target` - path to a folder or an output file to which __rebase__ all URLs
 
 ### How to use clean-css with build tools?

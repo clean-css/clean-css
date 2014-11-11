@@ -2,6 +2,8 @@ var vows = require('vows');
 var assert = require('assert');
 var CleanCSS = require('../index');
 
+var inputSourceMap = '{"version":3,"sources":["styles.less"],"names":[],"mappings":"AAAA,GACE;EACE,UAAA","file":"styles.css"}';
+
 vows.describe('source-map')
   .addBatch({
     'module #1': {
@@ -193,5 +195,35 @@ vows.describe('source-map')
         assert.deepEqual(mapping, minified.sourceMap._mappings[2]);
       }
     },
+  })
+  .addBatch({
+    'input map as string': {
+      'topic': new CleanCSS({ sourceMap: inputSourceMap }).minify('div > a {\n  color: red;\n}'),
+      'should have 2 mappings': function (minified) {
+        assert.equal(2, minified.sourceMap._mappings.length);
+      },
+      'should have selector mapping': function (minified) {
+        var mapping = {
+          generatedLine: 1,
+          generatedColumn: 1,
+          originalLine: 1,
+          originalColumn: 1,
+          source: 'styles.less',
+          name: 'div>a'
+        };
+        assert.deepEqual(mapping, minified.sourceMap._mappings[0]);
+      },
+      'should have _color:red_ mapping': function (minified) {
+        var mapping = {
+          generatedLine: 1,
+          generatedColumn: 7,
+          originalLine: 3,
+          originalColumn: 4,
+          source: 'styles.less',
+          name: 'color:red'
+        };
+        assert.deepEqual(mapping, minified.sourceMap._mappings[1]);
+      }
+    }
   })
   .export(module);

@@ -35,14 +35,14 @@
     "test": "vows"
   },
   "dependencies": {
-    "commander": "2.3.x"
+    "commander": "2.5.x"
   },
   "devDependencies": {
     "browserify": "6.x",
     "jshint": "2.5.x",
     "nock": "0.48.x",
     "uglify-js": "2.4.x",
-    "vows": "0.7.x"
+    "vows": "0.8.x"
   },
   "engines": {
     "node": ">=0.10.0"

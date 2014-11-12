@@ -439,7 +439,7 @@ vows.describe('source-maps/analyzer')
   .addBatch(
     sourceMapContext('sources', {
       'one': [
-        '__ESCAPED_SOURCE_CLEAN_CSS(one.css)__a{}',
+        '__ESCAPED_SOURCE_CLEAN_CSS(one.css)__a{}__ESCAPED_SOURCE_END_CLEAN_CSS__',
         [{
           kind: 'selector',
           value: [{ value: 'a', metadata: { line: 1, column: 1, source: 'one.css' } }],
@@ -447,7 +447,7 @@ vows.describe('source-maps/analyzer')
         }]
       ],
       'two': [
-        '__ESCAPED_SOURCE_CLEAN_CSS(one.css)__a{}\n__ESCAPED_SOURCE_CLEAN_CSS(two.css)__a{color:red}',
+        '__ESCAPED_SOURCE_CLEAN_CSS(one.css)__a{}__ESCAPED_SOURCE_END_CLEAN_CSS____ESCAPED_SOURCE_CLEAN_CSS(two.css)__\na{color:red}__ESCAPED_SOURCE_END_CLEAN_CSS__',
         [
           {
             kind: 'selector',
@@ -459,7 +459,7 @@ vows.describe('source-maps/analyzer')
           {
             kind: 'selector',
             value: [
-              { value: 'a', metadata: { line: 2, column: 1, source: 'two.css' } }
+              { value: '\na', metadata: { line: 2, column: 1, source: 'two.css' } }
             ],
             body: [{ value: 'color:red', metadata: { line: 2, column: 3, source: 'two.css' } }]
           }

@@ -4,7 +4,7 @@ var CleanCSS = require('../index');
 
 var fs = require('fs');
 var path = require('path');
-var inputMapPath = path.join('test', 'data', 'source-maps', 'sample.map');
+var inputMapPath = path.join('test', 'data', 'source-maps', 'styles.css.map');
 var inputMap = fs.readFileSync(inputMapPath, 'utf-8');
 
 vows.describe('source-map')
@@ -257,7 +257,7 @@ vows.describe('source-map')
       }
     },
     'input map from source with root': {
-      'topic': new CleanCSS({ root: path.dirname(inputMapPath) }).minify('div > a {\n  color: red;\n}/*# sourceMappingURL=sample.map */'),
+      'topic': new CleanCSS({ root: path.dirname(inputMapPath) }).minify('div > a {\n  color: red;\n}/*# sourceMappingURL=styles.css.map */'),
       'should have 2 mappings': function (minified) {
         assert.equal(2, minified.sourceMap._mappings.length);
       },
@@ -282,6 +282,56 @@ vows.describe('source-map')
           name: 'color:red'
         };
         assert.deepEqual(mapping, minified.sourceMap._mappings[1]);
+      }
+    },
+    'complex input map': {
+      'topic': new CleanCSS({ root: path.dirname(inputMapPath) }).minify('@import url(import.css);'),
+      'should have 4 mappings': function (minified) {
+        assert.equal(4, minified.sourceMap._mappings.length);
+      },
+      'should have first selector mapping': function (minified) {
+        var mapping = {
+          generatedLine: 1,
+          generatedColumn: 1,
+          originalLine: 1,
+          originalColumn: 1,
+          source: 'some.less',
+          name: 'div'
+        };
+        assert.deepEqual(mapping, minified.sourceMap._mappings[0]);
+      },
+      'should have _color:red_ mapping': function (minified) {
+        var mapping = {
+          generatedLine: 1,
+          generatedColumn: 5,
+          originalLine: 2,
+          originalColumn: 2,
+          source: 'some.less',
+          name: 'color:red'
+        };
+        assert.deepEqual(mapping, minified.sourceMap._mappings[1]);
+      },
+      'should have second selector mapping': function (minified) {
+        var mapping = {
+          generatedLine: 2,
+          generatedColumn: 1,
+          originalLine: 1,
+          originalColumn: 1,
+          source: 'styles.less',
+          name: 'div>a'
+        };
+        assert.deepEqual(mapping, minified.sourceMap._mappings[2]);
+      },
+      'should have _color:blue_ mapping': function (minified) {
+        var mapping = {
+          generatedLine: 2,
+          generatedColumn: 7,
+          originalLine: 3,
+          originalColumn: 4,
+          source: 'styles.less',
+          name: 'color:#00f'
+        };
+        assert.deepEqual(mapping, minified.sourceMap._mappings[3]);
       }
     }
   })

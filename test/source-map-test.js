@@ -229,7 +229,7 @@ vows.describe('source-map')
       }
     },
     'input map from source': {
-      'topic': new CleanCSS().minify('div > a {\n  color: red;\n}/*# sourceMappingURL=' + inputMapPath + ' */'),
+      'topic': new CleanCSS({ sourceMap: true }).minify('div > a {\n  color: red;\n}/*# sourceMappingURL=' + inputMapPath + ' */'),
       'should have 2 mappings': function (minified) {
         assert.equal(2, minified.sourceMap._mappings.length);
       },
@@ -257,7 +257,7 @@ vows.describe('source-map')
       }
     },
     'input map from source with root': {
-      'topic': new CleanCSS({ root: path.dirname(inputMapPath) }).minify('div > a {\n  color: red;\n}/*# sourceMappingURL=styles.css.map */'),
+      'topic': new CleanCSS({ sourceMap: true, root: path.dirname(inputMapPath) }).minify('div > a {\n  color: red;\n}/*# sourceMappingURL=styles.css.map */'),
       'should have 2 mappings': function (minified) {
         assert.equal(2, minified.sourceMap._mappings.length);
       },
@@ -285,7 +285,7 @@ vows.describe('source-map')
       }
     },
     'complex input map': {
-      'topic': new CleanCSS({ root: path.dirname(inputMapPath) }).minify('@import url(import.css);'),
+      'topic': new CleanCSS({ sourceMap: true, root: path.dirname(inputMapPath) }).minify('@import url(import.css);'),
       'should have 4 mappings': function (minified) {
         assert.equal(4, minified.sourceMap._mappings.length);
       },

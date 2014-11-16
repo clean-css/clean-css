@@ -28,7 +28,7 @@ vows.describe('protocol imports').addBatch({
     },
     teardown: function() {
       assert.equal(this.reqMocks.isDone(), true);
-      nock.restore();
+      nock.cleanAll();
     }
   },
   'of an existing file': {
@@ -47,7 +47,7 @@ vows.describe('protocol imports').addBatch({
     },
     teardown: function() {
       assert.equal(this.reqMocks.isDone(), true);
-      nock.restore();
+      nock.cleanAll();
     }
   },
   'of an existing file with spaces in path': {
@@ -66,7 +66,7 @@ vows.describe('protocol imports').addBatch({
     },
     teardown: function() {
       assert.equal(this.reqMocks.isDone(), true);
-      nock.restore();
+      nock.cleanAll();
     }
   },
   'of an existing file via HTTPS': {
@@ -85,7 +85,7 @@ vows.describe('protocol imports').addBatch({
     },
     teardown: function() {
       assert.equal(this.reqMocks.isDone(), true);
-      nock.restore();
+      nock.cleanAll();
     }
   },
   'of an existing file with media': {
@@ -104,7 +104,7 @@ vows.describe('protocol imports').addBatch({
     },
     teardown: function() {
       assert.equal(this.reqMocks.isDone(), true);
-      nock.restore();
+      nock.cleanAll();
     }
   },
   'of an existing file with dependencies': {
@@ -129,7 +129,7 @@ vows.describe('protocol imports').addBatch({
     teardown: function() {
       assert.equal(this.reqMocks1.isDone(), true);
       assert.equal(this.reqMocks2.isDone(), true);
-      nock.restore();
+      nock.cleanAll();
     }
   },
   'of an existing file with relative dependencies': {
@@ -150,7 +150,7 @@ vows.describe('protocol imports').addBatch({
     },
     teardown: function() {
       assert.equal(this.reqMocks.isDone(), true);
-      nock.restore();
+      nock.cleanAll();
     }
   },
   'of an existing file missing relative dependency': {
@@ -172,7 +172,7 @@ vows.describe('protocol imports').addBatch({
     },
     teardown: function() {
       assert.equal(this.reqMocks.isDone(), true);
-      nock.restore();
+      nock.cleanAll();
     }
   },
   'of an existing file with URLs to rebase': {
@@ -191,7 +191,7 @@ vows.describe('protocol imports').addBatch({
     },
     teardown: function() {
       assert.equal(this.reqMocks.isDone(), true);
-      nock.restore();
+      nock.cleanAll();
     }
   },
   'of an existing file with relative URLs to rebase': {
@@ -212,7 +212,7 @@ vows.describe('protocol imports').addBatch({
     },
     teardown: function() {
       assert.equal(this.reqMocks.isDone(), true);
-      nock.restore();
+      nock.cleanAll();
     }
   },
   'of a non-resolvable domain': {
@@ -245,7 +245,7 @@ vows.describe('protocol imports').addBatch({
     },
     teardown: function() {
       assert.equal(this.reqMocks.isDone(), true);
-      nock.restore();
+      nock.cleanAll();
     }
   },
   'of a 30x response with relative URL': {
@@ -266,7 +266,7 @@ vows.describe('protocol imports').addBatch({
     },
     teardown: function() {
       assert.equal(this.reqMocks.isDone(), true);
-      nock.restore();
+      nock.cleanAll();
     }
   },
   'of a timed out response': {
@@ -284,7 +284,7 @@ vows.describe('protocol imports').addBatch({
         }).minify('@import url(http://localhost:' + port + '/timeout.css);a{color:red}', self.callback);
       });
     },
-    'should not raise errors': function(errors, minified) {
+    'should raise errors': function(errors, minified) {
       assert.equal(errors.length, 1);
       assert.equal(errors[0], 'Broken @import declaration of "http://localhost:' + port + '/timeout.css" - timeout');
     },
@@ -313,7 +313,7 @@ vows.describe('protocol imports').addBatch({
     },
     teardown: function() {
       assert.equal(this.reqMocks.isDone(), true);
-      nock.restore();
+      nock.cleanAll();
     }
   },
   'of a resource without protocol': {
@@ -332,7 +332,7 @@ vows.describe('protocol imports').addBatch({
     },
     teardown: function() {
       assert.equal(this.reqMocks.isDone(), true);
-      nock.restore();
+      nock.cleanAll();
     }
   },
   'of a resource available via POST only': {
@@ -357,7 +357,7 @@ vows.describe('protocol imports').addBatch({
     },
     teardown: function() {
       assert.equal(this.reqMocks.isDone(), true);
-      nock.restore();
+      nock.cleanAll();
     }
   },
   'of a remote resource mixed with local ones': {
@@ -377,7 +377,7 @@ vows.describe('protocol imports').addBatch({
     },
     teardown: function() {
       assert.equal(this.reqMocks.isDone(), true);
-      nock.restore();
+      nock.cleanAll();
     }
   },
   'of a remote resource mixed with local ones but no callback': {
@@ -403,7 +403,7 @@ vows.describe('protocol imports').addBatch({
     },
     teardown: function() {
       assert.equal(this.reqMocks.isDone(), false);
-      nock.restore();
+      nock.cleanAll();
     }
   }
 }).export(module);

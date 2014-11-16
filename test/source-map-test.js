@@ -1,3 +1,5 @@
+/* jshint unused: false */
+
 var vows = require('vows');
 var assert = require('assert');
 var CleanCSS = require('../index');
@@ -6,6 +8,11 @@ var fs = require('fs');
 var path = require('path');
 var inputMapPath = path.join('test', 'data', 'source-maps', 'styles.css.map');
 var inputMap = fs.readFileSync(inputMapPath, 'utf-8');
+
+var nock = require('nock');
+var http = require('http');
+
+var port = 24682;
 
 vows.describe('source-map')
   .addBatch({
@@ -332,6 +339,135 @@ vows.describe('source-map')
           name: 'color:#00f'
         };
         assert.deepEqual(mapping, minified.sourceMap._mappings[3]);
+      }
+    }
+  })
+  .addBatch({
+    'invalid response for external source map': {
+      topic: function () {
+        this.reqMocks = nock('http://127.0.0.1')
+          .get('/remote.css')
+          .reply(200, '/*# sourceMappingURL=http://127.0.0.1/remote.css.map */')
+          .get('/remote.css.map')
+          .reply(404);
+
+        new CleanCSS({ sourceMap: true }).minify('@import url(http://127.0.0.1/remote.css);', this.callback);
+      },
+      'has mapping': function (errors, minified) {
+        assert.isDefined(minified.sourceMap);
+      },
+      'raises an error': function(errors, _) {
+        assert.equal(errors.length, 1);
+        assert.equal(errors[0], 'Broken source map at "http://127.0.0.1/remote.css.map" - 404');
+      },
+      teardown: function () {
+        assert.equal(this.reqMocks.isDone(), true);
+        nock.cleanAll();
+      }
+    },
+    'timed out response for external source map': {
+      topic: function() {
+        var self = this;
+        var timeout = 100;
+
+        this.server = http.createServer(function(req, res) {
+          switch (req.url) {
+            case '/remote.css':
+              res.writeHead(200);
+              res.write('/*# sourceMappingURL=http://127.0.0.1:' + port + '/remote.css.map */');
+              res.end();
+              break;
+            case '/remote.css.map':
+              setTimeout(function() {}, timeout * 2);
+          }
+        });
+        this.server.listen(port, '127.0.0.1', function() {
+          new CleanCSS({ sourceMap: true, inliner: { timeout: timeout } })
+            .minify('@import url(http://127.0.0.1:' + port + '/remote.css);', self.callback);
+        });
+      },
+      'has mapping': function (errors, minified) {
+        assert.isDefined(minified.sourceMap);
+      },
+      'raises an error': function(errors, _) {
+        assert.equal(errors.length, 1);
+        assert.equal(errors[0], 'Broken source map at "http://127.0.0.1:' + port + '/remote.css.map" - timeout');
+      },
+      teardown: function () {
+        this.server.close();
+      }
+    },
+    'absolute source map from external host via http': {
+      topic: function () {
+        this.reqMocks = nock('http://127.0.0.1')
+          .get('/remote.css')
+          .reply(200, '/*# sourceMappingURL=http://127.0.0.1/remote.css.map */')
+          .get('/remote.css.map')
+          .reply(200, inputMap);
+
+        new CleanCSS({ sourceMap: true }).minify('@import url(http://127.0.0.1/remote.css);', this.callback);
+      },
+      'has mapping': function (errors, minified) {
+        assert.isDefined(minified.sourceMap);
+      },
+      teardown: function () {
+        assert.equal(this.reqMocks.isDone(), true);
+        nock.cleanAll();
+      }
+    },
+    'absolute source map from external host via https': {
+      topic: function () {
+        this.reqMocks = nock('https://127.0.0.1')
+          .get('/remote.css')
+          .reply(200, '/*# sourceMappingURL=https://127.0.0.1/remote.css.map */')
+          .get('/remote.css.map')
+          .reply(200, inputMap);
+
+        new CleanCSS({ sourceMap: true }).minify('@import url(https://127.0.0.1/remote.css);', this.callback);
+      },
+      'has mapping': function (errors, minified) {
+        assert.isDefined(minified.sourceMap);
+      },
+      teardown: function () {
+        assert.equal(this.reqMocks.isDone(), true);
+        nock.cleanAll();
+      }
+    },
+    'relative source map from external host': {
+      topic: function () {
+        this.reqMocks = nock('http://127.0.0.1')
+          .get('/remote.css')
+          .reply(200, '/*# sourceMappingURL=remote.css.map */')
+          .get('/remote.css.map')
+          .reply(200, inputMap);
+
+        new CleanCSS({ sourceMap: true }).minify('@import url(http://127.0.0.1/remote.css);', this.callback);
+      },
+      'has mapping': function (errors, minified) {
+        assert.isDefined(minified.sourceMap);
+      },
+      teardown: function () {
+        assert.equal(this.reqMocks.isDone(), true);
+        nock.cleanAll();
+      }
+    },
+    'available via POST only': {
+      topic: function () {
+        this.reqMocks = nock('http://127.0.0.1')
+          .post('/remote.css')
+          .reply(200, '/*# sourceMappingURL=remote.css.map */')
+          .post('/remote.css.map')
+          .reply(200, inputMap);
+
+        new CleanCSS({ sourceMap: true, inliner: { request: { method: 'POST' } } })
+          .minify('@import url(http://127.0.0.1/remote.css);', this.callback);
+      },
+      'has mapping': function (errors, minified) {
+        assert.isDefined(minified.sourceMap);
+      },
+      teardown: function () {
+        assert.equal(this.reqMocks.isDone(), true);
+        nock.cleanAll();
       }
     }
   })

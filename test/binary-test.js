@@ -304,7 +304,7 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
     }),
     zero: pipedContext('div{width:1.5051px}', '--rounding-precision 0', {
       'should keep 0 decimal places': function(error, stdout) {
-        assert.equal(stdout, 'div{width:1px}');
+        assert.equal(stdout, 'div{width:2px}');
       }
     })
   },

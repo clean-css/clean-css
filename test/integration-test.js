@@ -626,6 +626,10 @@ vows.describe('integration tests').addBatch({
     'rounds .9999 correctly': [
       'a{stroke-width:.99999px}',
       'a{stroke-width:1px}'
+    ],
+    'rounds 9.995 correctly': [
+      'a{stroke-width:9.995px}',
+      'a{stroke-width:9.99px}'
     ]
   }),
   'floats custom rounding': cssContext({

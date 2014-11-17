@@ -16,6 +16,11 @@
 * Fixed issue [#360](https://github.com/GoalSmashers/clean-css/issues/360) - adds 7 extra CSS colors.
 * Fixed issue [#363](https://github.com/GoalSmashers/clean-css/issues/363) - `rem` units overriding `px`.
 
+[2.2.18 / 2014-11-17](https://github.com/jakubpawlowicz/clean-css/compare/v2.2.17...v2.2.18)
+==================
+
+* Fixed issue [#383](https://github.com/GoalSmashers/clean-css/issues/383) - rounding fractions once again.
+
 [2.2.17 / 2014-11-09](https://github.com/jakubpawlowicz/clean-css/compare/v2.2.16...v2.2.17)
 ==================
 

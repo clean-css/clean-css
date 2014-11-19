@@ -108,6 +108,11 @@ if (commands.args.length > 0) {
   });
 }
 
+if (cleanOptions.sourceMap && !cleanOptions.target) {
+  outputFeedback(['Source maps will not be built because you have not specified an output file.'], true);
+  cleanOptions.sourceMap = false;
+}
+
 // ... and do the magic!
 if (options.sources) {
   var data = options.sources
@@ -143,7 +148,7 @@ function minify(data) {
     if (this.errors.length > 0)
       process.exit(1);
 
-    if (minified.sourceMap && options.target) {
+    if (minified.sourceMap) {
       var mapFilename = path.basename(options.target) + '.map';
       output(minified.styles + '/*# sourceMappingURL=' + mapFilename + ' */');
       outputMap(minified.sourceMap, mapFilename);

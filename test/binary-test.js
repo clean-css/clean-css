@@ -339,6 +339,14 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
     })
   },
   'source maps': {
+    'no target file': binaryContext('--source-map ./test/data/reset.css', {
+      'warns about source map not being build': function (error, stdout, stderr) {
+        assert.include(stderr, 'Source maps will not be built because you have not specified an output file.');
+      },
+      'does not include map in stdout': function (error, stdout) {
+        assert.notInclude(stdout, '/*# sourceMappingURL');
+      }
+    }),
     'output file': binaryContext('--source-map -o ./reset.min.css ./test/data/reset.css', {
       'includes map in minified file': function() {
         assert.include(readFile('./reset.min.css'), '/*# sourceMappingURL=reset.min.css.map */');

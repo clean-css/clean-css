@@ -1,3 +1,8 @@
+[2.2.19 / 2014-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v2.2.18...v2.2.19)
+==================
+
+* Fixed issue [#385](https://github.com/GoalSmashers/clean-css/issues/385) - edge cases in processing cut off data.
+
 [2.2.18 / 2014-11-17](https://github.com/jakubpawlowicz/clean-css/compare/v2.2.17...v2.2.18)
 ==================
 

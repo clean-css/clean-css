@@ -17,7 +17,7 @@ function processorContext(name, context, keepSpecialComments, keepBreaks) {
 
   function restored (targetCSS) {
     return function (sourceCSS) {
-      var processor = new CommentsProcessor(keepSpecialComments, keepBreaks);
+      var processor = new CommentsProcessor(null, keepSpecialComments, keepBreaks);
       var result = processor.restore(processor.escape(sourceCSS));
       assert.equal(result, targetCSS);
     };

@@ -885,6 +885,15 @@ vows.describe('integration tests').addBatch({
       '.icon-logo{background-image:url("data:image/x-icon;base64,AAABAAEAEBA")}',
       '.icon-logo{background-image:url(data:image/x-icon;base64,AAABAAEAEBA)}'
     ],
+    'cut off url content on selector level': 'a{background:url(image/}',
+    'cut off url content on block level': [
+      '@font-face{src:url(data:application/x-font-woff;base64,d09GRk9UVE8AAENAAA0AAAAA}',
+      '@font-face{src:url(data:application/x-font-woff;base64,d09GRk9UVE8AAENAAA0AAAAA}'
+    ],
+    'cut off url content on top level': [
+      '@font-face{src:url(data:application/x-font-woff;base64,d09GRk9UVE8AAENAAA0AAAAA',
+      '@font-face{src:url(data:application/x-font-woff;base64,d09GRk9UVE8AAENAAA0AAAAA}'
+    ],
     'strip single parentheses': [
       "a{background:url('/images/blank.png')}",
       "a{background:url(/images/blank.png)}"
@@ -1348,6 +1357,14 @@ title']{display:block}",
     'of a file with a resource URI': [
       "@import url(test/data/partials/five.css);",
       ".five{background:url(data:image/jpeg;base64,/9j/)}"
+    ],
+    'cut off': [
+      '@impo',
+      ''
+    ],
+    'cut off inside a comment': [
+      '/* @impo',
+      ''
     ],
     'inside a comment': [
       '/* @import url(test/data/partials/five.css); */a { color: red; }',

@@ -154,6 +154,57 @@ vows.describe('module tests').addBatch({
       assert.equal(minifier.warnings[0], 'Empty property \'color\' inside \'a\' selector. Ignoring.');
     }
   },
+  'warnings on broken urls': {
+    topic: function () {
+      var minifier = new CleanCSS();
+      var minified = minifier.minify('a{background:url(image/}');
+      this.callback(null, minified, minifier);
+    },
+    'should output correct content': function(error, minified) {
+      assert.equal(minified, 'a{background:url(image/}');
+    },
+    'should raise no errors': function(error, minified, minifier) {
+      assert.equal(minifier.errors.length, 0);
+    },
+    'should raise one warning': function(error, minified, minifier) {
+      assert.equal(minifier.warnings.length, 1);
+      assert.equal(minifier.warnings[0], 'Broken URL declaration: \'url(image/\'.');
+    }
+  },
+  'warnings on broken imports': {
+    topic: function () {
+      var minifier = new CleanCSS();
+      var minified = minifier.minify('@impor');
+      this.callback(null, minified, minifier);
+    },
+    'should output correct content': function(error, minified) {
+      assert.equal(minified, '');
+    },
+    'should raise no errors': function(error, minified, minifier) {
+      assert.equal(minifier.errors.length, 0);
+    },
+    'should raise one warning': function(error, minified, minifier) {
+      assert.equal(minifier.warnings.length, 1);
+      assert.equal(minifier.warnings[0], 'Broken declaration: \'@impor\'.');
+    }
+  },
+  'warnings on broken comments': {
+    topic: function () {
+      var minifier = new CleanCSS();
+      var minified = minifier.minify('a{}/* ');
+      this.callback(null, minified, minifier);
+    },
+    'should output correct content': function(error, minified) {
+      assert.equal(minified, '');
+    },
+    'should raise no errors': function(error, minified, minifier) {
+      assert.equal(minifier.errors.length, 0);
+    },
+    'should raise one warning': function(error, minified, minifier) {
+      assert.equal(minifier.warnings.length, 1);
+      assert.equal(minifier.warnings[0], 'Broken comment: \'/* \'.');
+    }
+  },
   'no errors': {
     topic: function() {
       var minifier = new CleanCSS();

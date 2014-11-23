@@ -205,6 +205,67 @@ vows.describe('source-map')
         assert.deepEqual(mapping, minified.sourceMap._mappings[2]);
       }
     },
+    'keyframes': {
+      'topic': new CleanCSS({ sourceMap: true }).minify('@-webkit-keyframes frames {\n  0% {\n    border: 1px;\n  }\n  100% {\n    border: 3px;\n  }\n}'),
+      'should have 5 mappings': function(minified) {
+        assert.equal(5, minified.sourceMap._mappings.length);
+      },
+      'should have _@keframes_ mapping': function (minified) {
+        var mapping = {
+          generatedLine: 1,
+          generatedColumn: 1,
+          originalLine: 1,
+          originalColumn: 1,
+          source: '__stdin__.css',
+          name: '@-webkit-keyframes frames'
+        };
+        assert.deepEqual(mapping, minified.sourceMap._mappings[0]);
+      },
+      'should have _0%_ mapping': function (minified) {
+        var mapping = {
+          generatedLine: 1,
+          generatedColumn: 27,
+          originalLine: 2,
+          originalColumn: 3,
+          source: '__stdin__.css',
+          name: '0%'
+        };
+        assert.deepEqual(mapping, minified.sourceMap._mappings[1]);
+      },
+      'should have _border:1px_ mapping': function (minified) {
+        var mapping = {
+          generatedLine: 1,
+          generatedColumn: 30,
+          originalLine: 3,
+          originalColumn: 5,
+          source: '__stdin__.css',
+          name: 'border:1px'
+        };
+        assert.deepEqual(mapping, minified.sourceMap._mappings[2]);
+      },
+      'should have _100%_ mapping': function (minified) {
+        var mapping = {
+          generatedLine: 1,
+          generatedColumn: 41,
+          originalLine: 5,
+          originalColumn: 3,
+          source: '__stdin__.css',
+          name: '100%'
+        };
+        assert.deepEqual(mapping, minified.sourceMap._mappings[3]);
+      },
+      'should have _border:3px_ mapping': function (minified) {
+        var mapping = {
+          generatedLine: 1,
+          generatedColumn: 46,
+          originalLine: 6,
+          originalColumn: 5,
+          source: '__stdin__.css',
+          name: 'border:3px'
+        };
+        assert.deepEqual(mapping, minified.sourceMap._mappings[4]);
+      }
+    }
   })
   .addBatch({
     'input map as string': {

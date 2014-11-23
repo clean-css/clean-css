@@ -2,6 +2,7 @@
 ==================
 
 * Adds more granular control over compatibility settings.
+* Adds support for @counter-style at-rule.
 * Allows `target` option to be a path to a folder instead of a file.
 * Allows disabling rounding precision. By [@superlukas](https://github.com/superlukas).
 * Breaks 2.x compatibility for using CleanCSS as a function.

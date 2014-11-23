@@ -2115,7 +2115,8 @@ title']{display:block}",
     '@supports': '@supports (display:flexbox){.flex{display:flexbox}}',
     '@-ms-viewport': '@-ms-viewport{width:device-width}',
     '@-o-viewport': '@-o-viewport{width:device-width}',
-    '@viewport': '@viewport{width:device-width}'
+    '@viewport': '@viewport{width:device-width}',
+    '@counter-style': '@counter-style triangle{system:cyclic;symbols:‣;suffix:" "}'
   }),
   'background size': cssContext({
     'with background-position': 'a{background:url(top.jpg) 50% 0/auto 25% no-repeat}',

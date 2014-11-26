@@ -325,7 +325,7 @@ vows.describe('source-map')
       }
     },
     'input map from source with root': {
-      'topic': new CleanCSS({ sourceMap: true, root: path.dirname(inputMapPath) }).minify('div > a {\n  color: red;\n}/*# sourceMappingURL=styles.css.map */'),
+      'topic': new CleanCSS({ sourceMap: true, relativeTo: path.dirname(inputMapPath) }).minify('div > a {\n  color: red;\n}/*# sourceMappingURL=styles.css.map */'),
       'should have 2 mappings': function (minified) {
         assert.equal(2, minified.sourceMap._mappings.length);
       },
@@ -401,6 +401,12 @@ vows.describe('source-map')
         };
         assert.deepEqual(mapping, minified.sourceMap._mappings[3]);
       }
+    },
+    'complex input map referenced by path': {
+      'topic': new CleanCSS({ sourceMap: true }).minify('@import url(test/data/source-maps/import.css);'),
+      'should have 4 mappings': function (minified) {
+        assert.equal(4, minified.sourceMap._mappings.length);
+      }
     }
   })
   .addBatch({
@@ -462,7 +468,7 @@ vows.describe('source-map')
       topic: function () {
         this.reqMocks = nock('http://127.0.0.1')
           .get('/remote.css')
-          .reply(200, '/*# sourceMappingURL=http://127.0.0.1/remote.css.map */')
+          .reply(200, 'div>a{color:blue}/*# sourceMappingURL=http://127.0.0.1/remote.css.map */')
           .get('/remote.css.map')
           .reply(200, inputMap);
 
@@ -470,6 +476,9 @@ vows.describe('source-map')
       },
       'has mapping': function (errors, minified) {
         assert.isDefined(minified.sourceMap);
+      },
+      'maps to external source file': function (errors, minified) {
+        assert.equal(minified.sourceMap._mappings[0].source, 'http://127.0.0.1/styles.less');
       },
       teardown: function () {
         assert.equal(this.reqMocks.isDone(), true);

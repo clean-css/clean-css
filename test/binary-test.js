@@ -370,6 +370,100 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
         deleteFile('reset.min.css');
         deleteFile('reset.min.css.map');
       }
+    }),
+    'output file in same folder as input': binaryContext('--source-map -o ./test/data/reset.min.css ./test/data/reset.css', {
+      'includes right content in map file': function () {
+        var sourceMap = new SourceMapConsumer(readFile('./test/data/reset.min.css.map'));
+        assert.deepEqual(
+          sourceMap.originalPositionFor({ line: 1, column: 1 }),
+          {
+            source: 'reset.css',
+            line: 4,
+            column: 1,
+            name: null
+          }
+        );
+      },
+      'teardown': function () {
+        deleteFile('test/data/reset.min.css');
+        deleteFile('test/data/reset.min.css.map');
+      }
+    }),
+    'output file with existing map': binaryContext('--source-map -o ./styles.min.css ./test/data/source-maps/styles.css', {
+      'includes right content in map file': function () {
+        var sourceMap = new SourceMapConsumer(readFile('./styles.min.css.map'));
+        assert.deepEqual(
+          sourceMap.originalPositionFor({ line: 1, column: 1 }),
+          {
+            source: 'test/data/source-maps/styles.less',
+            line: 1,
+            column: 1,
+            name: null
+          }
+        );
+      },
+      'teardown': function () {
+        deleteFile('styles.min.css');
+        deleteFile('styles.min.css.map');
+      }
+    }),
+    'output file for existing map in different folder': binaryContext('--source-map -o ./styles-relative.min.css ./test/data/source-maps/relative.css', {
+      'includes right content in map file': function () {
+        var sourceMap = new SourceMapConsumer(readFile('./styles-relative.min.css.map'));
+        assert.deepEqual(
+          sourceMap.originalPositionFor({ line: 1, column: 1 }),
+          {
+            source: 'test/data/source-maps/sub/styles.less',
+            line: 1,
+            column: 1,
+            name: null
+          }
+        );
+      },
+      'teardown': function () {
+        deleteFile('styles-relative.min.css');
+        deleteFile('styles-relative.min.css.map');
+      }
+    }),
+    'output file with root path': binaryContext('--source-map -o ./reset-root.min.css -r ./test ./test/data/reset.css', {
+      'includes map in minified file': function() {
+        assert.include(readFile('./reset-root.min.css'), '/*# sourceMappingURL=reset-root.min.css.map */');
+      },
+      'creates a map file': function () {
+        assert.isTrue(fs.existsSync('./reset-root.min.css.map'));
+      },
+      'includes right content in map file': function () {
+        var sourceMap = new SourceMapConsumer(readFile('./reset-root.min.css.map'));
+        assert.deepEqual(
+          sourceMap.originalPositionFor({ line: 1, column: 1 }),
+          {
+            source: '/data/reset.css',
+            line: 4,
+            column: 1,
+            name: 'a'
+          }
+        );
+      },
+      'teardown': function () {
+        deleteFile('reset-root.min.css');
+        deleteFile('reset-root.min.css.map');
+      }
+    }),
+    'with input source map': binaryContext('--source-map -o ./import.min.css ./test/data/source-maps/import.css', {
+      'includes map in minified file': function () {
+        assert.include(readFile('./import.min.css'), '/*# sourceMappingURL=import.min.css.map */');
+      },
+      'includes right content in map file': function () {
+        var sourceMap = new SourceMapConsumer(readFile('./import.min.css.map'));
+        var count = 0;
+        sourceMap.eachMapping(function () { count++; });
+
+        assert.equal(count, 4);
+      },
+      'teardown': function () {
+        deleteFile('import.min.css');
+        deleteFile('import.min.css.map');
+      }
     })
   }
 });

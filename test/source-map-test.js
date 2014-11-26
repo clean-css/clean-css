@@ -28,7 +28,7 @@ vows.describe('source-map')
           originalLine: 1,
           originalColumn: 9,
           source: '__stdin__.css',
-          name: 'div[data-id=" abc "]'
+          name: null
         };
         assert.deepEqual(mapping, minified.sourceMap._mappings[0]);
       },
@@ -39,7 +39,7 @@ vows.describe('source-map')
           originalLine: 1,
           originalColumn: 32,
           source: '__stdin__.css',
-          name: 'color:red'
+          name: null
         };
         assert.deepEqual(mapping, minified.sourceMap._mappings[1]);
       }
@@ -56,7 +56,7 @@ vows.describe('source-map')
           originalLine: 1,
           originalColumn: 1,
           source: '__stdin__.css',
-          name: '@media screen'
+          name: null
         };
         assert.deepEqual(mapping, minified.sourceMap._mappings[0]);
       },
@@ -67,7 +67,7 @@ vows.describe('source-map')
           originalLine: 2,
           originalColumn: 1,
           source: '__stdin__.css',
-          name: '@font-face'
+          name: null
         };
         assert.deepEqual(mapping, minified.sourceMap._mappings[1]);
       },
@@ -78,7 +78,7 @@ vows.describe('source-map')
           originalLine: 4,
           originalColumn: 1,
           source: '__stdin__.css',
-          name: 'font-family:test'
+          name: null
         };
         assert.deepEqual(mapping, minified.sourceMap._mappings[2]);
       }
@@ -95,7 +95,7 @@ vows.describe('source-map')
           originalLine: 1,
           originalColumn: 1,
           source: '__stdin__.css',
-          name: '@media screen'
+          name: null
         };
         assert.deepEqual(mapping, minified.sourceMap._mappings[0]);
       },
@@ -106,7 +106,7 @@ vows.describe('source-map')
           originalLine: 1,
           originalColumn: 17,
           source: '__stdin__.css',
-          name: 'a'
+          name: null
         };
         assert.deepEqual(mapping, minified.sourceMap._mappings[1]);
       },
@@ -117,7 +117,7 @@ vows.describe('source-map')
           originalLine: 1,
           originalColumn: 19,
           source: '__stdin__.css',
-          name: 'color:red'
+          name: null
         };
         assert.deepEqual(mapping, minified.sourceMap._mappings[2]);
       },
@@ -128,7 +128,7 @@ vows.describe('source-map')
           originalLine: 1,
           originalColumn: 30,
           source: '__stdin__.css',
-          name: 'p'
+          name: null
         };
         assert.deepEqual(mapping, minified.sourceMap._mappings[3]);
       },
@@ -139,7 +139,7 @@ vows.describe('source-map')
           originalLine: 1,
           originalColumn: 33,
           source: '__stdin__.css',
-          name: 'color:#00f'
+          name: null
         };
         assert.deepEqual(mapping, minified.sourceMap._mappings[4]);
       },
@@ -150,7 +150,7 @@ vows.describe('source-map')
           originalLine: 1,
           originalColumn: 46,
           source: '__stdin__.css',
-          name: 'div'
+          name: null
         };
         assert.deepEqual(mapping, minified.sourceMap._mappings[5]);
       },
@@ -161,7 +161,7 @@ vows.describe('source-map')
           originalLine: 1,
           originalColumn: 50,
           source: '__stdin__.css',
-          name: 'color:pink'
+          name: null
         };
         assert.deepEqual(mapping, minified.sourceMap._mappings[6]);
       }
@@ -178,7 +178,7 @@ vows.describe('source-map')
           originalLine: 1,
           originalColumn: 1,
           source: '__stdin__.css',
-          name: 'a'
+          name: null
         };
         assert.deepEqual(mapping, minified.sourceMap._mappings[0]);
       },
@@ -189,7 +189,7 @@ vows.describe('source-map')
           originalLine: 1,
           originalColumn: 3,
           source: '__stdin__.css',
-          name: 'background:url(image.png)'
+          name: null
         };
         assert.deepEqual(mapping, minified.sourceMap._mappings[1]);
       },
@@ -200,7 +200,7 @@ vows.describe('source-map')
           originalLine: 1,
           originalColumn: 29,
           source: '__stdin__.css',
-          name: 'background-color:red'
+          name: null
         };
         assert.deepEqual(mapping, minified.sourceMap._mappings[2]);
       }
@@ -217,7 +217,7 @@ vows.describe('source-map')
           originalLine: 1,
           originalColumn: 1,
           source: '__stdin__.css',
-          name: '@-webkit-keyframes frames'
+          name: null
         };
         assert.deepEqual(mapping, minified.sourceMap._mappings[0]);
       },
@@ -228,7 +228,7 @@ vows.describe('source-map')
           originalLine: 2,
           originalColumn: 3,
           source: '__stdin__.css',
-          name: '0%'
+          name: null
         };
         assert.deepEqual(mapping, minified.sourceMap._mappings[1]);
       },
@@ -239,7 +239,7 @@ vows.describe('source-map')
           originalLine: 3,
           originalColumn: 5,
           source: '__stdin__.css',
-          name: 'border:1px'
+          name: null
         };
         assert.deepEqual(mapping, minified.sourceMap._mappings[2]);
       },
@@ -250,7 +250,7 @@ vows.describe('source-map')
           originalLine: 5,
           originalColumn: 3,
           source: '__stdin__.css',
-          name: '100%'
+          name: null
         };
         assert.deepEqual(mapping, minified.sourceMap._mappings[3]);
       },
@@ -261,7 +261,7 @@ vows.describe('source-map')
           originalLine: 6,
           originalColumn: 5,
           source: '__stdin__.css',
-          name: 'border:3px'
+          name: null
         };
         assert.deepEqual(mapping, minified.sourceMap._mappings[4]);
       }
@@ -280,7 +280,7 @@ vows.describe('source-map')
           originalLine: 1,
           originalColumn: 1,
           source: 'styles.less',
-          name: 'div>a'
+          name: null
         };
         assert.deepEqual(mapping, minified.sourceMap._mappings[0]);
       },
@@ -291,7 +291,7 @@ vows.describe('source-map')
           originalLine: 3,
           originalColumn: 4,
           source: 'styles.less',
-          name: 'color:red'
+          name: null
         };
         assert.deepEqual(mapping, minified.sourceMap._mappings[1]);
       }
@@ -308,7 +308,7 @@ vows.describe('source-map')
           originalLine: 1,
           originalColumn: 1,
           source: 'styles.less',
-          name: 'div>a'
+          name: null
         };
         assert.deepEqual(mapping, minified.sourceMap._mappings[0]);
       },
@@ -319,7 +319,7 @@ vows.describe('source-map')
           originalLine: 3,
           originalColumn: 4,
           source: 'styles.less',
-          name: 'color:red'
+          name: null
         };
         assert.deepEqual(mapping, minified.sourceMap._mappings[1]);
       }
@@ -336,7 +336,7 @@ vows.describe('source-map')
           originalLine: 1,
           originalColumn: 1,
           source: 'styles.less',
-          name: 'div>a'
+          name: null
         };
         assert.deepEqual(mapping, minified.sourceMap._mappings[0]);
       },
@@ -347,7 +347,7 @@ vows.describe('source-map')
           originalLine: 3,
           originalColumn: 4,
           source: 'styles.less',
-          name: 'color:red'
+          name: null
         };
         assert.deepEqual(mapping, minified.sourceMap._mappings[1]);
       }
@@ -364,7 +364,7 @@ vows.describe('source-map')
           originalLine: 1,
           originalColumn: 1,
           source: 'some.less',
-          name: 'div'
+          name: null
         };
         assert.deepEqual(mapping, minified.sourceMap._mappings[0]);
       },
@@ -375,7 +375,7 @@ vows.describe('source-map')
           originalLine: 2,
           originalColumn: 2,
           source: 'some.less',
-          name: 'color:red'
+          name: null
         };
         assert.deepEqual(mapping, minified.sourceMap._mappings[1]);
       },
@@ -386,7 +386,7 @@ vows.describe('source-map')
           originalLine: 1,
           originalColumn: 1,
           source: 'styles.less',
-          name: 'div>a'
+          name: null
         };
         assert.deepEqual(mapping, minified.sourceMap._mappings[2]);
       },
@@ -397,7 +397,7 @@ vows.describe('source-map')
           originalLine: 3,
           originalColumn: 4,
           source: 'styles.less',
-          name: 'color:#00f'
+          name: null
         };
         assert.deepEqual(mapping, minified.sourceMap._mappings[3]);
       }

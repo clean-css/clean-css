@@ -362,7 +362,7 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
             source: 'test/data/reset.css',
             line: 4,
             column: 1,
-            name: 'a'
+            name: null
           }
         );
       },
@@ -440,7 +440,7 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
             source: '/data/reset.css',
             line: 4,
             column: 1,
-            name: 'a'
+            name: null
           }
         );
       },

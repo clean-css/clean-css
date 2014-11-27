@@ -24,9 +24,9 @@ vows.describe('source-map')
       'should have selector mapping': function (minified) {
         var mapping = {
           generatedLine: 1,
-          generatedColumn: 9,
+          generatedColumn: 8,
           originalLine: 1,
-          originalColumn: 9,
+          originalColumn: 8,
           source: '__stdin__.css',
           name: null
         };
@@ -35,9 +35,9 @@ vows.describe('source-map')
       'should have body mapping': function (minified) {
         var mapping = {
           generatedLine: 1,
-          generatedColumn: 30,
+          generatedColumn: 29,
           originalLine: 1,
-          originalColumn: 32,
+          originalColumn: 31,
           source: '__stdin__.css',
           name: null
         };
@@ -52,9 +52,9 @@ vows.describe('source-map')
       'should have @media mapping': function (minified) {
         var mapping = {
           generatedLine: 1,
-          generatedColumn: 1,
+          generatedColumn: 0,
           originalLine: 1,
-          originalColumn: 1,
+          originalColumn: 0,
           source: '__stdin__.css',
           name: null
         };
@@ -63,9 +63,9 @@ vows.describe('source-map')
       'should have @font-face mapping': function (minified) {
         var mapping = {
           generatedLine: 1,
-          generatedColumn: 15,
+          generatedColumn: 14,
           originalLine: 2,
-          originalColumn: 1,
+          originalColumn: 0,
           source: '__stdin__.css',
           name: null
         };
@@ -74,9 +74,9 @@ vows.describe('source-map')
       'should have font-family mapping': function (minified) {
         var mapping = {
           generatedLine: 1,
-          generatedColumn: 26,
+          generatedColumn: 25,
           originalLine: 4,
-          originalColumn: 1,
+          originalColumn: 0,
           source: '__stdin__.css',
           name: null
         };
@@ -91,9 +91,9 @@ vows.describe('source-map')
       'should have @media mapping': function (minified) {
         var mapping = {
           generatedLine: 1,
-          generatedColumn: 1,
+          generatedColumn: 0,
           originalLine: 1,
-          originalColumn: 1,
+          originalColumn: 0,
           source: '__stdin__.css',
           name: null
         };
@@ -102,9 +102,9 @@ vows.describe('source-map')
       'should have _a_ mapping': function (minified) {
         var mapping = {
           generatedLine: 1,
-          generatedColumn: 15,
+          generatedColumn: 14,
           originalLine: 1,
-          originalColumn: 17,
+          originalColumn: 16,
           source: '__stdin__.css',
           name: null
         };
@@ -113,9 +113,9 @@ vows.describe('source-map')
       'should have _color:red_ mapping': function (minified) {
         var mapping = {
           generatedLine: 1,
-          generatedColumn: 17,
+          generatedColumn: 16,
           originalLine: 1,
-          originalColumn: 19,
+          originalColumn: 18,
           source: '__stdin__.css',
           name: null
         };
@@ -124,9 +124,9 @@ vows.describe('source-map')
       'should have _p_ mapping': function (minified) {
         var mapping = {
           generatedLine: 2,
-          generatedColumn: 1,
+          generatedColumn: 0,
           originalLine: 1,
-          originalColumn: 30,
+          originalColumn: 29,
           source: '__stdin__.css',
           name: null
         };
@@ -135,9 +135,9 @@ vows.describe('source-map')
       'should have _color:blue_ mapping': function (minified) {
         var mapping = {
           generatedLine: 2,
-          generatedColumn: 3,
+          generatedColumn: 2,
           originalLine: 1,
-          originalColumn: 33,
+          originalColumn: 32,
           source: '__stdin__.css',
           name: null
         };
@@ -146,9 +146,9 @@ vows.describe('source-map')
       'should have _div_ mapping': function (minified) {
         var mapping = {
           generatedLine: 4,
-          generatedColumn: 1,
+          generatedColumn: 0,
           originalLine: 1,
-          originalColumn: 46,
+          originalColumn: 45,
           source: '__stdin__.css',
           name: null
         };
@@ -157,9 +157,9 @@ vows.describe('source-map')
       'should have _color:pink_ mapping': function (minified) {
         var mapping = {
           generatedLine: 4,
-          generatedColumn: 5,
+          generatedColumn: 4,
           originalLine: 1,
-          originalColumn: 50,
+          originalColumn: 49,
           source: '__stdin__.css',
           name: null
         };
@@ -174,9 +174,9 @@ vows.describe('source-map')
       'should have selector mapping': function (minified) {
         var mapping = {
           generatedLine: 1,
-          generatedColumn: 1,
+          generatedColumn: 0,
           originalLine: 1,
-          originalColumn: 1,
+          originalColumn: 0,
           source: '__stdin__.css',
           name: null
         };
@@ -185,9 +185,9 @@ vows.describe('source-map')
       'should have _background_ mapping': function (minified) {
         var mapping = {
           generatedLine: 1,
-          generatedColumn: 3,
+          generatedColumn: 2,
           originalLine: 1,
-          originalColumn: 3,
+          originalColumn: 2,
           source: '__stdin__.css',
           name: null
         };
@@ -196,9 +196,9 @@ vows.describe('source-map')
       'should have _background-color_ mapping': function (minified) {
         var mapping = {
           generatedLine: 1,
-          generatedColumn: 29,
+          generatedColumn: 28,
           originalLine: 1,
-          originalColumn: 29,
+          originalColumn: 28,
           source: '__stdin__.css',
           name: null
         };
@@ -213,9 +213,9 @@ vows.describe('source-map')
       'should have _@keframes_ mapping': function (minified) {
         var mapping = {
           generatedLine: 1,
-          generatedColumn: 1,
+          generatedColumn: 0,
           originalLine: 1,
-          originalColumn: 1,
+          originalColumn: 0,
           source: '__stdin__.css',
           name: null
         };
@@ -224,9 +224,9 @@ vows.describe('source-map')
       'should have _0%_ mapping': function (minified) {
         var mapping = {
           generatedLine: 1,
-          generatedColumn: 27,
+          generatedColumn: 26,
           originalLine: 2,
-          originalColumn: 3,
+          originalColumn: 2,
           source: '__stdin__.css',
           name: null
         };
@@ -235,9 +235,9 @@ vows.describe('source-map')
       'should have _border:1px_ mapping': function (minified) {
         var mapping = {
           generatedLine: 1,
-          generatedColumn: 30,
+          generatedColumn: 29,
           originalLine: 3,
-          originalColumn: 5,
+          originalColumn: 4,
           source: '__stdin__.css',
           name: null
         };
@@ -246,9 +246,9 @@ vows.describe('source-map')
       'should have _100%_ mapping': function (minified) {
         var mapping = {
           generatedLine: 1,
-          generatedColumn: 41,
+          generatedColumn: 40,
           originalLine: 5,
-          originalColumn: 3,
+          originalColumn: 2,
           source: '__stdin__.css',
           name: null
         };
@@ -257,9 +257,9 @@ vows.describe('source-map')
       'should have _border:3px_ mapping': function (minified) {
         var mapping = {
           generatedLine: 1,
-          generatedColumn: 46,
+          generatedColumn: 45,
           originalLine: 6,
-          originalColumn: 5,
+          originalColumn: 4,
           source: '__stdin__.css',
           name: null
         };
@@ -276,9 +276,9 @@ vows.describe('source-map')
       'should have selector mapping': function (minified) {
         var mapping = {
           generatedLine: 1,
-          generatedColumn: 1,
+          generatedColumn: 0,
           originalLine: 1,
-          originalColumn: 1,
+          originalColumn: 0,
           source: 'styles.less',
           name: null
         };
@@ -287,7 +287,7 @@ vows.describe('source-map')
       'should have _color:red_ mapping': function (minified) {
         var mapping = {
           generatedLine: 1,
-          generatedColumn: 7,
+          generatedColumn: 6,
           originalLine: 3,
           originalColumn: 4,
           source: 'styles.less',
@@ -304,9 +304,9 @@ vows.describe('source-map')
       'should have selector mapping': function (minified) {
         var mapping = {
           generatedLine: 1,
-          generatedColumn: 1,
+          generatedColumn: 0,
           originalLine: 1,
-          originalColumn: 1,
+          originalColumn: 0,
           source: 'styles.less',
           name: null
         };
@@ -315,7 +315,7 @@ vows.describe('source-map')
       'should have _color:red_ mapping': function (minified) {
         var mapping = {
           generatedLine: 1,
-          generatedColumn: 7,
+          generatedColumn: 6,
           originalLine: 3,
           originalColumn: 4,
           source: 'styles.less',
@@ -332,9 +332,9 @@ vows.describe('source-map')
       'should have selector mapping': function (minified) {
         var mapping = {
           generatedLine: 1,
-          generatedColumn: 1,
+          generatedColumn: 0,
           originalLine: 1,
-          originalColumn: 1,
+          originalColumn: 0,
           source: 'styles.less',
           name: null
         };
@@ -343,7 +343,7 @@ vows.describe('source-map')
       'should have _color:red_ mapping': function (minified) {
         var mapping = {
           generatedLine: 1,
-          generatedColumn: 7,
+          generatedColumn: 6,
           originalLine: 3,
           originalColumn: 4,
           source: 'styles.less',
@@ -360,9 +360,9 @@ vows.describe('source-map')
       'should have first selector mapping': function (minified) {
         var mapping = {
           generatedLine: 1,
-          generatedColumn: 1,
+          generatedColumn: 0,
           originalLine: 1,
-          originalColumn: 1,
+          originalColumn: 0,
           source: 'some.less',
           name: null
         };
@@ -371,7 +371,7 @@ vows.describe('source-map')
       'should have _color:red_ mapping': function (minified) {
         var mapping = {
           generatedLine: 1,
-          generatedColumn: 5,
+          generatedColumn: 4,
           originalLine: 2,
           originalColumn: 2,
           source: 'some.less',
@@ -382,9 +382,9 @@ vows.describe('source-map')
       'should have second selector mapping': function (minified) {
         var mapping = {
           generatedLine: 2,
-          generatedColumn: 1,
+          generatedColumn: 0,
           originalLine: 1,
-          originalColumn: 1,
+          originalColumn: 0,
           source: 'styles.less',
           name: null
         };
@@ -393,7 +393,7 @@ vows.describe('source-map')
       'should have _color:blue_ mapping': function (minified) {
         var mapping = {
           generatedLine: 2,
-          generatedColumn: 7,
+          generatedColumn: 6,
           originalLine: 3,
           originalColumn: 4,
           source: 'styles.less',

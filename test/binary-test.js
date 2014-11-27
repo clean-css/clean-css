@@ -361,7 +361,7 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
           {
             source: 'test/data/reset.css',
             line: 4,
-            column: 1,
+            column: 0,
             name: null
           }
         );
@@ -379,7 +379,7 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
           {
             source: 'reset.css',
             line: 4,
-            column: 1,
+            column: 0,
             name: null
           }
         );
@@ -397,7 +397,7 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
           {
             source: 'test/data/source-maps/styles.less',
             line: 1,
-            column: 1,
+            column: 0,
             name: null
           }
         );
@@ -415,7 +415,7 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
           {
             source: 'test/data/source-maps/sub/styles.less',
             line: 1,
-            column: 1,
+            column: 0,
             name: null
           }
         );
@@ -439,7 +439,7 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
           {
             source: '/data/reset.css',
             line: 4,
-            column: 1,
+            column: 0,
             name: null
           }
         );

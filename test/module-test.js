@@ -1,5 +1,6 @@
 var vows = require('vows');
 var assert = require('assert');
+var path = require('path');
 var CleanCSS = require('../index');
 
 vows.describe('module tests').addBatch({
@@ -234,6 +235,32 @@ vows.describe('module tests').addBatch({
     },
     'should be processed correctly': function(minified) {
       assert.equal('.one{color:red}', minified);
+    }
+  },
+  'options': {
+    'advanced': {
+      'topic': new CleanCSS({ advanced: true }).minify('a{color:red}a{color:#fff}'),
+      'gets right output': function (minified) {
+        assert.equal('a{color:#fff}', minified);
+      }
+    },
+    'aggressive merging': {
+      'topic': new CleanCSS({ aggressiveMerging: true }).minify('a{display:block;color:red;display:inline-block}'),
+      'gets right output': function (minified) {
+        assert.equal('a{color:red;display:inline-block}', minified);
+      }
+    },
+    'process import': {
+      'topic': new CleanCSS({ processImport: true }).minify('@import url(/test/data/partials/one.css);'),
+      'gets right output': function (minified) {
+        assert.equal('.one{color:red}', minified);
+      }
+    },
+    'rebase': {
+      'topic': new CleanCSS({ rebase: true, relativeTo: path.join(process.cwd(), 'test', 'data'), root: process.cwd() }).minify('div{background:url(./dummy.png)}'),
+      'gets right output': function (minified) {
+        assert.include(minified, 'url(/test/data/dummy.png)');
+      }
     }
   }
 }).export(module);

@@ -21,6 +21,7 @@
 * Fixed issue [#352](https://github.com/GoalSmashers/clean-css/issues/352) - honors rebasing in imported stylesheets.
 * Fixed issue [#360](https://github.com/GoalSmashers/clean-css/issues/360) - adds 7 extra CSS colors.
 * Fixed issue [#363](https://github.com/GoalSmashers/clean-css/issues/363) - `rem` units overriding `px`.
+* Fixed issue [#373](https://github.com/GoalSmashers/clean-css/issues/373) - proper background shorthand merging.
 * Fixed issue [#395](https://github.com/GoalSmashers/clean-css/issues/395) - unescaped brackets in data URIs.
 
 [2.2.19 / 2014-11-20](https://github.com/jakubpawlowicz/clean-css/compare/v2.2.18...v2.2.19)

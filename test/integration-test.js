@@ -2235,7 +2235,8 @@ title']{display:block}",
     'plain component to shorthand': [
       'a{background:url(bg.png) #000;background-color:#fff}',
       'a{background:url(bg.png) #fff}'
-    ]
+    ],
+    'merging rgba with standard colors': 'div{background-color:red;background:rgba(1,2,3,.5)}'
   }, { compatibility: 'ie8' }),
   'viewport units': cssContext({
     'shorthand margin with viewport width not changed': 'div{margin:5vw}'

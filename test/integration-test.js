@@ -2084,6 +2084,24 @@ title']{display:block}",
       'body{background:#000}'
     ]
   }),
+  'merging of rules': cssContext({
+    'rules without pseudo classes should be merged': [
+      'a{color:red}b{color:red}',
+      'a,b{color:red}'
+    ],
+    'rules with standard pseudo classes should be merged': [
+      'a:focus{color:red}b{color:red}',
+      'a:focus,b{color:red}'
+    ],
+    'rules with prefixed pseudo classes should not be merged': [
+      'a:-moz-full-screen{color:red}b{color:red}',
+      'a:-moz-full-screen{color:red}b{color:red}'
+    ],
+    'rules with standard, but unimplemented pseudo classes should not be merged': [
+      'a:fullscreen{color:red}b{color:red}',
+      'a:fullscreen{color:red}b{color:red}'
+    ]
+  }),
   'complex granular properties': cssContext({
     'two granular properties': 'a{border-bottom:1px solid red;border-color:red}',
     'more understandable granular property should override less understandable': [

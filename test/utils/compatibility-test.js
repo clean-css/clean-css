@@ -14,7 +14,7 @@ vows.describe(Compatibility)
         assert.isTrue(options.properties.merging);
         assert.isTrue(options.units.rem);
         assert.isTrue(options.colors.opacity);
-        assert.deepEqual(options.selectors.special, /\-(moz|ms|o|webkit)\-/);
+        assert.deepEqual(options.selectors.special, /(\-moz\-|\-ms\-|\-o\-|\-webkit\-|:fullscreen)/);
       }
     },
     'not given': {
@@ -33,7 +33,7 @@ vows.describe(Compatibility)
         assert.isTrue(options.properties.merging);
         assert.isFalse(options.units.rem);
         assert.isTrue(options.colors.opacity);
-        assert.deepEqual(options.selectors.special, /\-(moz|ms|o|webkit)\-/);
+        assert.deepEqual(options.selectors.special, /(\-moz\-|\-ms\-|\-o\-|\-webkit\-|:fullscreen)/);
       }
     }
   })
@@ -95,7 +95,7 @@ vows.describe(Compatibility)
         assert.isTrue(options.properties.merging);
         assert.isTrue(options.units.rem);
         assert.isTrue(options.colors.opacity);
-        assert.deepEqual(options.selectors.special, /\-(moz|ms|o|webkit)\-/);
+        assert.deepEqual(options.selectors.special, /(\-moz\-|\-ms\-|\-o\-|\-webkit\-|:fullscreen)/);
       }
     },
     'as a complex string value without group': {
@@ -108,7 +108,7 @@ vows.describe(Compatibility)
         assert.isTrue(options.properties.merging);
         assert.isFalse(options.units.rem);
         assert.isTrue(options.colors.opacity);
-        assert.deepEqual(options.selectors.special, /\-(moz|ms|o|webkit)\-/);
+        assert.deepEqual(options.selectors.special, /(\-moz\-|\-ms\-|\-o\-|\-webkit\-|:fullscreen)/);
       }
     }
   })

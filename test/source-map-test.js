@@ -409,19 +409,19 @@ vows.describe('source-map')
       }
     },
     'complex but partial input map referenced by path': {
-      'topic': new CleanCSS({ sourceMap: true }).minify('@import url(test/data/source-maps/no-map-import.css);'),
+      'topic': new CleanCSS({ sourceMap: true, target: process.cwd() }).minify('@import url(test/data/source-maps/no-map-import.css);'),
       'should have 4 mappings': function (minified) {
         assert.equal(4, minified.sourceMap._mappings.length);
       },
       'should have 2 mappings to .less file': function (minified) {
         var fromLess = minified.sourceMap._mappings.filter(function (mapping) {
-          return mapping.source == 'styles.less';
+          return mapping.source == path.join('test', 'data', 'source-maps', 'styles.less');
         });
         assert.equal(2, fromLess.length);
       },
       'should have 2 mappings to .css file': function (minified) {
         var fromCSS = minified.sourceMap._mappings.filter(function (mapping) {
-          return mapping.source.indexOf('no-map.css') > 0;
+          return mapping.source == path.join('test', 'data', 'source-maps', 'no-map.css');
         });
         assert.equal(2, fromCSS.length);
       }

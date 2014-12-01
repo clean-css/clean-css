@@ -407,6 +407,24 @@ vows.describe('source-map')
       'should have 4 mappings': function (minified) {
         assert.equal(4, minified.sourceMap._mappings.length);
       }
+    },
+    'complex but partial input map referenced by path': {
+      'topic': new CleanCSS({ sourceMap: true }).minify('@import url(test/data/source-maps/no-map-import.css);'),
+      'should have 4 mappings': function (minified) {
+        assert.equal(4, minified.sourceMap._mappings.length);
+      },
+      'should have 2 mappings to .less file': function (minified) {
+        var fromLess = minified.sourceMap._mappings.filter(function (mapping) {
+          return mapping.source == 'styles.less';
+        });
+        assert.equal(2, fromLess.length);
+      },
+      'should have 2 mappings to .css file': function (minified) {
+        var fromCSS = minified.sourceMap._mappings.filter(function (mapping) {
+          return mapping.source.indexOf('no-map.css') > 0;
+        });
+        assert.equal(2, fromCSS.length);
+      }
     }
   })
   .addBatch({

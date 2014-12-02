@@ -2084,6 +2084,52 @@ title']{display:block}",
       'body{background:#000}'
     ]
   }),
+  'merging of rules': cssContext({
+    'rules without pseudo classes should be merged': [
+      'a{color:red}b{color:red}',
+      'a,b{color:red}'
+    ],
+    'rules with well-supported pseudo classes should be merged #1': [
+      'a:focus{color:red}b{color:red}',
+      'a:focus,b{color:red}'
+    ],
+    'rules with well-supported pseudo classes should be merged #2': [
+      'a:nth-of-type(1){color:red}b{color:red}',
+      'a:nth-of-type(1),b{color:red}'
+    ],
+    'rules with well-supported pseudo classes should be merged #3': [
+      'a:first-of-type{color:red}b{color:red}',
+      'a:first-of-type,b{color:red}'
+    ],
+    'rules with well-supported pseudo classes should be merged #4': [
+      'a:first-child{color:red}b{color:red}',
+      'a:first-child,b{color:red}'
+    ],
+    'rules with prefixed pseudo classes should not be merged #1': [
+      'a:-moz-full-screen{color:red}b{color:red}',
+      'a:-moz-full-screen{color:red}b{color:red}'
+    ],
+    'rules with prefixed pseudo classes should not be merged #2': [
+      'a:-moz-dir(rtl){color:red}b{color:red}',
+      'a:-moz-dir(rtl){color:red}b{color:red}'
+    ],
+    'rules with not-so-well-supported pseudo classes should not be merged #1': [
+      'a:fullscreen{color:red}b{color:red}',
+      'a:fullscreen{color:red}b{color:red}'
+    ],
+    'rules with not-so-well-supported pseudo classes should not be merged #2': [
+      'a:dir(ltr){color:red}b{color:red}',
+      'a:dir(ltr){color:red}b{color:red}'
+    ],
+    'rules with not-so-well-supported pseudo classes should not be merged #3': [
+      'a:right{color:red}b{color:red}',
+      'a:right{color:red}b{color:red}'
+    ],
+    'rules with not-so-well-supported pseudo classes should not be merged #4': [
+      'a:first{color:red}b{color:red}',
+      'a:first{color:red}b{color:red}'
+    ]
+  }),
   'complex granular properties': cssContext({
     'two granular properties': 'a{border-bottom:1px solid red;border-color:red}',
     'more understandable granular property should override less understandable': [

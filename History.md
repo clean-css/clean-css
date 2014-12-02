@@ -1,3 +1,8 @@
+[2.2.20 / 2014-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v2.2.19...v2.2.20)
+==================
+
+* Backports fix to issue [#390](https://github.com/GoalSmashers/clean-css/issues/390) - pseudo-class merging.
+
 [2.2.19 / 2014-11-20](https://github.com/jakubpawlowicz/clean-css/compare/v2.2.18...v2.2.19)
 ==================
 

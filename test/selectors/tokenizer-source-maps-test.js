@@ -52,7 +52,7 @@ vows.describe('source-maps/analyzer')
         [{
           kind: 'selector',
           value: [
-            { value: ' a', metadata: { line: 1, column: 1, source: undefined } },
+            { value: 'a', metadata: { line: 1, column: 1, source: undefined } },
             { value: '\n\ndiv', metadata: { line: 3, column: 0, source: undefined } }
           ],
           body: []
@@ -75,7 +75,7 @@ vows.describe('source-maps/analyzer')
         [{
           kind: 'selector',
           value: [
-            { value: ' a', metadata: { line: 1, column: 1, source: undefined } },
+            { value: 'a', metadata: { line: 1, column: 1, source: undefined } },
             { value: '\n\ndiv\na', metadata: { line: 3, column: 0, source: undefined } },
             { value: '\n p', metadata: { line: 5, column: 1, source: undefined } }
           ],
@@ -107,12 +107,12 @@ vows.describe('source-maps/analyzer')
           },
           {
             kind: 'selector',
-            value: [{ value: '\n\ndiv', metadata: { line: 3, column: 0, source: undefined } }],
+            value: [{ value: 'div', metadata: { line: 3, column: 0, source: undefined } }],
             body: []
           },
           {
             kind: 'selector',
-            value: [{ value: '\n \n  p', metadata: { line: 5, column: 2, source: undefined } }],
+            value: [{ value: 'p', metadata: { line: 5, column: 2, source: undefined } }],
             body: []
           }
         ]
@@ -177,7 +177,7 @@ vows.describe('source-maps/analyzer')
           },
           {
             kind: 'selector',
-            value: [{ value: '\n div', metadata: { line: 2, column: 1, source: undefined } }],
+            value: [{ value: 'div', metadata: { line: 2, column: 1, source: undefined } }],
             body: [{ value: 'color:blue', metadata: { line: 2, column: 5, source: undefined } }]
           }
         ]
@@ -192,7 +192,7 @@ vows.describe('source-maps/analyzer')
           },
           {
             kind: 'selector',
-            value: [{ value: '\n div', metadata: { line: 3, column: 1, source: undefined } }],
+            value: [{ value: 'div', metadata: { line: 3, column: 1, source: undefined } }],
             body: [{ value: 'color:blue', metadata: { line: 3, column: 5, source: undefined } }]
           }
         ]
@@ -216,7 +216,7 @@ vows.describe('source-maps/analyzer')
           },
           {
             kind: 'selector',
-            value: [{ value: '\n\na', metadata: { line: 4, column: 0, source: undefined } }],
+            value: [{ value: 'a', metadata: { line: 4, column: 0, source: undefined } }],
             body: [{ value: 'color:red', metadata: { line: 4, column: 2, source: undefined } }]
           }
         ]
@@ -267,7 +267,7 @@ vows.describe('source-maps/analyzer')
             body: [
               {
                 kind: 'selector',
-                value: [{ value: '\na', metadata: { line: 4, column: 0, source: undefined } }],
+                value: [{ value: 'a', metadata: { line: 4, column: 0, source: undefined } }],
                 body: [{ value: 'color:red', metadata: { line: 5, column: 0, source: undefined } }]
               },
               {
@@ -459,7 +459,7 @@ vows.describe('source-maps/analyzer')
           {
             kind: 'selector',
             value: [
-              { value: '\na', metadata: { line: 2, column: 0, source: 'two.css' } }
+              { value: 'a', metadata: { line: 2, column: 0, source: 'two.css' } }
             ],
             body: [{ value: 'color:red', metadata: { line: 2, column: 2, source: 'two.css' } }]
           }

@@ -265,6 +265,34 @@ vows.describe('source-map')
         };
         assert.deepEqual(mapping, minified.sourceMap._mappings[4]);
       }
+    },
+    'double comments': {
+      'topic': new CleanCSS({ sourceMap: true }).minify('/* COMMENT 1 */\n/* COMMENT 2 */\ndiv{color:red}'),
+      'should have 2 mappings': function(minified) {
+        assert.equal(2, minified.sourceMap._mappings.length);
+      },
+      'should have _div__ mapping': function (minified) {
+        var mapping = {
+          generatedLine: 1,
+          generatedColumn: 0,
+          originalLine: 3,
+          originalColumn: 0,
+          source: '__stdin__.css',
+          name: null
+        };
+        assert.deepEqual(mapping, minified.sourceMap._mappings[0]);
+      },
+      'should have _color:red_ mapping': function (minified) {
+        var mapping = {
+          generatedLine: 1,
+          generatedColumn: 4,
+          originalLine: 3,
+          originalColumn: 4,
+          source: '__stdin__.css',
+          name: null
+        };
+        assert.deepEqual(mapping, minified.sourceMap._mappings[1]);
+      }
     }
   })
   .addBatch({
@@ -381,8 +409,8 @@ vows.describe('source-map')
       },
       'should have second selector mapping': function (minified) {
         var mapping = {
-          generatedLine: 2,
-          generatedColumn: 0,
+          generatedLine: 1,
+          generatedColumn: 14,
           originalLine: 1,
           originalColumn: 0,
           source: 'styles.less',
@@ -392,8 +420,8 @@ vows.describe('source-map')
       },
       'should have _color:blue_ mapping': function (minified) {
         var mapping = {
-          generatedLine: 2,
-          generatedColumn: 6,
+          generatedLine: 1,
+          generatedColumn: 20,
           originalLine: 3,
           originalColumn: 4,
           source: 'styles.less',

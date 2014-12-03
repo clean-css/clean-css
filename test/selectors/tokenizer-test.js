@@ -36,6 +36,19 @@ vows.describe(Tokenizer)
           value: '__ESCAPED_COMMENT_CLEAN_CSS0__'
         }]
       ],
+      'an escaped content followed by a break': [
+        '__ESCAPED_COMMENT_CLEAN_CSS0__\n',
+        [
+          {
+            kind: 'text',
+            value: '__ESCAPED_COMMENT_CLEAN_CSS0__'
+          },
+          {
+            kind: 'text',
+            value: '\n'
+          }
+        ]
+      ],
       'an empty selector': [
         'a{}',
         [{
@@ -125,6 +138,24 @@ vows.describe(Tokenizer)
           }
         ]
       ],
+      'two comments and a selector separated by newline': [
+        '__ESCAPED_COMMENT_CLEAN_CSS0__\n__ESCAPED_COMMENT_CLEAN_CSS1__\ndiv{}',
+        [
+          {
+            kind: 'text',
+            value: '__ESCAPED_COMMENT_CLEAN_CSS0__'
+          },
+          {
+            kind: 'text',
+            value: '__ESCAPED_COMMENT_CLEAN_CSS1__'
+          },
+          {
+            kind: 'selector',
+            value: [{ value: 'div' }],
+            body: []
+          }
+        ]
+      ],
       'media query': [
         '@media (min-width:980px){}',
         [{
@@ -188,10 +219,12 @@ vows.describe(Tokenizer)
       ],
       'charset after a line break': [
         '\n@charset \n\'utf-8\';',
-        [{
-          kind: 'at-rule',
-          value: '\n@charset \n\'utf-8\';'
-        }]
+        [
+          {
+            kind: 'at-rule',
+            value: '@charset \n\'utf-8\';'
+          }
+        ]
       ],
       'keyframes with quoted attribute': [
         '@keyframes __ESCAPED_FREE_TEXT_CLEAN_CSS0__{}',

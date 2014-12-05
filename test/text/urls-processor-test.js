@@ -73,6 +73,11 @@ vows.describe(UrlsProcessor)
         'div{background:url(\'  some/\nfile.png  \') repeat}',
         'div{background:__ESCAPED_URL_CLEAN_CSS0__ repeat}',
         'div{background:url(some/file.png) repeat}'
+      ],
+      'unescaped closing brackets': [
+        'div{background:url("some/).png") repeat}',
+        'div{background:__ESCAPED_URL_CLEAN_CSS0__ repeat}',
+        'div{background:url("some/).png") repeat}'
       ]
     })
   )

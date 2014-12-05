@@ -16,6 +16,7 @@
 * Fixed issue [#344](https://github.com/GoalSmashers/clean-css/issues/344) - merging background-size into shorthand.
 * Fixed issue [#360](https://github.com/GoalSmashers/clean-css/issues/360) - adds 7 extra CSS colors.
 * Fixed issue [#363](https://github.com/GoalSmashers/clean-css/issues/363) - `rem` units overriding `px`.
+* Fixed issue [#395](https://github.com/GoalSmashers/clean-css/issues/395) - unescaped brackets in data URIs.
 
 [2.2.19 / 2014-11-20](https://github.com/jakubpawlowicz/clean-css/compare/v2.2.18...v2.2.19)
 ==================

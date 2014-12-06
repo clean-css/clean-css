@@ -397,7 +397,7 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
           {
             source: 'test/data/source-maps/styles.less',
             line: 1,
-            column: 0,
+            column: 4,
             name: null
           }
         );
@@ -414,8 +414,8 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
           sourceMap.originalPositionFor({ line: 1, column: 1 }),
           {
             source: 'test/data/source-maps/sub/styles.less',
-            line: 1,
-            column: 0,
+            line: 2,
+            column: 2,
             name: null
           }
         );

@@ -306,7 +306,7 @@ vows.describe('source-map')
           generatedLine: 1,
           generatedColumn: 0,
           originalLine: 1,
-          originalColumn: 0,
+          originalColumn: 4,
           source: 'styles.less',
           name: null
         };
@@ -316,8 +316,8 @@ vows.describe('source-map')
         var mapping = {
           generatedLine: 1,
           generatedColumn: 6,
-          originalLine: 3,
-          originalColumn: 4,
+          originalLine: 2,
+          originalColumn: 2,
           source: 'styles.less',
           name: null
         };
@@ -334,7 +334,7 @@ vows.describe('source-map')
           generatedLine: 1,
           generatedColumn: 0,
           originalLine: 1,
-          originalColumn: 0,
+          originalColumn: 4,
           source: 'styles.less',
           name: null
         };
@@ -344,8 +344,8 @@ vows.describe('source-map')
         var mapping = {
           generatedLine: 1,
           generatedColumn: 6,
-          originalLine: 3,
-          originalColumn: 4,
+          originalLine: 2,
+          originalColumn: 2,
           source: 'styles.less',
           name: null
         };
@@ -362,7 +362,7 @@ vows.describe('source-map')
           generatedLine: 1,
           generatedColumn: 0,
           originalLine: 1,
-          originalColumn: 0,
+          originalColumn: 4,
           source: 'styles.less',
           name: null
         };
@@ -372,8 +372,8 @@ vows.describe('source-map')
         var mapping = {
           generatedLine: 1,
           generatedColumn: 6,
-          originalLine: 3,
-          originalColumn: 4,
+          originalLine: 2,
+          originalColumn: 2,
           source: 'styles.less',
           name: null
         };
@@ -412,7 +412,7 @@ vows.describe('source-map')
           generatedLine: 1,
           generatedColumn: 14,
           originalLine: 1,
-          originalColumn: 0,
+          originalColumn: 4,
           source: 'styles.less',
           name: null
         };
@@ -422,8 +422,8 @@ vows.describe('source-map')
         var mapping = {
           generatedLine: 1,
           generatedColumn: 20,
-          originalLine: 3,
-          originalColumn: 4,
+          originalLine: 2,
+          originalColumn: 2,
           source: 'styles.less',
           name: null
         };
@@ -452,6 +452,62 @@ vows.describe('source-map')
           return mapping.source == path.join('test', 'data', 'source-maps', 'no-map.css');
         });
         assert.equal(2, fromCSS.length);
+      }
+    },
+    'nested once': {
+      'topic': new CleanCSS({ sourceMap: true }).minify('@import url(test/data/source-maps/nested/once.css);'),
+      'should have 2 mappings': function (minified) {
+        assert.equal(minified.sourceMap._mappings.length, 2);
+      },
+      'should have "section > div a" mapping': function (minified) {
+        var mapping = {
+          generatedLine: 1,
+          generatedColumn: 0,
+          originalLine: 2,
+          originalColumn: 8,
+          source: 'once.less',
+          name: null
+        };
+        assert.deepEqual(mapping, minified.sourceMap._mappings[0]);
+      },
+      'should have "color:red" mapping': function (minified) {
+        var mapping = {
+          generatedLine: 1,
+          generatedColumn: 14,
+          originalLine: 3,
+          originalColumn: 4,
+          source: 'once.less',
+          name: null
+        };
+        assert.deepEqual(mapping, minified.sourceMap._mappings[1]);
+      }
+    },
+    'nested twice': {
+      'topic': new CleanCSS({ sourceMap: true }).minify('@import url(test/data/source-maps/nested/twice.css);'),
+      'should have 2 mappings': function (minified) {
+        assert.equal(minified.sourceMap._mappings.length, 2);
+      },
+      'should have "body > nav a" mapping': function (minified) {
+        var mapping = {
+          generatedLine: 1,
+          generatedColumn: 0,
+          originalLine: 3,
+          originalColumn: 4,
+          source: 'twice.less',
+          name: null
+        };
+        assert.deepEqual(mapping, minified.sourceMap._mappings[0]);
+      },
+      'should have "color:red" mapping': function (minified) {
+        var mapping = {
+          generatedLine: 1,
+          generatedColumn: 11,
+          originalLine: 4,
+          originalColumn: 6,
+          source: 'twice.less',
+          name: null
+        };
+        assert.deepEqual(mapping, minified.sourceMap._mappings[1]);
       }
     }
   })

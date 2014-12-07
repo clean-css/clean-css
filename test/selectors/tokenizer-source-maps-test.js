@@ -346,10 +346,6 @@ vows.describe('source-maps/analyzer')
         '__ESCAPED_COMMENT_CLEAN_CSS0(0, 5)__a{}',
         [
           {
-            kind: 'text',
-            value: '__ESCAPED_COMMENT_CLEAN_CSS0(0, 5)__'
-          },
-          {
             kind: 'selector',
             value: [{ value: 'a', metadata: { line: 1, column: 5, source: undefined } }],
             body: []
@@ -359,10 +355,6 @@ vows.describe('source-maps/analyzer')
       'top-level with line breaks': [
         '__ESCAPED_COMMENT_CLEAN_CSS0(2, 5)__a{}',
         [
-          {
-            kind: 'text',
-            value: '__ESCAPED_COMMENT_CLEAN_CSS0(2, 5)__'
-          },
           {
             kind: 'selector',
             value: [{ value: 'a', metadata: { line: 3, column: 5, source: undefined } }],
@@ -382,13 +374,13 @@ vows.describe('source-maps/analyzer')
         }]
       ],
       'in properties': [
-        'div{__ESCAPED_COMMENT_CLEAN_CSS0(2,5)__background:url(__ESCAPED_URL_CLEAN_CSS0(0,20)__);color:blue}a{font-family:__ESCAPED_FREE_TEXT_CLEAN_CSS0(1,3)__;color:red}',
+        'div{__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0(2,5)__background:url(__ESCAPED_URL_CLEAN_CSS0(0,20)__);color:blue}a{font-family:__ESCAPED_FREE_TEXT_CLEAN_CSS0(1,3)__;color:red}',
         [
           {
             kind: 'selector',
             value: [{ value: 'div', metadata: { line: 1, column: 0, source: undefined } }],
             body: [
-              { value: '__ESCAPED_COMMENT_CLEAN_CSS0(2,5)__', metadata: { line: 1, column: 4, source: undefined }},
+              { value: '__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0(2,5)__', metadata: { line: 1, column: 4, source: undefined }},
               { value: 'background:url(__ESCAPED_URL_CLEAN_CSS0(0,20)__)', metadata: { line: 3, column: 5, source: undefined } },
               { value: 'color:blue', metadata: { line: 3, column: 42, source: undefined } }
             ]

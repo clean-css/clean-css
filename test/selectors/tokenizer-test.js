@@ -31,23 +31,11 @@ vows.describe(Tokenizer)
       ],
       'an escaped content': [
         '__ESCAPED_COMMENT_CLEAN_CSS0__',
-        [{
-          kind: 'text',
-          value: '__ESCAPED_COMMENT_CLEAN_CSS0__'
-        }]
+        []
       ],
       'an escaped content followed by a break': [
         '__ESCAPED_COMMENT_CLEAN_CSS0__\n',
-        [
-          {
-            kind: 'text',
-            value: '__ESCAPED_COMMENT_CLEAN_CSS0__'
-          },
-          {
-            kind: 'text',
-            value: '\n'
-          }
-        ]
+        []
       ],
       'an empty selector': [
         'a{}',
@@ -142,19 +130,23 @@ vows.describe(Tokenizer)
         '__ESCAPED_COMMENT_CLEAN_CSS0__\n__ESCAPED_COMMENT_CLEAN_CSS1__\ndiv{}',
         [
           {
-            kind: 'text',
-            value: '__ESCAPED_COMMENT_CLEAN_CSS0__'
-          },
-          {
-            kind: 'text',
-            value: '__ESCAPED_COMMENT_CLEAN_CSS1__'
-          },
-          {
             kind: 'selector',
             value: [{ value: 'div' }],
             body: []
           }
         ]
+      ],
+      'two properties wrapped between comments': [
+        'div{__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0__color:red__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS1__}',
+        [{
+          kind: 'selector',
+          value: [{ value: 'div' }],
+          body: [
+            { value: '__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0__' },
+            { value: 'color:red' },
+            { value: '__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS1__' }
+          ]
+        }]
       ],
       'media query': [
         '@media (min-width:980px){}',
@@ -243,9 +235,13 @@ vows.describe(Tokenizer)
         '',
         []
       ],
-      'an escaped content': [
+      'an escaped comment': [
         '__ESCAPED_COMMENT_CLEAN_CSS0__',
-        [{ kind: 'text', value: '__ESCAPED_COMMENT_CLEAN_CSS0__' }]
+        []
+      ],
+      'an escaped special comment': [
+        '__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0__',
+        [{ kind: 'text', value: '__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0__' }]
       ],
       'an empty selector': [
         'a{}',
@@ -301,6 +297,40 @@ vows.describe(Tokenizer)
             }
           }
         ]
+      ],
+      'two properties wrapped between comments': [
+        'div{__ESCAPED_COMMENT_CLEAN_CSS0(0, 5)__color:red__ESCAPED_COMMENT_CLEAN_CSS1(0, 5)__}',
+        [{
+          kind: 'selector',
+          value: [{ value: 'div' }],
+          body: [
+            { value: 'color:red' }
+          ],
+          metadata: {
+            body: 'color:red',
+            bodiesList: ['color:red'],
+            selector: 'div',
+            selectorsList: ['div']
+          }
+        }]
+      ],
+      'two properties wrapped between special comments': [
+        'div{__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0(0, 5)__color:red__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS1(0, 5)__}',
+        [{
+          kind: 'selector',
+          value: [{ value: 'div' }],
+          body: [
+            { value: '__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0(0, 5)__' },
+            { value: 'color:red' },
+            { value: '__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS1(0, 5)__' }
+          ],
+          metadata: {
+            body: '__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0(0, 5)__,color:red,__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS1(0, 5)__',
+            bodiesList: ['__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0(0, 5)__', 'color:red', '__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS1(0, 5)__'],
+            selector: 'div',
+            selectorsList: ['div']
+          }
+        }]
       ]
     }, true)
   )

@@ -49,7 +49,7 @@ vows.describe(CommentsProcessor)
       ],
       'one special comment': [
         '/*! some text */',
-        '__ESCAPED_COMMENT_CLEAN_CSS0__',
+        '__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0__',
         '/*! some text */'
       ],
       'two comments': [
@@ -64,7 +64,7 @@ vows.describe(CommentsProcessor)
       ],
       'two special comments': [
         '/*! one text *//*! another text */',
-        '__ESCAPED_COMMENT_CLEAN_CSS0____ESCAPED_COMMENT_CLEAN_CSS1__',
+        '__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0____ESCAPED_COMMENT_SPECIAL_CLEAN_CSS1__',
         '/*! one text *//*! another text */'
       ],
       'commented selector': [
@@ -88,12 +88,12 @@ vows.describe(CommentsProcessor)
       ],
       'one special comment': [
         '/*! some text */',
-        '__ESCAPED_COMMENT_CLEAN_CSS0__',
+        '__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0__',
         '/*! some text */'
       ],
       'two special comments': [
         '/*! one text *//*! another text */',
-        '__ESCAPED_COMMENT_CLEAN_CSS0____ESCAPED_COMMENT_CLEAN_CSS1__',
+        '__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0____ESCAPED_COMMENT_SPECIAL_CLEAN_CSS1__',
         '/*! one text */'
       ]
     }, '1')
@@ -107,12 +107,12 @@ vows.describe(CommentsProcessor)
       ],
       'one special comment': [
         '/*! some text */',
-        '__ESCAPED_COMMENT_CLEAN_CSS0__',
+        '__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0__',
         ''
       ],
       'two special comments': [
         '/*! one text *//*! another text */',
-        '__ESCAPED_COMMENT_CLEAN_CSS0____ESCAPED_COMMENT_CLEAN_CSS1__',
+        '__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0____ESCAPED_COMMENT_SPECIAL_CLEAN_CSS1__',
         ''
       ]
     }, '0')
@@ -121,7 +121,7 @@ vows.describe(CommentsProcessor)
     processorContext('zero with breaks', {
       'content and special comments': [
         'a{}' + lineBreak + '/*! some text */' + lineBreak + 'p{}',
-        'a{}' + lineBreak + '__ESCAPED_COMMENT_CLEAN_CSS0__' + lineBreak + 'p{}',
+        'a{}' + lineBreak + '__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0__' + lineBreak + 'p{}',
         'a{}' + lineBreak + 'p{}'
       ]
     }, '0', true)
@@ -130,17 +130,17 @@ vows.describe(CommentsProcessor)
     processorContext('one with breaks', {
       'forces break after comments': [
         'a{}/*! some text */p{}',
-        'a{}__ESCAPED_COMMENT_CLEAN_CSS0__p{}',
+        'a{}__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0__p{}',
         'a{}/*! some text */' + lineBreak + 'p{}'
       ],
       'if not given already comments': [
         'a{}/*! some text */' + lineBreak + 'p{}',
-        'a{}__ESCAPED_COMMENT_CLEAN_CSS0__' + lineBreak + 'p{}',
+        'a{}__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0__' + lineBreak + 'p{}',
         'a{}/*! some text */' + lineBreak + 'p{}'
       ],
       'if given an other platform break already': [
         'a{}/*! some text */' + otherLineBreak + 'p{}',
-        'a{}__ESCAPED_COMMENT_CLEAN_CSS0__' + otherLineBreak + 'p{}',
+        'a{}__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0__' + otherLineBreak + 'p{}',
         'a{}/*! some text */' + otherLineBreak + 'p{}'
       ]
     }, '1', true)
@@ -154,7 +154,7 @@ vows.describe(CommentsProcessor)
       ],
       'one special comment': [
         '/*! some text */',
-        '__ESCAPED_COMMENT_CLEAN_CSS0(0,16)__',
+        '__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0(0,16)__',
         '/*! some text */'
       ],
       'two comments': [
@@ -169,17 +169,17 @@ vows.describe(CommentsProcessor)
       ],
       'two special comments': [
         '/*! one text *//*! another text */',
-        '__ESCAPED_COMMENT_CLEAN_CSS0(0,15)____ESCAPED_COMMENT_CLEAN_CSS1(0,35)__',
+        '__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0(0,15)____ESCAPED_COMMENT_SPECIAL_CLEAN_CSS1(0,35)__',
         '/*! one text *//*! another text */'
       ],
       'two special comments with line breaks': [
         '/*! one text' + lineBreak + '*//*! another' + lineBreak + ' text' + lineBreak + ' */',
-        '__ESCAPED_COMMENT_CLEAN_CSS0(1,2)____ESCAPED_COMMENT_CLEAN_CSS1(2,3)__',
+        '__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0(1,2)____ESCAPED_COMMENT_SPECIAL_CLEAN_CSS1(2,3)__',
         '/*! one text' + lineBreak + '*//*! another' + lineBreak + ' text' + lineBreak + ' */'
       ],
       'three special comments with line breaks and content in between': [
         '/*! one text' + lineBreak + '*/a{}/*! ' + lineBreak + 'test */p{color:red}/*! another' + lineBreak + ' text' + lineBreak + lineBreak + '  */',
-        '__ESCAPED_COMMENT_CLEAN_CSS0(1,2)__a{}__ESCAPED_COMMENT_CLEAN_CSS1(1,7)__p{color:red}__ESCAPED_COMMENT_CLEAN_CSS2(3,4)__',
+        '__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0(1,2)__a{}__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS1(1,7)__p{color:red}__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS2(3,4)__',
         '/*! one text' + lineBreak + '*/a{}/*! ' + lineBreak + 'test */p{color:red}/*! another' + lineBreak + ' text' + lineBreak + lineBreak + '  */'
       ]
     }, '*', false, true)

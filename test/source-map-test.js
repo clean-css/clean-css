@@ -16,6 +16,14 @@ var port = 24682;
 
 vows.describe('source-map')
   .addBatch({
+    'vendor prefix with comments': {
+      'topic': new CleanCSS({ sourceMap: true }).minify('html{font-family:sans-serif;/* 1 */-ms-text-size-adjust:100%;/* 2 */-webkit-text-size-adjust:100%/* 3 */}'),
+      'gets right output': function (minified) {
+        assert.equal(minified.styles, 'html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}');
+      }
+    }
+  })
+  .addBatch({
     'module #1': {
       'topic': new CleanCSS({ sourceMap: true }).minify('/*! a */div[data-id=" abc "] { color:red; }'),
       'should have 2 mappings': function(minified) {

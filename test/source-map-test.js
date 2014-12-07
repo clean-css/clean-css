@@ -462,6 +462,18 @@ vows.describe('source-map')
         assert.equal(2, fromCSS.length);
       }
     },
+    'complex input map with an existing file as target': {
+      'topic': new CleanCSS({ sourceMap: true, target: path.join(process.cwd(), 'test', 'data', 'source-maps', 'styles.css') }).minify('@import url(test/data/source-maps/styles.css);'),
+      'should have 2 mappings': function (minified) {
+        assert.equal(2, minified.sourceMap._mappings.length);
+      },
+      'should have 2 mappings to styles.less file': function (minified) {
+        var stylesSource = minified.sourceMap._mappings.filter(function (mapping) {
+          return mapping.source == 'styles.less';
+        });
+        assert.equal(2, stylesSource.length);
+      },
+    },
     'nested once': {
       'topic': new CleanCSS({ sourceMap: true }).minify('@import url(test/data/source-maps/nested/once.css);'),
       'should have 2 mappings': function (minified) {

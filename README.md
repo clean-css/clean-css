@@ -215,6 +215,49 @@ Clean-css will handle it automatically for you (since version 1.1) in the follow
   2. Use a combination of `relativeTo` and `root` options for absolute rebase (same as 2 in CLI).
   3. `root` takes precendence over `target` as in CLI.
 
+### How to generate source maps
+
+Source maps are supported since version 3.0.
+
+Additionally to mapping original CSS files, clean-css also supports input source maps, so minified styles can be mapped into their [LESS](http://lesscss.org/) or [SASS](http://sass-lang.com/) sources directly.
+
+Source maps are generated using [source-map](https://github.com/mozilla/source-map/) module from Mozilla.
+
+#### Using via CLI
+
+To create a source map, use `--source-map` switch, e.g.:
+
+```
+cleancss --source-map --output styles.min.css styles.css
+```
+
+Name of the output file is required, so a map file, named by adding `.map` suffix to output file name, can be created (styles.min.css.map in this case).
+
+#### Using via API
+
+To create a source map, use `sourceMap: true` option, e.g.:
+
+```javascript
+new CleanCSS({ sourceMap: true, target: pathToOutputDirectory }).minify(source, function (minified) {
+  // access minified.sourceMap for SourceMapGenerator object
+});
+```
+
+Using API you can also pass an input source map directly:
+
+```javascript
+new CleanCSS({ sourceMap: inputSourceMapAsString, target: pathToOutputDirectory }).minify(source, function (minified) {
+  // access minified.sourceMap to access SourceMapGenerator object
+  // see https://github.com/mozilla/source-map/#sourcemapgenerator for more details
+  // see https://github.com/jakubpawlowicz/clean-css/blob/master/bin/cleancss#L151 on how it's used in clean-css' CLI
+});
+```
+
+#### Caveats
+
+* Shorthand compacting is currently disabled when source maps are enabled, see [#399](https://github.com/GoalSmashers/clean-css/issues/399)
+* Sources inlined in source maps are not supported, see [#397](https://github.com/GoalSmashers/clean-css/issues/397)
+
 ### How to set compatibility mode
 
 Compatibility settings are controlled by `--compatibility` switch (CLI) and `compatibility` option (library mode).

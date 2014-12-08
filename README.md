@@ -297,6 +297,8 @@ In library mode you can also pass `compatiblity` as a hash of options.
   a flaw in clean-css' stateless mode.
 * Jan Michael Alonzo ([@jmalonzo](https://github.com/jmalonzo)) for a patch
   removing node.js' old `sys` package.
+* Luke Page ([@lukeapage](https://github.com/lukeapage)) for suggestions and testing the source maps feature.
+  Plus everyone else involved in [#125](https://github.com/jakubpawlowicz/clean-css/issues/125) for pushing it forward.
 * Timur Kristóf ([@Venemo](https://github.com/Venemo)) for an outstanding
   contribution of advanced property optimizer for 2.2 release.
 * Vincent Voyer ([@vvo](https://github.com/vvo)) for a patch with better

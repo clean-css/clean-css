@@ -1021,6 +1021,16 @@ path")}',
     target: path.join(process.cwd(), 'test.css'),
     relativeTo: path.join('test', 'data', 'partials-relative')
   }),
+  'urls rewriting - rebase off': cssContext({
+    'keeps urls the same': [
+      '@import url(base.css);',
+      'a{background:url(../partials/extra/down.gif) no-repeat}'
+    ],
+  }, {
+    target: path.join(process.cwd(), 'test.css'),
+    relativeTo: path.join('test', 'data', 'partials-relative'),
+    rebase: false
+  }),
   'fonts': cssContext({
     'keep format quotation': "@font-face{font-family:PublicVintage;src:url(/PublicVintage.otf) format('opentype')}",
     'remove font family quotation': [

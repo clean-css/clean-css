@@ -18,6 +18,7 @@
 * Speeds up advanced processing by shortening optimize loop.
 * Fixed issue [#125](https://github.com/GoalSmashers/clean-css/issues/125) - source maps!
 * Fixed issue [#344](https://github.com/GoalSmashers/clean-css/issues/344) - merging background-size into shorthand.
+* Fixed issue [#352](https://github.com/GoalSmashers/clean-css/issues/352) - honors rebasing in imported stylesheets.
 * Fixed issue [#360](https://github.com/GoalSmashers/clean-css/issues/360) - adds 7 extra CSS colors.
 * Fixed issue [#363](https://github.com/GoalSmashers/clean-css/issues/363) - `rem` units overriding `px`.
 * Fixed issue [#395](https://github.com/GoalSmashers/clean-css/issues/395) - unescaped brackets in data URIs.

@@ -223,9 +223,9 @@ Additionally to mapping original CSS files, clean-css also supports input source
 
 Source maps are generated using [source-map](https://github.com/mozilla/source-map/) module from Mozilla.
 
-#### Using via CLI
+#### Using CLI
 
-To create a source map, use `--source-map` switch, e.g.:
+To generate a source map, use `--source-map` switch, e.g.:
 
 ```
 cleancss --source-map --output styles.min.css styles.css
@@ -233,13 +233,15 @@ cleancss --source-map --output styles.min.css styles.css
 
 Name of the output file is required, so a map file, named by adding `.map` suffix to output file name, can be created (styles.min.css.map in this case).
 
-#### Using via API
+#### Using API
 
-To create a source map, use `sourceMap: true` option, e.g.:
+To generate a source map, use `sourceMap: true` option, e.g.:
 
 ```javascript
 new CleanCSS({ sourceMap: true, target: pathToOutputDirectory }).minify(source, function (minified) {
   // access minified.sourceMap for SourceMapGenerator object
+  // see https://github.com/mozilla/source-map/#sourcemapgenerator for more details
+  // see https://github.com/jakubpawlowicz/clean-css/blob/master/bin/cleancss#L151 on how it's used in clean-css' CLI
 });
 ```
 

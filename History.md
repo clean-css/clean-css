@@ -1,4 +1,4 @@
-[2.2.21 / 2014-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v2.2.20...v2.2.21)
+[2.2.21 / 2014-12-10](https://github.com/jakubpawlowicz/clean-css/compare/v2.2.20...v2.2.21)
 ==================
 
 * Backports fix to issue [#373](https://github.com/GoalSmashers/clean-css/issues/373) - background shorthand merging.

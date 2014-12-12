@@ -1407,6 +1407,10 @@ title']{display:block}",
     'after quoted content': [
       "/*a{display:block}*/@import url(test/data/partials/one.css);",
       ".one{color:red}"
+    ],
+    'with double underscore': [
+      '@import url(test/data/partials/with__double_underscore.css);',
+      '.one{color:green}'
     ]
   }, { root: process.cwd() }),
   'malformed but still valid @import': cssContext({

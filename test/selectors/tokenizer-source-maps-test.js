@@ -1,6 +1,7 @@
 var vows = require('vows');
 var assert = require('assert');
 var Tokenizer = require('../../lib/selectors/tokenizer');
+var SourceTracker = require('../../lib/utils/source-tracker');
 
 function sourceMapContext(group, specs) {
   var ctx = {};
@@ -16,7 +17,9 @@ function sourceMapContext(group, specs) {
       var target = specs[test][1][i];
 
       ctx[group + ' ' + test + ' - #' + (i + 1)] = {
-        topic: new Tokenizer({}, false, true).toTokens(specs[test][0]),
+        topic: typeof specs[test][0] == 'function' ?
+          specs[test][0]() :
+          new Tokenizer({ sourceTracker: new SourceTracker() }, false, true).toTokens(specs[test][0]),
         tokenized: tokenizedContext(target, i)
       };
     }
@@ -431,7 +434,12 @@ vows.describe('source-maps/analyzer')
   .addBatch(
     sourceMapContext('sources', {
       'one': [
-        '__ESCAPED_SOURCE_CLEAN_CSS(one.css)__a{}__ESCAPED_SOURCE_END_CLEAN_CSS__',
+        function () {
+          var tracker = new SourceTracker();
+          var tokenizer = new Tokenizer({ sourceTracker: tracker }, false, true);
+          var data = tracker.store('one.css', 'a{}');
+          return tokenizer.toTokens(data);
+        },
         [{
           kind: 'selector',
           value: [{ value: 'a', metadata: { line: 1, column: 0, source: 'one.css' } }],
@@ -439,7 +447,13 @@ vows.describe('source-maps/analyzer')
         }]
       ],
       'two': [
-        '__ESCAPED_SOURCE_CLEAN_CSS(one.css)__a{}__ESCAPED_SOURCE_END_CLEAN_CSS____ESCAPED_SOURCE_CLEAN_CSS(two.css)__\na{color:red}__ESCAPED_SOURCE_END_CLEAN_CSS__',
+        function () {
+          var tracker = new SourceTracker();
+          var tokenizer = new Tokenizer({ sourceTracker: tracker }, false, true);
+          var data1 = tracker.store('one.css', 'a{}');
+          var data2 = tracker.store('two.css', '\na{color:red}');
+          return tokenizer.toTokens(data1 + data2);
+        },
         [
           {
             kind: 'selector',

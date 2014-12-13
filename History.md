@@ -1,4 +1,4 @@
-[2.2.22 / 2014-12-xx](https://github.com/jakubpawlowicz/clean-css/compare/v2.2.21...v2.2.22)
+[2.2.22 / 2014-12-13](https://github.com/jakubpawlowicz/clean-css/compare/v2.2.21...v2.2.22)
 ==================
 
 * Backports fix to issue [#304](https://github.com/GoalSmashers/clean-css/issues/304) - background position merging.

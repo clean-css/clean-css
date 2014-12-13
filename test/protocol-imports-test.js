@@ -408,18 +408,16 @@ vows.describe('protocol imports').addBatch({
         .get('/remote.css')
         .reply(200, 'div{padding:0}');
 
-      var minifier = new CleanCSS();
-      var minified = minifier.minify(source);
-      this.callback(null, minifier, minified);
+      return new CleanCSS().minify(source);
     },
-    'should not raise errors': function(error, minifier) {
-      assert.isEmpty(minifier.errors);
+    'should not raise errors': function (error, minified) {
+      assert.isEmpty(minified.errors);
     },
-    'should raise warnings': function(error, minifier) {
-      assert.equal(minifier.warnings.length, 1);
-      assert.match(minifier.warnings[0], /no callback given/);
+    'should raise warnings': function (error, minified) {
+      assert.equal(minified.warnings.length, 1);
+      assert.match(minified.warnings[0], /no callback given/);
     },
-    'should process @import': function(error, minifier, minified) {
+    'should process @import': function (error, minified) {
       assert.equal(minified.styles, '@import url(http://127.0.0.1/remote.css);.one{color:red}');
     },
     teardown: function() {

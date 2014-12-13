@@ -24,6 +24,7 @@
 * Fixed issue [#373](https://github.com/GoalSmashers/clean-css/issues/373) - proper background shorthand merging.
 * Fixed issue [#395](https://github.com/GoalSmashers/clean-css/issues/395) - unescaped brackets in data URIs.
 * Fixed issue [#403](https://github.com/GoalSmashers/clean-css/issues/403) - tracking input files in source maps.
+* Fixed issue [#404](https://github.com/GoalSmashers/clean-css/issues/404) - no state sharing in API.
 * Refixed issue [#304](https://github.com/GoalSmashers/clean-css/issues/304) - background position merging.
 
 [2.2.19 / 2014-11-20](https://github.com/jakubpawlowicz/clean-css/compare/v2.2.18...v2.2.19)

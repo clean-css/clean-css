@@ -37,6 +37,7 @@ npm install clean-css
 * `noRebase` became `rebase` - make sure to reverse the value;
 * no longer possible to use `CleanCSS` as a function as `new CleanCSS` is always required;
 * `minify` method returns a hash instead of a string now, so use `new CleanCSS().minify(source).styles` instead of `new CleanCSS().minify(source)`. This change is due to addition of source-maps.
+* `stats`, `errors`, and `warnings` are now a properties of a hash returned by `minify` method (see above) instead of CleanCSS instance.
 
 ### How to upgrade clean-css from 1.x to 2.x?
 

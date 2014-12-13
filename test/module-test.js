@@ -32,8 +32,8 @@ vows.describe('module tests').addBatch({
     topic: function() {
       new CleanCSS().minify('a{color:#f00}', this.callback);
     },
-    'should correctly set context': function() {
-      assert.equal(true, this instanceof CleanCSS);
+    'should not set context': function() {
+      assert.equal(false, this instanceof CleanCSS);
     },
     'should yield no error': function(errors, minified) {
       /* jshint unused: false */
@@ -53,180 +53,141 @@ vows.describe('module tests').addBatch({
     }
   },
   'no debug': {
-    topic: function() {
-      var minifier = new CleanCSS();
-      minifier.minify('a{ color: #f00 }');
-      return minifier;
-    },
-    'should not populate stats hash': function(minifier) {
-      assert.deepEqual({}, minifier.stats);
+    'topic': new CleanCSS().minify('a{ color: #f00 }'),
+    'should not populate stats hash': function (error, minified) {
+      assert.deepEqual({}, minified.stats);
     }
   },
   'debug': {
-    topic: function() {
-      var minifier = new CleanCSS({ debug: true });
-      minifier.minify('a{ color: #f00 }');
-      return minifier;
+    'topic': new CleanCSS({ debug: true }).minify('a{ color: #f00 }'),
+    'should give time taken': function (error, minified) {
+      assert.isNumber(minified.stats.timeSpent);
     },
-    'should give time taken': function(minifier) {
-      assert.isNumber(minifier.stats.timeSpent);
+    'should give original size': function (error, minified) {
+      assert.equal(minified.stats.originalSize, 16);
     },
-    'should give original size': function(minifier) {
-      assert.equal(minifier.stats.originalSize, 16);
+    'should give minified size': function (error, minified) {
+      assert.equal(minified.stats.minifiedSize, 12);
     },
-    'should give minified size': function(minifier) {
-      assert.equal(minifier.stats.minifiedSize, 12);
-    },
-    'should give efficiency': function(minifier) {
-      assert.equal(minifier.stats.efficiency, 0.25);
+    'should give efficiency': function (error, minified) {
+      assert.equal(minified.stats.efficiency, 0.25);
     }
   },
   'no warnings': {
-    topic: function() {
-      var minifier = new CleanCSS();
-      minifier.minify('a{color:red}');
-      return minifier;
-    },
-    'if no reasons given': function(minifier) {
-      assert.deepEqual(minifier.warnings, []);
+    'topic': new CleanCSS().minify('a{ color: #f00 }'),
+    'if no reasons given': function (error, minified) {
+      assert.deepEqual(minified.warnings, []);
     }
   },
   'warnings': {
-    topic: function() {
-      var minifier = new CleanCSS({
-          root: 'test/data',
-          target: 'custom-warnings.css'
-        });
-      minifier.minify('a{color:red}');
-      return minifier;
-    },
-    'if both root and output used reasons given': function(minifier) {
-      assert.equal(minifier.warnings.length, 1);
-      assert.match(minifier.warnings[0], /Both 'root' and output file given/);
+    'topic': new CleanCSS({ root: 'test/data', target: 'custom-warnings.css' }).minify('a{color:red}'),
+    'if both root and output used reasons given': function (error, minified) {
+      assert.equal(minified.warnings.length, 1);
+      assert.match(minified.warnings[0], /Both 'root' and output file given/);
     }
   },
   'warnings on extra closing brace': {
-    topic: function() {
-      var minifier = new CleanCSS();
-      var minified = minifier.minify('a{display:block}}');
-      this.callback(null, minified, minifier);
-    },
-    'should minify correctly': function(error, minified) {
+    'topic': new CleanCSS().minify('a{display:block}}'),
+    'should minify correctly': function (error, minified) {
       assert.equal(minified.styles, 'a{display:block}');
     },
-    'should raise no errors': function(error, minified, minifier) {
-      assert.equal(minifier.errors.length, 0);
+    'should raise no errors': function (error, minified) {
+      assert.equal(minified.errors.length, 0);
     },
-    'should raise one warning': function(error, minified, minifier) {
-      assert.equal(minifier.warnings.length, 1);
-      assert.equal(minifier.warnings[0], 'Unexpected \'}\' in \'a{display:block}}\'. Ignoring.');
+    'should raise one warning': function (error, minified) {
+      assert.equal(minified.warnings.length, 1);
+      assert.equal(minified.warnings[0], 'Unexpected \'}\' in \'a{display:block}}\'. Ignoring.');
     }
   },
   'warnings on unexpected body': {
-    topic: function() {
-      var minifier = new CleanCSS();
-      var minified = minifier.minify('a{display:block}color:#535353}p{color:red}');
-      this.callback(null, minified, minifier);
-    },
-    'should minify correctly': function(error, minified) {
+    'topic': new CleanCSS().minify('a{display:block}color:#535353}p{color:red}'),
+    'should minify correctly': function (error, minified) {
       assert.equal(minified.styles, 'a{display:block}p{color:red}');
     },
-    'should raise no errors': function(error, minified, minifier) {
-      assert.equal(minifier.errors.length, 0);
+    'should raise no errors': function (error, minified) {
+      assert.equal(minified.errors.length, 0);
     },
-    'should raise one warning': function(error, minified, minifier) {
-      assert.equal(minifier.warnings.length, 1);
-      assert.equal(minifier.warnings[0], 'Unexpected content: \'color:#535353}\'. Ignoring.');
+    'should raise one warning': function (error, minified) {
+      assert.equal(minified.warnings.length, 1);
+      assert.equal(minified.warnings[0], 'Unexpected content: \'color:#535353}\'. Ignoring.');
     }
   },
   'warnings on invalid properties': {
-    topic: function() {
-      var minifier = new CleanCSS();
-      var minified = minifier.minify('a{color:}');
-      this.callback(null, minified, minifier);
-    },
-    'should minify correctly': function(error, minified) {
+    'topic': new CleanCSS().minify('a{color:}'),
+    'should minify correctly': function (error, minified) {
       assert.equal(minified.styles, '');
     },
-    'should raise no errors': function(error, minified, minifier) {
-      assert.equal(minifier.errors.length, 0);
+    'should raise no errors': function (error, minified) {
+      assert.equal(minified.errors.length, 0);
     },
-    'should raise one warning': function(error, minified, minifier) {
-      assert.equal(minifier.warnings.length, 1);
-      assert.equal(minifier.warnings[0], 'Empty property \'color\' inside \'a\' selector. Ignoring.');
+    'should raise one warning': function (error, minified) {
+      assert.equal(minified.warnings.length, 1);
+      assert.equal(minified.warnings[0], 'Empty property \'color\' inside \'a\' selector. Ignoring.');
     }
   },
   'warnings on broken urls': {
-    topic: function () {
-      var minifier = new CleanCSS();
-      var minified = minifier.minify('a{background:url(image/}');
-      this.callback(null, minified, minifier);
-    },
-    'should output correct content': function(error, minified) {
+    'topic': new CleanCSS().minify('a{background:url(image/}'),
+    'should output correct content': function (error, minified) {
       assert.equal(minified.styles, 'a{background:url(image/}');
     },
-    'should raise no errors': function(error, minified, minifier) {
-      assert.equal(minifier.errors.length, 0);
+    'should raise no errors': function (error, minified) {
+      assert.equal(minified.errors.length, 0);
     },
-    'should raise one warning': function(error, minified, minifier) {
-      assert.equal(minifier.warnings.length, 1);
-      assert.equal(minifier.warnings[0], 'Broken URL declaration: \'url(image/\'.');
+    'should raise one warning': function (error, minified) {
+      assert.equal(minified.warnings.length, 1);
+      assert.equal(minified.warnings[0], 'Broken URL declaration: \'url(image/\'.');
     }
   },
   'warnings on broken imports': {
-    topic: function () {
-      var minifier = new CleanCSS();
-      var minified = minifier.minify('@impor');
-      this.callback(null, minified, minifier);
-    },
-    'should output correct content': function(error, minified) {
+    'topic': new CleanCSS().minify('@impor'),
+    'should output correct content': function (error, minified) {
       assert.equal(minified.styles, '');
     },
-    'should raise no errors': function(error, minified, minifier) {
-      assert.equal(minifier.errors.length, 0);
+    'should raise no errors': function (error, minified) {
+      assert.equal(minified.errors.length, 0);
     },
-    'should raise one warning': function(error, minified, minifier) {
-      assert.equal(minifier.warnings.length, 1);
-      assert.equal(minifier.warnings[0], 'Broken declaration: \'@impor\'.');
+    'should raise one warning': function (error, minified) {
+      assert.equal(minified.warnings.length, 1);
+      assert.equal(minified.warnings[0], 'Broken declaration: \'@impor\'.');
     }
   },
   'warnings on broken comments': {
-    topic: function () {
-      var minifier = new CleanCSS();
-      var minified = minifier.minify('a{}/* ');
-      this.callback(null, minified, minifier);
-    },
-    'should output correct content': function(error, minified) {
+    'topic': new CleanCSS().minify('a{}/* '),
+    'should output correct content': function (error, minified) {
       assert.equal(minified.styles, '');
     },
-    'should raise no errors': function(error, minified, minifier) {
-      assert.equal(minifier.errors.length, 0);
+    'should raise no errors': function (error, minified) {
+      assert.equal(minified.errors.length, 0);
     },
-    'should raise one warning': function(error, minified, minifier) {
-      assert.equal(minifier.warnings.length, 1);
-      assert.equal(minifier.warnings[0], 'Broken comment: \'/* \'.');
+    'should raise one warning': function (error, minified) {
+      assert.equal(minified.warnings.length, 1);
+      assert.equal(minified.warnings[0], 'Broken comment: \'/* \'.');
     }
   },
   'no errors': {
-    topic: function() {
-      var minifier = new CleanCSS();
-      minifier.minify('a{color:red}');
-      return minifier;
-    },
-    'if no reasons given': function(minifier) {
-      assert.deepEqual(minifier.errors, []);
+    'topic': new CleanCSS().minify('a{color:red}'),
+    'if no reasons given': function (error, minified) {
+      assert.deepEqual(minified.errors, []);
     }
   },
   'errors': {
-    topic: function() {
-      return new CleanCSS();
-    },
+    'topic': new CleanCSS(),
     'if both root and output used reasons given': function(minifier) {
       assert.doesNotThrow(function() {
         minifier.minify('@import url(/some/fake/file);', function(errors) {
           assert.equal(errors.length, 1);
           assert.equal(errors[0], 'Broken @import declaration of "/some/fake/file"');
         });
+      });
+    }
+  },
+  'errors when re-running minification': {
+    'topic': new CleanCSS(),
+    'if both root and output used reasons given': function (minifier) {
+      minifier.minify('@import url(/some/fake/file);');
+      minifier.minify('@import url(/some/fake/file);', function(errors) {
+        assert.equal(errors.length, 1);
+        assert.equal(errors[0], 'Broken @import declaration of "/some/fake/file"');
       });
     }
   },

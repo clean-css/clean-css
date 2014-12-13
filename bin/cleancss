@@ -136,16 +136,16 @@ if (options.sources) {
 function minify(data) {
   new CleanCSS(cleanOptions).minify(data, function(errors, minified) {
     if (cleanOptions.debug) {
-      console.error('Original: %d bytes', this.stats.originalSize);
-      console.error('Minified: %d bytes', this.stats.minifiedSize);
-      console.error('Efficiency: %d%', ~~(this.stats.efficiency * 10000) / 100.0);
-      console.error('Time spent: %dms', this.stats.timeSpent);
+      console.error('Original: %d bytes', minified.stats.originalSize);
+      console.error('Minified: %d bytes', minified.stats.minifiedSize);
+      console.error('Efficiency: %d%', ~~(minified.stats.efficiency * 10000) / 100.0);
+      console.error('Time spent: %dms', minified.stats.timeSpent);
     }
 
-    outputFeedback(this.errors, true);
-    outputFeedback(this.warnings);
+    outputFeedback(minified.errors, true);
+    outputFeedback(minified.warnings);
 
-    if (this.errors.length > 0)
+    if (minified.errors.length > 0)
       process.exit(1);
 
     if (minified.sourceMap) {

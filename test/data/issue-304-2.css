@@ -1,0 +1,6 @@
+.one {
+  background: url(one.png) no-repeat right 10px top 10px, linear-gradient(0deg, #efefef 0%, #ffffff 100%);
+}
+.two {
+  background: url(two.png) no-repeat right 9px top 15px/9px 7px, linear-gradient(-179deg, #FFFFFF 0%, #F9F9F9 100%);
+}

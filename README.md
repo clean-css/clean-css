@@ -242,7 +242,7 @@ To generate a source map, use `sourceMap: true` option, e.g.:
 new CleanCSS({ sourceMap: true, target: pathToOutputDirectory }).minify(source, function (minified) {
   // access minified.sourceMap for SourceMapGenerator object
   // see https://github.com/mozilla/source-map/#sourcemapgenerator for more details
-  // see https://github.com/jakubpawlowicz/clean-css/blob/master/bin/cleancss#L151 on how it's used in clean-css' CLI
+  // see https://github.com/jakubpawlowicz/clean-css/blob/master/bin/cleancss#L132 on how it's used in clean-css' CLI
 });
 ```
 
@@ -252,7 +252,7 @@ Using API you can also pass an input source map directly:
 new CleanCSS({ sourceMap: inputSourceMapAsString, target: pathToOutputDirectory }).minify(source, function (minified) {
   // access minified.sourceMap to access SourceMapGenerator object
   // see https://github.com/mozilla/source-map/#sourcemapgenerator for more details
-  // see https://github.com/jakubpawlowicz/clean-css/blob/master/bin/cleancss#L151 on how it's used in clean-css' CLI
+  // see https://github.com/jakubpawlowicz/clean-css/blob/master/bin/cleancss#L132 on how it's used in clean-css' CLI
 });
 ```
 

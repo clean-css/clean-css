@@ -48,69 +48,50 @@ commands.on('--help', function() {
 
 commands.parse(process.argv);
 
-var options = {
-  sources: null,
-  target: null
-};
-var cleanOptions = {};
-var fromStdin = !process.env.__DIRECT__ && !process.stdin.isTTY;
-
 // If no sensible data passed in just print help and exit
+var fromStdin = !process.env.__DIRECT__ && !process.stdin.isTTY;
 if (!fromStdin && commands.args.length === 0) {
   commands.outputHelp();
   return 0;
 }
 
 // Now coerce commands into CleanCSS configuration...
-if (commands.output)
-  cleanOptions.target = options.target = commands.output;
-if (commands.keepLineBreaks)
-  cleanOptions.keepBreaks = true;
-if (commands.s1)
-  cleanOptions.keepSpecialComments = 1;
-if (commands.s0)
-  cleanOptions.keepSpecialComments = 0;
-if (commands.root)
-  cleanOptions.root = commands.root;
-if (commands.skipImport)
-  cleanOptions.processImport = false;
-if (commands.skipRebase)
-  cleanOptions.rebase = false;
-if (commands.skipAdvanced)
-  cleanOptions.advanced = false;
-if (commands.skipAggressiveMerging)
-  cleanOptions.aggressiveMerging = false;
-if (commands.skipShorthandCompacting)
-  cleanOptions.shorthandCompacting = false;
-if (commands.compatibility)
-  cleanOptions.compatibility = commands.compatibility;
-if (commands.sourceMap)
-  cleanOptions.sourceMap = true;
-if (commands.roundingPrecision !== undefined)
-  cleanOptions.roundingPrecision = commands.roundingPrecision;
-if (commands.debug)
-  cleanOptions.debug = true;
-if (commands.timeout)
-  cleanOptions.inliner = { timeout: parseFloat(commands.timeout) * 1000 };
+var options = {
+  advanced: commands.skipAdvanced ? false : true,
+  aggressiveMerging: commands.skipAggressiveMerging ? false : true,
+  compatibility: commands.compatibility,
+  debug: commands.debug,
+  inliner: commands.timeout ? { timeout: parseFloat(commands.timeout) * 1000 } : undefined,
+  keepBreaks: !!commands.keepLineBreaks,
+  keepSpecialComments: commands.s0 ? 0 : (commands.s1 ? 1 : '*'),
+  processImport: commands.skipImport ? false : true,
+  rebase: commands.skipRebase ? false : true,
+  root: commands.root,
+  roundingPrecision: commands.roundingPrecision,
+  shorthandCompacting: commands.skipShorthandCompacting ? false : true,
+  sourceMap: commands.sourceMap,
+  target: commands.output
+};
+
 if (commands.args.length > 0) {
-  var relativeTo = (cleanOptions.rebase ? cleanOptions.root : false) || commands.args[0];
-  cleanOptions.relativeTo = path.dirname(path.resolve(relativeTo));
+  var relativeTo = (options.rebase ? options.root : false) || commands.args[0];
+  options.relativeTo = path.dirname(path.resolve(relativeTo));
 
   options.sources = commands.args.map(function(source) {
     var isRemote = /^https?:\/\//.test(source);
 
-    if (cleanOptions.processImport === false)
+    if (options.processImport === false)
       source += '@shallow';
 
     return isRemote ?
       source :
-      path.relative(cleanOptions.relativeTo, path.resolve(source));
+      path.relative(options.relativeTo, path.resolve(source));
   });
 }
 
-if (cleanOptions.sourceMap && !cleanOptions.target) {
+if (options.sourceMap && !options.target) {
   outputFeedback(['Source maps will not be built because you have not specified an output file.'], true);
-  cleanOptions.sourceMap = false;
+  options.sourceMap = false;
 }
 
 // ... and do the magic!
@@ -134,8 +115,8 @@ if (options.sources) {
 }
 
 function minify(data) {
-  new CleanCSS(cleanOptions).minify(data, function(errors, minified) {
-    if (cleanOptions.debug) {
+  new CleanCSS(options).minify(data, function (errors, minified) {
+    if (options.debug) {
       console.error('Original: %d bytes', minified.stats.originalSize);
       console.error('Minified: %d bytes', minified.stats.minifiedSize);
       console.error('Efficiency: %d%', ~~(minified.stats.efficiency * 10000) / 100.0);

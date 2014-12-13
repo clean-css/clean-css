@@ -2191,8 +2191,8 @@ title']{display:block}",
     ]
   }),
   'background size with -properties.backgroundSizeMerging': cssContext({
-    'standard': 'div{background:url(image.png) no-repeat center;background-size:cover}',
-    'prefix': 'div{-webkit-background:url(image.png) no-repeat center;-webkit-background-size:cover}'
+    'standard': 'div{background:url(image.png) center no-repeat;background-size:cover}',
+    'prefix': 'div{-webkit-background:url(image.png) center no-repeat;-webkit-background-size:cover}'
   }, { compatibility: '-properties.backgroundSizeMerging' }),
   'multiple backgrounds': cssContext({
     'should not produce longer values': 'p{background:no-repeat;background-position:100% 0,0 100%,100% 100%,50% 50%}'

@@ -233,5 +233,55 @@ vows.describe('module tests').addBatch({
     'should include source map': function (minified) {
       assert.instanceOf(minified.sourceMap, SourceMapGenerator);
     }
+  },
+  'accepts a list of source files as array': {
+    'rebased to the current dir': {
+      'relative': {
+        'topic': new CleanCSS().minify(['test/data/partials/one.css', 'test/data/partials/three.css']),
+        'should give right output': function (minified) {
+          assert.equal(minified.styles, '.one{color:red}.three{background-image:url(test/data/partials/extra/down.gif)}');
+        }
+      },
+      'absolute': {
+        'topic': new CleanCSS({ relativeTo: process.cwd() }).minify([path.resolve('test/data/partials/one.css'), path.resolve('test/data/partials/three.css')]),
+        'should give right output': function (minified) {
+          assert.equal(minified.styles, '.one{color:red}.three{background-image:url(test/data/partials/extra/down.gif)}');
+        }
+      }
+    },
+    'rebased to a path': {
+      'relative': {
+        'topic': new CleanCSS({ relativeTo: 'test/data' }).minify(['test/data/partials/one.css', 'test/data/partials/three.css']),
+        'should give right output': function (minified) {
+          assert.equal(minified.styles, '.one{color:red}.three{background-image:url(partials/extra/down.gif)}');
+        }
+      },
+      'absolute': {
+        'topic': new CleanCSS({ relativeTo: 'test/data' }).minify([path.resolve('test/data/partials/one.css'), path.resolve('test/data/partials/three.css')]),
+        'should give right output': function (minified) {
+          assert.equal(minified.styles, '.one{color:red}.three{background-image:url(partials/extra/down.gif)}');
+        }
+      }
+    },
+    'rebased to root': {
+      'relative': {
+        'topic': new CleanCSS({ root: 'test/data', relativeTo: 'test/data' }).minify(['test/data/partials/one.css', 'test/data/partials/three.css']),
+        'should give right output': function (minified) {
+          assert.equal(minified.styles, '.one{color:red}.three{background-image:url(/partials/extra/down.gif)}');
+        }
+      },
+      'absolute': {
+        'topic': new CleanCSS({ root: 'test/data', relativeTo: 'test/data' }).minify([path.resolve('test/data/partials/one.css'), path.resolve('test/data/partials/three.css')]),
+        'should give right output': function (minified) {
+          assert.equal(minified.styles, '.one{color:red}.three{background-image:url(/partials/extra/down.gif)}');
+        }
+      }
+    },
+    'with imports off': {
+      'topic': new CleanCSS({ processImport: false }).minify(['./test/data/partials/two.css']),
+      'should give right output': function (minified) {
+        assert.equal(minified.styles, '@import url(one.css);@import url(extra/three.css);@import url(./extra/four.css);.two{color:#fff}');
+      }
+    }
   }
 }).export(module);

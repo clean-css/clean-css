@@ -73,21 +73,8 @@ var options = {
   target: commands.output
 };
 
-if (commands.args.length > 0) {
-  var relativeTo = (options.rebase ? options.root : false) || commands.args[0];
-  options.relativeTo = path.dirname(path.resolve(relativeTo));
-
-  options.sources = commands.args.map(function(source) {
-    var isRemote = /^https?:\/\//.test(source);
-
-    if (options.processImport === false)
-      source += '@shallow';
-
-    return isRemote ?
-      source :
-      path.relative(options.relativeTo, path.resolve(source));
-  });
-}
+if (options.root || commands.args.length > 0)
+  options.relativeTo = path.dirname(path.resolve(options.root || commands.args[0]));
 
 if (options.sourceMap && !options.target) {
   outputFeedback(['Source maps will not be built because you have not specified an output file.'], true);
@@ -95,13 +82,8 @@ if (options.sourceMap && !options.target) {
 }
 
 // ... and do the magic!
-if (options.sources) {
-  var data = options.sources
-    .map(function(source) {
-      return '@import url(' + source + ');';
-    })
-    .join('');
-  minify(data);
+if (commands.args.length > 0) {
+  minify(commands.args);
 } else {
   var stdin = process.openStdin();
   stdin.setEncoding('utf-8');

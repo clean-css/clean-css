@@ -48,21 +48,21 @@ var deleteFile = function(filename) {
 exports.commandsSuite = vows.describe('binary commands').addBatch({
   'no options': binaryContext('', {
     'should output help': function(stdout) {
-      assert.equal(/Usage:/.test(stdout), true);
+      assert.match(stdout, /Usage[:]/);
     }
   }),
   'help': binaryContext('-h', {
     'should output help': function(error, stdout) {
-      assert.equal(/Usage:/.test(stdout), true);
+      assert.match(stdout, /Usage[:]/);
     },
     'should output one file example': function(error, stdout) {
-      assert.equal(stdout.indexOf('cleancss -o one-min.css one.css') > -1, true);
+      assert.include(stdout, 'cleancss -o one-min.css one.css');
     },
     'should output multiple files example': function(error, stdout) {
-      assert.equal(stdout.indexOf('cat one.css two.css three.css | cleancss -o merged-and-minified.css') > -1, true);
+      assert.include(stdout, 'cat one.css two.css three.css | cleancss -o merged-and-minified.css');
     },
     'should output gzipping multiple files example': function(error, stdout) {
-      assert.equal(stdout.indexOf('cat one.css two.css three.css | cleancss | gzip -9 -c > merged-minified-and-gzipped.css.gz') > -1, true);
+      assert.include(stdout, 'cat one.css two.css three.css | cleancss | gzip -9 -c > merged-minified-and-gzipped.css.gz');
     }
   }),
   'version': binaryContext('-v', {
@@ -110,7 +110,7 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
   }),
   'to output file with debug info': pipedContext('a{color: #f00;}', '-d -o debug.css', {
     'should output nothing to stdout and debug info to stderr': function(error, stdout, stderr) {
-      assert.equal(stdout, '');
+      assert.isEmpty(stdout);
       assert.notEqual(stderr, '');
       assert.include(stderr, 'Time spent:');
       assert.include(stderr, 'Original: 16 bytes');
@@ -132,7 +132,7 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
   }),
   'no relative to path': binaryContext('./test/data/partials-absolute/base.css', {
     'should not be able to resolve it fully': function(error, stdout, stderr) {
-      assert.equal(stdout, '');
+      assert.isEmpty(stdout);
       assert.notEqual(error, null);
       assert.notEqual(stderr, '');
     }
@@ -155,12 +155,12 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
   }),
   'to file': binaryContext('-o ./reset1-min.css ./test/data/reset.css', {
     'should give no output': function(error, stdout) {
-      assert.equal(stdout, '');
+      assert.isEmpty(stdout);
     },
     'should minimize': function() {
-      var minimized = readFile('./test/data/reset-min.css');
-      var target = readFile('./reset1-min.css');
-      assert.equal(minimized, target);
+      var preminified = readFile('./test/data/reset-min.css');
+      var minified = readFile('./reset1-min.css');
+      assert.equal(minified, preminified);
     },
     teardown: function() {
       deleteFile('./reset1-min.css');
@@ -213,7 +213,7 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
   'complex import and url rebasing': {
     absolute: binaryContext('-r ./test/data/129-assets ./test/data/129-assets/assets/ui.css', {
       'should rebase urls correctly': function(error, stdout) {
-        assert.equal(error, null);
+        assert.isNull(error);
         assert.include(stdout, 'url(/components/bootstrap/images/glyphs.gif)');
         assert.include(stdout, 'url(/components/jquery-ui/images/prev.gif)');
         assert.include(stdout, 'url(/components/jquery-ui/images/next.gif)');
@@ -234,7 +234,7 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
   'complex import and skipped url rebasing': {
     absolute: binaryContext('-r ./test/data/129-assets --skip-rebase ./test/data/129-assets/assets/ui.css', {
       'should rebase urls correctly': function(error, stdout) {
-        assert.equal(error, null);
+        assert.isNull(error);
         assert.include(stdout, 'url(../images/glyphs.gif)');
         assert.include(stdout, 'url(../images/prev.gif)');
         assert.include(stdout, 'url(../images/next.gif)');
@@ -252,7 +252,7 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
     },
     'of a file': binaryContext('http://127.0.0.1:31991/present.css', {
       succeeds: function(error, stdout) {
-        assert.equal(error, null);
+        assert.isNull(error);
         assert.equal(stdout, 'p{font-size:13px}');
       }
     }),
@@ -276,7 +276,7 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
       assert.include(stderr, 'Broken @import declaration of "http://localhost:24682/timeout.css" - timeout');
     },
     'should output empty response': function(error, stdout) {
-      assert.equal(stdout, '');
+      assert.isEmpty(stdout);
     },
     teardown: function() {
       this.server.close();

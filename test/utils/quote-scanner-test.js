@@ -10,7 +10,7 @@ vows.describe(QuoteScanner)
         var index = 0;
         new QuoteScanner(topic).each(function iterator() { index++; });
 
-        assert.equal(0, index);
+        assert.equal(index, 0);
       }
     },
     'one single quote': {
@@ -20,12 +20,12 @@ vows.describe(QuoteScanner)
         new QuoteScanner(topic).each(function iterator(match, tokensSoFar, nextStart) {
           index++;
 
-          assert.equal('\'one quote\'', match);
-          assert.deepEqual(['text with '], tokensSoFar);
-          assert.equal(10, nextStart);
+          assert.equal(match, '\'one quote\'');
+          assert.deepEqual(tokensSoFar, ['text with ']);
+          assert.equal(nextStart, 10);
         });
 
-        assert.equal(1, index);
+        assert.equal(index, 1);
       }
     },
     'one double quote': {
@@ -35,12 +35,12 @@ vows.describe(QuoteScanner)
         new QuoteScanner(topic).each(function iterator(match, tokensSoFar, nextStart) {
           index++;
 
-          assert.equal('"one quote"', match);
-          assert.deepEqual(['text with '], tokensSoFar);
-          assert.equal(10, nextStart);
+          assert.equal(match, '"one quote"');
+          assert.deepEqual(tokensSoFar, ['text with ']);
+          assert.equal(nextStart, 10);
         });
 
-        assert.equal(1, index);
+        assert.equal(index, 1);
       }
     },
     'mixed quotes': {
@@ -50,12 +50,12 @@ vows.describe(QuoteScanner)
         new QuoteScanner(topic).each(function iterator(match, tokensSoFar, nextStart) {
           index++;
 
-          assert.equal('"one \'quote\'"', match);
-          assert.deepEqual(['text with '], tokensSoFar);
-          assert.equal(10, nextStart);
+          assert.equal(match, '"one \'quote\'"');
+          assert.deepEqual(tokensSoFar, ['text with ']);
+          assert.equal(nextStart, 10);
         });
 
-        assert.equal(1, index);
+        assert.equal(index, 1);
       }
     },
     'escaped quotes': {
@@ -65,12 +65,12 @@ vows.describe(QuoteScanner)
         new QuoteScanner(topic).each(function iterator(match, tokensSoFar, nextStart) {
           index++;
 
-          assert.equal('"one \\"quote"', match);
-          assert.deepEqual(['text with '], tokensSoFar);
-          assert.equal(10, nextStart);
+          assert.equal(match, '"one \\"quote"');
+          assert.deepEqual(tokensSoFar, ['text with ']);
+          assert.equal(nextStart, 10);
         });
 
-        assert.equal(1, index);
+        assert.equal(index, 1);
       }
     },
     'two quotes': {
@@ -81,17 +81,17 @@ vows.describe(QuoteScanner)
           index++;
 
           if (index == 1) {
-            assert.equal('"one \\"quote"', match);
-            assert.deepEqual(['text with '], tokensSoFar);
-            assert.equal(10, nextStart);
+            assert.equal(match, '"one \\"quote"');
+            assert.deepEqual(tokensSoFar, ['text with ']);
+            assert.equal(nextStart, 10);
           } else {
-            assert.equal('\'another one\'', match);
-            assert.deepEqual(['text with ', ' and '], tokensSoFar);
-            assert.equal(28, nextStart);
+            assert.equal(match, '\'another one\'');
+            assert.deepEqual(tokensSoFar, ['text with ', ' and ']);
+            assert.equal(nextStart, 28);
           }
         });
 
-        assert.equal(2, index);
+        assert.equal(index, 2);
       }
     }
   })

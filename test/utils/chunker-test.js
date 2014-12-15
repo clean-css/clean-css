@@ -19,10 +19,10 @@ vows.describe(Chunker)
         assert.isFalse(chunker.isEmpty());
       },
       'breaks at first brace': function (chunker) {
-        assert.equal('a{color:red}', chunker.next());
+        assert.equal(chunker.next(), 'a{color:red}');
       },
       'breaks at second brace': function (chunker) {
-        assert.equal('p{}', chunker.next());
+        assert.equal(chunker.next(), 'p{}');
       }
     },
     'comments': {
@@ -31,10 +31,10 @@ vows.describe(Chunker)
         assert.isFalse(chunker.isEmpty());
       },
       'breaks at first brace': function (chunker) {
-        assert.equal('/* one */', chunker.next());
+        assert.equal(chunker.next(), '/* one */');
       },
       'breaks at second brace': function (chunker) {
-        assert.equal(' /* two */', chunker.next());
+        assert.equal(chunker.next(), ' /* two */');
       }
     }
   })

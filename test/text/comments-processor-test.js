@@ -8,18 +8,18 @@ var otherLineBreak = lineBreak == '\n' ? '\r\n' : '\n';
 function processorContext(name, context, keepSpecialComments, keepBreaks, saveWaypoints) {
   var vowContext = {};
 
-  function escaped (targetCSS) {
-    return function (sourceCSS) {
-      var result = new CommentsProcessor(null, keepSpecialComments, keepBreaks, saveWaypoints).escape(sourceCSS);
-      assert.equal(result, targetCSS);
+  function escaped (expected) {
+    return function (source) {
+      var escaped = new CommentsProcessor(null, keepSpecialComments, keepBreaks, saveWaypoints).escape(source);
+      assert.equal(escaped, expected);
     };
   }
 
-  function restored (targetCSS) {
-    return function (sourceCSS) {
+  function restored (expected) {
+    return function (source) {
       var processor = new CommentsProcessor(null, keepSpecialComments, keepBreaks, saveWaypoints);
-      var result = processor.restore(processor.escape(sourceCSS));
-      assert.equal(result, targetCSS);
+      var restored = processor.restore(processor.escape(source));
+      assert.equal(restored, expected);
     };
   }
 

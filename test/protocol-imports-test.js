@@ -21,13 +21,13 @@ vows.describe('protocol imports').addBatch({
       new CleanCSS().minify('@import url(http://127.0.0.1/missing.css);a{color:red}', this.callback);
     },
     'should raise error': function(errors, minified) {
-      assert.equal(errors.length, 1);
+      assert.lengthOf(errors, 1);
     },
     'should ignore @import': function(errors, minified) {
       assert.equal(minified.styles, '@import url(http://127.0.0.1/missing.css);a{color:red}');
     },
     teardown: function() {
-      assert.equal(this.reqMocks.isDone(), true);
+      assert.isTrue(this.reqMocks.isDone());
       nock.cleanAll();
     }
   },
@@ -46,7 +46,7 @@ vows.describe('protocol imports').addBatch({
       assert.equal(minified.styles, 'p{font-size:13px}a{color:red}');
     },
     teardown: function() {
-      assert.equal(this.reqMocks.isDone(), true);
+      assert.isTrue(this.reqMocks.isDone());
       nock.cleanAll();
     }
   },
@@ -65,7 +65,7 @@ vows.describe('protocol imports').addBatch({
       assert.equal(minified.styles, 'p{font-size:13px}');
     },
     teardown: function() {
-      assert.equal(this.reqMocks.isDone(), true);
+      assert.isTrue(this.reqMocks.isDone());
       nock.cleanAll();
     }
   },
@@ -84,7 +84,7 @@ vows.describe('protocol imports').addBatch({
       assert.equal(minified.styles, 'p{font-size:13px}a{color:red}');
     },
     teardown: function() {
-      assert.equal(this.reqMocks.isDone(), true);
+      assert.isTrue(this.reqMocks.isDone());
       nock.cleanAll();
     }
   },
@@ -103,7 +103,7 @@ vows.describe('protocol imports').addBatch({
       assert.equal(minified.styles, '@media screen{p{font-size:13px}}a{color:red}');
     },
     teardown: function() {
-      assert.equal(this.reqMocks.isDone(), true);
+      assert.isTrue(this.reqMocks.isDone());
       nock.cleanAll();
     }
   },
@@ -127,8 +127,8 @@ vows.describe('protocol imports').addBatch({
       assert.equal(minified.styles, 'body{margin:0}div{padding:0}p{font-size:13px}a{color:red}');
     },
     teardown: function() {
-      assert.equal(this.reqMocks1.isDone(), true);
-      assert.equal(this.reqMocks2.isDone(), true);
+      assert.isTrue(this.reqMocks1.isDone());
+      assert.isTrue(this.reqMocks2.isDone());
       nock.cleanAll();
     }
   },
@@ -149,7 +149,7 @@ vows.describe('protocol imports').addBatch({
       assert.equal(minified.styles, 'body{margin:0}p{font-size:13px}a{color:red}');
     },
     teardown: function() {
-      assert.equal(this.reqMocks.isDone(), true);
+      assert.isTrue(this.reqMocks.isDone());
       nock.cleanAll();
     }
   },
@@ -164,14 +164,14 @@ vows.describe('protocol imports').addBatch({
       new CleanCSS().minify('@import url(http://127.0.0.1/nested/present.css);a{color:red}', this.callback);
     },
     'should not raise errors': function(errors, minified) {
-      assert.equal(errors.length, 1);
+      assert.lengthOf(errors, 1);
       assert.equal(errors[0], 'Broken @import declaration of "http://127.0.0.1/missing.css" - error 404');
     },
     'should process @import': function(errors, minified) {
       assert.equal(minified.styles, '@import url(http://127.0.0.1/missing.css);p{font-size:13px}a{color:red}');
     },
     teardown: function() {
-      assert.equal(this.reqMocks.isDone(), true);
+      assert.isTrue(this.reqMocks.isDone());
       nock.cleanAll();
     }
   },
@@ -190,7 +190,7 @@ vows.describe('protocol imports').addBatch({
       assert.equal(minified.styles, 'a{background:url(http://127.0.0.1/test.png)}');
     },
     teardown: function() {
-      assert.equal(this.reqMocks.isDone(), true);
+      assert.isTrue(this.reqMocks.isDone());
       nock.cleanAll();
     }
   },
@@ -211,7 +211,7 @@ vows.describe('protocol imports').addBatch({
       assert.equal(minified.styles, 'a{background:url(http://127.0.0.1/deeply/images/test.png)}');
     },
     teardown: function() {
-      assert.equal(this.reqMocks.isDone(), true);
+      assert.isTrue(this.reqMocks.isDone());
       nock.cleanAll();
     }
   },
@@ -232,7 +232,7 @@ vows.describe('protocol imports').addBatch({
       assert.equal(minified.styles, 'a{background:url(../images/test.png)}');
     },
     teardown: function() {
-      assert.equal(this.reqMocks.isDone(), true);
+      assert.isTrue(this.reqMocks.isDone());
       nock.cleanAll();
     }
   },
@@ -241,7 +241,7 @@ vows.describe('protocol imports').addBatch({
       new CleanCSS().minify('@import url(http://notdefined.127.0.0.1/custom.css);a{color:red}', this.callback);
     },
     'should not raise errors': function(errors, minified) {
-      assert.equal(errors.length, 1);
+      assert.lengthOf(errors, 1);
       assert.include(errors[0], 'Broken @import declaration of "http://notdefined.127.0.0.1/custom.css"');
     },
     'should process @import': function(errors, minified) {
@@ -265,7 +265,7 @@ vows.describe('protocol imports').addBatch({
       assert.equal(minified.styles, 'body{margin:0}a{color:red}');
     },
     teardown: function() {
-      assert.equal(this.reqMocks.isDone(), true);
+      assert.isTrue(this.reqMocks.isDone());
       nock.cleanAll();
     }
   },
@@ -286,7 +286,7 @@ vows.describe('protocol imports').addBatch({
       assert.equal(minified.styles, 'body{margin:0}a{color:red}');
     },
     teardown: function() {
-      assert.equal(this.reqMocks.isDone(), true);
+      assert.isTrue(this.reqMocks.isDone());
       nock.cleanAll();
     }
   },
@@ -306,7 +306,7 @@ vows.describe('protocol imports').addBatch({
       });
     },
     'should raise errors': function(errors, minified) {
-      assert.equal(errors.length, 1);
+      assert.lengthOf(errors, 1);
       assert.equal(errors[0], 'Broken @import declaration of "http://localhost:' + port + '/timeout.css" - timeout');
     },
     'should process @import': function(errors, minified) {
@@ -333,7 +333,7 @@ vows.describe('protocol imports').addBatch({
       assert.equal(minified.styles, 'body{margin:0}div{padding:0}a{color:red}');
     },
     teardown: function() {
-      assert.equal(this.reqMocks.isDone(), true);
+      assert.isTrue(this.reqMocks.isDone());
       nock.cleanAll();
     }
   },
@@ -352,7 +352,7 @@ vows.describe('protocol imports').addBatch({
       assert.equal(minified.styles, 'div{padding:0}a{color:red}');
     },
     teardown: function() {
-      assert.equal(this.reqMocks.isDone(), true);
+      assert.isTrue(this.reqMocks.isDone());
       nock.cleanAll();
     }
   },
@@ -377,7 +377,7 @@ vows.describe('protocol imports').addBatch({
       assert.equal(minified.styles, 'div{padding:0}a{color:red}');
     },
     teardown: function() {
-      assert.equal(this.reqMocks.isDone(), true);
+      assert.isTrue(this.reqMocks.isDone());
       nock.cleanAll();
     }
   },
@@ -397,7 +397,7 @@ vows.describe('protocol imports').addBatch({
       assert.equal(minified.styles, 'div{padding:0}.one{color:red}');
     },
     teardown: function() {
-      assert.equal(this.reqMocks.isDone(), true);
+      assert.isTrue(this.reqMocks.isDone());
       nock.cleanAll();
     }
   },
@@ -414,14 +414,14 @@ vows.describe('protocol imports').addBatch({
       assert.isEmpty(minified.errors);
     },
     'should raise warnings': function (error, minified) {
-      assert.equal(minified.warnings.length, 1);
+      assert.lengthOf(minified.warnings, 1);
       assert.match(minified.warnings[0], /no callback given/);
     },
     'should process @import': function (error, minified) {
       assert.equal(minified.styles, '@import url(http://127.0.0.1/remote.css);.one{color:red}');
     },
     teardown: function() {
-      assert.equal(this.reqMocks.isDone(), false);
+      assert.isFalse(this.reqMocks.isDone());
       nock.cleanAll();
     }
   }

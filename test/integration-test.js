@@ -9,10 +9,10 @@ var lineBreak = require('os').EOL;
 var cssContext = function(groups, options) {
   var context = {};
 
-  var clean = function(expectedCss) {
-    return function(css) {
-      var minifiedCss = new CleanCSS(options).minify(css).styles;
-      assert.equal(minifiedCss, expectedCss);
+  var clean = function (expected) {
+    return function (source) {
+      var minified = new CleanCSS(options).minify(source).styles;
+      assert.equal(minified, expected);
     };
   };
 

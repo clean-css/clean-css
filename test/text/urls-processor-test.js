@@ -7,18 +7,18 @@ var lineBreak = require('os').EOL;
 function processorContext(name, context, saveWaypoints) {
   var vowContext = {};
 
-  function escaped (targetCSS) {
-    return function (sourceCSS) {
-      var result = new UrlsProcessor(null, saveWaypoints).escape(sourceCSS);
-      assert.equal(result, targetCSS);
+  function escaped (expected) {
+    return function (source) {
+      var escaped = new UrlsProcessor(null, saveWaypoints).escape(source);
+      assert.equal(escaped, expected);
     };
   }
 
-  function restored (targetCSS) {
-    return function (sourceCSS) {
+  function restored (expected) {
+    return function (source) {
       var processor = new UrlsProcessor(null, saveWaypoints);
-      var result = processor.restore(processor.escape(sourceCSS));
-      assert.equal(result, targetCSS);
+      var restored = processor.restore(processor.escape(source));
+      assert.equal(restored, expected);
     };
   }
 

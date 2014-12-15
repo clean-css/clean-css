@@ -33,11 +33,11 @@ vows.describe('module tests').addBatch({
       new CleanCSS().minify('a{color:#f00}', this.callback);
     },
     'should not set context': function() {
-      assert.equal(false, this instanceof CleanCSS);
+      assert.equal(this instanceof CleanCSS, false);
     },
     'should yield no error': function(errors, minified) {
       /* jshint unused: false */
-      assert.equal(errors, null);
+      assert.isNull(errors);
     },
     'should yield minified data': function(errors, minified) {
       assert.equal(minified.styles, 'a{color:red}');
@@ -49,13 +49,13 @@ vows.describe('module tests').addBatch({
     },
     'should yield no error and minify': function(errors, minified) {
       /* jshint unused: false */
-      assert.equal(errors.length, 1);
+      assert.lengthOf(errors, 1);
     }
   },
   'no debug': {
     'topic': new CleanCSS().minify('a{ color: #f00 }'),
     'should not populate stats hash': function (error, minified) {
-      assert.deepEqual({}, minified.stats);
+      assert.isEmpty(minified.stats);
     }
   },
   'debug': {
@@ -76,13 +76,16 @@ vows.describe('module tests').addBatch({
   'no warnings': {
     'topic': new CleanCSS().minify('a{ color: #f00 }'),
     'if no reasons given': function (error, minified) {
-      assert.deepEqual(minified.warnings, []);
+      assert.isEmpty(minified.warnings);
     }
   },
   'warnings': {
     'topic': new CleanCSS({ root: 'test/data', target: 'custom-warnings.css' }).minify('a{color:red}'),
+    'are an array': function (error, minified) {
+      assert.isArray(minified.warnings);
+    },
     'if both root and output used reasons given': function (error, minified) {
-      assert.equal(minified.warnings.length, 1);
+      assert.lengthOf(minified.warnings, 1);
       assert.match(minified.warnings[0], /Both 'root' and output file given/);
     }
   },
@@ -92,10 +95,10 @@ vows.describe('module tests').addBatch({
       assert.equal(minified.styles, 'a{display:block}');
     },
     'should raise no errors': function (error, minified) {
-      assert.equal(minified.errors.length, 0);
+      assert.isEmpty(minified.errors);
     },
     'should raise one warning': function (error, minified) {
-      assert.equal(minified.warnings.length, 1);
+      assert.lengthOf(minified.warnings, 1);
       assert.equal(minified.warnings[0], 'Unexpected \'}\' in \'a{display:block}}\'. Ignoring.');
     }
   },
@@ -105,23 +108,23 @@ vows.describe('module tests').addBatch({
       assert.equal(minified.styles, 'a{display:block}p{color:red}');
     },
     'should raise no errors': function (error, minified) {
-      assert.equal(minified.errors.length, 0);
+      assert.isEmpty(minified.errors);
     },
     'should raise one warning': function (error, minified) {
-      assert.equal(minified.warnings.length, 1);
+      assert.lengthOf(minified.warnings, 1);
       assert.equal(minified.warnings[0], 'Unexpected content: \'color:#535353}\'. Ignoring.');
     }
   },
   'warnings on invalid properties': {
     'topic': new CleanCSS().minify('a{color:}'),
     'should minify correctly': function (error, minified) {
-      assert.equal(minified.styles, '');
+      assert.isEmpty(minified.styles);
     },
     'should raise no errors': function (error, minified) {
-      assert.equal(minified.errors.length, 0);
+      assert.isEmpty(minified.errors);
     },
     'should raise one warning': function (error, minified) {
-      assert.equal(minified.warnings.length, 1);
+      assert.lengthOf(minified.warnings, 1);
       assert.equal(minified.warnings[0], 'Empty property \'color\' inside \'a\' selector. Ignoring.');
     }
   },
@@ -131,51 +134,52 @@ vows.describe('module tests').addBatch({
       assert.equal(minified.styles, 'a{background:url(image/}');
     },
     'should raise no errors': function (error, minified) {
-      assert.equal(minified.errors.length, 0);
+      assert.isEmpty(minified.errors.length);
     },
     'should raise one warning': function (error, minified) {
-      assert.equal(minified.warnings.length, 1);
+      assert.lengthOf(minified.warnings, 1);
       assert.equal(minified.warnings[0], 'Broken URL declaration: \'url(image/\'.');
     }
   },
   'warnings on broken imports': {
     'topic': new CleanCSS().minify('@impor'),
     'should output correct content': function (error, minified) {
-      assert.equal(minified.styles, '');
+      assert.isEmpty(minified.styles);
     },
     'should raise no errors': function (error, minified) {
-      assert.equal(minified.errors.length, 0);
+      assert.isEmpty(minified.errors.length);
     },
     'should raise one warning': function (error, minified) {
-      assert.equal(minified.warnings.length, 1);
+      assert.lengthOf(minified.warnings, 1);
       assert.equal(minified.warnings[0], 'Broken declaration: \'@impor\'.');
     }
   },
   'warnings on broken comments': {
     'topic': new CleanCSS().minify('a{}/* '),
     'should output correct content': function (error, minified) {
-      assert.equal(minified.styles, '');
+      assert.isEmpty(minified.styles);
     },
     'should raise no errors': function (error, minified) {
-      assert.equal(minified.errors.length, 0);
+      assert.isEmpty(minified.errors.length);
     },
     'should raise one warning': function (error, minified) {
-      assert.equal(minified.warnings.length, 1);
+      assert.lengthOf(minified.warnings, 1);
       assert.equal(minified.warnings[0], 'Broken comment: \'/* \'.');
     }
   },
   'no errors': {
     'topic': new CleanCSS().minify('a{color:red}'),
     'if no reasons given': function (error, minified) {
-      assert.deepEqual(minified.errors, []);
+      assert.isEmpty(minified.errors);
     }
   },
   'errors': {
     'topic': new CleanCSS(),
     'if both root and output used reasons given': function(minifier) {
-      assert.doesNotThrow(function() {
-        minifier.minify('@import url(/some/fake/file);', function(errors) {
-          assert.equal(errors.length, 1);
+      assert.doesNotThrow(function () {
+        minifier.minify('@import url(/some/fake/file);', function (errors) {
+          assert.isArray(errors);
+          assert.lengthOf(errors, 1);
           assert.equal(errors[0], 'Broken @import declaration of "/some/fake/file"');
         });
       });
@@ -186,7 +190,7 @@ vows.describe('module tests').addBatch({
     'if both root and output used reasons given': function (minifier) {
       minifier.minify('@import url(/some/fake/file);');
       minifier.minify('@import url(/some/fake/file);', function(errors) {
-        assert.equal(errors.length, 1);
+        assert.lengthOf(errors, 1);
         assert.equal(errors[0], 'Broken @import declaration of "/some/fake/file"');
       });
     }
@@ -196,26 +200,26 @@ vows.describe('module tests').addBatch({
       return new CleanCSS().minify(new Buffer('@import url(test/data/partials/one.css);'));
     },
     'should be processed correctly': function(minified) {
-      assert.equal('.one{color:red}', minified.styles);
+      assert.equal(minified.styles, '.one{color:red}');
     }
   },
   'options': {
     'advanced': {
       'topic': new CleanCSS({ advanced: true }).minify('a{color:red}a{color:#fff}'),
       'gets right output': function (minified) {
-        assert.equal('a{color:#fff}', minified.styles);
+        assert.equal(minified.styles, 'a{color:#fff}');
       }
     },
     'aggressive merging': {
       'topic': new CleanCSS({ aggressiveMerging: true }).minify('a{display:block;color:red;display:inline-block}'),
       'gets right output': function (minified) {
-        assert.equal('a{color:red;display:inline-block}', minified.styles);
+        assert.equal(minified.styles, 'a{color:red;display:inline-block}');
       }
     },
     'process import': {
       'topic': new CleanCSS({ processImport: true }).minify('@import url(/test/data/partials/one.css);'),
       'gets right output': function (minified) {
-        assert.equal('.one{color:red}', minified.styles);
+        assert.equal(minified.styles, '.one{color:red}');
       }
     },
     'rebase': {
@@ -228,7 +232,7 @@ vows.describe('module tests').addBatch({
   'source map': {
     'topic': new CleanCSS({ sourceMap: true }).minify('/*! a */div[data-id=" abc "] { color:red; }'),
     'should minify correctly': function (minified) {
-      assert.equal('/*! a */div[data-id=" abc "]{color:red}', minified.styles);
+      assert.equal(minified.styles, '/*! a */div[data-id=" abc "]{color:red}');
     },
     'should include source map': function (minified) {
       assert.instanceOf(minified.sourceMap, SourceMapGenerator);

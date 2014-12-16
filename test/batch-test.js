@@ -8,7 +8,7 @@ var lineBreak = require('os').EOL;
 
 var batchContexts = function() {
   var context = {};
-  var dir = path.join(__dirname, 'data');
+  var dir = path.join(__dirname, 'fixtures');
   fs.readdirSync(dir).forEach(function(filename) {
     if (filename.indexOf('.css') == -1 || /min.css$/.exec(filename) || !fs.statSync(path.join(dir, filename)).isFile())
       return;
@@ -16,8 +16,8 @@ var batchContexts = function() {
 
     context[testName] = {
       topic: function() {
-        var plainPath = path.join(__dirname, 'data', testName + '.css');
-        var minPath = path.join(__dirname, 'data', testName + '-min.css');
+        var plainPath = path.join(__dirname, 'fixtures', testName + '.css');
+        var minPath = path.join(__dirname, 'fixtures', testName + '-min.css');
 
         return {
           plain: fs.readFileSync(plainPath, 'utf-8'),

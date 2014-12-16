@@ -186,7 +186,7 @@ First clone the source, then run:
 If you wonder where to add tests, go for:
 
 * `test/unit-test.js` if it's a simple scenario
-* `test/data/...` if it's a complex scenario (just add two files, input and expected output)
+* `test/fixtures/...` if it's a complex scenario (just add two files, input and expected output)
 * `test/binary-test.js` if it's related to `bin/cleancss` binary
 * `test/module-test.js` if it's related to importing `clean-css` as a module
 * `test/protocol-imports-test.js` if it fixes anything related to protocol `@import`s

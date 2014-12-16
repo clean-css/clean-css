@@ -923,18 +923,18 @@ path")}',
     ]
   }),
   'urls rewriting - no root or target': cssContext({
-    'no @import': 'a{background:url(test/data/partials/extra/down.gif) no-repeat}',
+    'no @import': 'a{background:url(test/fixtures/partials/extra/down.gif) no-repeat}',
     'relative @import': [
-      '@import url(test/data/partials-relative/base.css);',
-      'a{background:url(test/data/partials/extra/down.gif) no-repeat}'
+      '@import url(test/fixtures/partials-relative/base.css);',
+      'a{background:url(test/fixtures/partials/extra/down.gif) no-repeat}'
     ],
     'relative @import twice': [
-      '@import url(test/data/partials-relative/extra/included.css);',
-      'a{background:url(test/data/partials/extra/down.gif) no-repeat}'
+      '@import url(test/fixtures/partials-relative/extra/included.css);',
+      'a{background:url(test/fixtures/partials/extra/down.gif) no-repeat}'
     ],
     'absolute @import': [
-      '@import url(/test/data/partials-relative/base.css);',
-      'a{background:url(test/data/partials/extra/down.gif) no-repeat}'
+      '@import url(/test/fixtures/partials-relative/base.css);',
+      'a{background:url(test/fixtures/partials/extra/down.gif) no-repeat}'
     ],
     'document-local reference': [
       'svg{marker-end:url(#arrow)}', 'svg{marker-end:url(#arrow)}'
@@ -943,75 +943,75 @@ path")}',
   'urls rewriting - root but no target': cssContext({
     'no @import': [
       'a{background:url(../partials/extra/down.gif) no-repeat}',
-      'a{background:url(/test/data/partials/extra/down.gif) no-repeat}'
+      'a{background:url(/test/fixtures/partials/extra/down.gif) no-repeat}'
     ],
     'relative @import': [
       '@import url(base.css);',
-      'a{background:url(/test/data/partials/extra/down.gif) no-repeat}'
+      'a{background:url(/test/fixtures/partials/extra/down.gif) no-repeat}'
     ],
     'absolute @import': [
-      '@import url(/test/data/partials-relative/base.css);',
-      'a{background:url(/test/data/partials/extra/down.gif) no-repeat}'
+      '@import url(/test/fixtures/partials-relative/base.css);',
+      'a{background:url(/test/fixtures/partials/extra/down.gif) no-repeat}'
     ],
     'document-local reference': [
       'svg{marker-end:url(#arrow)}', 'svg{marker-end:url(#arrow)}'
     ]
   }, {
     root: process.cwd(),
-    relativeTo: path.join('test', 'data', 'partials-relative')
+    relativeTo: path.join('test', 'fixtures', 'partials-relative')
   }),
   'urls rewriting - no root but target': cssContext({
     'no @import': [
       'a{background:url(../partials/extra/down.gif) no-repeat}',
-      'a{background:url(test/data/partials/extra/down.gif) no-repeat}'
+      'a{background:url(test/fixtures/partials/extra/down.gif) no-repeat}'
     ],
     'relative @import': [
       '@import url(base.css);',
-      'a{background:url(test/data/partials/extra/down.gif) no-repeat}'
+      'a{background:url(test/fixtures/partials/extra/down.gif) no-repeat}'
     ],
     'absolute @import': [
-      '@import url(/test/data/partials-relative/base.css);',
-      'a{background:url(test/data/partials/extra/down.gif) no-repeat}'
+      '@import url(/test/fixtures/partials-relative/base.css);',
+      'a{background:url(test/fixtures/partials/extra/down.gif) no-repeat}'
     ],
     'document-local reference': [
       'svg{marker-end:url(#arrow)}', 'svg{marker-end:url(#arrow)}'
     ]
   }, {
     target: path.join(process.cwd(), 'test.css'),
-    relativeTo: path.join('test', 'data', 'partials-relative')
+    relativeTo: path.join('test', 'fixtures', 'partials-relative')
   }),
   'urls rewriting - no root but target as a directory': cssContext({
     'no @import': [
       'a{background:url(../partials/extra/down.gif) no-repeat}',
-      'a{background:url(test/data/partials/extra/down.gif) no-repeat}'
+      'a{background:url(test/fixtures/partials/extra/down.gif) no-repeat}'
     ],
     'relative @import': [
       '@import url(base.css);',
-      'a{background:url(test/data/partials/extra/down.gif) no-repeat}'
+      'a{background:url(test/fixtures/partials/extra/down.gif) no-repeat}'
     ],
     'absolute @import': [
-      '@import url(/test/data/partials-relative/base.css);',
-      'a{background:url(test/data/partials/extra/down.gif) no-repeat}'
+      '@import url(/test/fixtures/partials-relative/base.css);',
+      'a{background:url(test/fixtures/partials/extra/down.gif) no-repeat}'
     ],
     'document-local reference': [
       'svg{marker-end:url(#arrow)}', 'svg{marker-end:url(#arrow)}'
     ]
   }, {
     target: process.cwd(),
-    relativeTo: path.join('test', 'data', 'partials-relative')
+    relativeTo: path.join('test', 'fixtures', 'partials-relative')
   }),
   'urls rewriting - root and target': cssContext({
     'no @import': [
       'a{background:url(../partials/extra/down.gif) no-repeat}',
-      'a{background:url(/test/data/partials/extra/down.gif) no-repeat}'
+      'a{background:url(/test/fixtures/partials/extra/down.gif) no-repeat}'
     ],
     'relative @import': [
       '@import url(base.css);',
-      'a{background:url(/test/data/partials/extra/down.gif) no-repeat}'
+      'a{background:url(/test/fixtures/partials/extra/down.gif) no-repeat}'
     ],
     'absolute @import': [
-      '@import url(/test/data/partials-relative/base.css);',
-      'a{background:url(/test/data/partials/extra/down.gif) no-repeat}'
+      '@import url(/test/fixtures/partials-relative/base.css);',
+      'a{background:url(/test/fixtures/partials/extra/down.gif) no-repeat}'
     ],
     'document-local reference': [
       'svg{marker-end:url(#arrow)}', 'svg{marker-end:url(#arrow)}'
@@ -1019,7 +1019,7 @@ path")}',
   }, {
     root: process.cwd(),
     target: path.join(process.cwd(), 'test.css'),
-    relativeTo: path.join('test', 'data', 'partials-relative')
+    relativeTo: path.join('test', 'fixtures', 'partials-relative')
   }),
   'urls rewriting - rebase off': cssContext({
     'keeps urls the same': [
@@ -1028,7 +1028,7 @@ path")}',
     ],
   }, {
     target: path.join(process.cwd(), 'test.css'),
-    relativeTo: path.join('test', 'data', 'partials-relative'),
+    relativeTo: path.join('test', 'fixtures', 'partials-relative'),
     rebase: false
   }),
   'fonts': cssContext({
@@ -1285,83 +1285,83 @@ title']{display:block}",
       ''
     ],
     'of a directory': [
-      "@import url(test/data/partials);",
+      "@import url(test/fixtures/partials);",
       ''
     ],
     'of a real file': [
-      "@import url(test/data/partials/one.css);",
+      "@import url(test/fixtures/partials/one.css);",
       ".one{color:red}"
     ],
     'of a real file twice': [
-      "@import url(test/data/partials/one.css);@import url(test/data/partials/one.css);",
+      "@import url(test/fixtures/partials/one.css);@import url(test/fixtures/partials/one.css);",
       ".one{color:red}"
     ],
     'of a real file with current path prefix': [
-      "@import url(./test/data/partials/one.css);",
+      "@import url(./test/fixtures/partials/one.css);",
       ".one{color:red}"
     ],
     'of a real file with quoted path': [
-      "@import url('test/data/partials/one.css');",
+      "@import url('test/fixtures/partials/one.css');",
       ".one{color:red}"
     ],
     'of a real file with double-quoted path': [
-      '@import url("test/data/partials/one.css");',
+      '@import url("test/fixtures/partials/one.css");',
       ".one{color:red}"
     ],
     'of a real file with bare path': [
-      "@import test/data/partials/one.css;",
+      "@import test/fixtures/partials/one.css;",
       ".one{color:red}"
     ],
     'of a real file with bare quoted path': [
-      "@import 'test/data/partials/one.css';",
+      "@import 'test/fixtures/partials/one.css';",
       ".one{color:red}"
     ],
     'of a real file with bare double-quoted path': [
-      '@import "test/data/partials/one.css";',
+      '@import "test/fixtures/partials/one.css";',
       ".one{color:red}"
     ],
     'of a real file with single simple media': [
-      '@import url(test/data/partials/one.css) screen;',
+      '@import url(test/fixtures/partials/one.css) screen;',
       "@media screen{.one{color:red}}"
     ],
     'of a real file with multiple simple media': [
-      '@import "test/data/partials/one.css" screen, tv, print;',
+      '@import "test/fixtures/partials/one.css" screen, tv, print;',
       "@media screen,tv,print{.one{color:red}}"
     ],
     'of a real file with complex media': [
-      '@import \'test/data/partials/one.css\' screen and (orientation:landscape);',
+      '@import \'test/fixtures/partials/one.css\' screen and (orientation:landscape);',
       "@media screen and (orientation:landscape){.one{color:red}}"
     ],
     'of a real file with a missing trailing semicolon': [
-      "@import url(test/data/partials/one.css)",
+      "@import url(test/fixtures/partials/one.css)",
       ''
     ],
     'of a real files with a missing trailing semicolon': [
-      "@import url(test/data/partials/one.css)@import url(test/data/partials/two.css)",
+      "@import url(test/fixtures/partials/one.css)@import url(test/fixtures/partials/two.css)",
       ''
     ],
     'of more files': [
-      "@import url(test/data/partials/one.css);\n\n@import url(test/data/partials/extra/three.css);\n\na{display:block}",
+      "@import url(test/fixtures/partials/one.css);\n\n@import url(test/fixtures/partials/extra/three.css);\n\na{display:block}",
       ".one{color:red}.three{color:#0f0}a{display:block}"
     ],
     'of more files with media': [
-      "@import url(test/data/partials/one.css) screen;@import url(test/data/partials/extra/three.css) tv;",
+      "@import url(test/fixtures/partials/one.css) screen;@import url(test/fixtures/partials/extra/three.css) tv;",
       "@media screen{.one{color:red}}@media tv{.three{color:#0f0}}"
     ],
     'of multi-level, circular dependency file': [
-      "@import url(test/data/partials/two.css);",
+      "@import url(test/fixtures/partials/two.css);",
       ".one{color:red}.three{color:#0f0}.four{color:#00f}.two{color:#fff}"
     ],
     'of a file with a relative resource path': [
-      "@import url(test/data/partials/three.css);",
-      ".three{background-image:url(test/data/partials/extra/down.gif)}"
+      "@import url(test/fixtures/partials/three.css);",
+      ".three{background-image:url(test/fixtures/partials/extra/down.gif)}"
     ],
     'of a file with an absolute resource path': [
-      "@import url(test/data/partials/four.css);",
+      "@import url(test/fixtures/partials/four.css);",
       ".four{background-image:url(/partials/extra/down.gif)}"
     ],
     'of a file with a resource URI': [
-      "@import url(test/data/partials/five.css);",
+      "@import url(test/fixtures/partials/five.css);",
       ".five{background:url(data:image/jpeg;base64,/9j/)}"
     ],
     'cut off': [
@@ -1373,11 +1373,11 @@ title']{display:block}",
       ''
     ],
     'inside a comment': [
-      '/* @import url(test/data/partials/five.css); */a { color: red; }',
+      '/* @import url(test/fixtures/partials/five.css); */a { color: red; }',
       'a{color:red}'
     ],
     'after a comment': [
-      '/* @import url(test/data/partials/one.css); */@import url(test/data/partials/one.css);a { color: red; }',
+      '/* @import url(test/fixtures/partials/one.css); */@import url(test/fixtures/partials/one.css);a { color: red; }',
       '.one,a{color:red}'
     ],
     'used arbitrarily in comment': [
@@ -1393,69 +1393,69 @@ title']{display:block}",
       'a{color:red}'
     ],
     'of a file with a comment': [
-      '@import url(test/data/partials/comment.css);',
+      '@import url(test/fixtures/partials/comment.css);',
       'a{display:block}'
     ],
     'of a file (with media) with a comment': [
-      '@import url(test/data/partials/comment.css) screen and (device-height: 600px);',
+      '@import url(test/fixtures/partials/comment.css) screen and (device-height: 600px);',
       '@media screen and (device-height:600px){a{display:block}}'
     ],
     'after standard content': [
-      "a{display:block}@import url(test/data/partials/one.css);body{margin:0}",
+      "a{display:block}@import url(test/fixtures/partials/one.css);body{margin:0}",
       "a{display:block}body{margin:0}"
     ],
     'after quoted content': [
-      "/*a{display:block}*/@import url(test/data/partials/one.css);",
+      "/*a{display:block}*/@import url(test/fixtures/partials/one.css);",
       ".one{color:red}"
     ],
     'with double underscore': [
-      '@import url(test/data/partials/with__double_underscore.css);',
+      '@import url(test/fixtures/partials/with__double_underscore.css);',
       '.one{color:green}'
     ]
   }, { root: process.cwd() }),
   'malformed but still valid @import': cssContext({
     'prefixed with whitespace': [
-      "    @import 'test/data/partials/one.css';",
+      "    @import 'test/fixtures/partials/one.css';",
       ".one{color:red}"
     ],
     'no whitespace between @import and filename': [
-      "@import'test/data/partials/one.css';",
+      "@import'test/fixtures/partials/one.css';",
       ".one{color:red}"
     ],
     'extra whitespace between @import and filename': [
-      "@import   'test/data/partials/one.css';",
+      "@import   'test/fixtures/partials/one.css';",
       ".one{color:red}"
     ],
     'line break between @import and filename': [
-      "@import " + lineBreak + "'test/data/partials/one.css';",
+      "@import " + lineBreak + "'test/fixtures/partials/one.css';",
       ".one{color:red}"
     ],
     'extra whitespace prefix in file name': [
-      "@import '  test/data/partials/one.css';",
+      "@import '  test/fixtures/partials/one.css';",
       ".one{color:red}"
     ],
     'extra whitespace suffix in file name': [
-      "@import 'test/data/partials/one.css   ';",
+      "@import 'test/fixtures/partials/one.css   ';",
       ".one{color:red}"
     ],
     'extra whitespace after': [
-      "@import 'test/data/partials/one.css'   ;",
+      "@import 'test/fixtures/partials/one.css'   ;",
       ".one{color:red}"
     ],
     'uppercase @import': [
-      "@IMPORT 'test/data/partials/one.css';",
+      "@IMPORT 'test/fixtures/partials/one.css';",
       ".one{color:red}"
     ],
     'extra whitespace between url and filename': [
-      "@import url(  test/data/partials/one.css);",
+      "@import url(  test/fixtures/partials/one.css);",
       ".one{color:red}"
     ],
     'extra whitespace prefix in file name - url': [
-      "@import url('   test/data/partials/one.css');",
+      "@import url('   test/fixtures/partials/one.css');",
       ".one{color:red}"
     ],
     'extra whitespace suffix in file name - url': [
-      "@import url('test/data/partials/one.css   ');",
+      "@import url('test/fixtures/partials/one.css   ');",
       ".one{color:red}"
     ]
   }, { root: process.cwd() }),
@@ -1484,7 +1484,7 @@ title']{display:block}",
       "@import url(/partials-absolute/base.css);",
       ".base2{border-width:0}.sub{padding:0}.base{margin:0}"
     ]
-  }, { root: path.join(process.cwd(), 'test', 'data') }),
+  }, { root: path.join(process.cwd(), 'test', 'fixtures') }),
   '@import with option processImport': cssContext({
     'of an unknown file': [
       "@import url(/fake.css);",

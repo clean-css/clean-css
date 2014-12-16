@@ -96,12 +96,12 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
       assert.include(stderr, 'Efficiency: 25%');
     }
   }),
-  'piped with debug info on inlining': pipedContext('@import url(test/data/imports-min.css);', '-d', {
+  'piped with debug info on inlining': pipedContext('@import url(test/fixtures/imports-min.css);', '-d', {
     'should output inlining info': function(error, stdout, stderr) {
-      assert.include(stderr, path.join(process.cwd(), 'test/data/imports-min.css'));
+      assert.include(stderr, path.join(process.cwd(), 'test/fixtures/imports-min.css'));
     }
   }),
-  'piped with correct debug info on inlining': pipedContext('@import url(test/data/imports.css);', '-d', {
+  'piped with correct debug info on inlining': pipedContext('@import url(test/fixtures/imports.css);', '-d', {
     'should output correct info': function(error, stdout, stderr) {
       assert.include(stderr, 'Original: 120 bytes');
       assert.include(stderr, 'Minified: 86 bytes');
@@ -130,35 +130,35 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
       assert.equal(stdout, 'a{color:red}p{color:red}');
     }
   }),
-  'no relative to path': binaryContext('./test/data/partials-absolute/base.css', {
+  'no relative to path': binaryContext('./test/fixtures/partials-absolute/base.css', {
     'should not be able to resolve it fully': function(error, stdout, stderr) {
       assert.isEmpty(stdout);
       assert.notEqual(error, null);
       assert.notEqual(stderr, '');
     }
   }),
-  'relative to path': binaryContext('-r ./test/data ./test/data/partials-absolute/base.css', {
+  'relative to path': binaryContext('-r ./test/fixtures ./test/fixtures/partials-absolute/base.css', {
     'should be able to resolve it': function(error, stdout) {
       assert.equal(stdout, '.base2{border-width:0}.sub{padding:0}.base{margin:0}');
     }
   }),
-  'from source': binaryContext('./test/data/reset.css', {
+  'from source': binaryContext('./test/fixtures/reset.css', {
     'should minimize': function(error, stdout) {
-      var minimized = fs.readFileSync('./test/data/reset-min.css', 'utf-8').replace(lineBreakRegExp, '');
+      var minimized = fs.readFileSync('./test/fixtures/reset-min.css', 'utf-8').replace(lineBreakRegExp, '');
       assert.equal(stdout, minimized);
     }
   }),
-  'from multiple sources': binaryContext('./test/data/partials/one.css ./test/data/partials/five.css', {
+  'from multiple sources': binaryContext('./test/fixtures/partials/one.css ./test/fixtures/partials/five.css', {
     'should minimize all': function(error, stdout) {
       assert.equal(stdout, '.one{color:red}.five{background:url(data:image/jpeg;base64,/9j/)}');
     }
   }),
-  'to file': binaryContext('-o ./reset1-min.css ./test/data/reset.css', {
+  'to file': binaryContext('-o ./reset1-min.css ./test/fixtures/reset.css', {
     'should give no output': function(error, stdout) {
       assert.isEmpty(stdout);
     },
     'should minimize': function() {
-      var preminified = readFile('./test/data/reset-min.css');
+      var preminified = readFile('./test/fixtures/reset-min.css');
       var minified = readFile('./reset1-min.css');
       assert.equal(minified, preminified);
     },
@@ -166,33 +166,33 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
       deleteFile('./reset1-min.css');
     }
   }),
-  'disable @import': binaryContext('-s ./test/data/imports.css', {
+  'disable @import': binaryContext('-s ./test/fixtures/imports.css', {
     'should disable the import processing': function(error, stdout) {
       assert.equal(stdout, '@import url(./partials/one.css);@import url(./partials/two.css);.imports{color:#000}');
     }
   }),
   'relative image paths': {
-    'no root & output': binaryContext('./test/data/partials-relative/base.css', {
+    'no root & output': binaryContext('./test/fixtures/partials-relative/base.css', {
       'should leave paths': function(error, stdout) {
         assert.equal(stdout, 'a{background:url(../partials/extra/down.gif) no-repeat}');
       }
     }),
-    'root but no output': binaryContext('-r ./test ./test/data/partials-relative/base.css', {
+    'root but no output': binaryContext('-r ./test ./test/fixtures/partials-relative/base.css', {
       'should rewrite path relative to ./test': function(error, stdout) {
-        assert.equal(stdout, 'a{background:url(/data/partials/extra/down.gif) no-repeat}');
+        assert.equal(stdout, 'a{background:url(/fixtures/partials/extra/down.gif) no-repeat}');
       }
     }),
-    'no root but output': binaryContext('-o ./base1-min.css ./test/data/partials-relative/base.css', {
+    'no root but output': binaryContext('-o ./base1-min.css ./test/fixtures/partials-relative/base.css', {
       'should rewrite path relative to current path': function() {
         var minimized = readFile('./base1-min.css');
-        assert.equal(minimized, 'a{background:url(test/data/partials/extra/down.gif) no-repeat}');
+        assert.equal(minimized, 'a{background:url(test/fixtures/partials/extra/down.gif) no-repeat}');
       },
       teardown: function() {
         deleteFile('./base1-min.css');
       }
     }),
-    'root and output': binaryContext('-r ./test/data -o ./base2-min.css ./test/data/partials-relative/base.css', {
-      'should rewrite path relative to ./test/data/': function() {
+    'root and output': binaryContext('-r ./test/fixtures -o ./base2-min.css ./test/fixtures/partials-relative/base.css', {
+      'should rewrite path relative to ./test/fixtures/': function() {
         var minimized = readFile('./base2-min.css');
         assert.equal(minimized, 'a{background:url(/partials/extra/down.gif) no-repeat}');
       },
@@ -200,10 +200,10 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
         deleteFile('./base2-min.css');
       }
     }),
-    'piped with output': pipedContext('a{background:url(test/data/partials/extra/down.gif)}', '-o base3-min.css', {
+    'piped with output': pipedContext('a{background:url(test/fixtures/partials/extra/down.gif)}', '-o base3-min.css', {
       'should keep paths as they are': function() {
         var minimized = readFile('base3-min.css');
-        assert.equal(minimized, 'a{background:url(test/data/partials/extra/down.gif)}');
+        assert.equal(minimized, 'a{background:url(test/fixtures/partials/extra/down.gif)}');
       },
       teardown: function() {
         deleteFile('base3-min.css');
@@ -211,7 +211,7 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
     })
   },
   'complex import and url rebasing': {
-    absolute: binaryContext('-r ./test/data/129-assets ./test/data/129-assets/assets/ui.css', {
+    absolute: binaryContext('-r ./test/fixtures/129-assets ./test/fixtures/129-assets/assets/ui.css', {
       'should rebase urls correctly': function(error, stdout) {
         assert.isNull(error);
         assert.include(stdout, 'url(/components/bootstrap/images/glyphs.gif)');
@@ -219,20 +219,20 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
         assert.include(stdout, 'url(/components/jquery-ui/images/next.gif)');
       }
     }),
-    relative: binaryContext('-o ./test/data/129-assets/assets/ui.bundled.css ./test/data/129-assets/assets/ui.css', {
+    relative: binaryContext('-o ./test/fixtures/129-assets/assets/ui.bundled.css ./test/fixtures/129-assets/assets/ui.css', {
       'should rebase urls correctly': function() {
-        var minimized = readFile('./test/data/129-assets/assets/ui.bundled.css');
+        var minimized = readFile('./test/fixtures/129-assets/assets/ui.bundled.css');
         assert.include(minimized, 'url(../components/bootstrap/images/glyphs.gif)');
         assert.include(minimized, 'url(../components/jquery-ui/images/prev.gif)');
         assert.include(minimized, 'url(../components/jquery-ui/images/next.gif)');
       },
       teardown: function() {
-        deleteFile('./test/data/129-assets/assets/ui.bundled.css');
+        deleteFile('./test/fixtures/129-assets/assets/ui.bundled.css');
       }
     })
   },
   'complex import and skipped url rebasing': {
-    absolute: binaryContext('-r ./test/data/129-assets --skip-rebase ./test/data/129-assets/assets/ui.css', {
+    absolute: binaryContext('-r ./test/fixtures/129-assets --skip-rebase ./test/fixtures/129-assets/assets/ui.css', {
       'should rebase urls correctly': function(error, stdout) {
         assert.isNull(error);
         assert.include(stdout, 'url(../images/glyphs.gif)');
@@ -282,14 +282,14 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
       this.server.close();
     }
   }),
-  'ie7 compatibility': binaryContext('--compatibility ie7 ./test/data/unsupported/selectors-ie7.css', {
+  'ie7 compatibility': binaryContext('--compatibility ie7 ./test/fixtures/unsupported/selectors-ie7.css', {
     'should not transform source': function(error, stdout) {
-      assert.equal(stdout, readFile('./test/data/unsupported/selectors-ie7.css'));
+      assert.equal(stdout, readFile('./test/fixtures/unsupported/selectors-ie7.css'));
     }
   }),
-  'ie8 compatibility': binaryContext('--compatibility ie8 ./test/data/unsupported/selectors-ie8.css', {
+  'ie8 compatibility': binaryContext('--compatibility ie8 ./test/fixtures/unsupported/selectors-ie8.css', {
     'should not transform source': function(error, stdout) {
-      assert.equal(stdout, readFile('./test/data/unsupported/selectors-ie8.css'));
+      assert.equal(stdout, readFile('./test/fixtures/unsupported/selectors-ie8.css'));
     }
   }),
   'custom compatibility': pipedContext('a{_color:red}', '--compatibility "+properties.iePrefixHack"', {
@@ -339,7 +339,7 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
     })
   },
   'source maps': {
-    'no target file': binaryContext('--source-map ./test/data/reset.css', {
+    'no target file': binaryContext('--source-map ./test/fixtures/reset.css', {
       'warns about source map not being build': function (error, stdout, stderr) {
         assert.include(stderr, 'Source maps will not be built because you have not specified an output file.');
       },
@@ -347,7 +347,7 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
         assert.notInclude(stdout, '/*# sourceMappingURL');
       }
     }),
-    'output file': binaryContext('--source-map -o ./reset.min.css ./test/data/reset.css', {
+    'output file': binaryContext('--source-map -o ./reset.min.css ./test/fixtures/reset.css', {
       'includes map in minified file': function() {
         assert.include(readFile('./reset.min.css'), '/*# sourceMappingURL=reset.min.css.map */');
       },
@@ -359,7 +359,7 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
         assert.deepEqual(
           sourceMap.originalPositionFor({ line: 1, column: 1 }),
           {
-            source: 'test/data/reset.css',
+            source: 'test/fixtures/reset.css',
             line: 4,
             column: 0,
             name: null
@@ -371,9 +371,9 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
         deleteFile('reset.min.css.map');
       }
     }),
-    'output file in same folder as input': binaryContext('--source-map -o ./test/data/reset.min.css ./test/data/reset.css', {
+    'output file in same folder as input': binaryContext('--source-map -o ./test/fixtures/reset.min.css ./test/fixtures/reset.css', {
       'includes right content in map file': function () {
-        var sourceMap = new SourceMapConsumer(readFile('./test/data/reset.min.css.map'));
+        var sourceMap = new SourceMapConsumer(readFile('./test/fixtures/reset.min.css.map'));
         assert.deepEqual(
           sourceMap.originalPositionFor({ line: 1, column: 1 }),
           {
@@ -385,17 +385,17 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
         );
       },
       'teardown': function () {
-        deleteFile('test/data/reset.min.css');
-        deleteFile('test/data/reset.min.css.map');
+        deleteFile('test/fixtures/reset.min.css');
+        deleteFile('test/fixtures/reset.min.css.map');
       }
     }),
-    'output file with existing map': binaryContext('--source-map -o ./styles.min.css ./test/data/source-maps/styles.css', {
+    'output file with existing map': binaryContext('--source-map -o ./styles.min.css ./test/fixtures/source-maps/styles.css', {
       'includes right content in map file': function () {
         var sourceMap = new SourceMapConsumer(readFile('./styles.min.css.map'));
         assert.deepEqual(
           sourceMap.originalPositionFor({ line: 1, column: 1 }),
           {
-            source: 'test/data/source-maps/styles.less',
+            source: 'test/fixtures/source-maps/styles.less',
             line: 1,
             column: 4,
             name: null
@@ -407,13 +407,13 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
         deleteFile('styles.min.css.map');
       }
     }),
-    'output file for existing map in different folder': binaryContext('--source-map -o ./styles-relative.min.css ./test/data/source-maps/relative.css', {
+    'output file for existing map in different folder': binaryContext('--source-map -o ./styles-relative.min.css ./test/fixtures/source-maps/relative.css', {
       'includes right content in map file': function () {
         var sourceMap = new SourceMapConsumer(readFile('./styles-relative.min.css.map'));
         assert.deepEqual(
           sourceMap.originalPositionFor({ line: 1, column: 1 }),
           {
-            source: 'test/data/source-maps/sub/styles.less',
+            source: 'test/fixtures/source-maps/sub/styles.less',
             line: 2,
             column: 2,
             name: null
@@ -425,7 +425,7 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
         deleteFile('styles-relative.min.css.map');
       }
     }),
-    'output file with root path': binaryContext('--source-map -o ./reset-root.min.css -r ./test ./test/data/reset.css', {
+    'output file with root path': binaryContext('--source-map -o ./reset-root.min.css -r ./test ./test/fixtures/reset.css', {
       'includes map in minified file': function() {
         assert.include(readFile('./reset-root.min.css'), '/*# sourceMappingURL=reset-root.min.css.map */');
       },
@@ -437,7 +437,7 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
         assert.deepEqual(
           sourceMap.originalPositionFor({ line: 1, column: 1 }),
           {
-            source: '/data/reset.css',
+            source: '/fixtures/reset.css',
             line: 4,
             column: 0,
             name: null
@@ -449,7 +449,7 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
         deleteFile('reset-root.min.css.map');
       }
     }),
-    'with input source map': binaryContext('--source-map -o ./import.min.css ./test/data/source-maps/import.css', {
+    'with input source map': binaryContext('--source-map -o ./import.min.css ./test/fixtures/source-maps/import.css', {
       'includes map in minified file': function () {
         assert.include(readFile('./import.min.css'), '/*# sourceMappingURL=import.min.css.map */');
       },

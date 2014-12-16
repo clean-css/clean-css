@@ -383,7 +383,7 @@ vows.describe('protocol imports').addBatch({
   },
   'of a remote resource mixed with local ones': {
     topic: function() {
-      var source = '@import url(http://127.0.0.1/remote.css);@import url(test/data/partials/one.css);';
+      var source = '@import url(http://127.0.0.1/remote.css);@import url(test/fixtures/partials/one.css);';
       this.reqMocks = nock('http://127.0.0.1')
         .get('/remote.css')
         .reply(200, 'div{padding:0}');
@@ -403,7 +403,7 @@ vows.describe('protocol imports').addBatch({
   },
   'of a remote resource mixed with local ones but no callback': {
     topic: function() {
-      var source = '@import url(http://127.0.0.1/remote.css);@import url(test/data/partials/one.css);';
+      var source = '@import url(http://127.0.0.1/remote.css);@import url(test/fixtures/partials/one.css);';
       this.reqMocks = nock('http://127.0.0.1')
         .get('/remote.css')
         .reply(200, 'div{padding:0}');

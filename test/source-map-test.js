@@ -6,7 +6,7 @@ var CleanCSS = require('../index');
 
 var fs = require('fs');
 var path = require('path');
-var inputMapPath = path.join('test', 'data', 'source-maps', 'styles.css.map');
+var inputMapPath = path.join('test', 'fixtures', 'source-maps', 'styles.css.map');
 var inputMap = fs.readFileSync(inputMapPath, 'utf-8');
 
 var nock = require('nock');
@@ -439,31 +439,31 @@ vows.describe('source-map')
       }
     },
     'complex input map referenced by path': {
-      'topic': new CleanCSS({ sourceMap: true }).minify('@import url(test/data/source-maps/import.css);'),
+      'topic': new CleanCSS({ sourceMap: true }).minify('@import url(test/fixtures/source-maps/import.css);'),
       'should have 4 mappings': function (minified) {
         assert.lengthOf(minified.sourceMap._mappings, 4);
       }
     },
     'complex but partial input map referenced by path': {
-      'topic': new CleanCSS({ sourceMap: true, target: process.cwd() }).minify('@import url(test/data/source-maps/no-map-import.css);'),
+      'topic': new CleanCSS({ sourceMap: true, target: process.cwd() }).minify('@import url(test/fixtures/source-maps/no-map-import.css);'),
       'should have 4 mappings': function (minified) {
         assert.lengthOf(minified.sourceMap._mappings, 4);
       },
       'should have 2 mappings to .less file': function (minified) {
         var fromLess = minified.sourceMap._mappings.filter(function (mapping) {
-          return mapping.source == path.join('test', 'data', 'source-maps', 'styles.less');
+          return mapping.source == path.join('test', 'fixtures', 'source-maps', 'styles.less');
         });
         assert.lengthOf(fromLess, 2);
       },
       'should have 2 mappings to .css file': function (minified) {
         var fromCSS = minified.sourceMap._mappings.filter(function (mapping) {
-          return mapping.source == path.join('test', 'data', 'source-maps', 'no-map.css');
+          return mapping.source == path.join('test', 'fixtures', 'source-maps', 'no-map.css');
         });
         assert.lengthOf(fromCSS, 2);
       }
     },
     'complex input map with an existing file as target': {
-      'topic': new CleanCSS({ sourceMap: true, target: path.join(process.cwd(), 'test', 'data', 'source-maps', 'styles.css') }).minify('@import url(test/data/source-maps/styles.css);'),
+      'topic': new CleanCSS({ sourceMap: true, target: path.join(process.cwd(), 'test', 'fixtures', 'source-maps', 'styles.css') }).minify('@import url(test/fixtures/source-maps/styles.css);'),
       'should have 2 mappings': function (minified) {
         assert.lengthOf(minified.sourceMap._mappings, 2);
       },
@@ -475,7 +475,7 @@ vows.describe('source-map')
       },
     },
     'nested once': {
-      'topic': new CleanCSS({ sourceMap: true }).minify('@import url(test/data/source-maps/nested/once.css);'),
+      'topic': new CleanCSS({ sourceMap: true }).minify('@import url(test/fixtures/source-maps/nested/once.css);'),
       'should have 2 mappings': function (minified) {
         assert.lengthOf(minified.sourceMap._mappings, 2);
       },
@@ -503,7 +503,7 @@ vows.describe('source-map')
       }
     },
     'nested twice': {
-      'topic': new CleanCSS({ sourceMap: true }).minify('@import url(test/data/source-maps/nested/twice.css);'),
+      'topic': new CleanCSS({ sourceMap: true }).minify('@import url(test/fixtures/source-maps/nested/twice.css);'),
       'should have 2 mappings': function (minified) {
         assert.lengthOf(minified.sourceMap._mappings, 2);
       },

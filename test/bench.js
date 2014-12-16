@@ -1,7 +1,7 @@
 var CleanCSS = require('../index');
 var path = require('path');
 
-var benchDir = path.join(__dirname, 'data-bench');
+var benchDir = path.join(__dirname, 'fixtures', 'bench');
 var cssData = require('fs').readFileSync(path.join(benchDir, 'complex.css'), 'utf8');
 var total = 0;
 

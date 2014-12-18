@@ -1,4 +1,4 @@
-[3.0.0 / 2014-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v2.2.15...v3.0.0)
+[3.0.0 / 2014-12-18](https://github.com/jakubpawlowicz/clean-css/compare/v2.2.22...v3.0.0)
 ==================
 
 * Adds more granular control over compatibility settings.

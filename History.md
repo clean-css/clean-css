@@ -30,6 +30,21 @@
 * Fixed issue [#405](https://github.com/GoalSmashers/clean-css/issues/405) - disables default background-size merging.
 * Refixed issue [#304](https://github.com/GoalSmashers/clean-css/issues/304) - background position merging.
 
+[2.2.22 / 2014-12-13](https://github.com/jakubpawlowicz/clean-css/compare/v2.2.21...v2.2.22)
+==================
+
+* Backports fix to issue [#304](https://github.com/GoalSmashers/clean-css/issues/304) - background position merging.
+
+[2.2.21 / 2014-12-10](https://github.com/jakubpawlowicz/clean-css/compare/v2.2.20...v2.2.21)
+==================
+
+* Backports fix to issue [#373](https://github.com/GoalSmashers/clean-css/issues/373) - background shorthand merging.
+
+[2.2.20 / 2014-12-02](https://github.com/jakubpawlowicz/clean-css/compare/v2.2.19...v2.2.20)
+==================
+
+* Backports fix to issue [#390](https://github.com/GoalSmashers/clean-css/issues/390) - pseudo-class merging.
+
 [2.2.19 / 2014-11-20](https://github.com/jakubpawlowicz/clean-css/compare/v2.2.18...v2.2.19)
 ==================
 

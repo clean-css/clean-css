@@ -663,4 +663,18 @@ vows.describe('source-map')
       }
     }
   })
+  .addBatch({
+    'important comment after a property': {
+      'topic': new CleanCSS({ sourceMap: true }).minify('div { color: #f00 !important; /*!comment*/ }'),
+      'has right output': function (errors, minified) {
+        assert.equal(minified.styles, 'div{color:red!important/*!comment*/}');
+      }
+    },
+    'important comments after a property': {
+      'topic': new CleanCSS({ sourceMap: true }).minify('div { color: #f00 !important; /*!1*//*!2*/ }'),
+      'has right output': function (errors, minified) {
+        assert.equal(minified.styles, 'div{color:red!important/*!1*//*!2*/}');
+      }
+    }
+  })
   .export(module);

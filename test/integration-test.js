@@ -295,6 +295,14 @@ vows.describe('integration tests').addBatch({
     'with quote marks': [
       '/*"*//* */',
       ''
+    ],
+    'important after value': [
+      'div{color:red!important;/*!comment*/}',
+      'div{color:red!important/*!comment*/}'
+    ],
+    'two important after value': [
+      'div{color:red!important;/*!1*//*!2*/}',
+      'div{color:red!important/*!1*//*!2*/}'
     ]
   }),
   'escaping': cssContext({

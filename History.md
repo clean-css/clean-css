@@ -23,6 +23,7 @@
 * Fixed issue [#363](https://github.com/GoalSmashers/clean-css/issues/363) - `rem` units overriding `px`.
 * Fixed issue [#373](https://github.com/GoalSmashers/clean-css/issues/373) - proper background shorthand merging.
 * Fixed issue [#395](https://github.com/GoalSmashers/clean-css/issues/395) - unescaped brackets in data URIs.
+* Fixed issue [#398](https://github.com/GoalSmashers/clean-css/issues/398) - restoring important comments.
 * Fixed issue [#400](https://github.com/GoalSmashers/clean-css/issues/400) - API to accept an array of filenames.
 * Fixed issue [#403](https://github.com/GoalSmashers/clean-css/issues/403) - tracking input files in source maps.
 * Fixed issue [#404](https://github.com/GoalSmashers/clean-css/issues/404) - no state sharing in API.

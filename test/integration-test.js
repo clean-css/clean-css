@@ -2195,13 +2195,15 @@ title']{display:block}",
     ],
     'with background-size property': [
       'a{background:none;background-image:url(1.png);background-size:28px 28px}',
-      'a{background:url(1.png) 0 0/28px 28px}'
+      'a{background:url(1.png);background-size:28px 28px}'
     ]
   }),
-  'background size with -properties.backgroundSizeMerging': cssContext({
-    'standard': 'div{background:url(image.png) center no-repeat;background-size:cover}',
-    'prefix': 'div{-webkit-background:url(image.png) center no-repeat;-webkit-background-size:cover}'
-  }, { compatibility: '-properties.backgroundSizeMerging' }),
+  'background size with +properties.backgroundSizeMerging': cssContext({
+    'with background-size property': [
+      'a{background:none;background-image:url(1.png);background-size:28px 28px}',
+      'a{background:url(1.png) 0 0/28px 28px}'
+    ]
+  }, { compatibility: '+properties.backgroundSizeMerging' }),
   'multiple backgrounds': cssContext({
     'should not produce longer values': 'p{background:no-repeat;background-position:100% 0,0 100%,100% 100%,50% 50%}'
   }),

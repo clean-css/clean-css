@@ -27,6 +27,7 @@
 * Fixed issue [#400](https://github.com/GoalSmashers/clean-css/issues/400) - API to accept an array of filenames.
 * Fixed issue [#403](https://github.com/GoalSmashers/clean-css/issues/403) - tracking input files in source maps.
 * Fixed issue [#404](https://github.com/GoalSmashers/clean-css/issues/404) - no state sharing in API.
+* Fixed issue [#405](https://github.com/GoalSmashers/clean-css/issues/405) - disables default background-size merging.
 * Refixed issue [#304](https://github.com/GoalSmashers/clean-css/issues/304) - background position merging.
 
 [2.2.19 / 2014-11-20](https://github.com/jakubpawlowicz/clean-css/compare/v2.2.18...v2.2.19)

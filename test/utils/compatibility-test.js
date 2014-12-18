@@ -10,7 +10,7 @@ vows.describe(Compatibility)
         assert.isFalse(options.properties.iePrefixHack);
         assert.isFalse(options.properties.ieSuffixHack);
         assert.isFalse(options.selectors.ie7Hack);
-        assert.isTrue(options.properties.backgroundSizeMerging);
+        assert.isFalse(options.properties.backgroundSizeMerging);
         assert.isTrue(options.properties.merging);
         assert.isTrue(options.units.rem);
         assert.isTrue(options.colors.opacity);
@@ -29,7 +29,7 @@ vows.describe(Compatibility)
         assert.isFalse(options.properties.iePrefixHack);
         assert.isFalse(options.properties.ieSuffixHack);
         assert.isFalse(options.selectors.ie7Hack);
-        assert.isTrue(options.properties.backgroundSizeMerging);
+        assert.isFalse(options.properties.backgroundSizeMerging);
         assert.isTrue(options.properties.merging);
         assert.isFalse(options.units.rem);
         assert.isTrue(options.colors.opacity);
@@ -91,7 +91,7 @@ vows.describe(Compatibility)
         assert.isTrue(options.properties.iePrefixHack);
         assert.isFalse(options.properties.ieSuffixHack);
         assert.isFalse(options.selectors.ie7Hack);
-        assert.isTrue(options.properties.backgroundSizeMerging);
+        assert.isFalse(options.properties.backgroundSizeMerging);
         assert.isTrue(options.properties.merging);
         assert.isTrue(options.units.rem);
         assert.isTrue(options.colors.opacity);
@@ -104,7 +104,7 @@ vows.describe(Compatibility)
         assert.isTrue(options.properties.iePrefixHack);
         assert.isFalse(options.properties.ieSuffixHack);
         assert.isFalse(options.selectors.ie7Hack);
-        assert.isTrue(options.properties.backgroundSizeMerging);
+        assert.isFalse(options.properties.backgroundSizeMerging);
         assert.isTrue(options.properties.merging);
         assert.isFalse(options.units.rem);
         assert.isTrue(options.colors.opacity);

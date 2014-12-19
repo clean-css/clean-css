@@ -1,6 +1,7 @@
 [3.0.1 / 2014-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.0...v3.0.1)
 ==================
 
+* Fixed issue [#410](https://github.com/GoalSmashers/clean-css/issues/410) - advanced merging and comments.
 * Fixed issue [#411](https://github.com/GoalSmashers/clean-css/issues/411) - properties and important comments.
 
 [3.0.0 / 2014-12-18](https://github.com/jakubpawlowicz/clean-css/compare/v2.2.22...v3.0.0)

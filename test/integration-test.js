@@ -304,6 +304,10 @@ vows.describe('integration tests').addBatch({
       'div{color:red;/*!comment*/display:block}',
       'div{color:red;/*!comment*/display:block}'
     ],
+    'important between and after values': [
+      'div{color:red;/*!comment1*/display:block;/*!comment2*/}',
+      'div{color:red;/*!comment1*/display:block/*!comment2*/}'
+    ],
     'two important after value': [
       'div{color:red;/*!1*//*!2*/}',
       'div{color:red/*!1*//*!2*/}'

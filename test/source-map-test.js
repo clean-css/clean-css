@@ -670,6 +670,12 @@ vows.describe('source-map')
         assert.equal(minified.styles, 'div{color:red!important/*!comment*/}');
       }
     },
+    'important comment between properties': {
+      'topic': new CleanCSS({ sourceMap: true }).minify('div { color: #f00 !important; /*!comment*/; display: block }'),
+      'has right output': function (errors, minified) {
+        assert.equal(minified.styles, 'div{color:red!important;/*!comment*/display:block}');
+      }
+    },
     'important comments after a property': {
       'topic': new CleanCSS({ sourceMap: true }).minify('div { color: #f00 !important; /*!1*//*!2*/ }'),
       'has right output': function (errors, minified) {

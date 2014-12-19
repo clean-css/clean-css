@@ -1,4 +1,4 @@
-[3.0.1 / 2014-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.0...v3.0.1)
+[3.0.1 / 2014-12-19](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.0...v3.0.1)
 ==================
 
 * Fixed issue [#410](https://github.com/GoalSmashers/clean-css/issues/410) - advanced merging and comments.

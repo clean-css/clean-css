@@ -1,7 +1,7 @@
-[![NPM version](https://badge.fury.io/js/clean-css.svg)](https://badge.fury.io/js/clean-css)
-[![Build Status](https://secure.travis-ci.org/jakubpawlowicz/clean-css.svg?branch=master)](https://travis-ci.org/jakubpawlowicz/clean-css)
-[![Dependency Status](https://david-dm.org/jakubpawlowicz/clean-css.svg?theme=shields.io)](https://david-dm.org/jakubpawlowicz/clean-css)
-[![devDependency Status](https://david-dm.org/jakubpawlowicz/clean-css/dev-status.svg?theme=shields.io)](https://david-dm.org/jakubpawlowicz/clean-css#info=devDependencies)
+[![NPM version](https://img.shields.io/npm/v/clean-css.svg?style=flat)](https://www.npmjs.com/package/clean-css)
+[![Build Status](https://img.shields.io/travis/jakubpawlowicz/clean-css/master.svg?style=flat)](https://travis-ci.org/jakubpawlowicz/clean-css)
+[![Dependency Status](https://img.shields.io/david/jakubpawlowicz/clean-css.svg?style=flat)](https://david-dm.org/jakubpawlowicz/clean-css)
+[![devDependency Status](https://img.shields.io/david/dev/jakubpawlowicz/clean-css.svg?style=flat)](https://david-dm.org/jakubpawlowicz/clean-css#info=devDependencies)
 
 ## What is clean-css?
 

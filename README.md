@@ -28,7 +28,7 @@ npm install clean-css
 
 #### Command-line interface (CLI) - no breaking changes.
 
-#### Module interface
+#### Node.js module
 
 * `noAdvanced` became `advanced` - make sure to reverse the value;
 * `noAggressiveMerging` became `aggressiveMerging` - make sure to reverse the value;
@@ -36,33 +36,6 @@ npm install clean-css
 * no longer possible to use `CleanCSS` as a function as `new CleanCSS` is always required;
 * `minify` method returns a hash instead of a string now, so use `new CleanCSS().minify(source).styles` instead of `new CleanCSS().minify(source)`. This change is due to addition of source-maps.
 * `stats`, `errors`, and `warnings` are now a properties of a hash returned by `minify` method (see above) instead of CleanCSS instance.
-
-### How to upgrade clean-css from 1.x to 2.x?
-
-#### Command-line interface (CLI)
-
-```
-npm update clean-css
-```
-
-or point `package.json` to version 2.x. That's it!
-
-#### Node.js module
-
-Update `clean-css` as for CLI above.
-Then change your JavaScript code from:
-
-```js
-var minimized = CleanCSS.process(source, options);
-```
-
-into
-
-```js
-var minimized = new CleanCSS(options).minify(source);
-```
-
-And you are done.
 
 ### How to use clean-css CLI?
 

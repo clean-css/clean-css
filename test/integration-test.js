@@ -2206,6 +2206,12 @@ title']{display:block}",
       'a{background:url(1.png);background-size:28px 28px}'
     ]
   }),
+  'background position': cssContext({
+    'calc as a value': [
+      '*{background:white calc(100% - 10px) center no-repeat;background-image:url(test.png)}',
+      '*{background:url(test.png) calc(100% - 10px) center no-repeat #fff}'
+    ]
+  }),
   'background size with +properties.backgroundSizeMerging': cssContext({
     'with background-size property': [
       'a{background:none;background-image:url(1.png);background-size:28px 28px}',

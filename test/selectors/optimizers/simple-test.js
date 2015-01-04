@@ -357,6 +357,18 @@ vows.describe(SimpleOptimizer)
         'a{width:0px}',
         ['width:0']
       ],
+      'degrees': [
+        'div{background:linear-gradient(0deg,red,#fff)}',
+        ['background:linear-gradient(0deg,red,#fff)']
+      ],
+      'degrees when not mixed': [
+        'div{transform:rotate(0deg) skew(0deg)}',
+        ['transform:rotate(0) skew(0)']
+      ],
+      'non-zero degrees when not mixed': [
+        'div{transform:rotate(10deg) skew(.5deg)}',
+        ['transform:rotate(10deg) skew(.5deg)']
+      ],
       'mixed units': [
         'a{margin:0em 0rem 0px 0pt}',
         ['margin:0']

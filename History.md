@@ -1,3 +1,8 @@
+[3.1.0 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.2...v3.1.0)
+==================
+
+* Adds 0deg to 0 minification where possible.
+
 [3.0.2 / 2015-01-04](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.1...v3.0.2)
 ==================
 

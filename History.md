@@ -1,3 +1,8 @@
+[3.0.2 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.1...v3.0.2)
+==================
+
+* Fixed issue [#422](https://github.com/GoalSmashers/clean-css/issues/422) - handling calc as a unit.
+
 [3.0.1 / 2014-12-19](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.0...v3.0.1)
 ==================
 

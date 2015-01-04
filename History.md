@@ -1,4 +1,4 @@
-[2.2.23 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v2.2.22...v2.2.23)
+[2.2.23 / 2015-01-04](https://github.com/jakubpawlowicz/clean-css/compare/v2.2.22...v2.2.23)
 ==================
 
 * Backports fix to issue [#422](https://github.com/GoalSmashers/clean-css/issues/422) - handling calc as a unit.

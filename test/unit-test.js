@@ -2194,6 +2194,12 @@ title']{display:block}",
       'a{background:url(1.png) 0 0/28px 28px}'
     ]
   }),
+  'background position': cssContext({
+    'calc as a value': [
+      '*{background:white calc(100% - 10px) center no-repeat;background-image:url(test.png)}',
+      '*{background:url(test.png) calc(100% - 10px) center no-repeat #fff}'
+    ]
+  }),
   'multiple backgrounds': cssContext({
     'should not produce longer values': 'p{background:no-repeat;background-position:100% 0,0 100%,100% 100%,50% 50%}'
   }),

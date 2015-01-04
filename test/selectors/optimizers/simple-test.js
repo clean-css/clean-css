@@ -467,4 +467,20 @@ vows.describe(SimpleOptimizer)
       ]
     })
   )
+  .addBatch(
+    propertyContext('whitespace', {
+      'stripped spaces': [
+        'div{text-shadow:rgba(255,1,1,.5) 1px}',
+        ['text-shadow:rgba(255,1,1,.5)1px']
+      ]
+    })
+  )
+  .addBatch(
+    propertyContext('whitespace in compatibility mode', {
+      'stripped spaces': [
+        'div{text-shadow:rgba(255,1,1,.5) 1px}',
+        ['text-shadow:rgba(255,1,1,.5) 1px']
+      ]
+    }, { compatibility: 'ie8' })
+  )
   .export(module);

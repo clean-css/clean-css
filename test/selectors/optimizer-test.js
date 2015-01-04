@@ -213,7 +213,7 @@ vows.describe(SelectorsOptimizer)
     optimizerContext('@font-face', {
       'rebuilding': [
         '@font-face{font-family:PublicVintage;src:url(/PublicVintage.otf) format(\'opentype\')}',
-        '@font-face{font-family:PublicVintage;src:url(/PublicVintage.otf) format(\'opentype\')}'
+        '@font-face{font-family:PublicVintage;src:url(/PublicVintage.otf)format(\'opentype\')}'
       ]
     })
   )

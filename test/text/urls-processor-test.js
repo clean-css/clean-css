@@ -4,19 +4,19 @@ var UrlsProcessor = require('../../lib/text/urls-processor');
 
 var lineBreak = require('os').EOL;
 
-function processorContext(name, context, saveWaypoints) {
+function processorContext(name, context, saveWaypoints, removeTrailingSpace) {
   var vowContext = {};
 
   function escaped (expected) {
     return function (source) {
-      var escaped = new UrlsProcessor(null, saveWaypoints).escape(source);
+      var escaped = new UrlsProcessor(null, saveWaypoints, removeTrailingSpace).escape(source);
       assert.equal(escaped, expected);
     };
   }
 
   function restored (expected) {
     return function (source) {
-      var processor = new UrlsProcessor(null, saveWaypoints);
+      var processor = new UrlsProcessor(null, saveWaypoints, removeTrailingSpace);
       var restored = processor.restore(processor.escape(source));
       assert.equal(restored, expected);
     };
@@ -116,5 +116,19 @@ vows.describe(UrlsProcessor)
         'div{background:url(one/file.png) repeat}p{background:url(second/file.png)}'
       ]
     }, true)
+  )
+  .addBatch(
+    processorContext('trailing space', {
+      'removed': [
+        'div{background:url(some/file.png) repeat}',
+        'div{background:__ESCAPED_URL_CLEAN_CSS0(0,18)__ repeat}',
+        'div{background:url(some/file.png)repeat}'
+      ],
+      'no space': [
+        'div{background:url(some/file.png)}',
+        'div{background:__ESCAPED_URL_CLEAN_CSS0(0,18)__}',
+        'div{background:url(some/file.png)}'
+      ]
+    }, true, true)
   )
   .export(module);

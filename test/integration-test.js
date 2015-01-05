@@ -1741,7 +1741,7 @@ title']{display:block}",
     ],
     'two same bodies over a block': [
       '.one{color:red}@media print{.two{display:block}}.three{color:red}',
-      '.one{color:red}@media print{.two{display:block}}.three{color:red}'
+      '.one,.three{color:red}@media print{.two{display:block}}'
     ]
   }),
   'same non-adjacent selectors': cssContext({
@@ -1772,7 +1772,7 @@ title']{display:block}",
     ],
     'when overriden by a complex selector': [
       'a{padding:10px;margin:0;color:red}.one{color:red}a,p{color:red;padding:0}',
-      'a{margin:0}.one{color:red}a,p{color:red;padding:0}'
+      '.one,a,p{color:red}a{margin:0}a,p{padding:0}'
     ],
     'when overriden by complex selectors': [
       'a{padding:10px;margin:0;color:red}.one{color:red}a,p{color:red;padding:0}.one,a{color:#fff}',

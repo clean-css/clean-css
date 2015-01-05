@@ -900,4 +900,47 @@ vows.describe('source-map')
       }
     }
   })
+  .addBatch({
+    'advanced optimizations': {
+      'new property in smart sort': {
+        'topic': new CleanCSS({ sourceMap: true }).minify('a{color:#000}div{color:red}.one{display:block}.two{display:inline;color:red}'),
+        'should have 5 mappings': function (minified) {
+          assert.lengthOf(minified.sourceMap._mappings._array, 9);
+        },
+        'should have a merged ".two" mapping': function (minified) {
+          var mapping = {
+            generatedLine: 1,
+            generatedColumn: 13,
+            originalLine: 1,
+            originalColumn: 46,
+            source: '__stdin__.css',
+            name: null
+          };
+          assert.deepEqual(minified.sourceMap._mappings._array[2], mapping);
+        },
+        'should have a merged "div" mapping': function (minified) {
+          var mapping = {
+            generatedLine: 1,
+            generatedColumn: 18,
+            originalLine: 1,
+            originalColumn: 13,
+            source: '__stdin__.css',
+            name: null
+          };
+          assert.deepEqual(minified.sourceMap._mappings._array[3], mapping);
+        },
+        'should have a merged "color:red" mapping': function (minified) {
+          var mapping = {
+            generatedLine: 1,
+            generatedColumn: 22,
+            originalLine: 1,
+            originalColumn: 66,
+            source: '__stdin__.css',
+            name: null
+          };
+          assert.deepEqual(minified.sourceMap._mappings._array[4], mapping);
+        }
+      }
+    }
+  })
   .export(module);

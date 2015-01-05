@@ -90,6 +90,70 @@ vows.describe(SelectorsOptimizer)
     })
   )
   .addBatch(
+    optimizerContext('selectors - restructuring', {
+      'up until changed': [
+        'a{color:#000}div{color:red}.one{display:block}.two{display:inline;color:red}',
+        'a{color:#000}.two,div{color:red}.one{display:block}.two{display:inline}'
+      ],
+      'up until top': [
+        'a{width:100px}div{color:red}.one{display:block}.two{display:inline;color:red}',
+        '.two,div{color:red}a{width:100px}.one{display:block}.two{display:inline}'
+      ],
+      'up until top with charset': [
+        '@charset "utf-8";a{width:100px}div{color:red}.one{display:block}.two{display:inline;color:red}',
+        '@charset "utf-8";.two,div{color:red}a{width:100px}.one{display:block}.two{display:inline}'
+      ],
+      'over shorthands': [
+        'div{margin-top:0}.one{margin:0}.two{display:block;margin-top:0}',
+        'div{margin-top:0}.one{margin:0}.two{display:block;margin-top:0}'
+      ],
+      'over shorthands with flush': [
+        'div{margin-top:0}.one{margin:0}.two{display:block;margin-top:0}.three{color:red}.four{margin-top:0}',
+        'div{margin-top:0}.one{margin:0}.four,.two{margin-top:0}.two{display:block}.three{color:red}'
+      ],
+      'over granular': [
+        'div{margin-top:0}.one{margin-bottom:0}.two{display:block;margin-top:0}',
+        '.two,div{margin-top:0}.one{margin-bottom:0}.two{display:block}'
+      ],
+      'over granular with shorthand': [
+        'div{margin:0}.one{margin-bottom:0}.two{display:block;margin:0}',
+        'div{margin:0}.one{margin-bottom:0}.two{display:block;margin:0}'
+      ],
+      'over media without overriding': [
+        'div{margin:0}@media{.one{color:red}}.two{display:block;margin:0}',
+        '.two,div{margin:0}@media{.one{color:red}}.two{display:block}'
+      ],
+      'over media with overriding by different value': [
+        'div{margin:0}@media{.one{margin:10px}}.two{display:block;margin:0}',
+        'div{margin:0}@media{.one{margin:10px}}.two{display:block;margin:0}'
+      ],
+      'over media with overriding by same value': [
+        'div{margin:0}@media{.one{margin:0}}.two{display:block;margin:0}',
+        '.two,div{margin:0}@media{.one{margin:0}}.two{display:block}'
+      ],
+      'over media with overriding by a granular': [
+        'div{margin:0}@media{.one{margin-bottom:0}}.two{display:block;margin:0}',
+        'div{margin:0}@media{.one{margin-bottom:0}}.two{display:block;margin:0}'
+      ],
+      'over media with overriding by a different granular': [
+        'div{margin-top:0}@media{.one{margin-bottom:0}}.two{display:block;margin-top:0}',
+        '.two,div{margin-top:0}@media{.one{margin-bottom:0}}.two{display:block}'
+      ],
+      'over media with a new property': [
+        'div{margin-top:0}@media{.one{margin-top:0}}.two{display:block;margin:0}',
+        'div{margin-top:0}@media{.one{margin-top:0}}.two{display:block;margin:0}'
+      ],
+      'multiple granular up to a shorthand': [
+        '.one{border:1px solid #bbb}.two{border-color:#666}.three{border-width:1px;border-style:solid}',
+        '.one{border:1px solid #bbb}.two{border-color:#666}.three{border-width:1px;border-style:solid}'
+      ],
+      'multiple granular - complex case': [
+        '.one{background:red;padding:8px 16px}.two{padding-left:16px;padding-right:16px}.three{padding-top:20px}.four{border-left:1px solid #000;border-right:1px solid #000;border-bottom:1px solid #000}.five{background-color:#fff;background-image:-moz-linear-gradient();background-image:-ms-linear-gradient();background-image:-webkit-gradient();background-image:-webkit-linear-gradient()}',
+        '.one{background:red;padding:8px 16px}.two{padding-left:16px;padding-right:16px}.three{padding-top:20px}.four{border-left:1px solid #000;border-right:1px solid #000;border-bottom:1px solid #000}.five{background-color:#fff;background-image:-moz-linear-gradient();background-image:-ms-linear-gradient();background-image:-webkit-gradient();background-image:-webkit-linear-gradient()}'
+      ]
+    }, { advanced: true })
+  )
+  .addBatch(
     optimizerContext('properties', {
       'empty body': [
         'a{}',
@@ -153,7 +217,7 @@ vows.describe(SelectorsOptimizer)
       ],
       'non-adjacent with multi selectors': [
         'a{padding:10px;margin:0;color:red}.one{color:red}a,p{color:red;padding:0}',
-        'a{margin:0}.one{color:red}a,p{color:red;padding:0}'
+        '.one,a,p{color:red}a{margin:0}a,p{padding:0}'
       ]
     }, { advanced: true, aggressiveMerging: true })
   )
@@ -165,7 +229,7 @@ vows.describe(SelectorsOptimizer)
       ],
       'non-adjacent with multi selectors': [
         'a{padding:10px;margin:0;color:red}.one{color:red}a,p{color:red;padding:0}',
-        'a{padding:10px;margin:0}.one{color:red}a,p{color:red;padding:0}'
+        '.one,a,p{color:red}a{padding:10px;margin:0}a,p{padding:0}'
       ]
     }, { advanced: true, aggressiveMerging: false })
   )

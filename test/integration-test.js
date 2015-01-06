@@ -1784,6 +1784,22 @@ title']{display:block}",
     'with repeated selectors': [
       '#zero>p,.one,.two{color:red}.two,#zero>p,.three{color:red}',
       '#zero>p,.one,.three,.two{color:red}'
+    ],
+    'of element selectors': [
+      'p{color:red}a{color:#000}div{color:red}',
+      'div,p{color:red}a{color:#000}'
+    ],
+    'of element selectors inside @media': [
+      '@media screen{p{color:red}a{color:#000}div{color:red}}',
+      '@media screen{div,p{color:red}a{color:#000}}'
+    ],
+    'of element selectors with a class selector in between': [
+      'p{color:red}.a{color:#000}div{color:red}',
+      'p{color:red}.a{color:#000}div{color:red}'
+    ],
+    'of element selectors with an empty class selector in between': [
+      'p{color:red}.a{}div{color:red}',
+      'div,p{color:red}'
     ]
   }),
   'same bodies - IE8 compat': cssContext({

@@ -4,7 +4,7 @@ audio,canvas,video{display:inline-block}
 [hidden],audio:not([controls]){display:none}
 html{-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}
 button,html,input,select,textarea{font-family:sans-serif}
-body{margin:0}
+body,figure,form{margin:0}
 a:focus{outline:dotted thin}
 a:active,a:hover{outline:0}
 h1,h2,h3,h4,h5,h6{margin:0;font-weight:700}
@@ -27,7 +27,6 @@ dd{margin:0 0 0 40px}
 nav ol,nav ul{list-style:none}
 img{-ms-interpolation-mode:bicubic}
 svg:not(:root){overflow:hidden}
-figure,form{margin:0}
 fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
 legend{border:0;padding:0;white-space:normal}
 button,input,select,textarea{font-size:100%;margin:0;vertical-align:baseline}

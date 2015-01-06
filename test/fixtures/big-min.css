@@ -750,10 +750,9 @@ img[height="97"]+.ico29x29{bottom:6%;left:3.5%}
 .portfolio_appel_revolutionnaire.conteneur_carrousel .navigation .suivant{left:auto;right:0}
 .portfolio_appel_revolutionnaire a .legende.bg_fonce{color:#fff}
 #barre_titre,#header,#nav{position:relative}
-#header{z-index:3}
+#header{z-index:3;font-size:12px;text-align:left}
 #barre-titre{z-index:2}
 #nav{z-index:1}
-#header{font-size:12px;text-align:left}
 #header a{display:inline-block}
 .conteneur_haut{width:1000px;margin:0 auto}
 #surheader,#surheader .conteneur_haut{background:#1e5799;background:-moz-linear-gradient(top,#1e5799 0,#2d3841 0,#010c16 100%);background:-webkit-gradient(linear,left top,left bottom,color-stop(0,#1e5799),color-stop(0,#2d3841),color-stop(100%,#010c16));background:-webkit-linear-gradient(top,#1e5799 0,#2d3841 0,#010c16 100%);background:-o-linear-gradient(top,#1e5799 0,#2d3841 0,#010c16 100%);background:-ms-linear-gradient(top,#1e5799 0,#2d3841 0,#010c16 100%);background:linear-gradient(top,#1e5799 0,#2d3841 0,#010c16 100%);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#2d3841', endColorstr='#010c16', GradientType=0);height:25px;line-height:25px}

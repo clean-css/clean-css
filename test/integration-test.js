@@ -1112,9 +1112,9 @@ path")}',
       'a{color:red\\9;display:block;color:#fff\\9}',
       'a{display:block;color:#fff\\9}'
     ],
-    'overriding a star by a non-ajacent selector': 'a{color:red}.one{display:block}a{*color:#fff}',
-    'overriding a unserscore by a non-ajacent selector': 'a{color:red}.one{display:block}a{_color:#fff}',
-    'overriding a backslash by a non-ajacent selector': 'a{color:red}.one{display:block}a{color:#fff\\9}',
+    'overriding a star by a non-ajacent selector': 'a{color:red}.one{color:#fff}a{*color:#fff}',
+    'overriding an underscore by a non-ajacent selector': 'a{color:red}.one{color:#fff}a{_color:#fff}',
+    'overriding a backslash by a non-ajacent selector': 'a{color:red}.one{color:#fff}a{color:#fff\\9}',
     'keeps rgba(0,0,0,0)': 'a{color:rgba(0,0,0,0)}',
     'keeps rgba(255,255,255,0)': 'a{color:rgba(255,255,255,0)}',
     'keeps hsla(120,100%,50%,0)': 'a{color:hsla(120,100%,50%,0)}'
@@ -1670,7 +1670,10 @@ title']{display:block}",
     ]
   }, { aggressiveMerging: false }),
   'same selectors': cssContext({
-    'of two non-adjacent selectors': '.one{color:red}.two{color:#00f}.one{font-weight:700}',
+    'of two non-adjacent selectors': [
+      '.one{color:red}.two{color:#00f}.one{font-weight:700}',
+      '.one{color:red;font-weight:700}.two{color:#00f}'
+    ],
     'of two adjacent single selectors': [
       '.one{color:red}.one{font-weight:700}',
       '.one{color:red;font-weight:700}'
@@ -1710,18 +1713,18 @@ title']{display:block}",
     'when overriden with a browser specific selector': 'a{color:red}::-webkit-scrollbar,a{color:#fff}'
   }),
   'same non-adjacent selectors': cssContext({
-    'with different properties': 'a{color:red;display:block}.one{font-size:12px}a{margin:2px}',
+    'with different properties': 'a{color:red;display:block}.one{margin:5px}a{margin:2px}',
     'with one redefined property': [
-      'a{color:red;display:block}.one{font-size:12px}a{color:#fff;margin:2px}',
-      'a{display:block}.one{font-size:12px}a{color:#fff;margin:2px}'
+      'a{color:red;display:block}.one{color:red}a{color:#fff;margin:2px}',
+      'a{display:block}.one{color:red}a{color:#fff;margin:2px}'
     ],
     'with intentionally redefined properties on joins': [
-      'a{display:inline-block;display:-moz-inline-box;color:red}.one{font-size:12px}a{color:#fff;margin:2px}',
-      'a{display:inline-block;display:-moz-inline-box}.one{font-size:12px}a{color:#fff;margin:2px}'
+      'a{display:inline-block;display:-moz-inline-box;color:red}.one{margin:12px}a{color:#fff;margin:2px}',
+      'a{display:inline-block;display:-moz-inline-box}.one{margin:12px}a{color:#fff;margin:2px}'
     ],
-    'with intentionally redefined properties on nultiple joins': [
-      'a{color:red}.one{font-size:12px}a{color:#fff;margin:2px}.two{font-weight:400}a{margin:0}',
-      '.one{font-size:12px}a{color:#fff}.two{font-weight:400}a{margin:0}'
+    'with intentionally redefined properties on multiple joins': [
+      'a{color:red}.one{font-size:12px}a{color:#fff;margin:2px}.two{margin:10px}a{margin:0}',
+      '.one{font-size:12px}a{color:#fff}.two{margin:10px}a{margin:0}'
     ],
     'with all redefined properties': [
       'a{color:red;display:block}.one{font-size:12px}a{color:#fff;display:inline-block;margin:2px}',
@@ -1744,16 +1747,15 @@ title']{display:block}",
       'a{margin:0}a,p{color:red;padding:0}.one,a{color:#fff}'
     ],
     'when complex selector overriden by simple selectors': 'a,p{margin:0;color:red}a{color:#fff}',
-    // Pending re-run selectors merge - see #160
     'when complex selector overriden by complex and simple selectors': [
       'a,p{margin:0;color:red}a{color:#fff}a,p{color:#00f}p{color:#0f0}',
-      'a,p{margin:0}a,p{color:#00f}p{color:#0f0}'
+      'a,p{margin:0;color:#00f}p{color:#0f0}'
     ],
     'when complex selector overriden by complex selectors': [
       '.one>.two,.three{color:red;line-height:1rem}#zero,.one>.two,.three,.www{color:#fff;margin:0}a{color:red}.one>.two,.three{line-height:2rem;font-size:1.5rem}',
       '#zero,.one>.two,.three,.www{color:#fff;margin:0}a{color:red}.one>.two,.three{line-height:2rem;font-size:1.5rem}'
     ],
-    'when undefined is used as a value': '.one{text-shadow:undefined}p{color:red}.one{font-size:12px}',
+    'when undefined is used as a value': '.one{text-shadow:undefined}p{font-size:14px}.one{font-size:12px}',
     'when undefined is used as a value with reduction': [
       '.one{text-shadow:undefined}p{color:red}.one{font-size:12px;text-shadow:none}',
       'p{color:red}.one{font-size:12px;text-shadow:none}'
@@ -1763,7 +1765,19 @@ title']{display:block}",
       'a,::-moz-selection{color:red}p{display:block}a,::-moz-selection{color:#fff}',
       'p{display:block}::-moz-selection,a{color:#fff}'
     ],
-    'with full property comparison': '.one{height:7rem}.two{height:auto}.one{line-height:7rem;color:red}'
+    'with full property comparison': '.one{height:7rem}.two{color:#fff}.one{line-height:7rem;color:red}',
+    'with two intermediate, non-overriding selectors': [
+      '.one{color:red;margin:0}.two{color:#fff}.one{font-size:12px}',
+      '.one{color:red;margin:0;font-size:12px}.two{color:#fff}'
+    ],
+    'with two intermediate, overriding more specific selectors': [
+      '.one{color:red;margin:0}.two{font:12px serif}.one{font-size:12px}',
+      '.one{color:red;margin:0}.two{font:12px serif}.one{font-size:12px}'
+    ],
+    'with three intermediate, non-overriding selectors': [
+      '.one{color:red;margin:0}.two{color:#fff}.one{font-size:12px}.three{color:#000}.one{padding:0}',
+      '.one{color:red;margin:0;font-size:12px;padding:0}.two{color:#fff}.three{color:#000}'
+    ]
   }),
   'rerun optimizers': cssContext({
     'selectors reducible once': [

@@ -1,4 +1,4 @@
-[3.1.0 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.2...v3.1.0)
+[3.1.0 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.3...v3.1.0)
 ==================
 
 * Adds 0deg to 0 minification where possible.
@@ -6,6 +6,11 @@
 * Fixed issue [#158](https://github.com/GoalSmashers/clean-css/issues/158) - adds body-based selectors reduction.
 * Fixed issue [#182](https://github.com/GoalSmashers/clean-css/issues/182) - removing space after closing brace.
 * Fixed issue [#357](https://github.com/GoalSmashers/clean-css/issues/357) - non-standard but valid URLs.
+
+[3.0.3 / 2015-01-07](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.2...v3.0.3)
+==================
+
+* Just a version bump as npm incorrectly things 2.2.23 is the latest one.
 
 [3.0.2 / 2015-01-04](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.1...v3.0.2)
 ==================

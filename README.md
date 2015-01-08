@@ -103,7 +103,7 @@ cat one.css two.css three.css | cleancss | gzip -9 -c > merged-minified-and-gzip
 ```js
 var CleanCSS = require('clean-css');
 var source = 'a{font-weight:bold;}';
-var minimized = new CleanCSS().minify(source).styles;
+var minified = new CleanCSS().minify(source).styles;
 ```
 
 CleanCSS constructor accepts a hash as a parameter, i.e.,
@@ -126,6 +126,21 @@ CleanCSS constructor accepts a hash as a parameter, i.e.,
 * `sourceMap` - exposes source map under `sourceMap` property, e.g. `new CleanCSS().minify(source).sourceMap` (default is false)
   If input styles are a product of CSS preprocessor (LESS, SASS) an input source map can be passed as a string.
 * `target` - path to a folder or an output file to which __rebase__ all URLs
+
+#### How to make sure remote `@import`s are processed correctly?
+
+In order to inline remote `@import` statements you need to provide a callback to minify method, e.g.:
+
+```js
+var CleanCSS = require('clean-css');
+var source = '@import url(http://path/to/remote/styles);';
+new CleanCSS().minify(source, function (errors, minified) {
+  // minified.styles
+});
+```
+
+This is due to a fact, that, while local files can be read synchronously, remote resources can only be processed asynchronously.
+If you don't provide a callback, then remote `@import`s will be left intact.
 
 ### How to use clean-css with build tools?
 

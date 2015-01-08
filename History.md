@@ -5,6 +5,7 @@
 * Adds better non-adjacent selector merging when body is the same.
 * Fixed issue [#158](https://github.com/GoalSmashers/clean-css/issues/158) - adds body-based selectors reduction.
 * Fixed issue [#182](https://github.com/GoalSmashers/clean-css/issues/182) - removing space after closing brace.
+* Fixed issue [#357](https://github.com/GoalSmashers/clean-css/issues/357) - non-standard but valid URLs.
 
 [3.0.2 / 2015-01-04](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.1...v3.0.2)
 ==================

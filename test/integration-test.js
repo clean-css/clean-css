@@ -947,6 +947,10 @@ path)}',
       'a{background:url("/very/long/\
 path")}',
       'a{background:url(/very/long/path)}'
+    ],
+    'uppercase': [
+      'a{background-image: URL("images/image.png");}',
+      'a{background-image:url(images/image.png)}'
     ]
   }),
   'urls whitespace in compatibility mode': cssContext({

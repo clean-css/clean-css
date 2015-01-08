@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "commander": "2.6.x",
-    "source-map": "0.1.x"
+    "source-map": ">=0.1.43 <0.2"
   },
   "devDependencies": {
     "browserify": "8.x",

@@ -27,7 +27,7 @@ vows.describe('source-map')
     'module #1': {
       'topic': new CleanCSS({ sourceMap: true }).minify('/*! a */div[data-id=" abc "] { color:red; }'),
       'should have 2 mappings': function(minified) {
-        assert.lengthOf(minified.sourceMap._mappings, 2);
+        assert.lengthOf(minified.sourceMap._mappings._array, 2);
       },
       'should have selector mapping': function (minified) {
         var mapping = {
@@ -38,7 +38,7 @@ vows.describe('source-map')
           source: '__stdin__.css',
           name: null
         };
-        assert.deepEqual(minified.sourceMap._mappings[0], mapping);
+        assert.deepEqual(minified.sourceMap._mappings._array[0], mapping);
       },
       'should have body mapping': function (minified) {
         var mapping = {
@@ -49,13 +49,13 @@ vows.describe('source-map')
           source: '__stdin__.css',
           name: null
         };
-        assert.deepEqual(minified.sourceMap._mappings[1], mapping);
+        assert.deepEqual(minified.sourceMap._mappings._array[1], mapping);
       }
     },
     'module #2': {
       'topic': new CleanCSS({ sourceMap: true }).minify('@media screen {\n@font-face \n{ \nfont-family: test; } }'),
       'should have 3 mappings': function(minified) {
-        assert.lengthOf(minified.sourceMap._mappings, 3);
+        assert.lengthOf(minified.sourceMap._mappings._array, 3);
       },
       'should have @media mapping': function (minified) {
         var mapping = {
@@ -66,7 +66,7 @@ vows.describe('source-map')
           source: '__stdin__.css',
           name: null
         };
-        assert.deepEqual(minified.sourceMap._mappings[0], mapping);
+        assert.deepEqual(minified.sourceMap._mappings._array[0], mapping);
       },
       'should have @font-face mapping': function (minified) {
         var mapping = {
@@ -77,7 +77,7 @@ vows.describe('source-map')
           source: '__stdin__.css',
           name: null
         };
-        assert.deepEqual(minified.sourceMap._mappings[1], mapping);
+        assert.deepEqual(minified.sourceMap._mappings._array[1], mapping);
       },
       'should have font-family mapping': function (minified) {
         var mapping = {
@@ -88,13 +88,13 @@ vows.describe('source-map')
           source: '__stdin__.css',
           name: null
         };
-        assert.deepEqual(minified.sourceMap._mappings[2], mapping);
+        assert.deepEqual(minified.sourceMap._mappings._array[2], mapping);
       }
     },
     'with keepBreaks': {
       'topic': new CleanCSS({ sourceMap: true, keepBreaks: true }).minify('@media screen { a{color:red} p {color:blue} }div{color:pink}'),
       'should have 7 mappings': function(minified) {
-        assert.lengthOf(minified.sourceMap._mappings, 7);
+        assert.lengthOf(minified.sourceMap._mappings._array, 7);
       },
       'should have @media mapping': function (minified) {
         var mapping = {
@@ -105,7 +105,7 @@ vows.describe('source-map')
           source: '__stdin__.css',
           name: null
         };
-        assert.deepEqual(minified.sourceMap._mappings[0], mapping);
+        assert.deepEqual(minified.sourceMap._mappings._array[0], mapping);
       },
       'should have _a_ mapping': function (minified) {
         var mapping = {
@@ -116,7 +116,7 @@ vows.describe('source-map')
           source: '__stdin__.css',
           name: null
         };
-        assert.deepEqual(minified.sourceMap._mappings[1], mapping);
+        assert.deepEqual(minified.sourceMap._mappings._array[1], mapping);
       },
       'should have _color:red_ mapping': function (minified) {
         var mapping = {
@@ -127,7 +127,7 @@ vows.describe('source-map')
           source: '__stdin__.css',
           name: null
         };
-        assert.deepEqual(minified.sourceMap._mappings[2], mapping);
+        assert.deepEqual(minified.sourceMap._mappings._array[2], mapping);
       },
       'should have _p_ mapping': function (minified) {
         var mapping = {
@@ -138,7 +138,7 @@ vows.describe('source-map')
           source: '__stdin__.css',
           name: null
         };
-        assert.deepEqual(minified.sourceMap._mappings[3], mapping);
+        assert.deepEqual(minified.sourceMap._mappings._array[3], mapping);
       },
       'should have _color:blue_ mapping': function (minified) {
         var mapping = {
@@ -149,7 +149,7 @@ vows.describe('source-map')
           source: '__stdin__.css',
           name: null
         };
-        assert.deepEqual(minified.sourceMap._mappings[4], mapping);
+        assert.deepEqual(minified.sourceMap._mappings._array[4], mapping);
       },
       'should have _div_ mapping': function (minified) {
         var mapping = {
@@ -160,7 +160,7 @@ vows.describe('source-map')
           source: '__stdin__.css',
           name: null
         };
-        assert.deepEqual(minified.sourceMap._mappings[5], mapping);
+        assert.deepEqual(minified.sourceMap._mappings._array[5], mapping);
       },
       'should have _color:pink_ mapping': function (minified) {
         var mapping = {
@@ -171,13 +171,13 @@ vows.describe('source-map')
           source: '__stdin__.css',
           name: null
         };
-        assert.deepEqual(minified.sourceMap._mappings[6], mapping);
+        assert.deepEqual(minified.sourceMap._mappings._array[6], mapping);
       }
     },
     'shorthands': {
       'topic': new CleanCSS({ sourceMap: true }).minify('a{background:url(image.png);background-color:red}'),
       'should have 3 mappings': function(minified) {
-        assert.lengthOf(minified.sourceMap._mappings, 3);
+        assert.lengthOf(minified.sourceMap._mappings._array, 3);
       },
       'should have selector mapping': function (minified) {
         var mapping = {
@@ -188,7 +188,7 @@ vows.describe('source-map')
           source: '__stdin__.css',
           name: null
         };
-        assert.deepEqual(minified.sourceMap._mappings[0], mapping);
+        assert.deepEqual(minified.sourceMap._mappings._array[0], mapping);
       },
       'should have _background_ mapping': function (minified) {
         var mapping = {
@@ -199,7 +199,7 @@ vows.describe('source-map')
           source: '__stdin__.css',
           name: null
         };
-        assert.deepEqual(minified.sourceMap._mappings[1], mapping);
+        assert.deepEqual(minified.sourceMap._mappings._array[1], mapping);
       },
       'should have _background-color_ mapping': function (minified) {
         var mapping = {
@@ -210,13 +210,13 @@ vows.describe('source-map')
           source: '__stdin__.css',
           name: null
         };
-        assert.deepEqual(minified.sourceMap._mappings[2], mapping);
+        assert.deepEqual(minified.sourceMap._mappings._array[2], mapping);
       }
     },
     'keyframes': {
       'topic': new CleanCSS({ sourceMap: true }).minify('@-webkit-keyframes frames {\n  0% {\n    border: 1px;\n  }\n  100% {\n    border: 3px;\n  }\n}'),
       'should have 5 mappings': function(minified) {
-        assert.lengthOf(minified.sourceMap._mappings, 5);
+        assert.lengthOf(minified.sourceMap._mappings._array, 5);
       },
       'should have _@keframes_ mapping': function (minified) {
         var mapping = {
@@ -227,7 +227,7 @@ vows.describe('source-map')
           source: '__stdin__.css',
           name: null
         };
-        assert.deepEqual(minified.sourceMap._mappings[0], mapping);
+        assert.deepEqual(minified.sourceMap._mappings._array[0], mapping);
       },
       'should have _0%_ mapping': function (minified) {
         var mapping = {
@@ -238,7 +238,7 @@ vows.describe('source-map')
           source: '__stdin__.css',
           name: null
         };
-        assert.deepEqual(minified.sourceMap._mappings[1], mapping);
+        assert.deepEqual(minified.sourceMap._mappings._array[1], mapping);
       },
       'should have _border:1px_ mapping': function (minified) {
         var mapping = {
@@ -249,7 +249,7 @@ vows.describe('source-map')
           source: '__stdin__.css',
           name: null
         };
-        assert.deepEqual(minified.sourceMap._mappings[2], mapping);
+        assert.deepEqual(minified.sourceMap._mappings._array[2], mapping);
       },
       'should have _100%_ mapping': function (minified) {
         var mapping = {
@@ -260,7 +260,7 @@ vows.describe('source-map')
           source: '__stdin__.css',
           name: null
         };
-        assert.deepEqual(minified.sourceMap._mappings[3], mapping);
+        assert.deepEqual(minified.sourceMap._mappings._array[3], mapping);
       },
       'should have _border:3px_ mapping': function (minified) {
         var mapping = {
@@ -271,13 +271,13 @@ vows.describe('source-map')
           source: '__stdin__.css',
           name: null
         };
-        assert.deepEqual(minified.sourceMap._mappings[4], mapping);
+        assert.deepEqual(minified.sourceMap._mappings._array[4], mapping);
       }
     },
     'double comments': {
       'topic': new CleanCSS({ sourceMap: true }).minify('/* COMMENT 1 */\n/* COMMENT 2 */\ndiv{color:red}'),
       'should have 2 mappings': function(minified) {
-        assert.lengthOf(minified.sourceMap._mappings, 2);
+        assert.lengthOf(minified.sourceMap._mappings._array, 2);
       },
       'should have _div__ mapping': function (minified) {
         var mapping = {
@@ -288,7 +288,7 @@ vows.describe('source-map')
           source: '__stdin__.css',
           name: null
         };
-        assert.deepEqual(minified.sourceMap._mappings[0], mapping);
+        assert.deepEqual(minified.sourceMap._mappings._array[0], mapping);
       },
       'should have _color:red_ mapping': function (minified) {
         var mapping = {
@@ -299,7 +299,7 @@ vows.describe('source-map')
           source: '__stdin__.css',
           name: null
         };
-        assert.deepEqual(minified.sourceMap._mappings[1], mapping);
+        assert.deepEqual(minified.sourceMap._mappings._array[1], mapping);
       }
     }
   })
@@ -307,7 +307,7 @@ vows.describe('source-map')
     'input map as string': {
       'topic': new CleanCSS({ sourceMap: inputMap }).minify('div > a {\n  color: red;\n}'),
       'should have 2 mappings': function (minified) {
-        assert.lengthOf(minified.sourceMap._mappings, 2);
+        assert.lengthOf(minified.sourceMap._mappings._array, 2);
       },
       'should have selector mapping': function (minified) {
         var mapping = {
@@ -318,7 +318,7 @@ vows.describe('source-map')
           source: 'styles.less',
           name: null
         };
-        assert.deepEqual(minified.sourceMap._mappings[0], mapping);
+        assert.deepEqual(minified.sourceMap._mappings._array[0], mapping);
       },
       'should have _color:red_ mapping': function (minified) {
         var mapping = {
@@ -329,13 +329,13 @@ vows.describe('source-map')
           source: 'styles.less',
           name: null
         };
-        assert.deepEqual(minified.sourceMap._mappings[1], mapping);
+        assert.deepEqual(minified.sourceMap._mappings._array[1], mapping);
       }
     },
     'input map from source': {
       'topic': new CleanCSS({ sourceMap: true }).minify('div > a {\n  color: red;\n}/*# sourceMappingURL=' + inputMapPath + ' */'),
       'should have 2 mappings': function (minified) {
-        assert.lengthOf(minified.sourceMap._mappings, 2);
+        assert.lengthOf(minified.sourceMap._mappings._array, 2);
       },
       'should have selector mapping': function (minified) {
         var mapping = {
@@ -346,7 +346,7 @@ vows.describe('source-map')
           source: 'styles.less',
           name: null
         };
-        assert.deepEqual(minified.sourceMap._mappings[0], mapping);
+        assert.deepEqual(minified.sourceMap._mappings._array[0], mapping);
       },
       'should have _color:red_ mapping': function (minified) {
         var mapping = {
@@ -357,13 +357,13 @@ vows.describe('source-map')
           source: 'styles.less',
           name: null
         };
-        assert.deepEqual(minified.sourceMap._mappings[1], mapping);
+        assert.deepEqual(minified.sourceMap._mappings._array[1], mapping);
       }
     },
     'input map from source with root': {
       'topic': new CleanCSS({ sourceMap: true, relativeTo: path.dirname(inputMapPath) }).minify('div > a {\n  color: red;\n}/*# sourceMappingURL=styles.css.map */'),
       'should have 2 mappings': function (minified) {
-        assert.lengthOf(minified.sourceMap._mappings, 2);
+        assert.lengthOf(minified.sourceMap._mappings._array, 2);
       },
       'should have selector mapping': function (minified) {
         var mapping = {
@@ -374,7 +374,7 @@ vows.describe('source-map')
           source: 'styles.less',
           name: null
         };
-        assert.deepEqual(minified.sourceMap._mappings[0], mapping);
+        assert.deepEqual(minified.sourceMap._mappings._array[0], mapping);
       },
       'should have _color:red_ mapping': function (minified) {
         var mapping = {
@@ -385,13 +385,13 @@ vows.describe('source-map')
           source: 'styles.less',
           name: null
         };
-        assert.deepEqual(minified.sourceMap._mappings[1], mapping);
+        assert.deepEqual(minified.sourceMap._mappings._array[1], mapping);
       }
     },
     'complex input map': {
       'topic': new CleanCSS({ sourceMap: true, root: path.dirname(inputMapPath) }).minify('@import url(import.css);'),
       'should have 4 mappings': function (minified) {
-        assert.lengthOf(minified.sourceMap._mappings, 4);
+        assert.lengthOf(minified.sourceMap._mappings._array, 4);
       },
       'should have first selector mapping': function (minified) {
         var mapping = {
@@ -402,7 +402,7 @@ vows.describe('source-map')
           source: 'some.less',
           name: null
         };
-        assert.deepEqual(minified.sourceMap._mappings[0], mapping);
+        assert.deepEqual(minified.sourceMap._mappings._array[0], mapping);
       },
       'should have _color:red_ mapping': function (minified) {
         var mapping = {
@@ -413,7 +413,7 @@ vows.describe('source-map')
           source: 'some.less',
           name: null
         };
-        assert.deepEqual(minified.sourceMap._mappings[1], mapping);
+        assert.deepEqual(minified.sourceMap._mappings._array[1], mapping);
       },
       'should have second selector mapping': function (minified) {
         var mapping = {
@@ -424,7 +424,7 @@ vows.describe('source-map')
           source: 'styles.less',
           name: null
         };
-        assert.deepEqual(minified.sourceMap._mappings[2], mapping);
+        assert.deepEqual(minified.sourceMap._mappings._array[2], mapping);
       },
       'should have _color:blue_ mapping': function (minified) {
         var mapping = {
@@ -435,28 +435,28 @@ vows.describe('source-map')
           source: 'styles.less',
           name: null
         };
-        assert.deepEqual(minified.sourceMap._mappings[3], mapping);
+        assert.deepEqual(minified.sourceMap._mappings._array[3], mapping);
       }
     },
     'complex input map referenced by path': {
       'topic': new CleanCSS({ sourceMap: true }).minify('@import url(test/fixtures/source-maps/import.css);'),
       'should have 4 mappings': function (minified) {
-        assert.lengthOf(minified.sourceMap._mappings, 4);
+        assert.lengthOf(minified.sourceMap._mappings._array, 4);
       }
     },
     'complex but partial input map referenced by path': {
       'topic': new CleanCSS({ sourceMap: true, target: process.cwd() }).minify('@import url(test/fixtures/source-maps/no-map-import.css);'),
       'should have 4 mappings': function (minified) {
-        assert.lengthOf(minified.sourceMap._mappings, 4);
+        assert.lengthOf(minified.sourceMap._mappings._array, 4);
       },
       'should have 2 mappings to .less file': function (minified) {
-        var fromLess = minified.sourceMap._mappings.filter(function (mapping) {
+        var fromLess = minified.sourceMap._mappings._array.filter(function (mapping) {
           return mapping.source == path.join('test', 'fixtures', 'source-maps', 'styles.less');
         });
         assert.lengthOf(fromLess, 2);
       },
       'should have 2 mappings to .css file': function (minified) {
-        var fromCSS = minified.sourceMap._mappings.filter(function (mapping) {
+        var fromCSS = minified.sourceMap._mappings._array.filter(function (mapping) {
           return mapping.source == path.join('test', 'fixtures', 'source-maps', 'no-map.css');
         });
         assert.lengthOf(fromCSS, 2);
@@ -465,10 +465,10 @@ vows.describe('source-map')
     'complex input map with an existing file as target': {
       'topic': new CleanCSS({ sourceMap: true, target: path.join(process.cwd(), 'test', 'fixtures', 'source-maps', 'styles.css') }).minify('@import url(test/fixtures/source-maps/styles.css);'),
       'should have 2 mappings': function (minified) {
-        assert.lengthOf(minified.sourceMap._mappings, 2);
+        assert.lengthOf(minified.sourceMap._mappings._array, 2);
       },
       'should have 2 mappings to styles.less file': function (minified) {
-        var stylesSource = minified.sourceMap._mappings.filter(function (mapping) {
+        var stylesSource = minified.sourceMap._mappings._array.filter(function (mapping) {
           return mapping.source == 'styles.less';
         });
         assert.lengthOf(stylesSource, 2);
@@ -477,7 +477,7 @@ vows.describe('source-map')
     'nested once': {
       'topic': new CleanCSS({ sourceMap: true }).minify('@import url(test/fixtures/source-maps/nested/once.css);'),
       'should have 2 mappings': function (minified) {
-        assert.lengthOf(minified.sourceMap._mappings, 2);
+        assert.lengthOf(minified.sourceMap._mappings._array, 2);
       },
       'should have "section > div a" mapping': function (minified) {
         var mapping = {
@@ -488,7 +488,7 @@ vows.describe('source-map')
           source: 'once.less',
           name: null
         };
-        assert.deepEqual(minified.sourceMap._mappings[0], mapping);
+        assert.deepEqual(minified.sourceMap._mappings._array[0], mapping);
       },
       'should have "color:red" mapping': function (minified) {
         var mapping = {
@@ -499,13 +499,13 @@ vows.describe('source-map')
           source: 'once.less',
           name: null
         };
-        assert.deepEqual(minified.sourceMap._mappings[1], mapping);
+        assert.deepEqual(minified.sourceMap._mappings._array[1], mapping);
       }
     },
     'nested twice': {
       'topic': new CleanCSS({ sourceMap: true }).minify('@import url(test/fixtures/source-maps/nested/twice.css);'),
       'should have 2 mappings': function (minified) {
-        assert.lengthOf(minified.sourceMap._mappings, 2);
+        assert.lengthOf(minified.sourceMap._mappings._array, 2);
       },
       'should have "body > nav a" mapping': function (minified) {
         var mapping = {
@@ -516,7 +516,7 @@ vows.describe('source-map')
           source: 'twice.less',
           name: null
         };
-        assert.deepEqual(minified.sourceMap._mappings[0], mapping);
+        assert.deepEqual(minified.sourceMap._mappings._array[0], mapping);
       },
       'should have "color:red" mapping': function (minified) {
         var mapping = {
@@ -527,7 +527,7 @@ vows.describe('source-map')
           source: 'twice.less',
           name: null
         };
-        assert.deepEqual(minified.sourceMap._mappings[1], mapping);
+        assert.deepEqual(minified.sourceMap._mappings._array[1], mapping);
       }
     }
   })
@@ -600,7 +600,7 @@ vows.describe('source-map')
         assert.isDefined(minified.sourceMap);
       },
       'maps to external source file': function (errors, minified) {
-        assert.equal(minified.sourceMap._mappings[0].source, 'http://127.0.0.1/styles.less');
+        assert.equal(minified.sourceMap._mappings._array[0].source, 'http://127.0.0.1/styles.less');
       },
       teardown: function () {
         assert.isTrue(this.reqMocks.isDone());

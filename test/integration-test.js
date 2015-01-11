@@ -132,6 +132,10 @@ vows.describe('integration tests').addBatch({
       'div{height:-moz-calc(3 * 2em + 10px)}',
       'div{height:-moz-calc(3 * 2em + 10px)}'
     ],
+    'not inside calc method with brackets': [
+      'body{margin-left:calc(50vw + (1024px/2))}',
+      'body{margin-left:calc(50vw + (1024px/2))}'
+    ],
     'before colon': [
       '#test{padding-left :0}',
       '#test{padding-left:0}'

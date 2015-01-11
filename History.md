@@ -1,3 +1,8 @@
+[3.0.4 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.3...v3.0.4)
+==================
+
+* Fixed issue [#314](https://github.com/GoalSmashers/clean-css/issues/314) - spaces inside calc.
+
 [3.0.3 / 2015-01-07](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.2...v3.0.3)
 ==================
 

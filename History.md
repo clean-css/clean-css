@@ -7,7 +7,7 @@
 * Fixed issue [#182](https://github.com/GoalSmashers/clean-css/issues/182) - removing space after closing brace.
 * Fixed issue [#357](https://github.com/GoalSmashers/clean-css/issues/357) - non-standard but valid URLs.
 
-[3.0.4 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.3...v3.0.4)
+[3.0.4 / 2015-01-11](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.3...v3.0.4)
 ==================
 
 * Fixed issue [#314](https://github.com/GoalSmashers/clean-css/issues/314) - spaces inside calc.

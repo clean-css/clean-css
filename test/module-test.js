@@ -1,8 +1,22 @@
 var vows = require('vows');
 var assert = require('assert');
 var path = require('path');
+var fs = require('fs');
 var CleanCSS = require('../index');
 var SourceMapGenerator = require('source-map').SourceMapGenerator;
+
+function sourcesAsHash(sources, resolve) {
+  var inputHash = {};
+
+  sources.forEach(function (source) {
+    source = resolve ? path.resolve(source) : source;
+    inputHash[source] = {
+      styles: fs.readFileSync(source, 'utf-8')
+    };
+  });
+
+  return inputHash;
+}
 
 vows.describe('module tests').addBatch({
   'imported as a function': {
@@ -285,6 +299,96 @@ vows.describe('module tests').addBatch({
       'topic': new CleanCSS({ processImport: false }).minify(['./test/fixtures/partials/two.css']),
       'should give right output': function (minified) {
         assert.equal(minified.styles, '@import url(one.css);@import url(extra/three.css);@import url(./extra/four.css);.two{color:#fff}');
+      }
+    }
+  },
+  'accepts a list of source files as hash': {
+    'rebased to the current dir': {
+      'with relative paths': {
+        'topic': new CleanCSS().minify(sourcesAsHash(['test/fixtures/partials/one.css', 'test/fixtures/partials/three.css'])),
+        'should give right output': function (minified) {
+          assert.equal(minified.styles, '.one{color:red}.three{background-image:url(test/fixtures/partials/extra/down.gif)}');
+        }
+      },
+      'with absolute paths': {
+        'topic': new CleanCSS().minify(sourcesAsHash(['test/fixtures/partials/one.css', 'test/fixtures/partials/three.css'], true)),
+        'should give right output': function (minified) {
+          assert.equal(minified.styles, '.one{color:red}.three{background-image:url(test/fixtures/partials/extra/down.gif)}');
+        }
+      }
+    },
+    'rebased to a relative path': {
+      'with relative paths': {
+        'topic': new CleanCSS({ target: 'test/fixtures' }).minify(sourcesAsHash(['test/fixtures/partials/one.css', 'test/fixtures/partials/three.css'])),
+        'should give right output': function (minified) {
+          assert.equal(minified.styles, '.one{color:red}.three{background-image:url(partials/extra/down.gif)}');
+        }
+      },
+      'with absolute paths': {
+        'topic': new CleanCSS({ target: 'test/fixtures' }).minify(sourcesAsHash(['test/fixtures/partials/one.css', 'test/fixtures/partials/three.css'], true)),
+        'should give right output': function (minified) {
+          assert.equal(minified.styles, '.one{color:red}.three{background-image:url(partials/extra/down.gif)}');
+        }
+      }
+    },
+    'rebased to an absolute root': {
+      'with relative paths': {
+        'topic': new CleanCSS({ root: 'test/fixtures', target: 'test/fixtures' }).minify(sourcesAsHash(['test/fixtures/partials/one.css', 'test/fixtures/partials/three.css'])),
+        'should give right output': function (minified) {
+          assert.equal(minified.styles, '.one{color:red}.three{background-image:url(/partials/extra/down.gif)}');
+        }
+      },
+      'with absolute paths': {
+        'topic': new CleanCSS({ root: 'test/fixtures', target: 'test/fixtures' }).minify(sourcesAsHash(['test/fixtures/partials/one.css', 'test/fixtures/partials/three.css'], true)),
+        'should give right output': function (minified) {
+          assert.equal(minified.styles, '.one{color:red}.three{background-image:url(/partials/extra/down.gif)}');
+        }
+      }
+    },
+    'with rebasing off': {
+      'with relative paths': {
+        'topic': new CleanCSS({ rebase: false }).minify(sourcesAsHash(['test/fixtures/partials/one.css', 'test/fixtures/partials/three.css'])),
+        'should give right output': function (minified) {
+          assert.equal(minified.styles, '.one{color:red}.three{background-image:url(extra/down.gif)}');
+        }
+      },
+      'with absolute paths': {
+        'topic': new CleanCSS({ rebase: false }).minify(sourcesAsHash(['test/fixtures/partials/one.css', 'test/fixtures/partials/three.css'], true)),
+        'should give right output': function (minified) {
+          assert.equal(minified.styles, '.one{color:red}.three{background-image:url(extra/down.gif)}');
+        }
+      }
+    },
+    'with other imports': {
+      'topic': new CleanCSS().minify(sourcesAsHash(['test/fixtures/partials/two.css'])),
+      'should give right output': function (minified) {
+        assert.equal(minified.styles, '.one{color:red}.three{color:#0f0}.four{color:#00f}.two{color:#fff}');
+      }
+    },
+    'with other imports and rebasing off': {
+      'topic': new CleanCSS({ rebase: false }).minify(sourcesAsHash(['test/fixtures/partials/two.css'])),
+      'should give right output': function (minified) {
+        assert.equal(minified.styles, '.one{color:red}.three{color:#0f0}.four{color:#00f}.two{color:#fff}');
+      }
+    },
+    'with other imports and processing imports off': {
+      'relative to current path': {
+        'topic': new CleanCSS({ processImport: false }).minify(sourcesAsHash(['test/fixtures/partials/two.css'])),
+        'should give right output': function (minified) {
+          assert.equal(minified.styles, '@import url(test/fixtures/partials/one.css);@import url(test/fixtures/partials/extra/three.css);@import url(test/fixtures/partials/extra/four.css);.two{color:#fff}');
+        }
+      },
+      'relative to different path': {
+        'topic': new CleanCSS({ processImport: false, target: 'test/fixtures' }).minify(sourcesAsHash(['test/fixtures/partials/two.css'])),
+        'should give right output': function (minified) {
+          assert.equal(minified.styles, '@import url(partials/one.css);@import url(partials/extra/three.css);@import url(partials/extra/four.css);.two{color:#fff}');
+        }
+      },
+      'absolute': {
+        'topic': new CleanCSS({ processImport: false, root: 'test/fixtures', target: 'test/fixtures' }).minify(sourcesAsHash(['test/fixtures/partials/two.css'])),
+        'should give right output': function (minified) {
+          assert.equal(minified.styles, '@import url(/partials/one.css);@import url(/partials/extra/three.css);@import url(/partials/extra/four.css);.two{color:#fff}');
+        }
       }
     }
   }

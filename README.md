@@ -247,6 +247,21 @@ new CleanCSS({ sourceMap: inputSourceMapAsString, target: pathToOutputDirectory 
 * Shorthand compacting is currently disabled when source maps are enabled, see [#399](https://github.com/GoalSmashers/clean-css/issues/399)
 * Sources inlined in source maps are not supported, see [#397](https://github.com/GoalSmashers/clean-css/issues/397)
 
+### How to minify multiple files with API
+
+#### Passing a hash
+
+```javascript
+new CleanCSS().minify({
+  'path/to/file/one': {
+    styles: 'contents of file one'
+  },
+  'path/to/file/two': {
+    styles: 'contents of file two'
+  }
+});
+```
+
 ### How to set compatibility mode
 
 Compatibility settings are controlled by `--compatibility` switch (CLI) and `compatibility` option (library mode).

@@ -6,6 +6,7 @@
 * Fixed issue [#158](https://github.com/GoalSmashers/clean-css/issues/158) - adds body-based selectors reduction.
 * Fixed issue [#182](https://github.com/GoalSmashers/clean-css/issues/182) - removing space after closing brace.
 * Fixed issue [#357](https://github.com/GoalSmashers/clean-css/issues/357) - non-standard but valid URLs.
+* Fixed issue [#416](https://github.com/GoalSmashers/clean-css/issues/416) - accepts hash as `minify` argument.
 
 [3.0.4 / 2015-01-11](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.3...v3.0.4)
 ==================

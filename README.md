@@ -249,6 +249,12 @@ new CleanCSS({ sourceMap: inputSourceMapAsString, target: pathToOutputDirectory 
 
 ### How to minify multiple files with API
 
+#### Passing an array
+
+```javascript
+new CleanCSS().minify(['path/to/file/one', 'path/to/file/two']);
+```
+
 #### Passing a hash
 
 ```javascript

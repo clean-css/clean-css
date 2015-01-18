@@ -1935,6 +1935,14 @@ title']{display:block}",
       'div{background-color:#111!important;background-image:url(aaa)!important;background-repeat:repeat!important;background-position:0 0!important;background-attachment:scroll!important;background-size:auto!important}',
       'div{background:url(aaa) #111!important}'
     ],
+    'shorthand important background overriding': [
+      'a{background:url(a.jpg) !important; background-color:#fff !important}',
+      'a{background:url(a.jpg) #fff!important}'
+    ],
+    'shorthand important background overriding by non-mergeable property': [
+      'a{background:url(a.jpg) !important; background-color:#fff !important; background-size:10px 10px !important}',
+      'a{background:url(a.jpg) #fff!important;background-size:10px 10px!important}'
+    ],
     'shorthand border-width': [
       '.t{border-top-width:7px;border-bottom-width:7px;border-left-width:4px;border-right-width:4px}',
       '.t{border-width:7px 4px}'
@@ -2220,7 +2228,11 @@ title']{display:block}",
     'with background-size property': [
       'a{background:none;background-image:url(1.png);background-size:28px 28px}',
       'a{background:url(1.png) 0 0/28px 28px}'
-    ]
+    ],
+    'important overriding': [
+      'a{background:url(a.jpg) !important; background-color:#fff !important; background-size:10px 10px !important}',
+      'a{background:url(a.jpg) 0 0/10px 10px #fff!important}'
+    ],
   }, { compatibility: '+properties.backgroundSizeMerging' }),
   'multiple backgrounds': cssContext({
     'should not produce longer values': 'p{background:no-repeat;background-position:100% 0,0 100%,100% 100%,50% 50%}'

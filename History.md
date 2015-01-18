@@ -2,6 +2,7 @@
 ==================
 
 * Fixed issue [#414](https://github.com/GoalSmashers/clean-css/issues/414) - source maps position fallback.
+* Fixed issue [#433](https://github.com/GoalSmashers/clean-css/issues/433) - meging `!important` in shorthands.
 
 [3.0.4 / 2015-01-11](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.3...v3.0.4)
 ==================

@@ -5,6 +5,7 @@
 * Adds better non-adjacent selector merging when body is the same.
 * Fixed issue [#158](https://github.com/GoalSmashers/clean-css/issues/158) - adds body-based selectors reduction.
 * Fixed issue [#182](https://github.com/GoalSmashers/clean-css/issues/182) - removing space after closing brace.
+* Fixed issue [#351](https://github.com/GoalSmashers/clean-css/issues/351) - remote `@import`s after content.
 * Fixed issue [#357](https://github.com/GoalSmashers/clean-css/issues/357) - non-standard but valid URLs.
 * Fixed issue [#416](https://github.com/GoalSmashers/clean-css/issues/416) - accepts hash as `minify` argument.
 

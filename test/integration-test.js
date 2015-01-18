@@ -1452,6 +1452,18 @@ title']{display:block}",
     'with double underscore': [
       '@import url(test/fixtures/partials/with__double_underscore.css);',
       '.one{color:green}'
+    ],
+    'remote inside local': [
+      '@import url(test/fixtures/partials/remote.css);',
+      '@import url(http://jakubpawlowicz.com/styles.css);'
+    ],
+    'remote inside local after content': [
+      'a{color:red}@import url(test/fixtures/partials/remote.css);',
+      'a{color:red}'
+    ],
+    'remote inside local after imported content': [
+      '@import url(test/fixtures/partials/one.css);@import url(test/fixtures/partials/remote.css);',
+      '.one{color:red}'
     ]
   }, { root: process.cwd() }),
   'malformed but still valid @import': cssContext({

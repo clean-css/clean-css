@@ -209,6 +209,64 @@ vows.describe('module tests').addBatch({
       });
     }
   },
+  'external imports and no callback': {
+    'without content': {
+      'topic': function () {
+        return new CleanCSS().minify('@import url(http://jakubpawlowicz.com/styles.css);');
+      },
+      'has right output': function (minified) {
+        assert.equal(minified.styles, '@import url(http://jakubpawlowicz.com/styles.css);');
+      },
+      'has no errors': function (minified) {
+        assert.isEmpty(minified.errors);
+      },
+      'has a warning': function (minified) {
+        assert.deepEqual(minified.warnings, []);
+      }
+    },
+    'after content': {
+      'topic': function () {
+        return new CleanCSS().minify('a{color:red}@import url(http://jakubpawlowicz.com/styles.css);');
+      },
+      'has right output': function (minified) {
+        assert.equal(minified.styles, 'a{color:red}');
+      },
+      'has no errors': function (minified) {
+        assert.isEmpty(minified.errors);
+      },
+      'has a warning': function (minified) {
+        assert.deepEqual(minified.warnings, ['Ignoring remote @import of "http://jakubpawlowicz.com/styles.css" as no callback given.']);
+      }
+    },
+    'after local import': {
+      'topic': function () {
+        return new CleanCSS().minify('@import url(test/fixtures/partials/one.css);@import url(http://jakubpawlowicz.com/styles.css);');
+      },
+      'has right output': function (minified) {
+        assert.equal(minified.styles, '.one{color:red}');
+      },
+      'has no errors': function (minified) {
+        assert.isEmpty(minified.errors);
+      },
+      'has a warning': function (minified) {
+        assert.deepEqual(minified.warnings, ['Ignoring remote @import of "http://jakubpawlowicz.com/styles.css" as no callback given.']);
+      }
+    },
+    'after remote import': {
+      'topic': function () {
+        return new CleanCSS().minify('@import url(http://jakubpawlowicz.com/reset.css);@import url(http://jakubpawlowicz.com/styles.css);');
+      },
+      'has right output': function (minified) {
+        assert.equal(minified.styles, '@import url(http://jakubpawlowicz.com/reset.css);@import url(http://jakubpawlowicz.com/styles.css);');
+      },
+      'has no errors': function (minified) {
+        assert.isEmpty(minified.errors);
+      },
+      'has a warning': function (minified) {
+        assert.deepEqual(minified.warnings, []);
+      }
+    }
+  },
   'buffer passed in': {
     'topic': function() {
       return new CleanCSS().minify(new Buffer('@import url(test/fixtures/partials/one.css);'));

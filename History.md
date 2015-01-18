@@ -1,4 +1,4 @@
-[3.0.5 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.4...v3.0.5)
+[3.0.5 / 2015-01-18](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.4...v3.0.5)
 ==================
 
 * Fixed issue [#414](https://github.com/GoalSmashers/clean-css/issues/414) - source maps position fallback.

@@ -1987,15 +1987,15 @@ title']{display:block}",
   }),
   'shorthand properties': cssContext({
     'shorthand background #1' : [
-      'div{background-color:#111;background-image:url(aaa);background-repeat:repeat;background-position:0 0;background-attachment:scroll;background-size:auto}',
+      'div{background-color:#111;background-image:url(aaa);background-repeat:repeat;background-position:0 0;background-attachment:scroll;background-size:auto;background-clip:border-box}',
       'div{background:url(aaa)#111}'
     ],
     'shorthand background #2' : [
-      'div{background-color:#111;background-image:url(aaa);background-repeat:no-repeat;background-position:0 0;background-attachment:scroll;background-size:auto}',
+      'div{background-color:#111;background-image:url(aaa);background-repeat:no-repeat;background-position:0 0;background-attachment:scroll;background-size:auto;background-clip:border-box}',
       'div{background:url(aaa)no-repeat #111}'
     ],
     'shorthand important background' : [
-      'div{background-color:#111!important;background-image:url(aaa)!important;background-repeat:repeat!important;background-position:0 0!important;background-attachment:scroll!important;background-size:auto!important}',
+      'div{background-color:#111!important;background-image:url(aaa)!important;background-repeat:repeat!important;background-position:0 0!important;background-attachment:scroll!important;background-size:auto!important;background-clip:border-box!important}',
       'div{background:url(aaa)#111!important}'
     ],
     'shorthand important background overriding': [
@@ -2046,7 +2046,7 @@ title']{display:block}",
       'div{background-color:#111;background-image:linear-gradient(aaa);background-repeat:no-repeat;background-position:0 0;background-attachment:scroll}'
     ],
     'a background-image with a none and a linear-gradient should result in two shorthands' : [
-      'div{background-color:#111;background-image:none;background-image:linear-gradient(aaa);background-repeat:repeat;background-position:0 0;background-attachment:scroll;background-size:auto}',
+      'div{background-color:#111;background-image:none;background-image:linear-gradient(aaa);background-repeat:repeat;background-position:0 0;background-attachment:scroll;background-size:auto;background-clip:border-box}',
       'div{background:#111;background:linear-gradient(aaa)#111}'
     ]
   }),
@@ -2129,7 +2129,7 @@ title']{display:block}",
       'p{margin:1px;margin-right:2px!important;margin-left:4px!important}'
     ],
     'should take into account important background-color and shorthand others into background': [
-      'p{background-color:#9fce00!important;background-image:url(hello);background-attachment:scroll;background-position:1px 2px;background-repeat:repeat-y;background-size:auto}',
+      'p{background-color:#9fce00!important;background-image:url(hello);background-attachment:scroll;background-position:1px 2px;background-repeat:repeat-y;background-size:auto;background-clip:border-box}',
       'p{background-color:#9fce00!important;background:url(hello)1px 2px repeat-y}'
     ],
     'should take into account important outline-color and default value of outline-width': [
@@ -2151,16 +2151,16 @@ title']{display:block}",
       'p{margin:inherit}'
     ],
     'merge multiple inherited background granular properties into one inherited shorthand': [
-      'p{background-color:inherit;background-image:inherit;background-attachment:inherit;background-position:inherit;background-repeat:inherit;;background-size:inherit}',
+      'p{background-color:inherit;background-image:inherit;background-attachment:inherit;background-position:inherit;background-repeat:inherit;;background-size:inherit;background-clip:inherit}',
       'p{background:inherit}'
     ],
     'when shorter, optimize inherited/non-inherited background granular properties into an inherited shorthand and some non-inherited granular properties': [
-      'p{background-color:inherit;background-image:inherit;background-attachment:inherit;background-position:inherit;background-repeat:repeat-y;background-size:inherit}',
+      'p{background-color:inherit;background-image:inherit;background-attachment:inherit;background-position:inherit;background-repeat:repeat-y;background-size:inherit;background-clip:inherit}',
       'p{background:inherit;background-repeat:repeat-y}'
     ],
     'when shorter, optimize inherited/non-inherited background granular properties into a non-inherited shorthand and some inherited granular properties': [
-      'p{background-color:#9fce00;background-image:inherit;background-attachment:scroll;background-position:1px 2px;background-repeat:repeat-y;background-size:auto}',
-      'p{background:1px 2px repeat-y #9fce00;background-image:inherit}'
+      'p{background-color:#9fce00;background-image:inherit;background-attachment:scroll;background-position:1px 2px;background-repeat:repeat-y;background-size:auto;background-clip:inherit}',
+      'p{background:1px 2px repeat-y #9fce00;background-image:inherit;background-clip:inherit}'
     ],
     'put inherit to the place where it consumes the least space': [
       'div{padding:0;padding-bottom:inherit;padding-right:inherit}',
@@ -2285,6 +2285,16 @@ title']{display:block}",
     'calc as a value': [
       '*{background:white calc(100% - 10px) center no-repeat;background-image:url(test.png)}',
       '*{background:url(test.png)calc(100% - 10px)center no-repeat #fff}'
+    ]
+  }),
+  'background-clip': cssContext({
+    'inside background shorthand': [
+      'div{background:content-box #000}',
+      'div{background:content-box #000}'
+    ],
+    'into background shorthand': [
+      'div{background:#000;background-clip:content-box}',
+      'div{background:content-box #000}'
     ]
   }),
   'background size with +properties.backgroundSizeMerging': cssContext({

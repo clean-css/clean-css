@@ -579,6 +579,56 @@ vows.describe('source-map')
         };
         assert.deepEqual(minified.sourceMap._mappings._array[3], mapping);
       }
+    },
+    'input source map with missing mutliselector sortable input': {
+      'topic': new CleanCSS({ sourceMap: '{"version":3,"sources":["source.css"],"names":[],"mappings":"AAAA;;;;IAII,YAAW;EACd"}' }).minify('a.button:link,\na.button:visited,\na.button:hover\n{\n    color: red;\n}'),
+      'should have 4 mappings': function (minified) {
+        assert.lengthOf(minified.sourceMap._mappings._array, 4);
+      },
+      'should have "a.button:hover" mapping': function (minified) {
+        var mapping = {
+          generatedLine: 1,
+          generatedColumn: 0,
+          originalLine: 1,
+          originalColumn: 0,
+          source: 'source.css',
+          name: null
+        };
+        assert.deepEqual(minified.sourceMap._mappings._array[0], mapping);
+      },
+      'should have "a.button:link" mapping': function (minified) {
+        var mapping = {
+          generatedLine: 1,
+          generatedColumn: 15,
+          originalLine: 1,
+          originalColumn: 0,
+          source: 'source.css',
+          name: null
+        };
+        assert.deepEqual(minified.sourceMap._mappings._array[1], mapping);
+      },
+      'should have "a.button:visited" mapping': function (minified) {
+        var mapping = {
+          generatedLine: 1,
+          generatedColumn: 29,
+          originalLine: 1,
+          originalColumn: 0,
+          source: 'source.css',
+          name: null
+        };
+        assert.deepEqual(minified.sourceMap._mappings._array[2], mapping);
+      },
+      'should have "color:red" mapping': function (minified) {
+        var mapping = {
+          generatedLine: 1,
+          generatedColumn: 46,
+          originalLine: 5,
+          originalColumn: 4,
+          source: 'source.css',
+          name: null
+        };
+        assert.deepEqual(minified.sourceMap._mappings._array[3], mapping);
+      }
     }
   })
   .addBatch({

@@ -1,4 +1,4 @@
-[3.1.0 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.5...v3.1.0)
+[3.1.0 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.6...v3.1.0)
 ==================
 
 * Adds 0deg to 0 minification where possible.
@@ -8,6 +8,11 @@
 * Fixed issue [#351](https://github.com/GoalSmashers/clean-css/issues/351) - remote `@import`s after content.
 * Fixed issue [#357](https://github.com/GoalSmashers/clean-css/issues/357) - non-standard but valid URLs.
 * Fixed issue [#416](https://github.com/GoalSmashers/clean-css/issues/416) - accepts hash as `minify` argument.
+
+[3.0.6 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.5...v3.0.6)
+==================
+
+* Refixed issue [#414](https://github.com/GoalSmashers/clean-css/issues/414) - source maps position fallback.
 
 [3.0.5 / 2015-01-18](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.4...v3.0.5)
 ==================

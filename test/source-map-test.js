@@ -531,6 +531,14 @@ vows.describe('source-map')
       }
     },
     'input source map with missing mutliselector input': {
+      'should contains only one source': {
+        'topic': new CleanCSS({
+          sourceMap: '{"version":3,"sources":["test.css"],"names":[],"mappings":"AAAA;;;;IAII,YAAW;EACd"}'
+        }).minify('a.button:link,\na.button:visited,\na.button:hover\n{\n    color: red;\n}'),
+        'should contains only "test.css"': function(minified) {
+           assert.deepEqual(minified.sourceMap.toJSON().sources, ['test.css']);
+        }
+      },
       'topic': new CleanCSS({ sourceMap: '{"version":3,"sources":["source.css"],"names":[],"mappings":"AAAA;;;;IAII,YAAW;EACd"}' }).minify('a,\na:hover,\na:visited\n{\n    color: red;\n}'),
       'should have 4 mappings': function (minified) {
         assert.lengthOf(minified.sourceMap._mappings._array, 4);

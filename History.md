@@ -10,6 +10,11 @@
 * Fixed issue [#416](https://github.com/GoalSmashers/clean-css/issues/416) - accepts hash as `minify` argument.
 * Fixed issue [#435](https://github.com/GoalSmashers/clean-css/issues/435) - background-clip in shorthand.
 
+[3.0.7 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.6...v3.0.7)
+==================
+
+* Fixed issue [#441](https://github.com/GoalSmashers/clean-css/issues/441) - hex to name color converting.
+
 [3.0.6 / 2015-01-20](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.5...v3.0.6)
 ==================
 

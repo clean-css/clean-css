@@ -188,6 +188,22 @@ vows.describe(SimpleOptimizer)
       'transparent non-black hsla': [
         'a{color:rgba(240,0,0,0)}',
         ['color:rgba(240,0,0,0)']
+      ],
+      'partial hex to name': [
+        'a{color:#f00000}',
+        ['color:#f00000']
+      ],
+      'partial hex further down to name': [
+        'a{background:url(test.png) #f00000}',
+        ['background:url(test.png) #f00000']
+      ],
+      'partial name to hex': [
+        'a{color:greyish}',
+        ['color:greyish']
+      ],
+      'partial name further down to hex': [
+        'a{background:url(test.png) blueish}',
+        ['background:url(test.png) blueish']
       ]
     })
   )

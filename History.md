@@ -9,6 +9,7 @@
 * Fixed issue [#357](https://github.com/GoalSmashers/clean-css/issues/357) - non-standard but valid URLs.
 * Fixed issue [#416](https://github.com/GoalSmashers/clean-css/issues/416) - accepts hash as `minify` argument.
 * Fixed issue [#435](https://github.com/GoalSmashers/clean-css/issues/435) - `background-clip` in shorthand.
+* Fixed issue [#439](https://github.com/GoalSmashers/clean-css/issues/439) - `background-origin` in shorthand.
 
 [3.0.7 / 2015-01-22](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.6...v3.0.7)
 ==================

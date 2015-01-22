@@ -1852,6 +1852,12 @@ title']{display:block}",
     'of supported and unsupported selector': '.one{color:red}.two:last-child{color:red}',
     'of two unsupported selectors': '.one:before{color:red}.two:last-child{color:red}'
   }, { compatibility: 'ie7' }),
+  'same bodies - +adjacentSpace': cssContext({
+    'of two supported selectors': [
+      '.one{color:red}.two + nav{color:red}',
+      '.one,.two+ nav{color:red}'
+    ]
+  }, { compatibility: { selectors: { adjacentSpace: true } } }),
   'units - IE8 compatibility': cssContext({
     'rems': 'div{padding-top:16px;padding-top:1rem}'
   }, { compatibility: 'ie8' }),

@@ -288,6 +288,7 @@ with the following options available:
 * `'[+-]properties.backgroundSizeMerging'` - turn on / off background-size merging into shorthand
 * `'[+-]properties.merging'` - turn on / off property merging based on understandability
 * `'[+-]properties.spaceAfterClosingBrace'` - turn on / off removing space after closing brace - `url() no-repeat` into `url()no-repeat`
+* `'[+-]selectors.adjacentSpace'` - turn on / off extra space before `nav` element
 * `'[+-]selectors.ie7Hack'` - turn on / off IE7 selector hack removal (`*+html...`)
 * `'[+-]units.rem'` - turn on / off treating `rem` as a proper unit
 

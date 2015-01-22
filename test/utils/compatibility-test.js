@@ -9,6 +9,7 @@ vows.describe(Compatibility)
       'gets default options': function(options) {
         assert.isFalse(options.properties.iePrefixHack);
         assert.isFalse(options.properties.ieSuffixHack);
+        assert.isFalse(options.selectors.adjacentSpace);
         assert.isFalse(options.selectors.ie7Hack);
         assert.isFalse(options.properties.backgroundSizeMerging);
         assert.isTrue(options.properties.merging);
@@ -29,6 +30,7 @@ vows.describe(Compatibility)
       'gets merged options': function(options) {
         assert.isFalse(options.properties.iePrefixHack);
         assert.isFalse(options.properties.ieSuffixHack);
+        assert.isFalse(options.selectors.adjacentSpace);
         assert.isFalse(options.selectors.ie7Hack);
         assert.isFalse(options.properties.backgroundSizeMerging);
         assert.isTrue(options.properties.merging);
@@ -45,6 +47,7 @@ vows.describe(Compatibility)
       'gets template options': function(options) {
         assert.isTrue(options.properties.iePrefixHack);
         assert.isTrue(options.properties.ieSuffixHack);
+        assert.isFalse(options.selectors.adjacentSpace);
         assert.isFalse(options.selectors.ie7Hack);
         assert.isFalse(options.properties.backgroundSizeMerging);
         assert.isFalse(options.properties.merging);
@@ -60,6 +63,7 @@ vows.describe(Compatibility)
         assert.isTrue(options.properties.iePrefixHack);
         assert.isTrue(options.properties.ieSuffixHack);
         assert.isTrue(options.selectors.ie7Hack);
+        assert.isFalse(options.selectors.adjacentSpace);
         assert.isFalse(options.properties.backgroundSizeMerging);
         assert.isFalse(options.properties.merging);
         assert.isTrue(options.properties.spaceAfterClosingBrace);

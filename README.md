@@ -242,6 +242,23 @@ new CleanCSS({ sourceMap: inputSourceMapAsString, target: pathToOutputDirectory 
 });
 ```
 
+Or even multiple input source maps at once (available since version 3.1):
+
+```javascript
+new CleanCSS({ sourceMap: true, target: pathToOutputDirectory }).minify({
+  'path/to/source/1': {
+    styles: '...styles...',
+    sourceMap: '...source-map...'
+  },
+  'path/to/source/2': {
+    styles: '...styles...',
+    sourceMap: '...source-map...'
+  }
+}, function (minified) {
+  // access minified.sourceMap as above
+});
+```
+
 #### Caveats
 
 * Shorthand compacting is currently disabled when source maps are enabled, see [#399](https://github.com/GoalSmashers/clean-css/issues/399)

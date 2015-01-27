@@ -783,4 +783,119 @@ vows.describe('source-map')
       }
     }
   })
+  .addBatch({
+    'multiple source maps': {
+      'relative to local': {
+        'topic': new CleanCSS({ sourceMap: true }).minify({
+          'test/fixtures/source-maps/some.css': {
+            styles: 'div {\n  color: red;\n}',
+            sourceMap: '{"version":3,"sources":["some.less"],"names":[],"mappings":"AAAA;EACE,UAAA","file":"some.css"}'
+          },
+          'test/fixtures/source-maps/styles.css': {
+            styles: 'div > a {\n  color: blue;\n}',
+            sourceMap: '{"version":3,"sources":["styles.less"],"names":[],"mappings":"AAAA,GAAI;EACF,WAAA","file":"styles.css"}'
+          },
+          'test/fixtures/source-maps/nested/once.css': {
+            styles: 'section > div a {\n  color: red;\n}',
+            sourceMap: '{"version":3,"sources":["once.less"],"names":[],"mappings":"AAAA,OACE,MAAM;EACJ,UAAA","file":"once.css"}'
+          }
+        }),
+        'has right output': function (errors, minified) {
+          assert.equal(minified.styles, 'div,section>div a{color:red}div>a{color:#00f}');
+        },
+        'should have 5 mappings': function (minified) {
+          assert.lengthOf(minified.sourceMap._mappings._array, 5);
+        },
+        'should have "div" mapping': function (minified) {
+          var mapping = {
+            generatedLine: 1,
+            generatedColumn: 0,
+            originalLine: 1,
+            originalColumn: 0,
+            source: 'some.less',
+            name: null
+          };
+          assert.deepEqual(minified.sourceMap._mappings._array[0], mapping);
+        },
+        'should have "section > div a" mapping': function (minified) {
+          var mapping = {
+            generatedLine: 1,
+            generatedColumn: 4,
+            originalLine: 2,
+            originalColumn: 8,
+            source: 'once.less',
+            name: null
+          };
+          assert.deepEqual(minified.sourceMap._mappings._array[1], mapping);
+        },
+        'should have "color: red" mapping': function (minified) {
+          var mapping = {
+            generatedLine: 1,
+            generatedColumn: 18,
+            originalLine: 2,
+            originalColumn: 2,
+            source: 'some.less',
+            name: null
+          };
+          assert.deepEqual(minified.sourceMap._mappings._array[2], mapping);
+        },
+        'should have "div > a" mapping': function (minified) {
+          var mapping = {
+            generatedLine: 1,
+            generatedColumn: 28,
+            originalLine: 1,
+            originalColumn: 4,
+            source: 'styles.less',
+            name: null
+          };
+          assert.deepEqual(minified.sourceMap._mappings._array[3], mapping);
+        },
+        'should have "color: blue" mapping': function (minified) {
+          var mapping = {
+            generatedLine: 1,
+            generatedColumn: 34,
+            originalLine: 2,
+            originalColumn: 2,
+            source: 'styles.less',
+            name: null
+          };
+          assert.deepEqual(minified.sourceMap._mappings._array[4], mapping);
+        }
+      }
+    },
+    'relative to path': {
+      'complex but partial input map referenced by path': {
+        'topic': new CleanCSS({ sourceMap: true, target: process.cwd() }).minify({
+          'test/fixtures/source-maps/some.css': {
+            styles: 'div {\n  color: red;\n}',
+            sourceMap: '{"version":3,"sources":["some.less"],"names":[],"mappings":"AAAA;EACE,UAAA","file":"some.css"}'
+          },
+          'test/fixtures/source-maps/styles.css': {
+            styles: 'div > a {\n  color: blue;\n}',
+            sourceMap: '{"version":3,"sources":["styles.less"],"names":[],"mappings":"AAAA,GAAI;EACF,WAAA","file":"styles.css"}'
+          },
+          'test/fixtures/source-maps/nested/once.css': {
+            styles: 'section > div a {\n  color: red;\n}',
+            sourceMap: '{"version":3,"sources":["once.less"],"names":[],"mappings":"AAAA,OACE,MAAM;EACJ,UAAA","file":"once.css"}'
+          }
+        }),
+        'should have 5 mappings': function (minified) {
+          assert.lengthOf(minified.sourceMap._mappings._array, 5);
+        },
+        'should have right sources': function (minified) {
+          var sources = [];
+          minified.sourceMap._mappings._array.forEach(function (m) {
+            if (sources.indexOf(m.source) === -1)
+              sources.push(m.source);
+          });
+
+          assert.deepEqual(sources, [
+            'test/fixtures/source-maps/some.less',
+            'test/fixtures/source-maps/nested/once.less',
+            'test/fixtures/source-maps/styles.less'
+          ]);
+        }
+      }
+    }
+  })
   .export(module);

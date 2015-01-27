@@ -8,6 +8,7 @@
 * Fixed issue [#351](https://github.com/GoalSmashers/clean-css/issues/351) - remote `@import`s after content.
 * Fixed issue [#357](https://github.com/GoalSmashers/clean-css/issues/357) - non-standard but valid URLs.
 * Fixed issue [#416](https://github.com/GoalSmashers/clean-css/issues/416) - accepts hash as `minify` argument.
+* Fixed issue [#419](https://github.com/GoalSmashers/clean-css/issues/419) - multiple input source maps.
 * Fixed issue [#435](https://github.com/GoalSmashers/clean-css/issues/435) - `background-clip` in shorthand.
 * Fixed issue [#439](https://github.com/GoalSmashers/clean-css/issues/439) - `background-origin` in shorthand.
 * Fixed issue [#442](https://github.com/GoalSmashers/clean-css/issues/442) - space before adjacent `nav`.

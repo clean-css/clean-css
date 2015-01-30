@@ -204,6 +204,10 @@ vows.describe(SimpleOptimizer)
       'partial name further down to hex': [
         'a{background:url(test.png) blueish}',
         ['background:url(test.png) blueish']
+      ],
+      'partial name as a suffix': [
+        'a{font-family:alrightsanslp-black}',
+        ['font-family:alrightsanslp-black']
       ]
     })
   )

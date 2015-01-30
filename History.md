@@ -14,6 +14,11 @@
 * Fixed issue [#442](https://github.com/GoalSmashers/clean-css/issues/442) - space before adjacent `nav`.
 * Fixed issue [#445](https://github.com/GoalSmashers/clean-css/issues/445) - regression issue in url processor.
 
+[3.0.8 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.7...v3.0.8)
+==================
+
+* Fixed issue [#450](https://github.com/GoalSmashers/clean-css/issues/450) - name to hex color converting.
+
 [3.0.7 / 2015-01-22](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.6...v3.0.7)
 ==================
 

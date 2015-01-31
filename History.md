@@ -1,4 +1,4 @@
-[3.0.8 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.7...v3.0.8)
+[3.0.8 / 2015-01-31](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.7...v3.0.8)
 ==================
 
 * Fixed issue [#447](https://github.com/GoalSmashers/clean-css/issues/447) - `background-color` in shorthands.

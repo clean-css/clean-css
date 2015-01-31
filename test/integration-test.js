@@ -1869,6 +1869,10 @@ title']{display:block}",
       'a{background:0;background-color:inherit}',
       'a{background:0;background-color:inherit}'
     ],
+    'should NOT merge background with background-color set to none': [
+      'a{background:url(logo.png)no-repeat center;background-color:none}',
+      'a{background:url(logo.png)no-repeat center;background-color:none}'
+    ],
     'should merge background with background-image': [
       'a{background:0;background-image:url(hello_world)}',
       'a{background:url(hello_world) 0}'

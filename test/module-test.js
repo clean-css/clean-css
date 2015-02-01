@@ -116,6 +116,19 @@ vows.describe('module tests').addBatch({
       assert.equal(minified.warnings[0], 'Unexpected \'}\' in \'a{display:block}}\'. Ignoring.');
     }
   },
+  'warnings on missing closing brace': {
+    'topic': new CleanCSS().minify('a{display:block'),
+    'should minify correctly': function (error, minified) {
+      assert.equal(minified.styles, '');
+    },
+    'should raise no errors': function (error, minified) {
+      assert.isEmpty(minified.errors);
+    },
+    'should raise one warning': function (error, minified) {
+      assert.lengthOf(minified.warnings, 1);
+      assert.equal(minified.warnings[0], 'Missing \'}\' after \'display:block\'. Ignoring.');
+    }
+  },
   'warnings on unexpected body': {
     'topic': new CleanCSS().minify('a{display:block}color:#535353}p{color:red}'),
     'should minify correctly': function (error, minified) {

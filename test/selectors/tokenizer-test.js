@@ -8,7 +8,7 @@ function tokenizerContext(name, specs, addMetadata) {
 
   function tokenized(target) {
     return function (source) {
-      var tokenized = new Tokenizer({ sourceTracker: new SourceTracker() }, addMetadata).toTokens(source);
+      var tokenized = new Tokenizer({ sourceTracker: new SourceTracker(), warnings: [] }, addMetadata).toTokens(source);
       assert.deepEqual(target, tokenized);
     };
   }
@@ -226,6 +226,26 @@ vows.describe(Tokenizer)
           value: '@keyframes __ESCAPED_FREE_TEXT_CLEAN_CSS0__',
           body: [],
           isFlatBlock: false
+        }]
+      ]
+    })
+  )
+  .addBatch(
+    tokenizerContext('broken', {
+      'missing end brace': [
+        'a{display:block',
+        [{
+          kind: 'selector',
+          value: [{ value: 'a' }],
+          body: []
+        }]
+      ],
+      'missing end brace in the middle': [
+        'body{color:red;a{color:blue;}',
+        [{
+          kind: 'selector',
+          value: [{ value: 'body' }],
+          body: [{ value: 'color:red' }]
         }]
       ]
     })

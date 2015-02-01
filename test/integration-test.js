@@ -919,7 +919,7 @@ vows.describe('integration tests').addBatch({
     ],
     'cut off url content on top level': [
       '@font-face{src:url(data:application/x-font-woff;base64,d09GRk9UVE8AAENAAA0AAAAA',
-      '@font-face{src:url(data:application/x-font-woff;base64,d09GRk9UVE8AAENAAA0AAAAA}'
+      ''
     ],
     'strip single parentheses': [
       "a{background:url('/images/blank.png')}",

@@ -1750,7 +1750,11 @@ title']{display:block}",
       'a,::-moz-selection{color:red}p{display:block}a,::-moz-selection{color:#fff}',
       'p{display:block}::-moz-selection,a{color:#fff}'
     ],
-    'with full property comparison': '.one{height:7rem}.two{height:auto}.one{line-height:7rem;color:red}'
+    'with full property comparison': '.one{height:7rem}.two{height:auto}.one{line-height:7rem;color:red}',
+    'successive selectors': [
+      'footer,header{top:1.25em;bottom:1.25em}header{top:2.5em}footer{bottom:2.5em}',
+      'footer,header{top:1.25em;bottom:1.25em}header{top:2.5em}footer{bottom:2.5em}'
+    ]
   }),
   'rerun optimizers': cssContext({
     'selectors reducible once': [

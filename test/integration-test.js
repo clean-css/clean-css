@@ -1797,6 +1797,10 @@ title']{display:block}",
     'with three intermediate, non-overriding selectors': [
       '.one{color:red;margin:0}.two{color:#fff}.one{font-size:12px}.three{color:#000}.one{padding:0}',
       '.one{color:red;margin:0;font-size:12px;padding:0}.two{color:#fff}.three{color:#000}'
+    ],
+    'successive selectors': [
+      'footer,header{top:1.25em;bottom:1.25em}header{top:2.5em}footer{bottom:2.5em}',
+      'footer,header{top:1.25em;bottom:1.25em}header{top:2.5em}footer{bottom:2.5em}'
     ]
   }),
   'rerun optimizers': cssContext({

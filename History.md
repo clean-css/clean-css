@@ -15,6 +15,11 @@
 * Fixed issue [#445](https://github.com/GoalSmashers/clean-css/issues/445) - regression issue in url processor.
 * Fixed issue [#449](https://github.com/GoalSmashers/clean-css/issues/449) - warns of missing close braces.
 
+[3.0.9 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.8...v3.0.9)
+==================
+
+* Fixed issue [#452](https://github.com/jakubpawlowicz/clean-css/issues/452) - regression in advanced merging.
+
 [3.0.8 / 2015-01-31](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.7...v3.0.8)
 ==================
 

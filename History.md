@@ -1,4 +1,4 @@
-[3.0.9 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.8...v3.0.9)
+[3.0.9 / 2015-02-04](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.8...v3.0.9)
 ==================
 
 * Fixed issue [#452](https://github.com/jakubpawlowicz/clean-css/issues/452) - regression in advanced merging.

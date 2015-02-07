@@ -1,3 +1,8 @@
+[3.0.10 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.9...v3.0.10)
+==================
+
+* Fixed issue [#453](https://github.com/jakubpawlowicz/clean-css/issues/453) - double `background-repeat`.
+
 [3.0.9 / 2015-02-04](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.8...v3.0.9)
 ==================
 

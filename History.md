@@ -19,6 +19,7 @@
 ==================
 
 * Fixed issue [#453](https://github.com/jakubpawlowicz/clean-css/issues/453) - double `background-repeat`.
+* Fixed issue [#455](https://github.com/jakubpawlowicz/clean-css/issues/455) - property extracting regression.
 
 [3.0.9 / 2015-02-04](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.8...v3.0.9)
 ==================

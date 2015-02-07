@@ -136,6 +136,10 @@ vows.describe('integration tests').addBatch({
       'body{margin-left:calc(50vw + (1024px/2))}',
       'body{margin-left:calc(50vw + (1024px/2))}'
     ],
+    'with space between braces': [
+      'body{width:calc( ( 100% - 12px) / 3 )}',
+      'body{width:calc((100% - 12px)/ 3)}'
+    ],
     'before colon': [
       '#test{padding-left :0}',
       '#test{padding-left:0}'

@@ -2020,6 +2020,10 @@ title']{display:block}",
       'a{background:url(a.jpg) !important; background-color:#fff !important; background-size:10px 10px !important}',
       'a{background:url(a.jpg)#fff!important;background-size:10px 10px!important}'
     ],
+    'shorthand background-repeat correctly': [
+      'a{background:url(/image/path.png) no-repeat repeat}',
+      'a{background:url(/image/path.png)no-repeat repeat}'
+    ],
     'shorthand border-width': [
       '.t{border-top-width:7px;border-bottom-width:7px;border-left-width:4px;border-right-width:4px}',
       '.t{border-width:7px 4px}'

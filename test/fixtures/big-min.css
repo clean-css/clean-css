@@ -982,7 +982,7 @@ label i{font-style:normal;display:none}
 .liste_reactions .references .date{color:#8b9299}
 .liste_reactions input[class=btn],.liste_reactions input[class=btn_abo]{margin:5px 0 10px}
 .reaction_identifier,.reaction_redaction{margin:20px 0;background:#f5f8f9;border-top:3px solid #e9ecf0}
-.reaction_redaction{padding:0 0 10px}
+.reaction_redaction{padding:0 0 10px;overflow:hidden}
 .reaction_identifier .deja_abo{float:left;width:275px;border-left:1px solid #ebeff0}
 .reaction_identifier .deja_abo .erreur{display:none;padding:7px 28px 7px 15px}
 .reaction_identifier .form{padding:10px 10px 10px 14px}
@@ -997,7 +997,6 @@ label i{font-style:normal;display:none}
 .reaction_identifier .deja_abo label+input{width:210px}
 .reaction_identifier .deja_abo p>label{float:left}
 .reaction_identifier .deja_abo p>label+a{float:left;margin:14px 0 0 20px}
-.reaction_redaction{overflow:hidden}
 .reaction_redaction>div{margin:0 16px;padding-top:10px}
 .reaction_redaction label+.annotation{float:right}
 .reaction_redaction textarea{width:495px;max-width:495px;height:144px;margin:10px 0}

@@ -1734,7 +1734,15 @@ title']{display:block}",
       'a{color:red}a{background:red}b{color:red}b{background:red}',
       'a,b{color:red;background:red}'
     ],
-    'when overriden with a browser specific selector': 'a{color:red}::-webkit-scrollbar,a{color:#fff}'
+    'when overriden with a browser specific selector': 'a{color:red}::-webkit-scrollbar,a{color:#fff}',
+    'two same selectors over a block': [
+      '.one{color:red}@media print{.two{display:block}}.one{display:none}',
+      '.one{color:red}@media print{.two{display:block}}.one{display:none}'
+    ],
+    'two same bodies over a block': [
+      '.one{color:red}@media print{.two{display:block}}.three{color:red}',
+      '.one{color:red}@media print{.two{display:block}}.three{color:red}'
+    ]
   }),
   'same non-adjacent selectors': cssContext({
     'with different properties': 'a{color:red;display:block}.one{margin:5px}a{margin:2px}',

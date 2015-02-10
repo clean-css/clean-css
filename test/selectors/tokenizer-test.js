@@ -149,6 +149,14 @@ vows.describe(Tokenizer)
           ]
         }]
       ],
+      'pseudoselector after an argument one': [
+        'div:nth-child(2n):not(.test){}',
+        [{
+          kind: 'selector',
+          value: [{ value: 'div:nth-child(2n):not(.test)' }],
+          body: []
+        }]
+      ],
       'media query': [
         '@media (min-width:980px){}',
         [{

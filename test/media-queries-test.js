@@ -72,6 +72,12 @@ vows.describe('media queries')
         assert.equal(minified.styles, '@media screen{a{font-size:10px}}@media (min-width:1024px){.one{font:12px Helvetica}}@media screen{div{display:block}}');
       }
     },
+    'same two with different component property in between': {
+      topic: new CleanCSS().minify('@media screen{a{font-size:10px}}@media (min-width:1024px){.one{font-weight:700}}@media screen{div{display:block}}'),
+      'get merged': function(minified) {
+        assert.equal(minified.styles, '@media (min-width:1024px){.one{font-weight:700}}@media screen{a{font-size:10px}div{display:block}}');
+      }
+    },
     'same two with same values as moved in between': {
       topic: new CleanCSS().minify('@media screen{a{color:red}}@media (min-width:1024px){.one{color:red}}@media screen{div{display:block}}'),
       'get merged': function(minified) {

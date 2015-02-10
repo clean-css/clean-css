@@ -1806,6 +1806,10 @@ title']{display:block}",
       '.one{color:red;margin:0}.two{font:12px serif}.one{font-size:12px}',
       '.one{color:red;margin:0}.two{font:12px serif}.one{font-size:12px}'
     ],
+    'with granular selectors from the same shorthand': [
+      '.one{color:red;margin:0}.two{font-weight:700}.one{font-size:12px}',
+      '.one{color:red;margin:0;font-size:12px}.two{font-weight:700}'
+    ],
     'with three intermediate, non-overriding selectors': [
       '.one{color:red;margin:0}.two{color:#fff}.one{font-size:12px}.three{color:#000}.one{padding:0}',
       '.one{color:red;margin:0;font-size:12px;padding:0}.two{color:#fff}.three{color:#000}'

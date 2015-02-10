@@ -1817,6 +1817,10 @@ title']{display:block}",
     'successive selectors': [
       'footer,header{top:1.25em;bottom:1.25em}header{top:2.5em}footer{bottom:2.5em}',
       'footer,header{top:1.25em;bottom:1.25em}header{top:2.5em}footer{bottom:2.5em}'
+    ],
+    'over a @media block': [
+      '.one{color:red;margin:0}@media{.two{font-weight:700}}.one{font-size:12px}',
+      '.one{color:red;margin:0;font-size:12px}@media{.two{font-weight:700}}'
     ]
   }),
   'rerun optimizers': cssContext({

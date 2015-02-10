@@ -25,6 +25,7 @@ commands
   .option('--skip-rebase', 'Disable URLs rebasing')
   .option('--skip-advanced', 'Disable advanced optimizations - selector & property merging, reduction, etc.')
   .option('--skip-aggressive-merging', 'Disable properties merging based on their order')
+  .option('--skip-media-merging', 'Disable @media merging')
   .option('--skip-shorthand-compacting', 'Disable shorthand compacting')
   .option('--rounding-precision [n]', 'Rounds to `N` decimal places. Defaults to 2. -1 disables rounding.', parseInt)
   .option('-c, --compatibility [ie7|ie8]', 'Force compatibility mode (see Readme for advanced examples)')
@@ -64,6 +65,7 @@ var options = {
   inliner: commands.timeout ? { timeout: parseFloat(commands.timeout) * 1000 } : undefined,
   keepBreaks: !!commands.keepLineBreaks,
   keepSpecialComments: commands.s0 ? 0 : (commands.s1 ? 1 : '*'),
+  mediaMerging: commands.skipMediaMerging ? false : true,
   processImport: commands.skipImport ? false : true,
   rebase: commands.skipRebase ? false : true,
   root: commands.root,

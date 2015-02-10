@@ -58,6 +58,7 @@ cleancss [options] source-file, [source-file, ...]
 --skip-advanced                 Disable advanced optimizations - selector & property merging,
                                 reduction, etc.
 --skip-aggressive-merging       Disable properties merging based on their order
+--skip-media-merging            Disable `@media` merging
 --skip-shorthand-compacting     Disable shorthand compacting
 --rounding-precision [N]        Rounds to `N` decimal places. Defaults to 2. -1 disables rounding.
 -c, --compatibility [ie7|ie8]   Force compatibility mode (see Readme for advanced examples)
@@ -117,6 +118,7 @@ CleanCSS constructor accepts a hash as a parameter, i.e.,
 * `inliner` - a hash of options for `@import` inliner, see test/protocol-imports-test.js for examples
 * `keepBreaks` - whether to keep line breaks (default is false)
 * `keepSpecialComments` - `*` for keeping all (default), `1` for keeping first one only, `0` for removing all
+* `mediaMerging` - whether to merge `@media` blocks (default is true)
 * `processImport` - whether to process `@import` rules
 * `rebase` - set to false to skip URL rebasing
 * `relativeTo` - path to __resolve__ relative `@import` rules and URLs

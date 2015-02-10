@@ -100,4 +100,12 @@ vows.describe('media queries')
         assert.equal(minified.styles, '/*! a comment */@media screen{a{color:red;display:block}}');
       }
     }
+  })
+  .addBatch({
+    'disabled': {
+      topic: new CleanCSS({ mediaMerging: false }).minify('@media screen{a{color:red}}@media screen{a{display:block}}'),
+      'keeps @media intact': function(minified) {
+        assert.equal(minified.styles, '@media screen{a{color:red}}@media screen{a{display:block}}');
+      }
+    }
   }).export(module);

@@ -331,6 +331,11 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
       }
     })
   },
+  '@media merging': pipedContext('@media screen{a{color:red}}@media screen{a{display:block}}', '--skip-media-merging', {
+    'gets right result': function (error, stdout) {
+      assert.equal(stdout, '@media screen{a{color:red}}@media screen{a{display:block}}');
+    }
+  }),
   'shorthand compacting': {
     'of (yet) unmergeable properties': pipedContext('a{background:url(image.png);background-color:red}', '--skip-shorthand-compacting', {
       'gets right result': function(error, stdout) {

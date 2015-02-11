@@ -3,6 +3,7 @@
 
 * Adds `0deg` to `0` minification where possible.
 * Adds better non-adjacent selector merging when body is the same.
+* Adds official support for node.js 0.12.
 * Fixed issue [#158](https://github.com/GoalSmashers/clean-css/issues/158) - adds body-based selectors reduction.
 * Fixed issue [#182](https://github.com/GoalSmashers/clean-css/issues/182) - removing space after closing brace.
 * Fixed issue [#204](https://github.com/GoalSmashers/clean-css/issues/204) - `@media` merging.

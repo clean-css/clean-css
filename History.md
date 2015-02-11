@@ -1,21 +1,21 @@
-[3.1.0 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.6...v3.1.0)
+[3.1.0 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.10...HEAD)
 ==================
 
 * Adds `0deg` to `0` minification where possible.
 * Adds better non-adjacent selector merging when body is the same.
 * Adds official support for node.js 0.12.
-* Fixed issue [#158](https://github.com/GoalSmashers/clean-css/issues/158) - adds body-based selectors reduction.
-* Fixed issue [#182](https://github.com/GoalSmashers/clean-css/issues/182) - removing space after closing brace.
-* Fixed issue [#204](https://github.com/GoalSmashers/clean-css/issues/204) - `@media` merging.
-* Fixed issue [#351](https://github.com/GoalSmashers/clean-css/issues/351) - remote `@import`s after content.
-* Fixed issue [#357](https://github.com/GoalSmashers/clean-css/issues/357) - non-standard but valid URLs.
-* Fixed issue [#416](https://github.com/GoalSmashers/clean-css/issues/416) - accepts hash as `minify` argument.
-* Fixed issue [#419](https://github.com/GoalSmashers/clean-css/issues/419) - multiple input source maps.
-* Fixed issue [#435](https://github.com/GoalSmashers/clean-css/issues/435) - `background-clip` in shorthand.
-* Fixed issue [#439](https://github.com/GoalSmashers/clean-css/issues/439) - `background-origin` in shorthand.
-* Fixed issue [#442](https://github.com/GoalSmashers/clean-css/issues/442) - space before adjacent `nav`.
-* Fixed issue [#445](https://github.com/GoalSmashers/clean-css/issues/445) - regression issue in url processor.
-* Fixed issue [#449](https://github.com/GoalSmashers/clean-css/issues/449) - warns of missing close braces.
+* Fixed issue [#158](https://github.com/jakubpawlowicz/clean-css/issues/158) - adds body-based selectors reduction.
+* Fixed issue [#182](https://github.com/jakubpawlowicz/clean-css/issues/182) - removing space after closing brace.
+* Fixed issue [#204](https://github.com/jakubpawlowicz/clean-css/issues/204) - `@media` merging.
+* Fixed issue [#351](https://github.com/jakubpawlowicz/clean-css/issues/351) - remote `@import`s after content.
+* Fixed issue [#357](https://github.com/jakubpawlowicz/clean-css/issues/357) - non-standard but valid URLs.
+* Fixed issue [#416](https://github.com/jakubpawlowicz/clean-css/issues/416) - accepts hash as `minify` argument.
+* Fixed issue [#419](https://github.com/jakubpawlowicz/clean-css/issues/419) - multiple input source maps.
+* Fixed issue [#435](https://github.com/jakubpawlowicz/clean-css/issues/435) - `background-clip` in shorthand.
+* Fixed issue [#439](https://github.com/jakubpawlowicz/clean-css/issues/439) - `background-origin` in shorthand.
+* Fixed issue [#442](https://github.com/jakubpawlowicz/clean-css/issues/442) - space before adjacent `nav`.
+* Fixed issue [#445](https://github.com/jakubpawlowicz/clean-css/issues/445) - regression issue in url processor.
+* Fixed issue [#449](https://github.com/jakubpawlowicz/clean-css/issues/449) - warns of missing close braces.
 
 [3.0.10 / 2015-02-07](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.9...v3.0.10)
 ==================
@@ -31,29 +31,29 @@
 [3.0.8 / 2015-01-31](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.7...v3.0.8)
 ==================
 
-* Fixed issue [#447](https://github.com/GoalSmashers/clean-css/issues/447) - `background-color` in shorthands.
-* Fixed issue [#450](https://github.com/GoalSmashers/clean-css/issues/450) - name to hex color converting.
+* Fixed issue [#447](https://github.com/jakubpawlowicz/clean-css/issues/447) - `background-color` in shorthands.
+* Fixed issue [#450](https://github.com/jakubpawlowicz/clean-css/issues/450) - name to hex color converting.
 
 [3.0.7 / 2015-01-22](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.6...v3.0.7)
 ==================
 
-* Fixed issue [#441](https://github.com/GoalSmashers/clean-css/issues/441) - hex to name color converting.
+* Fixed issue [#441](https://github.com/jakubpawlowicz/clean-css/issues/441) - hex to name color converting.
 
 [3.0.6 / 2015-01-20](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.5...v3.0.6)
 ==================
 
-* Refixed issue [#414](https://github.com/GoalSmashers/clean-css/issues/414) - source maps position fallback.
+* Refixed issue [#414](https://github.com/jakubpawlowicz/clean-css/issues/414) - source maps position fallback.
 
 [3.0.5 / 2015-01-18](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.4...v3.0.5)
 ==================
 
-* Fixed issue [#414](https://github.com/GoalSmashers/clean-css/issues/414) - source maps position fallback.
-* Fixed issue [#433](https://github.com/GoalSmashers/clean-css/issues/433) - meging `!important` in shorthands.
+* Fixed issue [#414](https://github.com/jakubpawlowicz/clean-css/issues/414) - source maps position fallback.
+* Fixed issue [#433](https://github.com/jakubpawlowicz/clean-css/issues/433) - meging `!important` in shorthands.
 
 [3.0.4 / 2015-01-11](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.3...v3.0.4)
 ==================
 
-* Fixed issue [#314](https://github.com/GoalSmashers/clean-css/issues/314) - spaces inside `calc`.
+* Fixed issue [#314](https://github.com/jakubpawlowicz/clean-css/issues/314) - spaces inside `calc`.
 
 [3.0.3 / 2015-01-07](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.2...v3.0.3)
 ==================
@@ -63,13 +63,13 @@
 [3.0.2 / 2015-01-04](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.1...v3.0.2)
 ==================
 
-* Fixed issue [#422](https://github.com/GoalSmashers/clean-css/issues/422) - handling `calc` as a unit.
+* Fixed issue [#422](https://github.com/jakubpawlowicz/clean-css/issues/422) - handling `calc` as a unit.
 
 [3.0.1 / 2014-12-19](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.0...v3.0.1)
 ==================
 
-* Fixed issue [#410](https://github.com/GoalSmashers/clean-css/issues/410) - advanced merging and comments.
-* Fixed issue [#411](https://github.com/GoalSmashers/clean-css/issues/411) - properties and important comments.
+* Fixed issue [#410](https://github.com/jakubpawlowicz/clean-css/issues/410) - advanced merging and comments.
+* Fixed issue [#411](https://github.com/jakubpawlowicz/clean-css/issues/411) - properties and important comments.
 
 [3.0.0 / 2014-12-18](https://github.com/jakubpawlowicz/clean-css/compare/v2.2.22...v3.0.0)
 ==================
@@ -89,72 +89,72 @@
 * Renames `noAggressiveMerging` option into `aggressiveMerging`.
 * Renames `noRebase` option into `rebase`.
 * Speeds up advanced processing by shortening optimize loop.
-* Fixed issue [#125](https://github.com/GoalSmashers/clean-css/issues/125) - source maps!
-* Fixed issue [#344](https://github.com/GoalSmashers/clean-css/issues/344) - merging `background-size` into shorthand.
-* Fixed issue [#352](https://github.com/GoalSmashers/clean-css/issues/352) - honors rebasing in imported stylesheets.
-* Fixed issue [#360](https://github.com/GoalSmashers/clean-css/issues/360) - adds 7 extra CSS colors.
-* Fixed issue [#363](https://github.com/GoalSmashers/clean-css/issues/363) - `rem` units overriding `px`.
-* Fixed issue [#373](https://github.com/GoalSmashers/clean-css/issues/373) - proper `background` shorthand merging.
-* Fixed issue [#395](https://github.com/GoalSmashers/clean-css/issues/395) - unescaped brackets in data URIs.
-* Fixed issue [#398](https://github.com/GoalSmashers/clean-css/issues/398) - restoring important comments.
-* Fixed issue [#400](https://github.com/GoalSmashers/clean-css/issues/400) - API to accept an array of filenames.
-* Fixed issue [#403](https://github.com/GoalSmashers/clean-css/issues/403) - tracking input files in source maps.
-* Fixed issue [#404](https://github.com/GoalSmashers/clean-css/issues/404) - no state sharing in API.
-* Fixed issue [#405](https://github.com/GoalSmashers/clean-css/issues/405) - disables default `background-size` merging.
-* Refixed issue [#304](https://github.com/GoalSmashers/clean-css/issues/304) - `background-position` merging.
+* Fixed issue [#125](https://github.com/jakubpawlowicz/clean-css/issues/125) - source maps!
+* Fixed issue [#344](https://github.com/jakubpawlowicz/clean-css/issues/344) - merging `background-size` into shorthand.
+* Fixed issue [#352](https://github.com/jakubpawlowicz/clean-css/issues/352) - honors rebasing in imported stylesheets.
+* Fixed issue [#360](https://github.com/jakubpawlowicz/clean-css/issues/360) - adds 7 extra CSS colors.
+* Fixed issue [#363](https://github.com/jakubpawlowicz/clean-css/issues/363) - `rem` units overriding `px`.
+* Fixed issue [#373](https://github.com/jakubpawlowicz/clean-css/issues/373) - proper `background` shorthand merging.
+* Fixed issue [#395](https://github.com/jakubpawlowicz/clean-css/issues/395) - unescaped brackets in data URIs.
+* Fixed issue [#398](https://github.com/jakubpawlowicz/clean-css/issues/398) - restoring important comments.
+* Fixed issue [#400](https://github.com/jakubpawlowicz/clean-css/issues/400) - API to accept an array of filenames.
+* Fixed issue [#403](https://github.com/jakubpawlowicz/clean-css/issues/403) - tracking input files in source maps.
+* Fixed issue [#404](https://github.com/jakubpawlowicz/clean-css/issues/404) - no state sharing in API.
+* Fixed issue [#405](https://github.com/jakubpawlowicz/clean-css/issues/405) - disables default `background-size` merging.
+* Refixed issue [#304](https://github.com/jakubpawlowicz/clean-css/issues/304) - `background-position` merging.
 
 [2.2.22 / 2014-12-13](https://github.com/jakubpawlowicz/clean-css/compare/v2.2.21...v2.2.22)
 ==================
 
-* Backports fix to issue [#304](https://github.com/GoalSmashers/clean-css/issues/304) - `background-position` merging.
+* Backports fix to issue [#304](https://github.com/jakubpawlowicz/clean-css/issues/304) - `background-position` merging.
 
 [2.2.21 / 2014-12-10](https://github.com/jakubpawlowicz/clean-css/compare/v2.2.20...v2.2.21)
 ==================
 
-* Backports fix to issue [#373](https://github.com/GoalSmashers/clean-css/issues/373) - `background` shorthand merging.
+* Backports fix to issue [#373](https://github.com/jakubpawlowicz/clean-css/issues/373) - `background` shorthand merging.
 
 [2.2.20 / 2014-12-02](https://github.com/jakubpawlowicz/clean-css/compare/v2.2.19...v2.2.20)
 ==================
 
-* Backports fix to issue [#390](https://github.com/GoalSmashers/clean-css/issues/390) - pseudo-class merging.
+* Backports fix to issue [#390](https://github.com/jakubpawlowicz/clean-css/issues/390) - pseudo-class merging.
 
 [2.2.19 / 2014-11-20](https://github.com/jakubpawlowicz/clean-css/compare/v2.2.18...v2.2.19)
 ==================
 
-* Fixed issue [#385](https://github.com/GoalSmashers/clean-css/issues/385) - edge cases in processing cut off data.
+* Fixed issue [#385](https://github.com/jakubpawlowicz/clean-css/issues/385) - edge cases in processing cut off data.
 
 [2.2.18 / 2014-11-17](https://github.com/jakubpawlowicz/clean-css/compare/v2.2.17...v2.2.18)
 ==================
 
-* Fixed issue [#383](https://github.com/GoalSmashers/clean-css/issues/383) - rounding fractions once again.
+* Fixed issue [#383](https://github.com/jakubpawlowicz/clean-css/issues/383) - rounding fractions once again.
 
 [2.2.17 / 2014-11-09](https://github.com/jakubpawlowicz/clean-css/compare/v2.2.16...v2.2.17)
 ==================
 
-* Fixed issue [#380](https://github.com/GoalSmashers/clean-css/issues/380) - rounding fractions to a whole number.
+* Fixed issue [#380](https://github.com/jakubpawlowicz/clean-css/issues/380) - rounding fractions to a whole number.
 
 [2.2.16 / 2014-09-16](https://github.com/jakubpawlowicz/clean-css/compare/v2.2.15...v2.2.16)
 ==================
 
-* Fixed issue [#359](https://github.com/GoalSmashers/clean-css/issues/359) - handling escaped double backslash.
-* Fixed issue [#358](https://github.com/GoalSmashers/clean-css/issues/358) - property merging in compatibility mode.
-* Fixed issue [#356](https://github.com/GoalSmashers/clean-css/issues/356) - preserving `*+html` hack.
-* Fixed issue [#354](https://github.com/GoalSmashers/clean-css/issues/354) - `!important` overriding in shorthands.
+* Fixed issue [#359](https://github.com/jakubpawlowicz/clean-css/issues/359) - handling escaped double backslash.
+* Fixed issue [#358](https://github.com/jakubpawlowicz/clean-css/issues/358) - property merging in compatibility mode.
+* Fixed issue [#356](https://github.com/jakubpawlowicz/clean-css/issues/356) - preserving `*+html` hack.
+* Fixed issue [#354](https://github.com/jakubpawlowicz/clean-css/issues/354) - `!important` overriding in shorthands.
 
 [2.2.15 / 2014-09-01](https://github.com/jakubpawlowicz/clean-css/compare/v2.2.14...v2.2.15)
 ==================
 
-* Fixed issue [#343](https://github.com/GoalSmashers/clean-css/issues/343) - too aggressive `rgba`/`hsla` minification.
-* Fixed issue [#345](https://github.com/GoalSmashers/clean-css/issues/345) - URL rebasing for document relative ones.
-* Fixed issue [#346](https://github.com/GoalSmashers/clean-css/issues/346) - overriding `!important` by `!important`.
-* Fixed issue [#350](https://github.com/GoalSmashers/clean-css/issues/350) - edge cases in `@import` processing.
+* Fixed issue [#343](https://github.com/jakubpawlowicz/clean-css/issues/343) - too aggressive `rgba`/`hsla` minification.
+* Fixed issue [#345](https://github.com/jakubpawlowicz/clean-css/issues/345) - URL rebasing for document relative ones.
+* Fixed issue [#346](https://github.com/jakubpawlowicz/clean-css/issues/346) - overriding `!important` by `!important`.
+* Fixed issue [#350](https://github.com/jakubpawlowicz/clean-css/issues/350) - edge cases in `@import` processing.
 
 [2.2.14 / 2014-08-25](https://github.com/jakubpawlowicz/clean-css/compare/v2.2.13...v2.2.14)
 ==================
 
 * Makes multival operations idempotent.
-* Fixed issue [#339](https://github.com/GoalSmashers/clean-css/issues/339) - skips invalid properties.
-* Fixed issue [#341](https://github.com/GoalSmashers/clean-css/issues/341) - ensure output is shorter than input.
+* Fixed issue [#339](https://github.com/jakubpawlowicz/clean-css/issues/339) - skips invalid properties.
+* Fixed issue [#341](https://github.com/jakubpawlowicz/clean-css/issues/341) - ensure output is shorter than input.
 
 [2.2.13 / 2014-08-12](https://github.com/jakubpawlowicz/clean-css/compare/v2.2.12...v2.2.13)
 ==================

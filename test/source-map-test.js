@@ -890,9 +890,9 @@ vows.describe('source-map')
           });
 
           assert.deepEqual(sources, [
-            'test/fixtures/source-maps/some.less',
-            'test/fixtures/source-maps/nested/once.less',
-            'test/fixtures/source-maps/styles.less'
+            path.join('test', 'fixtures', 'source-maps', 'some.less'),
+            path.join('test', 'fixtures', 'source-maps', 'nested', 'once.less'),
+            path.join('test', 'fixtures', 'source-maps', 'styles.less')
           ]);
         }
       }

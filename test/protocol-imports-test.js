@@ -424,5 +424,29 @@ vows.describe('protocol imports').addBatch({
       assert.isFalse(this.reqMocks.isDone());
       nock.cleanAll();
     }
+  },
+  'of a remote file that imports relative stylesheets': {
+    topic: function() {
+      var source = '@import url(http://127.0.0.1/test/folder/remote.css);';
+      this.reqMocks = nock('http://127.0.0.1')
+        .get('/test/folder/remote.css')
+        .reply(200, '@import url(../otherfolder/remote.css);@import url(deepersubfolder/fonts.css);')
+        .get('/test/otherfolder/remote.css')
+        .reply(200, 'div{padding:0}')
+        .get('/test/folder/deepersubfolder/fonts.css')
+        .reply(200, 'a{color:red}');
+
+      new CleanCSS().minify(source, this.callback);
+    },
+    'should not raise errors': function (error, minified) {
+      assert.isEmpty(minified.errors);
+    },
+    'should process @import': function (error, minified) {
+      assert.equal(minified.styles, 'div{padding:0}a{color:red}');
+    },
+    teardown: function() {
+      assert.isTrue(this.reqMocks.isDone());
+      nock.cleanAll();
+    }
   }
 }).export(module);

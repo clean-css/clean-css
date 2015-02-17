@@ -16,6 +16,7 @@
 * Fixed issue [#442](https://github.com/jakubpawlowicz/clean-css/issues/442) - space before adjacent `nav`.
 * Fixed issue [#445](https://github.com/jakubpawlowicz/clean-css/issues/445) - regression issue in url processor.
 * Fixed issue [#449](https://github.com/jakubpawlowicz/clean-css/issues/449) - warns of missing close braces.
+* Fixed issue [#463](https://github.com/jakubpawlowicz/clean-css/issues/463) - relative remote `@import` URLs.
 
 [3.0.10 / 2015-02-07](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.9...v3.0.10)
 ==================

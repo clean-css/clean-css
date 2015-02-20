@@ -219,15 +219,15 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
         assert.include(stdout, 'url(/components/jquery-ui/images/next.gif)');
       }
     }),
-    relative: binaryContext('-o ./test/fixtures/129-assets/assets/ui.bundled.css ./test/fixtures/129-assets/assets/ui.css', {
+    relative: binaryContext('-o ui.bundled.css ./test/fixtures/129-assets/assets/ui.css', {
       'should rebase urls correctly': function() {
-        var minimized = readFile('./test/fixtures/129-assets/assets/ui.bundled.css');
-        assert.include(minimized, 'url(../components/bootstrap/images/glyphs.gif)');
-        assert.include(minimized, 'url(../components/jquery-ui/images/prev.gif)');
-        assert.include(minimized, 'url(../components/jquery-ui/images/next.gif)');
+        var minimized = readFile('ui.bundled.css');
+        assert.include(minimized, 'url(test/fixtures/129-assets/components/bootstrap/images/glyphs.gif)');
+        assert.include(minimized, 'url(test/fixtures/129-assets/components/jquery-ui/images/prev.gif)');
+        assert.include(minimized, 'url(test/fixtures/129-assets/components/jquery-ui/images/next.gif)');
       },
       teardown: function() {
-        deleteFile('./test/fixtures/129-assets/assets/ui.bundled.css');
+        deleteFile('ui.bundled.css');
       }
     })
   },
@@ -376,9 +376,16 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
         deleteFile('reset.min.css.map');
       }
     }),
-    'output file in same folder as input': binaryContext('--source-map -o ./test/fixtures/reset.min.css ./test/fixtures/reset.css', {
+    'output file in same folder as input': unixOnlyContext({
+      topic: function () {
+        var self = this;
+
+        exec('cp test/fixtures/reset.css .', function () {
+          exec('__DIRECT__=1 ./bin/cleancss --source-map -o ./reset.min.css ./reset.css', self.callback);
+        });
+      },
       'includes right content in map file': function () {
-        var sourceMap = new SourceMapConsumer(readFile('./test/fixtures/reset.min.css.map'));
+        var sourceMap = new SourceMapConsumer(readFile('./reset.min.css.map'));
         assert.deepEqual(
           sourceMap.originalPositionFor({ line: 1, column: 1 }),
           {
@@ -390,8 +397,8 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
         );
       },
       'teardown': function () {
-        deleteFile('test/fixtures/reset.min.css');
-        deleteFile('test/fixtures/reset.min.css.map');
+        deleteFile('reset.min.css');
+        deleteFile('reset.min.css.map');
       }
     }),
     'output file with existing map': binaryContext('--source-map -o ./styles.min.css ./test/fixtures/source-maps/styles.css', {

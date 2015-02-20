@@ -3,6 +3,7 @@
 var vows = require('vows');
 var assert = require('assert');
 var http = require('http');
+var enableDestroy = require('server-destroy');
 var nock = require('nock');
 var CleanCSS = require('../index');
 
@@ -236,16 +237,16 @@ vows.describe('protocol imports').addBatch({
       nock.cleanAll();
     }
   },
-  'of a non-resolvable domain': {
+  'of an unreachable domain': {
     topic: function() {
-      new CleanCSS().minify('@import url(http://notdefined.127.0.0.1/custom.css);a{color:red}', this.callback);
+      new CleanCSS().minify('@import url(http://0.0.0.0/custom.css);a{color:red}', this.callback);
     },
     'should not raise errors': function(errors, minified) {
       assert.lengthOf(errors, 1);
-      assert.include(errors[0], 'Broken @import declaration of "http://notdefined.127.0.0.1/custom.css"');
+      assert.include(errors[0], 'Broken @import declaration of "http://0.0.0.0/custom.css"');
     },
     'should process @import': function(errors, minified) {
-      assert.equal(minified.styles, '@import url(http://notdefined.127.0.0.1/custom.css);a{color:red}');
+      assert.equal(minified.styles, '@import url(http://0.0.0.0/custom.css);a{color:red}');
     }
   },
   'of a 30x response with absolute URL': {
@@ -304,6 +305,7 @@ vows.describe('protocol imports').addBatch({
           }
         }).minify('@import url(http://localhost:' + port + '/timeout.css);a{color:red}', self.callback);
       });
+      enableDestroy(self.server);
     },
     'should raise errors': function(errors, minified) {
       assert.lengthOf(errors, 1);
@@ -313,7 +315,7 @@ vows.describe('protocol imports').addBatch({
       assert.equal(minified.styles, '@import url(http://localhost:' + port + '/timeout.css);a{color:red}');
     },
     teardown: function() {
-      this.server.close();
+      this.server.destroy();
     }
   },
   'of a cyclical reference response': {

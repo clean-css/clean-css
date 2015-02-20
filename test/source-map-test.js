@@ -11,6 +11,7 @@ var inputMap = fs.readFileSync(inputMapPath, 'utf-8');
 
 var nock = require('nock');
 var http = require('http');
+var enableDestroy = require('server-destroy');
 
 var port = 24682;
 
@@ -674,6 +675,7 @@ vows.describe('source-map')
           new CleanCSS({ sourceMap: true, inliner: { timeout: timeout } })
             .minify('@import url(http://127.0.0.1:' + port + '/remote.css);', self.callback);
         });
+        enableDestroy(this.server);
       },
       'has mapping': function (errors, minified) {
         assert.isDefined(minified.sourceMap);
@@ -683,7 +685,7 @@ vows.describe('source-map')
         assert.equal(errors[0], 'Broken source map at "http://127.0.0.1:' + port + '/remote.css.map" - timeout');
       },
       teardown: function () {
-        this.server.close();
+        this.server.destroy();
       }
     },
     'absolute source map from external host via http': {

@@ -150,6 +150,14 @@ vows.describe(SelectorsOptimizer)
       'multiple granular - complex case': [
         '.one{background:red;padding:8px 16px}.two{padding-left:16px;padding-right:16px}.three{padding-top:20px}.four{border-left:1px solid #000;border-right:1px solid #000;border-bottom:1px solid #000}.five{background-color:#fff;background-image:-moz-linear-gradient();background-image:-ms-linear-gradient();background-image:-webkit-gradient();background-image:-webkit-linear-gradient()}',
         '.one{background:red;padding:8px 16px}.two{padding-left:16px;padding-right:16px}.three{padding-top:20px}.four{border-left:1px solid #000;border-right:1px solid #000;border-bottom:1px solid #000}.five{background-color:#fff;background-image:-moz-linear-gradient();background-image:-ms-linear-gradient();background-image:-webkit-gradient();background-image:-webkit-linear-gradient()}'
+      ],
+      'not in keyframes': [
+        '@keyframes test{0%{transform:scale3d(1,1,1);opacity:1}100%{transform:scale3d(.5,.5,.5);opacity:1}}',
+        '@keyframes test{0%{transform:scale3d(1,1,1);opacity:1}100%{transform:scale3d(.5,.5,.5);opacity:1}}'
+      ],
+      'not in vendored keyframes': [
+        '@-moz-keyframes test{0%{transform:scale3d(1,1,1);opacity:1}100%{transform:scale3d(.5,.5,.5);opacity:1}}',
+        '@-moz-keyframes test{0%{transform:scale3d(1,1,1);opacity:1}100%{transform:scale3d(.5,.5,.5);opacity:1}}'
       ]
     }, { advanced: true })
   )

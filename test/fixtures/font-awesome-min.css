@@ -28,7 +28,7 @@
 a [class*=" icon-"],a [class^=icon-]{display:inline-block}
 .icon-large:before{vertical-align:-10%;font-size:1.3333333333333333em}
 .btn [class*=" icon-"],.btn [class^=icon-],.nav [class*=" icon-"],.nav [class^=icon-]{display:inline}
-.btn [class*=" icon-"].icon-spin,.btn [class^=icon-].icon-spin,.nav [class*=" icon-"].icon-spin,.nav [class^=icon-].icon-spin{display:inline-block}
+.btn [class*=" icon-"].icon-spin,.btn [class^=icon-].icon-spin,.icon-spin,.nav [class*=" icon-"].icon-spin,.nav [class^=icon-].icon-spin{display:inline-block}
 .nav li [class*=" icon-"],.nav li [class^=icon-],li [class*=" icon-"],li [class^=icon-]{display:inline-block;width:1.25em;text-align:center}
 .nav li [class*=" icon-"].icon-large,.nav li [class^=icon-].icon-large,li [class*=" icon-"].icon-large,li [class^=icon-].icon-large{width:1.5625em}
 ul.icons{list-style-type:none;text-indent:-.75em}
@@ -52,7 +52,7 @@ ul.icons li [class*=" icon-"],ul.icons li [class^=icon-]{width:.75em}
 .btn.btn-large [class*=" icon-"].pull-left.icon-2x,.btn.btn-large [class*=" icon-"].pull-right.icon-2x,.btn.btn-large [class^=icon-].pull-left.icon-2x,.btn.btn-large [class^=icon-].pull-right.icon-2x{margin-top:.05em}
 .btn.btn-large [class*=" icon-"].pull-left.icon-2x,.btn.btn-large [class^=icon-].pull-left.icon-2x{margin-right:.2em}
 .btn.btn-large [class*=" icon-"].pull-right.icon-2x,.btn.btn-large [class^=icon-].pull-right.icon-2x{margin-left:.2em}
-.icon-spin{display:inline-block;-moz-animation:spin 2s infinite linear;-o-animation:spin 2s infinite linear;-webkit-animation:spin 2s infinite linear;animation:spin 2s infinite linear}
+.icon-spin{-moz-animation:spin 2s infinite linear;-o-animation:spin 2s infinite linear;-webkit-animation:spin 2s infinite linear;animation:spin 2s infinite linear}
 @-moz-keyframes spin{0%{-moz-transform:rotate(0)}
 100%{-moz-transform:rotate(359deg)}}
 @-webkit-keyframes spin{0%{-webkit-transform:rotate(0)}

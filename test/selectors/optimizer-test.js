@@ -103,6 +103,10 @@ vows.describe(SelectorsOptimizer)
         '@charset "utf-8";a{width:100px}div{color:red}.one{display:block}.two{display:inline;color:red}',
         '@charset "utf-8";.two,div{color:red}a{width:100px}.one{display:block}.two{display:inline}'
       ],
+      'two at once': [
+        '.one,.two,.three{color:red;display:block}div{margin:0}.four,.five,.six{color:red;display:block}',
+        '.five,.four,.one,.six,.three,.two{color:red;display:block}div{margin:0}'
+      ],
       'over shorthands': [
         'div{margin-top:0}.one{margin:0}.two{display:block;margin-top:0}',
         '.two,div{margin-top:0}.one{margin:0}.two{display:block}'
@@ -118,6 +122,14 @@ vows.describe(SelectorsOptimizer)
       'shorthand over granular with different value': [
         'div{margin:0}.one{margin-bottom:1px}.two{display:block;margin:0}',
         'div{margin:0}.one{margin-bottom:1px}.two{display:block;margin:0}'
+      ],
+      'shorthand over granular with different value for simple tags': [
+        'div{margin:0}body{margin-bottom:1px}p{display:block;margin:0}',
+        'div,p{margin:0}body{margin-bottom:1px}p{display:block}'
+      ],
+      'shorthand over granular with different value for simple tags when tag match': [
+        'div{margin:0}body,p{margin-bottom:1px}p{display:block;margin:0}',
+        'div{margin:0}body,p{margin-bottom:1px}p{display:block;margin:0}'
       ],
       'shorthand over granular with same value': [
         'div{margin:0}.one{margin-bottom:0}.two{display:block;margin:0}',

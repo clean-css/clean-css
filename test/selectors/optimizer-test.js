@@ -105,19 +105,23 @@ vows.describe(SelectorsOptimizer)
       ],
       'over shorthands': [
         'div{margin-top:0}.one{margin:0}.two{display:block;margin-top:0}',
-        'div{margin-top:0}.one{margin:0}.two{display:block;margin-top:0}'
+        '.two,div{margin-top:0}.one{margin:0}.two{display:block}'
       ],
       'over shorthands with flush': [
-        'div{margin-top:0}.one{margin:0}.two{display:block;margin-top:0}.three{color:red}.four{margin-top:0}',
-        'div{margin-top:0}.one{margin:0}.four,.two{margin-top:0}.two{display:block}.three{color:red}'
+        'div{margin-top:0}.one{margin:5px}.two{display:block;margin-top:0}.three{color:red}.four{margin-top:0}',
+        'div{margin-top:0}.one{margin:5px}.four,.two{margin-top:0}.two{display:block}.three{color:red}'
       ],
-      'over granular': [
-        'div{margin-top:0}.one{margin-bottom:0}.two{display:block;margin-top:0}',
-        '.two,div{margin-top:0}.one{margin-bottom:0}.two{display:block}'
+      'granuar over granular': [
+        'div{margin-top:0}.one{margin-bottom:2px}.two{display:block;margin-top:0}',
+        '.two,div{margin-top:0}.one{margin-bottom:2px}.two{display:block}'
       ],
-      'over granular with shorthand': [
+      'shorthand over granular with different value': [
+        'div{margin:0}.one{margin-bottom:1px}.two{display:block;margin:0}',
+        'div{margin:0}.one{margin-bottom:1px}.two{display:block;margin:0}'
+      ],
+      'shorthand over granular with same value': [
         'div{margin:0}.one{margin-bottom:0}.two{display:block;margin:0}',
-        'div{margin:0}.one{margin-bottom:0}.two{display:block;margin:0}'
+        '.two,div{margin:0}.one{margin-bottom:0}.two{display:block}'
       ],
       'over media without overriding': [
         'div{margin:0}@media{.one{color:red}}.two{display:block;margin:0}',
@@ -133,7 +137,7 @@ vows.describe(SelectorsOptimizer)
       ],
       'over media with overriding by a granular': [
         'div{margin:0}@media{.one{margin-bottom:0}}.two{display:block;margin:0}',
-        'div{margin:0}@media{.one{margin-bottom:0}}.two{display:block;margin:0}'
+        '.two,div{margin:0}@media{.one{margin-bottom:0}}.two{display:block}'
       ],
       'over media with overriding by a different granular': [
         'div{margin-top:0}@media{.one{margin-bottom:0}}.two{display:block;margin-top:0}',

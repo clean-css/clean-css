@@ -1796,8 +1796,8 @@ form select{padding:1px;height:20px}
 body.auth-unlogged #core-liberation .form-monlibe-unlogged form{opacity:.3;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";filter:alpha(opacity=30)}
 #core-liberation .form-monlibe .note-unlogged{position:absolute;border:1px solid;top:130px;left:10px;width:420px;padding:10px 10px 12px}
 #core-liberation .form-monlibe .note-unlogged p{font-family:Georgia,"Times New Roman",Times,serif;font-size:21px;font-weight:400;line-height:25px}
-#core-liberation .form-monlibe .note-unlogged p.small,#core-liberation ul.list-items li h4,#core-liberation ul.list-items-mosts li{font-family:Verdana,Arial,sans-serif}
-#core-liberation .form-monlibe .note-unlogged p.small{font-size:12px}
+#core-liberation .form-monlibe .note-unlogged p.small{font-family:Verdana,Arial,sans-serif;font-size:12px}
+#core-liberation ul.list-items li h4,#core-liberation ul.list-items-mosts li{font-family:Georgia,"Times New Roman",Times,serif}
 #core-liberation .form-monlibe .monlibe-edit-profile label{float:left;width:70%}
 #core-liberation .form-monlibe .monlibe-edit-profile p{clear:both}
 #core-liberation .form-monlibe .monlibe-edit-profile .btn-monlibe{margin-top:30px}

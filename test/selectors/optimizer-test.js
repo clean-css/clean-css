@@ -107,6 +107,10 @@ vows.describe(SelectorsOptimizer)
         '.one,.two,.three{color:red;display:block}div{margin:0}.four,.five,.six{color:red;display:block}',
         '.five,.four,.one,.six,.three,.two{color:red;display:block}div{margin:0}'
       ],
+      'down until changed': [
+        '.one{padding:0}.two{margin:0}.one{margin-bottom:3px}',
+        '.two{margin:0}.one{padding:0;margin-bottom:3px}'
+      ],
       'over shorthands': [
         'div{margin-top:0}.one{margin:0}.two{display:block;margin-top:0}',
         '.two,div{margin-top:0}.one{margin:0}.two{display:block}'
@@ -241,7 +245,7 @@ vows.describe(SelectorsOptimizer)
       ],
       'non-adjacent': [
         'a{color:red;display:block}.one{margin:12px}a{color:#fff;margin:2px}',
-        'a{display:block}.one{margin:12px}a{color:#fff;margin:2px}'
+        '.one{margin:12px}a{display:block;color:#fff;margin:2px}'
       ],
       'non-adjacent with multi selectors': [
         'a{padding:10px;margin:0;color:red}.one{color:red}a,p{color:red;padding:0}',

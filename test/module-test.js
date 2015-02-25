@@ -312,6 +312,20 @@ vows.describe('module tests').addBatch({
       'gets right output': function (minified) {
         assert.include(minified.styles, 'url(/test/fixtures/dummy.png)');
       }
+    },
+    'restructuring': {
+      'on': {
+        'topic': new CleanCSS({ restructuring: true }).minify('div{margin-top:0}.one{margin:0}.two{display:block;margin-top:0}'),
+        'gets right output': function (minified) {
+          assert.equal(minified.styles, '.two,div{margin-top:0}.one{margin:0}.two{display:block}');
+        }
+      },
+      'off': {
+        'topic': new CleanCSS({ restructuring: false }).minify('div{margin-top:0}.one{margin:0}.two{display:block;margin-top:0}'),
+        'gets right output': function (minified) {
+          assert.equal(minified.styles, 'div{margin-top:0}.one{margin:0}.two{display:block;margin-top:0}');
+        }
+      }
     }
   },
   'source map': {

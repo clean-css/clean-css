@@ -10,6 +10,7 @@ function optimizerContext(group, specs, options) {
   var context = {};
   options = options || {};
   options.shorthandCompacting = true;
+  options.restructuring = true;
   options.compatibility = new Compatibility(options.compatibility).toOptions();
 
   function optimized(target) {

@@ -60,6 +60,7 @@ cleancss [options] source-file, [source-file, ...]
                                 reduction, etc.
 --skip-aggressive-merging       Disable properties merging based on their order
 --skip-media-merging            Disable `@media` merging
+--skip-restructuring            Disable restructuring optimizations
 --skip-shorthand-compacting     Disable shorthand compacting
 --rounding-precision [N]        Rounds to `N` decimal places. Defaults to 2. -1 disables rounding.
 -c, --compatibility [ie7|ie8]   Force compatibility mode (see Readme for advanced examples)
@@ -123,6 +124,7 @@ CleanCSS constructor accepts a hash as a parameter, i.e.,
 * `processImport` - whether to process `@import` rules
 * `rebase` - set to false to skip URL rebasing
 * `relativeTo` - path to __resolve__ relative `@import` rules and URLs
+* `restructuring` - set to false to disable restructuring in advanced optimizations
 * `root` - path to __resolve__ absolute `@import` rules and __rebase__ relative URLs
 * `roundingPrecision` - rounding precision; defaults to `2`; `-1` disables rounding
 * `shorthandCompacting` - set to false to skip shorthand compacting (default is true unless sourceMap is set when it's false)

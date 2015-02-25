@@ -26,6 +26,7 @@ commands
   .option('--skip-advanced', 'Disable advanced optimizations - selector & property merging, reduction, etc.')
   .option('--skip-aggressive-merging', 'Disable properties merging based on their order')
   .option('--skip-media-merging', 'Disable @media merging')
+  .option('--skip-restructuring', 'Disable restructuring optimizations')
   .option('--skip-shorthand-compacting', 'Disable shorthand compacting')
   .option('--rounding-precision [n]', 'Rounds to `N` decimal places. Defaults to 2. -1 disables rounding.', parseInt)
   .option('-c, --compatibility [ie7|ie8]', 'Force compatibility mode (see Readme for advanced examples)')
@@ -68,6 +69,7 @@ var options = {
   mediaMerging: commands.skipMediaMerging ? false : true,
   processImport: commands.skipImport ? false : true,
   rebase: commands.skipRebase ? false : true,
+  restructuring: commands.skipRestructuring ? false : true,
   root: commands.root,
   roundingPrecision: commands.roundingPrecision,
   shorthandCompacting: commands.skipShorthandCompacting ? false : true,

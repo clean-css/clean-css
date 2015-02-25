@@ -130,6 +130,11 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
       assert.equal(stdout, 'a{color:red}p{color:red}');
     }
   }),
+  'skip restructuring optimizations': pipedContext('div{margin-top:0}.one{margin:0}.two{display:block;margin-top:0}', '--skip-restructuring', {
+    'should do basic optimizations only': function(error, stdout) {
+      assert.equal(stdout, 'div{margin-top:0}.one{margin:0}.two{display:block;margin-top:0}');
+    }
+  }),
   'no relative to path': binaryContext('./test/fixtures/partials-absolute/base.css', {
     'should not be able to resolve it fully': function(error, stdout, stderr) {
       assert.isEmpty(stdout);

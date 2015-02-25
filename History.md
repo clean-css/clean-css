@@ -4,6 +4,7 @@
 * Adds `0deg` to `0` minification where possible.
 * Adds better non-adjacent selector merging when body is the same.
 * Adds official support for node.js 0.12.
+* Adds official support for io.js 1.0.
 * Adds restructuring optimizations to reorganize selectors, which vastly improves minification.
 * Fixed issue [#158](https://github.com/jakubpawlowicz/clean-css/issues/158) - adds body-based selectors reduction.
 * Fixed issue [#182](https://github.com/jakubpawlowicz/clean-css/issues/182) - removing space after closing brace.

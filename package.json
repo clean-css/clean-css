@@ -39,7 +39,7 @@
     "source-map": ">=0.1.43 <0.2"
   },
   "devDependencies": {
-    "browserify": "8.x",
+    "browserify": "9.x",
     "jshint": "2.6.x",
     "nock": ">=0.51 <1.0",
     "server-destroy": "1.x",

@@ -1,4 +1,4 @@
-.clear,.clearfix:after,.clearfix:before{visibility:hidden;height:0;display:block;width:0}
+.clear,.clearfix:after,.clearfix:before{width:0;display:block;overflow:hidden;visibility:hidden}
 .clear,.clearfix:after{clear:both}
 .container_24{margin-right:auto;margin-left:auto;width:960px}
 .grid_1,.grid_10,.grid_11,.grid_12,.grid_13,.grid_14,.grid_15,.grid_16,.grid_17,.grid_18,.grid_19,.grid_2,.grid_20,.grid_21,.grid_22,.grid_23,.grid_24,.grid_3,.grid_4,.grid_5,.grid_6,.grid_7,.grid_8,.grid_9{display:inline;float:right;margin-right:5px;margin-left:5px}
@@ -121,6 +121,6 @@
 .container_24 .pull_21{right:-840px}
 .container_24 .pull_22{right:-880px}
 .container_24 .pull_23{right:-920px}
-.clear{overflow:hidden}
-.clearfix:after,.clearfix:before{content:'\0020';overflow:hidden}
+.clear{height:0}
+.clearfix:after,.clearfix:before{content:'\0020';height:0}
 .clearfix{zoom:1}

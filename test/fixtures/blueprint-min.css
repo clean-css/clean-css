@@ -1,13 +1,13 @@
-.pull-1,.pull-10,.pull-11,.pull-12,.pull-13,.pull-14,.pull-15,.pull-16,.pull-17,.pull-18,.pull-19,.pull-2,.pull-20,.pull-21,.pull-22,.pull-23,.pull-24,.pull-3,.pull-4,.pull-5,.pull-6,.pull-7,.pull-8,.pull-9,.push-1,.push-10,.push-11,.push-12,.push-13,.push-14,.push-15,.push-16,.push-17,.push-18,.push-19,.push-2,.push-20,.push-21,.push-22,.push-23,.push-24,.push-3,.push-4,.push-5,.push-6,.push-7,.push-8,.push-9{position:relative;float:left}
+h1,h3{line-height:1}
+.pull-1,.pull-10,.pull-11,.pull-12,.pull-13,.pull-14,.pull-15,.pull-16,.pull-17,.pull-18,.pull-19,.pull-2,.pull-20,.pull-21,.pull-22,.pull-23,.pull-24,.pull-3,.pull-4,.pull-5,.pull-6,.pull-7,.pull-8,.pull-9,.push-1,.push-10,.push-11,.push-12,.push-13,.push-14,.push-15,.push-16,.push-17,.push-18,.push-19,.push-2,.push-20,.push-21,.push-22,.push-23,.push-24,.push-3,.push-4,.push-5,.push-6,.push-7,.push-8,.push-9{float:left;position:relative}
 .clear,hr{clear:both}
 html{margin:0;padding:0;border:0;font-size:100.01%}
 a,abbr,acronym,address,article,aside,blockquote,body,caption,code,dd,del,dfn,dialog,div,dl,dt,em,fieldset,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,iframe,img,label,legend,li,nav,object,ol,p,pre,q,section,span,table,tbody,td,tfoot,th,thead,tr,ul{margin:0;padding:0;border:0;font-weight:inherit;font-style:inherit;font-size:100%;font-family:inherit;vertical-align:baseline}
-dfn,dl dt,h5,h6,label,legend,strong,th{font-weight:700}
-address,blockquote,dfn,em,tfoot{font-style:italic}
 h5,h6{font-size:1em}
+address,blockquote,dfn,em,tfoot{font-style:italic}
+dfn,dl dt,h5,h6,label,legend,strong,th{font-weight:700}
 article,aside,dialog,figure,footer,header,hgroup,nav,section{display:block}
 body{line-height:1.5;font-size:75%;color:#222;background:#fff;font-family:"Helvetica Neue",Arial,Helvetica,sans-serif}
-table{border-collapse:separate;border-spacing:0}
 caption,td,th{text-align:left;font-weight:400;float:none!important}
 table,td,th{vertical-align:middle}
 blockquote:after,blockquote:before,q:after,q:before{content:''}
@@ -15,9 +15,9 @@ blockquote,q{quotes:"" ""}
 a img{border:none}
 :focus{outline:0}
 h1,h2,h3,h4,h5,h6{font-weight:400;color:#111}
-h1{font-size:3em;line-height:1;margin-bottom:.5em}
+h1{font-size:3em;margin-bottom:.5em}
 h2{font-size:2em;margin-bottom:.75em}
-h3{font-size:1.5em;line-height:1;margin-bottom:1em}
+h3{font-size:1.5em;margin-bottom:1em}
 h4{font-size:1.2em;line-height:1.25;margin-bottom:1.25em}
 h5{margin-bottom:1.5em}
 h1 img,h2 img,h3 img,h4 img,h5 img,h6 img{margin:0}
@@ -41,7 +41,7 @@ ul{list-style-type:disc}
 ol{list-style-type:decimal}
 dl{margin:0 0 1.5em}
 dd{margin-left:1.5em}
-table{margin-bottom:1.4em;width:100%}
+table{border-collapse:separate;border-spacing:0;margin-bottom:1.4em;width:100%}
 thead th{background:#c3d9ff}
 caption,td,th{padding:4px 10px 4px 5px}
 tbody tr.even td,tbody tr:nth-child(even) td{background:#e5ecf9}
@@ -71,7 +71,6 @@ textarea{width:390px;height:250px;padding:5px}
 form.inline{line-height:3}
 form.inline p{margin-bottom:0}
 .alert,.error,.info,.notice,.success{padding:.8em;margin-bottom:1em;border:2px solid #ddd}
-.border,.colborder{border-right:1px solid #ddd}
 .alert,.error{background:#fbe3e4;color:#8a1f11;border-color:#fbc2c4}
 .notice{background:#fff6bf;color:#514721;border-color:#ffd324}
 .success{background:#e6efc2;color:#264409;border-color:#c6d880}
@@ -109,6 +108,7 @@ form.inline p{margin-bottom:0}
 .span-23{width:910px}
 .span-24{width:950px}
 input.span-1,input.span-10,input.span-11,input.span-12,input.span-13,input.span-14,input.span-15,input.span-16,input.span-17,input.span-18,input.span-19,input.span-2,input.span-20,input.span-21,input.span-22,input.span-23,input.span-24,input.span-3,input.span-4,input.span-5,input.span-6,input.span-7,input.span-8,input.span-9,textarea.span-1,textarea.span-10,textarea.span-11,textarea.span-12,textarea.span-13,textarea.span-14,textarea.span-15,textarea.span-16,textarea.span-17,textarea.span-18,textarea.span-19,textarea.span-2,textarea.span-20,textarea.span-21,textarea.span-22,textarea.span-23,textarea.span-24,textarea.span-3,textarea.span-4,textarea.span-5,textarea.span-6,textarea.span-7,textarea.span-8,textarea.span-9{border-left-width:1px;border-right-width:1px;padding-left:5px;padding-right:5px}
+.border,.colborder{border-right:1px solid #ddd}
 input.span-1,textarea.span-1{width:18px}
 input.span-2,textarea.span-2{width:58px}
 input.span-3,textarea.span-3{width:98px}

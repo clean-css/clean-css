@@ -1,4 +1,4 @@
-[3.1.0 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.10...HEAD)
+[3.1.0 / 2015-02-26](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.10...3.1.0)
 ==================
 
 * Adds `0deg` to `0` minification where possible.

@@ -613,6 +613,20 @@ vows.describe('integration tests').addBatch({
       'div{padding:10em .05rem}'
     ]
   }),
+  'units': cssContext({
+    'negative padding': [
+      'div{padding-left:2px;padding-top:-2px;padding-right:5px;padding-bottom:0}',
+      'div{padding-left:2px;padding-right:5px;padding-bottom:0}'
+    ],
+    'negative padding after negative shorthand': [
+      'div{padding:-5px 0 0 0;padding-left:2px;padding-top:-2px;padding-right:5px;padding-bottom:0}',
+      'div{padding-left:2px;padding-right:5px;padding-bottom:0}'
+    ],
+    'negative padding in calculations': [
+      'div{padding:calc(100% - 5px) 0 0 0}',
+      'div{padding:calc(100% - 5px)0 0}'
+    ]
+  }),
   'floats': cssContext({
     'strips zero in fractions': [
       'a{ margin-bottom: 0.5em}',

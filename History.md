@@ -1,3 +1,8 @@
+[3.1.1 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.1.0...HEAD)
+==================
+
+* Fixed issue [#470](https://github.com/jakubpawlowicz/clean-css/issues/470) - negative padding removal.
+
 [3.1.0 / 2015-02-26](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.10...3.1.0)
 ==================
 

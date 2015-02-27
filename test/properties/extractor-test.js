@@ -15,6 +15,12 @@ vows.describe(extractor)
         assert.deepEqual(tokens, []);
       }
     },
+    'no valid properties': {
+      'topic': extractor(buildToken('a{:red}')),
+      'has no properties': function (tokens) {
+        assert.deepEqual(tokens, []);
+      }
+    },
     'one property': {
       'topic': extractor(buildToken('a{color:red}')),
       'has no properties': function (tokens) {

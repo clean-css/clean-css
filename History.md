@@ -1,4 +1,4 @@
-[3.1.1 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.1.0...HEAD)
+[3.1.1 / 2015-02-27](https://github.com/jakubpawlowicz/clean-css/compare/v3.1.0...v3.1.1)
 ==================
 
 * Fixed issue [#469](https://github.com/jakubpawlowicz/clean-css/issues/469) - extracting broken property.

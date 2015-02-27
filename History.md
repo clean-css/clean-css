@@ -5,7 +5,7 @@
 * Fixed issue [#470](https://github.com/jakubpawlowicz/clean-css/issues/470) - negative padding removal.
 * Fixed issue [#471](https://github.com/jakubpawlowicz/clean-css/issues/471) - correct order after restructuring.
 
-[3.1.0 / 2015-02-26](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.10...3.1.0)
+[3.1.0 / 2015-02-26](https://github.com/jakubpawlowicz/clean-css/compare/v3.0.10...v3.1.0)
 ==================
 
 * Adds `0deg` to `0` minification where possible.

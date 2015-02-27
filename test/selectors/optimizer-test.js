@@ -3,6 +3,7 @@ var assert = require('assert');
 var SelectorsOptimizer = require('../../lib/selectors/optimizer');
 var Stringifier = require('../../lib/selectors/stringifier');
 var Compatibility = require('../../lib/utils/compatibility');
+var SourceTracker = require('../../lib/utils/source-tracker');
 
 function optimizerContext(group, specs, options) {
   var stringifier = new Stringifier(false, function (data) { return data; });
@@ -12,10 +13,13 @@ function optimizerContext(group, specs, options) {
   options.shorthandCompacting = true;
   options.restructuring = true;
   options.compatibility = new Compatibility(options.compatibility).toOptions();
+  var outerContext = {
+    sourceTracker: new SourceTracker()
+  };
 
   function optimized(target) {
     return function (source) {
-      assert.equal(new SelectorsOptimizer(options).process(source, stringifier).styles, target);
+      assert.equal(new SelectorsOptimizer(options, outerContext).process(source, stringifier).styles, target);
     };
   }
 
@@ -183,6 +187,14 @@ vows.describe(SelectorsOptimizer)
       'not in vendored keyframes': [
         '@-moz-keyframes test{0%{transform:scale3d(1,1,1);opacity:1}100%{transform:scale3d(.5,.5,.5);opacity:1}}',
         '@-moz-keyframes test{0%{transform:scale3d(1,1,1);opacity:1}100%{transform:scale3d(.5,.5,.5);opacity:1}}'
+      ],
+      'with important comment': [
+        '__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0__a{width:100px}div{color:red}.one{display:block}.two{display:inline;color:red}',
+        '__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0__.two,div{color:red}a{width:100px}.one{display:block}.two{display:inline}'
+      ],
+      'with important comment and charset': [
+        '@charset "utf-8";__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0__a{width:100px}div{color:red}.one{display:block}.two{display:inline;color:red}',
+        '@charset "utf-8";__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0__.two,div{color:red}a{width:100px}.one{display:block}.two{display:inline}'
       ]
     }, { advanced: true })
   )

@@ -1,8 +1,8 @@
+/*! normalize.css 2012-01-31T16:06 UTC - http://github.com/necolas/normalize.css */
 small,sub,sup{font-size:75%}
 .alpha,.ie .une_normale .liste_carre_999.liste_une .ie_impair,.liste_carre_999.liste_une li:nth-child(2n+3){clear:left}
 .clear,.clearfix:after,.deplier{visibility:hidden}
 .btn:hover,.btn_abo:hover,.btn_fonce:hover,.btn_petit:hover,.conteneur_pagination .next:hover,.conteneur_pagination .prev:hover{-webkit-transition:background-position .1s linear;-moz-transition:background-position .1s linear;-ms-transition:background-position .1s linear}
-/*! normalize.css 2012-01-31T16:06 UTC - http://github.com/necolas/normalize.css */
 article,aside,details,figcaption,figure,footer,header,hgroup,nav,section{display:block}
 audio,canvas,video{display:inline-block}
 [hidden],audio:not([controls]){display:none}

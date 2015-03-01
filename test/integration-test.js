@@ -337,6 +337,14 @@ vows.describe('integration tests').addBatch({
     'escaped @ symbol in id': '#id\\@sm{padding:0}',
     'escaped slash': 'a{content:"\\\\"}',
     'escaped quote': 'a{content:"\\\""}',
+    'escaped quote in selector name': [
+      '.this-class\\\'s-got-an-apostrophe{color:red}a{color:#f00}',
+      '.this-class\\\'s-got-an-apostrophe,a{color:red}'
+    ],
+    'escaped quotes in selector name': [
+      '.this-class\\\"s-got-an-apostrophes\\\'{color:red}a{color:#f00}',
+      '.this-class\\\"s-got-an-apostrophes\\\',a{color:red}'
+    ],
     'escaped tab': 'a{content:"\\\t"}'
   }),
   'important comments - one': cssContext({

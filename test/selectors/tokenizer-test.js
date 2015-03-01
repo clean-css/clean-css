@@ -101,6 +101,14 @@ vows.describe(Tokenizer)
           body: [{ value: 'color:red' }]
         }]
       ],
+      'a selector with escaped quote': [
+        '.this-class\\\'s-got-an-apostrophe{}',
+        [{
+          kind: 'selector',
+          value: [{ value: '.this-class\\\'s-got-an-apostrophe' }],
+          body: []
+        }]
+      ],
       'a double selector': [
         'a,\n\ndiv.class > p {color:red}',
         [{

@@ -3,7 +3,7 @@
 
 * Fixed issue [#396](https://github.com/jakubpawlowicz/clean-css/issues/396) - better input source maps tracking.
 
-[3.1.2 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.1.1...3.1)
+[3.1.2 / 2015-03-01](https://github.com/jakubpawlowicz/clean-css/compare/v3.1.1...v3.1.2)
 ==================
 
 * Refixed issue [#471](https://github.com/jakubpawlowicz/clean-css/issues/471) - correct order after restructuring.

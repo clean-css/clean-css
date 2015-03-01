@@ -35,7 +35,7 @@ vows.describe('source-maps/analyzer')
         'a{}',
         [{
           kind: 'selector',
-          value: [{ value: 'a', metadata: { line: 1, column: 0, source: undefined } }],
+          value: [{ value: 'a', metadata: { original: { line: 1, column: 0 }, source: undefined } }],
           body: []
         }]
       ],
@@ -44,8 +44,8 @@ vows.describe('source-maps/analyzer')
         [{
           kind: 'selector',
           value: [
-            { value: 'a', metadata: { line: 1, column: 0, source: undefined } },
-            { value: 'div', metadata: { line: 1, column: 2, source: undefined } }
+            { value: 'a', metadata: { original: { line: 1, column: 0 }, source: undefined } },
+            { value: 'div', metadata: { original: { line: 1, column: 2 }, source: undefined } }
           ],
           body: []
         }]
@@ -55,8 +55,8 @@ vows.describe('source-maps/analyzer')
         [{
           kind: 'selector',
           value: [
-            { value: 'a', metadata: { line: 1, column: 1, source: undefined } },
-            { value: '\n\ndiv', metadata: { line: 3, column: 0, source: undefined } }
+            { value: 'a', metadata: { original: { line: 1, column: 1 }, source: undefined } },
+            { value: '\n\ndiv', metadata: { original: { line: 3, column: 0 }, source: undefined } }
           ],
           body: []
         }]
@@ -66,9 +66,9 @@ vows.describe('source-maps/analyzer')
         [{
           kind: 'selector',
           value: [
-            { value: 'a', metadata: { line: 1, column: 0, source: undefined } },
-            { value: 'div', metadata: { line: 1, column: 2, source: undefined } },
-            { value: 'p', metadata: { line: 1, column: 6, source: undefined } }
+            { value: 'a', metadata: { original: { line: 1, column: 0 }, source: undefined } },
+            { value: 'div', metadata: { original: { line: 1, column: 2 }, source: undefined } },
+            { value: 'p', metadata: { original: { line: 1, column: 6 }, source: undefined } }
           ],
           body: []
         }]
@@ -78,9 +78,9 @@ vows.describe('source-maps/analyzer')
         [{
           kind: 'selector',
           value: [
-            { value: 'a', metadata: { line: 1, column: 1, source: undefined } },
-            { value: '\n\ndiv\na', metadata: { line: 3, column: 0, source: undefined } },
-            { value: '\n p', metadata: { line: 5, column: 1, source: undefined } }
+            { value: 'a', metadata: { original: { line: 1, column: 1 }, source: undefined } },
+            { value: '\n\ndiv\na', metadata: { original: { line: 3, column: 0 }, source: undefined } },
+            { value: '\n p', metadata: { original: { line: 5, column: 1 }, source: undefined } }
           ],
           body: []
         }]
@@ -90,12 +90,12 @@ vows.describe('source-maps/analyzer')
         [
           {
             kind: 'selector',
-            value: [{ value: 'a', metadata: { line: 1, column: 0, source: undefined } }],
+            value: [{ value: 'a', metadata: { original: { line: 1, column: 0 }, source: undefined } }],
             body: []
           },
           {
             kind: 'selector',
-            value: [{ value: 'div', metadata: { line: 1, column: 3, source: undefined } }],
+            value: [{ value: 'div', metadata: { original: { line: 1, column: 3 }, source: undefined } }],
             body: []
           }
         ]
@@ -105,17 +105,17 @@ vows.describe('source-maps/analyzer')
         [
           {
             kind: 'selector',
-            value: [{ value: 'a ', metadata: { line: 1, column: 0, source: undefined } }],
+            value: [{ value: 'a ', metadata: { original: { line: 1, column: 0 }, source: undefined } }],
             body: []
           },
           {
             kind: 'selector',
-            value: [{ value: 'div', metadata: { line: 3, column: 0, source: undefined } }],
+            value: [{ value: 'div', metadata: { original: { line: 3, column: 0 }, source: undefined } }],
             body: []
           },
           {
             kind: 'selector',
-            value: [{ value: 'p', metadata: { line: 5, column: 2, source: undefined } }],
+            value: [{ value: 'p', metadata: { original: { line: 5, column: 2 }, source: undefined } }],
             body: []
           }
         ]
@@ -128,18 +128,18 @@ vows.describe('source-maps/analyzer')
         'a{color:red}',
         [{
           kind: 'selector',
-          value: [{ value: 'a', metadata: { line: 1, column: 0, source: undefined } }],
-          body: [{ value: 'color:red', metadata: { line: 1, column: 2, source: undefined } }]
+          value: [{ value: 'a', metadata: { original: { line: 1, column: 0 }, source: undefined } }],
+          body: [{ value: 'color:red', metadata: { original: { line: 1, column: 2 }, source: undefined } }]
         }]
       ],
       'double': [
         'a{color:red;border:none}',
         [{
           kind: 'selector',
-          value: [{ value: 'a', metadata: { line: 1, column: 0, source: undefined } }],
+          value: [{ value: 'a', metadata: { original: { line: 1, column: 0 }, source: undefined } }],
           body: [
-            { value: 'color:red', metadata: { line: 1, column: 2, source: undefined } },
-            { value: 'border:none', metadata: { line: 1, column: 12, source: undefined } }
+            { value: 'color:red', metadata: { original: { line: 1, column: 2 }, source: undefined } },
+            { value: 'border:none', metadata: { original: { line: 1, column: 12 }, source: undefined } }
           ]
         }]
       ],
@@ -147,11 +147,11 @@ vows.describe('source-maps/analyzer')
         'a{color:red;\nborder:\nnone;\n\n  display:block}',
         [{
           kind: 'selector',
-          value: [{ value: 'a', metadata: { line: 1, column: 0, source: undefined } }],
+          value: [{ value: 'a', metadata: { original: { line: 1, column: 0 }, source: undefined } }],
           body: [
-            { value: 'color:red', metadata: { line: 1, column: 2, source: undefined } },
-            { value: 'border:none', metadata: { line: 2, column: 0, source: undefined } },
-            { value: 'display:block', metadata: { line: 5, column: 2, source: undefined } }
+            { value: 'color:red', metadata: { original: { line: 1, column: 2 }, source: undefined } },
+            { value: 'border:none', metadata: { original: { line: 2, column: 0 }, source: undefined } },
+            { value: 'display:block', metadata: { original: { line: 5, column: 2 }, source: undefined } }
           ]
         }]
       ],
@@ -160,13 +160,13 @@ vows.describe('source-maps/analyzer')
         [
           {
             kind: 'selector',
-            value: [{ value: 'a', metadata: { line: 1, column: 0, source: undefined } }],
-            body: [{ value: 'color:red', metadata: { line: 1, column: 2, source: undefined } }]
+            value: [{ value: 'a', metadata: { original: { line: 1, column: 0 }, source: undefined } }],
+            body: [{ value: 'color:red', metadata: { original: { line: 1, column: 2 }, source: undefined } }]
           },
           {
             kind: 'selector',
-            value: [{ value: 'div', metadata: { line: 1, column: 12, source: undefined } }],
-            body: [{ value: 'color:blue', metadata: { line: 1, column: 16, source: undefined } }]
+            value: [{ value: 'div', metadata: { original: { line: 1, column: 12 }, source: undefined } }],
+            body: [{ value: 'color:blue', metadata: { original: { line: 1, column: 16 }, source: undefined } }]
           }
         ]
       ],
@@ -175,13 +175,13 @@ vows.describe('source-maps/analyzer')
         [
           {
             kind: 'selector',
-            value: [{ value: 'a', metadata: { line: 1, column: 0, source: undefined } }],
-            body: [{ value: 'color:red', metadata: { line: 1, column: 2, source: undefined } }]
+            value: [{ value: 'a', metadata: { original: { line: 1, column: 0 }, source: undefined } }],
+            body: [{ value: 'color:red', metadata: { original: { line: 1, column: 2 }, source: undefined } }]
           },
           {
             kind: 'selector',
-            value: [{ value: 'div', metadata: { line: 2, column: 1, source: undefined } }],
-            body: [{ value: 'color:blue', metadata: { line: 2, column: 5, source: undefined } }]
+            value: [{ value: 'div', metadata: { original: { line: 2, column: 1 }, source: undefined } }],
+            body: [{ value: 'color:blue', metadata: { original: { line: 2, column: 5 }, source: undefined } }]
           }
         ]
       ],
@@ -190,13 +190,13 @@ vows.describe('source-maps/analyzer')
         [
           {
             kind: 'selector',
-            value: [{ value: 'a', metadata: { line: 1, column: 0, source: undefined } }],
-            body: [{ value: 'color:red', metadata: { line: 1, column: 2, source: undefined } }]
+            value: [{ value: 'a', metadata: { original: { line: 1, column: 0 }, source: undefined } }],
+            body: [{ value: 'color:red', metadata: { original: { line: 1, column: 2 }, source: undefined } }]
           },
           {
             kind: 'selector',
-            value: [{ value: 'div', metadata: { line: 3, column: 1, source: undefined } }],
-            body: [{ value: 'color:blue', metadata: { line: 3, column: 5, source: undefined } }]
+            value: [{ value: 'div', metadata: { original: { line: 3, column: 1 }, source: undefined } }],
+            body: [{ value: 'color:blue', metadata: { original: { line: 3, column: 5 }, source: undefined } }]
           }
         ]
       ]
@@ -209,18 +209,18 @@ vows.describe('source-maps/analyzer')
         [
           {
             kind: 'selector',
-            value: [{ value: 'a', metadata: { line: 1, column: 0, source: undefined } }],
+            value: [{ value: 'a', metadata: { original: { line: 1, column: 0 }, source: undefined } }],
             body: []
           },
           {
             kind: 'at-rule',
             value: '@import \n"test.css";',
-            metadata: { line: 1, column: 3, source: undefined }
+            metadata: { original: { line: 1, column: 3 }, source: undefined }
           },
           {
             kind: 'selector',
-            value: [{ value: 'a', metadata: { line: 4, column: 0, source: undefined } }],
-            body: [{ value: 'color:red', metadata: { line: 4, column: 2, source: undefined } }]
+            value: [{ value: 'a', metadata: { original: { line: 4, column: 0 }, source: undefined } }],
+            body: [{ value: 'color:red', metadata: { original: { line: 4, column: 2 }, source: undefined } }]
           }
         ]
       ],
@@ -230,12 +230,12 @@ vows.describe('source-maps/analyzer')
           {
             kind: 'at-rule',
             value: '@charset "utf-8";',
-            metadata: { line: 1, column: 0, source: undefined }
+            metadata: { original: { line: 1, column: 0 }, source: undefined }
           },
           {
             kind: 'selector',
-            value: [{ value: 'a', metadata: { line: 1, column: 18, source: undefined } }],
-            body: [{ value: 'color:red', metadata: { line: 1, column: 20, source: undefined } }]
+            value: [{ value: 'a', metadata: { original: { line: 1, column: 18 }, source: undefined } }],
+            body: [{ value: 'color:red', metadata: { original: { line: 1, column: 20 }, source: undefined } }]
           }
         ]
       ]
@@ -249,12 +249,12 @@ vows.describe('source-maps/analyzer')
           {
             kind: 'block',
             value: '@media (min-width:980px)',
-            metadata: { line: 1, column: 0, source: undefined },
+            metadata: { original: { line: 1, column: 0 }, source: undefined },
             isFlatBlock: false,
             body: [{
               kind: 'selector',
-              value: [{ value: 'a', metadata: { line: 1, column: 25, source: undefined } }],
-              body: [{ value: 'color:red', metadata: { line: 1, column: 27, source: undefined } }]
+              value: [{ value: 'a', metadata: { original: { line: 1, column: 25 }, source: undefined } }],
+              body: [{ value: 'color:red', metadata: { original: { line: 1, column: 27 }, source: undefined } }]
             }]
           }
         ]
@@ -265,17 +265,17 @@ vows.describe('source-maps/analyzer')
           {
             kind: 'block',
             value: '@media (\nmin-width:980px)',
-            metadata: { line: 1, column: 0, source: undefined },
+            metadata: { original: { line: 1, column: 0 }, source: undefined },
             isFlatBlock: false,
             body: [
               {
                 kind: 'selector',
-                value: [{ value: 'a', metadata: { line: 4, column: 0, source: undefined } }],
-                body: [{ value: 'color:red', metadata: { line: 5, column: 0, source: undefined } }]
+                value: [{ value: 'a', metadata: { original: { line: 4, column: 0 }, source: undefined } }],
+                body: [{ value: 'color:red', metadata: { original: { line: 5, column: 0 }, source: undefined } }]
               },
               {
                 kind: 'selector',
-                value: [{ value: 'p', metadata: { line: 6, column: 4, source: undefined } }],
+                value: [{ value: 'p', metadata: { original: { line: 6, column: 4 }, source: undefined } }],
                 body: []
               }
             ]
@@ -288,20 +288,20 @@ vows.describe('source-maps/analyzer')
           {
             kind: 'block',
             value: '@media (min-width:980px)',
-            metadata: { line: 1, column: 0, source: undefined },
+            metadata: { original: { line: 1, column: 0 }, source: undefined },
             isFlatBlock: false,
             body: [
               {
                 kind: 'selector',
-                value: [{ value: 'a', metadata: { line: 1, column: 25, source: undefined } }],
-                body: [{ value: 'color:red', metadata: { line: 1, column: 27, source: undefined } }]
+                value: [{ value: 'a', metadata: { original: { line: 1, column: 25 }, source: undefined } }],
+                body: [{ value: 'color:red', metadata: { original: { line: 1, column: 27 }, source: undefined } }]
               }
             ]
           },
           {
             kind: 'selector',
-            value: [{ value: 'p', metadata: { line: 1, column: 39, source: undefined } }],
-            body: [{ value: 'color:red', metadata: { line: 1, column: 41, source: undefined } }]
+            value: [{ value: 'p', metadata: { original: { line: 1, column: 39 }, source: undefined } }],
+            body: [{ value: 'color:red', metadata: { original: { line: 1, column: 41 }, source: undefined } }]
           }
         ]
       ],
@@ -311,18 +311,18 @@ vows.describe('source-maps/analyzer')
           {
             kind: 'block',
             value: '@font-face',
-            metadata: { line: 1, column: 0, source: undefined },
+            metadata: { original: { line: 1, column: 0 }, source: undefined },
             isFlatBlock: true,
             body: [
-              { value: 'font-family:"Font"', metadata: { line: 1, column: 11, source: undefined } },
-              { value: 'src:url("font.ttf")', metadata: { line: 2, column: 0, source: undefined } },
-              { value: 'font-weight:normal', metadata: { line: 3, column: 0, source: undefined } },
-              { value: 'font-style:normal', metadata: { line: 3, column: 20, source: undefined } }
+              { value: 'font-family:"Font"', metadata: { original: { line: 1, column: 11 }, source: undefined } },
+              { value: 'src:url("font.ttf")', metadata: { original: { line: 2, column: 0 }, source: undefined } },
+              { value: 'font-weight:normal', metadata: { original: { line: 3, column: 0 }, source: undefined } },
+              { value: 'font-style:normal', metadata: { original: { line: 3, column: 20 }, source: undefined } }
             ]
           },
           {
             kind: 'selector',
-            value: [{ value: 'a', metadata: { line: 3, column: 39, source: undefined } }],
+            value: [{ value: 'a', metadata: { original: { line: 3, column: 39 }, source: undefined } }],
             body: []
           }
         ]
@@ -333,10 +333,10 @@ vows.describe('source-maps/analyzer')
           {
             kind: 'block',
             value: '@font-face',
-            metadata: { line: 2, column: 0, source: undefined },
+            metadata: { original: { line: 2, column: 0 }, source: undefined },
             isFlatBlock: true,
             body: [
-              { value: 'font-family:"Font"', metadata: { line: 3, column: 1, source: undefined } }
+              { value: 'font-family:"Font"', metadata: { original: { line: 3, column: 1 }, source: undefined } }
             ]
           }
         ]
@@ -350,7 +350,7 @@ vows.describe('source-maps/analyzer')
         [
           {
             kind: 'selector',
-            value: [{ value: 'a', metadata: { line: 1, column: 5, source: undefined } }],
+            value: [{ value: 'a', metadata: { original: { line: 1, column: 5 }, source: undefined } }],
             body: []
           }
         ]
@@ -360,7 +360,7 @@ vows.describe('source-maps/analyzer')
         [
           {
             kind: 'selector',
-            value: [{ value: 'a', metadata: { line: 3, column: 5, source: undefined } }],
+            value: [{ value: 'a', metadata: { original: { line: 3, column: 5 }, source: undefined } }],
             body: []
           }
         ]
@@ -370,10 +370,10 @@ vows.describe('source-maps/analyzer')
         [{
           kind: 'selector',
           value: [
-            { value: 'div[data-type=__ESCAPED_FREE_TEXT_CLEAN_CSS0(1,3)__]', metadata: { line: 1, column: 0, source: undefined } },
-            { value: 'div[data-id=__ESCAPED_FREE_TEXT_CLEAN_CSS1(0,7)__]', metadata: { line: 2, column: 5, source: undefined } }
+            { value: 'div[data-type=__ESCAPED_FREE_TEXT_CLEAN_CSS0(1,3)__]', metadata: { original: { line: 1, column: 0 }, source: undefined } },
+            { value: 'div[data-id=__ESCAPED_FREE_TEXT_CLEAN_CSS1(0,7)__]', metadata: { original: { line: 2, column: 5 }, source: undefined } }
           ],
-          body: [{ value: 'color:red', metadata: { line: 2, column: 26, source: undefined } }]
+          body: [{ value: 'color:red', metadata: { original: { line: 2, column: 26 }, source: undefined } }]
         }]
       ],
       'in properties': [
@@ -381,19 +381,19 @@ vows.describe('source-maps/analyzer')
         [
           {
             kind: 'selector',
-            value: [{ value: 'div', metadata: { line: 1, column: 0, source: undefined } }],
+            value: [{ value: 'div', metadata: { original: { line: 1, column: 0 }, source: undefined } }],
             body: [
-              { value: '__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0(2,5)__', metadata: { line: 1, column: 4, source: undefined }},
-              { value: 'background:url(__ESCAPED_URL_CLEAN_CSS0(0,20)__)', metadata: { line: 3, column: 5, source: undefined } },
-              { value: 'color:blue', metadata: { line: 3, column: 42, source: undefined } }
+              { value: '__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0(2,5)__', metadata: { original: { line: 1, column: 4 }, source: undefined }},
+              { value: 'background:url(__ESCAPED_URL_CLEAN_CSS0(0,20)__)', metadata: { original: { line: 3, column: 5 }, source: undefined } },
+              { value: 'color:blue', metadata: { original: { line: 3, column: 42 }, source: undefined } }
             ]
           },
           {
             kind: 'selector',
-            value: [{ value: 'a', metadata: { line: 3, column: 53, source: undefined } }],
+            value: [{ value: 'a', metadata: { original: { line: 3, column: 53 }, source: undefined } }],
             body: [
-              { value: 'font-family:__ESCAPED_FREE_TEXT_CLEAN_CSS0(1,3)__', metadata: { line: 3, column: 55, source: undefined } },
-              { value: 'color:red', metadata: { line: 4, column: 4, source: undefined } }
+              { value: 'font-family:__ESCAPED_FREE_TEXT_CLEAN_CSS0(1,3)__', metadata: { original: { line: 3, column: 55 }, source: undefined } },
+              { value: 'color:red', metadata: { original: { line: 4, column: 4 }, source: undefined } }
             ]
           }
         ]
@@ -404,11 +404,11 @@ vows.describe('source-maps/analyzer')
           {
             kind: 'at-rule',
             value: '@charset __ESCAPED_FREE_TEXT_CLEAN_CSS0(1, 5)__;',
-            metadata: { line: 1, column: 0, source: undefined }
+            metadata: { original: { line: 1, column: 0 }, source: undefined }
           },
           {
             kind: 'selector',
-            value: [{ value: 'div', metadata: { line: 2, column: 7, source: undefined } }],
+            value: [{ value: 'div', metadata: { original: { line: 2, column: 7 }, source: undefined } }],
             body: []
           }
         ]
@@ -419,12 +419,12 @@ vows.describe('source-maps/analyzer')
           {
             kind: 'block',
             value: '@media (__ESCAPED_COMMENT_CLEAN_CSS0(2, 1)__min-width:980px)',
-            metadata: { line: 1, column: 0, source: undefined },
+            metadata: { original: { line: 1, column: 0 }, source: undefined },
             isFlatBlock: false,
             body: [{
               kind: 'selector',
-              value: [{ value: 'a', metadata: { line: 3, column: 18, source: undefined } }],
-              body: [{ value: 'color:red', metadata: { line: 3, column: 20, source: undefined } }]
+              value: [{ value: 'a', metadata: { original: { line: 3, column: 18 }, source: undefined } }],
+              body: [{ value: 'color:red', metadata: { original: { line: 3, column: 20 }, source: undefined } }]
             }]
           }
         ]
@@ -442,7 +442,7 @@ vows.describe('source-maps/analyzer')
         },
         [{
           kind: 'selector',
-          value: [{ value: 'a', metadata: { line: 1, column: 0, source: 'one.css' } }],
+          value: [{ value: 'a', metadata: { original: { line: 1, column: 0 }, source: 'one.css' } }],
           body: []
         }]
       ],
@@ -458,16 +458,16 @@ vows.describe('source-maps/analyzer')
           {
             kind: 'selector',
             value: [
-              { value: 'a', metadata: { line: 1, column: 0, source: 'one.css' } }
+              { value: 'a', metadata: { original: { line: 1, column: 0 }, source: 'one.css' } }
             ],
             body: []
           },
           {
             kind: 'selector',
             value: [
-              { value: 'a', metadata: { line: 2, column: 0, source: 'two.css' } }
+              { value: 'a', metadata: { original: { line: 2, column: 0 }, source: 'two.css' } }
             ],
-            body: [{ value: 'color:red', metadata: { line: 2, column: 2, source: 'two.css' } }]
+            body: [{ value: 'color:red', metadata: { original: { line: 2, column: 2 }, source: 'two.css' } }]
           }
         ]
       ]

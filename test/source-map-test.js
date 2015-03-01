@@ -36,7 +36,7 @@ vows.describe('source-map')
           generatedColumn: 8,
           originalLine: 1,
           originalColumn: 8,
-          source: '__stdin__.css',
+          source: '$stdin',
           name: null
         };
         assert.deepEqual(minified.sourceMap._mappings._array[0], mapping);
@@ -47,7 +47,7 @@ vows.describe('source-map')
           generatedColumn: 29,
           originalLine: 1,
           originalColumn: 31,
-          source: '__stdin__.css',
+          source: '$stdin',
           name: null
         };
         assert.deepEqual(minified.sourceMap._mappings._array[1], mapping);
@@ -64,7 +64,7 @@ vows.describe('source-map')
           generatedColumn: 0,
           originalLine: 1,
           originalColumn: 0,
-          source: '__stdin__.css',
+          source: '$stdin',
           name: null
         };
         assert.deepEqual(minified.sourceMap._mappings._array[0], mapping);
@@ -75,7 +75,7 @@ vows.describe('source-map')
           generatedColumn: 14,
           originalLine: 2,
           originalColumn: 0,
-          source: '__stdin__.css',
+          source: '$stdin',
           name: null
         };
         assert.deepEqual(minified.sourceMap._mappings._array[1], mapping);
@@ -86,7 +86,7 @@ vows.describe('source-map')
           generatedColumn: 25,
           originalLine: 4,
           originalColumn: 0,
-          source: '__stdin__.css',
+          source: '$stdin',
           name: null
         };
         assert.deepEqual(minified.sourceMap._mappings._array[2], mapping);
@@ -103,7 +103,7 @@ vows.describe('source-map')
           generatedColumn: 0,
           originalLine: 1,
           originalColumn: 0,
-          source: '__stdin__.css',
+          source: '$stdin',
           name: null
         };
         assert.deepEqual(minified.sourceMap._mappings._array[0], mapping);
@@ -114,7 +114,7 @@ vows.describe('source-map')
           generatedColumn: 14,
           originalLine: 1,
           originalColumn: 16,
-          source: '__stdin__.css',
+          source: '$stdin',
           name: null
         };
         assert.deepEqual(minified.sourceMap._mappings._array[1], mapping);
@@ -125,7 +125,7 @@ vows.describe('source-map')
           generatedColumn: 16,
           originalLine: 1,
           originalColumn: 18,
-          source: '__stdin__.css',
+          source: '$stdin',
           name: null
         };
         assert.deepEqual(minified.sourceMap._mappings._array[2], mapping);
@@ -136,7 +136,7 @@ vows.describe('source-map')
           generatedColumn: 0,
           originalLine: 1,
           originalColumn: 29,
-          source: '__stdin__.css',
+          source: '$stdin',
           name: null
         };
         assert.deepEqual(minified.sourceMap._mappings._array[3], mapping);
@@ -147,7 +147,7 @@ vows.describe('source-map')
           generatedColumn: 2,
           originalLine: 1,
           originalColumn: 32,
-          source: '__stdin__.css',
+          source: '$stdin',
           name: null
         };
         assert.deepEqual(minified.sourceMap._mappings._array[4], mapping);
@@ -158,7 +158,7 @@ vows.describe('source-map')
           generatedColumn: 0,
           originalLine: 1,
           originalColumn: 45,
-          source: '__stdin__.css',
+          source: '$stdin',
           name: null
         };
         assert.deepEqual(minified.sourceMap._mappings._array[5], mapping);
@@ -169,7 +169,7 @@ vows.describe('source-map')
           generatedColumn: 4,
           originalLine: 1,
           originalColumn: 49,
-          source: '__stdin__.css',
+          source: '$stdin',
           name: null
         };
         assert.deepEqual(minified.sourceMap._mappings._array[6], mapping);
@@ -186,7 +186,7 @@ vows.describe('source-map')
           generatedColumn: 0,
           originalLine: 1,
           originalColumn: 0,
-          source: '__stdin__.css',
+          source: '$stdin',
           name: null
         };
         assert.deepEqual(minified.sourceMap._mappings._array[0], mapping);
@@ -197,7 +197,7 @@ vows.describe('source-map')
           generatedColumn: 2,
           originalLine: 1,
           originalColumn: 2,
-          source: '__stdin__.css',
+          source: '$stdin',
           name: null
         };
         assert.deepEqual(minified.sourceMap._mappings._array[1], mapping);
@@ -208,7 +208,7 @@ vows.describe('source-map')
           generatedColumn: 28,
           originalLine: 1,
           originalColumn: 28,
-          source: '__stdin__.css',
+          source: '$stdin',
           name: null
         };
         assert.deepEqual(minified.sourceMap._mappings._array[2], mapping);
@@ -225,7 +225,7 @@ vows.describe('source-map')
           generatedColumn: 0,
           originalLine: 1,
           originalColumn: 0,
-          source: '__stdin__.css',
+          source: '$stdin',
           name: null
         };
         assert.deepEqual(minified.sourceMap._mappings._array[0], mapping);
@@ -236,7 +236,7 @@ vows.describe('source-map')
           generatedColumn: 26,
           originalLine: 2,
           originalColumn: 2,
-          source: '__stdin__.css',
+          source: '$stdin',
           name: null
         };
         assert.deepEqual(minified.sourceMap._mappings._array[1], mapping);
@@ -247,7 +247,7 @@ vows.describe('source-map')
           generatedColumn: 29,
           originalLine: 3,
           originalColumn: 4,
-          source: '__stdin__.css',
+          source: '$stdin',
           name: null
         };
         assert.deepEqual(minified.sourceMap._mappings._array[2], mapping);
@@ -258,7 +258,7 @@ vows.describe('source-map')
           generatedColumn: 40,
           originalLine: 5,
           originalColumn: 2,
-          source: '__stdin__.css',
+          source: '$stdin',
           name: null
         };
         assert.deepEqual(minified.sourceMap._mappings._array[3], mapping);
@@ -269,7 +269,7 @@ vows.describe('source-map')
           generatedColumn: 45,
           originalLine: 6,
           originalColumn: 4,
-          source: '__stdin__.css',
+          source: '$stdin',
           name: null
         };
         assert.deepEqual(minified.sourceMap._mappings._array[4], mapping);
@@ -286,7 +286,7 @@ vows.describe('source-map')
           generatedColumn: 0,
           originalLine: 3,
           originalColumn: 0,
-          source: '__stdin__.css',
+          source: '$stdin',
           name: null
         };
         assert.deepEqual(minified.sourceMap._mappings._array[0], mapping);
@@ -297,7 +297,7 @@ vows.describe('source-map')
           generatedColumn: 4,
           originalLine: 3,
           originalColumn: 4,
-          source: '__stdin__.css',
+          source: '$stdin',
           name: null
         };
         assert.deepEqual(minified.sourceMap._mappings._array[1], mapping);
@@ -913,7 +913,7 @@ vows.describe('source-map')
             generatedColumn: 13,
             originalLine: 1,
             originalColumn: 46,
-            source: '__stdin__.css',
+            source: '$stdin',
             name: null
           };
           assert.deepEqual(minified.sourceMap._mappings._array[2], mapping);
@@ -924,7 +924,7 @@ vows.describe('source-map')
             generatedColumn: 18,
             originalLine: 1,
             originalColumn: 13,
-            source: '__stdin__.css',
+            source: '$stdin',
             name: null
           };
           assert.deepEqual(minified.sourceMap._mappings._array[3], mapping);
@@ -935,7 +935,7 @@ vows.describe('source-map')
             generatedColumn: 22,
             originalLine: 1,
             originalColumn: 66,
-            source: '__stdin__.css',
+            source: '$stdin',
             name: null
           };
           assert.deepEqual(minified.sourceMap._mappings._array[4], mapping);

@@ -2,6 +2,7 @@
 ==================
 
 * Refixed issue [#471](https://github.com/jakubpawlowicz/clean-css/issues/471) - correct order after restructuring.
+* Fixes issue [#462](https://github.com/jakubpawlowicz/clean-css/issues/462) - escaped apostrophes in selectors.
 
 [3.1.1 / 2015-02-27](https://github.com/jakubpawlowicz/clean-css/compare/v3.1.0...v3.1.1)
 ==================

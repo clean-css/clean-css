@@ -73,6 +73,28 @@ vows.describe(QuoteScanner)
         assert.equal(index, 1);
       }
     },
+    'one open-ended quote': {
+      topic: '.this-class\\\'s-got-an-apostrophe {}',
+      iterator: function (topic) {
+        var index = 0;
+        new QuoteScanner(topic).each(function iterator() {
+          index++;
+        });
+
+        assert.equal(index, 0);
+      }
+    },
+    'many open-ended quotes': {
+      topic: '.this-class\\\'s-got-many\\\"-apostrophes\\\' {}',
+      iterator: function (topic) {
+        var index = 0;
+        new QuoteScanner(topic).each(function iterator() {
+          index++;
+        });
+
+        assert.equal(index, 0);
+      }
+    },
     'two quotes': {
       topic: 'text with "one \\"quote" and \'another one\'!',
       iterator: function (topic) {

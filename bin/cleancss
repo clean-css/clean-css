@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-var util = require('util');
 var fs = require('fs');
 var path = require('path');
 var CleanCSS = require('../index');
@@ -35,16 +34,16 @@ commands
   .option('-d, --debug', 'Shows debug information (minification time & compression efficiency)');
 
 commands.on('--help', function() {
-  util.puts('  Examples:\n');
-  util.puts('    %> cleancss one.css');
-  util.puts('    %> cleancss -o one-min.css one.css');
+  console.log('  Examples:\n');
+  console.log('    %> cleancss one.css');
+  console.log('    %> cleancss -o one-min.css one.css');
   if (isWindows) {
-    util.puts('    %> type one.css two.css three.css | cleancss -o merged-and-minified.css');
+    console.log('    %> type one.css two.css three.css | cleancss -o merged-and-minified.css');
   } else {
-    util.puts('    %> cat one.css two.css three.css | cleancss -o merged-and-minified.css');
-    util.puts('    %> cat one.css two.css three.css | cleancss | gzip -9 -c > merged-minified-and-gzipped.css.gz');
+    console.log('    %> cat one.css two.css three.css | cleancss -o merged-and-minified.css');
+    console.log('    %> cat one.css two.css three.css | cleancss | gzip -9 -c > merged-minified-and-gzipped.css.gz');
   }
-  util.puts('');
+  console.log('');
   process.exit();
 });
 

@@ -189,9 +189,13 @@ vows.describe(SelectorsOptimizer)
         '@-moz-keyframes test{0%{transform:scale3d(1,1,1);opacity:1}100%{transform:scale3d(.5,.5,.5);opacity:1}}',
         '@-moz-keyframes test{0%{transform:scale3d(1,1,1);opacity:1}100%{transform:scale3d(.5,.5,.5);opacity:1}}'
       ],
-      'with important comment': [
+      'with one important comment': [
         '__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0__a{width:100px}div{color:red}.one{display:block}.two{display:inline;color:red}',
         '__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0__.two,div{color:red}a{width:100px}.one{display:block}.two{display:inline}'
+      ],
+      'with many important comments': [
+        '__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0____ESCAPED_COMMENT_SPECIAL_CLEAN_CSS1__a{width:100px}div{color:red}.one{display:block}.two{display:inline;color:red}',
+        '__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0____ESCAPED_COMMENT_SPECIAL_CLEAN_CSS1__.two,div{color:red}a{width:100px}.one{display:block}.two{display:inline}'
       ],
       'with important comment and charset': [
         '@charset "utf-8";__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0__a{width:100px}div{color:red}.one{display:block}.two{display:inline;color:red}',

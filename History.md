@@ -1,3 +1,8 @@
+[3.1.2 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.1.1...HEAD)
+==================
+
+* Refixed issue [#471](https://github.com/jakubpawlowicz/clean-css/issues/471) - correct order after restructuring.
+
 [3.1.1 / 2015-02-27](https://github.com/jakubpawlowicz/clean-css/compare/v3.1.0...v3.1.1)
 ==================
 

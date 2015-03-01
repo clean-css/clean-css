@@ -12,7 +12,7 @@ function selectorContext(group, specs, options) {
 
   function optimized(selectors) {
     return function (source) {
-      var tokens = new Tokenizer().toTokens(source);
+      var tokens = new Tokenizer({ options: {} }).toTokens(source);
       new SimpleOptimizer(options).optimize(tokens);
 
       assert.deepEqual(tokens[0] ? tokens[0].value : null, selectors);
@@ -36,7 +36,7 @@ function propertyContext(group, specs, options) {
 
   function optimized(selectors) {
     return function (source) {
-      var tokens = new Tokenizer().toTokens(source);
+      var tokens = new Tokenizer({ options: {} }).toTokens(source);
       new SimpleOptimizer(options).optimize(tokens);
       var value = tokens[0].body.map(function (property) { return property.value; });
 

@@ -7,7 +7,7 @@ var canReorder = require('../../lib/properties/reorderable').canReorder;
 var canReorderSingle = require('../../lib/properties/reorderable').canReorderSingle;
 
 function propertiesIn(source) {
-  return extractProperties(new SelectorTokenizer(null, true, false).toTokens(source)[0]);
+  return extractProperties(new SelectorTokenizer({ options: {} }, true, false).toTokens(source)[0]);
 }
 
 vows.describe(canReorder)

@@ -14,6 +14,7 @@ function optimizerContext(group, specs, options) {
   options.restructuring = true;
   options.compatibility = new Compatibility(options.compatibility).toOptions();
   var outerContext = {
+    options: {},
     sourceTracker: new SourceTracker()
   };
 

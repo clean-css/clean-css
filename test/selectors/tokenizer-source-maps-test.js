@@ -2,6 +2,12 @@ var vows = require('vows');
 var assert = require('assert');
 var Tokenizer = require('../../lib/selectors/tokenizer');
 var SourceTracker = require('../../lib/utils/source-tracker');
+var InputSourceMapTracker = require('../../lib/utils/input-source-map-tracker');
+
+var fs = require('fs');
+var path = require('path');
+var inputMapPath = path.join('test', 'fixtures', 'source-maps', 'styles.css.map');
+var inputMap = fs.readFileSync(inputMapPath, 'utf-8');
 
 function sourceMapContext(group, specs) {
   var ctx = {};
@@ -15,11 +21,13 @@ function sourceMapContext(group, specs) {
   for (var test in specs) {
     for (var i = 0; i < specs[test][1].length; i++) {
       var target = specs[test][1][i];
+      var sourceTracker = new SourceTracker();
+      var inputSourceMapTracker = new InputSourceMapTracker({ options: { inliner: {} }, errors: {}, sourceTracker: sourceTracker });
 
       ctx[group + ' ' + test + ' - #' + (i + 1)] = {
         topic: typeof specs[test][0] == 'function' ?
           specs[test][0]() :
-          new Tokenizer({ sourceTracker: new SourceTracker() }, false, true).toTokens(specs[test][0]),
+          new Tokenizer({ sourceTracker: sourceTracker, inputSourceMapTracker: inputSourceMapTracker, options: {} }, false, true).toTokens(specs[test][0]),
         tokenized: tokenizedContext(target, i)
       };
     }
@@ -436,7 +444,9 @@ vows.describe('source-maps/analyzer')
       'one': [
         function () {
           var tracker = new SourceTracker();
-          var tokenizer = new Tokenizer({ sourceTracker: tracker }, false, true);
+          var inputTracker = new InputSourceMapTracker({ options: { inliner: {} }, errors: {}, sourceTracker: tracker });
+          var tokenizer = new Tokenizer({ sourceTracker: tracker, inputSourceMapTracker: inputTracker, options: {} }, false, true);
+
           var data = tracker.store('one.css', 'a{}');
           return tokenizer.toTokens(data);
         },
@@ -449,7 +459,9 @@ vows.describe('source-maps/analyzer')
       'two': [
         function () {
           var tracker = new SourceTracker();
-          var tokenizer = new Tokenizer({ sourceTracker: tracker }, false, true);
+          var inputTracker = new InputSourceMapTracker({ options: { inliner: {} }, errors: {}, sourceTracker: tracker });
+          var tokenizer = new Tokenizer({ sourceTracker: tracker, inputSourceMapTracker: inputTracker, options: {} }, false, true);
+
           var data1 = tracker.store('one.css', 'a{}');
           var data2 = tracker.store('two.css', '\na{color:red}');
           return tokenizer.toTokens(data1 + data2);
@@ -470,6 +482,25 @@ vows.describe('source-maps/analyzer')
             body: [{ value: 'color:red', metadata: { original: { line: 2, column: 2 }, source: 'two.css' } }]
           }
         ]
+      ]
+    })
+  )
+  .addBatch(
+    sourceMapContext('input source maps', {
+      'one': [
+        function () {
+          var tracker = new SourceTracker();
+          var inputTracker = new InputSourceMapTracker({ options: { inliner: {}, sourceMap: inputMap, options: {} }, errors: {}, sourceTracker: tracker });
+          inputTracker.track('', function () {});
+
+          var tokenizer = new Tokenizer({ sourceTracker: tracker, inputSourceMapTracker: inputTracker, options: {} }, false, true);
+          return tokenizer.toTokens('div > a {\n  color: red;\n}');
+        },
+        [{
+          kind: 'selector',
+          value: [{ value: 'div > a ', metadata: { original: { line: 1, column: 4 }, source: 'styles.less' } }],
+          body: [{ value: 'color:red', metadata: { original: { line: 2, column: 2 }, source: 'styles.less' } }]
+        }]
       ]
     })
   )

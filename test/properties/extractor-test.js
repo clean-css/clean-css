@@ -4,7 +4,7 @@ var SelectorTokenizer = require('../../lib/selectors/tokenizer');
 var extractor = require('../../lib/properties/extractor');
 
 function buildToken(source) {
-  return new SelectorTokenizer(null, true, false).toTokens(source)[0];
+  return new SelectorTokenizer({ options: {} }, true, false).toTokens(source)[0];
 }
 
 vows.describe(extractor)

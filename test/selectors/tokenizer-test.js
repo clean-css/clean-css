@@ -8,7 +8,7 @@ function tokenizerContext(name, specs, addMetadata) {
 
   function tokenized(target) {
     return function (source) {
-      var tokenized = new Tokenizer({ sourceTracker: new SourceTracker(), warnings: [] }, addMetadata).toTokens(source);
+      var tokenized = new Tokenizer({ options: {}, sourceTracker: new SourceTracker(), warnings: [] }, addMetadata).toTokens(source);
       assert.deepEqual(target, tokenized);
     };
   }

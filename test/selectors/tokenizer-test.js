@@ -298,7 +298,7 @@ vows.describe(Tokenizer)
             selector: 'a,\n\ndiv.class > p ',
             selectorsList: ['a', '\n\ndiv.class > p ']
           }
-        }],
+        }]
       ],
       'two selectors': [
         'a{color:red}div{color:blue}',

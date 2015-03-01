@@ -473,7 +473,7 @@ vows.describe('source-map')
           return mapping.source == 'styles.less';
         });
         assert.lengthOf(stylesSource, 2);
-      },
+      }
     },
     'nested once': {
       'topic': new CleanCSS({ sourceMap: true }).minify('@import url(test/fixtures/source-maps/nested/once.css);'),

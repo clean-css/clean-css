@@ -492,7 +492,7 @@ vows.describe(SimpleOptimizer)
       'rect zeros with commas': [
         'a{clip:rect(0px, 0px, 0px, 0px)}',
         ['clip:rect(0,0,0,0)']
-      ],
+      ]
     })
   )
   .addBatch(

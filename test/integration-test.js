@@ -1084,7 +1084,7 @@ path")}',
     'keeps urls the same': [
       '@import url(base.css);',
       'a{background:url(../partials/extra/down.gif)no-repeat}'
-    ],
+    ]
   }, {
     target: path.join(process.cwd(), 'test.css'),
     relativeTo: path.join('test', 'fixtures', 'partials-relative'),

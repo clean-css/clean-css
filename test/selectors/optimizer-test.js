@@ -207,7 +207,7 @@ vows.describe(SelectorsOptimizer)
       'whitespace body': [
         'a{   \n }',
         ''
-      ],
+      ]
     })
   )
   .addBatch(

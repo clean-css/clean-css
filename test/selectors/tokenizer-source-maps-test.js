@@ -295,7 +295,7 @@ vows.describe('source-maps/analyzer')
                 kind: 'selector',
                 value: [{ value: 'a', metadata: { line: 1, column: 25, source: undefined } }],
                 body: [{ value: 'color:red', metadata: { line: 1, column: 27, source: undefined } }]
-              },
+              }
             ]
           },
           {
@@ -336,7 +336,7 @@ vows.describe('source-maps/analyzer')
             metadata: { line: 2, column: 0, source: undefined },
             isFlatBlock: true,
             body: [
-              { value: 'font-family:"Font"', metadata: { line: 3, column: 1, source: undefined } },
+              { value: 'font-family:"Font"', metadata: { line: 3, column: 1, source: undefined } }
             ]
           }
         ]

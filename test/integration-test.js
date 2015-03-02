@@ -182,9 +182,17 @@ vows.describe('integration tests').addBatch({
       'a{background:calc(100% - 2px) 10px no-repeat}',
       'a{background:calc(100% - 2px)10px no-repeat}'
     ],
+    'inside background with fraction unit': [
+      'a{background:calc(100% - 2px).5em no-repeat}',
+      'a{background:calc(100% - 2px).5em no-repeat}'
+    ],
     'inside margin': [
       'a{margin:calc(100% - 2px) calc(100% - 5px)}',
       'a{margin:calc(100% - 2px)calc(100% - 5px)}'
+    ],
+    'after :not': [
+      'li:not(.foo).bar{color:red}',
+      'li:not(.foo).bar{color:red}'
     ]
   }),
   'line breaks': cssContext({

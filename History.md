@@ -6,6 +6,7 @@
 [3.1.3 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.1.2...3.1)
 ==================
 
+* Fixes issue [#464](https://github.com/jakubpawlowicz/clean-css/issues/464) - data URI with quoted braces.
 * Fixes issue [#475](https://github.com/jakubpawlowicz/clean-css/issues/475) - whitespace after closing brace.
 
 [3.1.2 / 2015-03-01](https://github.com/jakubpawlowicz/clean-css/compare/v3.1.1...v3.1.2)

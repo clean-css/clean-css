@@ -109,6 +109,10 @@ vows.describe(SelectorsOptimizer)
         '@charset "utf-8";a{width:100px}div{color:red}.one{display:block}.two{display:inline;color:red}',
         '@charset "utf-8";.two,div{color:red}a{width:100px}.one{display:block}.two{display:inline}'
       ],
+      'up until top with import': [
+        '@charset "UTF-8";@import url(http://fonts.googleapis.com/css?family=Lora:400,700);a{width:100px}div{color:red}.one{display:block}.two{display:inline;color:red}',
+        '@charset "UTF-8";@import url(http://fonts.googleapis.com/css?family=Lora:400,700);.two,div{color:red}a{width:100px}.one{display:block}.two{display:inline}'
+      ],
       'two at once': [
         '.one,.two,.three{color:red;display:block}div{margin:0}.four,.five,.six{color:red;display:block}',
         '.five,.four,.one,.six,.three,.two{color:red;display:block}div{margin:0}'

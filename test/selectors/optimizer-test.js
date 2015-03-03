@@ -200,6 +200,14 @@ vows.describe(SelectorsOptimizer)
       'with important comment and charset': [
         '@charset "utf-8";__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0__a{width:100px}div{color:red}.one{display:block}.two{display:inline;color:red}',
         '@charset "utf-8";__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0__.two,div{color:red}a{width:100px}.one{display:block}.two{display:inline}'
+      ],
+      'with charset and import': [
+        '@charset "UTF-8";@import url(http://fonts.googleapis.com/css?family=Lora:400,700);a{width:100px}div{color:red}.one{display:block}.two{display:inline;color:red}',
+        '@charset "UTF-8";@import url(http://fonts.googleapis.com/css?family=Lora:400,700);.two,div{color:red}a{width:100px}.one{display:block}.two{display:inline}'
+      ],
+      'with charset and import and comments': [
+        '@charset "UTF-8";@import url(http://fonts.googleapis.com/css?family=Lora:400,700);__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0__a{width:100px}div{color:red}.one{display:block}.two{display:inline;color:red}',
+        '@charset "UTF-8";@import url(http://fonts.googleapis.com/css?family=Lora:400,700);__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0__.two,div{color:red}a{width:100px}.one{display:block}.two{display:inline}'
       ]
     }, { advanced: true })
   )

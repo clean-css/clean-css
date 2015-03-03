@@ -190,9 +190,17 @@ vows.describe('integration tests').addBatch({
       'a{margin:calc(100% - 2px) calc(100% - 5px)}',
       'a{margin:calc(100% - 2px)calc(100% - 5px)}'
     ],
-    'after :not': [
+    'after :not #1': [
       'li:not(.foo).bar{color:red}',
       'li:not(.foo).bar{color:red}'
+    ],
+    'after :not #2': [
+      'li:not(.foo)[data-type=none]{color:red}',
+      'li:not(.foo)[data-type=none]{color:red}'
+    ],
+    'after :not #3': [
+      'li:not(.foo)#id{color:red}',
+      'li:not(.foo)#id{color:red}'
     ]
   }),
   'line breaks': cssContext({

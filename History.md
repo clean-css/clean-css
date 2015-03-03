@@ -1,3 +1,8 @@
+[3.1.4 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.1.3...3.1)
+==================
+
+* Fixes issue [#478](https://github.com/jakubpawlowicz/clean-css/issues/478) - ultimate fix to brace whitespace.
+
 [3.1.3 / 2015-03-03](https://github.com/jakubpawlowicz/clean-css/compare/v3.1.2...v3.1.3)
 ==================
 

@@ -3,7 +3,7 @@
 
 * Fixed issue [#396](https://github.com/jakubpawlowicz/clean-css/issues/396) - better input source maps tracking.
 
-[3.1.4 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.1.3...3.1)
+[3.1.4 / 2015-03-04](https://github.com/jakubpawlowicz/clean-css/compare/v3.1.3...v3.1.4)
 ==================
 
 * Fixes issue [#472](https://github.com/jakubpawlowicz/clean-css/issues/472) - broken function minification.

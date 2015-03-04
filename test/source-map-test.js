@@ -22,6 +22,12 @@ vows.describe('source-map')
       'gets right output': function (minified) {
         assert.equal(minified.styles, 'html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}');
       }
+    },
+    'background gradient': {
+      'topic': new CleanCSS({ sourceMap: true }).minify('a{background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0, rgba(0, 0, 0, 0.1))}'),
+      'gets right output': function (minified) {
+        assert.equal(minified.styles, 'a{background:linear-gradient(to bottom,rgba(0,0,0,.1) 0,rgba(0,0,0,.1))}');
+      }
     }
   })
   .addBatch({

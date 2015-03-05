@@ -496,6 +496,34 @@ vows.describe(SimpleOptimizer)
     })
   )
   .addBatch(
+    propertyContext('zeros with disabled zeroUnits', {
+      '10.0em': [
+        'a{margin:10.0em}',
+        ['margin:10em']
+      ],
+      '0px': [
+        'a{margin:0px}',
+        ['margin:0px']
+      ],
+      '0px 0px': [
+        'a{margin:0px 0px}',
+        ['margin:0px 0px']
+      ],
+      '0deg': [
+        'div{transform:rotate(0deg) skew(0deg)}',
+        ['transform:rotate(0deg) skew(0deg)']
+      ],
+      '0%': [
+        'a{height:0%}',
+        ['height:0%']
+      ],
+      '10%': [
+        'a{width:10%}',
+        ['width:10%']
+      ]
+    }, { compatibility: { properties: { zeroUnits: false } } })
+  )
+  .addBatch(
     propertyContext('comments', {
       'comment': [
         'a{__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0__color:red__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS1__}',

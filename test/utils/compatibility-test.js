@@ -35,6 +35,7 @@ vows.describe(Compatibility)
         assert.isFalse(options.properties.backgroundSizeMerging);
         assert.isTrue(options.properties.merging);
         assert.isFalse(options.properties.spaceAfterClosingBrace);
+        assert.isTrue(options.properties.zeroUnits);
         assert.isFalse(options.units.rem);
         assert.isTrue(options.colors.opacity);
         assert.deepEqual(options.selectors.special, /(\-moz\-|\-ms\-|\-o\-|\-webkit\-|:dir\([a-z-]*\)|:first(?![a-z-])|:fullscreen|:left|:read-only|:read-write|:right)/);
@@ -52,6 +53,7 @@ vows.describe(Compatibility)
         assert.isFalse(options.properties.backgroundSizeMerging);
         assert.isFalse(options.properties.merging);
         assert.isTrue(options.properties.spaceAfterClosingBrace);
+        assert.isTrue(options.properties.zeroUnits);
         assert.isFalse(options.units.rem);
         assert.isFalse(options.colors.opacity);
         assert.deepEqual(options.selectors.special, /(\-moz\-|\-ms\-|\-o\-|\-webkit\-|:root|:nth|:first\-of|:last|:only|:empty|:target|:checked|::selection|:enabled|:disabled|:not)/);
@@ -67,6 +69,7 @@ vows.describe(Compatibility)
         assert.isFalse(options.properties.backgroundSizeMerging);
         assert.isFalse(options.properties.merging);
         assert.isTrue(options.properties.spaceAfterClosingBrace);
+        assert.isTrue(options.properties.zeroUnits);
         assert.isFalse(options.units.rem);
         assert.isFalse(options.colors.opacity);
         assert.deepEqual(options.selectors.special, /(\-moz\-|\-ms\-|\-o\-|\-webkit\-|:focus|:before|:after|:root|:nth|:first\-of|:last|:only|:empty|:target|:checked|::selection|:enabled|:disabled|:not)/);

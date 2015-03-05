@@ -2,6 +2,7 @@
 ==================
 
 * Fixes issue [#496](https://github.com/jakubpawlowicz/clean-css/issues/496) - space after bracket removal.
+* Backports fix to [#480](https://github.com/jakubpawlowicz/clean-css/issues/480) - reordering and uppercase properties.
 
 [3.1.6 / 2015-03-12](https://github.com/jakubpawlowicz/clean-css/compare/v3.1.5...v3.1.6)
 ==================

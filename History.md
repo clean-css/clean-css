@@ -2,6 +2,7 @@
 ==================
 
 * Fixed issue [#396](https://github.com/jakubpawlowicz/clean-css/issues/396) - better input source maps tracking.
+* Fixed issue [#480](https://github.com/jakubpawlowicz/clean-css/issues/480) - extracting upcase property names.
 
 [3.1.4 / 2015-03-04](https://github.com/jakubpawlowicz/clean-css/compare/v3.1.3...v3.1.4)
 ==================

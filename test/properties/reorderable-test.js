@@ -53,8 +53,16 @@ vows.describe(canReorderSingle)
       'topic': canReorderSingle(propertiesIn('a{color:red}')[0], propertiesIn('a{color:red}')[0]),
       'must be true': function (result) { assert.isTrue(result); }
     },
+    'same properties with same value and different case': {
+      'topic': canReorderSingle(propertiesIn('a{COLOR:red}')[0], propertiesIn('a{color:red}')[0]),
+      'must be true': function (result) { assert.isTrue(result); }
+    },
     'same properties with different value': {
       'topic': canReorderSingle(propertiesIn('a{color:red}')[0], propertiesIn('a{color:blue}')[0]),
+      'must be false': function (result) { assert.isFalse(result); }
+    },
+    'same properties with different value and different case': {
+      'topic': canReorderSingle(propertiesIn('a{color:red}')[0], propertiesIn('a{COLOR:blue}')[0]),
       'must be false': function (result) { assert.isFalse(result); }
     },
     'different properties with same root': {

@@ -169,6 +169,10 @@ vows.describe(SelectorsOptimizer)
         'div{margin-top:0}@media{.one{margin-top:0}}.two{display:block;margin:0}',
         'div{margin-top:0}@media{.one{margin-top:0}}.two{display:block;margin:0}'
       ],
+      'over a property in the same selector': [
+        'div{background-size:100%}a{background:no-repeat;background-size:100%}',
+        'div{background-size:100%}a{background:no-repeat;background-size:100%}'
+      ],
       'multiple granular up to a shorthand': [
         '.one{border:1px solid #bbb}.two{border-color:#666}.three{border-width:1px;border-style:solid}',
         '.one{border:1px solid #bbb}.two{border-color:#666}.three{border-width:1px;border-style:solid}'

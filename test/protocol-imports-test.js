@@ -291,33 +291,6 @@ vows.describe('protocol imports').addBatch({
       nock.cleanAll();
     }
   },
-  'of a timed out response': {
-    topic: function() {
-      var self = this;
-      var timeout = 100;
-      this.server = http.createServer(function(req, res) {
-        setTimeout(function() {}, timeout * 2);
-      });
-      this.server.listen(port, function() {
-        new CleanCSS({
-          inliner: {
-            timeout: timeout
-          }
-        }).minify('@import url(http://localhost:' + port + '/timeout.css);a{color:red}', self.callback);
-      });
-      enableDestroy(self.server);
-    },
-    'should raise errors': function(errors, minified) {
-      assert.lengthOf(errors, 1);
-      assert.equal(errors[0], 'Broken @import declaration of "http://localhost:' + port + '/timeout.css" - timeout');
-    },
-    'should process @import': function(errors, minified) {
-      assert.equal(minified.styles, '@import url(http://localhost:' + port + '/timeout.css);a{color:red}');
-    },
-    teardown: function() {
-      this.server.destroy();
-    }
-  },
   'of a cyclical reference response': {
     topic: function() {
       this.reqMocks = nock('http://127.0.0.1')
@@ -449,6 +422,37 @@ vows.describe('protocol imports').addBatch({
     teardown: function() {
       assert.isTrue(this.reqMocks.isDone());
       nock.cleanAll();
+    }
+  }
+}).addBatch({
+  'of a timed out response': {
+    topic: function() {
+      nock.enableNetConnect();
+
+      var self = this;
+      var timeout = 100;
+      this.server = http.createServer(function(req, res) {
+        setTimeout(function() {}, timeout * 2);
+      });
+      this.server.listen(port, function() {
+        new CleanCSS({
+          inliner: {
+            timeout: timeout
+          }
+        }).minify('@import url(http://localhost:' + port + '/timeout.css);a{color:red}', self.callback);
+      });
+      enableDestroy(self.server);
+    },
+    'should raise errors': function(errors, minified) {
+      assert.lengthOf(errors, 1);
+      assert.equal(errors[0], 'Broken @import declaration of "http://localhost:' + port + '/timeout.css" - timeout');
+    },
+    'should process @import': function(errors, minified) {
+      assert.equal(minified.styles, '@import url(http://localhost:' + port + '/timeout.css);a{color:red}');
+    },
+    teardown: function() {
+      this.server.destroy();
+      nock.disableNetConnect();
     }
   }
 }).export(module);

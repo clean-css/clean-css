@@ -41,7 +41,7 @@
   "devDependencies": {
     "browserify": "9.x",
     "jshint": "2.6.x",
-    "nock": ">=0.51 <1.0",
+    "nock": "1.x",
     "server-destroy": "1.x",
     "uglify-js": "2.4.x",
     "vows": "0.8.x"

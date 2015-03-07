@@ -663,6 +663,8 @@ vows.describe('source-map')
     },
     'timed out response for external source map': {
       topic: function() {
+        nock.enableNetConnect();
+
         var self = this;
         var timeout = 100;
 
@@ -688,10 +690,11 @@ vows.describe('source-map')
       },
       'raises an error': function(errors, _) {
         assert.lengthOf(errors, 1);
-        assert.equal(errors[0], 'Broken source map at "http://127.0.0.1:' + port + '/remote.css.map" - timeout');
+        assert.include(errors[0], 'Broken source map at "http://127.0.0.1:' + port + '/remote.css.map"');
       },
       teardown: function () {
         this.server.destroy();
+        nock.disableNetConnect();
       }
     },
     'absolute source map from external host via http': {

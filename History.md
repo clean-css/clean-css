@@ -1,3 +1,8 @@
+[3.1.6 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.1.5...3.1)
+==================
+
+* Fixes issue [#489](https://github.com/jakubpawlowicz/clean-css/issues/489) - `AlphaImageLoader` IE filter.
+
 [3.1.5 / 2015-03-06](https://github.com/jakubpawlowicz/clean-css/compare/v3.1.4...v3.1.5)
 ==================
 

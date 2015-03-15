@@ -557,6 +557,16 @@ vows.describe('module tests').addBatch({
           assert.equal(minified.styles, '@import url(/partials/one.css);@import url(/partials/extra/three.css);@import url(/partials/extra/four.css);.two{color:#fff}');
         }
       }
+    },
+    'with remote paths': {
+      'topic': new CleanCSS({ sourceMap: true, target: process.cwd() }).minify({
+        'http://127.0.0.1/styles.css': {
+          styles: 'div{background-image:url(image.png)}'
+        }
+      }),
+      'gives right output': function (minified) {
+        assert.equal(minified.styles, 'div{background-image:url(http://127.0.0.1/image.png)}');
+      }
     }
   }
 }).export(module);

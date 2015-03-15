@@ -506,7 +506,7 @@ vows.describe('source-map')
       },
       'should have 2 mappings to styles.less file': function (minified) {
         var stylesSource = minified.sourceMap._mappings._array.filter(function (mapping) {
-          return mapping.source == 'styles.less';
+          return mapping.source == path.join('test', 'fixtures', 'source-maps', 'styles.less');
         });
         assert.lengthOf(stylesSource, 2);
       }

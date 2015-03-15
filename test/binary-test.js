@@ -454,7 +454,7 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
         assert.deepEqual(
           sourceMap.originalPositionFor({ line: 1, column: 1 }),
           {
-            source: '/fixtures/reset.css',
+            source: 'fixtures/reset.css',
             line: 4,
             column: 0,
             name: null

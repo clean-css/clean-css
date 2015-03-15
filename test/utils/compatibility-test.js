@@ -5,7 +5,9 @@ var Compatibility = require('../../lib/utils/compatibility');
 vows.describe(Compatibility)
   .addBatch({
     'as an empty hash': {
-      topic: new Compatibility({}).toOptions(),
+      'topic': function () {
+        return new Compatibility({}).toOptions();
+      },
       'gets default options': function(options) {
         assert.isFalse(options.properties.iePrefixHack);
         assert.isFalse(options.properties.ieSuffixHack);
@@ -20,13 +22,17 @@ vows.describe(Compatibility)
       }
     },
     'not given': {
-      topic: new Compatibility().toOptions(),
+      'topic': function () {
+        return new Compatibility().toOptions();
+      },
       'gets default options': function(options) {
         assert.deepEqual(options, new Compatibility({}).toOptions());
       }
     },
     'as a populated hash': {
-      topic: new Compatibility({ units: { rem: false }, properties: { prefix: true } }).toOptions(),
+      'topic': function () {
+        return new Compatibility({ units: { rem: false }, properties: { prefix: true } }).toOptions();
+      },
       'gets merged options': function(options) {
         assert.isFalse(options.properties.iePrefixHack);
         assert.isFalse(options.properties.ieSuffixHack);
@@ -44,7 +50,9 @@ vows.describe(Compatibility)
   })
   .addBatch({
     'as an ie8 template': {
-      topic: new Compatibility('ie8').toOptions(),
+      'topic': function () {
+        return new Compatibility('ie8').toOptions();
+      },
       'gets template options': function(options) {
         assert.isTrue(options.properties.iePrefixHack);
         assert.isTrue(options.properties.ieSuffixHack);
@@ -60,7 +68,9 @@ vows.describe(Compatibility)
       }
     },
     'as an ie7 template': {
-      topic: new Compatibility('ie7').toOptions(),
+      'topic': function () {
+        return new Compatibility('ie7').toOptions();
+      },
       'gets template options': function(options) {
         assert.isTrue(options.properties.iePrefixHack);
         assert.isTrue(options.properties.ieSuffixHack);
@@ -76,7 +86,9 @@ vows.describe(Compatibility)
       }
     },
     'as an unknown template': {
-      topic: new Compatibility('').toOptions(),
+      'topic': function () {
+        return new Compatibility('').toOptions();
+      },
       'gets default options': function(options) {
         assert.deepEqual(options, new Compatibility({}).toOptions());
       }
@@ -84,7 +96,9 @@ vows.describe(Compatibility)
   })
   .addBatch({
     'as a complex string value with group': {
-      topic: new Compatibility('ie8,-properties.iePrefixHack,+colors.opacity').toOptions(),
+      'topic': function () {
+        return new Compatibility('ie8,-properties.iePrefixHack,+colors.opacity').toOptions();
+      },
       'gets calculated options': function(options) {
         assert.isFalse(options.properties.iePrefixHack);
         assert.isTrue(options.properties.ieSuffixHack);
@@ -98,7 +112,9 @@ vows.describe(Compatibility)
       }
     },
     'as a single string value without group': {
-      topic: new Compatibility('+properties.iePrefixHack').toOptions(),
+      'topic': function () {
+        return new Compatibility('+properties.iePrefixHack').toOptions();
+      },
       'gets calculated options': function(options) {
         assert.isTrue(options.properties.iePrefixHack);
         assert.isFalse(options.properties.ieSuffixHack);
@@ -112,7 +128,9 @@ vows.describe(Compatibility)
       }
     },
     'as a complex string value without group': {
-      topic: new Compatibility('+properties.iePrefixHack,-units.rem').toOptions(),
+      'topic': function () {
+        return new Compatibility('+properties.iePrefixHack,-units.rem').toOptions();
+      },
       'gets calculated options': function(options) {
         assert.isTrue(options.properties.iePrefixHack);
         assert.isFalse(options.properties.ieSuffixHack);

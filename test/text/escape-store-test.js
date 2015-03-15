@@ -5,7 +5,9 @@ var EscapeStore = require('../../lib/text/escape-store');
 vows.describe(EscapeStore)
   .addBatch({
     'no metadata': {
-      topic: new EscapeStore('TEST'),
+      topic: function () {
+        return new EscapeStore('TEST');
+      },
       store: function (escapeStore) {
         var placeholder = escapeStore.store('data');
         assert.equal(placeholder, '__ESCAPED_TEST_CLEAN_CSS0__');
@@ -22,7 +24,9 @@ vows.describe(EscapeStore)
       }
     },
     'with metadata': {
-      topic: new EscapeStore('TEST'),
+      topic: function () {
+        return new EscapeStore('TEST');
+      },
       store: function (escapeStore) {
         var placeholder = escapeStore.store('data', ['brown', 'fox', 'jumped', 'over']);
         assert.equal(placeholder, '__ESCAPED_TEST_CLEAN_CSS0(brown,fox,jumped,over)__');
@@ -39,7 +43,9 @@ vows.describe(EscapeStore)
       }
     },
     'same data with different metadata': {
-      topic: new EscapeStore('TEST'),
+      topic: function () {
+        return new EscapeStore('TEST');
+      },
       'store first': function (escapeStore) {
         escapeStore.store('data1', [0, 1, 2]);
         var placeholder = escapeStore.store('data1', [1, 2, 3]);

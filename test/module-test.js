@@ -67,13 +67,17 @@ vows.describe('module tests').addBatch({
     }
   },
   'no debug': {
-    'topic': new CleanCSS().minify('a{ color: #f00 }'),
+    'topic': function () {
+      return new CleanCSS().minify('a{ color: #f00 }');
+    },
     'should not populate stats hash': function (error, minified) {
       assert.isEmpty(minified.stats);
     }
   },
   'debug': {
-    'topic': new CleanCSS({ debug: true }).minify('a{ color: #f00 }'),
+    'topic': function () {
+      return new CleanCSS({ debug: true }).minify('a{ color: #f00 }');
+    },
     'should give time taken': function (error, minified) {
       assert.isNumber(minified.stats.timeSpent);
     },
@@ -88,13 +92,17 @@ vows.describe('module tests').addBatch({
     }
   },
   'no warnings': {
-    'topic': new CleanCSS().minify('a{ color: #f00 }'),
+    'topic': function () {
+      return new CleanCSS().minify('a{ color: #f00 }');
+    },
     'if no reasons given': function (error, minified) {
       assert.isEmpty(minified.warnings);
     }
   },
   'warnings': {
-    'topic': new CleanCSS({ root: 'test/fixtures', target: 'custom-warnings.css' }).minify('a{color:red}'),
+    'topic': function () {
+      return new CleanCSS({ root: 'test/fixtures', target: 'custom-warnings.css' }).minify('a{color:red}');
+    },
     'are an array': function (error, minified) {
       assert.isArray(minified.warnings);
     },
@@ -104,7 +112,9 @@ vows.describe('module tests').addBatch({
     }
   },
   'warnings on extra closing brace': {
-    'topic': new CleanCSS().minify('a{display:block}}'),
+    'topic': function () {
+      return new CleanCSS().minify('a{display:block}}');
+    },
     'should minify correctly': function (error, minified) {
       assert.equal(minified.styles, 'a{display:block}');
     },
@@ -117,7 +127,9 @@ vows.describe('module tests').addBatch({
     }
   },
   'warnings on missing closing brace': {
-    'topic': new CleanCSS().minify('a{display:block'),
+    'topic': function () {
+      return new CleanCSS().minify('a{display:block');
+    },
     'should minify correctly': function (error, minified) {
       assert.equal(minified.styles, '');
     },
@@ -130,7 +142,9 @@ vows.describe('module tests').addBatch({
     }
   },
   'warnings on unexpected body': {
-    'topic': new CleanCSS().minify('a{display:block}color:#535353}p{color:red}'),
+    'topic': function () {
+      return new CleanCSS().minify('a{display:block}color:#535353}p{color:red}');
+    },
     'should minify correctly': function (error, minified) {
       assert.equal(minified.styles, 'a{display:block}p{color:red}');
     },
@@ -143,7 +157,9 @@ vows.describe('module tests').addBatch({
     }
   },
   'warnings on invalid properties': {
-    'topic': new CleanCSS().minify('a{color:}'),
+    'topic': function () {
+      return new CleanCSS().minify('a{color:}');
+    },
     'should minify correctly': function (error, minified) {
       assert.isEmpty(minified.styles);
     },
@@ -156,7 +172,9 @@ vows.describe('module tests').addBatch({
     }
   },
   'warnings on broken urls': {
-    'topic': new CleanCSS().minify('a{background:url(image/}'),
+    'topic': function () {
+      return new CleanCSS().minify('a{background:url(image/}');
+    },
     'should output correct content': function (error, minified) {
       assert.equal(minified.styles, 'a{background:url(image/}');
     },
@@ -169,7 +187,9 @@ vows.describe('module tests').addBatch({
     }
   },
   'warnings on broken imports': {
-    'topic': new CleanCSS().minify('@impor'),
+    'topic': function () {
+      return new CleanCSS().minify('@impor');
+    },
     'should output correct content': function (error, minified) {
       assert.isEmpty(minified.styles);
     },
@@ -182,7 +202,9 @@ vows.describe('module tests').addBatch({
     }
   },
   'warnings on broken comments': {
-    'topic': new CleanCSS().minify('a{}/* '),
+    'topic': function () {
+      return new CleanCSS().minify('a{}/* ');
+    },
     'should output correct content': function (error, minified) {
       assert.isEmpty(minified.styles);
     },
@@ -195,13 +217,17 @@ vows.describe('module tests').addBatch({
     }
   },
   'no errors': {
-    'topic': new CleanCSS().minify('a{color:red}'),
+    'topic': function () {
+      return new CleanCSS().minify('a{color:red}');
+    },
     'if no reasons given': function (error, minified) {
       assert.isEmpty(minified.errors);
     }
   },
   'errors': {
-    'topic': new CleanCSS(),
+    'topic': function () {
+      return new CleanCSS();
+    },
     'if both root and output used reasons given': function(minifier) {
       assert.doesNotThrow(function () {
         minifier.minify('@import url(/some/fake/file);', function (errors) {
@@ -213,7 +239,9 @@ vows.describe('module tests').addBatch({
     }
   },
   'errors when re-running minification': {
-    'topic': new CleanCSS(),
+    'topic': function () {
+      return new CleanCSS();
+    },
     'if both root and output used reasons given': function (minifier) {
       minifier.minify('@import url(/some/fake/file);');
       minifier.minify('@import url(/some/fake/file);', function(errors) {
@@ -290,46 +318,58 @@ vows.describe('module tests').addBatch({
   },
   'options': {
     'advanced': {
-      'topic': new CleanCSS({ advanced: true }).minify('a{color:red}a{color:#fff}'),
+      'topic': function () {
+        return new CleanCSS({ advanced: true }).minify('a{color:red}a{color:#fff}');
+      },
       'gets right output': function (minified) {
         assert.equal(minified.styles, 'a{color:#fff}');
       }
     },
     'aggressive merging': {
-      'topic': new CleanCSS({ aggressiveMerging: true }).minify('a{display:block;color:red;display:inline-block}'),
+      'topic': function () {
+        return new CleanCSS({ aggressiveMerging: true }).minify('a{display:block;color:red;display:inline-block}');
+      },
       'gets right output': function (minified) {
         assert.equal(minified.styles, 'a{color:red;display:inline-block}');
       }
     },
     'process import': {
-      'topic': new CleanCSS({ processImport: true }).minify('@import url(/test/fixtures/partials/one.css);'),
+      'topic': function () {
+        return new CleanCSS({ processImport: true }).minify('@import url(/test/fixtures/partials/one.css);');
+      },
       'gets right output': function (minified) {
         assert.equal(minified.styles, '.one{color:red}');
       }
     },
     'rebase': {
-      'topic': new CleanCSS({ rebase: true, relativeTo: path.join(process.cwd(), 'test', 'fixtures'), root: process.cwd() }).minify('div{background:url(./dummy.png)}'),
+      'topic': function () {
+        return new CleanCSS({ rebase: true, relativeTo: path.join(process.cwd(), 'test', 'fixtures'), root: process.cwd() }).minify('div{background:url(./dummy.png)}');
+      },
       'gets right output': function (minified) {
         assert.include(minified.styles, 'url(/test/fixtures/dummy.png)');
       }
     },
-    'restructuring': {
-      'on': {
-        'topic': new CleanCSS({ restructuring: true }).minify('div{margin-top:0}.one{margin:0}.two{display:block;margin-top:0}'),
-        'gets right output': function (minified) {
-          assert.equal(minified.styles, '.two,div{margin-top:0}.one{margin:0}.two{display:block}');
-        }
+    'restructuring - on': {
+      'topic': function () {
+        new CleanCSS({ restructuring: true }).minify('div{margin-top:0}.one{margin:0}.two{display:block;margin-top:0}', this.callback);
       },
-      'off': {
-        'topic': new CleanCSS({ restructuring: false }).minify('div{margin-top:0}.one{margin:0}.two{display:block;margin-top:0}'),
-        'gets right output': function (minified) {
-          assert.equal(minified.styles, 'div{margin-top:0}.one{margin:0}.two{display:block;margin-top:0}');
-        }
+      'gets right output': function (minified) {
+        assert.equal(minified.styles, '.two,div{margin-top:0}.one{margin:0}.two{display:block}');
+      }
+    },
+    'restructuring - off': {
+      'topic': function () {
+        return new CleanCSS({ restructuring: false }).minify('div{margin-top:0}.one{margin:0}.two{display:block;margin-top:0}');
+      },
+      'gets right output': function (minified) {
+        assert.equal(minified.styles, 'div{margin-top:0}.one{margin:0}.two{display:block;margin-top:0}');
       }
     }
   },
   'source map': {
-    'topic': new CleanCSS({ sourceMap: true }).minify('/*! a */div[data-id=" abc "] { color:red; }'),
+    'topic': function () {
+      return new CleanCSS({ sourceMap: true }).minify('/*! a */div[data-id=" abc "] { color:red; }');
+    },
     'should minify correctly': function (minified) {
       assert.equal(minified.styles, '/*! a */div[data-id=" abc "]{color:red}');
     },
@@ -340,13 +380,17 @@ vows.describe('module tests').addBatch({
   'accepts a list of source files as array': {
     'rebased to the current dir': {
       'relative': {
-        'topic': new CleanCSS().minify(['test/fixtures/partials/one.css', 'test/fixtures/partials/three.css']),
+        'topic': function () {
+          return new CleanCSS().minify(['test/fixtures/partials/one.css', 'test/fixtures/partials/three.css']);
+        },
         'should give right output': function (minified) {
           assert.equal(minified.styles, '.one{color:red}.three{background-image:url(test/fixtures/partials/extra/down.gif)}');
         }
       },
       'absolute': {
-        'topic': new CleanCSS({ relativeTo: process.cwd() }).minify([path.resolve('test/fixtures/partials/one.css'), path.resolve('test/fixtures/partials/three.css')]),
+        'topic': function () {
+          return new CleanCSS({ relativeTo: process.cwd() }).minify([path.resolve('test/fixtures/partials/one.css'), path.resolve('test/fixtures/partials/three.css')]);
+        },
         'should give right output': function (minified) {
           assert.equal(minified.styles, '.one{color:red}.three{background-image:url(test/fixtures/partials/extra/down.gif)}');
         }
@@ -354,13 +398,17 @@ vows.describe('module tests').addBatch({
     },
     'rebased to a path': {
       'relative': {
-        'topic': new CleanCSS({ relativeTo: 'test/fixtures' }).minify(['test/fixtures/partials/one.css', 'test/fixtures/partials/three.css']),
+        'topic': function () {
+          return new CleanCSS({ relativeTo: 'test/fixtures' }).minify(['test/fixtures/partials/one.css', 'test/fixtures/partials/three.css']);
+        },
         'should give right output': function (minified) {
           assert.equal(minified.styles, '.one{color:red}.three{background-image:url(partials/extra/down.gif)}');
         }
       },
       'absolute': {
-        'topic': new CleanCSS({ relativeTo: 'test/fixtures' }).minify([path.resolve('test/fixtures/partials/one.css'), path.resolve('test/fixtures/partials/three.css')]),
+        'topic': function () {
+          return new CleanCSS({ relativeTo: 'test/fixtures' }).minify([path.resolve('test/fixtures/partials/one.css'), path.resolve('test/fixtures/partials/three.css')]);
+        },
         'should give right output': function (minified) {
           assert.equal(minified.styles, '.one{color:red}.three{background-image:url(partials/extra/down.gif)}');
         }
@@ -368,35 +416,47 @@ vows.describe('module tests').addBatch({
     },
     'rebased to root': {
       'relative': {
-        'topic': new CleanCSS({ root: 'test/fixtures', relativeTo: 'test/fixtures' }).minify(['test/fixtures/partials/one.css', 'test/fixtures/partials/three.css']),
+        'topic': function () {
+          return new CleanCSS({ root: 'test/fixtures', relativeTo: 'test/fixtures' }).minify(['test/fixtures/partials/one.css', 'test/fixtures/partials/three.css']);
+        },
         'should give right output': function (minified) {
           assert.equal(minified.styles, '.one{color:red}.three{background-image:url(/partials/extra/down.gif)}');
         }
       },
       'absolute': {
-        'topic': new CleanCSS({ root: 'test/fixtures', relativeTo: 'test/fixtures' }).minify([path.resolve('test/fixtures/partials/one.css'), path.resolve('test/fixtures/partials/three.css')]),
+        'topic': function () {
+          return new CleanCSS({ root: 'test/fixtures', relativeTo: 'test/fixtures' }).minify([path.resolve('test/fixtures/partials/one.css'), path.resolve('test/fixtures/partials/three.css')]);
+        },
         'should give right output': function (minified) {
           assert.equal(minified.styles, '.one{color:red}.three{background-image:url(/partials/extra/down.gif)}');
         }
       }
     },
-    'with imports off': {
-      'topic': new CleanCSS({ processImport: false }).minify(['./test/fixtures/partials/two.css']),
-      'should give right output': function (minified) {
-        assert.equal(minified.styles, '@import url(one.css);@import url(extra/three.css);@import url(./extra/four.css);.two{color:#fff}');
+    'with imports': {
+      'off': {
+        'topic': function () {
+          return new CleanCSS({ processImport: false }).minify(['./test/fixtures/partials/two.css']);
+        },
+        'should give right output': function (minified) {
+          assert.equal(minified.styles, '@import url(one.css);@import url(extra/three.css);@import url(./extra/four.css);.two{color:#fff}');
+        }
       }
     }
   },
   'accepts a list of source files as hash': {
     'rebased to the current dir': {
       'with relative paths': {
-        'topic': new CleanCSS().minify(sourcesAsHash(['test/fixtures/partials/one.css', 'test/fixtures/partials/three.css'])),
+        'topic': function () {
+          return new CleanCSS().minify(sourcesAsHash(['test/fixtures/partials/one.css', 'test/fixtures/partials/three.css']));
+        },
         'should give right output': function (minified) {
           assert.equal(minified.styles, '.one{color:red}.three{background-image:url(test/fixtures/partials/extra/down.gif)}');
         }
       },
       'with absolute paths': {
-        'topic': new CleanCSS().minify(sourcesAsHash(['test/fixtures/partials/one.css', 'test/fixtures/partials/three.css'], true)),
+        'topic': function () {
+          return new CleanCSS().minify(sourcesAsHash(['test/fixtures/partials/one.css', 'test/fixtures/partials/three.css'], true));
+        },
         'should give right output': function (minified) {
           assert.equal(minified.styles, '.one{color:red}.three{background-image:url(test/fixtures/partials/extra/down.gif)}');
         }
@@ -404,13 +464,17 @@ vows.describe('module tests').addBatch({
     },
     'rebased to a relative path': {
       'with relative paths': {
-        'topic': new CleanCSS({ target: 'test/fixtures' }).minify(sourcesAsHash(['test/fixtures/partials/one.css', 'test/fixtures/partials/three.css'])),
+        'topic': function () {
+          return new CleanCSS({ target: 'test/fixtures' }).minify(sourcesAsHash(['test/fixtures/partials/one.css', 'test/fixtures/partials/three.css']));
+        },
         'should give right output': function (minified) {
           assert.equal(minified.styles, '.one{color:red}.three{background-image:url(partials/extra/down.gif)}');
         }
       },
       'with absolute paths': {
-        'topic': new CleanCSS({ target: 'test/fixtures' }).minify(sourcesAsHash(['test/fixtures/partials/one.css', 'test/fixtures/partials/three.css'], true)),
+        'topic': function () {
+          return new CleanCSS({ target: 'test/fixtures' }).minify(sourcesAsHash(['test/fixtures/partials/one.css', 'test/fixtures/partials/three.css'], true));
+        },
         'should give right output': function (minified) {
           assert.equal(minified.styles, '.one{color:red}.three{background-image:url(partials/extra/down.gif)}');
         }
@@ -418,13 +482,17 @@ vows.describe('module tests').addBatch({
     },
     'rebased to an absolute root': {
       'with relative paths': {
-        'topic': new CleanCSS({ root: 'test/fixtures', target: 'test/fixtures' }).minify(sourcesAsHash(['test/fixtures/partials/one.css', 'test/fixtures/partials/three.css'])),
+        'topic': function () {
+          return new CleanCSS({ root: 'test/fixtures', target: 'test/fixtures' }).minify(sourcesAsHash(['test/fixtures/partials/one.css', 'test/fixtures/partials/three.css']));
+        },
         'should give right output': function (minified) {
           assert.equal(minified.styles, '.one{color:red}.three{background-image:url(/partials/extra/down.gif)}');
         }
       },
       'with absolute paths': {
-        'topic': new CleanCSS({ root: 'test/fixtures', target: 'test/fixtures' }).minify(sourcesAsHash(['test/fixtures/partials/one.css', 'test/fixtures/partials/three.css'], true)),
+        'topic': function () {
+          return new CleanCSS({ root: 'test/fixtures', target: 'test/fixtures' }).minify(sourcesAsHash(['test/fixtures/partials/one.css', 'test/fixtures/partials/three.css'], true));
+        },
         'should give right output': function (minified) {
           assert.equal(minified.styles, '.one{color:red}.three{background-image:url(/partials/extra/down.gif)}');
         }
@@ -432,45 +500,59 @@ vows.describe('module tests').addBatch({
     },
     'with rebasing off': {
       'with relative paths': {
-        'topic': new CleanCSS({ rebase: false }).minify(sourcesAsHash(['test/fixtures/partials/one.css', 'test/fixtures/partials/three.css'])),
+        'topic': function () {
+          return new CleanCSS({ rebase: false }).minify(sourcesAsHash(['test/fixtures/partials/one.css', 'test/fixtures/partials/three.css']));
+        },
         'should give right output': function (minified) {
           assert.equal(minified.styles, '.one{color:red}.three{background-image:url(extra/down.gif)}');
         }
       },
       'with absolute paths': {
-        'topic': new CleanCSS({ rebase: false }).minify(sourcesAsHash(['test/fixtures/partials/one.css', 'test/fixtures/partials/three.css'], true)),
+        'topic': function () {
+          return new CleanCSS({ rebase: false }).minify(sourcesAsHash(['test/fixtures/partials/one.css', 'test/fixtures/partials/three.css'], true));
+        },
         'should give right output': function (minified) {
           assert.equal(minified.styles, '.one{color:red}.three{background-image:url(extra/down.gif)}');
         }
       }
     },
     'with other imports': {
-      'topic': new CleanCSS().minify(sourcesAsHash(['test/fixtures/partials/two.css'])),
+      'topic': function () {
+        return new CleanCSS().minify(sourcesAsHash(['test/fixtures/partials/two.css']));
+      },
       'should give right output': function (minified) {
         assert.equal(minified.styles, '.one{color:red}.three{color:#0f0}.four{color:#00f}.two{color:#fff}');
       }
     },
     'with other imports and rebasing off': {
-      'topic': new CleanCSS({ rebase: false }).minify(sourcesAsHash(['test/fixtures/partials/two.css'])),
+      'topic': function () {
+        return new CleanCSS({ rebase: false }).minify(sourcesAsHash(['test/fixtures/partials/two.css']));
+      },
       'should give right output': function (minified) {
         assert.equal(minified.styles, '.one{color:red}.three{color:#0f0}.four{color:#00f}.two{color:#fff}');
       }
     },
     'with other imports and processing imports off': {
       'relative to current path': {
-        'topic': new CleanCSS({ processImport: false }).minify(sourcesAsHash(['test/fixtures/partials/two.css'])),
+        'topic': function () {
+          return new CleanCSS({ processImport: false }).minify(sourcesAsHash(['test/fixtures/partials/two.css']));
+        },
         'should give right output': function (minified) {
           assert.equal(minified.styles, '@import url(test/fixtures/partials/one.css);@import url(test/fixtures/partials/extra/three.css);@import url(test/fixtures/partials/extra/four.css);.two{color:#fff}');
         }
       },
       'relative to different path': {
-        'topic': new CleanCSS({ processImport: false, target: 'test/fixtures' }).minify(sourcesAsHash(['test/fixtures/partials/two.css'])),
+        'topic': function () {
+          return new CleanCSS({ processImport: false, target: 'test/fixtures' }).minify(sourcesAsHash(['test/fixtures/partials/two.css']));
+        },
         'should give right output': function (minified) {
           assert.equal(minified.styles, '@import url(partials/one.css);@import url(partials/extra/three.css);@import url(partials/extra/four.css);.two{color:#fff}');
         }
       },
       'absolute': {
-        'topic': new CleanCSS({ processImport: false, root: 'test/fixtures', target: 'test/fixtures' }).minify(sourcesAsHash(['test/fixtures/partials/two.css'])),
+        'topic': function () {
+          return new CleanCSS({ processImport: false, root: 'test/fixtures', target: 'test/fixtures' }).minify(sourcesAsHash(['test/fixtures/partials/two.css']));
+        },
         'should give right output': function (minified) {
           assert.equal(minified.styles, '@import url(/partials/one.css);@import url(/partials/extra/three.css);@import url(/partials/extra/four.css);.two{color:#fff}');
         }

@@ -18,13 +18,17 @@ var port = 24682;
 vows.describe('source-map')
   .addBatch({
     'vendor prefix with comments': {
-      'topic': new CleanCSS({ sourceMap: true }).minify('html{font-family:sans-serif;/* 1 */-ms-text-size-adjust:100%;/* 2 */-webkit-text-size-adjust:100%/* 3 */}'),
+      'topic': function () {
+        return new CleanCSS({ sourceMap: true }).minify('html{font-family:sans-serif;/* 1 */-ms-text-size-adjust:100%;/* 2 */-webkit-text-size-adjust:100%/* 3 */}');
+      },
       'gets right output': function (minified) {
         assert.equal(minified.styles, 'html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}');
       }
     },
     'background gradient': {
-      'topic': new CleanCSS({ sourceMap: true }).minify('a{background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0, rgba(0, 0, 0, 0.1))}'),
+      'topic': function () {
+        return new CleanCSS({ sourceMap: true }).minify('a{background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0, rgba(0, 0, 0, 0.1))}');
+      },
       'gets right output': function (minified) {
         assert.equal(minified.styles, 'a{background:linear-gradient(to bottom,rgba(0,0,0,.1) 0,rgba(0,0,0,.1))}');
       }
@@ -32,7 +36,9 @@ vows.describe('source-map')
   })
   .addBatch({
     'module #1': {
-      'topic': new CleanCSS({ sourceMap: true }).minify('/*! a */div[data-id=" abc "] { color:red; }'),
+      'topic': function () {
+        return new CleanCSS({ sourceMap: true }).minify('/*! a */div[data-id=" abc "] { color:red; }');
+      },
       'should have 2 mappings': function(minified) {
         assert.lengthOf(minified.sourceMap._mappings._array, 2);
       },
@@ -60,7 +66,9 @@ vows.describe('source-map')
       }
     },
     'module #2': {
-      'topic': new CleanCSS({ sourceMap: true }).minify('@media screen {\n@font-face \n{ \nfont-family: test; } }'),
+      'topic': function () {
+        return new CleanCSS({ sourceMap: true }).minify('@media screen {\n@font-face \n{ \nfont-family: test; } }');
+      },
       'should have 3 mappings': function(minified) {
         assert.lengthOf(minified.sourceMap._mappings._array, 3);
       },
@@ -99,7 +107,9 @@ vows.describe('source-map')
       }
     },
     'with keepBreaks': {
-      'topic': new CleanCSS({ sourceMap: true, keepBreaks: true }).minify('@media screen { a{color:red} p {color:blue} }div{color:pink}'),
+      'topic': function () {
+        return new CleanCSS({ sourceMap: true, keepBreaks: true }).minify('@media screen { a{color:red} p {color:blue} }div{color:pink}');
+      },
       'should have 7 mappings': function(minified) {
         assert.lengthOf(minified.sourceMap._mappings._array, 7);
       },
@@ -182,7 +192,9 @@ vows.describe('source-map')
       }
     },
     'shorthands': {
-      'topic': new CleanCSS({ sourceMap: true }).minify('a{background:url(image.png);background-color:red}'),
+      'topic': function () {
+        return new CleanCSS({ sourceMap: true }).minify('a{background:url(image.png);background-color:red}');
+      },
       'should have 3 mappings': function(minified) {
         assert.lengthOf(minified.sourceMap._mappings._array, 3);
       },
@@ -221,7 +233,9 @@ vows.describe('source-map')
       }
     },
     'keyframes': {
-      'topic': new CleanCSS({ sourceMap: true }).minify('@-webkit-keyframes frames {\n  0% {\n    border: 1px;\n  }\n  100% {\n    border: 3px;\n  }\n}'),
+      'topic': function () {
+        return new CleanCSS({ sourceMap: true }).minify('@-webkit-keyframes frames {\n  0% {\n    border: 1px;\n  }\n  100% {\n    border: 3px;\n  }\n}');
+      },
       'should have 5 mappings': function(minified) {
         assert.lengthOf(minified.sourceMap._mappings._array, 5);
       },
@@ -282,7 +296,9 @@ vows.describe('source-map')
       }
     },
     'double comments': {
-      'topic': new CleanCSS({ sourceMap: true }).minify('/* COMMENT 1 */\n/* COMMENT 2 */\ndiv{color:red}'),
+      'topic': function () {
+        return new CleanCSS({ sourceMap: true }).minify('/* COMMENT 1 */\n/* COMMENT 2 */\ndiv{color:red}');
+      },
       'should have 2 mappings': function(minified) {
         assert.lengthOf(minified.sourceMap._mappings._array, 2);
       },
@@ -312,7 +328,9 @@ vows.describe('source-map')
   })
   .addBatch({
     'input map as string': {
-      'topic': new CleanCSS({ sourceMap: inputMap }).minify('div > a {\n  color: red;\n}'),
+      'topic': function () {
+        return new CleanCSS({ sourceMap: inputMap }).minify('div > a {\n  color: red;\n}');
+      },
       'should have 2 mappings': function (minified) {
         assert.lengthOf(minified.sourceMap._mappings._array, 2);
       },
@@ -340,7 +358,9 @@ vows.describe('source-map')
       }
     },
     'input map from source': {
-      'topic': new CleanCSS({ sourceMap: true }).minify('div > a {\n  color: red;\n}/*# sourceMappingURL=' + inputMapPath + ' */'),
+      'topic': function () {
+        return new CleanCSS({ sourceMap: true }).minify('div > a {\n  color: red;\n}/*# sourceMappingURL=' + inputMapPath + ' */');
+      },
       'should have 2 mappings': function (minified) {
         assert.lengthOf(minified.sourceMap._mappings._array, 2);
       },
@@ -368,7 +388,9 @@ vows.describe('source-map')
       }
     },
     'input map from source with root': {
-      'topic': new CleanCSS({ sourceMap: true, relativeTo: path.dirname(inputMapPath) }).minify('div > a {\n  color: red;\n}/*# sourceMappingURL=styles.css.map */'),
+      'topic': function () {
+        return new CleanCSS({ sourceMap: true, relativeTo: path.dirname(inputMapPath) }).minify('div > a {\n  color: red;\n}/*# sourceMappingURL=styles.css.map */');
+      },
       'should have 2 mappings': function (minified) {
         assert.lengthOf(minified.sourceMap._mappings._array, 2);
       },
@@ -396,7 +418,9 @@ vows.describe('source-map')
       }
     },
     'complex input map': {
-      'topic': new CleanCSS({ sourceMap: true, root: path.dirname(inputMapPath) }).minify('@import url(import.css);'),
+      'topic': function () {
+        return new CleanCSS({ sourceMap: true, root: path.dirname(inputMapPath) }).minify('@import url(import.css);');
+      },
       'should have 4 mappings': function (minified) {
         assert.lengthOf(minified.sourceMap._mappings._array, 4);
       },
@@ -446,13 +470,17 @@ vows.describe('source-map')
       }
     },
     'complex input map referenced by path': {
-      'topic': new CleanCSS({ sourceMap: true }).minify('@import url(test/fixtures/source-maps/import.css);'),
+      'topic': function () {
+        return new CleanCSS({ sourceMap: true }).minify('@import url(test/fixtures/source-maps/import.css);');
+      },
       'should have 4 mappings': function (minified) {
         assert.lengthOf(minified.sourceMap._mappings._array, 4);
       }
     },
     'complex but partial input map referenced by path': {
-      'topic': new CleanCSS({ sourceMap: true, target: process.cwd() }).minify('@import url(test/fixtures/source-maps/no-map-import.css);'),
+      'topic': function () {
+        return new CleanCSS({ sourceMap: true, target: process.cwd() }).minify('@import url(test/fixtures/source-maps/no-map-import.css);');
+      },
       'should have 4 mappings': function (minified) {
         assert.lengthOf(minified.sourceMap._mappings._array, 4);
       },
@@ -470,7 +498,9 @@ vows.describe('source-map')
       }
     },
     'complex input map with an existing file as target': {
-      'topic': new CleanCSS({ sourceMap: true, target: path.join(process.cwd(), 'test', 'fixtures', 'source-maps', 'styles.css') }).minify('@import url(test/fixtures/source-maps/styles.css);'),
+      'topic': function () {
+        return new CleanCSS({ sourceMap: true, target: path.join(process.cwd(), 'test', 'fixtures', 'source-maps', 'styles.css') }).minify('@import url(test/fixtures/source-maps/styles.css);');
+      },
       'should have 2 mappings': function (minified) {
         assert.lengthOf(minified.sourceMap._mappings._array, 2);
       },
@@ -482,7 +512,9 @@ vows.describe('source-map')
       }
     },
     'nested once': {
-      'topic': new CleanCSS({ sourceMap: true }).minify('@import url(test/fixtures/source-maps/nested/once.css);'),
+      'topic': function () {
+        return new CleanCSS({ sourceMap: true }).minify('@import url(test/fixtures/source-maps/nested/once.css);');
+      },
       'should have 2 mappings': function (minified) {
         assert.lengthOf(minified.sourceMap._mappings._array, 2);
       },
@@ -510,7 +542,9 @@ vows.describe('source-map')
       }
     },
     'nested twice': {
-      'topic': new CleanCSS({ sourceMap: true }).minify('@import url(test/fixtures/source-maps/nested/twice.css);'),
+      'topic': function () {
+        return new CleanCSS({ sourceMap: true }).minify('@import url(test/fixtures/source-maps/nested/twice.css);');
+      },
       'should have 2 mappings': function (minified) {
         assert.lengthOf(minified.sourceMap._mappings._array, 2);
       },
@@ -538,7 +572,9 @@ vows.describe('source-map')
       }
     },
     'input source map with missing mutliselector input': {
-      'topic': new CleanCSS({ sourceMap: '{"version":3,"sources":["source.css"],"names":[],"mappings":"AAAA;;;;IAII,YAAW;EACd"}' }).minify('a,\na:hover,\na:visited\n{\n    color: red;\n}'),
+      'topic': function () {
+        return new CleanCSS({ sourceMap: '{"version":3,"sources":["source.css"],"names":[],"mappings":"AAAA;;;;IAII,YAAW;EACd"}' }).minify('a,\na:hover,\na:visited\n{\n    color: red;\n}');
+      },
       'should have 4 mappings': function (minified) {
         assert.lengthOf(minified.sourceMap._mappings._array, 4);
       },
@@ -588,7 +624,9 @@ vows.describe('source-map')
       }
     },
     'input source map with missing mutliselector sortable input': {
-      'topic': new CleanCSS({ sourceMap: '{"version":3,"sources":["source.css"],"names":[],"mappings":"AAAA;;;;IAII,YAAW;EACd"}' }).minify('a.button:link,\na.button:visited,\na.button:hover\n{\n    color: red;\n}'),
+      'topic': function () {
+        return new CleanCSS({ sourceMap: '{"version":3,"sources":["source.css"],"names":[],"mappings":"AAAA;;;;IAII,YAAW;EACd"}' }).minify('a.button:link,\na.button:visited,\na.button:hover\n{\n    color: red;\n}');
+      },
       'should have 4 mappings': function (minified) {
         assert.lengthOf(minified.sourceMap._mappings._array, 4);
       },
@@ -776,19 +814,25 @@ vows.describe('source-map')
   })
   .addBatch({
     'important comment after a property': {
-      'topic': new CleanCSS({ sourceMap: true }).minify('div { color: #f00 !important; /*!comment*/ }'),
+      'topic': function () {
+        return new CleanCSS({ sourceMap: true }).minify('div { color: #f00 !important; /*!comment*/ }');
+      },
       'has right output': function (errors, minified) {
         assert.equal(minified.styles, 'div{color:red!important/*!comment*/}');
       }
     },
     'important comment between properties': {
-      'topic': new CleanCSS({ sourceMap: true }).minify('div { color: #f00 !important; /*!comment*/; display: block }'),
+      'topic': function () {
+        return new CleanCSS({ sourceMap: true }).minify('div { color: #f00 !important; /*!comment*/; display: block }');
+      },
       'has right output': function (errors, minified) {
         assert.equal(minified.styles, 'div{color:red!important;/*!comment*/display:block}');
       }
     },
     'important comments after a property': {
-      'topic': new CleanCSS({ sourceMap: true }).minify('div { color: #f00 !important; /*!1*//*!2*/ }'),
+      'topic': function () {
+        return new CleanCSS({ sourceMap: true }).minify('div { color: #f00 !important; /*!1*//*!2*/ }');
+      },
       'has right output': function (errors, minified) {
         assert.equal(minified.styles, 'div{color:red!important/*!1*//*!2*/}');
       }
@@ -797,20 +841,22 @@ vows.describe('source-map')
   .addBatch({
     'multiple source maps': {
       'relative to local': {
-        'topic': new CleanCSS({ sourceMap: true }).minify({
-          'test/fixtures/source-maps/some.css': {
-            styles: 'div {\n  color: red;\n}',
-            sourceMap: '{"version":3,"sources":["some.less"],"names":[],"mappings":"AAAA;EACE,UAAA","file":"some.css"}'
-          },
-          'test/fixtures/source-maps/styles.css': {
-            styles: 'div > a {\n  color: blue;\n}',
-            sourceMap: '{"version":3,"sources":["styles.less"],"names":[],"mappings":"AAAA,GAAI;EACF,WAAA","file":"styles.css"}'
-          },
-          'test/fixtures/source-maps/nested/once.css': {
-            styles: 'section > div a {\n  color: red;\n}',
-            sourceMap: '{"version":3,"sources":["once.less"],"names":[],"mappings":"AAAA,OACE,MAAM;EACJ,UAAA","file":"once.css"}'
-          }
-        }),
+        'topic': function () {
+          return new CleanCSS({ sourceMap: true }).minify({
+            'test/fixtures/source-maps/some.css': {
+              styles: 'div {\n  color: red;\n}',
+              sourceMap: '{"version":3,"sources":["some.less"],"names":[],"mappings":"AAAA;EACE,UAAA","file":"some.css"}'
+            },
+            'test/fixtures/source-maps/styles.css': {
+              styles: 'div > a {\n  color: blue;\n}',
+              sourceMap: '{"version":3,"sources":["styles.less"],"names":[],"mappings":"AAAA,GAAI;EACF,WAAA","file":"styles.css"}'
+            },
+            'test/fixtures/source-maps/nested/once.css': {
+              styles: 'section > div a {\n  color: red;\n}',
+              sourceMap: '{"version":3,"sources":["once.less"],"names":[],"mappings":"AAAA,OACE,MAAM;EACJ,UAAA","file":"once.css"}'
+            }
+          });
+        },
         'has right output': function (errors, minified) {
           assert.equal(minified.styles, 'div,section>div a{color:red}div>a{color:#00f}');
         },
@@ -876,20 +922,22 @@ vows.describe('source-map')
     },
     'relative to path': {
       'complex but partial input map referenced by path': {
-        'topic': new CleanCSS({ sourceMap: true, target: process.cwd() }).minify({
-          'test/fixtures/source-maps/some.css': {
-            styles: 'div {\n  color: red;\n}',
-            sourceMap: '{"version":3,"sources":["some.less"],"names":[],"mappings":"AAAA;EACE,UAAA","file":"some.css"}'
-          },
-          'test/fixtures/source-maps/styles.css': {
-            styles: 'div > a {\n  color: blue;\n}',
-            sourceMap: '{"version":3,"sources":["styles.less"],"names":[],"mappings":"AAAA,GAAI;EACF,WAAA","file":"styles.css"}'
-          },
-          'test/fixtures/source-maps/nested/once.css': {
-            styles: 'section > div a {\n  color: red;\n}',
-            sourceMap: '{"version":3,"sources":["once.less"],"names":[],"mappings":"AAAA,OACE,MAAM;EACJ,UAAA","file":"once.css"}'
-          }
-        }),
+        'topic': function () {
+          return new CleanCSS({ sourceMap: true, target: process.cwd() }).minify({
+            'test/fixtures/source-maps/some.css': {
+              styles: 'div {\n  color: red;\n}',
+              sourceMap: '{"version":3,"sources":["some.less"],"names":[],"mappings":"AAAA;EACE,UAAA","file":"some.css"}'
+            },
+            'test/fixtures/source-maps/styles.css': {
+              styles: 'div > a {\n  color: blue;\n}',
+              sourceMap: '{"version":3,"sources":["styles.less"],"names":[],"mappings":"AAAA,GAAI;EACF,WAAA","file":"styles.css"}'
+            },
+            'test/fixtures/source-maps/nested/once.css': {
+              styles: 'section > div a {\n  color: red;\n}',
+              sourceMap: '{"version":3,"sources":["once.less"],"names":[],"mappings":"AAAA,OACE,MAAM;EACJ,UAAA","file":"once.css"}'
+            }
+          });
+        },
         'should have 5 mappings': function (minified) {
           assert.lengthOf(minified.sourceMap._mappings._array, 5);
         },
@@ -912,7 +960,9 @@ vows.describe('source-map')
   .addBatch({
     'advanced optimizations': {
       'new property in smart sort': {
-        'topic': new CleanCSS({ sourceMap: true }).minify('a{color:#000}div{color:red}.one{display:block}.two{display:inline;color:red}'),
+        'topic': function () {
+          return new CleanCSS({ sourceMap: true }).minify('a{color:#000}div{color:red}.one{display:block}.two{display:inline;color:red}');
+        },
         'should have 5 mappings': function (minified) {
           assert.lengthOf(minified.sourceMap._mappings._array, 9);
         },

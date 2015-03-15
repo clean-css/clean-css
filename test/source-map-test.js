@@ -370,7 +370,7 @@ vows.describe('source-map')
           generatedColumn: 0,
           originalLine: 1,
           originalColumn: 4,
-          source: 'styles.less',
+          source: path.join('test', 'fixtures', 'source-maps', 'styles.less'),
           name: null
         };
         assert.deepEqual(minified.sourceMap._mappings._array[0], mapping);
@@ -381,7 +381,7 @@ vows.describe('source-map')
           generatedColumn: 6,
           originalLine: 2,
           originalColumn: 2,
-          source: 'styles.less',
+          source: path.join('test', 'fixtures', 'source-maps', 'styles.less'),
           name: null
         };
         assert.deepEqual(minified.sourceMap._mappings._array[1], mapping);
@@ -389,7 +389,7 @@ vows.describe('source-map')
     },
     'input map from source with root': {
       'topic': function () {
-        return new CleanCSS({ sourceMap: true, relativeTo: path.dirname(inputMapPath) }).minify('div > a {\n  color: red;\n}/*# sourceMappingURL=styles.css.map */');
+        return new CleanCSS({ sourceMap: true, root: './test/fixtures' }).minify('div > a {\n  color: red;\n}/*# sourceMappingURL=source-maps/styles.css.map */');
       },
       'should have 2 mappings': function (minified) {
         assert.lengthOf(minified.sourceMap._mappings._array, 2);
@@ -400,7 +400,7 @@ vows.describe('source-map')
           generatedColumn: 0,
           originalLine: 1,
           originalColumn: 4,
-          source: 'styles.less',
+          source: path.join('source-maps', 'styles.less'),
           name: null
         };
         assert.deepEqual(minified.sourceMap._mappings._array[0], mapping);
@@ -411,7 +411,37 @@ vows.describe('source-map')
           generatedColumn: 6,
           originalLine: 2,
           originalColumn: 2,
-          source: 'styles.less',
+          source: path.join('source-maps', 'styles.less'),
+          name: null
+        };
+        assert.deepEqual(minified.sourceMap._mappings._array[1], mapping);
+      }
+    },
+    'input map from source with target': {
+      'topic': function () {
+        return new CleanCSS({ sourceMap: true, target: './test' }).minify('div > a {\n  color: red;\n}/*# sourceMappingURL=' + inputMapPath + ' */');
+      },
+      'should have 2 mappings': function (minified) {
+        assert.lengthOf(minified.sourceMap._mappings._array, 2);
+      },
+      'should have selector mapping': function (minified) {
+        var mapping = {
+          generatedLine: 1,
+          generatedColumn: 0,
+          originalLine: 1,
+          originalColumn: 4,
+          source: path.join('fixtures', 'source-maps', 'styles.less'),
+          name: null
+        };
+        assert.deepEqual(minified.sourceMap._mappings._array[0], mapping);
+      },
+      'should have _color:red_ mapping': function (minified) {
+        var mapping = {
+          generatedLine: 1,
+          generatedColumn: 6,
+          originalLine: 2,
+          originalColumn: 2,
+          source: path.join('fixtures', 'source-maps', 'styles.less'),
           name: null
         };
         assert.deepEqual(minified.sourceMap._mappings._array[1], mapping);
@@ -479,7 +509,7 @@ vows.describe('source-map')
     },
     'complex but partial input map referenced by path': {
       'topic': function () {
-        return new CleanCSS({ sourceMap: true, target: process.cwd() }).minify('@import url(test/fixtures/source-maps/no-map-import.css);');
+        return new CleanCSS({ sourceMap: true }).minify('@import url(test/fixtures/source-maps/no-map-import.css);');
       },
       'should have 4 mappings': function (minified) {
         assert.lengthOf(minified.sourceMap._mappings._array, 4);
@@ -499,14 +529,14 @@ vows.describe('source-map')
     },
     'complex input map with an existing file as target': {
       'topic': function () {
-        return new CleanCSS({ sourceMap: true, target: path.join(process.cwd(), 'test', 'fixtures', 'source-maps', 'styles.css') }).minify('@import url(test/fixtures/source-maps/styles.css);');
+        return new CleanCSS({ sourceMap: true, target: path.join('test', 'fixtures', 'source-maps', 'styles.css') }).minify('@import url(test/fixtures/source-maps/styles.css);');
       },
       'should have 2 mappings': function (minified) {
         assert.lengthOf(minified.sourceMap._mappings._array, 2);
       },
       'should have 2 mappings to styles.less file': function (minified) {
         var stylesSource = minified.sourceMap._mappings._array.filter(function (mapping) {
-          return mapping.source == path.join('test', 'fixtures', 'source-maps', 'styles.less');
+          return mapping.source == 'styles.less';
         });
         assert.lengthOf(stylesSource, 2);
       }
@@ -923,7 +953,7 @@ vows.describe('source-map')
     'relative to path': {
       'complex but partial input map referenced by path': {
         'topic': function () {
-          return new CleanCSS({ sourceMap: true, target: process.cwd() }).minify({
+          return new CleanCSS({ sourceMap: true, target: './test' }).minify({
             'test/fixtures/source-maps/some.css': {
               styles: 'div {\n  color: red;\n}',
               sourceMap: '{"version":3,"sources":["some.less"],"names":[],"mappings":"AAAA;EACE,UAAA","file":"some.css"}'
@@ -949,9 +979,9 @@ vows.describe('source-map')
           });
 
           assert.deepEqual(sources, [
-            path.join('test', 'fixtures', 'source-maps', 'some.less'),
-            path.join('test', 'fixtures', 'source-maps', 'nested', 'once.less'),
-            path.join('test', 'fixtures', 'source-maps', 'styles.less')
+            path.join('fixtures', 'source-maps', 'some.less'),
+            path.join('fixtures', 'source-maps', 'nested', 'once.less'),
+            path.join('fixtures', 'source-maps', 'styles.less')
           ]);
         }
       }

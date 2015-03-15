@@ -1,6 +1,7 @@
 [3.2.0 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.1.1...HEAD)
 ==================
 
+* Makes `root` option implicitely default to `process.cwd()`.
 * Fixed issue [#376](https://github.com/jakubpawlowicz/clean-css/issues/376) - option to disable `0[unit]` -> `0`.
 * Fixed issue [#396](https://github.com/jakubpawlowicz/clean-css/issues/396) - better input source maps tracking.
 * Fixed issue [#480](https://github.com/jakubpawlowicz/clean-css/issues/480) - extracting uppercase property names.

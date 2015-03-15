@@ -481,6 +481,22 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
         deleteFile('import.min.css');
         deleteFile('import.min.css.map');
       }
+    }),
+    'with input source map and source 1inlining': binaryContext('--source-map --source-map-inline-sources -o ./import-inline.min.css ./test/fixtures/source-maps/import.css', {
+      'includes map in minified file': function () {
+        assert.include(readFile('./import-inline.min.css'), '/*# sourceMappingURL=import-inline.min.css.map */');
+      },
+      'includes embedded sources': function () {
+        var sourceMap = new SourceMapConsumer(readFile('./import-inline.min.css.map'));
+        var count = 0;
+        sourceMap.eachMapping(function () { count++; });
+
+        assert.equal(count, 4);
+      },
+      'teardown': function () {
+        deleteFile('import-inline.min.css');
+        deleteFile('import-inline.min.css.map');
+      }
     })
   }
 });

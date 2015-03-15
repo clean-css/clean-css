@@ -65,6 +65,7 @@ cleancss [options] source-file, [source-file, ...]
 --rounding-precision [N]        Rounds to `N` decimal places. Defaults to 2. -1 disables rounding.
 -c, --compatibility [ie7|ie8]   Force compatibility mode (see Readme for advanced examples)
 --source-map                    Enables building input's source map
+--source-map-inline-sources     Enables inlining sources inside source maps
 -d, --debug                     Shows debug information (minification time & compression efficiency)
 ```
 
@@ -130,6 +131,8 @@ CleanCSS constructor accepts a hash as a parameter, i.e.,
 * `shorthandCompacting` - set to false to skip shorthand compacting (default is true unless sourceMap is set when it's false)
 * `sourceMap` - exposes source map under `sourceMap` property, e.g. `new CleanCSS().minify(source).sourceMap` (default is false)
   If input styles are a product of CSS preprocessor (LESS, SASS) an input source map can be passed as a string.
+* `sourceMapInlineSources` - set to true to inline sources inside a source map (default is false)
+  It is also required to process inlined sources from input source maps.
 * `target` - path to a folder or an output file to which __rebase__ all URLs
 
 #### How to make sure remote `@import`s are processed correctly?
@@ -267,7 +270,6 @@ new CleanCSS({ sourceMap: true, target: pathToOutputDirectory }).minify({
 #### Caveats
 
 * Shorthand compacting is currently disabled when source maps are enabled, see [#399](https://github.com/GoalSmashers/clean-css/issues/399)
-* Sources inlined in source maps are not supported, see [#397](https://github.com/GoalSmashers/clean-css/issues/397)
 
 ### How to minify multiple files with API
 

@@ -15,6 +15,8 @@ var enableDestroy = require('server-destroy');
 
 var port = 24682;
 
+var lineBreak = require('os').EOL;
+
 vows.describe('source-map')
   .addBatch({
     'vendor prefix with comments': {
@@ -982,6 +984,504 @@ vows.describe('source-map')
             path.join('fixtures', 'source-maps', 'some.less'),
             path.join('fixtures', 'source-maps', 'nested', 'once.less'),
             path.join('fixtures', 'source-maps', 'styles.less')
+          ]);
+        }
+      }
+    }
+  })
+  .addBatch({
+    'inlined sources': {
+      'from string - off': {
+        'topic': function () {
+          return new CleanCSS({ sourceMap: true }).minify('div > a {\n  color: red;\n}');
+        },
+        'should have 2 mappings': function (minified) {
+          assert.lengthOf(minified.sourceMap._mappings._array, 2);
+        },
+        'should have embedded sources': function (minified) {
+          assert.deepEqual(JSON.parse(minified.sourceMap.toString()).sources, ['$stdin']);
+        },
+        'should have embedded sources content': function (minified) {
+          assert.isUndefined(JSON.parse(minified.sourceMap.toString()).sourcesContent);
+        },
+        'should have selector mapping': function (minified) {
+          var mapping = {
+            generatedLine: 1,
+            generatedColumn: 0,
+            originalLine: 1,
+            originalColumn: 0,
+            source: '$stdin',
+            name: null
+          };
+          assert.deepEqual(minified.sourceMap._mappings._array[0], mapping);
+        },
+        'should have _color:red_ mapping': function (minified) {
+          var mapping = {
+            generatedLine: 1,
+            generatedColumn: 6,
+            originalLine: 2,
+            originalColumn: 2,
+            source: '$stdin',
+            name: null
+          };
+          assert.deepEqual(minified.sourceMap._mappings._array[1], mapping);
+        }
+      },
+      'from string - on': {
+        'topic': function () {
+          return new CleanCSS({ sourceMap: true, sourceMapInlineSources: true }).minify('div > a {\n  color: red;\n}');
+        },
+        'should have 2 mappings': function (minified) {
+          assert.lengthOf(minified.sourceMap._mappings._array, 2);
+        },
+        'should have embedded sources': function (minified) {
+          assert.deepEqual(JSON.parse(minified.sourceMap.toString()).sources, ['$stdin']);
+        },
+        'should have embedded sources content': function (minified) {
+          assert.deepEqual(JSON.parse(minified.sourceMap.toString()).sourcesContent, ['div > a {\n  color: red;\n}']);
+        }
+      },
+      'from array - off': {
+        'topic': function () {
+          return new CleanCSS({ sourceMap: true }).minify([
+            'test/fixtures/partials/one.css',
+            'test/fixtures/partials/three.css'
+          ]);
+        },
+        'should have 4 mappings': function (minified) {
+          assert.lengthOf(minified.sourceMap._mappings._array, 4);
+        },
+        'should have embedded sources': function (minified) {
+          assert.deepEqual(JSON.parse(minified.sourceMap.toString()).sources, [
+            path.join('test', 'fixtures', 'partials', 'one.css'),
+            path.join('test', 'fixtures', 'partials', 'three.css')
+          ]);
+        },
+        'should have embedded sources content': function (minified) {
+          assert.isUndefined(JSON.parse(minified.sourceMap.toString()).sourcesContent);
+        }
+      },
+      'from array - on': {
+        'topic': function () {
+          return new CleanCSS({ sourceMap: true, sourceMapInlineSources: true }).minify([
+            'test/fixtures/partials/one.css',
+            'test/fixtures/partials/three.css'
+          ]);
+        },
+        'should have 4 mappings': function (minified) {
+          assert.lengthOf(minified.sourceMap._mappings._array, 4);
+        },
+        'should have embedded sources': function (minified) {
+          assert.deepEqual(JSON.parse(minified.sourceMap.toString()).sources, [
+            path.join('test', 'fixtures', 'partials', 'one.css'),
+            path.join('test', 'fixtures', 'partials', 'three.css')
+          ]);
+        },
+        'should have embedded sources content': function (minified) {
+          assert.deepEqual(JSON.parse(minified.sourceMap.toString()).sourcesContent, [
+            '.one { color:#f00; }' + lineBreak,
+            '.three {background-image: url(test/fixtures/partials/extra/down.gif);}' + lineBreak
+          ]);
+        }
+      },
+      'from array - on remote': {
+        'topic': function () {
+          this.reqMocks = nock('http://127.0.0.1')
+            .get('/some.css')
+            .reply(200, 'div{background:url(image.png)}');
+
+          new CleanCSS({ sourceMap: true, sourceMapInlineSources: true }).minify([
+            'http://127.0.0.1/some.css'
+          ], this.callback);
+        },
+        'should have 2 mappings': function (minified) {
+          assert.lengthOf(minified.sourceMap._mappings._array, 2);
+        },
+        'should have embedded sources': function (minified) {
+          assert.deepEqual(JSON.parse(minified.sourceMap.toString()).sources, [
+            'http://127.0.0.1/some.css'
+          ]);
+        },
+        'should have embedded sources content': function (minified) {
+          assert.deepEqual(JSON.parse(minified.sourceMap.toString()).sourcesContent, [
+            'div{background:url(http://127.0.0.1/image.png)}',
+          ]);
+        },
+        'teardown': function () {
+          assert.isTrue(this.reqMocks.isDone());
+          nock.cleanAll();
+        }
+      },
+      'from hash - off': {
+        'topic': function () {
+          return new CleanCSS({ sourceMap: true }).minify({
+            'test/fixtures/source-maps/some.css': {
+              styles: 'div {\n  color: red;\n}'
+            },
+            'test/fixtures/source-maps/styles.css': {
+              styles: 'div > a {\n  color: blue;\n}'
+            },
+            'test/fixtures/source-maps/nested/once.css': {
+              styles: 'section > div a {\n  color: red;\n}'
+            }
+          });
+        },
+        'should have 5 mappings': function (minified) {
+          assert.lengthOf(minified.sourceMap._mappings._array, 5);
+        },
+        'should have embedded sources': function (minified) {
+          assert.deepEqual(JSON.parse(minified.sourceMap.toString()).sources, [
+            'test/fixtures/source-maps/some.css',
+            'test/fixtures/source-maps/nested/once.css',
+            'test/fixtures/source-maps/styles.css'
+          ]);
+        },
+        'should have embedded sources content': function (minified) {
+          assert.isUndefined(JSON.parse(minified.sourceMap.toString()).sourcesContent);
+        }
+      },
+      'from hash - on': {
+        'topic': function () {
+          return new CleanCSS({ sourceMap: true, sourceMapInlineSources: true }).minify({
+            'test/fixtures/source-maps/some.css': {
+              styles: 'div {\n  color: red;\n}'
+            },
+            'test/fixtures/source-maps/styles.css': {
+              styles: 'div > a {\n  color: blue;\n}'
+            },
+            'test/fixtures/source-maps/nested/once.css': {
+              styles: 'section > div a {\n  color: red;\n}'
+            }
+          });
+        },
+        'should have 5 mappings': function (minified) {
+          assert.lengthOf(minified.sourceMap._mappings._array, 5);
+        },
+        'should have embedded sources': function (minified) {
+          assert.deepEqual(JSON.parse(minified.sourceMap.toString()).sources, [
+            'test/fixtures/source-maps/some.css',
+            'test/fixtures/source-maps/nested/once.css',
+            'test/fixtures/source-maps/styles.css'
+          ]);
+        },
+        'should have embedded sources content': function (minified) {
+          assert.deepEqual(JSON.parse(minified.sourceMap.toString()).sourcesContent, [
+            'div {\n  color: red;\n}',
+            'section > div a {\n  color: red;\n}',
+            'div > a {\n  color: blue;\n}'
+          ]);
+        }
+      }
+    }
+  })
+  .addBatch({
+    'inlined sources from source map(s)': {
+      'single': {
+        'topic': function () {
+          return new CleanCSS({
+            sourceMap: '{"version":3,"sources":["styles.less"],"names":[],"mappings":"AAAA,GAAI;EACF,WAAA","file":"styles.css","sourcesContent":["div > a {\\n  color: blue;\\n}\\n"]}',
+            sourceMapInlineSources: true
+          }).minify('div > a {\n  color: red;\n}');
+        },
+        'should have 2 mappings': function (minified) {
+          assert.lengthOf(minified.sourceMap._mappings._array, 2);
+        },
+        'should have embedded sources': function (minified) {
+          assert.deepEqual(JSON.parse(minified.sourceMap.toString()).sources, ['styles.less']);
+        },
+        'should have embedded sources content': function (minified) {
+          assert.deepEqual(JSON.parse(minified.sourceMap.toString()).sourcesContent, ['div > a {\n  color: blue;\n}\n']);
+        },
+        'should have selector mapping': function (minified) {
+          var mapping = {
+            generatedLine: 1,
+            generatedColumn: 0,
+            originalLine: 1,
+            originalColumn: 4,
+            source: 'styles.less',
+            name: null
+          };
+          assert.deepEqual(minified.sourceMap._mappings._array[0], mapping);
+        },
+        'should have _color:red_ mapping': function (minified) {
+          var mapping = {
+            generatedLine: 1,
+            generatedColumn: 6,
+            originalLine: 2,
+            originalColumn: 2,
+            source: 'styles.less',
+            name: null
+          };
+          assert.deepEqual(minified.sourceMap._mappings._array[1], mapping);
+        }
+      },
+      'multiple': {
+        'topic': function () {
+          return new CleanCSS({ sourceMap: true, sourceMapInlineSources: true }).minify({
+            'test/fixtures/source-maps/some.css': {
+              styles: 'div {\n  color: red;\n}',
+              sourceMap: '{"version":3,"sources":["some.less"],"names":[],"mappings":"AAAA;EACE,UAAA","file":"some.css","sourcesContent":["div {\\n  color: red;\\n}\\n"]}'
+            },
+            'test/fixtures/source-maps/styles.css': {
+              styles: 'div > a {\n  color: blue;\n}',
+              sourceMap: '{"version":3,"sources":["styles.less"],"names":[],"mappings":"AAAA,GAAI;EACF,WAAA","file":"styles.css","sourcesContent":["div > a {\\n  color: blue;\\n}\\n"]}'
+            },
+            'test/fixtures/source-maps/nested/once.css': {
+              styles: 'section > div a {\n  color: red;\n}',
+              sourceMap: '{"version":3,"sources":["once.less"],"names":[],"mappings":"AAAA,OACE,MAAM;EACJ,UAAA","file":"once.css","sourcesContent":["section {\\n  > div a {\\n    color:red;\\n  }\\n}\\n"]}'
+            }
+          });
+        },
+        'should have 5 mappings': function (minified) {
+          assert.lengthOf(minified.sourceMap._mappings._array, 5);
+        },
+        'should have embedded sources': function (minified) {
+          assert.deepEqual(JSON.parse(minified.sourceMap.toString()).sources, [
+            path.join('test', 'fixtures', 'source-maps', 'some.less'),
+            path.join('test', 'fixtures', 'source-maps', 'nested', 'once.less'),
+            path.join('test', 'fixtures', 'source-maps', 'styles.less')
+          ]);
+        },
+        'should have embedded sources content': function (minified) {
+          assert.deepEqual(JSON.parse(minified.sourceMap.toString()).sourcesContent, [
+            'div {\n  color: red;\n}\n',
+            'section {\n  > div a {\n    color:red;\n  }\n}\n',
+            'div > a {\n  color: blue;\n}\n'
+          ]);
+        }
+      },
+      'multiple relative to a target path': {
+        'topic': function () {
+          return new CleanCSS({ sourceMap: true, sourceMapInlineSources: true, target: path.join(process.cwd(), 'test') }).minify({
+            'test/fixtures/source-maps/some.css': {
+              styles: 'div {\n  color: red;\n}',
+              sourceMap: '{"version":3,"sources":["some.less"],"names":[],"mappings":"AAAA;EACE,UAAA","file":"some.css","sourcesContent":["div {\\n  color: red;\\n}\\n"]}'
+            },
+            'test/fixtures/source-maps/styles.css': {
+              styles: 'div > a {\n  color: blue;\n}',
+              sourceMap: '{"version":3,"sources":["styles.less"],"names":[],"mappings":"AAAA,GAAI;EACF,WAAA","file":"styles.css","sourcesContent":["div > a {\\n  color: blue;\\n}\\n"]}'
+            },
+            'test/fixtures/source-maps/nested/once.css': {
+              styles: 'section > div a {\n  color: red;\n}',
+              sourceMap: '{"version":3,"sources":["once.less"],"names":[],"mappings":"AAAA,OACE,MAAM;EACJ,UAAA","file":"once.css","sourcesContent":["section {\\n  > div a {\\n    color:red;\\n  }\\n}\\n"]}'
+            }
+          });
+        },
+        'should have 5 mappings': function (minified) {
+          assert.lengthOf(minified.sourceMap._mappings._array, 5);
+        },
+        'should have embedded sources': function (minified) {
+          assert.deepEqual(JSON.parse(minified.sourceMap.toString()).sources, [
+            path.join('fixtures', 'source-maps', 'some.less'),
+            path.join('fixtures', 'source-maps', 'nested', 'once.less'),
+            path.join('fixtures', 'source-maps', 'styles.less')
+          ]);
+        },
+        'should have embedded sources content': function (minified) {
+          assert.deepEqual(JSON.parse(minified.sourceMap.toString()).sourcesContent, [
+            'div {\n  color: red;\n}\n',
+            'section {\n  > div a {\n    color:red;\n  }\n}\n',
+            'div > a {\n  color: blue;\n}\n'
+          ]);
+        }
+      },
+      'mixed': {
+        'topic': function () {
+          return new CleanCSS({ sourceMap: true, sourceMapInlineSources: true }).minify({
+            'test/fixtures/source-maps/some.css': {
+              styles: 'div {\n  color: red;\n}',
+              sourceMap: '{"version":3,"sources":["some.less"],"names":[],"mappings":"AAAA;EACE,UAAA","file":"some.css","sourcesContent":["div {\\n  color: red;\\n}\\n"]}'
+            },
+            'test/fixtures/source-maps/styles.css': {
+              styles: 'div > a {\n  color: blue;\n}',
+              sourceMap: '{"version":3,"sources":["styles.less"],"names":[],"mappings":"AAAA,GAAI;EACF,WAAA","file":"styles.css"}'
+            },
+            'test/fixtures/source-maps/nested/once.css': {
+              styles: 'section > div a {\n  color: red;\n}',
+              sourceMap: '{"version":3,"sources":["once.less"],"names":[],"mappings":"AAAA,OACE,MAAM;EACJ,UAAA","file":"once.css","sourcesContent":["section {\\n  > div a {\\n    color:red;\\n  }\\n}\\n"]}'
+            }
+          });
+        },
+        'should have 5 mappings': function (minified) {
+          assert.lengthOf(minified.sourceMap._mappings._array, 5);
+        },
+        'should have embedded sources': function (minified) {
+          assert.deepEqual(JSON.parse(minified.sourceMap.toString()).sources, [
+            path.join('test', 'fixtures', 'source-maps', 'some.less'),
+            path.join('test', 'fixtures', 'source-maps', 'nested', 'once.less'),
+            path.join('test', 'fixtures', 'source-maps', 'styles.less')
+          ]);
+        },
+        'should have embedded sources content': function (minified) {
+          assert.deepEqual(JSON.parse(minified.sourceMap.toString()).sourcesContent, [
+            'div {\n  color: red;\n}\n',
+            'section {\n  > div a {\n    color:red;\n  }\n}\n',
+            'div > a {' + lineBreak + '  color: blue;' + lineBreak + '}' + lineBreak
+          ]);
+        }
+      },
+      'mixed without inline sources switch': {
+        'topic': function () {
+          return new CleanCSS({ sourceMap: true }).minify({
+            'test/fixtures/source-maps/some.css': {
+              styles: 'div {\n  color: red;\n}',
+              sourceMap: '{"version":3,"sources":["some.less"],"names":[],"mappings":"AAAA;EACE,UAAA","file":"some.css","sourcesContent":["div {\\n  color: red;\\n}\\n"]}'
+            },
+            'test/fixtures/source-maps/styles.css': {
+              styles: 'div > a {\n  color: blue;\n}',
+              sourceMap: '{"version":3,"sources":["styles.less"],"names":[],"mappings":"AAAA,GAAI;EACF,WAAA","file":"styles.css"}'
+            },
+            'test/fixtures/source-maps/nested/once.css': {
+              styles: 'section > div a {\n  color: red;\n}',
+              sourceMap: '{"version":3,"sources":["once.less"],"names":[],"mappings":"AAAA,OACE,MAAM;EACJ,UAAA","file":"once.css","sourcesContent":["section {\\n  > div a {\\n    color:red;\\n  }\\n}\\n"]}'
+            }
+          });
+        },
+        'should have 5 mappings': function (minified) {
+          assert.lengthOf(minified.sourceMap._mappings._array, 5);
+        },
+        'should have embedded sources': function (minified) {
+          assert.deepEqual(JSON.parse(minified.sourceMap.toString()).sources, [
+            path.join('test', 'fixtures', 'source-maps', 'some.less'),
+            path.join('test', 'fixtures', 'source-maps', 'nested', 'once.less'),
+            path.join('test', 'fixtures', 'source-maps', 'styles.less')
+          ]);
+        },
+        'should have embedded sources content': function (minified) {
+          assert.isUndefined(JSON.parse(minified.sourceMap.toString()).sourcesContent);
+        }
+      },
+      'mixed remote': {
+        'topic': function () {
+          this.reqMocks = nock('http://127.0.0.1')
+            .get('/some.less')
+            .reply(200, 'div {\n  color: red;\n}\n')
+            .get('/styles.less')
+            .reply(200, 'div > a {\n  color: blue;\n}\n');
+
+          new CleanCSS({ sourceMap: true, sourceMapInlineSources: true }).minify({
+            'http://127.0.0.1/some.css': {
+              styles: 'div {\n  color: red;\n}',
+              sourceMap: '{"version":3,"sources":["some.less"],"names":[],"mappings":"AAAA;EACE,UAAA","file":"some.css"}'
+            },
+            'http://127.0.0.1/other/styles.css': {
+              styles: 'div > a {\n  color: blue;\n}',
+              sourceMap: '{"version":3,"sources":["../styles.less"],"names":[],"mappings":"AAAA,GAAI;EACF,WAAA","file":"styles.css"}'
+            },
+            'test/fixtures/source-maps/nested/once.css': {
+              styles: 'section > div a {\n  color: red;\n}',
+              sourceMap: '{"version":3,"sources":["once.less"],"names":[],"mappings":"AAAA,OACE,MAAM;EACJ,UAAA","file":"once.css"}'
+            }
+          }, this.callback);
+        },
+        'should have 5 mappings': function (minified) {
+          assert.lengthOf(minified.sourceMap._mappings._array, 5);
+        },
+        'should have embedded sources': function (minified) {
+          assert.deepEqual(JSON.parse(minified.sourceMap.toString()).sources, [
+            'http://127.0.0.1/some.less',
+            path.join('test', 'fixtures', 'source-maps', 'nested', 'once.less'),
+            'http://127.0.0.1/styles.less'
+          ]);
+        },
+        'should have embedded sources content': function (minified) {
+          assert.deepEqual(JSON.parse(minified.sourceMap.toString()).sourcesContent, [
+            'div {\n  color: red;\n}\n',
+            'section {' + lineBreak + '  > div a {' + lineBreak + '    color:red;' + lineBreak + '  }' + lineBreak + '}' + lineBreak,
+            'div > a {\n  color: blue;\n}\n'
+          ]);
+        },
+        'teardown': function () {
+          assert.isTrue(this.reqMocks.isDone());
+          nock.cleanAll();
+        }
+      },
+      'mixed remote and 404 resource': {
+        'topic': function () {
+          this.reqMocks = nock('http://127.0.0.1')
+            .get('/some.less')
+            .reply(404)
+            .get('/styles.less')
+            .reply(200, 'div > a {\n  color: blue;\n}\n');
+
+          new CleanCSS({ sourceMap: true, sourceMapInlineSources: true }).minify({
+            'http://127.0.0.1/some.css': {
+              styles: 'div {\n  color: red;\n}',
+              sourceMap: '{"version":3,"sources":["some.less"],"names":[],"mappings":"AAAA;EACE,UAAA","file":"some.css"}'
+            },
+            'http://127.0.0.1/other/styles.css': {
+              styles: 'div > a {\n  color: blue;\n}',
+              sourceMap: '{"version":3,"sources":["../styles.less"],"names":[],"mappings":"AAAA,GAAI;EACF,WAAA","file":"styles.css"}'
+            },
+            'test/fixtures/source-maps/nested/once.css': {
+              styles: 'section > div a {\n  color: red;\n}',
+              sourceMap: '{"version":3,"sources":["once.less"],"names":[],"mappings":"AAAA,OACE,MAAM;EACJ,UAAA","file":"once.css"}'
+            }
+          }, this.callback);
+        },
+        'should have 5 mappings': function (minified) {
+          assert.lengthOf(minified.sourceMap._mappings._array, 5);
+        },
+        'should warn about some.less': function (minified) {
+          assert.deepEqual(minified.warnings, ['Broken original source file at "http://127.0.0.1/some.less" - 404']);
+        },
+        'should have embedded sources': function (minified) {
+          assert.deepEqual(JSON.parse(minified.sourceMap.toString()).sources, [
+            'http://127.0.0.1/some.less',
+            path.join('test', 'fixtures', 'source-maps', 'nested', 'once.less'),
+            'http://127.0.0.1/styles.less'
+          ]);
+        },
+        'should have embedded sources content': function (minified) {
+          assert.deepEqual(JSON.parse(minified.sourceMap.toString()).sourcesContent, [
+            null,
+            'section {' + lineBreak + '  > div a {' + lineBreak + '    color:red;' + lineBreak + '  }' + lineBreak + '}' + lineBreak,
+            'div > a {\n  color: blue;\n}\n'
+          ]);
+        },
+        'teardown': function () {
+          assert.isTrue(this.reqMocks.isDone());
+          nock.cleanAll();
+        }
+      },
+      'mixed remote and no callback': {
+        'topic': function () {
+           return new CleanCSS({ sourceMap: true, sourceMapInlineSources: true }).minify({
+            'http://127.0.0.1/some.css': {
+              styles: 'div {\n  color: red;\n}',
+              sourceMap: '{"version":3,"sources":["some.less"],"names":[],"mappings":"AAAA;EACE,UAAA","file":"some.css"}'
+            },
+            'http://127.0.0.1/other/styles.css': {
+              styles: 'div > a {\n  color: blue;\n}',
+              sourceMap: '{"version":3,"sources":["../styles.less"],"names":[],"mappings":"AAAA,GAAI;EACF,WAAA","file":"styles.css"}'
+            },
+            'test/fixtures/source-maps/nested/once.css': {
+              styles: 'section > div a {\n  color: red;\n}',
+              sourceMap: '{"version":3,"sources":["once.less"],"names":[],"mappings":"AAAA,OACE,MAAM;EACJ,UAAA","file":"once.css"}'
+            }
+          });
+        },
+        'should have 5 mappings': function (minified) {
+          assert.lengthOf(minified.sourceMap._mappings._array, 5);
+        },
+        'should warn about some.less and styles.less': function (minified) {
+          assert.deepEqual(minified.warnings, [
+            'No callback given to `#minify` method, cannot fetch a remote file from "http://127.0.0.1/some.less"',
+            'No callback given to `#minify` method, cannot fetch a remote file from "http://127.0.0.1/styles.less"'
+          ]);
+        },
+        'should have embedded sources': function (minified) {
+          assert.deepEqual(JSON.parse(minified.sourceMap.toString()).sources, [
+            'http://127.0.0.1/some.less',
+            path.join('test', 'fixtures', 'source-maps', 'nested', 'once.less'),
+            'http://127.0.0.1/styles.less'
+          ]);
+        },
+        'should have embedded sources content': function (minified) {
+          assert.deepEqual(JSON.parse(minified.sourceMap.toString()).sourcesContent, [
+            null,
+            'section {' + lineBreak + '  > div a {' + lineBreak + '    color:red;' + lineBreak + '  }' + lineBreak + '}' + lineBreak,
+            null
           ]);
         }
       }

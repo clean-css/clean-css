@@ -524,7 +524,7 @@ vows.describe('source-map')
           generatedColumn: 0,
           originalLine: 2,
           originalColumn: 8,
-          source: 'once.less',
+          source: path.join('test', 'fixtures', 'source-maps', 'nested', 'once.less'),
           name: null
         };
         assert.deepEqual(minified.sourceMap._mappings._array[0], mapping);
@@ -535,7 +535,7 @@ vows.describe('source-map')
           generatedColumn: 14,
           originalLine: 3,
           originalColumn: 4,
-          source: 'once.less',
+          source: path.join('test', 'fixtures', 'source-maps', 'nested', 'once.less'),
           name: null
         };
         assert.deepEqual(minified.sourceMap._mappings._array[1], mapping);
@@ -554,7 +554,7 @@ vows.describe('source-map')
           generatedColumn: 0,
           originalLine: 3,
           originalColumn: 4,
-          source: 'twice.less',
+          source: path.join('test', 'fixtures', 'source-maps', 'nested', 'twice.less'),
           name: null
         };
         assert.deepEqual(minified.sourceMap._mappings._array[0], mapping);
@@ -565,7 +565,7 @@ vows.describe('source-map')
           generatedColumn: 11,
           originalLine: 4,
           originalColumn: 6,
-          source: 'twice.less',
+          source: path.join('test', 'fixtures', 'source-maps', 'nested', 'twice.less'),
           name: null
         };
         assert.deepEqual(minified.sourceMap._mappings._array[1], mapping);
@@ -869,7 +869,7 @@ vows.describe('source-map')
             generatedColumn: 0,
             originalLine: 1,
             originalColumn: 0,
-            source: 'some.less',
+            source: path.join('test', 'fixtures', 'source-maps', 'some.less'),
             name: null
           };
           assert.deepEqual(minified.sourceMap._mappings._array[0], mapping);
@@ -880,7 +880,7 @@ vows.describe('source-map')
             generatedColumn: 4,
             originalLine: 2,
             originalColumn: 8,
-            source: 'once.less',
+            source: path.join('test', 'fixtures', 'source-maps', 'nested', 'once.less'),
             name: null
           };
           assert.deepEqual(minified.sourceMap._mappings._array[1], mapping);
@@ -891,7 +891,7 @@ vows.describe('source-map')
             generatedColumn: 18,
             originalLine: 2,
             originalColumn: 2,
-            source: 'some.less',
+            source: path.join('test', 'fixtures', 'source-maps', 'some.less'),
             name: null
           };
           assert.deepEqual(minified.sourceMap._mappings._array[2], mapping);
@@ -902,7 +902,7 @@ vows.describe('source-map')
             generatedColumn: 28,
             originalLine: 1,
             originalColumn: 4,
-            source: 'styles.less',
+            source: path.join('test', 'fixtures', 'source-maps', 'styles.less'),
             name: null
           };
           assert.deepEqual(minified.sourceMap._mappings._array[3], mapping);
@@ -913,7 +913,7 @@ vows.describe('source-map')
             generatedColumn: 34,
             originalLine: 2,
             originalColumn: 2,
-            source: 'styles.less',
+            source: path.join('test', 'fixtures', 'source-maps', 'styles.less'),
             name: null
           };
           assert.deepEqual(minified.sourceMap._mappings._array[4], mapping);

@@ -136,6 +136,10 @@ vows.describe('integration tests').addBatch({
       'body{margin-left:calc(50vw + (1024px/2))}',
       'body{margin-left:calc(50vw + (1024px/2))}'
     ],
+    'not inside calc method with brackets #2': [
+      'body{width:calc((978px * 2/3) - 30px)}',
+      'body{width:calc((978px * 2/3) - 30px)}'
+    ],
     'with space between braces': [
       'body{width:calc( ( 100% - 12px) / 3 )}',
       'body{width:calc((100% - 12px)/ 3)}'

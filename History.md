@@ -1,4 +1,4 @@
-[3.1.7 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.1.6...3.1)
+[3.1.7 / 2015-03-16](https://github.com/jakubpawlowicz/clean-css/compare/v3.1.6...v3.1.7)
 ==================
 
 * Fixes issue [#496](https://github.com/jakubpawlowicz/clean-css/issues/496) - space after bracket removal.

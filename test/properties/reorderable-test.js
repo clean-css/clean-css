@@ -96,6 +96,32 @@ vows.describe(canReorderSingle)
     'different, overlapping simple selectors': {
       'topic': canReorderSingle(propertiesIn('a{border:none}')[0], propertiesIn('a{border:1px solid #f00}')[0]),
       'must be false': function (result) { assert.isFalse(result); }
+    },
+    'align-items': {
+      'topic': canReorderSingle(propertiesIn('a{border:none}')[0], propertiesIn('a{align-items:flex-start}')[0]),
+      'must be true': function (result) { assert.isTrue(result); }
+    }
+  })
+  .addBatch({
+    'flex #1': {
+      'topic': canReorderSingle(propertiesIn('a{-webkit-box-align:flex-start}')[0], propertiesIn('a{align-items:flex-start}')[0]),
+      'must be false': function (result) { assert.isFalse(result); }
+    },
+    'flex #2': {
+      'topic': canReorderSingle(propertiesIn('a{-ms-flex-align:start}')[0], propertiesIn('a{align-items:flex-start}')[0]),
+      'must be false': function (result) { assert.isFalse(result); }
+    },
+    'flex #3': {
+      'topic': canReorderSingle(propertiesIn('a{flex:none}')[0], propertiesIn('a{align-items:flex-start}')[0]),
+      'must be false': function (result) { assert.isFalse(result); }
+    },
+    'flex #4': {
+      'topic': canReorderSingle(propertiesIn('a{justify-content:center}')[0], propertiesIn('a{–ms-flex-pack:center}')[0]),
+      'must be false': function (result) { assert.isFalse(result); }
+    },
+    'flex #5': {
+      'topic': canReorderSingle(propertiesIn('a{justify-content:center}')[0], propertiesIn('a{–webkit-box-pack:center}')[0]),
+      'must be false': function (result) { assert.isFalse(result); }
     }
   })
   .export(module);

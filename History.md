@@ -1,3 +1,8 @@
+[3.1.8 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.1.7...3.1)
+==================
+
+* Fixes issue [#498](https://github.com/jakubpawlowicz/clean-css/issues/498) - reordering and flexbox.
+
 [3.1.7 / 2015-03-16](https://github.com/jakubpawlowicz/clean-css/compare/v3.1.6...v3.1.7)
 ==================
 

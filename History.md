@@ -1,4 +1,4 @@
-[3.1.8 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.1.7...3.1)
+[3.1.8 / 2015-03-17](https://github.com/jakubpawlowicz/clean-css/compare/v3.1.7...v3.1.8)
 ==================
 
 * Fixes issue [#499](https://github.com/jakubpawlowicz/clean-css/issues/499) - too aggressive `-` removal.

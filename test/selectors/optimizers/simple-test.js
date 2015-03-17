@@ -441,6 +441,10 @@ vows.describe(SimpleOptimizer)
         'a{margin:-0px}',
         ['margin:0']
       ],
+      '-0% to 0': [
+        'a{width:-0%}',
+        ['width:0']
+      ],
       'missing': [
         'a{opacity:1.}',
         ['opacity:1']
@@ -452,6 +456,18 @@ vows.describe(SimpleOptimizer)
       'keeps negative non-zero': [
         'a{margin:-0.5em}',
         ['margin:-.5em']
+      ],
+      'inside names #1': [
+        'div{animation-name:test-0-bounce}',
+        ['animation-name:test-0-bounce']
+      ],
+      'inside names #2': [
+        'div{animation-name:test-0bounce}',
+        ['animation-name:test-0bounce']
+      ],
+      'inside names #3': [
+        'div{animation-name:test-0px}',
+        ['animation-name:test-0px']
       ],
       'strips leading from value': [
         'a{padding:010px 0015px}',

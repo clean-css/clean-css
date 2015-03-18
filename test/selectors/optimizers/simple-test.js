@@ -15,7 +15,7 @@ function selectorContext(group, specs, options) {
       var tokens = new Tokenizer({ options: {} }).toTokens(source);
       new SimpleOptimizer(options).optimize(tokens);
 
-      assert.deepEqual(tokens[0] ? tokens[0].value : null, selectors);
+      assert.deepEqual(tokens[0] ? tokens[0][1] : null, selectors);
     };
   }
 
@@ -38,7 +38,7 @@ function propertyContext(group, specs, options) {
     return function (source) {
       var tokens = new Tokenizer({ options: {} }).toTokens(source);
       new SimpleOptimizer(options).optimize(tokens);
-      var value = tokens[0].body.map(function (property) { return property.value; });
+      var value = tokens[0] ? tokens[0][2].map(function (property) { return property[0]; }) : null;
 
       assert.deepEqual(value, selectors);
     };
@@ -59,23 +59,23 @@ vows.describe(SimpleOptimizer)
     selectorContext('default', {
       'optimized': [
         'a{}',
-        [{ value: 'a' }]
+        null
       ],
       'whitespace': [
-        ' div  > span{}',
-        [{ value: 'div>span' }]
+        ' div  > span{color:red}',
+        [['div>span']]
       ],
       'line breaks': [
-        ' div  >\n\r\n span{}',
-        [{ value: 'div>span' }]
+        ' div  >\n\r\n span{color:red}',
+        [['div>span']]
       ],
       '+html': [
         '*+html .foo{display:inline}',
         null
       ],
       'adjacent nav': [
-        'div + nav{}',
-        [{ value: 'div+nav' }]
+        'div + nav{color:red}',
+        [['div+nav']]
       ]
     })
   )
@@ -91,7 +91,7 @@ vows.describe(SimpleOptimizer)
       ],
       '+html - complex': [
         '*+html .foo,.bar{display:inline}',
-        [{ value: '.bar' }]
+        [['.bar']]
       ]
     }, { compatibility: 'ie8' })
   )
@@ -99,23 +99,23 @@ vows.describe(SimpleOptimizer)
     selectorContext('ie7', {
       '+html': [
         '*+html .foo{display:inline}',
-        [{ value: '*+html .foo' }]
+        [['*+html .foo']]
       ],
       '+html - complex': [
         '*+html .foo,.bar{display:inline}',
-        [{ value: '*+html .foo' }, { value: '.bar' }]
+        [['*+html .foo'], ['.bar']]
       ]
     }, { compatibility: 'ie7' })
   )
   .addBatch(
     selectorContext('+adjacentSpace', {
       'with whitespace': [
-        'div + nav{}',
-        [{ value: 'div+ nav' }]
+        'div + nav{color:red}',
+        [['div+ nav']]
       ],
       'without whitespace': [
-        'div+nav{}',
-        [{ value: 'div+ nav' }]
+        'div+nav{color:red}',
+        [['div+ nav']]
       ]
     }, { compatibility: { selectors: { adjacentSpace: true } } })
   )
@@ -307,11 +307,11 @@ vows.describe(SimpleOptimizer)
     propertyContext('ie hacks', {
       'underscore': [
         'a{_width:100px}',
-        []
+        null
       ],
       'star': [
         'a{*width:100px}',
-        []
+        null
       ]
     })
   )

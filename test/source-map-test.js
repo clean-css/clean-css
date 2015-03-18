@@ -1489,7 +1489,7 @@ vows.describe('source-map')
   })
   .addBatch({
     'advanced optimizations': {
-      'new property in smart sort': {
+      'new property in restructuring': {
         'topic': function () {
           return new CleanCSS({ sourceMap: true }).minify('a{color:#000}div{color:red}.one{display:block}.two{display:inline;color:red}');
         },

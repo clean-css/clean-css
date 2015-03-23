@@ -17,11 +17,13 @@ vows.describe(Splitter)
     'comma separated - level 2': split('linear-gradient(0,#fff,rgba(0,0,0)),red', ['linear-gradient(0,#fff,rgba(0,0,0))', 'red'], ','),
     'space separated - level 0': split('#000 #fff #0f0', ['#000', '#fff', '#0f0'], ' '),
     'space separated - level 1': split('rgb(0, 0, 0) #fff', ['rgb(0, 0, 0)', '#fff'], ' '),
-    'space separated - level 2': split('linear-gradient(0, #fff, rgba(0, 0, 0)) red', ['linear-gradient(0, #fff, rgba(0, 0, 0))', 'red'], ' ')
+    'space separated - level 2': split('linear-gradient(0, #fff, rgba(0, 0, 0)) red', ['linear-gradient(0, #fff, rgba(0, 0, 0))', 'red'], ' '),
+    'with regex': split('no-repeat,0/0', ['no-repeat', '0', '0'], /[ ,\/]/)
   })
   .addBatch({
     'leading space and quote with separator': split(' "Font"', [' "Font"'], ' ', true),
     'comma separated - level 2 - with separator': split('linear-gradient(0,#fff,rgba(0,0,0)),red', ['linear-gradient(0,#fff,rgba(0,0,0)),', 'red'], ',', true),
-    'space separated - level 2 - with separator': split('linear-gradient(0, #fff, rgba(0, 0, 0)) red', ['linear-gradient(0, #fff, rgba(0, 0, 0)) ', 'red'], ' ', true)
+    'space separated - level 2 - with separator': split('linear-gradient(0, #fff, rgba(0, 0, 0)) red', ['linear-gradient(0, #fff, rgba(0, 0, 0)) ', 'red'], ' ', true),
+    'with regex': split('no-repeat,0/0', ['no-repeat,', '0/', '0'], /[ ,\/]/, true)
   })
   .export(module);

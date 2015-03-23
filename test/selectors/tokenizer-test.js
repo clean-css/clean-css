@@ -55,40 +55,58 @@ vows.describe(Tokenizer)
           ['selector', [['a']], []]
         ]
       ],
-      'a selector': [
+      'a selector with a property': [
         'a{color:red}',
         [
-          ['selector', [['a']], [['color:red']]]
+          ['selector', [['a']], [[['color'], ['red']]]]
+        ]
+      ],
+      'a selector with a multi value property': [
+        'a{margin:0px 2px 1px}',
+        [
+          ['selector', [['a']], [[['margin'], ['0px'], ['2px'], ['1px']]]]
         ]
       ],
       'a selector with whitespace': [
         'a {color:red;\n\ndisplay :\r\n  block }',
         [
-          ['selector', [['a ']], [['color:red'], ['display:block']]]
+          ['selector', [['a']], [[['color'], ['red']], [['display'], ['block']]]]
         ]
       ],
       'a selector with suffix whitespace': [
         'div a{color:red\r\n}',
         [
-          ['selector', [['div a']], [['color:red']]]
+          ['selector', [['div a']], [[['color'], ['red']]]]
         ]
       ],
       'a selector with whitespace in functions': [
         'a{color:rgba( 255, 255, 0, 0.5  )}',
         [
-          ['selector', [['a']], [['color:rgba(255,255,0,0.5)']]]
+          ['selector', [['a']], [[['color'], ['rgba( 255, 255, 0, 0.5  )']]]]
+        ]
+      ],
+      'a selector with functions and no whitespace breaks': [
+        'a{background:rgba(255,255,0,0.5)url(test.png)repeat no-repeat}',
+        [
+          ['selector', [['a']], [[['background'], ['rgba(255,255,0,0.5)'], ['url(test.png)'], ['repeat'], ['no-repeat']]]]
+        ]
+      ],
+      'a selector with escaped url and no whitespace breaks': [
+        'a{background:__ESCAPED_URL_CLEAN_CSS0__50px/25%}',
+        [
+          ['selector', [['a']], [[['background'], ['__ESCAPED_URL_CLEAN_CSS0__'], ['50px'], ['/'], ['25%']]]]
         ]
       ],
       'a selector with empty properties': [
         'a{color:red; ; ; ;}',
         [
-          ['selector', [['a']], [['color:red']]]
+          ['selector', [['a']], [[['color'], ['red']]]]
         ]
       ],
       'a selector with quoted attribute': [
         'a[data-kind=__ESCAPED_FREE_TEXT_CLEAN_CSS0__]{color:red}',
         [
-          ['selector', [['a[data-kind=__ESCAPED_FREE_TEXT_CLEAN_CSS0__]']], [['color:red']]]
+          ['selector', [['a[data-kind=__ESCAPED_FREE_TEXT_CLEAN_CSS0__]']], [[['color'], ['red']]]]
         ]
       ],
       'a selector with escaped quote': [
@@ -100,14 +118,14 @@ vows.describe(Tokenizer)
       'a double selector': [
         'a,\n\ndiv.class > p {color:red}',
         [
-          ['selector', [['a'], ['\n\ndiv.class > p ']], [['color:red']]]
+          ['selector', [['a'], ['div.class > p']], [[['color'], ['red']]]]
         ]
       ],
       'two selectors': [
         'a{color:red}div{color:blue}',
         [
-          ['selector', [['a']], [['color:red']]],
-          ['selector', [['div']], [['color:blue']]],
+          ['selector', [['a']], [[['color'], ['red']]]],
+          ['selector', [['div']], [[['color'], ['blue']]]],
         ]
       ],
       'two comments and a selector separated by newline': [
@@ -119,7 +137,7 @@ vows.describe(Tokenizer)
       'two properties wrapped between comments': [
         'div{__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0__color:red__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS1__}',
         [
-          ['selector', [['div']], [['__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0__'], ['color:red'], ['__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS1__']]]
+          ['selector', [['div']], ['__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0__', [['color'], ['red']], '__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS1__']]
         ]
       ],
       'pseudoselector after an argument one': [
@@ -138,7 +156,7 @@ vows.describe(Tokenizer)
         '@media (min-width:980px){a{color:red}}',
         [
           ['block', ['@media (min-width:980px)'], [
-            ['selector', [['a']], [['color:red']]]
+            ['selector', [['a']], [[['color'], ['red']]]]
           ]]
         ]
       ],
@@ -146,21 +164,21 @@ vows.describe(Tokenizer)
         '@media only screen and (max-width:1319px) and (min--moz-device-pixel-ratio:1.5),only screen and (max-width:1319px) and (-moz-min-device-pixel-ratio:1.5){a{color:#000}}',
         [
           ['block', ['@media only screen and (max-width:1319px) and (min--moz-device-pixel-ratio:1.5),only screen and (max-width:1319px) and (-moz-min-device-pixel-ratio:1.5)'], [
-            ['selector', [['a']], [['color:#000']]]
+            ['selector', [['a']], [[['color'], ['#000']]]]
           ]]
         ]
       ],
       'font-face': [
         '@font-face{font-family: fontName;font-size:12px}',
         [
-          ['flat-block', ['@font-face'], [['font-family:fontName'], ['font-size:12px']]]
+          ['flat-block', ['@font-face'], [[['font-family'], ['fontName']], [['font-size'], ['12px']]]]
         ]
       ],
       'charset': [
         '@charset \'utf-8\';a{color:red}',
         [
           ['at-rule', ['@charset \'utf-8\';']],
-          ['selector', [['a']], [['color:red']]]
+          ['selector', [['a']], [[['color'], ['red']]]]
         ]
       ],
       'charset after a line break': [
@@ -180,11 +198,93 @@ vows.describe(Tokenizer)
         [
           [
             'selector',
-            [[ 'a' ]],
-            [['border:var(--width) var(--style) var(--color)']]
+            [['a']],
+            [[['border'], ['var(--width)'], ['var(--style)'], ['var(--color)']]]
+          ]
+        ]
+      ],
+      '! important': [
+        'a{color:red! important}',
+        [
+          [
+            'selector',
+            [['a']],
+            [[['color'], ['red!important']]]
+          ]
+        ]
+      ],
+      ' !important': [
+        'a{color:red !important}',
+        [
+          [
+            'selector',
+            [['a']],
+            [[['color'], ['red!important']]]
+          ]
+        ]
+      ],
+      ' ! important': [
+        'a{color:red ! important}',
+        [
+          [
+            'selector',
+            [['a']],
+            [[['color'], ['red!important']]]
           ]
         ]
       ]
+    })
+  )
+  .addBatch(
+    tokenizerContext('multiple values', {
+      'comma - no spaces': [
+        'a{background:no-repeat,no-repeat}',
+        [
+          ['selector', [['a']], [[['background'], ['no-repeat'], [','], ['no-repeat']]]]
+        ]
+      ],
+      'comma - one spaces': [
+        'a{background:no-repeat, no-repeat}',
+        [
+          ['selector', [['a']], [[['background'], ['no-repeat'], [','], ['no-repeat']]]]
+        ]
+      ],
+      'comma - two spaces': [
+        'a{background:no-repeat , no-repeat}',
+        [
+          ['selector', [['a']], [[['background'], ['no-repeat'], [','], ['no-repeat']]]]
+        ]
+      ],
+      'comma - inside function': [
+        'a{background:rgba(0,0,0,0)}',
+        [
+          ['selector', [['a']], [[['background'], ['rgba(0,0,0,0)']]]]
+        ]
+      ],
+      'forward slash - no spaces': [
+        'a{border-radius:5px/4px}',
+        [
+          ['selector', [['a']], [[['border-radius'], ['5px'], ['/'], ['4px']]]]
+        ]
+      ],
+      'forward slash - one spaces': [
+        'a{border-radius:5px /4px}',
+        [
+          ['selector', [['a']], [[['border-radius'], ['5px'], ['/'], ['4px']]]]
+        ]
+      ],
+      'forward slash - two spaces': [
+        'a{border-radius:5px / 4px}',
+        [
+          ['selector', [['a']], [[['border-radius'], ['5px'], ['/'], ['4px']]]]
+        ]
+      ],
+      'forward slash - inside function': [
+        'a{width:calc(5px/4px)}',
+        [
+          ['selector', [['a']], [[['width'], ['calc(5px/4px)']]]]
+        ]
+      ],
     })
   )
   .addBatch(
@@ -198,7 +298,7 @@ vows.describe(Tokenizer)
       'missing end brace in the middle': [
         'body{color:red;a{color:blue;}',
         [
-          ['selector', [['body']], [['color:red']]]
+          ['selector', [['body']], [[['color'], ['red']]]]
         ]
       ]
     })

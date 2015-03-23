@@ -291,7 +291,7 @@ vows.describe(SelectorsOptimizer)
       ],
       'non-adjacent with multi selectors': [
         'a{padding:10px;margin:0;color:red}.one{color:red}a,p{color:red;padding:0}',
-        '.one,a,p{color:red}a{padding:10px;margin:0}a,p{padding:0}'
+        'a,p{padding:0}.one,a,p{color:red}a{margin:0}'
       ]
     }, { advanced: true, aggressiveMerging: false })
   )

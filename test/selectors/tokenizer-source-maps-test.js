@@ -82,7 +82,7 @@ vows.describe('source-maps/analyzer')
         [
           [
             'selector',
-            [['a', 1, 1, undefined], ['\n\ndiv', 3, 0, undefined]],
+            [['a', 1, 1, undefined], ['div', 3, 0, undefined]],
             []
           ]
         ]
@@ -102,7 +102,7 @@ vows.describe('source-maps/analyzer')
         [
           [
             'selector',
-            [['a', 1, 1, undefined], ['\n\ndiv\na', 3, 0, undefined], ['\n p', 5, 1, undefined]],
+            [['a', 1, 1, undefined], ['div\na', 3, 0, undefined], ['p', 5, 1, undefined]],
             []
           ]
         ]
@@ -127,7 +127,7 @@ vows.describe('source-maps/analyzer')
         [
           [
             'selector',
-            [['a ', 1, 0, undefined]],
+            [['a', 1, 0, undefined]],
             []
           ],
           [
@@ -152,7 +152,7 @@ vows.describe('source-maps/analyzer')
           [
             'selector',
             [['a', 1, 0, undefined]],
-            [['color:red', 1, 2, undefined]]
+            [[['color', 1, 2, undefined], ['red', 1, 8, undefined]]]
           ]
         ]
       ],
@@ -163,8 +163,8 @@ vows.describe('source-maps/analyzer')
             'selector',
             [['a', 1, 0, undefined]],
             [
-              ['color:red', 1, 2, undefined],
-              ['border:none', 1, 12, undefined]
+              [['color', 1, 2, undefined], ['red', 1, 8, undefined]],
+              [['border', 1, 12, undefined], ['none', 1, 19, undefined]]
             ]
           ]
         ]
@@ -176,9 +176,9 @@ vows.describe('source-maps/analyzer')
             'selector',
             [['a', 1, 0, undefined]],
             [
-              ['color:red', 1, 2, undefined],
-              ['border:none', 2, 0, undefined],
-              ['display:block', 5, 2, undefined]
+              [['color', 1, 2, undefined], ['red', 1, 8, undefined]],
+              [['border', 2, 0, undefined], ['none', 3, 0, undefined]],
+              [['display', 5, 2, undefined], ['block', 5, 10, undefined]]
             ]
           ]
         ]
@@ -189,12 +189,12 @@ vows.describe('source-maps/analyzer')
           [
             'selector',
             [['a', 1, 0, undefined]],
-            [['color:red', 1, 2, undefined]]
+            [[['color', 1, 2, undefined], ['red', 1, 8, undefined]]]
           ],
           [
             'selector',
             [['div', 1, 12, undefined]],
-            [['color:blue', 1, 16, undefined]]
+            [[['color', 1, 16, undefined], ['blue', 1, 22, undefined]]]
           ]
         ]
       ],
@@ -204,12 +204,12 @@ vows.describe('source-maps/analyzer')
           [
             'selector',
             [['a', 1, 0, undefined]],
-            [['color:red', 1, 2, undefined]]
+            [[['color', 1, 2, undefined], ['red', 1, 8, undefined]]]
           ],
           [
             'selector',
             [['div', 2, 1, undefined]],
-            [['color:blue', 2, 5, undefined]]
+            [[['color', 2, 5, undefined], ['blue', 2, 11, undefined]]]
           ]
         ]
       ],
@@ -219,12 +219,12 @@ vows.describe('source-maps/analyzer')
           [
             'selector',
             [['a', 1, 0, undefined]],
-            [['color:red', 1, 2, undefined]]
+            [[['color', 1, 2, undefined], ['red', 1, 8, undefined]]]
           ],
           [
             'selector',
             [['div', 3, 1, undefined]],
-            [['color:blue', 3, 5, undefined]]
+            [[['color', 3, 5, undefined], ['blue', 3, 11, undefined]]]
           ]
         ]
       ]
@@ -247,7 +247,7 @@ vows.describe('source-maps/analyzer')
           [
             'selector',
             [['a', 4, 0, undefined]],
-            [['color:red', 4, 2, undefined]]
+            [[['color', 4, 2, undefined], ['red', 4, 8, undefined]]]
           ]
         ]
       ],
@@ -261,7 +261,7 @@ vows.describe('source-maps/analyzer')
           [
             'selector',
             [['a', 1, 18, undefined]],
-            [['color:red', 1, 20, undefined]]
+            [[['color', 1, 20, undefined], ['red', 1, 26, undefined]]]
           ]
         ]
       ]
@@ -279,7 +279,7 @@ vows.describe('source-maps/analyzer')
               [
                 'selector',
                 [['a', 1, 25, undefined]],
-                [['color:red', 1, 27, undefined]]
+                [[['color', 1, 27, undefined], ['red', 1, 33, undefined]]]
               ]
             ]
           ]
@@ -295,7 +295,7 @@ vows.describe('source-maps/analyzer')
               [
                 'selector',
                 [['a', 4, 0, undefined]],
-                [['color:red', 5, 0, undefined]]
+                [[['color', 5, 0, undefined], ['red', 6, 0, undefined]]]
               ],
               [
                 'selector',
@@ -316,14 +316,14 @@ vows.describe('source-maps/analyzer')
               [
                 'selector',
                 [['a', 1, 25, undefined]],
-                [['color:red', 1, 27, undefined]]
+                [[['color', 1, 27, undefined], ['red', 1, 33, undefined]]]
               ]
             ]
           ],
           [
             'selector',
             [['p', 1, 39, undefined]],
-            [['color:red', 1, 41, undefined]]
+            [[['color', 1, 41, undefined], ['red', 1, 47, undefined]]]
           ]
         ]
       ],
@@ -334,10 +334,10 @@ vows.describe('source-maps/analyzer')
             'flat-block',
             ['@font-face', 1, 0, undefined],
             [
-              ['font-family:"Font"', 1, 11, undefined],
-              ['src:url("font.ttf")', 2, 0, undefined],
-              ['font-weight:normal', 3, 0, undefined],
-              ['font-style:normal', 3, 20, undefined]
+              [['font-family', 1, 11, undefined], ['"Font"', 1, 24, undefined]],
+              [['src', 2, 0, undefined], ['url("font.ttf")', 2, 5, undefined]],
+              [['font-weight', 3, 0, undefined], ['normal', 3, 13, undefined]],
+              [['font-style', 3, 20, undefined], ['normal', 3, 32, undefined]]
             ]
           ],
           [
@@ -354,7 +354,7 @@ vows.describe('source-maps/analyzer')
             'flat-block',
             ['@font-face', 2, 0, undefined],
             [
-              ['font-family:"Font"', 3, 1, undefined]
+              [['font-family', 3, 1, undefined], ['"Font"', 3, 14, undefined]]
             ]
           ]
         ]
@@ -392,29 +392,43 @@ vows.describe('source-maps/analyzer')
               ['div[data-type=__ESCAPED_FREE_TEXT_CLEAN_CSS0(1,3)__]', 1, 0, undefined],
               ['div[data-id=__ESCAPED_FREE_TEXT_CLEAN_CSS1(0,7)__]', 2, 5, undefined]
             ],
-            [['color:red', 2, 26, undefined]]
+            [[['color', 2, 26, undefined], ['red', 2, 32, undefined]]]
           ]
         ]
       ],
-      'in properties': [
-        'div{__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0(2,5)__background:url(__ESCAPED_URL_CLEAN_CSS0(0,20)__);color:blue}a{font-family:__ESCAPED_FREE_TEXT_CLEAN_CSS0(1,3)__;color:red}',
+      'in properties123': [
+        'div{__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0(2,5)__background:__ESCAPED_URL_CLEAN_CSS0(0,20)__;color:blue}a{font-family:__ESCAPED_FREE_TEXT_CLEAN_CSS0(1,3)__;color:red}',
         [
           [
             'selector',
             [['div', 1, 0, undefined]],
             [
-              ['__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0(2,5)__', 1, 4, undefined],
-              ['background:url(__ESCAPED_URL_CLEAN_CSS0(0,20)__)', 3, 5, undefined],
-              ['color:blue', 3, 42, undefined]
+              '__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0(2,5)__',
+              [['background', 3, 5, undefined], ['__ESCAPED_URL_CLEAN_CSS0(0,20)__', 3, 16, undefined]],
+              [['color', 3, 37, undefined], ['blue', 3, 43, undefined]]
             ]
           ],
           [
             'selector',
-            [['a', 3, 53, undefined]],
+            [['a', 3, 48, undefined]],
             [
-              ['font-family:__ESCAPED_FREE_TEXT_CLEAN_CSS0(1,3)__', 3, 55, undefined],
-              ['color:red', 4, 4, undefined]
+              [['font-family', 3, 50, undefined], ['__ESCAPED_FREE_TEXT_CLEAN_CSS0(1,3)__', 3, 62, undefined]],
+              [['color', 4, 4, undefined], ['red', 4, 10, undefined]]
             ]
+          ]
+        ]
+      ],
+      'in properties generated for closing brace': [
+        'div{background:url(image.png)no-repeat}',
+        [
+          [
+            'selector',
+            [['div', 1, 0, undefined]],
+            [[
+              ['background', 1, 4, undefined],
+              ['url(image.png)', 1, 15, undefined],
+              ['no-repeat', 1, 29, undefined]
+            ]]
           ]
         ]
       ],
@@ -442,7 +456,7 @@ vows.describe('source-maps/analyzer')
               [
                 'selector',
                 [['a', 3, 18, undefined]],
-                [['color:red', 3, 20, undefined]]
+                [[['color', 3, 20, undefined], ['red', 3, 26, undefined]]]
               ]
             ]
           ]
@@ -490,7 +504,7 @@ vows.describe('source-maps/analyzer')
           [
             'selector',
             [['a', 2, 0, 'two.css']],
-            [['color:red', 2, 2, 'two.css']]
+            [[['color', 2, 2, 'two.css'], ['red', 2, 8, 'two.css']]]
           ]
         ]
       ]
@@ -511,8 +525,26 @@ vows.describe('source-maps/analyzer')
         [
           [
             'selector',
-            [['div > a ', 1, 4, 'styles.less']],
-            [['color:red', 2, 2, 'styles.less']]
+            [['div > a', 1, 4, 'styles.less']],
+            [[['color', 2, 2, 'styles.less'], ['red', 2, 2, 'styles.less']]]
+          ]
+        ]
+      ],
+      'with fallback for properties': [
+        function () {
+          var tracker = new SourceTracker();
+          var reader = new SourceReader();
+          var inputTracker = new InputSourceMapTracker({ options: { inliner: {}, sourceMap: inputMap, options: {} }, errors: {}, sourceTracker: tracker });
+          inputTracker.track('', function () {});
+
+          var tokenizer = new Tokenizer({ sourceTracker: tracker, sourceReader: reader, inputSourceMapTracker: inputTracker, options: {} }, true);
+          return tokenizer.toTokens('div > a {\n  color: red red;\n}');
+        },
+        [
+          [
+            'selector',
+            [['div > a', 1, 4, 'styles.less']],
+            [[['color', 2, 2, 'styles.less'], ['red', 2, 2, 'styles.less'], ['red', 2, 2, 'styles.less']]]
           ]
         ]
       ]

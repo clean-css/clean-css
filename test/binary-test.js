@@ -332,7 +332,7 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
     }),
     'of mergeable properties': pipedContext('a{background:red;display:block;background:white}', '--skip-aggressive-merging', {
       'gets right result': function(error, stdout) {
-        assert.equal(stdout, 'a{display:block;background:#fff}');
+        assert.equal(stdout, 'a{background:#fff;display:block}');
       }
     })
   },
@@ -475,7 +475,7 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
         var count = 0;
         sourceMap.eachMapping(function () { count++; });
 
-        assert.equal(count, 4);
+        assert.equal(count, 6);
       },
       'teardown': function () {
         deleteFile('import.min.css');
@@ -491,7 +491,7 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
         var count = 0;
         sourceMap.eachMapping(function () { count++; });
 
-        assert.equal(count, 4);
+        assert.equal(count, 6);
       },
       'teardown': function () {
         deleteFile('import-inline.min.css');

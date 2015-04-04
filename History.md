@@ -1,4 +1,4 @@
-[3.1.9 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.1.8...3.1)
+[3.1.9 / 2015-04-04](https://github.com/jakubpawlowicz/clean-css/compare/v3.1.8...v3.1.9)
 ==================
 
 * Fixes issue [#511](https://github.com/jakubpawlowicz/clean-css/issues/511) - `)` advanced processing.

@@ -1,3 +1,8 @@
+[3.1.9 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.1.8...3.1)
+==================
+
+* Fixes issue [#511](https://github.com/jakubpawlowicz/clean-css/issues/511) - `)` advanced processing.
+
 [3.1.8 / 2015-03-17](https://github.com/jakubpawlowicz/clean-css/compare/v3.1.7...v3.1.8)
 ==================
 

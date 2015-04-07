@@ -35,7 +35,7 @@
     "test": "vows"
   },
   "dependencies": {
-    "commander": "2.6.x",
+    "commander": "2.7.x",
     "source-map": ">=0.1.43 <0.2"
   },
   "devDependencies": {

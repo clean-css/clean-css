@@ -17,8 +17,8 @@
 [3.1.8 / 2015-03-17](https://github.com/jakubpawlowicz/clean-css/compare/v3.1.7...v3.1.8)
 ==================
 
-* Fixes issue [#499](https://github.com/jakubpawlowicz/clean-css/issues/499) - too aggressive `-` removal.
 * Fixes issue [#498](https://github.com/jakubpawlowicz/clean-css/issues/498) - reordering and flexbox.
+* Fixes issue [#499](https://github.com/jakubpawlowicz/clean-css/issues/499) - too aggressive `-` removal.
 
 [3.1.7 / 2015-03-16](https://github.com/jakubpawlowicz/clean-css/compare/v3.1.6...v3.1.7)
 ==================

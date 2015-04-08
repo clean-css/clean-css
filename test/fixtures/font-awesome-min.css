@@ -54,19 +54,25 @@ ul.icons li [class*=" icon-"],ul.icons li [class^=icon-]{width:.75em}
 .btn.btn-large [class*=" icon-"].pull-right.icon-2x,.btn.btn-large [class^=icon-].pull-right.icon-2x{margin-left:.2em}
 .icon-spin{-moz-animation:spin 2s infinite linear;-o-animation:spin 2s infinite linear;-webkit-animation:spin 2s infinite linear;animation:spin 2s infinite linear}
 @-moz-keyframes spin{0%{-moz-transform:rotate(0)}
-100%{-moz-transform:rotate(359deg)}}
+100%{-moz-transform:rotate(359deg)}
+}
 @-webkit-keyframes spin{0%{-webkit-transform:rotate(0)}
-100%{-webkit-transform:rotate(359deg)}}
+100%{-webkit-transform:rotate(359deg)}
+}
 @-o-keyframes spin{0%{-o-transform:rotate(0)}
-100%{-o-transform:rotate(359deg)}}
+100%{-o-transform:rotate(359deg)}
+}
 @-ms-keyframes spin{0%{-ms-transform:rotate(0)}
-100%{-ms-transform:rotate(359deg)}}
+100%{-ms-transform:rotate(359deg)}
+}
 @keyframes spin{0%{transform:rotate(0)}
-100%{transform:rotate(359deg)}}
+100%{transform:rotate(359deg)}
+}
 @-moz-document url-prefix(){.icon-spin{height:.9em}
 .btn .icon-spin{height:auto}
 .icon-spin.icon-large{height:1.25em}
-.btn .icon-spin.icon-large{height:.75em}}
+.btn .icon-spin.icon-large{height:.75em}
+}
 .icon-glass:before{content:"\f000"}
 .icon-music:before{content:"\f001"}
 .icon-search:before{content:"\f002"}

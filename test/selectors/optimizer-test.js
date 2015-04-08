@@ -1,12 +1,14 @@
 var vows = require('vows');
 var assert = require('assert');
 var SelectorsOptimizer = require('../../lib/selectors/optimizer');
-var Stringifier = require('../../lib/selectors/stringifier');
+var stringify = require('../../lib/stringifier/simple');
 var Compatibility = require('../../lib/utils/compatibility');
 var SourceTracker = require('../../lib/utils/source-tracker');
 
 function optimizerContext(group, specs, options) {
-  var stringifier = new Stringifier(false, function (data) { return data; });
+  function restoreCallback(data) {
+    return data;
+  }
 
   var context = {};
   options = options || {};
@@ -20,7 +22,7 @@ function optimizerContext(group, specs, options) {
 
   function optimized(target) {
     return function (source) {
-      assert.equal(new SelectorsOptimizer(options, outerContext).process(source, stringifier).styles, target);
+      assert.equal(new SelectorsOptimizer(options, outerContext).process(source, stringify, restoreCallback).styles, target);
     };
   }
 

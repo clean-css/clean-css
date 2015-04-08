@@ -124,16 +124,16 @@ CleanCSS constructor accepts a hash as a parameter, i.e.,
 * `mediaMerging` - whether to merge `@media` blocks (default is true)
 * `processImport` - whether to process `@import` rules
 * `rebase` - set to false to skip URL rebasing
-* `relativeTo` - path to __resolve__ relative `@import` rules and URLs
+* `relativeTo` - path to **resolve** relative `@import` rules and URLs
 * `restructuring` - set to false to disable restructuring in advanced optimizations
-* `root` - path to __resolve__ absolute `@import` rules and __rebase__ relative URLs
+* `root` - path to **resolve** absolute `@import` rules and **rebase** relative URLs
 * `roundingPrecision` - rounding precision; defaults to `2`; `-1` disables rounding
 * `shorthandCompacting` - set to false to skip shorthand compacting (default is true unless sourceMap is set when it's false)
 * `sourceMap` - exposes source map under `sourceMap` property, e.g. `new CleanCSS().minify(source).sourceMap` (default is false)
   If input styles are a product of CSS preprocessor (LESS, SASS) an input source map can be passed as a string.
 * `sourceMapInlineSources` - set to true to inline sources inside a source map (default is false)
   It is also required to process inlined sources from input source maps.
-* `target` - path to a folder or an output file to which __rebase__ all URLs
+* `target` - path to a folder or an output file to which **rebase** all URLs
 
 #### How to make sure remote `@import`s are processed correctly?
 
@@ -152,19 +152,20 @@ If you don't provide a callback, then remote `@import`s will be left intact.
 
 ### How to use clean-css with build tools?
 
-* [Broccoli](https://github.com/broccolijs/broccoli#broccoli) : [broccoli-clean-css](https://github.com/shinnn/broccoli-clean-css)
-* [Brunch](http://brunch.io/) : [clean-css-brunch](https://github.com/brunch/clean-css-brunch)
-* [Grunt](http://gruntjs.com) : [grunt-contrib-cssmin](https://github.com/gruntjs/grunt-contrib-cssmin)
-* [Gulp](http://gulpjs.com/) : [gulp-minify-css](https://github.com/jonathanepollack/gulp-minify-css)
-* [Gulp](http://gulpjs.com/) : [using vinyl-map as a wrapper - courtesy of @sogko](https://github.com/jakubpawlowicz/clean-css/issues/342)
-* [component-builder2](https://github.com/component/builder2.js) : [builder-clean-css](https://github.com/poying/builder-clean-css)
-* [Metalsmith](http://metalsmith.io) : [metalsmith-clean-css](https://github.com/aymericbeaumet/metalsmith-clean-css)
+* [Broccoli](https://github.com/broccolijs/broccoli#broccoli): [broccoli-clean-css](https://github.com/shinnn/broccoli-clean-css)
+* [Brunch](http://brunch.io/): [clean-css-brunch](https://github.com/brunch/clean-css-brunch)
+* [Grunt](http://gruntjs.com): [grunt-contrib-cssmin](https://github.com/gruntjs/grunt-contrib-cssmin)
+* [Gulp](http://gulpjs.com/): [gulp-minify-css](https://github.com/jonathanepollack/gulp-minify-css)
+* [Gulp](http://gulpjs.com/): [using vinyl-map as a wrapper - courtesy of @sogko](https://github.com/jakubpawlowicz/clean-css/issues/342)
+* [component-builder2](https://github.com/component/builder2.js): [builder-clean-css](https://github.com/poying/builder-clean-css)
+* [Metalsmith](http://metalsmith.io): [metalsmith-clean-css](https://github.com/aymericbeaumet/metalsmith-clean-css)
 
 ### What are the clean-css' dev commands?
 
 First clone the source, then run:
 
 * `npm run bench` for clean-css benchmarks (see [test/bench.js](https://github.com/jakubpawlowicz/clean-css/blob/master/test/bench.js) for details)
+* `npm run browserify` to create the browser-ready clean-css version
 * `npm run check` to check JS sources with [JSHint](https://github.com/jshint/jshint/)
 * `npm test` for the test suite
 
@@ -232,27 +233,29 @@ Name of the output file is required, so a map file, named by adding `.map` suffi
 
 To generate a source map, use `sourceMap: true` option, e.g.:
 
-```javascript
-new CleanCSS({ sourceMap: true, target: pathToOutputDirectory }).minify(source, function (minified) {
-  // access minified.sourceMap for SourceMapGenerator object
-  // see https://github.com/mozilla/source-map/#sourcemapgenerator for more details
-  // see https://github.com/jakubpawlowicz/clean-css/blob/master/bin/cleancss#L114 on how it's used in clean-css' CLI
+```js
+new CleanCSS({ sourceMap: true, target: pathToOutputDirectory })
+  .minify(source, function (minified) {
+    // access minified.sourceMap for SourceMapGenerator object
+    // see https://github.com/mozilla/source-map/#sourcemapgenerator for more details
+    // see https://github.com/jakubpawlowicz/clean-css/blob/master/bin/cleancss#L114 on how it's used in clean-css' CLI
 });
 ```
 
 Using API you can also pass an input source map directly:
 
-```javascript
-new CleanCSS({ sourceMap: inputSourceMapAsString, target: pathToOutputDirectory }).minify(source, function (minified) {
-  // access minified.sourceMap to access SourceMapGenerator object
-  // see https://github.com/mozilla/source-map/#sourcemapgenerator for more details
-  // see https://github.com/jakubpawlowicz/clean-css/blob/master/bin/cleancss#L114 on how it's used in clean-css' CLI
+```js
+new CleanCSS({ sourceMap: inputSourceMapAsString, target: pathToOutputDirectory })
+  .minify(source, function (minified) {
+    // access minified.sourceMap to access SourceMapGenerator object
+    // see https://github.com/mozilla/source-map/#sourcemapgenerator for more details
+    // see https://github.com/jakubpawlowicz/clean-css/blob/master/bin/cleancss#L114 on how it's used in clean-css' CLI
 });
 ```
 
 Or even multiple input source maps at once (available since version 3.1):
 
-```javascript
+```js
 new CleanCSS({ sourceMap: true, target: pathToOutputDirectory }).minify({
   'path/to/source/1': {
     styles: '...styles...',
@@ -275,13 +278,13 @@ new CleanCSS({ sourceMap: true, target: pathToOutputDirectory }).minify({
 
 #### Passing an array
 
-```javascript
+```js
 new CleanCSS().minify(['path/to/file/one', 'path/to/file/two']);
 ```
 
 #### Passing a hash
 
-```javascript
+```js
 new CleanCSS().minify({
   'path/to/file/one': {
     styles: 'contents of file one'

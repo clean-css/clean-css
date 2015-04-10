@@ -175,6 +175,50 @@ vows.describe(optimize)
     }
   })
   .addBatch({
+    'border': {
+      'topic': 'a{border:1px solid red;border-style:dotted}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['border', false , false], ['1px'], ['dotted'], ['red']]
+        ]);
+      }
+    },
+    'border - multivalue righthand': {
+      'topic': 'a{border:1px solid red;border-style:dotted solid}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['border', false , false], ['1px'], ['solid'], ['red']],
+          [['border-style', false , false], ['dotted'], ['solid']]
+        ]);
+      }
+    },
+    'border - important righthand': {
+      'topic': 'a{border:1px solid red;border-style:dotted!important}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['border', false , false], ['1px'], ['solid'], ['red']],
+          [['border-style', true , false], ['dotted']]
+        ]);
+      }
+    },
+    'border - important lefthand': {
+      'topic': 'a{border:1px solid red!important;border-style:dotted}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['border', true , false], ['1px'], ['solid'], ['red']]
+        ]);
+      }
+    },
+    'border - both important': {
+      'topic': 'a{border:1px solid red!important;border-style:dotted!important}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['border', true , false], ['1px'], ['dotted'], ['red']]
+        ]);
+      }
+    }
+  })
+  .addBatch({
     'shorthand then longhand multiplex': {
       'topic': 'p{background:top left;background-repeat:no-repeat,no-repeat}',
       'into': function (topic) {

@@ -18,7 +18,7 @@ function _optimize(source) {
   addOptimizationMetadata(tokens);
 
   var compatibility = new Compatibility().toOptions();
-  optimize(tokens[0][1], tokens[0][2], false, { compatibility: compatibility, aggressiveMerging: true, shorthandCompacting: true });
+  optimize(tokens[0][1], tokens[0][2], false, true, { compatibility: compatibility, aggressiveMerging: true, shorthandCompacting: true });
 
   return tokens[0][2];
 }

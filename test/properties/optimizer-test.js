@@ -18,7 +18,7 @@ function _optimize(source, mergeAdjacent, aggressiveMerging) {
   }).toTokens(source);
 
   addOptimizationMetadata(tokens);
-  optimize(tokens[0][1], tokens[0][2], mergeAdjacent, { compatibility: compatibility, aggressiveMerging: aggressiveMerging });
+  optimize(tokens[0][1], tokens[0][2], mergeAdjacent, true, { compatibility: compatibility, aggressiveMerging: aggressiveMerging });
 
   return tokens[0][2];
 }

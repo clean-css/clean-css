@@ -22,7 +22,7 @@ function _optimize(source, compatibility, aggressiveMerging) {
     shorthandCompacting: true
   };
   addOptimizationMetadata(tokens);
-  optimize(tokens[0][1], tokens[0][2], false, options);
+  optimize(tokens[0][1], tokens[0][2], false, true, options);
 
   return tokens[0][2];
 }

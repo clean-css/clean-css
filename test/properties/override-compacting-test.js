@@ -219,6 +219,65 @@ vows.describe(optimize)
     }
   })
   .addBatch({
+    'border radius': {
+      'topic': 'a{-moz-border-radius:2px;-moz-border-top-left-radius:3px}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['-moz-border-radius', false , false], ['3px'], ['2px'], ['2px']]
+        ]);
+      }
+    },
+    'border radius prefixed and unprefixed': {
+      'topic': 'a{-moz-border-radius:2px;border-top-left-radius:3px}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['-moz-border-radius', false , false], ['2px']],
+          [['border-top-left-radius', false , false], ['3px']]
+        ]);
+      }
+    },
+    'border width': {
+      'topic': 'a{border-width:2px 3px 2px 1px;border-left-width:3px}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['border-width', false , false], ['2px'], ['3px']]
+        ]);
+      }
+    },
+    'list style': {
+      'topic': 'a{list-style:circle inside;list-style-image:__ESCAPED_URL_CLEAN_CSS0__}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['list-style', false , false], ['circle'], ['inside'], ['__ESCAPED_URL_CLEAN_CSS0__']]
+        ]);
+      }
+    },
+    'margin': {
+      'topic': 'a{margin:10px 20px;margin-left:25px}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['margin', false , false], ['10px'], ['20px'], ['10px'], ['25px']]
+        ]);
+      }
+    },
+    'outline': {
+      'topic': 'a{outline:red solid 1px;outline-width:3px}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['outline', false , false], ['red'], ['solid'], ['3px']]
+        ]);
+      }
+    },
+    'padding': {
+      'topic': 'a{padding:10px;padding-right:20px;padding-left:20px}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['padding', false , false], ['10px'], ['20px']]
+        ]);
+      }
+    }
+  })
+  .addBatch({
     'shorthand then longhand multiplex': {
       'topic': 'p{background:top left;background-repeat:no-repeat,no-repeat}',
       'into': function (topic) {

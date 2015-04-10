@@ -382,7 +382,7 @@ vows.describe(optimize)
       'topic': 'p{background:red;background-repeat:__ESCAPED_URL_CLEAN_CSS0__,__ESCAPED_URL_CLEAN_CSS1__}',
       'into': function (topic) {
         assert.deepEqual(_optimize(topic), [
-          [['background', false , false], ['__ESCAPED_URL_CLEAN_CSS0__'], ['red'], [','], ['__ESCAPED_URL_CLEAN_CSS1__'], ['red']],
+          [['background', false , false], ['__ESCAPED_URL_CLEAN_CSS0__'], [','], ['__ESCAPED_URL_CLEAN_CSS1__'], ['red']],
         ]);
       }
     }

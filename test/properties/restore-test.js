@@ -102,6 +102,14 @@ vows.describe(restore)
           assert.deepEqual(restoredValue, [['0']]);
         }
       },
+      'background color in multiplex': {
+        'topic': function () {
+          return _restore(_breakUp([['background'], ['__ESCAPED_URL_CLEAN_CSS0__'], ['blue'], [','], ['__ESCAPED_URL_CLEAN_CSS1__'], ['red']]));
+        },
+        'gives right value back': function (restoredValue) {
+          assert.deepEqual(restoredValue, [['__ESCAPED_URL_CLEAN_CSS0__'], [','], ['__ESCAPED_URL_CLEAN_CSS1__'], ['red']]);
+        }
+      }
     },
     'border radius': {
       '4 values': {
@@ -209,7 +217,7 @@ vows.describe(restore)
           return _restore(_breakUp([['background'], ['no-repeat'], ['padding-box'], [','], ['repeat'], ['10px'], ['10px'], ['/'], ['auto'], ['red'], [','], ['top'], ['left'], ['/'], ['30%']]));
         },
         'gives right value back': function (restoredValue) {
-          assert.deepEqual(restoredValue, [['no-repeat'], ['padding-box'], [','], ['10px'], ['10px'], ['red'], [','], ['top'], ['left'], ['/'], ['30%']]);
+          assert.deepEqual(restoredValue, [['no-repeat'], ['padding-box'], [','], ['10px'], ['10px'], [','], ['top'], ['left'], ['/'], ['30%']]);
         }
       }
     },

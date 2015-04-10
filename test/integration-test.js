@@ -2083,11 +2083,6 @@ title']{display:block}",
       '.one{background:50% no-repeat}.one{background-image:url(/img.png)}',
       '.one{background:url(/img.png)50% no-repeat}'
     ],
-    // TODO: restore multiplex merging
-    // 'merging color with backgrounds': [
-    //   'p{background:red;background-image:url(1.png),url(2.png)}',
-    //   'p{background:url(1.png),url(2.png)red}'
-    // ],
     'unknown @ rule': '@unknown "test";h1{color:red}',
     'property without a value': [
       'a{color:}',

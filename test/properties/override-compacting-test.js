@@ -8,7 +8,7 @@ var SourceTracker = require('../../lib/utils/source-tracker');
 var Compatibility = require('../../lib/utils/compatibility');
 var addOptimizationMetadata = require('../../lib/selectors/optimization-metadata');
 
-function _optimize(source, compatibility) {
+function _optimize(source, compatibility, aggressiveMerging) {
   var tokens = new Tokenizer({
     options: {},
     sourceTracker: new SourceTracker(),
@@ -16,8 +16,13 @@ function _optimize(source, compatibility) {
   }).toTokens(source);
   compatibility = new Compatibility(compatibility).toOptions();
 
+  var options = {
+    aggressiveMerging: undefined === aggressiveMerging ? true : aggressiveMerging,
+    compatibility: compatibility,
+    shorthandCompacting: true
+  };
   addOptimizationMetadata(tokens);
-  optimize(tokens[0][1], tokens[0][2], false, { compatibility: compatibility, shorthandCompacting: true });
+  optimize(tokens[0][1], tokens[0][2], false, options);
 
   return tokens[0][2];
 }
@@ -38,23 +43,6 @@ vows.describe(optimize)
         assert.deepEqual(_optimize(topic), [
           [['background-image', true , false], ['none']],
           [['background', false , false], ['__ESCAPED_URL_CLEAN_CSS0__']]
-        ]);
-      }
-    },
-    'longhand then shorthand - multiplex then simple': {
-      'topic': 'p{background-repeat:no-repeat,no-repeat;background:__ESCAPED_URL_CLEAN_CSS0__}',
-      'into': function (topic) {
-        assert.deepEqual(_optimize(topic), [
-          [['background-repeat', false , false], ['no-repeat'], [','], ['no-repeat']],
-          [['background', false , false], ['__ESCAPED_URL_CLEAN_CSS0__']]
-        ]);
-      }
-    },
-    'longhand then shorthand - simple then multiplex': {
-      'topic': 'p{background-repeat:no-repeat;background:__ESCAPED_URL_CLEAN_CSS0__,__ESCAPED_URL_CLEAN_CSS1__}',
-      'into': function (topic) {
-        assert.deepEqual(_optimize(topic), [
-          [['background', false , false], ['__ESCAPED_URL_CLEAN_CSS0__'], [','], ['__ESCAPED_URL_CLEAN_CSS1__']]
         ]);
       }
     },
@@ -80,23 +68,6 @@ vows.describe(optimize)
         assert.deepEqual(_optimize(topic), [
           [['background', false , false], ['__ESCAPED_URL_CLEAN_CSS0__']],
           [['background-repeat', true , false], ['no-repeat']]
-        ]);
-      }
-    },
-    'shorthand then longhand - multiple values': {
-      'topic': 'p{background:__ESCAPED_URL_CLEAN_CSS0__,__ESCAPED_URL_CLEAN_CSS1__;background-repeat:no-repeat}',
-      'into': function (topic) {
-        assert.deepEqual(_optimize(topic), [
-          [['background', false , false], ['__ESCAPED_URL_CLEAN_CSS0__'], ['no-repeat'], [','], ['__ESCAPED_URL_CLEAN_CSS1__'], ['no-repeat']]
-        ]);
-      }
-    },
-    'shorthand then longhand - single value then multi value': {
-      'topic': 'p{background:__ESCAPED_URL_CLEAN_CSS0__;background-repeat:no-repeat,no-repeat}',
-      'into': function (topic) {
-        assert.deepEqual(_optimize(topic), [
-          [['background', false , false], ['__ESCAPED_URL_CLEAN_CSS0__']],
-          [['background-repeat', false , false], ['no-repeat'], [','], ['no-repeat']]
         ]);
       }
     },
@@ -192,16 +163,125 @@ vows.describe(optimize)
           [['background', true , false], ['__ESCAPED_URL_CLEAN_CSS1__'], ['red']]
         ]);
       }
+    },
+    'with aggressive off': {
+      'topic': 'a{background:white;color:red;background:red}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic, null, false), [
+          [['background', false , false], ['red']],
+          [['color', false , false], ['red']]
+        ]);
+      }
     }
-
-      // 'aggressive off - overriddable': {
-      //   'topic': 'a{background:white;color:red;background:red}',
-      //   'into': function (topic) {
-      //     assert.deepEqual(optimize(topic, false, false), [
-      //       [['color', false , false], ['red']],
-      //       [['background', false , false], ['red']]
-      //     ]);
-      //   }
-      // }
+  })
+  .addBatch({
+    'shorthand then longhand multiplex': {
+      'topic': 'p{background:top left;background-repeat:no-repeat,no-repeat}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['background', false , false], ['top'], ['left'], ['no-repeat'], [','], ['top'], ['left'], ['no-repeat']]
+        ]);
+      }
+    },
+    'shorthand multiplex then longhand': {
+      'topic': 'p{background:__ESCAPED_URL_CLEAN_CSS0__,__ESCAPED_URL_CLEAN_CSS1__;background-repeat:no-repeat}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['background', false , false], ['__ESCAPED_URL_CLEAN_CSS0__'], ['no-repeat'], [','], ['__ESCAPED_URL_CLEAN_CSS1__'], ['no-repeat']]
+        ]);
+      }
+    },
+    'longhand then shorthand multiplex': {
+      'topic': 'p{background-repeat:no-repeat;background:__ESCAPED_URL_CLEAN_CSS0__,__ESCAPED_URL_CLEAN_CSS1__}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['background', false , false], ['__ESCAPED_URL_CLEAN_CSS0__'], [','], ['__ESCAPED_URL_CLEAN_CSS1__']]
+        ]);
+      }
+    },
+    'longhand multiplex then shorthand': {
+      'topic': 'p{background-repeat:no-repeat,no-repeat;background:__ESCAPED_URL_CLEAN_CSS0__}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['background', false , false], ['__ESCAPED_URL_CLEAN_CSS0__']]
+        ]);
+      }
+    },
+    'multiplex longhand into multiplex shorthand123': {
+      'topic': 'p{background:no-repeat,no-repeat;background-position:top left,bottom left}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['background', false , false], ['top'], ['left'], ['no-repeat'], [','], ['bottom'], ['left'], ['no-repeat']]
+        ]);
+      }
+    },
+    'not too long into multiplex #1': {
+      'topic': 'p{background:top left;background-repeat:no-repeat,no-repeat}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['background', false , false], ['top'], ['left'], ['no-repeat'], [','], ['top'], ['left'], ['no-repeat']]
+        ]);
+      }
+    },
+    'not too long into multiplex #2': {
+      'topic': 'p{background:repeat content-box;background-repeat:no-repeat,no-repeat}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['background', false , false], ['no-repeat'], ['content-box'], [','], ['no-repeat'], ['content-box']]
+        ]);
+      }
+    },
+    'not too long into multiplex - twice': {
+      'topic': 'p{background:top left;background-repeat:no-repeat,no-repeat;background-image:__ESCAPED_URL_CLEAN_CSS0__,__ESCAPED_URL_CLEAN_CSS1__}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['background', false , false], ['__ESCAPED_URL_CLEAN_CSS0__'], ['top'], ['left'], ['no-repeat'], [','], ['__ESCAPED_URL_CLEAN_CSS1__'], ['top'], ['left'], ['no-repeat']]
+        ]);
+      }
+    },
+    'not too long into multiplex - over a property': {
+      'topic': 'p{background:top left;background-repeat:no-repeat,no-repeat;background-image:__ESCAPED_URL_CLEAN_CSS0__}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['background', false , false], ['__ESCAPED_URL_CLEAN_CSS0__'], ['top'], ['left']],
+          [['background-repeat', false , false], ['no-repeat'], [','], ['no-repeat']]
+        ]);
+      }
+    },
+    'too long into multiplex #1': {
+      'topic': 'p{background:__ESCAPED_URL_CLEAN_CSS0__;background-repeat:no-repeat,no-repeat}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['background', false , false], ['__ESCAPED_URL_CLEAN_CSS0__']],
+          [['background-repeat', false , false], ['no-repeat'], [','], ['no-repeat']]
+        ]);
+      }
+    },
+    'too long into multiplex #2': {
+      'topic': 'p{background:content-box padding-box;background-repeat:no-repeat,no-repeat}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['background', false , false], ['content-box'], ['padding-box']],
+          [['background-repeat', false , false], ['no-repeat'], [','], ['no-repeat']]
+        ]);
+      }
+    },
+    'too long into multiplex #3': {
+      'topic': 'p{background:top left / 20px 20px;background-repeat:no-repeat,no-repeat}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['background', false , false], ['top'], ['left'], ['/'], ['20px'], ['20px']],
+          [['background-repeat', false , false], ['no-repeat'], [','], ['no-repeat']]
+        ]);
+      }
+    },
+    'background color into background': {
+      'topic': 'p{background:red;background-repeat:__ESCAPED_URL_CLEAN_CSS0__,__ESCAPED_URL_CLEAN_CSS1__}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['background', false , false], ['__ESCAPED_URL_CLEAN_CSS0__'], ['red'], [','], ['__ESCAPED_URL_CLEAN_CSS1__'], ['red']],
+        ]);
+      }
+    }
   })
   .export(module);

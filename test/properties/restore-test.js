@@ -3,13 +3,16 @@ var assert = require('assert');
 
 var wrapForOptimizing = require('../../lib/properties/wrap-for-optimizing').single;
 var compactable = require('../../lib/properties/compactable');
+var Compatibility = require('../../lib/utils/compatibility');
+var Validator = require('../../lib/properties/validator');
 
 var restore = require('../../lib/properties/restore');
 
 function _breakUp(property) {
+  var validator = new Validator(new Compatibility().toOptions());
   var descriptor = compactable[property[0][0]];
   var _property = wrapForOptimizing(property);
-  _property.components = descriptor.breakUp(_property, compactable);
+  _property.components = descriptor.breakUp(_property, compactable, validator);
   _property.multiplex = Array.isArray(_property.components[0].value[0][0]);
   return _property;
 }

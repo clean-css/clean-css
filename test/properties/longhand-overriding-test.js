@@ -6,6 +6,7 @@ var optimize = require('../../lib/properties/optimizer');
 var Tokenizer = require('../../lib/selectors/tokenizer');
 var SourceTracker = require('../../lib/utils/source-tracker');
 var Compatibility = require('../../lib/utils/compatibility');
+var Validator = require('../../lib/properties/validator');
 var addOptimizationMetadata = require('../../lib/selectors/optimization-metadata');
 
 function _optimize(source) {
@@ -18,7 +19,8 @@ function _optimize(source) {
   addOptimizationMetadata(tokens);
 
   var compatibility = new Compatibility().toOptions();
-  optimize(tokens[0][1], tokens[0][2], false, true, { compatibility: compatibility, aggressiveMerging: true, shorthandCompacting: true });
+  var validator = new Validator(compatibility);
+  optimize(tokens[0][1], tokens[0][2], false, true, { compatibility: compatibility, aggressiveMerging: true, shorthandCompacting: true }, validator);
 
   return tokens[0][2];
 }

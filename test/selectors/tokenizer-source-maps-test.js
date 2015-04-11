@@ -396,7 +396,7 @@ vows.describe('source-maps/analyzer')
           ]
         ]
       ],
-      'in properties123': [
+      'in properties': [
         'div{__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0(2,5)__background:__ESCAPED_URL_CLEAN_CSS0(0,20)__;color:blue}a{font-family:__ESCAPED_FREE_TEXT_CLEAN_CSS0(1,3)__;color:red}',
         [
           [

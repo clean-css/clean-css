@@ -1859,7 +1859,7 @@ title']{display:block}",
     ]
   }, { compatibility: { selectors: { adjacentSpace: true } } }),
   'units - IE8 compatibility': cssContext({
-    'rems': 'div{padding-top:16px;padding-top:1rem}'
+    'rems': 'div{padding-top:16px;color:red;padding-top:1rem}'
   }, { compatibility: 'ie8' }),
   'redefined more granular properties with property merging': cssContext({
     'should merge background with background-attachment': [

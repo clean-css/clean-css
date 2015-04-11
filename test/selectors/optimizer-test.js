@@ -3,6 +3,7 @@ var assert = require('assert');
 var SelectorsOptimizer = require('../../lib/selectors/optimizer');
 var stringify = require('../../lib/stringifier/simple');
 var Compatibility = require('../../lib/utils/compatibility');
+var Validator = require('../../lib/properties/validator');
 var SourceTracker = require('../../lib/utils/source-tracker');
 
 function optimizerContext(group, specs, options) {
@@ -17,7 +18,8 @@ function optimizerContext(group, specs, options) {
   options.compatibility = new Compatibility(options.compatibility).toOptions();
   var outerContext = {
     options: {},
-    sourceTracker: new SourceTracker()
+    sourceTracker: new SourceTracker(),
+    validator: new Validator(options.compatibility)
   };
 
   function optimized(target) {

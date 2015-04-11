@@ -6,6 +6,7 @@ var optimize = require('../../lib/properties/optimizer');
 var Tokenizer = require('../../lib/selectors/tokenizer');
 var SourceTracker = require('../../lib/utils/source-tracker');
 var Compatibility = require('../../lib/utils/compatibility');
+var Validator = require('../../lib/properties/validator');
 var addOptimizationMetadata = require('../../lib/selectors/optimization-metadata');
 
 function _optimize(source, compatibility, aggressiveMerging) {
@@ -16,13 +17,14 @@ function _optimize(source, compatibility, aggressiveMerging) {
   }).toTokens(source);
   compatibility = new Compatibility(compatibility).toOptions();
 
+  var validator = new Validator(compatibility);
   var options = {
     aggressiveMerging: undefined === aggressiveMerging ? true : aggressiveMerging,
     compatibility: compatibility,
     shorthandCompacting: true
   };
   addOptimizationMetadata(tokens);
-  optimize(tokens[0][1], tokens[0][2], false, true, options);
+  optimize(tokens[0][1], tokens[0][2], false, true, options, validator);
 
   return tokens[0][2];
 }
@@ -310,7 +312,7 @@ vows.describe(optimize)
         ]);
       }
     },
-    'multiplex longhand into multiplex shorthand123': {
+    'multiplex longhand into multiplex shorthand': {
       'topic': 'p{background:no-repeat,no-repeat;background-position:top left,bottom left}',
       'into': function (topic) {
         assert.deepEqual(_optimize(topic), [

@@ -3,12 +3,15 @@ var assert = require('assert');
 
 var wrapForOptimizing = require('../../lib/properties/wrap-for-optimizing').all;
 var populateComponents = require('../../lib/properties/populate-components');
+var Validator = require('../../lib/properties/validator');
+var Compatibility = require('../../lib/utils/compatibility');
 
 var breakUp = require('../../lib/properties/break-up');
 
 function _breakUp(properties) {
+  var validator = new Validator(new Compatibility().toOptions());
   var wrapped = wrapForOptimizing(properties);
-  populateComponents(wrapped);
+  populateComponents(wrapped, validator);
 
   return wrapped[0].components;
 }

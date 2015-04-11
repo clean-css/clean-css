@@ -13,7 +13,7 @@ function _breakUp(property) {
   var descriptor = compactable[property[0][0]];
   var _property = wrapForOptimizing(property);
   _property.components = descriptor.breakUp(_property, compactable, validator);
-  _property.multiplex = Array.isArray(_property.components[0].value[0][0]);
+  _property.multiplex = _property.components[0].multiplex;
   return _property;
 }
 

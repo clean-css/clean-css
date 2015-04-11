@@ -316,19 +316,19 @@ vows.describe(breakUp)
         },
         'has border-top-left-radius': function (components) {
           assert.equal(components[0].name, 'border-top-left-radius');
-          assert.deepEqual(components[0].value, [[['0px']], [['1px']]]);
+          assert.deepEqual(components[0].value, [['0px'], ['/'], ['1px']]);
         },
         'has border-top-right-radius': function (components) {
           assert.equal(components[1].name, 'border-top-right-radius');
-          assert.deepEqual(components[1].value, [[['1px']], [['2px']]]);
+          assert.deepEqual(components[1].value, [['1px'], ['/'], ['2px']]);
         },
         'has border-bottom-right-radius': function (components) {
           assert.equal(components[2].name, 'border-bottom-right-radius');
-          assert.deepEqual(components[2].value, [[['2px']], [['3px']]]);
+          assert.deepEqual(components[2].value, [['2px'], ['/'], ['3px']]);
         },
         'has border-bottom-left': function (components) {
           assert.equal(components[3].name, 'border-bottom-left-radius');
-          assert.deepEqual(components[3].value, [[['3px']], [['4px']]]);
+          assert.deepEqual(components[3].value, [['3px'], ['/'], ['4px']]);
         }
       },
       'vendor prefix asymetrical horizontal vertical split': {
@@ -340,19 +340,19 @@ vows.describe(breakUp)
         },
         'has border-top-left-radius': function (components) {
           assert.equal(components[0].name, '-webkit-border-top-left-radius');
-          assert.deepEqual(components[0].value, [[['0px']], [['1px']]]);
+          assert.deepEqual(components[0].value, [['0px'], ['/'], ['1px']]);
         },
         'has border-top-right-radius': function (components) {
           assert.equal(components[1].name, '-webkit-border-top-right-radius');
-          assert.deepEqual(components[1].value, [[['1px']], [['4px']]]);
+          assert.deepEqual(components[1].value, [['1px'], ['/'], ['4px']]);
         },
         'has border-bottom-right-radius': function (components) {
           assert.equal(components[2].name, '-webkit-border-bottom-right-radius');
-          assert.deepEqual(components[2].value, [[['2px']], [['1px']]]);
+          assert.deepEqual(components[2].value, [['2px'], ['/'], ['1px']]);
         },
         'has border-bottom-left': function (components) {
           assert.equal(components[3].name, '-webkit-border-bottom-left-radius');
-          assert.deepEqual(components[3].value, [[['1px']], [['4px']]]);
+          assert.deepEqual(components[3].value, [['1px'], ['/'], ['4px']]);
         }
       }
     },
@@ -534,43 +534,54 @@ vows.describe(breakUp)
         },
         'has background-image': function (components) {
           assert.deepEqual(components[0].name, 'background-image');
-          assert.deepEqual(components[0].value, [[['__ESCAPED_URL_CLEAN_CSS0__']], [['url(image2.png)']]]);
+          assert.deepEqual(components[0].value, [['__ESCAPED_URL_CLEAN_CSS0__'], [','], ['url(image2.png)']]);
           assert.isTrue(components[0].multiplex);
         },
         'has background-position': function (components) {
           assert.deepEqual(components[1].name, 'background-position');
-          assert.deepEqual(components[1].value, [[['0'], ['0']], [['2px'], ['3px']]]);
+          assert.deepEqual(components[1].value, [['0'], ['0'], [','], ['2px'], ['3px']]);
           assert.isTrue(components[0].multiplex);
         },
         'has background-size': function (components) {
           assert.deepEqual(components[2].name, 'background-size');
-          assert.deepEqual(components[2].value, [[['auto']], [['50%'], ['60%']]]);
+          assert.deepEqual(components[2].value, [['auto'], [','], ['50%'], ['60%']]);
           assert.isTrue(components[0].multiplex);
         },
         'has background-repeat': function (components) {
           assert.deepEqual(components[3].name, 'background-repeat');
-          assert.deepEqual(components[3].value, [[['repeat']], [['repeat'], ['no-repeat']]]);
+          assert.deepEqual(components[3].value, [['repeat'], [','], ['repeat'], ['no-repeat']]);
           assert.isTrue(components[0].multiplex);
         },
         'has background-attachment': function (components) {
           assert.deepEqual(components[4].name, 'background-attachment');
-          assert.deepEqual(components[4].value, [[['scroll']], [['fixed']]]);
+          assert.deepEqual(components[4].value, [['scroll'], [','], ['fixed']]);
           assert.isTrue(components[0].multiplex);
         },
         'has background-origin': function (components) {
           assert.deepEqual(components[5].name, 'background-origin');
-          assert.deepEqual(components[5].value, [[['padding-box']], [['content-box']]]);
+          assert.deepEqual(components[5].value, [['padding-box'], [','], ['content-box']]);
           assert.isTrue(components[0].multiplex);
         },
         'has background-clip': function (components) {
           assert.deepEqual(components[6].name, 'background-clip');
-          assert.deepEqual(components[6].value, [[['border-box']], [['content-box']]]);
+          assert.deepEqual(components[6].value, [['border-box'], [','], ['content-box']]);
           assert.isTrue(components[0].multiplex);
         },
         'has background-color': function (components) {
           assert.deepEqual(components[7].name, 'background-color');
-          assert.deepEqual(components[7].value, [[['#fff']], [['red']]]);
+          assert.deepEqual(components[7].value, [['#fff'], [','], ['red']]);
           assert.isTrue(components[0].multiplex);
+        }
+      },
+      'background - clip & origin': {
+        'topic': function () {
+          return _breakUp([[['background'], ['__ESCAPED_URL_CLEAN_CSS0__'], ['no-repeat'], ['padding-box'], [','], ['repeat'], ['red']]]);
+        },
+        'has background-origin': function (components) {
+          assert.deepEqual(components[5].value, [['padding-box'], [','], ['padding-box']]);
+        },
+        'has background-clip': function (components) {
+          assert.deepEqual(components[6].value, [['padding-box'], [','], ['border-box']]);
         }
       }
     },

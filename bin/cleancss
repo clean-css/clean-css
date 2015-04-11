@@ -27,6 +27,7 @@ commands
   .option('--skip-media-merging', 'Disable @media merging')
   .option('--skip-restructuring', 'Disable restructuring optimizations')
   .option('--skip-shorthand-compacting', 'Disable shorthand compacting')
+  .option('--skip-urls-processing', 'Skip urls processing (e.g. url unquoting)')
   .option('--rounding-precision [n]', 'Rounds to `N` decimal places. Defaults to 2. -1 disables rounding.', parseInt)
   .option('-c, --compatibility [ie7|ie8]', 'Force compatibility mode (see Readme for advanced examples)')
   .option('--source-map', 'Enables building input\'s source map')
@@ -73,6 +74,7 @@ var options = {
   root: commands.root,
   roundingPrecision: commands.roundingPrecision,
   shorthandCompacting: commands.skipShorthandCompacting ? false : true,
+  urlsProcessing: commands.skipUrlsProcessing ? false : true,
   sourceMap: commands.sourceMap,
   sourceMapInlineSources: commands.sourceMapInlineSources,
   target: commands.output

@@ -253,7 +253,7 @@ vows.describe(optimize)
         ]);
       }
     },
-    'border-color - hex then rgb with multiple values123': {
+    'border-color - hex then rgb with multiple values': {
       'topic': 'a{border-color:red;border-color:#000 rgba(255,0,0,.5)}',
       'into': function (topic) {
         assert.deepEqual(_optimize(topic), [
@@ -404,6 +404,15 @@ vows.describe(optimize)
       'into': function (topic) {
         assert.deepEqual(_optimize(topic), [
           [['background', false , false], ['top'], ['left'], ['no-repeat'], [','], ['bottom'], ['left'], ['no-repeat']]
+        ]);
+      }
+    },
+    'two multiplex shorthands with vendor specific functions123': {
+      'topic': 'p{background:url(1.png),-webkit-linear-gradient();background:url(1.png),linear-gradient()}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['background', false , false], ['url(1.png)'], [','], ['-webkit-linear-gradient()']],
+          [['background', false , false], ['url(1.png)'], [','], ['linear-gradient()']]
         ]);
       }
     },

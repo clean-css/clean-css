@@ -1,0 +1,11 @@
+div {
+  background: url(image.png), -webkit-linear-gradient(160.57deg, #4393b8 0%, #346aa9 100%);
+  background: url(image.png), -moz-linear-gradient(83.68% 67.94% 160.57deg, #4393b8 0%, #346aa9 100%);
+  background: url(image.png), linear-gradient(160.57deg, #4393b8 0%, #346aa9 100%);
+  background-repeat: no-repeat;
+  background-position: 25% 60%;
+  z-index: 1;
+  background-size: 100%;
+  height: auto;
+  min-height: 820px;
+}

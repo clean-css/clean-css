@@ -141,12 +141,20 @@ vows.describe(optimize)
         ]);
       }
     },
-    'shorthand then shorthand - with function and url': {
+    'shorthand then shorthand - with function then url': {
       'topic': 'p{background:linear-gradient();background:__ESCAPED_URL_CLEAN_CSS0__}',
       'into': function (topic) {
         assert.deepEqual(_optimize(topic), [
-          [['background', false , false], ['linear-gradient()']],
           [['background', false , false], ['__ESCAPED_URL_CLEAN_CSS0__']]
+        ]);
+      }
+    },
+    'shorthand then shorthand - with url then function': {
+      'topic': 'p{background:__ESCAPED_URL_CLEAN_CSS0__;background:linear-gradient()}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['background', false , false], ['__ESCAPED_URL_CLEAN_CSS0__']],
+          [['background', false , false], ['linear-gradient()']]
         ]);
       }
     },
@@ -225,6 +233,32 @@ vows.describe(optimize)
         assert.deepEqual(_optimize(topic), [
           [['border', false, false], ['1px'], ['solid'], ['#000']],
           [['border-color', false, false], ['rgba(255,0,0,.5)']]
+        ]);
+      }
+    },
+    'border-color - hex then rgb': {
+      'topic': 'a{border-color:#000;border-color:rgba(255,0,0,.5)}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['border-color', false, false], ['#000']],
+          [['border-color', false, false], ['rgba(255,0,0,.5)']]
+        ]);
+      }
+    },
+    'border-color - rgb then hex': {
+      'topic': 'a{border-color:rgba(255,0,0,.5);border-color:#000}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['border-color', false, false], ['#000']]
+        ]);
+      }
+    },
+    'border-color - hex then rgb with multiple values123': {
+      'topic': 'a{border-color:red;border-color:#000 rgba(255,0,0,.5)}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['border-color', false, false], ['red']],
+          [['border-color', false, false], ['#000'], ['rgba(255,0,0,.5)']]
         ]);
       }
     }

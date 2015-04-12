@@ -2096,7 +2096,7 @@ title']{display:block}",
   'advanced in ie8 mode': cssContext({
     'plain component to complex shorthand': [
       'a{background:linear-gradient(to bottom,#000,#fff 4em) #000;background-color:#fff}',
-      'a{background:linear-gradient(to bottom,#000,#fff 4em)#000;background-color:#fff}'
+      'a{background:linear-gradient(to bottom,#000,#fff 4em) #000;background-color:#fff}'
     ],
     'plain component to shorthand': [
       'a{background:url(bg.png) #000;background-color:#fff}',

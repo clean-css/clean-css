@@ -289,6 +289,50 @@ vows.describe(optimize)
     }
   })
   .addBatch({
+    'colors with same understandability': {
+      'topic': 'a{color:red;color:#fff;color:blue}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['color', false , false], ['blue']]
+        ]);
+      }
+    },
+    'colors with different understandability': {
+      'topic': 'a{color:red;color:#fff;color:blue;color:rgba(1,2,3,.4)}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['color', false , false], ['blue']],
+          [['color', false , false], ['rgba(1,2,3,.4)']]
+        ]);
+      }
+    },
+    'colors with different understandability overridden by high understandability': {
+      'topic': 'a{color:red;color:#fff;color:blue;color:rgba(1,2,3,.4);color:red}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['color', false , false], ['red']]
+        ]);
+      }
+    },
+    'colors with different understandability and importance #1': {
+      'topic': 'a{color:#fff!important;color:rgba(1,2,3,.4)}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['color', true , false], ['#fff']]
+        ]);
+      }
+    },
+    'colors with different understandability and importance #2': {
+      'topic': 'a{color:#fff;color:rgba(1,2,3,.4)!important}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['color', false , false], ['#fff']],
+          [['color', true , false], ['rgba(1,2,3,.4)']]
+        ]);
+      }
+    }
+  })
+  .addBatch({
     'shorthand then longhand multiplex': {
       'topic': 'p{background:top left;background-repeat:no-repeat,no-repeat}',
       'into': function (topic) {

@@ -1807,8 +1807,8 @@ vows.describe('source-map')
         'has right output': function (minified) {
           assert.equal(minified.styles, 'a{margin:10px 5px 4px}');
         },
-        'has 4 mappings': function (minified) {
-          assert.lengthOf(minified.sourceMap._mappings._array, 4);
+        'has 8 mappings': function (minified) {
+          assert.lengthOf(minified.sourceMap._mappings._array, 8);
         },
         'has a `a` mapping': function (minified) {
           var mapping = {
@@ -1821,6 +1821,50 @@ vows.describe('source-map')
           };
           assert.deepEqual(minified.sourceMap._mappings._array[0], mapping);
         },
+        'has a `margin` -> `margin-top mapping`': function (minified) {
+          var mapping = {
+            generatedLine: 1,
+            generatedColumn: 2,
+            originalLine: 1,
+            originalColumn: 2,
+            source: '$stdin',
+            name: null
+          };
+          assert.deepEqual(minified.sourceMap._mappings._array[1], mapping);
+        },
+        'has a `margin` -> `margin-bottom mapping`': function (minified) {
+          var mapping = {
+            generatedLine: 1,
+            generatedColumn: 2,
+            originalLine: 2,
+            originalColumn: 0,
+            source: '$stdin',
+            name: null
+          };
+          assert.deepEqual(minified.sourceMap._mappings._array[2], mapping);
+        },
+        'has a `margin` -> `margin-left mapping`': function (minified) {
+          var mapping = {
+            generatedLine: 1,
+            generatedColumn: 2,
+            originalLine: 3,
+            originalColumn: 0,
+            source: '$stdin',
+            name: null
+          };
+          assert.deepEqual(minified.sourceMap._mappings._array[3], mapping);
+        },
+        'has a `margin` -> `margin-right mapping`': function (minified) {
+          var mapping = {
+            generatedLine: 1,
+            generatedColumn: 2,
+            originalLine: 4,
+            originalColumn: 0,
+            source: '$stdin',
+            name: null
+          };
+          assert.deepEqual(minified.sourceMap._mappings._array[4], mapping);
+        },
         'has a `10px` mapping': function (minified) {
           var mapping = {
             generatedLine: 1,
@@ -1830,7 +1874,7 @@ vows.describe('source-map')
             source: '$stdin',
             name: null
           };
-          assert.deepEqual(minified.sourceMap._mappings._array[1], mapping);
+          assert.deepEqual(minified.sourceMap._mappings._array[5], mapping);
         },
         'has a `5px` mapping': function (minified) {
           var mapping = {
@@ -1841,7 +1885,7 @@ vows.describe('source-map')
             source: '$stdin',
             name: null
           };
-          assert.deepEqual(minified.sourceMap._mappings._array[2], mapping);
+          assert.deepEqual(minified.sourceMap._mappings._array[6], mapping);
         },
         'has a `4px` mapping': function (minified) {
           var mapping = {
@@ -1852,7 +1896,7 @@ vows.describe('source-map')
             source: '$stdin',
             name: null
           };
-          assert.deepEqual(minified.sourceMap._mappings._array[3], mapping);
+          assert.deepEqual(minified.sourceMap._mappings._array[7], mapping);
         }
       }
     }

@@ -59,7 +59,7 @@ vows.describe('source-maps/analyzer')
         [
           [
             'selector',
-            [['a', 1, 0, undefined]],
+            [['a', [[1, 0, undefined]]]],
             []
           ]
         ]
@@ -70,8 +70,8 @@ vows.describe('source-maps/analyzer')
           [
             'selector',
             [
-              ['a', 1, 0, undefined],
-              ['div', 1, 2, undefined]
+              ['a', [[1, 0, undefined]]],
+              ['div', [[1, 2, undefined]]]
             ],
             []
           ]
@@ -82,7 +82,7 @@ vows.describe('source-maps/analyzer')
         [
           [
             'selector',
-            [['a', 1, 1, undefined], ['div', 3, 0, undefined]],
+            [['a', [[1, 1, undefined]]], ['div', [[3, 0, undefined]]]],
             []
           ]
         ]
@@ -92,7 +92,7 @@ vows.describe('source-maps/analyzer')
         [
           [
             'selector',
-            [['a', 1, 0, undefined], ['div', 1, 2, undefined], ['p', 1, 6, undefined]],
+            [['a', [[1, 0, undefined]]], ['div', [[1, 2, undefined]]], ['p', [[1, 6, undefined]]]],
             []
           ]
         ]
@@ -102,7 +102,7 @@ vows.describe('source-maps/analyzer')
         [
           [
             'selector',
-            [['a', 1, 1, undefined], ['div\na', 3, 0, undefined], ['p', 5, 1, undefined]],
+            [['a', [[1, 1, undefined]]], ['div\na', [[3, 0, undefined]]], ['p', [[5, 1, undefined]]]],
             []
           ]
         ]
@@ -112,12 +112,12 @@ vows.describe('source-maps/analyzer')
         [
           [
             'selector',
-            [['a', 1, 0, undefined]],
+            [['a', [[1, 0, undefined]]]],
             []
           ],
           [
             'selector',
-            [['div', 1, 3, undefined]],
+            [['div', [[1, 3, undefined]]]],
             []
           ]
         ]
@@ -127,17 +127,17 @@ vows.describe('source-maps/analyzer')
         [
           [
             'selector',
-            [['a', 1, 0, undefined]],
+            [['a', [[1, 0, undefined]]]],
             []
           ],
           [
             'selector',
-            [['div', 3, 0, undefined]],
+            [['div', [[3, 0, undefined]]]],
             []
           ],
           [
             'selector',
-            [['p', 5, 2, undefined]],
+            [['p', [[5, 2, undefined]]]],
             []
           ]
         ]
@@ -151,8 +151,8 @@ vows.describe('source-maps/analyzer')
         [
           [
             'selector',
-            [['a', 1, 0, undefined]],
-            [[['color', 1, 2, undefined], ['red', 1, 8, undefined]]]
+            [['a', [[1, 0, undefined]]]],
+            [[['color', [[1, 2, undefined]]], ['red', [[1, 8, undefined]]]]]
           ]
         ]
       ],
@@ -161,10 +161,10 @@ vows.describe('source-maps/analyzer')
         [
           [
             'selector',
-            [['a', 1, 0, undefined]],
+            [['a', [[1, 0, undefined]]]],
             [
-              [['color', 1, 2, undefined], ['red', 1, 8, undefined]],
-              [['border', 1, 12, undefined], ['none', 1, 19, undefined]]
+              [['color', [[1, 2, undefined]]], ['red', [[1, 8, undefined]]]],
+              [['border', [[1, 12, undefined]]], ['none', [[1, 19, undefined]]]]
             ]
           ]
         ]
@@ -174,11 +174,11 @@ vows.describe('source-maps/analyzer')
         [
           [
             'selector',
-            [['a', 1, 0, undefined]],
+            [['a', [[1, 0, undefined]]]],
             [
-              [['color', 1, 2, undefined], ['red', 1, 8, undefined]],
-              [['border', 2, 0, undefined], ['none', 3, 0, undefined]],
-              [['display', 5, 2, undefined], ['block', 5, 10, undefined]]
+              [['color', [[1, 2, undefined]]], ['red', [[1, 8, undefined]]]],
+              [['border', [[2, 0, undefined]]], ['none', [[3, 0, undefined]]]],
+              [['display', [[5, 2, undefined]]], ['block', [[5, 10, undefined]]]]
             ]
           ]
         ]
@@ -188,13 +188,13 @@ vows.describe('source-maps/analyzer')
         [
           [
             'selector',
-            [['a', 1, 0, undefined]],
-            [[['color', 1, 2, undefined], ['red', 1, 8, undefined]]]
+            [['a', [[1, 0, undefined]]]],
+            [[['color', [[1, 2, undefined]]], ['red', [[1, 8, undefined]]]]]
           ],
           [
             'selector',
-            [['div', 1, 12, undefined]],
-            [[['color', 1, 16, undefined], ['blue', 1, 22, undefined]]]
+            [['div', [[1, 12, undefined]]]],
+            [[['color', [[1, 16, undefined]]], ['blue', [[1, 22, undefined]]]]]
           ]
         ]
       ],
@@ -203,13 +203,13 @@ vows.describe('source-maps/analyzer')
         [
           [
             'selector',
-            [['a', 1, 0, undefined]],
-            [[['color', 1, 2, undefined], ['red', 1, 8, undefined]]]
+            [['a', [[1, 0, undefined]]]],
+            [[['color', [[1, 2, undefined]]], ['red', [[1, 8, undefined]]]]]
           ],
           [
             'selector',
-            [['div', 2, 1, undefined]],
-            [[['color', 2, 5, undefined], ['blue', 2, 11, undefined]]]
+            [['div', [[2, 1, undefined]]]],
+            [[['color', [[2, 5, undefined]]], ['blue', [[2, 11, undefined]]]]]
           ]
         ]
       ],
@@ -218,13 +218,13 @@ vows.describe('source-maps/analyzer')
         [
           [
             'selector',
-            [['a', 1, 0, undefined]],
-            [[['color', 1, 2, undefined], ['red', 1, 8, undefined]]]
+            [['a', [[1, 0, undefined]]]],
+            [[['color', [[1, 2, undefined]]], ['red', [[1, 8, undefined]]]]]
           ],
           [
             'selector',
-            [['div', 3, 1, undefined]],
-            [[['color', 3, 5, undefined], ['blue', 3, 11, undefined]]]
+            [['div', [[3, 1, undefined]]]],
+            [[['color', [[3, 5, undefined]]], ['blue', [[3, 11, undefined]]]]]
           ]
         ]
       ]
@@ -237,17 +237,17 @@ vows.describe('source-maps/analyzer')
         [
           [
             'selector',
-            [['a', 1, 0, undefined]],
+            [['a', [[1, 0, undefined]]]],
             []
           ],
           [
             'at-rule',
-            ['@import \n"test.css";', 1, 3, undefined]
+            ['@import \n"test.css";', [[1, 3, undefined]]]
           ],
           [
             'selector',
-            [['a', 4, 0, undefined]],
-            [[['color', 4, 2, undefined], ['red', 4, 8, undefined]]]
+            [['a', [[4, 0, undefined]]]],
+            [[['color', [[4, 2, undefined]]], ['red', [[4, 8, undefined]]]]]
           ]
         ]
       ],
@@ -256,12 +256,12 @@ vows.describe('source-maps/analyzer')
         [
           [
             'at-rule',
-            ['@charset "utf-8";', 1, 0, undefined]
+            ['@charset "utf-8";', [[1, 0, undefined]]]
           ],
           [
             'selector',
-            [['a', 1, 18, undefined]],
-            [[['color', 1, 20, undefined], ['red', 1, 26, undefined]]]
+            [['a', [[1, 18, undefined]]]],
+            [[['color', [[1, 20, undefined]]], ['red', [[1, 26, undefined]]]]]
           ]
         ]
       ]
@@ -274,12 +274,12 @@ vows.describe('source-maps/analyzer')
         [
           [
             'block',
-            ['@media (min-width:980px)', 1, 0, undefined],
+            ['@media (min-width:980px)', [[1, 0, undefined]]],
             [
               [
                 'selector',
-                [['a', 1, 25, undefined]],
-                [[['color', 1, 27, undefined], ['red', 1, 33, undefined]]]
+                [['a', [[1, 25, undefined]]]],
+                [[['color', [[1, 27, undefined]]], ['red', [[1, 33, undefined]]]]]
               ]
             ]
           ]
@@ -290,16 +290,16 @@ vows.describe('source-maps/analyzer')
         [
           [
             'block',
-            ['@media (\nmin-width:980px)', 1, 0, undefined],
+            ['@media (\nmin-width:980px)', [[1, 0, undefined]]],
             [
               [
                 'selector',
-                [['a', 4, 0, undefined]],
-                [[['color', 5, 0, undefined], ['red', 6, 0, undefined]]]
+                [['a', [[4, 0, undefined]]]],
+                [[['color', [[5, 0, undefined]]], ['red', [[6, 0, undefined]]]]]
               ],
               [
                 'selector',
-                [['p', 6, 4, undefined]],
+                [['p', [[6, 4, undefined]]]],
                 []
               ]
             ]
@@ -311,19 +311,19 @@ vows.describe('source-maps/analyzer')
         [
           [
             'block',
-            ['@media (min-width:980px)', 1, 0, undefined],
+            ['@media (min-width:980px)', [[1, 0, undefined]]],
             [
               [
                 'selector',
-                [['a', 1, 25, undefined]],
-                [[['color', 1, 27, undefined], ['red', 1, 33, undefined]]]
+                [['a', [[1, 25, undefined]]]],
+                [[['color', [[1, 27, undefined]]], ['red', [[1, 33, undefined]]]]]
               ]
             ]
           ],
           [
             'selector',
-            [['p', 1, 39, undefined]],
-            [[['color', 1, 41, undefined], ['red', 1, 47, undefined]]]
+            [['p', [[1, 39, undefined]]]],
+            [[['color', [[1, 41, undefined]]], ['red', [[1, 47, undefined]]]]]
           ]
         ]
       ],
@@ -332,17 +332,17 @@ vows.describe('source-maps/analyzer')
         [
           [
             'flat-block',
-            ['@font-face', 1, 0, undefined],
+            ['@font-face', [[1, 0, undefined]]],
             [
-              [['font-family', 1, 11, undefined], ['"Font"', 1, 24, undefined]],
-              [['src', 2, 0, undefined], ['url("font.ttf")', 2, 5, undefined]],
-              [['font-weight', 3, 0, undefined], ['normal', 3, 13, undefined]],
-              [['font-style', 3, 20, undefined], ['normal', 3, 32, undefined]]
+              [['font-family', [[1, 11, undefined]]], ['"Font"', [[1, 24, undefined]]]],
+              [['src', [[2, 0, undefined]]], ['url("font.ttf")', [[2, 5, undefined]]]],
+              [['font-weight', [[3, 0, undefined]]], ['normal', [[3, 13, undefined]]]],
+              [['font-style', [[3, 20, undefined]]], ['normal', [[3, 32, undefined]]]]
             ]
           ],
           [
             'selector',
-            [['a', 3, 39, undefined]],
+            [['a', [[3, 39, undefined]]]],
             []
           ]
         ]
@@ -352,9 +352,9 @@ vows.describe('source-maps/analyzer')
         [
           [
             'flat-block',
-            ['@font-face', 2, 0, undefined],
+            ['@font-face', [[2, 0, undefined]]],
             [
-              [['font-family', 3, 1, undefined], ['"Font"', 3, 14, undefined]]
+              [['font-family', [[3, 1, undefined]]], ['"Font"', [[3, 14, undefined]]]]
             ]
           ]
         ]
@@ -368,7 +368,7 @@ vows.describe('source-maps/analyzer')
         [
           [
             'selector',
-            [['a', 1, 5, undefined]],
+            [['a', [[1, 5, undefined]]]],
             []
           ]
         ]
@@ -378,7 +378,7 @@ vows.describe('source-maps/analyzer')
         [
           [
             'selector',
-            [['a', 3, 5, undefined]],
+            [['a', [[3, 5, undefined]]]],
             []
           ]
         ]
@@ -389,10 +389,10 @@ vows.describe('source-maps/analyzer')
           [
             'selector',
             [
-              ['div[data-type=__ESCAPED_FREE_TEXT_CLEAN_CSS0(1,3)__]', 1, 0, undefined],
-              ['div[data-id=__ESCAPED_FREE_TEXT_CLEAN_CSS1(0,7)__]', 2, 5, undefined]
+              ['div[data-type=__ESCAPED_FREE_TEXT_CLEAN_CSS0(1,3)__]', [[1, 0, undefined]]],
+              ['div[data-id=__ESCAPED_FREE_TEXT_CLEAN_CSS1(0,7)__]', [[2, 5, undefined]]]
             ],
-            [[['color', 2, 26, undefined], ['red', 2, 32, undefined]]]
+            [[['color', [[2, 26, undefined]]], ['red', [[2, 32, undefined]]]]]
           ]
         ]
       ],
@@ -401,19 +401,19 @@ vows.describe('source-maps/analyzer')
         [
           [
             'selector',
-            [['div', 1, 0, undefined]],
+            [['div', [[1, 0, undefined]]]],
             [
               '__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0(2,5)__',
-              [['background', 3, 5, undefined], ['__ESCAPED_URL_CLEAN_CSS0(0,20)__', 3, 16, undefined]],
-              [['color', 3, 37, undefined], ['blue', 3, 43, undefined]]
+              [['background', [[3, 5, undefined]]], ['__ESCAPED_URL_CLEAN_CSS0(0,20)__', [[3, 16, undefined]]]],
+              [['color', [[3, 37, undefined]]], ['blue', [[3, 43, undefined]]]]
             ]
           ],
           [
             'selector',
-            [['a', 3, 48, undefined]],
+            [['a', [[3, 48, undefined]]]],
             [
-              [['font-family', 3, 50, undefined], ['__ESCAPED_FREE_TEXT_CLEAN_CSS0(1,3)__', 3, 62, undefined]],
-              [['color', 4, 4, undefined], ['red', 4, 10, undefined]]
+              [['font-family', [[3, 50, undefined]]], ['__ESCAPED_FREE_TEXT_CLEAN_CSS0(1,3)__', [[3, 62, undefined]]]],
+              [['color', [[4, 4, undefined]]], ['red', [[4, 10, undefined]]]]
             ]
           ]
         ]
@@ -423,11 +423,11 @@ vows.describe('source-maps/analyzer')
         [
           [
             'selector',
-            [['div', 1, 0, undefined]],
+            [['div', [[1, 0, undefined]]]],
             [[
-              ['background', 1, 4, undefined],
-              ['url(image.png)', 1, 15, undefined],
-              ['no-repeat', 1, 29, undefined]
+              ['background', [[1, 4, undefined]]],
+              ['url(image.png)', [[1, 15, undefined]]],
+              ['no-repeat', [[1, 29, undefined]]]
             ]]
           ]
         ]
@@ -437,11 +437,11 @@ vows.describe('source-maps/analyzer')
         [
           [
             'at-rule',
-            ['@charset __ESCAPED_FREE_TEXT_CLEAN_CSS0(1, 5)__;', 1, 0, undefined]
+            ['@charset __ESCAPED_FREE_TEXT_CLEAN_CSS0(1, 5)__;', [[1, 0, undefined]]]
           ],
           [
             'selector',
-            [['div', 2, 7, undefined]],
+            [['div', [[2, 7, undefined]]]],
             []
           ]
         ]
@@ -451,12 +451,12 @@ vows.describe('source-maps/analyzer')
         [
           [
             'block',
-            ['@media (__ESCAPED_COMMENT_CLEAN_CSS0(2, 1)__min-width:980px)', 1, 0, undefined],
+            ['@media (__ESCAPED_COMMENT_CLEAN_CSS0(2, 1)__min-width:980px)', [[1, 0, undefined]]],
             [
               [
                 'selector',
-                [['a', 3, 18, undefined]],
-                [[['color', 3, 20, undefined], ['red', 3, 26, undefined]]]
+                [['a', [[3, 18, undefined]]]],
+                [[['color', [[3, 20, undefined]]], ['red', [[3, 26, undefined]]]]]
               ]
             ]
           ]
@@ -479,7 +479,7 @@ vows.describe('source-maps/analyzer')
         [
           [
             'selector',
-            [['a', 1, 0, 'one.css']],
+            [['a', [[1, 0, 'one.css']]]],
             []
           ]
         ]
@@ -498,13 +498,13 @@ vows.describe('source-maps/analyzer')
         [
           [
             'selector',
-            [['a', 1, 0, 'one.css']],
+            [['a', [[1, 0, 'one.css']]]],
             []
           ],
           [
             'selector',
-            [['a', 2, 0, 'two.css']],
-            [[['color', 2, 2, 'two.css'], ['red', 2, 8, 'two.css']]]
+            [['a', [[2, 0, 'two.css']]]],
+            [[['color', [[2, 2, 'two.css']]], ['red', [[2, 8, 'two.css']]]]]
           ]
         ]
       ]
@@ -525,8 +525,8 @@ vows.describe('source-maps/analyzer')
         [
           [
             'selector',
-            [['div > a', 1, 4, 'styles.less']],
-            [[['color', 2, 2, 'styles.less'], ['red', 2, 2, 'styles.less']]]
+            [['div > a', [[1, 4, 'styles.less']]]],
+            [[['color', [[2, 2, 'styles.less']]], ['red', [[2, 2, 'styles.less']]]]]
           ]
         ]
       ],
@@ -543,8 +543,8 @@ vows.describe('source-maps/analyzer')
         [
           [
             'selector',
-            [['div > a', 1, 4, 'styles.less']],
-            [[['color', 2, 2, 'styles.less'], ['red', 2, 2, 'styles.less'], ['red', 2, 2, 'styles.less']]]
+            [['div > a', [[1, 4, 'styles.less']]]],
+            [[['color', [[2, 2, 'styles.less']]], ['red', [[2, 2, 'styles.less']]], ['red', [[2, 2, 'styles.less']]]]]
           ]
         ]
       ]

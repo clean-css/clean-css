@@ -1527,7 +1527,7 @@ label.comparer input{margin-right:8px}
 .lien_img314x64.explorer_discours_2012{background:url(/medias/web/img/textes/elections/widget_explorer_discours_2012.png);text-indent:-9999px}
 *{margin:0;padding:0}
 form,img{border:0}
-ul{list-style-image:none;list-style-position:inside;list-style-type:none}
+ul{list-style:none inside}
 #mainContent{background:#fff;font-size:12px;color:#222}
 body>img{position:absolute}
 .megaban{margin-right:auto;margin-left:auto}
@@ -2125,6 +2125,7 @@ a.god:hover{background:#3c3c3c;color:#fff}
 #core-liberation .block-search-head form input[type=submit]:hover{background-image:url(http://s0.libe.com/libe/img/common/bg-search-formsubmit-on.png?21388ca68b89)}
 #core-liberation .block-search-results form input[type=submit]:active{background-image:url(http://s0.libe.com/libe/img/common/bg-search-formsubmit-active.png?16bd2d8fbc96)}
 #core-liberation .block-search-head .pagination{border-top:0}
+#core-liberation .block-search-head .advanced,#core-liberation .pagination{border-top-color:#b7b7b7;border-top:1px dotted}
 #core-liberation .block-search-head .pagination a,#core-liberation .block-search-results .pagination a{background-color:#fff}
 #core-liberation .block-search-head .pagination .prev,#core-liberation .block-search-results .pagination .prev{margin-left:0;padding-left:17px}
 #core-liberation .block-search-head .pagination .next,#core-liberation .block-search-results .pagination .next{margin-right:0;padding-right:17px}
@@ -2173,7 +2174,7 @@ a.god:hover{background:#3c3c3c;color:#fff}
 #core-liberation .block-search-results .block-content .object-picture img{display:block;width:87px}
 #core-liberation .block-search-results .block-content .article .object-picture,#core-liberation .block-search-results .block-content .article .object-picture img{height:116px}
 #core-liberation .block-search-results .block-content .object-picture .np{position:relative}
-#core-liberation .block-search-results .block-content .object-picture .np .p1,#core-liberation .block-search-results .block-content .object-picture .np .p2{position:absolute;width:79px;height:102px;border-style:solid;border-top-width:7px;border-bottom-width:7px;border-left-width:4px;border-right-width:4px}
+#core-liberation .block-search-results .block-content .object-picture .np .p1,#core-liberation .block-search-results .block-content .object-picture .np .p2{position:absolute;width:79px;height:102px;border-style:solid;border-width:7px 4px}
 #core-liberation .block-search-results .block-content .object-picture .np .p1{z-index:2000}
 #core-liberation .block-search-results .block-content .object-picture .np .p2{z-index:1000}
 #core-liberation .block-search-results .block-content .object-picture .np a.date{position:absolute;display:block;width:80px;top:10px;padding:2px 2px 3px 4px;z-index:500}
@@ -2783,7 +2784,6 @@ body.slideshow .ad-top .megaban{background:#333}
 #core-liberation .block-search-head p.opinion span{color:#707070}
 #core-liberation .block-search-head p.opinion a{color:#e20000}
 #core-liberation .block-search-head .advanced .note .links,#core-liberation .block-search-head .advanced .note .links a,#core-liberation .block-search-head .advanced .note a.displayer,#core-liberation .block-search-head .results p{color:#87888a}
-#core-liberation .block-search-head .advanced{border-top-color:#b7b7b7}
 #core-liberation .block-search-head .advanced .searchform .between,#core-liberation .block-search-head .advanced .searchform .category,#core-liberation .block-search-head .advanced .searchform .period,#core-liberation .block-search-head .advanced .searchform .source{border-bottom-color:#fff}
 #core-liberation .block-search-head .results{margin-bottom:15px}
 #core-liberation .block-search-head .results p.filters strong{color:#2e2e2e}
@@ -2826,7 +2826,7 @@ body.slideshow .ad-top .megaban{background:#333}
 .site-liberation .btn-read-digitalpaper{border-color:#878787}
 .site-liberation .toolbox,.site-liberation .toolbox li.fold-options ul,.site-liberation .toolbox li.fold-options+li.fold-options{border-color:#d7d7d7}
 .site-liberation .btn-read-digitalpaper a,.site-liberation .btn-read-digitalpaper span{color:#2e2e2e}
-#core-liberation .pagination{background-color:#e7e7e7;border-top-color:#b7b7b7;border-bottom-color:#b7b7b7}
+#core-liberation .pagination{background-color:#e7e7e7;border-bottom-color:#b7b7b7}
 #bar-liberation,#bar-liberation #login-box-content,#bar-liberation .content ul.list li{border-bottom-color:#dadada}
 #core-liberation .pagination .disabled{background-color:transparent;color:#c8c8c8}
 #core-liberation .pagination .current{background-color:transparent;color:#e20000}

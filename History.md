@@ -7,6 +7,7 @@
 * Fixed issue [#376](https://github.com/jakubpawlowicz/clean-css/issues/376) - option to disable `0[unit]` -> `0`.
 * Fixed issue [#396](https://github.com/jakubpawlowicz/clean-css/issues/396) - better input source maps tracking.
 * Fixed issue [#397](https://github.com/jakubpawlowicz/clean-css/issues/397) - support for source map sources.
+* Fixed issue [#429](https://github.com/jakubpawlowicz/clean-css/issues/429) - unifies data tokenization.
 * Fixed issue [#480](https://github.com/jakubpawlowicz/clean-css/issues/480) - extracting uppercase property names.
 * Fixed issue [#500](https://github.com/jakubpawlowicz/clean-css/issues/500) - merging duplicate adjacent properties.
 

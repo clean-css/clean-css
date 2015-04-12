@@ -150,6 +150,17 @@ vows.describe(optimize)
         ]);
       }
     },
+    'with inherit - pending #525': {
+      'topic': 'a{padding-top:10px;padding-left:5px;padding-bottom:3px;padding-right:inherit}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['padding-top', false , false], ['10px']],
+          [['padding-left', false , false], ['5px']],
+          [['padding-bottom', false , false], ['3px']],
+          [['padding-right', false , false], ['inherit']]
+        ]);
+      }
+    },
     'mixed importance': {
       'topic': 'a{padding-top:10px;padding-left:5px;padding-bottom:3px;padding-right:2px!important}',
       'into': function (topic) {

@@ -248,69 +248,6 @@ vows.describe('source-map')
         assert.deepEqual(minified.sourceMap._mappings._array[9], mapping);
       }
     },
-    'shorthands': {
-      'topic': function () {
-        return new CleanCSS({ sourceMap: true }).minify('a{background:url(image.png);background-color:red}');
-      },
-      'has 3 mappings': function(minified) {
-        assert.lengthOf(minified.sourceMap._mappings._array, 5);
-      },
-      'has `a` mapping': function (minified) {
-        var mapping = {
-          generatedLine: 1,
-          generatedColumn: 0,
-          originalLine: 1,
-          originalColumn: 0,
-          source: '$stdin',
-          name: null
-        };
-        assert.deepEqual(minified.sourceMap._mappings._array[0], mapping);
-      },
-      'has `background` mapping': function (minified) {
-        var mapping = {
-          generatedLine: 1,
-          generatedColumn: 2,
-          originalLine: 1,
-          originalColumn: 2,
-          source: '$stdin',
-          name: null
-        };
-        assert.deepEqual(minified.sourceMap._mappings._array[1], mapping);
-      },
-      'has `url(image.png)` mapping': function (minified) {
-        var mapping = {
-          generatedLine: 1,
-          generatedColumn: 13,
-          originalLine: 1,
-          originalColumn: 13,
-          source: '$stdin',
-          name: null
-        };
-        assert.deepEqual(minified.sourceMap._mappings._array[2], mapping);
-      },
-      'has `background-color` mapping': function (minified) {
-        var mapping = {
-          generatedLine: 1,
-          generatedColumn: 28,
-          originalLine: 1,
-          originalColumn: 28,
-          source: '$stdin',
-          name: null
-        };
-        assert.deepEqual(minified.sourceMap._mappings._array[3], mapping);
-      },
-      'has `red` mapping': function (minified) {
-        var mapping = {
-          generatedLine: 1,
-          generatedColumn: 45,
-          originalLine: 1,
-          originalColumn: 45,
-          source: '$stdin',
-          name: null
-        };
-        assert.deepEqual(minified.sourceMap._mappings._array[4], mapping);
-      }
-    },
     'keyframes': {
       'topic': function () {
         return new CleanCSS({ sourceMap: true }).minify('@-webkit-keyframes frames {\n  0% {\n    border: 1px;\n  }\n  100% {\n    border: 3px;\n  }\n}');
@@ -1806,6 +1743,116 @@ vows.describe('source-map')
             name: null
           };
           assert.deepEqual(minified.sourceMap._mappings._array[6], mapping);
+        }
+      },
+      'overriding': {
+        'topic': function () {
+          return new CleanCSS({ sourceMap: true }).minify('a{background:url(image.png);background-color:#eee;background-repeat:repeat-x}');
+        },
+        'has right output': function (minified) {
+          assert.equal(minified.styles, 'a{background:url(image.png) repeat-x #eee}');
+        },
+        'has 5 mappings': function (minified) {
+          assert.lengthOf(minified.sourceMap._mappings._array, 5);
+        },
+        'has a `background` mapping': function (minified) {
+          var mapping = {
+            generatedLine: 1,
+            generatedColumn: 2,
+            originalLine: 1,
+            originalColumn: 2,
+            source: '$stdin',
+            name: null
+          };
+          assert.deepEqual(minified.sourceMap._mappings._array[1], mapping);
+        },
+        'has a `url(image.png)` mapping': function (minified) {
+          var mapping = {
+            generatedLine: 1,
+            generatedColumn: 13,
+            originalLine: 1,
+            originalColumn: 13,
+            source: '$stdin',
+            name: null
+          };
+          assert.deepEqual(minified.sourceMap._mappings._array[2], mapping);
+        },
+        'has a `repeat-x` mapping': function (minified) {
+          var mapping = {
+            generatedLine: 1,
+            generatedColumn: 28,
+            originalLine: 1,
+            originalColumn: 68,
+            source: '$stdin',
+            name: null
+          };
+          assert.deepEqual(minified.sourceMap._mappings._array[3], mapping);
+        },
+        'has a `#eee` mapping': function (minified) {
+          var mapping = {
+            generatedLine: 1,
+            generatedColumn: 37,
+            originalLine: 1,
+            originalColumn: 45,
+            source: '$stdin',
+            name: null
+          };
+          assert.deepEqual(minified.sourceMap._mappings._array[4], mapping);
+        }
+      },
+      'compacting': {
+        'topic': function () {
+          return new CleanCSS({ sourceMap: true }).minify('a{margin-top:10px;\nmargin-bottom:4px;\nmargin-left:5px;\nmargin-right:5px}');
+        },
+        'has right output': function (minified) {
+          assert.equal(minified.styles, 'a{margin:10px 5px 4px}');
+        },
+        'has 4 mappings': function (minified) {
+          assert.lengthOf(minified.sourceMap._mappings._array, 4);
+        },
+        'has a `a` mapping': function (minified) {
+          var mapping = {
+            generatedLine: 1,
+            generatedColumn: 0,
+            originalLine: 1,
+            originalColumn: 0,
+            source: '$stdin',
+            name: null
+          };
+          assert.deepEqual(minified.sourceMap._mappings._array[0], mapping);
+        },
+        'has a `10px` mapping': function (minified) {
+          var mapping = {
+            generatedLine: 1,
+            generatedColumn: 9,
+            originalLine: 1,
+            originalColumn: 13,
+            source: '$stdin',
+            name: null
+          };
+          assert.deepEqual(minified.sourceMap._mappings._array[1], mapping);
+        },
+        'has a `5px` mapping': function (minified) {
+          var mapping = {
+            generatedLine: 1,
+            generatedColumn: 14,
+            originalLine: 4,
+            originalColumn: 13,
+            source: '$stdin',
+            name: null
+          };
+          assert.deepEqual(minified.sourceMap._mappings._array[2], mapping);
+        },
+        'has a `4px` mapping': function (minified) {
+          var mapping = {
+            generatedLine: 1,
+            generatedColumn: 18,
+            originalLine: 2,
+            originalColumn: 14,
+            source: '$stdin',
+            name: null
+          };
+          assert.deepEqual(minified.sourceMap._mappings._array[3], mapping);
         }
       }
     }

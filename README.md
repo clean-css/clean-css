@@ -270,10 +270,6 @@ new CleanCSS({ sourceMap: true, target: pathToOutputDirectory }).minify({
 });
 ```
 
-#### Caveats
-
-* Shorthand compacting is currently disabled when source maps are enabled, see [#399](https://github.com/GoalSmashers/clean-css/issues/399)
-
 ### How to minify multiple files with API
 
 #### Passing an array

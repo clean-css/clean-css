@@ -259,10 +259,10 @@ vows.describe(restore)
       },
       'list with all values': {
         'topic': function () {
-          return _restore(_breakUp([['list-style'], ['circle'], ['inside'], ['url()']]));
+          return _restore(_breakUp([['list-style'], ['circle'], ['inside'], ['__ESCAPED_URL_CLEAN_CSS1__']]));
         },
         'gives right value back': function (restoredValue) {
-          assert.deepEqual(restoredValue, [['circle'], ['inside'], ['url()']]);
+          assert.deepEqual(restoredValue, [['circle'], ['inside'], ['__ESCAPED_URL_CLEAN_CSS1__']]);
         }
       },
       'list with some defaults': {

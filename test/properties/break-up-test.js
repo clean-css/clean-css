@@ -522,6 +522,26 @@ vows.describe(breakUp)
           assert.equal(components[2].name, 'list-style-image');
           assert.deepEqual(components[2].value, [['none']]);
         }
+      },
+      'fuzzy matching': {
+        'topic': function () {
+          return _breakUp([[['list-style'], ['__ESCAPED_URL_CLEAN_CSS0__'], ['outside'], ['none']]]);
+        },
+        'has 3 components': function (components) {
+          assert.lengthOf(components, 3);
+        },
+        'has list-style-type': function (components) {
+          assert.equal(components[0].name, 'list-style-type');
+          assert.deepEqual(components[0].value, [['none']]);
+        },
+        'has list-style-position': function (components) {
+          assert.equal(components[1].name, 'list-style-position');
+          assert.deepEqual(components[1].value, [['outside']]);
+        },
+        'has list-style-image': function (components) {
+          assert.equal(components[2].name, 'list-style-image');
+          assert.deepEqual(components[2].value, [['__ESCAPED_URL_CLEAN_CSS0__']]);
+        }
       }
     },
     'multiple values': {

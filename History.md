@@ -9,6 +9,7 @@
 * Fixed issue [#397](https://github.com/jakubpawlowicz/clean-css/issues/397) - support for source map sources.
 * Fixed issue [#399](https://github.com/jakubpawlowicz/clean-css/issues/399) - support compacting with source maps.
 * Fixed issue [#429](https://github.com/jakubpawlowicz/clean-css/issues/429) - unifies data tokenization.
+* Fixed issue [#446](https://github.com/jakubpawlowicz/clean-css/issues/446) - `list-style` fuzzy matching.
 * Fixed issue [#468](https://github.com/jakubpawlowicz/clean-css/issues/468) - bumps `source-map` to 0.4.x.
 * Fixed issue [#480](https://github.com/jakubpawlowicz/clean-css/issues/480) - extracting uppercase property names.
 * Fixed issue [#500](https://github.com/jakubpawlowicz/clean-css/issues/500) - merging duplicate adjacent properties.

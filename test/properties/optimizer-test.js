@@ -164,6 +164,16 @@ vows.describe(optimize)
     }
   })
   .addBatch({
+    'list-style fuzzy matching': {
+      'topic': 'p{list-style:inside none}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic, false, true), [
+          [['list-style', false , false], ['none'], ['inside']]
+        ]);
+      }
+    }
+  })
+  .addBatch({
     'ie hacks - normal before hack': {
       'topic': 'p{color:red;display:none;color:#fff\\9}',
       'into': function (topic) {

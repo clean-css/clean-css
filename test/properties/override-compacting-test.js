@@ -218,6 +218,15 @@ vows.describe(optimize)
           [['border', true , false], ['1px'], ['dotted'], ['red']]
         ]);
       }
+    },
+    'border - hex and rgb colors': {
+      'topic': 'a{border:1px solid #000;border-color:rgba(255,0,0,.5)}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['border', false, false], ['1px'], ['solid'], ['#000']],
+          [['border-color', false, false], ['rgba(255,0,0,.5)']]
+        ]);
+      }
     }
   })
   .addBatch({

@@ -116,6 +116,35 @@ vows.describe(optimize)
         ]);
       }
     },
+    'shorthand then longhand - two shorthands - pending #527': {
+      'topic': 'p{background:-webkit-linear-gradient();background:linear-gradient();background-repeat:repeat-x}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['background', false , false], ['-webkit-linear-gradient()']],
+          [['background', false , false], ['linear-gradient()']],
+          [['background-repeat', false , false], ['repeat-x']]
+        ]);
+      }
+    },
+    'shorthand then longhand - two shorthands and default - pending #527': {
+      'topic': 'p{background:-webkit-linear-gradient();background:linear-gradient();background-repeat:repeat}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['background', false , false], ['-webkit-linear-gradient()']],
+          [['background', false , false], ['linear-gradient()']],
+          [['background-repeat', false , false], ['repeat']]
+        ]);
+      }
+    },
+    'shorthand then longhand - two mergeable shorthands and default - pending #527': {
+      'topic': 'p{background:__ESCAPED_URL_CLEAN_CSS0__;background:__ESCAPED_URL_CLEAN_CSS1__;background-repeat:repeat-x}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['background', false , false], ['__ESCAPED_URL_CLEAN_CSS1__']],
+          [['background-repeat', false , false], ['repeat-x']]
+        ]);
+      }
+    },
     'shorthand then shorthand - same values': {
       'topic': 'p{background:red;background:red}',
       'into': function (topic) {
@@ -407,7 +436,7 @@ vows.describe(optimize)
         ]);
       }
     },
-    'two multiplex shorthands with vendor specific functions123': {
+    'two multiplex shorthands with vendor specific functions': {
       'topic': 'p{background:url(1.png),-webkit-linear-gradient();background:url(1.png),linear-gradient()}',
       'into': function (topic) {
         assert.deepEqual(_optimize(topic), [

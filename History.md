@@ -12,6 +12,7 @@
 * Fixed issue [#446](https://github.com/jakubpawlowicz/clean-css/issues/446) - `list-style` fuzzy matching.
 * Fixed issue [#468](https://github.com/jakubpawlowicz/clean-css/issues/468) - bumps `source-map` to 0.4.x.
 * Fixed issue [#480](https://github.com/jakubpawlowicz/clean-css/issues/480) - extracting uppercase property names.
+* Fixed issue [#487](https://github.com/jakubpawlowicz/clean-css/issues/487) - source map paths under Windows.
 * Fixed issue [#490](https://github.com/jakubpawlowicz/clean-css/issues/490) - vendor prefixed multivalue `background`.
 * Fixed issue [#500](https://github.com/jakubpawlowicz/clean-css/issues/500) - merging duplicate adjacent properties.
 * Fixed issue [#507](https://github.com/jakubpawlowicz/clean-css/issues/507) - merging longhands into many shorthands.

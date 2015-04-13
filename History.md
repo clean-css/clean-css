@@ -15,6 +15,7 @@
 * Fixed issue [#490](https://github.com/jakubpawlowicz/clean-css/issues/490) - vendor prefixed multivalue `background`.
 * Fixed issue [#500](https://github.com/jakubpawlowicz/clean-css/issues/500) - merging duplicate adjacent properties.
 * Fixed issue [#507](https://github.com/jakubpawlowicz/clean-css/issues/507) - merging longhands into many shorthands.
+* Fixed issue [#508](https://github.com/jakubpawlowicz/clean-css/issues/508) - removing duplicate media queries.
 
 [3.1.9 / 2015-04-04](https://github.com/jakubpawlowicz/clean-css/compare/v3.1.8...v3.1.9)
 ==================

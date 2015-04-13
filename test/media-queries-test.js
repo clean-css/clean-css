@@ -109,6 +109,22 @@ vows.describe('media queries')
       'get merged': function(minified) {
         assert.equal(minified.styles, '@media (min-width:1024px){.one{color:red}}@media screen{a{color:red}div{display:block}}');
       }
+    },
+    'duplicated but non-mergeable': {
+      'topic': function () {
+        return new CleanCSS().minify('@media screen{a{color:red}}.one{color:#000}@media screen{a{color:red}}');
+      },
+      'get merged': function(minified) {
+        assert.equal(minified.styles, '.one{color:#000}@media screen{a{color:red}}');
+      }
+    },
+    'many duplicated but non-mergeable': {
+      'topic': function () {
+        return new CleanCSS().minify('@media print{a{color:#fff}}@media screen{a{color:red}}.one{color:#000}@media screen{a{color:red}}@media print{a{display:block}}@media print{a{color:#fff}}');
+      },
+      'get merged': function(minified) {
+        assert.equal(minified.styles, '.one{color:#000}@media screen{a{color:red}}@media print{a{display:block;color:#fff}}');
+      }
     }
   })
   .addBatch({

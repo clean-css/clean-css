@@ -429,6 +429,10 @@ vows.describe(SimpleOptimizer)
       'mixed vales': [
         'a{padding:10px 0em 30% 0rem}',
         [['padding', '10px', '0', '30%', '0']]
+      ],
+      'inside calc': [
+        'a{font-size:calc(100% + 0px)}',
+        [['font-size', 'calc(100% + 0px)']]
       ]
     })
   )

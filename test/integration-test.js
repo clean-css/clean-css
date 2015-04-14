@@ -2010,7 +2010,7 @@ title']{display:block}",
   'background position': cssContext({
     'calc as a value': [
       '*{background:white calc(100% - 10px) center no-repeat;background-image:url(test.png)}',
-      '*{background:url(test.png)calc(100% - 10px)center no-repeat #fff}'
+      '*{background:calc(100% - 10px)center no-repeat #fff;background-image:url(test.png)}'
     ]
   }),
   'background-clip': cssContext({

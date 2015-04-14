@@ -91,14 +91,6 @@ vows.describe(optimize)
         ]);
       }
     },
-    'shorthand then longhand - color into a function': {
-      'topic': 'p{background:linear-gradient();background-color:red}',
-      'into': function (topic) {
-        assert.deepEqual(_optimize(topic, { properties: { backgroundSizeMerging: false } }), [
-          [['background', false , false], ['linear-gradient()'], ['red']]
-        ]);
-      }
-    },
     'shorthand then longhand - color into a color - with merging off': {
       'topic': 'p{background:white;background-color:red}',
       'into': function (topic) {
@@ -142,6 +134,24 @@ vows.describe(optimize)
         assert.deepEqual(_optimize(topic), [
           [['background', false , false], ['__ESCAPED_URL_CLEAN_CSS1__']],
           [['background-repeat', false , false], ['repeat-x']]
+        ]);
+      }
+    },
+    'shorthand then longhand - non-function into a function': {
+      'topic': 'p{background:linear-gradient();background-color:red}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['background', false , false], ['linear-gradient()']],
+          [['background-color', false , false], ['red']]
+        ]);
+      }
+    },
+    'shorthand then longhand - function into a non-function': {
+      'topic': 'p{background:repeat-x;background-image:-webkit-linear-gradient()}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['background', false , false], ['repeat-x']],
+          [['background-image', false , false], ['-webkit-linear-gradient()']]
         ]);
       }
     },

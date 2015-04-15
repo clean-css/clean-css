@@ -30,12 +30,6 @@ vows.describe(wrapForOptimizing)
       'is not a shorthand': function (wrapped) {
         assert.isFalse(wrapped[0].shorthand);
       },
-      'is not irrelevant': function (wrapped) {
-        assert.isFalse(wrapped[0].irrelevant);
-      },
-      'is real': function (wrapped) {
-        assert.isTrue(wrapped[0].real);
-      },
       'is unused': function (wrapped) {
         assert.isFalse(wrapped[0].unused);
       },

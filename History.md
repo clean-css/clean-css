@@ -21,6 +21,7 @@
 * Fixed issue [#521](https://github.com/jakubpawlowicz/clean-css/issues/521) - unit optimizations inside `calc()`.
 * Fixed issue [#526](https://github.com/jakubpawlowicz/clean-css/issues/526) - shorthand overriding into a function.
 * Fixed issue [#528](https://github.com/jakubpawlowicz/clean-css/issues/528) - better support for IE<9 hacks.
+* Fixed issue [#529](https://github.com/jakubpawlowicz/clean-css/issues/529) - wrong font weight minification.
 
 [3.1.9 / 2015-04-04](https://github.com/jakubpawlowicz/clean-css/compare/v3.1.8...v3.1.9)
 ==================

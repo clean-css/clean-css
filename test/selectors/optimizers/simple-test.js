@@ -293,6 +293,10 @@ vows.describe(SimpleOptimizer)
       'with mixed order of variant and style': [
         'a{font:normal 300 normal 13px/20px sans-serif}',
         [['font', 'normal', '300', 'normal', '13px', '/', '20px', 'sans-serif']]
+      ],
+      'with mixed normal and weight': [
+        'a{font: normal small-caps 400 medium Georgia, sans-serif;}',
+        [['font', 'normal', 'small-caps', '400', 'medium', 'Georgia', ',', 'sans-serif']]
       ]
     })
   )

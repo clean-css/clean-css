@@ -1121,16 +1121,10 @@ path")}',
   'IE hacks': cssContext({
     'star': 'a{*color:#fff}',
     'unserscore': 'a{_color:#fff}',
-    'backslash': 'a{color:#fff\\9}',
+    'backslash': 'a{color:#fff\\0}',
     'overriding by a star': 'a{color:red;display:block;*color:#fff}',
     'overriding by a unserscore': 'a{color:red;display:block;_color:#fff}',
-    'overriding by a backslash': 'a{color:red;display:block;color:#fff\\9}',
-    'overriding !important by a star': 'a{color:red!important;display:block;*color:#fff}',
-    'overriding !important by a unserscore': 'a{color:red!important;display:block;_color:#fff}',
-    'overriding !important by a backslash': [
-      'a{color:red!important;display:block;color:#fff\\9}',
-      'a{color:red!important;display:block}'
-    ],
+    'overriding by a backslash': 'a{color:red;display:block;color:#fff\\0}',
     'overriding a star': [
       'a{*color:red;display:block;*color:#fff}',
       'a{display:block;*color:#fff}'
@@ -1141,11 +1135,12 @@ path")}',
     ],
     'overriding a backslash': [
       'a{color:red\\9;display:block;color:#fff\\9}',
-      'a{display:block;color:#fff\\9}'
+      'a{display:block;color:#fff\\0}'
     ],
     'overriding a star by a non-ajacent selector': 'a{color:red}.one{color:#000}a{*color:#fff}',
     'overriding an underscore by a non-ajacent selector': 'a{color:red}.one{color:#000}a{_color:#fff}',
-    'overriding a backslash by a non-ajacent selector': 'a{color:red}.one{color:#fff}a{color:#fff\\9}',
+    'overriding a backslash by a non-ajacent selector': 'a{color:red}.one{color:#fff}a{color:#fff\\0}',
+    'preserving backslash in overriddable': 'a{border:1px solid #ccc\\0}',
     'keeps rgba(0,0,0,0)': 'a{color:rgba(0,0,0,0)}',
     'keeps rgba(255,255,255,0)': 'a{color:rgba(255,255,255,0)}',
     'keeps hsla(120,100%,50%,0)': 'a{color:hsla(120,100%,50%,0)}'

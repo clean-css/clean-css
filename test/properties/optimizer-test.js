@@ -180,7 +180,7 @@ vows.describe(optimize)
         assert.deepEqual(_optimize(topic, false, true), [
           [['color', false , false], ['red']],
           [['display', false , false], ['none']],
-          [['color', false , true], ['#fff\\9']]
+          [['color', false , 'suffix'], ['#fff']]
         ]);
       }
     },
@@ -188,7 +188,7 @@ vows.describe(optimize)
       'topic': 'p{color:red\\9;display:none;color:#fff}',
       'into': function (topic) {
         assert.deepEqual(_optimize(topic, false, true), [
-          [['color', false , true], ['red\\9']],
+          [['color', false , 'suffix'], ['red']],
           [['display', false , false], ['none']],
           [['color', false , false], ['#fff']]
         ]);
@@ -199,7 +199,7 @@ vows.describe(optimize)
       'into': function (topic) {
         assert.deepEqual(_optimize(topic, false, true), [
           [['display', false , false], ['none']],
-          [['color', false , true], ['#fff\\9']]
+          [['color', false , 'suffix'], ['#fff']]
         ]);
       }
     }

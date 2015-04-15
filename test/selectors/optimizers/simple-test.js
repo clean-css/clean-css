@@ -332,15 +332,15 @@ vows.describe(SimpleOptimizer)
     propertyContext('ie hacks in compatibility mode', {
       'underscore': [
         'a{_width:100px}',
-        [['_width', '100px']]
+        [['width', '100px']]
       ],
       'star': [
         'a{*width:100px}',
-        [['*width', '100px']]
+        [['width', '100px']]
       ],
       'backslash': [
         'a{width:100px\\9}',
-        [['width', '100px\\9',]]
+        [['width', '100px']]
       ]
     }, { compatibility: 'ie8' })
   )

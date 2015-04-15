@@ -98,6 +98,17 @@ vows.describe(wrapForOptimizing)
       'is unused': function (wrapped) {
         assert.isTrue(wrapped[0].unused);
       }
+    },
+    'hack': {
+      'topic': function () {
+        return wrapForOptimizing([[['margin', false, 'suffix']]]);
+      },
+      'has one wrap': function (wrapped) {
+        assert.lengthOf(wrapped, 1);
+      },
+      'is a hack': function (wrapped) {
+        assert.equal(wrapped[0].hack, 'suffix');
+      }
     }
   })
   .export(module);

@@ -30,21 +30,21 @@ vows.describe(addOptimizationMetadata)
       'topic': [['selector', ['a'], [[['_color'], ['red']]] ]],
       'metadata': function (tokens) {
         addOptimizationMetadata(tokens);
-        assert.deepEqual(tokens, [['selector', ['a'], [[['_color', false, true], ['red']]] ]]);
+        assert.deepEqual(tokens, [['selector', ['a'], [[['color', false, 'underscore'], ['red']]] ]]);
       }
     },
     'star hack': {
-      'topic': [['selector', ['a'], [[['_color'], ['red']]] ]],
+      'topic': [['selector', ['a'], [[['*color'], ['red']]] ]],
       'metadata': function (tokens) {
         addOptimizationMetadata(tokens);
-        assert.deepEqual(tokens, [['selector', ['a'], [[['_color', false, true], ['red']]] ]]);
+        assert.deepEqual(tokens, [['selector', ['a'], [[['color', false, 'star'], ['red']]] ]]);
       }
     },
     'backslash hack': {
       'topic': [['selector', ['a'], [[['color'], ['red\\9']]] ]],
       'metadata': function (tokens) {
         addOptimizationMetadata(tokens);
-        assert.deepEqual(tokens, [['selector', ['a'], [[['color', false, true], ['red\\9']]] ]]);
+        assert.deepEqual(tokens, [['selector', ['a'], [[['color', false, 'suffix'], ['red']]] ]]);
       }
     },
     'backslash hack - value of length 1': {

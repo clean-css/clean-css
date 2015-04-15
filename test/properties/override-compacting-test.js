@@ -524,4 +524,35 @@ vows.describe(optimize)
       }
     }
   })
+  .addBatch({
+    'overriding !important by a star hack': {
+      'topic': 'a{color:red!important;display:block;*color:#fff}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['color', true , false], ['red']],
+          [['display', false , false], ['block']],
+          [['color', false , 'star'], ['#fff']]
+        ]);
+      }
+    },
+    'overriding !important by an underscore hack': {
+      'topic': 'a{color:red!important;display:block;_color:#fff}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['color', true , false], ['red']],
+          [['display', false , false], ['block']],
+          [['color', false , 'underscore'], ['#fff']]
+        ]);
+      }
+    },
+    'overriding !important by an backslash hack': {
+      'topic': 'a{color:red!important;display:block;color:#fff\\0}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['color', true , false], ['red']],
+          [['display', false , false], ['block']]
+        ]);
+      }
+    }
+  })
   .export(module);

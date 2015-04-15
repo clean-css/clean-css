@@ -137,6 +137,17 @@ vows.describe(optimize)
           [['padding', false, false], ['10px'], ['2px'], ['3px'], ['5px']]
         ]);
       }
+    },
+    'with hacks': {
+      'topic': 'a{padding-top:10px;padding-left:5px;padding-bottom:3px;_padding-right:2px}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['padding-top', false, false], ['10px']],
+          [['padding-left', false, false], ['5px']],
+          [['padding-bottom', false, false], ['3px']],
+          [['padding-right', false, 'underscore'], ['2px']]
+        ]);
+      }
     }
   })
   .addBatch({

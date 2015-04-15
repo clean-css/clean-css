@@ -522,6 +522,24 @@ vows.describe(optimize)
           [['background', false , false], ['__ESCAPED_URL_CLEAN_CSS0__'], [','], ['__ESCAPED_URL_CLEAN_CSS1__'], ['red']],
         ]);
       }
+    },
+    'background then background - svg hack': {
+      'topic': 'p{background:__ESCAPED_URL_CLEAN_CSS0__;background: __ESCAPED_URL_CLEAN_CSS1__,none}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['background', false , false], ['__ESCAPED_URL_CLEAN_CSS0__']],
+          [['background', false , false], ['__ESCAPED_URL_CLEAN_CSS1__'], [','], ['none']]
+        ]);
+      }
+    },
+    'background-image then background-image - svg hack': {
+      'topic': 'p{background-image:__ESCAPED_URL_CLEAN_CSS0__;background-image: __ESCAPED_URL_CLEAN_CSS1__,none}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['background-image', false , false], ['__ESCAPED_URL_CLEAN_CSS0__']],
+          [['background-image', false , false], ['__ESCAPED_URL_CLEAN_CSS1__'], [','], ['none']]
+        ]);
+      }
     }
   })
   .addBatch({

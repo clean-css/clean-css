@@ -4,6 +4,7 @@
 * Fixes remote asset rebasing when passing data as a hash.
 * Improves path resolution inside source maps.
 * Makes `root` option implicitely default to `process.cwd()`.
+* Fixed issue [#371](https://github.com/jakubpawlowicz/clean-css/issues/371) - `background` fallback with `none`.
 * Fixed issue [#376](https://github.com/jakubpawlowicz/clean-css/issues/376) - option to disable `0[unit]` -> `0`.
 * Fixed issue [#396](https://github.com/jakubpawlowicz/clean-css/issues/396) - better input source maps tracking.
 * Fixed issue [#397](https://github.com/jakubpawlowicz/clean-css/issues/397) - support for source map sources.

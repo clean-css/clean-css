@@ -983,6 +983,12 @@ path")}',
   'urls whitespace in compatibility mode': cssContext({
     'keeps spaces as they are': '*{background:url(test.png) no-repeat}'
   }, { compatibility: 'ie8' }),
+  'urls quotes in compatibility mode': cssContext({
+    'keeps quotes as they are': [
+      'div{background:url("test.png")}',
+      'div{background:url("test.png")}'
+    ]
+  }, { compatibility: { properties: { urlQuotes: true } } }),
   'urls rewriting - no root or target': cssContext({
     'no @import': [
       'a{background:url(test/fixtures/partials/extra/down.gif) no-repeat}',

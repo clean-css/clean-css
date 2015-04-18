@@ -16,6 +16,7 @@
 * Fixed issue [#487](https://github.com/jakubpawlowicz/clean-css/issues/487) - source map paths under Windows.
 * Fixed issue [#490](https://github.com/jakubpawlowicz/clean-css/issues/490) - vendor prefixed multivalue `background`.
 * Fixed issue [#500](https://github.com/jakubpawlowicz/clean-css/issues/500) - merging duplicate adjacent properties.
+* Fixed issue [#504](https://github.com/jakubpawlowicz/clean-css/issues/504) - keeping `url()` quotes.
 * Fixed issue [#507](https://github.com/jakubpawlowicz/clean-css/issues/507) - merging longhands into many shorthands.
 * Fixed issue [#508](https://github.com/jakubpawlowicz/clean-css/issues/508) - removing duplicate media queries.
 * Fixed issue [#521](https://github.com/jakubpawlowicz/clean-css/issues/521) - unit optimizations inside `calc()`.

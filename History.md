@@ -1,3 +1,8 @@
+[3.3.0 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.2.0...HEAD)
+==================
+
+* Fixed issue [#436](https://github.com/jakubpawlowicz/clean-css/issues/436) - refactors URI rewriting.
+
 [3.2.0 / 2015-04-19](https://github.com/jakubpawlowicz/clean-css/compare/v3.1.9...v3.2.0)
 ==================
 

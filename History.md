@@ -1,6 +1,7 @@
 [3.2.0 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.1.9...HEAD)
 ==================
 
+* Bumps commander to 2.8.x.
 * Fixes remote asset rebasing when passing data as a hash.
 * Improves path resolution inside source maps.
 * Makes `root` option implicitely default to `process.cwd()`.

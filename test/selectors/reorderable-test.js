@@ -184,6 +184,22 @@ vows.describe(canReorderSingle)
       'must be true': function (result) {
         assert.isTrue(result);
       }
+    },
+    'same but one vendor prefixed': {
+      'topic': function () {
+        return canReorderSingle(propertiesIn('a{-moz-box-sizing:content-box}')[0], propertiesIn('a{box-sizing:content-box}')[0]);
+      },
+      'must be false': function (result) {
+        assert.isFalse(result);
+      }
+    },
+    'same and both vendor prefixed': {
+      'topic': function () {
+        return canReorderSingle(propertiesIn('a{-moz-box-sizing:content-box}')[0], propertiesIn('a{-moz-box-sizing:content-box}')[0]);
+      },
+      'must be true': function (result) {
+        assert.isTrue(result);
+      }
     }
   })
   .addBatch({

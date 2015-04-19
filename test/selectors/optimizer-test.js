@@ -216,6 +216,10 @@ vows.describe(SelectorsOptimizer)
       'with charset and import and comments': [
         '@charset "UTF-8";@import url(http://fonts.googleapis.com/css?family=Lora:400,700);__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0__a{width:100px}div{color:red}.one{display:block}.two{display:inline;color:red}',
         '@charset "UTF-8";@import url(http://fonts.googleapis.com/css?family=Lora:400,700);__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0__.two,div{color:red}a{width:100px}.one{display:block}.two{display:inline}'
+      ],
+      'with vendor prefixed value group': [
+        'a{-moz-box-sizing:content-box;box-sizing:content-box}div{color:red}p{-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box}',
+        'a{box-sizing:content-box}a,p{-moz-box-sizing:content-box}div{color:red}p{-webkit-box-sizing:content-box;box-sizing:content-box}'
       ]
     }, { advanced: true })
   )

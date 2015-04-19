@@ -153,6 +153,14 @@ vows.describe(canReorderSingle)
         assert.isTrue(result);
       }
     },
+    'two longhand with different value when sharing same shorthand and one is vendored': {
+      'topic': function () {
+        return canReorderSingle(propertiesIn('a{background-image:linear-gradient()}')[0], propertiesIn('a{-webkit-background-size:20px}')[0]);
+      },
+      'must be true': function (result) {
+        assert.isTrue(result);
+      }
+    },
     'different, non-overlapping simple selectors': {
       'topic': function () {
         return canReorderSingle(propertiesIn('a{border:none}')[0], propertiesIn('div{border:1px solid #f00}')[0]);
@@ -199,6 +207,30 @@ vows.describe(canReorderSingle)
       },
       'must be true': function (result) {
         assert.isTrue(result);
+      }
+    },
+    'same but value with different vendor prefixes': {
+      'topic': function () {
+        return canReorderSingle(propertiesIn('a{background:-webkit-linear-gradient()}')[0], propertiesIn('a{background:-o-linear-gradient()}')[0]);
+      },
+      'must be true': function (result) {
+        assert.isTrue(result);
+      }
+    },
+    'same but left vendor prefixed': {
+      'topic': function () {
+        return canReorderSingle(propertiesIn('a{background:-webkit-linear-gradient()}')[0], propertiesIn('a{background:linear-gradient()}')[0]);
+      },
+      'must be false': function (result) {
+        assert.isFalse(result);
+      }
+    },
+    'same but right vendor prefixed': {
+      'topic': function () {
+        return canReorderSingle(propertiesIn('a{background:linear-gradient()}')[0], propertiesIn('a{background:-webkit-linear-gradient()}')[0]);
+      },
+      'must be false': function (result) {
+        assert.isFalse(result);
       }
     }
   })

@@ -26,6 +26,13 @@ vows.describe(addOptimizationMetadata)
         assert.deepEqual(tokens, [['selector', ['a'], [[['color', true, false], ['red']]] ]]);
       }
     },
+    'flat block': {
+      'topic': [['flat-block', ['@font-face'], [[['font-family'], ['x']]] ]],
+      'metadata': function (tokens) {
+        addOptimizationMetadata(tokens);
+        assert.deepEqual(tokens, [['flat-block', ['@font-face'], [[['font-family', false, false], ['x']]] ]]);
+      }
+    },
     'underscore hack': {
       'topic': [['selector', ['a'], [[['_color'], ['red']]] ]],
       'metadata': function (tokens) {

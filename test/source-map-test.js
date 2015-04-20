@@ -34,6 +34,14 @@ vows.describe('source-map')
       'gets right output': function (minified) {
         assert.equal(minified.styles, 'a{background:linear-gradient(to bottom,rgba(0,0,0,.1) 0,rgba(0,0,0,.1))}');
       }
+    },
+    'important': {
+      'topic': function () {
+        return new CleanCSS({ sourceMap: true }).minify('@font-face{font-family:si}a{font-family:si!important}');
+      },
+      'gets right output': function (minified) {
+        assert.equal(minified.styles, '@font-face{font-family:si}a{font-family:si!important}');
+      }
     }
   })
   .addBatch({

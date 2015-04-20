@@ -1,3 +1,8 @@
+[3.2.1 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.2.0...3.2)
+==================
+
+* Fixed issue [#534](https://github.com/jakubpawlowicz/clean-css/issues/534) - wrong `@font-face` stringifying.
+
 [3.2.0 / 2015-04-19](https://github.com/jakubpawlowicz/clean-css/compare/v3.1.9...v3.2.0)
 ==================
 

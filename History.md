@@ -1,9 +1,9 @@
-[3.3.0 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.2.0...HEAD)
+[3.3.0 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.2.1...HEAD)
 ==================
 
 * Fixed issue [#436](https://github.com/jakubpawlowicz/clean-css/issues/436) - refactors URI rewriting.
 
-[3.2.1 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.2.0...3.2)
+[3.2.1 / 2015-04-20](https://github.com/jakubpawlowicz/clean-css/compare/v3.2.0...v3.2.1)
 ==================
 
 * Fixed issue [#534](https://github.com/jakubpawlowicz/clean-css/issues/534) - wrong `@font-face` stringifying.

@@ -141,6 +141,10 @@ vows.describe(SimpleOptimizer)
       'any other': [
         'a{background:red}',
         [['background', 'red']]
+      ],
+      'none to other': [
+        'a{background:transparent no-repeat}',
+        [['background', 'transparent', 'no-repeat']]
       ]
     })
   )
@@ -373,6 +377,10 @@ vows.describe(SimpleOptimizer)
       'any other': [
         'a{outline:10px}',
         [['outline', '10px']]
+      ],
+      'none and any other': [
+        'a{outline:none solid 1px}',
+        [['outline', 'none', 'solid', '1px']]
       ]
     })
   )

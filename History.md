@@ -5,6 +5,7 @@
 * Cleans up tokenizer code getting rid of unnecessary state.
 * Moves source maps tracker into lib/source-maps/track.
 * Moves tokenizer code into lib/tokenizer.
+* Moves URL scanner into lib/urls/reduce (was named incorrectly before).
 * Moves URL rebasing & rewriting into lib/urls.
 * Fixed issue [#436](https://github.com/jakubpawlowicz/clean-css/issues/436) - refactors URI rewriting.
 

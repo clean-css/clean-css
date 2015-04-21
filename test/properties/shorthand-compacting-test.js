@@ -3,7 +3,7 @@ var assert = require('assert');
 
 var optimize = require('../../lib/properties/optimizer');
 
-var tokenize = require('../../lib/selectors/tokenizer');
+var tokenize = require('../../lib/tokenizer/tokenize');
 var SourceTracker = require('../../lib/utils/source-tracker');
 var Compatibility = require('../../lib/utils/compatibility');
 var Validator = require('../../lib/properties/validator');

@@ -1,7 +1,7 @@
 var vows = require('vows');
 var assert = require('assert');
 
-var tokenize = require('../../../lib/selectors/tokenizer');
+var tokenize = require('../../../lib/tokenizer/tokenize');
 var SimpleOptimizer = require('../../../lib/selectors/optimizers/simple');
 var Compatibility = require('../../../lib/utils/compatibility');
 var addOptimizationMetadata = require('../../../lib/selectors/optimization-metadata');

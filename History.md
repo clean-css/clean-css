@@ -3,6 +3,8 @@
 
 * Cleans up url rebase code getting rid of unnecessary state.
 * Cleans up tokenizer code getting rid of unnecessary state.
+* Moves source maps tracker into lib/source-maps/track.
+* Moves tokenizer code into lib/tokenizer.
 * Moves URL rebasing & rewriting into lib/urls.
 * Fixed issue [#436](https://github.com/jakubpawlowicz/clean-css/issues/436) - refactors URI rewriting.
 

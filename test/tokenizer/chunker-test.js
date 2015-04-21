@@ -1,6 +1,6 @@
 var vows = require('vows');
 var assert = require('assert');
-var Chunker = require('../../lib/utils/chunker');
+var Chunker = require('../../lib/tokenizer/chunker');
 
 vows.describe(Chunker)
   .addBatch({

@@ -1,9 +1,9 @@
-[3.3.0 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.2.1...HEAD)
+[3.3.0 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.2.2...HEAD)
 ==================
 
 * Fixed issue [#436](https://github.com/jakubpawlowicz/clean-css/issues/436) - refactors URI rewriting.
 
-[3.2.2 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.2.1...3.2)
+[3.2.2 / 2015-04-21](https://github.com/jakubpawlowicz/clean-css/compare/v3.2.1...v3.2.2)
 ==================
 
 * Fixed issue [#537](https://github.com/jakubpawlowicz/clean-css/issues/537) - regression in simple optimizer.

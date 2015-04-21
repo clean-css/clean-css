@@ -3,7 +3,7 @@ var assert = require('assert');
 
 var optimize = require('../../lib/properties/optimizer');
 
-var Tokenizer = require('../../lib/selectors/tokenizer');
+var tokenize = require('../../lib/selectors/tokenizer');
 var SourceTracker = require('../../lib/utils/source-tracker');
 var Compatibility = require('../../lib/utils/compatibility');
 var Validator = require('../../lib/properties/validator');
@@ -13,11 +13,11 @@ var compatibility = new Compatibility().toOptions();
 var validator = new Validator(compatibility);
 
 function _optimize(source, mergeAdjacent, aggressiveMerging) {
-  var tokens = new Tokenizer({
+  var tokens = tokenize(source, {
     options: {},
     sourceTracker: new SourceTracker(),
     warnings: []
-  }).toTokens(source);
+  });
 
   addOptimizationMetadata(tokens);
   optimize(tokens[0][1], tokens[0][2], mergeAdjacent, true, { compatibility: compatibility, aggressiveMerging: aggressiveMerging }, validator);

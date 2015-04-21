@@ -1,6 +1,6 @@
 var vows = require('vows');
 var assert = require('assert');
-var Tokenizer = require('../../lib/selectors/tokenizer');
+var tokenize = require('../../lib/selectors/tokenizer');
 var SourceTracker = require('../../lib/utils/source-tracker');
 
 function tokenizerContext(name, specs) {
@@ -8,13 +8,13 @@ function tokenizerContext(name, specs) {
 
   function tokenized(target) {
     return function (source) {
-      var tokenized = new Tokenizer({
+      var tokens = tokenize(source, {
         options: {},
         sourceTracker: new SourceTracker(),
         warnings: []
-      }).toTokens(source);
+      });
 
-      assert.deepEqual(tokenized, target);
+      assert.deepEqual(tokens, target);
     };
   }
 
@@ -28,7 +28,7 @@ function tokenizerContext(name, specs) {
   return ctx;
 }
 
-vows.describe(Tokenizer)
+vows.describe(tokenize)
   .addBatch(
     tokenizerContext('basic', {
       'no content': [

@@ -3,18 +3,18 @@ var assert = require('assert');
 
 var optimize = require('../../lib/properties/optimizer');
 
-var Tokenizer = require('../../lib/selectors/tokenizer');
+var tokenize = require('../../lib/selectors/tokenizer');
 var SourceTracker = require('../../lib/utils/source-tracker');
 var Compatibility = require('../../lib/utils/compatibility');
 var Validator = require('../../lib/properties/validator');
 var addOptimizationMetadata = require('../../lib/selectors/optimization-metadata');
 
 function _optimize(source) {
-  var tokens = new Tokenizer({
+  var tokens = tokenize(source, {
     options: {},
     sourceTracker: new SourceTracker(),
     warnings: []
-  }).toTokens(source);
+  });
 
   addOptimizationMetadata(tokens);
 

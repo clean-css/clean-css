@@ -1,10 +1,10 @@
 var vows = require('vows');
 var assert = require('assert');
-var SelectorTokenizer = require('../../lib/selectors/tokenizer');
+var tokenize = require('../../lib/selectors/tokenizer');
 var extractor = require('../../lib/selectors/extractor');
 
 function buildToken(source) {
-  return new SelectorTokenizer({ options: {} }).toTokens(source)[0];
+  return tokenize(source, { options: {} })[0];
 }
 
 vows.describe(extractor)

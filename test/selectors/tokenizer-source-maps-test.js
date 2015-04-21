@@ -1,6 +1,6 @@
 var vows = require('vows');
 var assert = require('assert');
-var Tokenizer = require('../../lib/selectors/tokenizer');
+var tokenize = require('../../lib/selectors/tokenizer');
 var SourceTracker = require('../../lib/utils/source-tracker');
 var SourceReader = require('../../lib/utils/source-reader');
 var InputSourceMapTracker = require('../../lib/utils/input-source-map-tracker');
@@ -21,12 +21,12 @@ function sourceMapContext(group, specs) {
 
   function toTokens(source) {
     return function () {
-      return new Tokenizer({
+      return tokenize(source, {
         sourceTracker: sourceTracker,
         sourceReader: sourceReader,
         inputSourceMapTracker: inputSourceMapTracker,
-        options: {}
-      }, true).toTokens(source);
+        options: { sourceMap: true }
+      });
     };
   }
 
@@ -471,10 +471,14 @@ vows.describe('source-maps/analyzer')
           var tracker = new SourceTracker();
           var reader = new SourceReader();
           var inputTracker = new InputSourceMapTracker({ options: { inliner: {} }, errors: {}, sourceTracker: tracker });
-          var tokenizer = new Tokenizer({ sourceTracker: tracker, sourceReader: reader, inputSourceMapTracker: inputTracker, options: {} }, true);
 
           var data = tracker.store('one.css', 'a{}');
-          return tokenizer.toTokens(data);
+          return tokenize(data, {
+            sourceTracker: tracker,
+            sourceReader: reader,
+            inputSourceMapTracker: inputTracker,
+            options: { sourceMap: true }
+          });
         },
         [
           [
@@ -489,11 +493,15 @@ vows.describe('source-maps/analyzer')
           var tracker = new SourceTracker();
           var reader = new SourceReader();
           var inputTracker = new InputSourceMapTracker({ options: { inliner: {} }, errors: {}, sourceTracker: tracker });
-          var tokenizer = new Tokenizer({ sourceTracker: tracker, sourceReader: reader, inputSourceMapTracker: inputTracker, options: {} }, true);
 
           var data1 = tracker.store('one.css', 'a{}');
           var data2 = tracker.store('two.css', '\na{color:red}');
-          return tokenizer.toTokens(data1 + data2);
+          return tokenize(data1 + data2, {
+            sourceTracker: tracker,
+            sourceReader: reader,
+            inputSourceMapTracker: inputTracker,
+            options: { sourceMap: true }
+          });
         },
         [
           [
@@ -519,8 +527,12 @@ vows.describe('source-maps/analyzer')
           var inputTracker = new InputSourceMapTracker({ options: { inliner: {}, sourceMap: inputMap, options: {} }, errors: {}, sourceTracker: tracker });
           inputTracker.track('', function () {});
 
-          var tokenizer = new Tokenizer({ sourceTracker: tracker, sourceReader: reader, inputSourceMapTracker: inputTracker, options: {} }, true);
-          return tokenizer.toTokens('div > a {\n  color: red;\n}');
+          return tokenize('div > a {\n  color: red;\n}', {
+            sourceTracker: tracker,
+            sourceReader: reader,
+            inputSourceMapTracker: inputTracker,
+            options: { sourceMap: true }
+          });
         },
         [
           [
@@ -537,8 +549,12 @@ vows.describe('source-maps/analyzer')
           var inputTracker = new InputSourceMapTracker({ options: { inliner: {}, sourceMap: inputMap, options: {} }, errors: {}, sourceTracker: tracker });
           inputTracker.track('', function () {});
 
-          var tokenizer = new Tokenizer({ sourceTracker: tracker, sourceReader: reader, inputSourceMapTracker: inputTracker, options: {} }, true);
-          return tokenizer.toTokens('div > a {\n  color: red red;\n}');
+          return tokenize('div > a {\n  color: red red;\n}', {
+            sourceTracker: tracker,
+            sourceReader: reader,
+            inputSourceMapTracker: inputTracker,
+            options: { sourceMap: true }
+          });
         },
         [
           [

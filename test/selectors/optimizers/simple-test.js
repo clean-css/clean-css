@@ -1,7 +1,7 @@
 var vows = require('vows');
 var assert = require('assert');
 
-var Tokenizer = require('../../../lib/selectors/tokenizer');
+var tokenize = require('../../../lib/selectors/tokenizer');
 var SimpleOptimizer = require('../../../lib/selectors/optimizers/simple');
 var Compatibility = require('../../../lib/utils/compatibility');
 var addOptimizationMetadata = require('../../../lib/selectors/optimization-metadata');
@@ -13,7 +13,7 @@ function selectorContext(group, specs, options) {
 
   function optimized(selectors) {
     return function (source) {
-      var tokens = new Tokenizer({ options: {} }).toTokens(source);
+      var tokens = tokenize(source, { options: {} });
       new SimpleOptimizer(options).optimize(tokens);
 
       assert.deepEqual(tokens[0] ? tokens[0][1] : null, selectors);
@@ -37,7 +37,7 @@ function propertyContext(group, specs, options) {
 
   function optimized(selectors) {
     return function (source) {
-      var tokens = new Tokenizer({ options: {} }).toTokens(source);
+      var tokens = tokenize(source, { options: {} });
       addOptimizationMetadata(tokens);
       new SimpleOptimizer(options).optimize(tokens);
 

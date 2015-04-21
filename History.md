@@ -2,6 +2,7 @@
 ==================
 
 * Cleans up url rebase code getting rid of unnecessary state.
+* Moves URL rebasing & rewriting into lib/urls.
 * Fixed issue [#436](https://github.com/jakubpawlowicz/clean-css/issues/436) - refactors URI rewriting.
 
 [3.2.2 / 2015-04-21](https://github.com/jakubpawlowicz/clean-css/compare/v3.2.1...v3.2.2)

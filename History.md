@@ -9,6 +9,11 @@
 * Moves URL rebasing & rewriting into lib/urls.
 * Fixed issue [#436](https://github.com/jakubpawlowicz/clean-css/issues/436) - refactors URI rewriting.
 
+[3.2.3 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.2.2...3.2)
+==================
+
+* Fixed issue [#541](https://github.com/jakubpawlowicz/clean-css/issues/541) - `outline-style:auto` in shorthand.
+
 [3.2.2 / 2015-04-21](https://github.com/jakubpawlowicz/clean-css/compare/v3.2.1...v3.2.2)
 ==================
 

@@ -686,6 +686,26 @@ vows.describe(breakUp)
           assert.deepEqual(components[2].value, [['1px']]);
         }
       },
+      'with auto style': {
+        'topic': function () {
+          return _breakUp([[['outline'], ['#fff'], ['auto'], ['1px']]]);
+        },
+        'has 3 components': function (components) {
+          assert.lengthOf(components, 3);
+        },
+        'has outline-color': function (components) {
+          assert.deepEqual(components[0].name, 'outline-color');
+          assert.deepEqual(components[0].value, [['#fff']]);
+        },
+        'has outline-style': function (components) {
+          assert.deepEqual(components[1].name, 'outline-style');
+          assert.deepEqual(components[1].value, [['auto']]);
+        },
+        'has outline-width': function (components) {
+          assert.deepEqual(components[2].name, 'outline-width');
+          assert.deepEqual(components[2].value, [['1px']]);
+        }
+      },
       'missing values': {
         'topic': function () {
           return _breakUp([[['outline'], ['solid']]]);

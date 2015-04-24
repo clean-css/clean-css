@@ -1,4 +1,4 @@
-[3.2.4 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.2.3...3.2)
+[3.2.4 / 2015-04-24](https://github.com/jakubpawlowicz/clean-css/compare/v3.2.3...v3.2.4)
 ==================
 
 * Fixed issue [#544](https://github.com/jakubpawlowicz/clean-css/issues/544) - regression in same value merging.

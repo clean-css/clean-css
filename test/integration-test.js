@@ -161,15 +161,15 @@ vows.describe('integration tests').addBatch({
     'after hsla': 'a{text-shadow:hsla(240,100%,40%,.5)-1px 1px}',
     'inside background': [
       'a{background:calc(100% - 2px) 10px no-repeat}',
-      'a{background:calc(100% - 2px)10px no-repeat}'
+      'a{background:calc(100% - 2px) 10px no-repeat}'
     ],
     'inside background with fraction unit': [
-      'a{background:calc(100% - 2px).5em no-repeat}',
-      'a{background:calc(100% - 2px).5em no-repeat}'
+      'a{background:calc(100% - 2px) .5em no-repeat}',
+      'a{background:calc(100% - 2px) .5em no-repeat}'
     ],
     'inside margin': [
       'a{margin:calc(100% - 2px) calc(100% - 5px)}',
-      'a{margin:calc(100% - 2px)calc(100% - 5px)}'
+      'a{margin:calc(100% - 2px) calc(100% - 5px)}'
     ],
     'after :not #1': [
       'li:not(.foo).bar{color:red}',
@@ -629,7 +629,7 @@ vows.describe('integration tests').addBatch({
     ],
     'negative padding in calculations': [
       'div{padding:calc(100% - 5px) 0 0 0}',
-      'div{padding:calc(100% - 5px)0 0}'
+      'div{padding:calc(100% - 5px) 0 0}'
     ]
   }),
   'floats': cssContext({
@@ -2011,7 +2011,7 @@ title']{display:block}",
   'background position': cssContext({
     'calc as a value': [
       '*{background:white calc(100% - 10px) center no-repeat;background-image:url(test.png)}',
-      '*{background:calc(100% - 10px)center no-repeat #fff;background-image:url(test.png)}'
+      '*{background:calc(100% - 10px) center no-repeat #fff;background-image:url(test.png)}'
     ]
   }),
   'background-clip': cssContext({

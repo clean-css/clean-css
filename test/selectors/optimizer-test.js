@@ -232,6 +232,10 @@ vows.describe(SelectorsOptimizer)
       'whitespace body': [
         'a{   \n }',
         ''
+      ],
+      'whitespace after calc()': [
+        'div{margin:calc(100% - 20px) 1px}',
+        'div{margin:calc(100% - 20px) 1px}'
       ]
     })
   )

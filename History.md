@@ -13,6 +13,7 @@
 ==================
 
 * Fixed issue [#544](https://github.com/jakubpawlowicz/clean-css/issues/544) - regression in same value merging.
+* Fixed issue [#546](https://github.com/jakubpawlowicz/clean-css/issues/546) - IE<11 `calc()` issue.
 
 [3.2.3 / 2015-04-22](https://github.com/jakubpawlowicz/clean-css/compare/v3.2.2...v3.2.3)
 ==================

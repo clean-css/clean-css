@@ -301,6 +301,10 @@ vows.describe(SimpleOptimizer)
       'with mixed normal and weight': [
         'a{font: normal small-caps 400 medium Georgia, sans-serif;}',
         [['font', 'normal', 'small-caps', '400', 'medium', 'Georgia', ',', 'sans-serif']]
+      ],
+      'with line height': [
+        'a{font: 11px/normal sans-serif}',
+        [['font', '11px', '/', 'normal', 'sans-serif']]
       ]
     })
   )

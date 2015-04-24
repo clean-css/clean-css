@@ -1,3 +1,8 @@
+[3.2.5 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.2.4...3.2)
+==================
+
+* Fixed issue [#548](https://github.com/jakubpawlowicz/clean-css/issues/548) - regression in font minifying.
+
 [3.2.4 / 2015-04-24](https://github.com/jakubpawlowicz/clean-css/compare/v3.2.3...v3.2.4)
 ==================
 

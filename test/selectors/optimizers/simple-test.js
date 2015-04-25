@@ -580,7 +580,7 @@ vows.describe(SimpleOptimizer)
     propertyContext('comments', {
       'comment': [
         'a{__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0__color:red__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS1__}',
-        ['__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0__', ['color', 'red'], '__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS1__']
+        ['__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0__', '__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS1__', ['color', 'red']]
       ]
     })
   )

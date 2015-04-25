@@ -1,4 +1,4 @@
-[3.2.5 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.2.4...3.2)
+[3.2.5 / 2015-04-25](https://github.com/jakubpawlowicz/clean-css/compare/v3.2.4...v3.2.5)
 ==================
 
 * Fixed issue [#543](https://github.com/jakubpawlowicz/clean-css/issues/543) - better "comment in body" handling.

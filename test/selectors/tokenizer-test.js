@@ -137,7 +137,31 @@ vows.describe(Tokenizer)
       'two properties wrapped between comments': [
         'div{__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0__color:red__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS1__}',
         [
-          ['selector', [['div']], ['__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0__', [['color'], ['red']], '__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS1__']]
+          ['selector', [['div']], ['__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0__', '__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS1__', [['color'], ['red']]]]
+        ]
+      ],
+      'multiple values wrapped between comments #1': [
+        'div{background:__ESCAPED_URL_CLEAN_CSS0__,__ESCAPED_COMMENT_CLEAN_CSS0__red}',
+        [
+          ['selector', [['div']], ['__ESCAPED_COMMENT_CLEAN_CSS0__', [['background'], ['__ESCAPED_URL_CLEAN_CSS0__'], [','], ['red']]]]
+        ]
+      ],
+      'multiple values wrapped between comments #2': [
+        'div{background:__ESCAPED_URL_CLEAN_CSS0__,red__ESCAPED_COMMENT_CLEAN_CSS0__}',
+        [
+          ['selector', [['div']], ['__ESCAPED_COMMENT_CLEAN_CSS0__', [['background'], ['__ESCAPED_URL_CLEAN_CSS0__'], [','], ['red']]]]
+        ]
+      ],
+      'multiple values wrapped between comments #3': [
+        'div{background:__ESCAPED_URL_CLEAN_CSS0__,rgba(0,0,0,__ESCAPED_COMMENT_CLEAN_CSS0__0.1)}',
+        [
+          ['selector', [['div']], ['__ESCAPED_COMMENT_CLEAN_CSS0__', [['background'], ['__ESCAPED_URL_CLEAN_CSS0__'], [','], ['rgba(0,0,0,0.1)']]]]
+        ]
+      ],
+      'multiple values wrapped between comments #4': [
+        'div{background:__ESCAPED_URL_CLEAN_CSS0__,rgba(0,0,0,__ESCAPED_COMMENT_CLEAN_CSS0__0.1)}',
+        [
+          ['selector', [['div']], ['__ESCAPED_COMMENT_CLEAN_CSS0__', [['background'], ['__ESCAPED_URL_CLEAN_CSS0__'], [','], ['rgba(0,0,0,0.1)']]]]
         ]
       ],
       'pseudoselector after an argument one': [

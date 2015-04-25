@@ -1033,6 +1033,14 @@ vows.describe('source-map')
       'has right output': function (errors, minified) {
         assert.equal(minified.styles, 'div{color:red!important/*!1*//*!2*/}');
       }
+    },
+    'important comments after a property with remove comments': {
+      'topic': function () {
+        return new CleanCSS({ sourceMap: true, keepSpecialComments: 1 }).minify('div { color: #f00 !important; /*!1*/} /*!2*/ a{/*!3*/}');
+      },
+      'has right output': function (errors, minified) {
+        assert.equal(minified.styles, 'div{color:red!important/*!1*/}a{}');
+      }
     }
   })
   .addBatch({

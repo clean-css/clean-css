@@ -14,6 +14,7 @@
 
 * Fixed issue [#543](https://github.com/jakubpawlowicz/clean-css/issues/543) - better "comment in body" handling.
 * Fixed issue [#548](https://github.com/jakubpawlowicz/clean-css/issues/548) - regression in font minifying.
+* Fixed issue [#549](https://github.com/jakubpawlowicz/clean-css/issues/549) - special comments in source maps.
 
 [3.2.4 / 2015-04-24](https://github.com/jakubpawlowicz/clean-css/compare/v3.2.3...v3.2.4)
 ==================

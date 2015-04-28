@@ -9,6 +9,11 @@
 * Moves URL rebasing & rewriting into lib/urls.
 * Fixed issue [#436](https://github.com/jakubpawlowicz/clean-css/issues/436) - refactors URI rewriting.
 
+[3.2.6 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.2.5...3.2)
+==================
+
+* Fixed issue [#556](https://github.com/jakubpawlowicz/clean-css/issues/556) - regression in IE backslash hacks.
+
 [3.2.5 / 2015-04-25](https://github.com/jakubpawlowicz/clean-css/compare/v3.2.4...v3.2.5)
 ==================
 

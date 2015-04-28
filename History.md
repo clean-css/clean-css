@@ -1,4 +1,4 @@
-[3.2.6 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.2.5...3.2)
+[3.2.6 / 2015-04-28](https://github.com/jakubpawlowicz/clean-css/compare/v3.2.5...v3.2.6)
 ==================
 
 * Fixed issue [#550](https://github.com/jakubpawlowicz/clean-css/issues/550) - proper `contentSources` tracking.

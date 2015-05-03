@@ -9,6 +9,11 @@
 * Moves URL rebasing & rewriting into lib/urls.
 * Fixed issue [#436](https://github.com/jakubpawlowicz/clean-css/issues/436) - refactors URI rewriting.
 
+[3.2.7 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.2.6...3.2)
+==================
+
+* Fixed issue [#551](https://github.com/jakubpawlowicz/clean-css/issues/551) - edge case in restructuring.
+
 [3.2.6 / 2015-04-28](https://github.com/jakubpawlowicz/clean-css/compare/v3.2.5...v3.2.6)
 ==================
 

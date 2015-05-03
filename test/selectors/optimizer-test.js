@@ -149,6 +149,10 @@ vows.describe(SelectorsOptimizer)
         'div{margin:0}.one{margin-bottom:0}.two{display:block;margin:0}',
         '.two,div{margin:0}.one{margin-bottom:0}.two{display:block}'
       ],
+      'dropping longer content at a right place': [
+        '.one,a:hover{color:red}a:hover{color:#000;display:block;border-color:#000}.longer-name{color:#000;border-color:#000}',
+        '.one,a:hover{color:red}.longer-name,a:hover{color:#000;border-color:#000}a:hover{display:block}'
+      ],
       'over media without overriding': [
         'div{margin:0}@media{.one{color:red}}.two{display:block;margin:0}',
         '.two,div{margin:0}@media{.one{color:red}}.two{display:block}'

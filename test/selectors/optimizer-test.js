@@ -300,6 +300,14 @@ vows.describe(SelectorsOptimizer)
     }, { advanced: true, aggressiveMerging: true })
   )
   .addBatch(
+    optimizerContext('advanced on & aggressive merging on - IE8 mode', {
+      'units': [
+        '.one{width:1px;width:1rem;display:block}.two{color:red}.one{width:2px;width:1.1rem}',
+        '.one{display:block;width:2px;width:1.1rem}.two{color:red}'
+      ]
+    }, { advanced: true, aggressiveMerging: true, compatibility: 'ie8' })
+  )
+  .addBatch(
     optimizerContext('advanced on & aggressive merging off', {
       'repeated' : [
         'a{color:red;color:red}',

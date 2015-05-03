@@ -13,6 +13,7 @@
 ==================
 
 * Fixed issue [#551](https://github.com/jakubpawlowicz/clean-css/issues/551) - edge case in restructuring.
+* Fixed issue [#558](https://github.com/jakubpawlowicz/clean-css/issues/558) - units in same selector merging.
 
 [3.2.6 / 2015-04-28](https://github.com/jakubpawlowicz/clean-css/compare/v3.2.5...v3.2.6)
 ==================

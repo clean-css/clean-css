@@ -524,11 +524,20 @@ vows.describe(optimize)
       }
     },
     'background then background - svg hack': {
-      'topic': 'p{background:__ESCAPED_URL_CLEAN_CSS0__;background: __ESCAPED_URL_CLEAN_CSS1__,none}',
+      'topic': 'p{background:__ESCAPED_URL_CLEAN_CSS0__;background:__ESCAPED_URL_CLEAN_CSS1__,none}',
       'into': function (topic) {
         assert.deepEqual(_optimize(topic), [
           [['background', false , false], ['__ESCAPED_URL_CLEAN_CSS0__']],
           [['background', false , false], ['__ESCAPED_URL_CLEAN_CSS1__'], [','], ['none']]
+        ]);
+      }
+    },
+    'background then background - inverted svg hack': {
+      'topic': 'p{background:__ESCAPED_URL_CLEAN_CSS0__;background:none,__ESCAPED_URL_CLEAN_CSS1__}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['background', false , false], ['__ESCAPED_URL_CLEAN_CSS0__']],
+          [['background', false , false], ['0 0'], [','], ['__ESCAPED_URL_CLEAN_CSS1__']]
         ]);
       }
     },

@@ -1,4 +1,4 @@
-[3.2.8 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.2.7...v3.2.8)
+[3.2.8 / 2015-05-04](https://github.com/jakubpawlowicz/clean-css/compare/v3.2.7...v3.2.8)
 ==================
 
 * Fixed issue [#561](https://github.com/jakubpawlowicz/clean-css/issues/561) - restructuring special selectors.

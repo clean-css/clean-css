@@ -1,6 +1,5 @@
 /*! normalize.css 2012-01-31T16:06 UTC - http://github.com/necolas/normalize.css */
 small,sub,sup{font-size:75%}
-button::-moz-focus-inner,input::-moz-focus-inner,legend{border:0;padding:0}
 .alpha,.ie .une_normale .liste_carre_999.liste_une .ie_impair,.liste_carre_999.liste_une li:nth-child(2n+3){clear:left}
 article,aside,details,figcaption,figure,footer,header,hgroup,nav,section{display:block}
 audio,canvas,video{display:inline-block}
@@ -29,7 +28,7 @@ nav ol,nav ul{list-style:none}
 img{-ms-interpolation-mode:bicubic}
 svg:not(:root){overflow:hidden}
 fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
-legend{white-space:normal}
+legend{border:0;padding:0;white-space:normal}
 button,input,select,textarea{font-size:100%;margin:0;vertical-align:baseline}
 button,input{line-height:normal}
 button,input[type=button],input[type=reset],input[type=submit]{cursor:pointer;-webkit-appearance:button}
@@ -38,6 +37,7 @@ button[disabled],input[disabled]{cursor:default}
 input[type=checkbox],input[type=radio]{box-sizing:border-box;padding:0}
 input[type=search]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box}
 input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-search-decoration{-webkit-appearance:none}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
 textarea{overflow:auto;vertical-align:top}
 table{border-spacing:0;border-collapse:collapse}
 @font-face{font-family:TheSerifOffice;src:url(/medias/web/font/svg/TheSerifOffice-OT7_West.svgz#TheSerifOffice)format('svg');src:url(/medias/web/font/eot/TheSerifOffice-TT7_.eot);src:url(/medias/web/font/eot/TheSerifOffice-TT7_.eot?#iefix)format('embedded-opentype'),url(/medias/web/font/woff/TheSerifOffice-TT7_.woff)format('woff');font-weight:400;font-style:normal}

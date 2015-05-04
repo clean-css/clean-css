@@ -189,6 +189,10 @@ vows.describe(SelectorsOptimizer)
         '.one{background:red;padding:8px 16px}.two{padding-left:16px;padding-right:16px}.three{padding-top:20px}.four{border-left:1px solid #000;border-right:1px solid #000;border-bottom:1px solid #000}.five{background-color:#fff;background-image:-moz-linear-gradient();background-image:-ms-linear-gradient();background-image:-webkit-gradient();background-image:-webkit-linear-gradient()}',
         '.one{background:red;padding:8px 16px}.two{padding-left:16px;padding-right:16px}.three{padding-top:20px}.four{border-left:1px solid #000;border-right:1px solid #000;border-bottom:1px solid #000}.five{background-color:#fff;background-image:-moz-linear-gradient();background-image:-ms-linear-gradient();background-image:-webkit-gradient();background-image:-webkit-linear-gradient()}'
       ],
+      'multiple granular - special': [
+        'input:-ms-input-placeholder{color:red;text-align:center}input::placeholder{color:red;text-align:center}',
+        'input:-ms-input-placeholder{color:red;text-align:center}input::placeholder{color:red;text-align:center}'
+      ],
       'moving one already being moved with different value': [
         '.one{color:red}.two{display:block}.three{color:red;display:inline}.four{display:inline-block}.five{color:#000}',
         '.one,.three{color:red}.two{display:block}.three{display:inline}.four{display:inline-block}.five{color:#000}'

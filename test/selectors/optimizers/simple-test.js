@@ -261,6 +261,22 @@ vows.describe(SimpleOptimizer)
     }, { compatibility: 'ie8' })
   )
   .addBatch(
+    propertyContext('colors - no optimizations', {
+      'long hex into short': [
+        'a{color:#ff00ff}',
+        [['color', '#ff00ff']]
+      ],
+      'short hex into name': [
+        'a{color:#f00}',
+        [['color', '#f00']]
+      ],
+      'name into hex': [
+        'a{color:white}',
+        [['color', 'white']]
+      ]
+    }, { compatibility: { properties: { colors: false } } })
+  )
+  .addBatch(
     propertyContext('@filter', {
       'spaces after comma': [
         'a{filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=\'#cccccc\',endColorstr=\'#000000\', enabled=true)}',

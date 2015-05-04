@@ -306,6 +306,7 @@ Since clean-css 3 a fine grained control is available over
 with the following options available:
 
 * `'[+-]colors.opacity'` - - turn on (+) / off (-) `rgba()` / `hsla()` declarations removal
+* `'[+-]properties.colors'` - turn on / off any color optimizations
 * `'[+-]properties.iePrefixHack'` - turn on / off IE prefix hack removal
 * `'[+-]properties.ieSuffixHack'` - turn on / off IE suffix hack removal
 * `'[+-]properties.backgroundSizeMerging'` - turn on / off background-size merging into shorthand

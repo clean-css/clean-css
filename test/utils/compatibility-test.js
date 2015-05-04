@@ -9,6 +9,7 @@ vows.describe(Compatibility)
         return new Compatibility({}).toOptions();
       },
       'gets default options': function(options) {
+        assert.isTrue(options.properties.colors);
         assert.isFalse(options.properties.iePrefixHack);
         assert.isFalse(options.properties.ieSuffixHack);
         assert.isFalse(options.selectors.adjacentSpace);
@@ -55,6 +56,7 @@ vows.describe(Compatibility)
         return new Compatibility('ie8').toOptions();
       },
       'gets template options': function(options) {
+        assert.isTrue(options.properties.colors);
         assert.isTrue(options.properties.iePrefixHack);
         assert.isTrue(options.properties.ieSuffixHack);
         assert.isFalse(options.selectors.adjacentSpace);
@@ -74,6 +76,7 @@ vows.describe(Compatibility)
         return new Compatibility('ie7').toOptions();
       },
       'gets template options': function(options) {
+        assert.isTrue(options.properties.colors);
         assert.isTrue(options.properties.iePrefixHack);
         assert.isTrue(options.properties.ieSuffixHack);
         assert.isTrue(options.selectors.ie7Hack);

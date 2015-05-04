@@ -306,16 +306,17 @@ Since clean-css 3 a fine grained control is available over
 with the following options available:
 
 * `'[+-]colors.opacity'` - - turn on (+) / off (-) `rgba()` / `hsla()` declarations removal
+* `'[+-]properties.backgroundSizeMerging'` - turn on / off background-size merging into shorthand
 * `'[+-]properties.colors'` - turn on / off any color optimizations
 * `'[+-]properties.iePrefixHack'` - turn on / off IE prefix hack removal
 * `'[+-]properties.ieSuffixHack'` - turn on / off IE suffix hack removal
-* `'[+-]properties.backgroundSizeMerging'` - turn on / off background-size merging into shorthand
 * `'[+-]properties.merging'` - turn on / off property merging based on understandability
 * `'[+-]properties.spaceAfterClosingBrace'` - turn on / off removing space after closing brace - `url() no-repeat` into `url()no-repeat`
 * `'[+-]properties.urlQuotes'` - turn on / off `url()` quoting
 * `'[+-]properties.zeroUnits'` - turn on / off units removal after a `0` value
 * `'[+-]selectors.adjacentSpace'` - turn on / off extra space before `nav` element
 * `'[+-]selectors.ie7Hack'` - turn on / off IE7 selector hack removal (`*+html...`)
+* `'[+-]selectors.special'` - a regular expression with all special, unmergeable selectors (leave it empty unless you know what you are doing)
 * `'[+-]units.rem'` - turn on / off treating `rem` as a proper unit
 
 For example, this declaration `--compatibility 'ie8,+units.rem'` will ensure IE8 compatiblity while enabling `rem` units so the following style `margin:0px 0rem` can be shortened to `margin:0`, while in pure IE8 mode it can't be.

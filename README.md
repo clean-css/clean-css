@@ -66,6 +66,7 @@ cleancss [options] source-file, [source-file, ...]
 -c, --compatibility [ie7|ie8]   Force compatibility mode (see Readme for advanced examples)
 --source-map                    Enables building input's source map
 --source-map-inline-sources     Enables inlining sources inside source map's `sourcesContent` field
+--semantic-merging              Enables semantic merging mode by assuming BEM-like content (warning, this may break your styling!)
 -d, --debug                     Shows debug information (minification time & compression efficiency)
 ```
 
@@ -128,6 +129,7 @@ CleanCSS constructor accepts a hash as a parameter, i.e.,
 * `restructuring` - set to false to disable restructuring in advanced optimizations
 * `root` - path to **resolve** absolute `@import` rules and **rebase** relative URLs
 * `roundingPrecision` - rounding precision; defaults to `2`; `-1` disables rounding
+* `semanticMerging` - set to true to enable semantic merging mode which assumes BEM-like content (default is false as it's highly likely this will break your stylesheets - **use with caution**!)
 * `shorthandCompacting` - set to false to skip shorthand compacting (default is true unless sourceMap is set when it's false)
 * `sourceMap` - exposes source map under `sourceMap` property, e.g. `new CleanCSS().minify(source).sourceMap` (default is false)
   If input styles are a product of CSS preprocessor (LESS, SASS) an input source map can be passed as a string.

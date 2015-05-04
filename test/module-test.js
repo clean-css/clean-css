@@ -364,6 +364,22 @@ vows.describe('module tests').addBatch({
       'gets right output': function (minified) {
         assert.equal(minified.styles, 'div{margin-top:0}.one{margin:0}.two{display:block;margin-top:0}');
       }
+    },
+    'semantic merging - off': {
+      'topic': function () {
+        return new CleanCSS().minify('.a{margin:0}.b{margin:10px;padding:0}.c{margin:0}');
+      },
+      'gets right output': function (minified) {
+        assert.equal(minified.styles, '.a{margin:0}.b{margin:10px;padding:0}.c{margin:0}');
+      }
+    },
+    'semantic merging - on': {
+      'topic': function () {
+        return new CleanCSS({ semanticMerging: true }).minify('.a{margin:0}.b{margin:10px;padding:0}.c{margin:0}');
+      },
+      'gets right output': function (minified) {
+        assert.equal(minified.styles, '.a,.c{margin:0}.b{margin:10px;padding:0}');
+      }
     }
   },
   'source map': {

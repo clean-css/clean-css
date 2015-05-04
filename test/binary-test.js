@@ -498,5 +498,17 @@ exports.commandsSuite = vows.describe('binary commands').addBatch({
         deleteFile('import-inline.min.css.map');
       }
     })
+  },
+  'semantic merging': {
+    'disabled': pipedContext('.a{margin:0}.b{margin:10px;padding:0}.c{margin:0}', '', {
+      'should output right data': function(error, stdout) {
+        assert.equal(stdout, '.a{margin:0}.b{margin:10px;padding:0}.c{margin:0}');
+      }
+    }),
+    'enabled': pipedContext('.a{margin:0}.b{margin:10px;padding:0}.c{margin:0}', '--semantic-merging', {
+      'should output right data': function(error, stdout) {
+        assert.equal(stdout, '.a,.c{margin:0}.b{margin:10px;padding:0}');
+      }
+    })
   }
 });

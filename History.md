@@ -8,6 +8,7 @@
 * Moves URL scanner into lib/urls/reduce (was named incorrectly before).
 * Moves URL rebasing & rewriting into lib/urls.
 * Fixed issue [#436](https://github.com/jakubpawlowicz/clean-css/issues/436) - refactors URI rewriting.
+* Fixed issue [#448](https://github.com/jakubpawlowicz/clean-css/issues/448) - rebasing no protocol URIs.
 
 [3.2.7 / 2015-05-03](https://github.com/jakubpawlowicz/clean-css/compare/v3.2.6...v3.2.7)
 ==================

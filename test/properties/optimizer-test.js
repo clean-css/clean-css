@@ -9,10 +9,11 @@ var Compatibility = require('../../lib/utils/compatibility');
 var Validator = require('../../lib/properties/validator');
 var addOptimizationMetadata = require('../../lib/selectors/optimization-metadata');
 
-var compatibility = new Compatibility().toOptions();
-var validator = new Validator(compatibility);
 
-function _optimize(source, mergeAdjacent, aggressiveMerging) {
+function _optimize(source, mergeAdjacent, aggressiveMerging, compatibilityOptions) {
+  var compatibility = new Compatibility(compatibilityOptions).toOptions();
+  var validator = new Validator(compatibility);
+
   var tokens = tokenize(source, {
     options: {},
     sourceTracker: new SourceTracker(),
@@ -382,6 +383,27 @@ vows.describe(optimize)
           [['border-top-width', false , false], ['1px']],
           [['display', false , false], ['block']],
           [['border-top-width', false , false], ['calc(100%)']]
+        ]);
+      }
+    },
+    'understandable - non adjacent units': {
+      'topic': 'a{margin-top:100px;padding-top:30px;margin-top:10vmin}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic, false, true), [
+          [['padding-top', false , false], ['30px']],
+          [['margin-top', false , false], ['10vmin']]
+        ]);
+      }
+    }
+  })
+  .addBatch({
+    'understandable - non adjacent units in IE8 mode 123': {
+      'topic': 'a{margin-top:100px;padding-top:30px;margin-top:10vmin}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic, false, true, 'ie8'), [
+          [['margin-top', false , false], ['100px']],
+          [['padding-top', false , false], ['30px']],
+          [['margin-top', false , false], ['10vmin']]
         ]);
       }
     }

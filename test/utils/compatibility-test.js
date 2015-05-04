@@ -21,7 +21,13 @@ vows.describe(Compatibility)
         assert.isFalse(options.selectors.adjacentSpace);
         assert.isFalse(options.selectors.ie7Hack);
         assert.deepEqual(options.selectors.special, /(\-moz\-|\-ms\-|\-o\-|\-webkit\-|:dir\([a-z-]*\)|:first(?![a-z-])|:fullscreen|:left|:read-only|:read-write|:right)/);
+        assert.isTrue(options.units.ch);
         assert.isTrue(options.units.rem);
+        assert.isTrue(options.units.vh);
+        assert.isTrue(options.units.vm);
+        assert.isTrue(options.units.vmax);
+        assert.isTrue(options.units.vmin);
+        assert.isTrue(options.units.vw);
       }
     },
     'not given': {
@@ -34,7 +40,7 @@ vows.describe(Compatibility)
     },
     'as a populated hash': {
       'topic': function () {
-        return new Compatibility({ units: { rem: false }, properties: { prefix: true } }).toOptions();
+        return new Compatibility({ units: { rem: false, vmax: false }, properties: { prefix: true } }).toOptions();
       },
       'gets merged options': function(options) {
         assert.isTrue(options.colors.opacity);
@@ -48,7 +54,13 @@ vows.describe(Compatibility)
         assert.isFalse(options.selectors.adjacentSpace);
         assert.isFalse(options.selectors.ie7Hack);
         assert.deepEqual(options.selectors.special, /(\-moz\-|\-ms\-|\-o\-|\-webkit\-|:dir\([a-z-]*\)|:first(?![a-z-])|:fullscreen|:left|:read-only|:read-write|:right)/);
+        assert.isTrue(options.units.ch);
         assert.isFalse(options.units.rem);
+        assert.isTrue(options.units.vh);
+        assert.isTrue(options.units.vm);
+        assert.isFalse(options.units.vmax);
+        assert.isTrue(options.units.vmin);
+        assert.isTrue(options.units.vw);
       }
     }
   })
@@ -70,7 +82,13 @@ vows.describe(Compatibility)
         assert.isFalse(options.selectors.adjacentSpace);
         assert.isFalse(options.selectors.ie7Hack);
         assert.deepEqual(options.selectors.special, /(\-moz\-|\-ms\-|\-o\-|\-webkit\-|:root|:nth|:first\-of|:last|:only|:empty|:target|:checked|::selection|:enabled|:disabled|:not)/);
+        assert.isFalse(options.units.ch);
         assert.isFalse(options.units.rem);
+        assert.isFalse(options.units.vh);
+        assert.isFalse(options.units.vm);
+        assert.isFalse(options.units.vmax);
+        assert.isFalse(options.units.vmin);
+        assert.isFalse(options.units.vw);
       }
     },
     'as an ie7 template': {
@@ -90,7 +108,13 @@ vows.describe(Compatibility)
         assert.isFalse(options.selectors.adjacentSpace);
         assert.isTrue(options.selectors.ie7Hack);
         assert.deepEqual(options.selectors.special, /(\-moz\-|\-ms\-|\-o\-|\-webkit\-|:focus|:before|:after|:root|:nth|:first\-of|:last|:only|:empty|:target|:checked|::selection|:enabled|:disabled|:not)/);
+        assert.isFalse(options.units.ch);
         assert.isFalse(options.units.rem);
+        assert.isFalse(options.units.vh);
+        assert.isFalse(options.units.vm);
+        assert.isFalse(options.units.vmax);
+        assert.isFalse(options.units.vmin);
+        assert.isFalse(options.units.vw);
       }
     },
     'as an unknown template': {
@@ -120,7 +144,13 @@ vows.describe(Compatibility)
         assert.isFalse(options.selectors.adjacentSpace);
         assert.isFalse(options.selectors.ie7Hack);
         assert.deepEqual(options.selectors.special, /(\-moz\-|\-ms\-|\-o\-|\-webkit\-|:root|:nth|:first\-of|:last|:only|:empty|:target|:checked|::selection|:enabled|:disabled|:not)/);
+        assert.isFalse(options.units.ch);
         assert.isFalse(options.units.rem);
+        assert.isFalse(options.units.vh);
+        assert.isFalse(options.units.vm);
+        assert.isFalse(options.units.vmax);
+        assert.isFalse(options.units.vmin);
+        assert.isFalse(options.units.vw);
       }
     },
     'as a single string value without group': {
@@ -140,7 +170,14 @@ vows.describe(Compatibility)
         assert.isFalse(options.selectors.adjacentSpace);
         assert.isFalse(options.selectors.ie7Hack);
         assert.deepEqual(options.selectors.special, /(\-moz\-|\-ms\-|\-o\-|\-webkit\-|:dir\([a-z-]*\)|:first(?![a-z-])|:fullscreen|:left|:read-only|:read-write|:right)/);
-        assert.isTrue(options.units.rem);      }
+        assert.isTrue(options.units.ch);
+        assert.isTrue(options.units.rem);
+        assert.isTrue(options.units.vh);
+        assert.isTrue(options.units.vm);
+        assert.isTrue(options.units.vmax);
+        assert.isTrue(options.units.vmin);
+        assert.isTrue(options.units.vw);
+      }
     },
     'as a complex string value without group': {
       'topic': function () {
@@ -159,7 +196,13 @@ vows.describe(Compatibility)
         assert.isFalse(options.selectors.adjacentSpace);
         assert.isFalse(options.selectors.ie7Hack);
         assert.deepEqual(options.selectors.special, /(\-moz\-|\-ms\-|\-o\-|\-webkit\-|:dir\([a-z-]*\)|:first(?![a-z-])|:fullscreen|:left|:read-only|:read-write|:right)/);
+        assert.isTrue(options.units.ch);
         assert.isFalse(options.units.rem);
+        assert.isTrue(options.units.vh);
+        assert.isTrue(options.units.vm);
+        assert.isTrue(options.units.vmax);
+        assert.isTrue(options.units.vmin);
+        assert.isTrue(options.units.vw);
       }
     }
   })

@@ -317,9 +317,15 @@ with the following options available:
 * `'[+-]selectors.adjacentSpace'` - turn on / off extra space before `nav` element
 * `'[+-]selectors.ie7Hack'` - turn on / off IE7 selector hack removal (`*+html...`)
 * `'[+-]selectors.special'` - a regular expression with all special, unmergeable selectors (leave it empty unless you know what you are doing)
+* `'[+-]units.ch'` - turn on / off treating `ch` as a proper unit
 * `'[+-]units.rem'` - turn on / off treating `rem` as a proper unit
+* `'[+-]units.vh'` - turn on / off treating `vh` as a proper unit
+* `'[+-]units.vm'` - turn on / off treating `vm` as a proper unit
+* `'[+-]units.vmax'` - turn on / off treating `vmax` as a proper unit
+* `'[+-]units.vmin'` - turn on / off treating `vmin` as a proper unit
+* `'[+-]units.vm'` - turn on / off treating `vm` as a proper unit
 
-For example, this declaration `--compatibility 'ie8,+units.rem'` will ensure IE8 compatiblity while enabling `rem` units so the following style `margin:0px 0rem` can be shortened to `margin:0`, while in pure IE8 mode it can't be.
+For example, using `--compatibility 'ie8,+units.rem'` will ensure IE8 compatiblity while enabling `rem` units so the following style `margin:0px 0rem` can be shortened to `margin:0`, while in pure IE8 mode it can't be.
 
 To pass a single off (-) switch in CLI please use the following syntax `--compatibility *,-units.rem`.
 

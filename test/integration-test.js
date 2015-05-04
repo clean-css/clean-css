@@ -523,10 +523,6 @@ vows.describe('integration tests').addBatch({
       'a{box-shadow:0 0 0 .15em #EBEBEB}'
     ],
     'box shadow with three zeros and a value': 'a{box-shadow:0 0 0 15px #EBEBEB}',
-    'rems': [
-      'div{width:0rem;height:0rem}',
-      'div{width:0;height:0}'
-    ],
     'prefixed box shadow zeros': [
       'a{-webkit-box-shadow:0 0 0 0; -moz-box-shadow:0 0 0 0}',
       'a{-webkit-box-shadow:0 0;-moz-box-shadow:0 0}'

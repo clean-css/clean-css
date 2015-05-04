@@ -454,13 +454,45 @@ vows.describe(SimpleOptimizer)
         'div{transform:rotate(10deg) skew(.5deg)}',
         [['transform', 'rotate(10deg)', 'skew(.5deg)']]
       ],
+      'ch': [
+        'div{width:0ch;height:0ch}',
+        [['width', '0'], ['height', '0']]
+      ],
+      'rem': [
+        'div{width:0rem;height:0rem}',
+        [['width', '0'], ['height', '0']]
+      ],
+      'vh': [
+        'div{width:0vh;height:0vh}',
+        [['width', '0'], ['height', '0']]
+      ],
+      'vm': [
+        'div{width:0vm;height:0vm}',
+        [['width', '0'], ['height', '0']]
+      ],
+      'vmax': [
+        'div{width:0vmax;height:0vmax}',
+        [['width', '0'], ['height', '0']]
+      ],
+      'vmin': [
+        'div{width:0vmin;height:0vmin}',
+        [['width', '0'], ['height', '0']]
+      ],
+      'vw': [
+        'div{width:0vw;height:0vw}',
+        [['width', '0'], ['height', '0']]
+      ],
       'mixed units': [
         'a{margin:0em 0rem 0px 0pt}',
         [['margin', '0']]
       ],
-      'mixed vales': [
+      'mixed values #1': [
         'a{padding:10px 0em 30% 0rem}',
         [['padding', '10px', '0', '30%', '0']]
+      ],
+      'mixed values #2': [
+        'a{padding:10ch 0vm 30vmin 0vw}',
+        [['padding', '10ch', '0', '30vmin', '0']]
       ],
       'inside calc': [
         'a{font-size:calc(100% + 0px)}',
@@ -478,9 +510,13 @@ vows.describe(SimpleOptimizer)
         'a{margin:0em 0rem 0px 0pt}',
         [['margin', '0', '0rem', '0', '0']]
       ],
-      'mixed vales': [
+      'mixed values #1': [
         'a{padding:10px 0em 30% 0rem}',
         [['padding', '10px', '0', '30%', '0rem']]
+      ],
+      'mixed values #2': [
+        'a{padding:10ch 0vm 30vmin 0vw}',
+        [['padding', '10ch', '0vm', '30vmin', '0vw']]
       ]
     }, { compatibility: 'ie8' })
   )

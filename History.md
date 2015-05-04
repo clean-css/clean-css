@@ -7,6 +7,7 @@
 * Moves tokenizer code into lib/tokenizer.
 * Moves URL scanner into lib/urls/reduce (was named incorrectly before).
 * Moves URL rebasing & rewriting into lib/urls.
+* Fixed issue [#375](https://github.com/jakubpawlowicz/clean-css/issues/375) - unit compatibility switches.
 * Fixed issue [#436](https://github.com/jakubpawlowicz/clean-css/issues/436) - refactors URI rewriting.
 * Fixed issue [#448](https://github.com/jakubpawlowicz/clean-css/issues/448) - rebasing no protocol URIs.
 * Fixed issue [#517](https://github.com/jakubpawlowicz/clean-css/issues/517) - turning off color optimizations.

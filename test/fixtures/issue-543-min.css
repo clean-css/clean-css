@@ -2,4 +2,4 @@
 /*! IE6-IE8 */
 /*! chrome, firefox */
 /*! chrome, firefox, opera, Safari, Android, iOS 4.2+ */
-src:url(../font/myfont.eot?#iefix)format("embedded-opentype"),url(../font/myfont.woff)format("woff"),url(../font/myfont.ttf)format("truetype"),url(../font/myfont.svg#myfont)format("svg");font-style:normal;font-weight:400}
+src:url(../font/myfont.eot?#iefix) format("embedded-opentype"),url(../font/myfont.woff) format("woff"),url(../font/myfont.ttf) format("truetype"),url(../font/myfont.svg#myfont) format("svg");font-style:normal;font-weight:400}

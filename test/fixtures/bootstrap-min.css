@@ -32,8 +32,8 @@ td,th{padding:0}
 @media print{blockquote,img,pre,tr{page-break-inside:avoid}
 *,:after,:before{color:#000!important;text-shadow:none!important;background:0 0!important;-webkit-box-shadow:none!important;box-shadow:none!important}
 a,a:visited{text-decoration:underline}
-a[href]:after{content:" (" attr(href)")"}
-abbr[title]:after{content:" (" attr(title)")"}
+a[href]:after{content:" (" attr(href) ")"}
+abbr[title]:after{content:" (" attr(title) ")"}
 a[href^="javascript:"]:after,a[href^="#"]:after{content:""}
 blockquote,pre{border:1px solid #999}
 thead{display:table-header-group}
@@ -50,7 +50,7 @@ select{background:#fff!important}
 }
 .img-thumbnail,body{background-color:#fff}
 .btn,.btn-danger.active,.btn-danger:active,.btn-default.active,.btn-default:active,.btn-info.active,.btn-info:active,.btn-primary.active,.btn-primary:active,.btn-warning.active,.btn-warning:active,.btn.active,.btn:active,.dropdown-menu>.disabled>a:focus,.dropdown-menu>.disabled>a:hover,.form-control,.navbar-toggle,.open>.dropdown-toggle.btn-danger,.open>.dropdown-toggle.btn-default,.open>.dropdown-toggle.btn-info,.open>.dropdown-toggle.btn-primary,.open>.dropdown-toggle.btn-warning{background-image:none}
-@font-face{font-family:'Glyphicons Halflings';src:url(../fonts/glyphicons-halflings-regular.eot);src:url(../fonts/glyphicons-halflings-regular.eot?#iefix)format('embedded-opentype'),url(../fonts/glyphicons-halflings-regular.woff2)format('woff2'),url(../fonts/glyphicons-halflings-regular.woff)format('woff'),url(../fonts/glyphicons-halflings-regular.ttf)format('truetype'),url(../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular)format('svg')}
+@font-face{font-family:'Glyphicons Halflings';src:url(../fonts/glyphicons-halflings-regular.eot);src:url(../fonts/glyphicons-halflings-regular.eot?#iefix) format('embedded-opentype'),url(../fonts/glyphicons-halflings-regular.woff2) format('woff2'),url(../fonts/glyphicons-halflings-regular.woff) format('woff'),url(../fonts/glyphicons-halflings-regular.ttf) format('truetype'),url(../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular) format('svg')}
 .glyphicon{position:relative;top:1px;display:inline-block;font-family:'Glyphicons Halflings';font-style:normal;font-weight:400;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 .glyphicon-asterisk:before{content:"\2a"}
 .glyphicon-plus:before{content:"\2b"}
@@ -929,7 +929,7 @@ select[multiple].input-group-sm>.form-control,select[multiple].input-group-sm>.i
 }
 .embed-responsive,.modal,.modal-open,.progress{overflow:hidden}
 .navbar-fixed-bottom .navbar-collapse,.navbar-fixed-top .navbar-collapse{max-height:340px}
-@media (max-device-width:480px)and (orientation:landscape){.navbar-fixed-bottom .navbar-collapse,.navbar-fixed-top .navbar-collapse{max-height:200px}
+@media (max-device-width:480px) and (orientation:landscape){.navbar-fixed-bottom .navbar-collapse,.navbar-fixed-top .navbar-collapse{max-height:200px}
 }
 .container-fluid>.navbar-collapse,.container-fluid>.navbar-header,.container>.navbar-collapse,.container>.navbar-header{margin-right:-15px;margin-left:-15px}
 .navbar-static-top{z-index:1000;border-width:0 0 1px}
@@ -1377,7 +1377,7 @@ td.visible-xs,th.visible-xs{display:table-cell!important}
 .visible-xs-inline{display:inline!important}
 .visible-xs-inline-block{display:inline-block!important}
 }
-@media (min-width:768px)and (max-width:991px){.visible-sm{display:block!important}
+@media (min-width:768px) and (max-width:991px){.visible-sm{display:block!important}
 table.visible-sm{display:table}
 tr.visible-sm{display:table-row!important}
 td.visible-sm,th.visible-sm{display:table-cell!important}
@@ -1385,7 +1385,7 @@ td.visible-sm,th.visible-sm{display:table-cell!important}
 .visible-sm-inline{display:inline!important}
 .visible-sm-inline-block{display:inline-block!important}
 }
-@media (min-width:992px)and (max-width:1199px){.visible-md{display:block!important}
+@media (min-width:992px) and (max-width:1199px){.visible-md{display:block!important}
 table.visible-md{display:table}
 tr.visible-md{display:table-row!important}
 td.visible-md,th.visible-md{display:table-cell!important}
@@ -1403,9 +1403,9 @@ td.visible-lg,th.visible-lg{display:table-cell!important}
 }
 @media (max-width:767px){.hidden-xs{display:none!important}
 }
-@media (min-width:768px)and (max-width:991px){.hidden-sm{display:none!important}
+@media (min-width:768px) and (max-width:991px){.hidden-sm{display:none!important}
 }
-@media (min-width:992px)and (max-width:1199px){.hidden-md{display:none!important}
+@media (min-width:992px) and (max-width:1199px){.hidden-md{display:none!important}
 }
 @media (min-width:1200px){.hidden-lg{display:none!important}
 }

@@ -1766,7 +1766,7 @@ vows.describe('source-map')
           return new CleanCSS({ sourceMap: true }).minify('a{background:url(image.png);background-color:#eee;background-repeat:repeat-x}');
         },
         'has right output': function (minified) {
-          assert.equal(minified.styles, 'a{background:url(image.png)repeat-x #eee}');
+          assert.equal(minified.styles, 'a{background:url(image.png) repeat-x #eee}');
         },
         'has 5 mappings': function (minified) {
           assert.lengthOf(minified.sourceMap._mappings._array, 5);
@@ -1796,7 +1796,7 @@ vows.describe('source-map')
         'has a `repeat-x` mapping': function (minified) {
           var mapping = {
             generatedLine: 1,
-            generatedColumn: 27,
+            generatedColumn: 28,
             originalLine: 1,
             originalColumn: 68,
             source: '$stdin',
@@ -1807,7 +1807,7 @@ vows.describe('source-map')
         'has a `#eee` mapping': function (minified) {
           var mapping = {
             generatedLine: 1,
-            generatedColumn: 36,
+            generatedColumn: 37,
             originalLine: 1,
             originalColumn: 45,
             source: '$stdin',

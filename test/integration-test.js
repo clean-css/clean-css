@@ -98,7 +98,7 @@ vows.describe('integration tests').addBatch({
       'div{margin:-moz-calc(50% + 15px);margin:calc(50% + .5rem)}'
     ],
     'not inside calc method with more parentheses': [
-      'div{height:-moz-calc((10% + 12px)/2 + 10em)}',
+      'div{height:-moz-calc((10% + 12px)/ 2 + 10em)}',
       'div{height:-moz-calc((10% + 12px)/ 2 + 10em)}'
     ],
     'not inside calc method with multiplication': [
@@ -136,9 +136,9 @@ vows.describe('integration tests').addBatch({
       '@media (   min-width: 980px ) {\n#page .span4 {\nwidth: 250px;\n}\n\n.row {\nmargin-left: -10px;\n}\n}',
       '@media (min-width:980px){#page .span4{width:250px}.row{margin-left:-10px}}'
     ],
-    'line breaks in media queries': [
+    'line breaks in media queries123': [
       '@media\nonly screen and (max-width: 1319px) and (min--moz-device-pixel-ratio: 1.5),\nonly screen and (max-width: 1319px) and (-moz-min-device-pixel-ratio: 1.5)\n{ a { color:#000 } }',
-      '@media only screen and (max-width:1319px)and (min--moz-device-pixel-ratio:1.5),only screen and (max-width:1319px)and (-moz-min-device-pixel-ratio:1.5){a{color:#000}}'
+      '@media only screen and (max-width:1319px) and (min--moz-device-pixel-ratio:1.5),only screen and (max-width:1319px) and (-moz-min-device-pixel-ratio:1.5){a{color:#000}}'
     ],
     'in content preceded by #content': '#content{display:block}#foo{content:"\0BB  "}',
     'in content preceded by .content': '.content{display:block}#foo{content:"\0BB  "}',
@@ -152,13 +152,16 @@ vows.describe('integration tests').addBatch({
     ],
     'after rgba': [
       'a{text-shadow:rgba(255,0,0,1) 0 1px}',
-      'a{text-shadow:rgba(255,0,0,1)0 1px}'
+      'a{text-shadow:rgba(255,0,0,1) 0 1px}'
     ],
     'after hsl': [
       'a{text-shadow:hsl(240,100%,40%) -1px 1px}',
       'a{text-shadow:#00c -1px 1px}'
     ],
-    'after hsla': 'a{text-shadow:hsla(240,100%,40%,.5)-1px 1px}',
+    'after hsla': [
+      'a{text-shadow:hsla(240,100%,40%,.5) -1px 1px}',
+      'a{text-shadow:hsla(240,100%,40%,.5) -1px 1px}'
+    ],
     'inside background': [
       'a{background:calc(100% - 2px) 10px no-repeat}',
       'a{background:calc(100% - 2px) 10px no-repeat}'
@@ -167,9 +170,21 @@ vows.describe('integration tests').addBatch({
       'a{background:calc(100% - 2px) .5em no-repeat}',
       'a{background:calc(100% - 2px) .5em no-repeat}'
     ],
+    'inside background with urls': [
+      'a{background:url(image.png) no-repeat}',
+      'a{background:url(image.png) no-repeat}'
+    ],
+    'inside background with rgba': [
+      'a{background:calc(100% - 10px) no-repeat}',
+      'a{background:calc(100% - 10px) no-repeat}'
+    ],
     'inside margin': [
       'a{margin:calc(100% - 2px) calc(100% - 5px)}',
       'a{margin:calc(100% - 2px) calc(100% - 5px)}'
+    ],
+    'inside transform': [
+      'a{transform:translateX(10px) translateY(10px)}',
+      'a{transform:translateX(10px) translateY(10px)}'
     ],
     'after :not #1': [
       'li:not(.foo).bar{color:red}',
@@ -184,6 +199,52 @@ vows.describe('integration tests').addBatch({
       'li:not(.foo)#id{color:red}'
     ]
   }),
+  'whitespace with spaceAfterClosingBrace': cssContext({
+    'after rgb': [
+      'a{text-shadow:rgb(255,0,1) 1px 1px}',
+      'a{text-shadow:#ff0001 1px 1px}'
+    ],
+    'after rgba': [
+      'a{text-shadow:rgba(255,0,0,1) 0 1px}',
+      'a{text-shadow:rgba(255,0,0,1) 0 1px}'
+    ],
+    'after hsl': [
+      'a{text-shadow:hsl(240,100%,40%) -1px 1px}',
+      'a{text-shadow:#00c -1px 1px}'
+    ],
+    'after hsla': [
+      'a{text-shadow:hsla(240,100%,40%,.5) -1px 1px}',
+      'a{text-shadow:hsla(240,100%,40%,.5) -1px 1px}'
+    ],
+    'inside background': [
+      'a{background:calc(100% - 2px) 10px no-repeat}',
+      'a{background:calc(100% - 2px)10px no-repeat}'
+    ],
+    'inside background with fraction unit': [
+      'a{background:calc(100% - 2px) .5em no-repeat}',
+      'a{background:calc(100% - 2px).5em no-repeat}'
+    ],
+    'inside background with urls': [
+      'a{background:url(image.png) no-repeat}',
+      'a{background:url(image.png)no-repeat}'
+    ],
+    'inside background with rgba': [
+      'a{background:calc(100% - 10px) no-repeat}',
+      'a{background:calc(100% - 10px)no-repeat}'
+    ],
+    'inside margin': [
+      'a{margin:calc(100% - 2px) calc(100% - 5px)}',
+      'a{margin:calc(100% - 2px) calc(100% - 5px)}'
+    ],
+    'inside transform': [
+      'a{transform:translateX(10px) translateY(10px)}',
+      'a{transform:translateX(10px)translateY(10px)}'
+    ],
+    'inside @media': [
+      '@media only screen and (max-width:1319px) and (min--moz-device-pixel-ratio:1.5){a{color:red}}',
+      '@media only screen and (max-width:1319px)and (min--moz-device-pixel-ratio:1.5){a{color:red}}'
+    ]
+  }, { compatibility: { properties: { spaceAfterClosingBrace: false } } }),
   'line breaks': cssContext({
     'line breaks #1': [
       'div\na\r\n{width:500px}',
@@ -963,7 +1024,7 @@ vows.describe('integration tests').addBatch({
     'not add a space before url\'s hash': "a{background:url(/fonts/d90b3358-e1e2-4abb-ba96-356983a54c22.svg#d90b3358-e1e2-4abb-ba96-356983a54c22)}",
     'keep urls from being stripped down #1': 'a{background:url(/image-1.0.png)}',
     'keep urls from being stripped down #2': "a{background:url(/image-white.png)}",
-    'keep urls from being stripped down #3': 'a{background:url(/libraries/jquery-ui-1.10.1.custom/images/ui-bg_highlight-soft_100_eeeeee_1x100.png)50% top #eee}',
+    'keep urls from being stripped down #3': 'a{background:url(/libraries/jquery-ui-1.10.1.custom/images/ui-bg_highlight-soft_100_eeeeee_1x100.png) 50% top #eee}',
     'keep special markers in comments (so order is important)': '/*! __ESCAPED_URL_CLEAN_CSS0__ */a{display:block}',
     'strip new line in urls': [
       'a{background:url(/very/long/\
@@ -992,19 +1053,19 @@ path")}',
   'urls rewriting - no root or target': cssContext({
     'no @import': [
       'a{background:url(test/fixtures/partials/extra/down.gif) no-repeat}',
-      'a{background:url(test/fixtures/partials/extra/down.gif)no-repeat}'
+      'a{background:url(test/fixtures/partials/extra/down.gif) no-repeat}'
     ],
     'relative @import': [
       '@import url(test/fixtures/partials-relative/base.css);',
-      'a{background:url(test/fixtures/partials/extra/down.gif)no-repeat}'
+      'a{background:url(test/fixtures/partials/extra/down.gif) no-repeat}'
     ],
     'relative @import twice': [
       '@import url(test/fixtures/partials-relative/extra/included.css);',
-      'a{background:url(test/fixtures/partials/extra/down.gif)no-repeat}'
+      'a{background:url(test/fixtures/partials/extra/down.gif) no-repeat}'
     ],
     'absolute @import': [
       '@import url(/test/fixtures/partials-relative/base.css);',
-      'a{background:url(test/fixtures/partials/extra/down.gif)no-repeat}'
+      'a{background:url(test/fixtures/partials/extra/down.gif) no-repeat}'
     ],
     'document-local reference': [
       'svg{marker-end:url(#arrow)}', 'svg{marker-end:url(#arrow)}'
@@ -1013,15 +1074,15 @@ path")}',
   'urls rewriting - root but no target': cssContext({
     'no @import': [
       'a{background:url(../partials/extra/down.gif) no-repeat}',
-      'a{background:url(/test/fixtures/partials/extra/down.gif)no-repeat}'
+      'a{background:url(/test/fixtures/partials/extra/down.gif) no-repeat}'
     ],
     'relative @import': [
       '@import url(base.css);',
-      'a{background:url(/test/fixtures/partials/extra/down.gif)no-repeat}'
+      'a{background:url(/test/fixtures/partials/extra/down.gif) no-repeat}'
     ],
     'absolute @import': [
       '@import url(/test/fixtures/partials-relative/base.css);',
-      'a{background:url(/test/fixtures/partials/extra/down.gif)no-repeat}'
+      'a{background:url(/test/fixtures/partials/extra/down.gif) no-repeat}'
     ],
     'document-local reference': [
       'svg{marker-end:url(#arrow)}', 'svg{marker-end:url(#arrow)}'
@@ -1033,15 +1094,15 @@ path")}',
   'urls rewriting - no root but target': cssContext({
     'no @import': [
       'a{background:url(../partials/extra/down.gif) no-repeat}',
-      'a{background:url(test/fixtures/partials/extra/down.gif)no-repeat}'
+      'a{background:url(test/fixtures/partials/extra/down.gif) no-repeat}'
     ],
     'relative @import': [
       '@import url(base.css);',
-      'a{background:url(test/fixtures/partials/extra/down.gif)no-repeat}'
+      'a{background:url(test/fixtures/partials/extra/down.gif) no-repeat}'
     ],
     'absolute @import': [
       '@import url(/test/fixtures/partials-relative/base.css);',
-      'a{background:url(test/fixtures/partials/extra/down.gif)no-repeat}'
+      'a{background:url(test/fixtures/partials/extra/down.gif) no-repeat}'
     ],
     'document-local reference': [
       'svg{marker-end:url(#arrow)}', 'svg{marker-end:url(#arrow)}'
@@ -1053,15 +1114,15 @@ path")}',
   'urls rewriting - no root but target as a directory': cssContext({
     'no @import': [
       'a{background:url(../partials/extra/down.gif) no-repeat}',
-      'a{background:url(test/fixtures/partials/extra/down.gif)no-repeat}'
+      'a{background:url(test/fixtures/partials/extra/down.gif) no-repeat}'
     ],
     'relative @import': [
       '@import url(base.css);',
-      'a{background:url(test/fixtures/partials/extra/down.gif)no-repeat}'
+      'a{background:url(test/fixtures/partials/extra/down.gif) no-repeat}'
     ],
     'absolute @import': [
       '@import url(/test/fixtures/partials-relative/base.css);',
-      'a{background:url(test/fixtures/partials/extra/down.gif)no-repeat}'
+      'a{background:url(test/fixtures/partials/extra/down.gif) no-repeat}'
     ],
     'document-local reference': [
       'svg{marker-end:url(#arrow)}', 'svg{marker-end:url(#arrow)}'
@@ -1073,15 +1134,15 @@ path")}',
   'urls rewriting - root and target': cssContext({
     'no @import': [
       'a{background:url(../partials/extra/down.gif) no-repeat}',
-      'a{background:url(/test/fixtures/partials/extra/down.gif)no-repeat}'
+      'a{background:url(/test/fixtures/partials/extra/down.gif) no-repeat}'
     ],
     'relative @import': [
       '@import url(base.css);',
-      'a{background:url(/test/fixtures/partials/extra/down.gif)no-repeat}'
+      'a{background:url(/test/fixtures/partials/extra/down.gif) no-repeat}'
     ],
     'absolute @import': [
       '@import url(/test/fixtures/partials-relative/base.css);',
-      'a{background:url(/test/fixtures/partials/extra/down.gif)no-repeat}'
+      'a{background:url(/test/fixtures/partials/extra/down.gif) no-repeat}'
     ],
     'document-local reference': [
       'svg{marker-end:url(#arrow)}', 'svg{marker-end:url(#arrow)}'
@@ -1094,7 +1155,7 @@ path")}',
   'urls rewriting - rebase off': cssContext({
     'keeps urls the same': [
       '@import url(base.css);',
-      'a{background:url(../partials/extra/down.gif)no-repeat}'
+      'a{background:url(../partials/extra/down.gif) no-repeat}'
     ]
   }, {
     target: path.join(process.cwd(), 'test.css'),
@@ -1102,7 +1163,10 @@ path")}',
     rebase: false
   }),
   'fonts': cssContext({
-    'keep format quotation': "@font-face{font-family:PublicVintage;src:url(/PublicVintage.otf)format('opentype')}",
+    'keep format quotation': [
+      "@font-face{font-family:PublicVintage;src:url(/PublicVintage.otf) format('opentype')}",
+      "@font-face{font-family:PublicVintage;src:url(/PublicVintage.otf) format('opentype')}"
+    ],
     'remove font family quotation': [
       "a{font-family:\"Helvetica\",'Arial'}",
       "a{font-family:Helvetica,Arial}"
@@ -1880,12 +1944,12 @@ title']{display:block}",
       'a{background:0;background-color:inherit}'
     ],
     'should NOT merge background with background-color set to none': [
-      'a{background:url(logo.png)center no-repeat;background-color:none}',
-      'a{background:url(logo.png)center no-repeat;background-color:none}'
+      'a{background:url(logo.png) center no-repeat;background-color:none}',
+      'a{background:url(logo.png) center no-repeat;background-color:none}'
     ],
     'should merge background with background-image': [
       'a{background:0;background-image:url(hello_world)}',
-      'a{background:url(hello_world)0}'
+      'a{background:url(hello_world) 0}'
     ],
     'should NOT merge background with inherited background-image': [
       'a{background:0;background-image:inherit}',
@@ -1993,15 +2057,15 @@ title']{display:block}",
     '@counter-style': '@counter-style triangle{system:cyclic;symbols:‣;suffix:" "}'
   }),
   'background size': cssContext({
-    'with background-position': 'a{background:url(top.jpg)50% 0/auto 25% no-repeat}',
+    'with background-position': 'a{background:url(top.jpg) 50% 0/auto 25% no-repeat}',
     'with background-position and spaces': [
       'a{background:url(top.jpg) 50% 0 / auto 25% no-repeat}',
-      'a{background:url(top.jpg)50% 0/auto 25% no-repeat}'
+      'a{background:url(top.jpg) 50% 0/auto 25% no-repeat}'
     ],
-    'with background-position shorthands': 'a{background:url(top.jpg)50px/25% no-repeat}',
+    'with background-position shorthands': 'a{background:url(top.jpg) 50px/25% no-repeat}',
     'with background-position shorthands and spaces': [
       'a{background:url(top.jpg) 0 / cover no-repeat}',
-      'a{background:url(top.jpg)0/cover no-repeat}'
+      'a{background:url(top.jpg) 0/cover no-repeat}'
     ],
     'with background-size property': [
       'a{background:none;background-image:url(1.png);background-size:28px 28px}',
@@ -2051,11 +2115,11 @@ title']{display:block}",
   'background size with +properties.backgroundSizeMerging': cssContext({
     'with background-size property': [
       'a{background:none;background-image:url(1.png);background-size:28px 28px}',
-      'a{background:url(1.png)0 0/28px 28px}'
+      'a{background:url(1.png) 0 0/28px 28px}'
     ],
     'important overriding': [
       'a{background:url(a.jpg) !important; background-color:#fff !important; background-size:10px 10px !important}',
-      'a{background:url(a.jpg)0 0/10px 10px #fff!important}'
+      'a{background:url(a.jpg) 0 0/10px 10px #fff!important}'
     ]
   }, { compatibility: '+properties.backgroundSizeMerging' }),
   'multiple backgrounds': cssContext({
@@ -2082,7 +2146,7 @@ title']{display:block}",
     'border radius H+V': 'a{border-radius:50%/100%}',
     'lost background position': [
       '.one{background:50% no-repeat}.one{background-image:url(/img.png)}',
-      '.one{background:url(/img.png)50% no-repeat}'
+      '.one{background:url(/img.png) 50% no-repeat}'
     ],
     'unknown @ rule': '@unknown "test";h1{color:red}',
     'property without a value': [

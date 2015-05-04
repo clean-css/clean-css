@@ -15,7 +15,7 @@ vows.describe(Compatibility)
         assert.isFalse(options.selectors.ie7Hack);
         assert.isFalse(options.properties.backgroundSizeMerging);
         assert.isTrue(options.properties.merging);
-        assert.isFalse(options.properties.spaceAfterClosingBrace);
+        assert.isTrue(options.properties.spaceAfterClosingBrace);
         assert.isFalse(options.properties.urlQuotes);
         assert.isTrue(options.units.rem);
         assert.isTrue(options.colors.opacity);
@@ -41,7 +41,7 @@ vows.describe(Compatibility)
         assert.isFalse(options.selectors.ie7Hack);
         assert.isFalse(options.properties.backgroundSizeMerging);
         assert.isTrue(options.properties.merging);
-        assert.isFalse(options.properties.spaceAfterClosingBrace);
+        assert.isTrue(options.properties.spaceAfterClosingBrace);
         assert.isTrue(options.properties.zeroUnits);
         assert.isFalse(options.units.rem);
         assert.isTrue(options.colors.opacity);
@@ -124,7 +124,7 @@ vows.describe(Compatibility)
         assert.isFalse(options.selectors.ie7Hack);
         assert.isFalse(options.properties.backgroundSizeMerging);
         assert.isTrue(options.properties.merging);
-        assert.isFalse(options.properties.spaceAfterClosingBrace);
+        assert.isTrue(options.properties.spaceAfterClosingBrace);
         assert.isTrue(options.units.rem);
         assert.isTrue(options.colors.opacity);
         assert.deepEqual(options.selectors.special, /(\-moz\-|\-ms\-|\-o\-|\-webkit\-|:dir\([a-z-]*\)|:first(?![a-z-])|:fullscreen|:left|:read-only|:read-write|:right)/);
@@ -140,7 +140,7 @@ vows.describe(Compatibility)
         assert.isFalse(options.selectors.ie7Hack);
         assert.isFalse(options.properties.backgroundSizeMerging);
         assert.isTrue(options.properties.merging);
-        assert.isFalse(options.properties.spaceAfterClosingBrace);
+        assert.isTrue(options.properties.spaceAfterClosingBrace);
         assert.isFalse(options.units.rem);
         assert.isTrue(options.colors.opacity);
         assert.deepEqual(options.selectors.special, /(\-moz\-|\-ms\-|\-o\-|\-webkit\-|:dir\([a-z-]*\)|:first(?![a-z-])|:fullscreen|:left|:read-only|:read-write|:right)/);

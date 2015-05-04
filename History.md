@@ -13,6 +13,11 @@
 * Fixed issue [#517](https://github.com/jakubpawlowicz/clean-css/issues/517) - turning off color optimizations.
 * Fixed issue [#542](https://github.com/jakubpawlowicz/clean-css/issues/542) - space after closing brace in IE.
 
+[3.2.8 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.2.7...3.2)
+==================
+
+* Fixed issue [#561](https://github.com/jakubpawlowicz/clean-css/issues/561) - restructuring special selectors.
+
 [3.2.7 / 2015-05-03](https://github.com/jakubpawlowicz/clean-css/compare/v3.2.6...v3.2.7)
 ==================
 

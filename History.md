@@ -1,4 +1,4 @@
-[3.2.9 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.2.8...3.2)
+[3.2.9 / 2015-05-08](https://github.com/jakubpawlowicz/clean-css/compare/v3.2.8...v3.2.9)
 ==================
 
 * Fixed issue [#567](https://github.com/jakubpawlowicz/clean-css/issues/567) - merging colors as functions.

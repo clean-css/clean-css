@@ -31,6 +31,15 @@ function _optimize(source, compatibility, aggressiveMerging) {
 
 vows.describe(optimize)
   .addBatch({
+    'longhand then longhand - background colors as functions': {
+      'topic': 'p{background-color:-ms-linear-gradient(top,red,#000);background-color:linear-gradient(top,red,#000)}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['background-color', false , false], ['-ms-linear-gradient(top,red,#000)']],
+          [['background-color', false , false], ['linear-gradient(top,red,#000)']]
+        ]);
+      }
+    },
     'longhand then shorthand': {
       'topic': 'p{background-image:none;background:__ESCAPED_URL_CLEAN_CSS0__}',
       'into': function (topic) {

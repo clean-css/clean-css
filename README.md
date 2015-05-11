@@ -171,20 +171,7 @@ First clone the source, then run:
 
 ## How to contribute to clean-css?
 
-1. Fork it.
-2. Add test(s) veryfying the problem.
-3. Fix the problem.
-4. Make sure all tests still pass (`npm test`).
-5. Make sure your code doesn't break style rules (`npm run check`) and follow all [other ones](https://github.com/jakubpawlowicz/clean-css/wiki/Style-Guide) too.
-6. Send a PR.
-
-If you wonder where to add tests, go for:
-
-* `test/integration-test.js` if it's a simple scenario
-* `test/fixtures/...` if it's a complex scenario (just add two files, input and expected output)
-* `test/binary-test.js` if it's related to `bin/cleancss` binary
-* `test/module-test.js` if it's related to importing `clean-css` as a module
-* `test/protocol-imports-test.js` if it fixes anything related to protocol `@import`s
+See [CONTRIBUTING.md](https://github.com/jakubpawlowicz/clean-css/blob/master/CONTRIBUTING.md).
 
 ## Tips & Tricks
 

@@ -135,6 +135,18 @@ CleanCSS constructor accepts a hash as a parameter, i.e.,
   It is also required to process inlined sources from input source maps.
 * `target` - path to a folder or an output file to which **rebase** all URLs
 
+The output of `minify` method (or the 2nd argument to passed callback) is a hash containing the following fields:
+
+* `styles` - optimized output CSS as a string
+* `sourceMap` - output source map (if requested with `sourceMap` option)
+* `errors` - a list of errors raised
+* `warnings` - a list of warnings raised
+* `stats` - a hash of statistic information (if requested with `debug` option):
+  * `originalSize` - original content size (after import inlining)
+  * `minifiedSize` - optimized content size
+  * `timeSpent` - time spent on optimizations
+  * `efficiency` - a ratio of output size to input size (e.g. 25% if content was reduced from 100 bytes to 75 bytes)  
+  
 #### How to make sure remote `@import`s are processed correctly?
 
 In order to inline remote `@import` statements you need to provide a callback to minify method, e.g.:

@@ -1,4 +1,4 @@
-[3.2.10 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.2.9...3.2)
+[3.2.10 / 2015-05-14](https://github.com/jakubpawlowicz/clean-css/compare/v3.2.9...v3.2.10)
 ==================
 
 * Fixed issue [#572](https://github.com/jakubpawlowicz/clean-css/issues/572) - empty elements removal.

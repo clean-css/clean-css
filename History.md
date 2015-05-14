@@ -1,4 +1,4 @@
-[3.3.0 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.2.9...HEAD)
+[3.3.0 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.2.10...HEAD)
 ==================
 
 * Cleans up url rebase code getting rid of unnecessary state.
@@ -13,7 +13,7 @@
 * Fixed issue [#517](https://github.com/jakubpawlowicz/clean-css/issues/517) - turning off color optimizations.
 * Fixed issue [#542](https://github.com/jakubpawlowicz/clean-css/issues/542) - space after closing brace in IE.
 
-[3.2.10 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.2.9...3.2)
+[3.2.10 / 2015-05-14](https://github.com/jakubpawlowicz/clean-css/compare/v3.2.9...v3.2.10)
 ==================
 
 * Fixed issue [#572](https://github.com/jakubpawlowicz/clean-css/issues/572) - empty elements removal.

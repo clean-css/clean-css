@@ -19,6 +19,14 @@ vows.describe('media queries')
       'get merged': function(minified) {
         assert.equal(minified.styles, '@font-face{font-family:A}@font-face{font-family:B}');
       }
+    },
+    'with empty selector': {
+      'topic': function () {
+        return new CleanCSS().minify('@media screen{a{color:red}div{}}');
+      },
+      'get merged': function(minified) {
+        assert.equal(minified.styles, '@media screen{a{color:red}}');
+      }
     }
   })
   .addBatch({

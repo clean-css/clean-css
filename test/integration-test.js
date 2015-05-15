@@ -1082,6 +1082,10 @@ path")}',
     ],
     'document-local reference': [
       'svg{marker-end:url(#arrow)}', 'svg{marker-end:url(#arrow)}'
+    ],
+    'internal page': [
+      'a{background:url(about:blank)}',
+      'a{background:url(about:blank)}'
     ]
   }, {
     root: process.cwd(),

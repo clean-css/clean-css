@@ -12,6 +12,7 @@
 * Fixed issue [#448](https://github.com/jakubpawlowicz/clean-css/issues/448) - rebasing no protocol URIs.
 * Fixed issue [#517](https://github.com/jakubpawlowicz/clean-css/issues/517) - turning off color optimizations.
 * Fixed issue [#542](https://github.com/jakubpawlowicz/clean-css/issues/542) - space after closing brace in IE.
+* Fixed issue [#574](https://github.com/jakubpawlowicz/clean-css/issues/574) - rewriting internal URLs.
 
 [3.2.10 / 2015-05-14](https://github.com/jakubpawlowicz/clean-css/compare/v3.2.9...v3.2.10)
 ==================

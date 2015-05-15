@@ -1064,7 +1064,8 @@ path")}',
       'a{background:url(test/fixtures/partials/extra/down.gif) no-repeat}'
     ],
     'document-local reference': [
-      'svg{marker-end:url(#arrow)}', 'svg{marker-end:url(#arrow)}'
+      'svg{marker-end:url(#arrow)}',
+      'svg{marker-end:url(#arrow)}'
     ]
   }),
   'urls rewriting - root but no target': cssContext({
@@ -1081,7 +1082,8 @@ path")}',
       'a{background:url(/test/fixtures/partials/extra/down.gif) no-repeat}'
     ],
     'document-local reference': [
-      'svg{marker-end:url(#arrow)}', 'svg{marker-end:url(#arrow)}'
+      'svg{marker-end:url(#arrow)}',
+      'svg{marker-end:url(#arrow)}'
     ],
     'internal page': [
       'a{background:url(about:blank)}',
@@ -1105,7 +1107,8 @@ path")}',
       'a{background:url(test/fixtures/partials/extra/down.gif) no-repeat}'
     ],
     'document-local reference': [
-      'svg{marker-end:url(#arrow)}', 'svg{marker-end:url(#arrow)}'
+      'svg{marker-end:url(#arrow)}',
+      'svg{marker-end:url(#arrow)}'
     ]
   }, {
     target: path.join(process.cwd(), 'test.css'),
@@ -1125,7 +1128,8 @@ path")}',
       'a{background:url(test/fixtures/partials/extra/down.gif) no-repeat}'
     ],
     'document-local reference': [
-      'svg{marker-end:url(#arrow)}', 'svg{marker-end:url(#arrow)}'
+      'svg{marker-end:url(#arrow)}',
+      'svg{marker-end:url(#arrow)}'
     ]
   }, {
     target: process.cwd(),
@@ -1145,7 +1149,8 @@ path")}',
       'a{background:url(/test/fixtures/partials/extra/down.gif) no-repeat}'
     ],
     'document-local reference': [
-      'svg{marker-end:url(#arrow)}', 'svg{marker-end:url(#arrow)}'
+      'svg{marker-end:url(#arrow)}',
+      'svg{marker-end:url(#arrow)}'
     ]
   }, {
     root: process.cwd(),

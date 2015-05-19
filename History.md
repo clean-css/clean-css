@@ -12,6 +12,7 @@
 * Fixed issue [#448](https://github.com/jakubpawlowicz/clean-css/issues/448) - rebasing no protocol URIs.
 * Fixed issue [#517](https://github.com/jakubpawlowicz/clean-css/issues/517) - turning off color optimizations.
 * Fixed issue [#542](https://github.com/jakubpawlowicz/clean-css/issues/542) - space after closing brace in IE.
+* Fixed issue [#563](https://github.com/jakubpawlowicz/clean-css/issues/563) - `background:inherit` restoring.
 * Fixed issue [#574](https://github.com/jakubpawlowicz/clean-css/issues/574) - rewriting internal URLs.
 * Fixed issue [#575](https://github.com/jakubpawlowicz/clean-css/issues/575) - missing directory as a `target`.
 

@@ -148,6 +148,14 @@ vows.describe(optimize)
           [['padding-right', false, 'underscore'], ['2px']]
         ]);
       }
+    },
+    'just inherit': {
+      'topic': 'a{background:inherit}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['background', false, false], ['inherit']]
+        ]);
+      }
     }
   })
   .addBatch({

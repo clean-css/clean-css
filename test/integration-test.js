@@ -1093,7 +1093,7 @@ path")}',
     root: process.cwd(),
     relativeTo: path.join('test', 'fixtures', 'partials-relative')
   }),
-  'urls rewriting - no root but target': cssContext({
+  'urls rewriting - no root but target as file': cssContext({
     'no @import': [
       'a{background:url(../partials/extra/down.gif) no-repeat}',
       'a{background:url(test/fixtures/partials/extra/down.gif) no-repeat}'
@@ -1133,6 +1133,23 @@ path")}',
     ]
   }, {
     target: process.cwd(),
+    relativeTo: path.join('test', 'fixtures', 'partials-relative')
+  }),
+  'urls rewriting - no root but target as a missing directory': cssContext({
+    'url': [
+      'a{background:url(../partials/extra/down.gif) no-repeat}',
+      'a{background:url(../fixtures/partials/extra/down.gif) no-repeat}'
+    ],
+    'relative @import': [
+      '@import url(base.css);',
+      'a{background:url(../fixtures/partials/extra/down.gif) no-repeat}'
+    ],
+    'absolute @import': [
+      '@import url(/test/fixtures/partials-relative/base.css);',
+      'a{background:url(../fixtures/partials/extra/down.gif) no-repeat}'
+    ]
+  }, {
+    target: path.join('test', 'fixtures2'),
     relativeTo: path.join('test', 'fixtures', 'partials-relative')
   }),
   'urls rewriting - root and target': cssContext({

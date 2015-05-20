@@ -2106,16 +2106,6 @@ title']{display:block}",
       'div{background:content-box #000}'
     ]
   }),
-  'background-origin': cssContext({
-    'inside background shorthand': [
-      'div{background:content-box #000}',
-      'div{background:content-box #000}'
-    ],
-    'into background shorthand': [
-      'div{background:#000;background-origin:content-box}',
-      'div{background:content-box border-box #000}'
-    ]
-  }),
   'background size with +properties.backgroundSizeMerging': cssContext({
     'with background-size property': [
       'a{background:none;background-image:url(1.png);background-size:28px 28px}',

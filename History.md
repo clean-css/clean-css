@@ -17,6 +17,7 @@
 * Fixed issue [#574](https://github.com/jakubpawlowicz/clean-css/issues/574) - rewriting internal URLs.
 * Fixed issue [#575](https://github.com/jakubpawlowicz/clean-css/issues/575) - missing directory as a `target`.
 * Fixed issue [#577](https://github.com/jakubpawlowicz/clean-css/issues/577) - `background-clip` into shorthand.
+* Fixed issue [#579](https://github.com/jakubpawlowicz/clean-css/issues/579) - `background-origin` into shorthand.
 
 [3.2.10 / 2015-05-14](https://github.com/jakubpawlowicz/clean-css/compare/v3.2.9...v3.2.10)
 ==================

@@ -108,6 +108,23 @@ vows.describe(optimize)
         ]);
       }
     },
+    'shorthand then longhand - disabled background origin merging': {
+      'topic': 'p{background:__ESCAPED_URL_CLEAN_CSS0__;background-origin:border-box}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic, { properties: { backgroundOriginMerging: false } }), [
+          [['background', false , false], ['__ESCAPED_URL_CLEAN_CSS0__']],
+          [['background-origin', false , false], ['border-box']]
+        ]);
+      }
+    },
+    'shorthand then longhand - enabled background origin merging': {
+      'topic': 'p{background:__ESCAPED_URL_CLEAN_CSS0__;background-origin:border-box}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic, { properties: { backgroundOriginMerging: true } }), [
+          [['background', false , false], ['__ESCAPED_URL_CLEAN_CSS0__'], ['border-box']]
+        ]);
+      }
+    },
     'shorthand then longhand - non mergeable value': {
       'topic': 'p{background:__ESCAPED_URL_CLEAN_CSS0__;background-color:none}',
       'into': function (topic) {

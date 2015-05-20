@@ -145,8 +145,8 @@ The output of `minify` method (or the 2nd argument to passed callback) is a hash
   * `originalSize` - original content size (after import inlining)
   * `minifiedSize` - optimized content size
   * `timeSpent` - time spent on optimizations
-  * `efficiency` - a ratio of output size to input size (e.g. 25% if content was reduced from 100 bytes to 75 bytes)  
-  
+  * `efficiency` - a ratio of output size to input size (e.g. 25% if content was reduced from 100 bytes to 75 bytes)
+
 #### How to make sure remote `@import`s are processed correctly?
 
 In order to inline remote `@import` statements you need to provide a callback to minify method, e.g.:
@@ -306,6 +306,7 @@ with the following options available:
 
 * `'[+-]colors.opacity'` - - turn on (+) / off (-) `rgba()` / `hsla()` declarations removal
 * `'[+-]properties.backgroundSizeMerging'` - turn on / off background-size merging into shorthand
+* `'[+-]properties.backgroundClipMerging'` - turn on / off background-clip merging into shorthand
 * `'[+-]properties.colors'` - turn on / off any color optimizations
 * `'[+-]properties.iePrefixHack'` - turn on / off IE prefix hack removal
 * `'[+-]properties.ieSuffixHack'` - turn on / off IE suffix hack removal

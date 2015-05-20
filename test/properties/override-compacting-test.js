@@ -91,10 +91,27 @@ vows.describe(optimize)
         ]);
       }
     },
+    'shorthand then longhand - disabled background clip merging': {
+      'topic': 'p{background:__ESCAPED_URL_CLEAN_CSS0__;background-clip:padding-box}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic, { properties: { backgroundClipMerging: false } }), [
+          [['background', false , false], ['__ESCAPED_URL_CLEAN_CSS0__']],
+          [['background-clip', false , false], ['padding-box']]
+        ]);
+      }
+    },
+    'shorthand then longhand - enabled background clip merging': {
+      'topic': 'p{background:__ESCAPED_URL_CLEAN_CSS0__;background-clip:padding-box}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic, { properties: { backgroundClipMerging: true } }), [
+          [['background', false , false], ['__ESCAPED_URL_CLEAN_CSS0__'], ['padding-box']]
+        ]);
+      }
+    },
     'shorthand then longhand - non mergeable value': {
       'topic': 'p{background:__ESCAPED_URL_CLEAN_CSS0__;background-color:none}',
       'into': function (topic) {
-        assert.deepEqual(_optimize(topic, { properties: { backgroundSizeMerging: false } }), [
+        assert.deepEqual(_optimize(topic), [
           [['background', false , false], ['__ESCAPED_URL_CLEAN_CSS0__']],
           [['background-color', false , false], ['none']]
         ]);

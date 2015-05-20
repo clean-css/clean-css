@@ -2104,10 +2104,6 @@ title']{display:block}",
     'inside background shorthand': [
       'div{background:content-box #000}',
       'div{background:content-box #000}'
-    ],
-    'into background shorthand': [
-      'div{background:#000;background-clip:content-box}',
-      'div{background:padding-box content-box #000}'
     ]
   }),
   'background-origin': cssContext({
@@ -2118,20 +2114,6 @@ title']{display:block}",
     'into background shorthand': [
       'div{background:#000;background-origin:content-box}',
       'div{background:content-box border-box #000}'
-    ]
-  }),
-  'background-clip & background-origin': cssContext({
-    'into background shorthand with background clip': [
-      'div{background:#000;background-origin:content-box;background-clip:padding-box}',
-      'div{background:content-box padding-box #000}'
-    ],
-    'into background shorthand merged with background clip': [
-      'div{background:border-box #000;background-clip:padding-box}',
-      'div{background:border-box padding-box #000}'
-    ],
-    'with defaults': [
-      'div{background:#000;background-origin:padding-box;background-clip:border-box}',
-      'div{background:#000}'
     ]
   }),
   'background size with +properties.backgroundSizeMerging': cssContext({

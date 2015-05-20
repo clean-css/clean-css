@@ -11,8 +11,8 @@ vows.describe(Compatibility)
       'gets default options': function(options) {
         assert.isTrue(options.colors.opacity);
         assert.isTrue(options.properties.colors);
-        assert.isFalse(options.properties.backgroundSizeMerging);
         assert.isFalse(options.properties.backgroundClipMerging);
+        assert.isFalse(options.properties.backgroundSizeMerging);
         assert.isFalse(options.properties.iePrefixHack);
         assert.isFalse(options.properties.ieSuffixHack);
         assert.isTrue(options.properties.merging);
@@ -45,8 +45,8 @@ vows.describe(Compatibility)
       },
       'gets merged options': function(options) {
         assert.isTrue(options.colors.opacity);
-        assert.isFalse(options.properties.backgroundSizeMerging);
         assert.isFalse(options.properties.backgroundClipMerging);
+        assert.isFalse(options.properties.backgroundSizeMerging);
         assert.isTrue(options.properties.colors);
         assert.isFalse(options.properties.iePrefixHack);
         assert.isFalse(options.properties.ieSuffixHack);
@@ -73,8 +73,8 @@ vows.describe(Compatibility)
       },
       'gets template options': function(options) {
         assert.isFalse(options.colors.opacity);
-        assert.isFalse(options.properties.backgroundSizeMerging);
         assert.isFalse(options.properties.backgroundClipMerging);
+        assert.isFalse(options.properties.backgroundSizeMerging);
         assert.isTrue(options.properties.colors);
         assert.isTrue(options.properties.iePrefixHack);
         assert.isTrue(options.properties.ieSuffixHack);
@@ -100,8 +100,8 @@ vows.describe(Compatibility)
       },
       'gets template options': function(options) {
         assert.isFalse(options.colors.opacity);
-        assert.isFalse(options.properties.backgroundSizeMerging);
         assert.isFalse(options.properties.backgroundClipMerging);
+        assert.isFalse(options.properties.backgroundSizeMerging);
         assert.isTrue(options.properties.colors);
         assert.isTrue(options.properties.iePrefixHack);
         assert.isTrue(options.properties.ieSuffixHack);
@@ -137,8 +137,8 @@ vows.describe(Compatibility)
       },
       'gets calculated options': function(options) {
         assert.isTrue(options.colors.opacity);
-        assert.isFalse(options.properties.backgroundSizeMerging);
         assert.isFalse(options.properties.backgroundClipMerging);
+        assert.isFalse(options.properties.backgroundSizeMerging);
         assert.isTrue(options.properties.colors);
         assert.isFalse(options.properties.iePrefixHack);
         assert.isTrue(options.properties.ieSuffixHack);
@@ -165,8 +165,8 @@ vows.describe(Compatibility)
       'gets calculated options': function(options) {
         assert.isTrue(options.colors.opacity);
         assert.isTrue(options.properties.colors);
-        assert.isFalse(options.properties.backgroundSizeMerging);
         assert.isFalse(options.properties.backgroundClipMerging);
+        assert.isFalse(options.properties.backgroundSizeMerging);
         assert.isTrue(options.properties.iePrefixHack);
         assert.isFalse(options.properties.ieSuffixHack);
         assert.isTrue(options.properties.merging);
@@ -192,8 +192,8 @@ vows.describe(Compatibility)
       'gets calculated options': function(options) {
         assert.isTrue(options.colors.opacity);
         assert.isTrue(options.properties.colors);
-        assert.isFalse(options.properties.backgroundSizeMerging);
         assert.isFalse(options.properties.backgroundClipMerging);
+        assert.isFalse(options.properties.backgroundSizeMerging);
         assert.isTrue(options.properties.iePrefixHack);
         assert.isFalse(options.properties.ieSuffixHack);
         assert.isTrue(options.properties.merging);

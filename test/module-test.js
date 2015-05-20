@@ -556,6 +556,28 @@ vows.describe('module tests').addBatch({
         'should give right output': function (minified) {
           assert.equal(minified.styles, '@import url(/partials/one.css);@import url(/partials/extra/three.css);@import url(/partials/extra/four.css);.two{color:#fff}');
         }
+      },
+      'with import URL as a string': {
+        'topic': function () {
+          var source = 'test/fixtures/partials/two.css';
+          var asHash = sourcesAsHash([source]);
+          asHash[source].styles = asHash[source].styles.replace(/url\(|\)/g, '');
+          return new CleanCSS().minify(asHash);
+        },
+        'should give right output': function (minified) {
+          assert.equal(minified.styles, '.one{color:red}.three{color:#0f0}.four{color:#00f}.two{color:#fff}');
+        }
+      },
+      'with import URL as an uppercase string': {
+        'topic': function () {
+          var source = 'test/fixtures/partials/two.css';
+          var asHash = sourcesAsHash([source]);
+          asHash[source].styles = asHash[source].styles.replace(/url\(|\)/g, '').replace('@import', '@IMPORT');
+          return new CleanCSS().minify(asHash);
+        },
+        'should give right output': function (minified) {
+          assert.equal(minified.styles, '.one{color:red}.three{color:#0f0}.four{color:#00f}.two{color:#fff}');
+        }
       }
     },
     'with remote paths': {

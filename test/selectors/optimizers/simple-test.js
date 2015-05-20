@@ -237,6 +237,14 @@ vows.describe(SimpleOptimizer)
       'partial name as a suffix': [
         'a{font-family:alrightsanslp-black}',
         [['font-family', 'alrightsanslp-black']]
+      ],
+      'invalid rgba declaration - color': [
+        'a{color:rgba(255 0 0)}',
+        [['color', 'rgba(255 0 0)']]
+      ],
+      'invalid rgba declaration - background': [
+        'a{background:rgba(255 0 0)}',
+        [['background', 'rgba(255 0 0)']]
       ]
     })
   )

@@ -1023,6 +1023,10 @@ path")}',
       '@import url(/test/fixtures/partials-relative/base.css);',
       'a{background:url(/test/fixtures/partials/extra/down.gif)no-repeat}'
     ],
+    'SVG': [
+      "a{background-image:url(\"data:image/svg+xml,<svg version='1.1'/>\")}",
+      "a{background-image:url(\"data:image/svg+xml,<svg version='1.1'/>\")}"
+    ],
     'document-local reference': [
       'svg{marker-end:url(#arrow)}', 'svg{marker-end:url(#arrow)}'
     ]

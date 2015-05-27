@@ -57,6 +57,32 @@ vows.describe(optimize)
         ]);
       }
     },
+    'longhand then shorthand - with vendor prefixed function': {
+      'topic': 'p{background-color:red;background:-ms-linear-gradient(top,red,#000)}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['background-color', false, false], ['red']],
+          [['background', false, false], ['-ms-linear-gradient(top,red,#000)']],
+        ]);
+      }
+    },
+    'longhand then shorthand - with same vendor prefixed function': {
+      'topic': 'p{background-image:-ms-linear-gradient(bottom,black,white);background:-ms-linear-gradient(top,red,#000)}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['background', false, false], ['-ms-linear-gradient(top,red,#000)']],
+        ]);
+      }
+    },
+    'longhand then shorthand - with different vendor prefixed function': {
+      'topic': 'p{background-image:linear-gradient(bottom,black,white);background:-ms-linear-gradient(top,red,#000)}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['background-image', false, false], ['linear-gradient(bottom,black,white)']],
+          [['background', false, false], ['-ms-linear-gradient(top,red,#000)']],
+        ]);
+      }
+    },
     'shorthand then longhand': {
       'topic': 'p{background:__ESCAPED_URL_CLEAN_CSS0__ repeat;background-repeat:no-repeat}',
       'into': function (topic) {

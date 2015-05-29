@@ -19,6 +19,7 @@
 * Fixed issue [#575](https://github.com/jakubpawlowicz/clean-css/issues/575) - missing directory as a `target`.
 * Fixed issue [#577](https://github.com/jakubpawlowicz/clean-css/issues/577) - `background-clip` into shorthand.
 * Fixed issue [#579](https://github.com/jakubpawlowicz/clean-css/issues/579) - `background-origin` into shorthand.
+* Fixed issue [#580](https://github.com/jakubpawlowicz/clean-css/issues/580) - mixed `@import` processing.
 * Fixed issue [#582](https://github.com/jakubpawlowicz/clean-css/issues/582) - overriding with prefixed values.
 * Fixed issue [#583](https://github.com/jakubpawlowicz/clean-css/issues/583) - URL quoting for SVG data.
 

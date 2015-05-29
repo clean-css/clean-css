@@ -578,6 +578,18 @@ vows.describe('module tests').addBatch({
         'should give right output': function (minified) {
           assert.equal(minified.styles, '.one{color:red}.three{color:#0f0}.four{color:#00f}.two{color:#fff}');
         }
+      },
+      'with two import URLs when one is a string plus a callback 123': {
+        'topic': function () {
+          new CleanCSS().minify({
+            'main.css': {
+              styles: '@import "test/fixtures/partials/one.css";\n@import url(test/fixtures/partials/three.css);'
+            }
+          }, this.callback);
+        },
+        'should give right output': function (error, minified) {
+          assert.equal(minified.styles, '.one{color:red}.three{background-image:url(test/fixtures/partials/extra/down.gif)}');
+        }
       }
     },
     'with remote paths': {

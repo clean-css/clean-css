@@ -129,6 +129,62 @@ vows.describe(canReorderSingle)
         assert.isTrue(result);
       }
     },
+    'different properties with same root - border #1': {
+      'topic': function () {
+        return canReorderSingle(propertiesIn('a{border:none}')[0], propertiesIn('a{border-top-color:red}')[0]);
+      },
+      'must be false': function (result) {
+        assert.isFalse(result);
+      }
+    },
+    'different properties with same root - border #2': {
+      'topic': function () {
+        return canReorderSingle(propertiesIn('a{border-top:1px solid red}')[0], propertiesIn('a{border-bottom:1px solid blue}')[0]);
+      },
+      'must be true': function (result) {
+        assert.isTrue(result);
+      }
+    },
+    'different properties with same root - border #3': {
+      'topic': function () {
+        return canReorderSingle(propertiesIn('a{border-top-color:red}')[0], propertiesIn('a{border-bottom:1px solid blue}')[0]);
+      },
+      'must be true': function (result) {
+        assert.isTrue(result);
+      }
+    },
+    'different properties with same root - border #4': {
+      'topic': function () {
+        return canReorderSingle(propertiesIn('a{border-bottom:none}')[0], propertiesIn('a{border-bottom:1px solid blue}')[0]);
+      },
+      'must be false': function (result) {
+        assert.isFalse(result);
+      }
+    },
+    'different properties with same root - border #5': {
+      'topic': function () {
+        return canReorderSingle(propertiesIn('a{border-bottom:none}')[0], propertiesIn('a{border-bottom:none}')[0]);
+      },
+      'must be true': function (result) {
+        assert.isTrue(result);
+      }
+    },
+    'different properties with same root - border #6': {
+      'topic': function () {
+        return canReorderSingle(propertiesIn('a{border-radius:3px}')[0], propertiesIn('a{border:0}')[0]);
+      },
+      'must be true': function (result) {
+        assert.isTrue(result);
+      }
+    },
+    'different properties with same root - border #7': {
+      'topic': function () {
+        return canReorderSingle(propertiesIn('a{border-radius:3px}')[0], propertiesIn('a{border-style:solid}')[0]);
+      },
+      'must be true': function (result) {
+        assert.isTrue(result);
+      }
+    },
     'shorhand and longhand with different value': {
       'topic': function () {
         return canReorderSingle(propertiesIn('a{margin:3px}')[0], propertiesIn('a{margin-bottom:5px}')[0]);

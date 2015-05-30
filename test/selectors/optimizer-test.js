@@ -129,6 +129,10 @@ vows.describe(SelectorsOptimizer)
         'div{margin-top:0}.one{margin:5px}.two{display:block;margin-top:0}.three{color:red}.four{margin-top:0}',
         'div{margin-top:0}.one{margin:5px}.four,.two{margin-top:0}.two{display:block}.three{color:red}'
       ],
+      'over shorthand - border': [
+        '.one{border-color:red}.two{border:1px solid}.three{color:#fff;border-color:red}',
+        '.one{border-color:red}.two{border:1px solid}.three{color:#fff;border-color:red}'
+      ],
       'granuar over granular': [
         'div{margin-top:0}.one{margin-bottom:2px}.two{display:block;margin-top:0}',
         '.two,div{margin-top:0}.one{margin-bottom:2px}.two{display:block}'

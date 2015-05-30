@@ -93,16 +93,34 @@ vows.describe(extractor)
           assert.deepEqual(tokens, [['-webkit-border-top-left-radius', 'none', 'border-radius', [['-webkit-border-top-left-radius'], ['none']], '-webkit-border-top-left-radius:none', [['a']], true]]);
         }
       },
-      'border-image': {
+      'border-image-width': {
         'topic': extractor(buildToken('a{border-image-width:2px}')),
         'has no properties': function (tokens) {
           assert.deepEqual(tokens, [['border-image-width', '2px', 'border-image', [['border-image-width'], ['2px']], 'border-image-width:2px', [['a']], true]]);
         }
       },
-      'border-top': {
+      'border-color': {
+        'topic': extractor(buildToken('a{border-color:red}')),
+        'has no properties': function (tokens) {
+          assert.deepEqual(tokens, [['border-color', 'red', 'border', [['border-color'], ['red']], 'border-color:red', [['a']], true]]);
+        }
+      },
+      'border-top-style': {
         'topic': extractor(buildToken('a{border-top-style:none}')),
         'has no properties': function (tokens) {
           assert.deepEqual(tokens, [['border-top-style', 'none', 'border-top', [['border-top-style'], ['none']], 'border-top-style:none', [['a']], true]]);
+        }
+      },
+      'border-top': {
+        'topic': extractor(buildToken('a{border-top:none}')),
+        'has no properties': function (tokens) {
+          assert.deepEqual(tokens, [['border-top', 'none', 'border', [['border-top'], ['none']], 'border-top:none', [['a']], true]]);
+        }
+      },
+      'border-collapse': {
+        'topic': extractor(buildToken('a{border-collapse:collapse}')),
+        'has no properties': function (tokens) {
+          assert.deepEqual(tokens, [['border-collapse', 'collapse', 'border-collapse', [['border-collapse'], ['collapse']], 'border-collapse:collapse', [['a']], true]]);
         }
       },
       'text-shadow': {

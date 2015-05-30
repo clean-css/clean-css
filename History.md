@@ -22,6 +22,7 @@
 * Fixed issue [#580](https://github.com/jakubpawlowicz/clean-css/issues/580) - mixed `@import` processing.
 * Fixed issue [#582](https://github.com/jakubpawlowicz/clean-css/issues/582) - overriding with prefixed values.
 * Fixed issue [#583](https://github.com/jakubpawlowicz/clean-css/issues/583) - URL quoting for SVG data.
+* Fixed issue [#587](https://github.com/jakubpawlowicz/clean-css/issues/587) - too aggressive `border` reordering.
 
 [3.2.10 / 2015-05-14](https://github.com/jakubpawlowicz/clean-css/compare/v3.2.9...v3.2.10)
 ==================

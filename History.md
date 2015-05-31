@@ -1,4 +1,4 @@
-[3.2.11 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.2.10...3.2)
+[3.2.11 / 2015-05-31](https://github.com/jakubpawlowicz/clean-css/compare/v3.2.10...v3.2.11)
 ==================
 
 * Fixed issue [#563](https://github.com/jakubpawlowicz/clean-css/issues/563) - `background:inherit` restoring.

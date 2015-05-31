@@ -1,4 +1,4 @@
-[3.3.0 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.2.11...HEAD)
+[3.3.0 / 2015-05-31](https://github.com/jakubpawlowicz/clean-css/compare/v3.2.11...v3.3.0)
 ==================
 
 * Cleans up url rebase code getting rid of unnecessary state.

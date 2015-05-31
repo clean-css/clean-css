@@ -257,8 +257,8 @@ img[width="202"]{margin-bottom:4px}
 .btn_abo{color:#000b15;background-color:#ffc600;background-image:-moz-linear-gradient(top,#ffe562,#ffc600);background-image:-ms-linear-gradient(top,#ffe562,#ffc600);background-image:-webkit-gradient(linear,0 0,0 100%,from(#ffe562),to(#ffc600));background-image:-webkit-linear-gradient(top,#ffe562,#ffc600);background-image:-o-linear-gradient(top,#ffe562,#ffc600);background-image:linear-gradient(top,#ffe562,#ffc600);background-repeat:repeat-x;border-color:#ffc600;border-color:rgba(0,0,0,.1);filter:progid:dximagetransform.microsoft.gradient(enabled=false)}
 .btn.large{width:100%;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box}
 .btn_petit{padding:2px 4px;font-size:11px;line-height:16px}
-.btn:hover,.btn_abo:hover,.btn_fonce:hover,.btn_petit:hover{background-position:0 -15px;transition:background-position .1s linear}
-.btn:hover,.btn_abo:hover,.btn_fonce:hover,.btn_petit:hover,.conteneur_pagination .next:hover,.conteneur_pagination .prev:hover{-o-transition:background-position .1s linear;text-decoration:none;-webkit-transition:background-position .1s linear;-moz-transition:background-position .1s linear;-ms-transition:background-position .1s linear}
+.btn:hover,.btn_abo:hover,.btn_fonce:hover,.btn_petit:hover{background-position:0 -15px;-webkit-transition:background-position .1s linear;transition:background-position .1s linear}
+.btn:hover,.btn_abo:hover,.btn_fonce:hover,.btn_petit:hover,.conteneur_pagination .next:hover,.conteneur_pagination .prev:hover{text-decoration:none;-moz-transition:background-position .1s linear;-ms-transition:background-position .1s linear;-o-transition:background-position .1s linear}
 .btn:hover,.btn_petit:hover{color:#2e3942;background-color:#e6e6e6}
 .btn.active,.btn.disabled,.btn.disabled:hover,.btn:active,.btn[disabled],.btn_petit.active,.btn_petit:active,.btn_petit[disabled],input[type=submit].disabled{background-color:#e6e6e6;color:#d2d6db}
 .btn.disabled:hover,input[type=submit].disabled{background-image:none;background-color:#e6e6e6;cursor:default}
@@ -604,7 +604,7 @@ img[height="97"]+.ico29x29{bottom:6%;left:3.5%}
 .pagination .page{border:solid #e4e6e9;border-width:0 0 0 1px}
 .conteneur_pagination .next,.conteneur_pagination .prev{display:block;float:left;width:27px;height:26px;text-shadow:0 1px 1px rgba(255,255,255,.75);background-color:#fafafa;background-image:-webkit-gradient(linear,0 0,0 100%,from(#fefefe),color-stop(25%,#fefefe),to(#e4e6e9));background-image:-webkit-linear-gradient(#fefefe,#fefefe 25%,#e4e6e9);background-image:-moz-linear-gradient(left,#fefefe,#fefefe 25%,#e4e6e9);background-image:-ms-linear-gradient(#fefefe,#fefefe 25%,#e4e6e9);background-image:-o-linear-gradient(#fefefe,#fefefe 25%,#e4e6e9);background-image:linear-gradient(#fefefe,#fefefe 25%,#e4e6e9);background-repeat:no-repeat;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fefefe', endColorstr='#e4e6e9', GradientType=0);text-align:center;line-height:26px;font-size:15px;color:#2e3942}
 .pagination .page,.pagination .plus ul .page{text-align:center;line-height:26px;font-size:12px}
-.conteneur_pagination .next:hover,.conteneur_pagination .prev:hover{color:#2e3942;background-color:#e4e6e9;background-position:0 -15px;transition:background-position .1s linear}
+.conteneur_pagination .next:hover,.conteneur_pagination .prev:hover{color:#2e3942;background-color:#e4e6e9;background-position:0 -15px;-webkit-transition:background-position .1s linear;transition:background-position .1s linear}
 #footer .obf:hover,#footer a:hover,#footer_services .entete .obf:hover{text-decoration:underline}
 .conteneur_pagination .prev{border-right:1px solid #d2d6db}
 .conteneur_pagination .next{border-left:1px solid #d2d6db;float:right}
@@ -689,22 +689,23 @@ img[height="97"]+.ico29x29{bottom:6%;left:3.5%}
 #footer_services .liste_tv .note.ico_2_tv{width:15px;height:8px;background-position:0 -541px}
 #footer_services .liste_tv .note.ico_3_tv{width:18px;height:8px;background-position:0 -532px}
 #footer{width:1000px;margin:0 auto 50px;text-align:left}
-#footer .deja_abonne .obf:hover,#footer .footer_bas .nl:hover,#footer .zone_abo:hover{text-decoration:none}
 #footer .footer_gratuit{overflow:hidden}
 #footer .abonnement{float:left;width:673px;height:155px;background:url(/medias/web/img/elements_lm/footer_supports.jpg)right bottom no-repeat}
 #footer .zone_abo{display:block;float:left;width:673px;height:155px;background:url(/medias/web/img/elements_lm/footer_supports_haut.png)385px top no-repeat}
+#footer .zone_abo:hover{text-decoration:none}
 #footer .abonnement .contenu{margin:35px 0 0;padding:30px 346px 0 13px;background:url(/medias/web/img/elements_lm/le_monde_abonements_227x22.png)13px top no-repeat;color:#16212c;line-height:120%}
 #footer .abonnement .bt{padding:5px 0 0 13px}
 #footer .deja_abonne{float:left;width:183px;height:110px;padding:10px 125px 10px 16px;margin:25px 0 0;background:url(/medias/web/img/elements_lm/footer_deja_abo.jpg)right top no-repeat #fafbfc}
 #footer .deja_abonne .accroche{display:block;font-weight:700;font-size:17px;padding:0 0 8px}
 #footer .deja_abonne .obf,#footer .deja_abonne .trigger_boite_login{display:block;padding:0 0 0 10px;position:relative}
 #footer .deja_abonne .obf:before,#footer .deja_abonne .trigger_boite_login:before{color:#5d666d;content:'\203A';display:block;float:left;font-size:1.2rem;left:0;position:absolute;width:10px}
+#footer .deja_abonne .obf:hover{text-decoration:none}
 #footer .footer_listes{overflow:hidden;padding:0 13px;background:#16212c;color:#2e3942;line-height:120%}
 #footer .footer_listes div{float:left;width:152px;padding:10px 16px 10px 0}
 #footer .footer_listes div:nth-child(2n+2){width:303px}
 #footer .footer_listes .titre{display:block;margin:0 0 4px;font-weight:700;color:#eef1f5}
 #footer .footer_bas a,#footer .footer_bas span,#footer .footer_listes a,#footer .footer_listes li,#footer .footer_listes span{color:#a2a9ae}
-#footer .footer_bas .nl:hover{color:#747b83}
+#footer .footer_bas .nl:hover{text-decoration:none;color:#747b83}
 #footer .footer_bas{overflow:hidden;padding:5px 13px 10px;border-top:1px solid #2e3942;background:#16212c;color:#a2a9ae}
 #footer .footer_bas div,#footer .footer_bas p{float:left}
 #footer .sociaux{float:left;margin:10px 0 0;width:295px;color:#747b83;font-weight:700;font-size:12px}

@@ -173,8 +173,8 @@ vows.describe(canReorderSingle)
       'topic': function () {
         return canReorderSingle(propertiesIn('a{border-radius:3px}')[0], propertiesIn('a{border:0}')[0]);
       },
-      'must be true': function (result) {
-        assert.isTrue(result);
+      'must be false': function (result) {
+        assert.isFalse(result);
       }
     },
     'different properties with same root - border #7': {

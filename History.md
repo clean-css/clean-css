@@ -1,4 +1,4 @@
-[3.3.0 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.2.10...HEAD)
+[3.3.0 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.2.11...HEAD)
 ==================
 
 * Cleans up url rebase code getting rid of unnecessary state.
@@ -20,6 +20,14 @@
 * Fixed issue [#577](https://github.com/jakubpawlowicz/clean-css/issues/577) - `background-clip` into shorthand.
 * Fixed issue [#579](https://github.com/jakubpawlowicz/clean-css/issues/579) - `background-origin` into shorthand.
 * Fixed issue [#580](https://github.com/jakubpawlowicz/clean-css/issues/580) - mixed `@import` processing.
+* Fixed issue [#582](https://github.com/jakubpawlowicz/clean-css/issues/582) - overriding with prefixed values.
+* Fixed issue [#583](https://github.com/jakubpawlowicz/clean-css/issues/583) - URL quoting for SVG data.
+* Fixed issue [#587](https://github.com/jakubpawlowicz/clean-css/issues/587) - too aggressive `border` reordering.
+
+[3.2.11 / 2015-05-31](https://github.com/jakubpawlowicz/clean-css/compare/v3.2.10...v3.2.11)
+==================
+
+* Fixed issue [#563](https://github.com/jakubpawlowicz/clean-css/issues/563) - `background:inherit` restoring.
 * Fixed issue [#582](https://github.com/jakubpawlowicz/clean-css/issues/582) - overriding with prefixed values.
 * Fixed issue [#583](https://github.com/jakubpawlowicz/clean-css/issues/583) - URL quoting for SVG data.
 * Fixed issue [#587](https://github.com/jakubpawlowicz/clean-css/issues/587) - too aggressive `border` reordering.

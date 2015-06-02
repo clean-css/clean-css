@@ -1,4 +1,4 @@
-[3.3.1 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.3.0...3.3)
+[3.3.1 / 2015-06-02](https://github.com/jakubpawlowicz/clean-css/compare/v3.3.0...v3.3.1)
 ==================
 
 * Fixed issue [#590](https://github.com/jakubpawlowicz/clean-css/issues/590) - edge case in `@import` processing.

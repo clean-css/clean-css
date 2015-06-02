@@ -1674,6 +1674,12 @@ title']{display:block}",
     ],
     'no empty body': '@import url(//fonts.googleapis.com/css?family=Domine:700);body{color:red}body h1{font-family:Domine}'
   }, { processImport: false, advanced: false }),
+  '@import with no url': cssContext({
+    'matching too much': [
+      '@import url(test.css);@font-face{font-family:"icomoon"}',
+      '@import url(test.css);@font-face{font-family:icomoon}'
+    ]
+  }, { processImport: false, root: process.cwd(), relativeTo: process.cwd() }),
   'duplicate selectors with disabled advanced processing': cssContext({
     'of a duplicate selector': [
       'a,a{color:red}',

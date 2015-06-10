@@ -132,7 +132,7 @@ CleanCSS constructor accepts a hash as a parameter, i.e.,
 * `semanticMerging` - set to true to enable semantic merging mode which assumes BEM-like content (default is false as it's highly likely this will break your stylesheets - **use with caution**!)
 * `shorthandCompacting` - set to false to skip shorthand compacting (default is true unless sourceMap is set when it's false)
 * `sourceMap` - exposes source map under `sourceMap` property, e.g. `new CleanCSS().minify(source).sourceMap` (default is false)
-  If input styles are a product of CSS preprocessor (LESS, SASS) an input source map can be passed as a string.
+  If input styles are a product of CSS preprocessor (Less, Sass) an input source map can be passed as a string.
 * `sourceMapInlineSources` - set to true to inline sources inside a source map's `sourcesContent` field (defaults to false)
   It is also required to process inlined sources from input source maps.
 * `target` - path to a folder or an output file to which **rebase** all URLs
@@ -216,7 +216,7 @@ Clean-css will handle it automatically for you (since version 1.1) in the follow
 
 Source maps are supported since version 3.0.
 
-Additionally to mapping original CSS files, clean-css also supports input source maps, so minified styles can be mapped into their [LESS](http://lesscss.org/) or [SASS](http://sass-lang.com/) sources directly.
+Additionally to mapping original CSS files, clean-css also supports input source maps, so minified styles can be mapped into their [Less](http://lesscss.org/) or [Sass](http://sass-lang.com/) sources directly.
 
 Source maps are generated using [source-map](https://github.com/mozilla/source-map/) module from Mozilla.
 

@@ -36,6 +36,8 @@
   },
   "dependencies": {
     "commander": "2.8.x",
+    "data-uri-to-buffer": "0.0.3",
+    "http-buffer-charset": "0.0.3",
     "source-map": "0.4.x"
   },
   "devDependencies": {

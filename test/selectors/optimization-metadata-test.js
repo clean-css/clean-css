@@ -60,6 +60,13 @@ vows.describe(addOptimizationMetadata)
         addOptimizationMetadata(tokens);
         assert.deepEqual(tokens, [['selector', ['a'], [[['width', false, false], ['0']]] ]]);
       }
+    },
+    'backslash hack - space between values123': {
+      'topic': [['selector', ['a'], [[['width'], ['0'], ['\\9']]] ]],
+      'metadata': function (tokens) {
+        addOptimizationMetadata(tokens);
+        assert.deepEqual(tokens, [['selector', ['a'], [[['width', false, 'suffix'], ['0']]] ]]);
+      }
     }
   })
   .addBatch({

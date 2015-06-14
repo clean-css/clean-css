@@ -505,6 +505,14 @@ vows.describe(SimpleOptimizer)
       'inside calc': [
         'a{font-size:calc(100% + 0px)}',
         [['font-size', 'calc(100% + 0px)']]
+      ],
+      'flex': [
+        'a{flex: 1 0 0%}',
+        [['flex', '1', '0', '0%']]
+      ],
+      'flex–basis': [
+        'a{flex-basis:0%}',
+        [['flex-basis', '0%']]
       ]
     })
   )

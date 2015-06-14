@@ -1,3 +1,8 @@
+[3.3.2 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.3.1...3.3)
+==================
+
+* Fixed issue [#601](https://github.com/jakubpawlowicz/clean-css/issues/601) - percentage minifying inside `flex`.
+
 [3.3.1 / 2015-06-02](https://github.com/jakubpawlowicz/clean-css/compare/v3.3.0...v3.3.1)
 ==================
 

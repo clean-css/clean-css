@@ -256,6 +256,16 @@ vows.describe(tokenize)
             [[['color'], ['red!important']]]
           ]
         ]
+      ],
+      '_:-ms-lang flat block': [
+        '_:-ms-lang(x),@-ms-viewport{color:red}',
+        [
+          [
+            'flat-block',
+            ['_:-ms-lang(x),@-ms-viewport'],
+            [[['color'], ['red']]]
+          ]
+        ]
       ]
     })
   )

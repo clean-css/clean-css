@@ -1,4 +1,4 @@
-[3.3.2 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.3.1...3.3)
+[3.3.2 / 2015-06-14](https://github.com/jakubpawlowicz/clean-css/compare/v3.3.1...v3.3.2)
 ==================
 
 * Fixed issue [#595](https://github.com/jakubpawlowicz/clean-css/issues/595) - more relaxed block matching.

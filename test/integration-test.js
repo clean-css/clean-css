@@ -6,7 +6,7 @@ var path = require('path');
 var CleanCSS = require('../index');
 
 var lineBreak = require('os').EOL;
-var cssContext = function(groups, options) {
+var cssContext = function (groups, options) {
   var context = {};
 
   var clean = function (expected) {
@@ -436,7 +436,7 @@ vows.describe('integration tests').addBatch({
     'complex': 'a{width:expression((this.parentNode.innerWidth + this.parentNode.innerHeight) / 2 )}',
     'with parentheses': "a{width:expression(this.parentNode.innerText == ')' ? '5px' : '10px' )}",
     'open ended (broken)': "a{width:expression(this.parentNode.innerText == }",
-    'function call & advanced': 'a{zoom:expression(function(el){el.style.zoom="1"}(this))}'
+    'function call & advanced': 'a{zoom:expression(function (el){el.style.zoom="1"}(this))}'
   }),
   'text content': cssContext({
     'normal #1': 'a{content:"."}',

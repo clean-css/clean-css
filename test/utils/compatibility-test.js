@@ -8,7 +8,7 @@ vows.describe(Compatibility)
       'topic': function () {
         return new Compatibility({}).toOptions();
       },
-      'gets default options': function(options) {
+      'gets default options': function (options) {
         assert.isTrue(options.colors.opacity);
         assert.isTrue(options.properties.colors);
         assert.isFalse(options.properties.backgroundClipMerging);
@@ -36,7 +36,7 @@ vows.describe(Compatibility)
       'topic': function () {
         return new Compatibility().toOptions();
       },
-      'gets default options': function(options) {
+      'gets default options': function (options) {
         assert.deepEqual(options, new Compatibility({}).toOptions());
       }
     },
@@ -44,7 +44,7 @@ vows.describe(Compatibility)
       'topic': function () {
         return new Compatibility({ units: { rem: false, vmax: false }, properties: { prefix: true } }).toOptions();
       },
-      'gets merged options': function(options) {
+      'gets merged options': function (options) {
         assert.isTrue(options.colors.opacity);
         assert.isFalse(options.properties.backgroundClipMerging);
         assert.isFalse(options.properties.backgroundOriginMerging);
@@ -73,7 +73,7 @@ vows.describe(Compatibility)
       'topic': function () {
         return new Compatibility('ie8').toOptions();
       },
-      'gets template options': function(options) {
+      'gets template options': function (options) {
         assert.isFalse(options.colors.opacity);
         assert.isFalse(options.properties.backgroundClipMerging);
         assert.isFalse(options.properties.backgroundOriginMerging);
@@ -101,7 +101,7 @@ vows.describe(Compatibility)
       'topic': function () {
         return new Compatibility('ie7').toOptions();
       },
-      'gets template options': function(options) {
+      'gets template options': function (options) {
         assert.isFalse(options.colors.opacity);
         assert.isFalse(options.properties.backgroundClipMerging);
         assert.isFalse(options.properties.backgroundOriginMerging);
@@ -129,7 +129,7 @@ vows.describe(Compatibility)
       'topic': function () {
         return new Compatibility('').toOptions();
       },
-      'gets default options': function(options) {
+      'gets default options': function (options) {
         assert.deepEqual(options, new Compatibility({}).toOptions());
       }
     }
@@ -139,7 +139,7 @@ vows.describe(Compatibility)
       'topic': function () {
         return new Compatibility('ie8,-properties.iePrefixHack,+colors.opacity').toOptions();
       },
-      'gets calculated options': function(options) {
+      'gets calculated options': function (options) {
         assert.isTrue(options.colors.opacity);
         assert.isFalse(options.properties.backgroundClipMerging);
         assert.isFalse(options.properties.backgroundOriginMerging);
@@ -167,7 +167,7 @@ vows.describe(Compatibility)
       'topic': function () {
         return new Compatibility('+properties.iePrefixHack').toOptions();
       },
-      'gets calculated options': function(options) {
+      'gets calculated options': function (options) {
         assert.isTrue(options.colors.opacity);
         assert.isTrue(options.properties.colors);
         assert.isFalse(options.properties.backgroundClipMerging);
@@ -195,7 +195,7 @@ vows.describe(Compatibility)
       'topic': function () {
         return new Compatibility('+properties.iePrefixHack,-units.rem').toOptions();
       },
-      'gets calculated options': function(options) {
+      'gets calculated options': function (options) {
         assert.isTrue(options.colors.opacity);
         assert.isTrue(options.properties.colors);
         assert.isFalse(options.properties.backgroundClipMerging);

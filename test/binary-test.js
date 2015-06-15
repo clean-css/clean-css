@@ -9,36 +9,36 @@ var SourceMapConsumer = require('source-map').SourceMapConsumer;
 var isWindows = process.platform == 'win32';
 var lineBreakRegExp = new RegExp(require('os').EOL, 'g');
 
-var binaryContext = function(options, context) {
+var binaryContext = function (options, context) {
   if (isWindows)
     return {};
 
-  context.topic = function() {
+  context.topic = function () {
     // We add __DIRECT__=1 to force binary into 'non-piped' mode
     exec('__DIRECT__=1 ./bin/cleancss ' + options, this.callback);
   };
   return context;
 };
 
-var pipedContext = function(css, options, context) {
+var pipedContext = function (css, options, context) {
   if (isWindows)
     return {};
 
-  context.topic = function() {
+  context.topic = function () {
     exec('echo "' + css + '" | ./bin/cleancss ' + options, this.callback);
   };
   return context;
 };
 
-var unixOnlyContext = function(context) {
+var unixOnlyContext = function (context) {
   return isWindows ? {} : context;
 };
 
-var readFile = function(filename) {
+var readFile = function (filename) {
   return fs.readFileSync(filename, { encoding: 'utf-8' }).replace(lineBreakRegExp, '');
 };
 
-var deleteFile = function(filename) {
+var deleteFile = function (filename) {
   if (isWindows)
     exec('del /q /f ' + filename);
   else

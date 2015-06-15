@@ -49,7 +49,7 @@ vows.describe('source-map')
       'topic': function () {
         return new CleanCSS({ sourceMap: true }).minify('/*! a */div[data-id=" abc "] { color:red; }');
       },
-      'has 3 mappings': function(minified) {
+      'has 3 mappings': function (minified) {
         assert.lengthOf(minified.sourceMap._mappings._array, 3);
       },
       'has selector mapping': function (minified) {
@@ -90,7 +90,7 @@ vows.describe('source-map')
       'topic': function () {
         return new CleanCSS({ sourceMap: true }).minify('@media screen {\n@font-face \n{ \nfont-family: test; } }');
       },
-      'has 4 mappings': function(minified) {
+      'has 4 mappings': function (minified) {
         assert.lengthOf(minified.sourceMap._mappings._array, 4);
       },
       'has `@media` mapping': function (minified) {
@@ -142,7 +142,7 @@ vows.describe('source-map')
       'topic': function () {
         return new CleanCSS({ sourceMap: true, keepBreaks: true }).minify('@media screen { a{color:red} p {color:blue} }div{color:pink}');
       },
-      'has 10 mappings': function(minified) {
+      'has 10 mappings': function (minified) {
         assert.lengthOf(minified.sourceMap._mappings._array, 10);
       },
       'has `@media` mapping': function (minified) {
@@ -260,7 +260,7 @@ vows.describe('source-map')
       'topic': function () {
         return new CleanCSS({ sourceMap: true }).minify('@-webkit-keyframes frames {\n  0% {\n    border: 1px;\n  }\n  100% {\n    border: 3px;\n  }\n}');
       },
-      'has 7 mappings': function(minified) {
+      'has 7 mappings': function (minified) {
         assert.lengthOf(minified.sourceMap._mappings._array, 7);
       },
       'has `@keframes` mapping': function (minified) {
@@ -345,7 +345,7 @@ vows.describe('source-map')
       'topic': function () {
         return new CleanCSS({ sourceMap: true }).minify('/* COMMENT 1 */\n/* COMMENT 2 */\ndiv{color:red}');
       },
-      'has 3 mappings': function(minified) {
+      'has 3 mappings': function (minified) {
         assert.lengthOf(minified.sourceMap._mappings._array, 3);
       },
       'has `div`_ mapping': function (minified) {
@@ -887,7 +887,7 @@ vows.describe('source-map')
       'has mapping': function (errors, minified) {
         assert.isDefined(minified.sourceMap);
       },
-      'raises an error': function(errors, _) {
+      'raises an error': function (errors, _) {
         assert.lengthOf(errors, 1);
         assert.equal(errors[0], 'Broken source map at "http://127.0.0.1/remote.css.map" - 404');
       },
@@ -897,13 +897,13 @@ vows.describe('source-map')
       }
     },
     'timed out response for external source map': {
-      topic: function() {
+      topic: function () {
         nock.enableNetConnect();
 
         var self = this;
         var timeout = 100;
 
-        this.server = http.createServer(function(req, res) {
+        this.server = http.createServer(function (req, res) {
           switch (req.url) {
             case '/remote.css':
               res.writeHead(200);
@@ -911,10 +911,10 @@ vows.describe('source-map')
               res.end();
               break;
             case '/remote.css.map':
-              setTimeout(function() {}, timeout * 2);
+              setTimeout(function () {}, timeout * 2);
           }
         });
-        this.server.listen(port, '127.0.0.1', function() {
+        this.server.listen(port, '127.0.0.1', function () {
           new CleanCSS({ sourceMap: true, inliner: { timeout: timeout } })
             .minify('@import url(http://127.0.0.1:' + port + '/remote.css);', self.callback);
         });
@@ -923,7 +923,7 @@ vows.describe('source-map')
       'has mapping': function (errors, minified) {
         assert.isDefined(minified.sourceMap);
       },
-      'raises an error': function(errors, _) {
+      'raises an error': function (errors, _) {
         assert.lengthOf(errors, 1);
         assert.include(errors[0], 'Broken source map at "http://127.0.0.1:' + port + '/remote.css.map"');
       },

@@ -45,7 +45,7 @@ function propertyContext(group, specs, options) {
         tokens[0][2].map(function (property) {
           return typeof property == 'string' ?
             property :
-            property.map(function(t) { return t[0]; });
+            property.map(function (t) { return t[0]; });
         }) :
         null;
 

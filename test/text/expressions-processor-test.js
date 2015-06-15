@@ -72,14 +72,14 @@ vows.describe(ExpressionsProcessor)
         'a{width:expression(this.parentNode.innerText == }'
       ],
       'function call & advanced': [
-        'a{zoom:expression(function(el){el.style.zoom="1"}(this))}',
+        'a{zoom:expression(function (el){el.style.zoom="1"}(this))}',
         'a{zoom:__ESCAPED_EXPRESSION_CLEAN_CSS0__}',
-        'a{zoom:expression(function(el){el.style.zoom="1"}(this))}'
+        'a{zoom:expression(function (el){el.style.zoom="1"}(this))}'
       ],
       'with more properties': [
-        'a{color:red;zoom:expression(function(el){el.style.zoom="1"}(this));display:block}',
+        'a{color:red;zoom:expression(function (el){el.style.zoom="1"}(this));display:block}',
         'a{color:red;zoom:__ESCAPED_EXPRESSION_CLEAN_CSS0__;display:block}',
-        'a{color:red;zoom:expression(function(el){el.style.zoom="1"}(this));display:block}'
+        'a{color:red;zoom:expression(function (el){el.style.zoom="1"}(this));display:block}'
       ]
     })
   )

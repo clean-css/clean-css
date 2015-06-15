@@ -44,7 +44,7 @@ vows.describe(optimize)
   .addBatch({
     'with source map': {
       topic: 'a{margin-top:10px;margin-bottom:4px;margin-left:5px;margin-right:5px}',
-      'into': function(topic) {
+      'into': function (topic) {
         assert.deepEqual(_optimize(topic), [
           [
             ['margin', false, false, [[1, 2, undefined], [1, 18, undefined], [1, 36, undefined], [1, 52, undefined]]],

@@ -20,48 +20,48 @@ function sourcesAsHash(sources, resolve) {
 
 vows.describe('module tests').addBatch({
   'imported as a function': {
-    topic: function() {
+    topic: function () {
       var css = new CleanCSS();
       return css.minify.bind(css);
     },
-    'should minify CSS correctly': function(minify) {
+    'should minify CSS correctly': function (minify) {
       assert.equal(minify('a{  color: #f00;  }').styles, 'a{color:red}');
     }
   },
   'extended via prototype': {
-    topic: function() {
-      CleanCSS.prototype.foo = function(data, callback) {
+    topic: function () {
+      CleanCSS.prototype.foo = function (data, callback) {
         callback(null, this.minify(data));
       };
       new CleanCSS().foo('a{  color: #f00;  }', this.callback);
     },
-    'should minify CSS correctly': function(error, minified) {
+    'should minify CSS correctly': function (error, minified) {
       assert.equal(minified.styles, 'a{color:red}');
     },
-    teardown: function() {
+    teardown: function () {
       delete CleanCSS.prototype.foo;
     }
   },
   'with callback passed and no errors': {
-    topic: function() {
+    topic: function () {
       new CleanCSS().minify('a{color:#f00}', this.callback);
     },
-    'should not set context': function() {
+    'should not set context': function () {
       assert.equal(this instanceof CleanCSS, false);
     },
-    'should yield no error': function(errors, minified) {
+    'should yield no error': function (errors, minified) {
       /* jshint unused: false */
       assert.isNull(errors);
     },
-    'should yield minified data': function(errors, minified) {
+    'should yield minified data': function (errors, minified) {
       assert.equal(minified.styles, 'a{color:red}');
     }
   },
   'with callback passed and one error': {
-    topic: function() {
+    topic: function () {
       new CleanCSS().minify('@import "missing.css";', this.callback);
     },
-    'should yield no error and minify': function(errors, minified) {
+    'should yield no error and minify': function (errors, minified) {
       /* jshint unused: false */
       assert.lengthOf(errors, 1);
     }
@@ -228,7 +228,7 @@ vows.describe('module tests').addBatch({
     'topic': function () {
       return new CleanCSS();
     },
-    'if both root and output used reasons given': function(minifier) {
+    'if both root and output used reasons given': function (minifier) {
       assert.doesNotThrow(function () {
         minifier.minify('@import url(/some/fake/file);', function (errors) {
           assert.isArray(errors);
@@ -244,7 +244,7 @@ vows.describe('module tests').addBatch({
     },
     'if both root and output used reasons given': function (minifier) {
       minifier.minify('@import url(/some/fake/file);');
-      minifier.minify('@import url(/some/fake/file);', function(errors) {
+      minifier.minify('@import url(/some/fake/file);', function (errors) {
         assert.lengthOf(errors, 1);
         assert.equal(errors[0], 'Broken @import declaration of "/some/fake/file"');
       });
@@ -309,10 +309,10 @@ vows.describe('module tests').addBatch({
     }
   },
   'buffer passed in': {
-    'topic': function() {
+    'topic': function () {
       return new CleanCSS().minify(new Buffer('@import url(test/fixtures/partials/one.css);'));
     },
-    'should be processed correctly': function(minified) {
+    'should be processed correctly': function (minified) {
       assert.equal(minified.styles, '.one{color:red}');
     }
   },

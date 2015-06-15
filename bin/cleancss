@@ -35,7 +35,7 @@ commands
   .option('-t, --timeout [seconds]', 'Per connection timeout when fetching remote @imports (defaults to 5 seconds)')
   .option('-d, --debug', 'Shows debug information (minification time & compression efficiency)');
 
-commands.on('--help', function() {
+commands.on('--help', function () {
   console.log('  Examples:\n');
   console.log('    %> cleancss one.css');
   console.log('    %> cleancss -o one-min.css one.css');
@@ -95,10 +95,10 @@ if (commands.args.length > 0) {
   var stdin = process.openStdin();
   stdin.setEncoding('utf-8');
   var data = '';
-  stdin.on('data', function(chunk) {
+  stdin.on('data', function (chunk) {
     data += chunk;
   });
-  stdin.on('end', function() {
+  stdin.on('end', function () {
     minify(data);
   });
 }
@@ -143,7 +143,7 @@ function outputMap(sourceMap, mapFilename) {
 function outputFeedback(messages, isError) {
   var prefix = isError ? '\x1B[31mERROR\x1B[39m:' : 'WARNING:';
 
-  messages.forEach(function(message) {
+  messages.forEach(function (message) {
     console.error('%s %s', prefix, message);
   });
 }

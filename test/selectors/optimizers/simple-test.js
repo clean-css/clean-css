@@ -360,7 +360,7 @@ vows.describe(SimpleOptimizer)
       ],
       'backslash': [
         'a{width:100px\\9}',
-        null
+        [['width', '100px']]
       ]
     })
   )

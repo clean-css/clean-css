@@ -1260,7 +1260,7 @@ path")}',
     ],
     'backslash': [
       'a{color:#fff\\9}',
-      ''
+      'a{color:#fff\\9}'
     ]
   }),
   'animations': cssContext({

@@ -15,7 +15,7 @@ vows.describe(Compatibility)
         assert.isFalse(options.properties.backgroundOriginMerging);
         assert.isFalse(options.properties.backgroundSizeMerging);
         assert.isFalse(options.properties.iePrefixHack);
-        assert.isFalse(options.properties.ieSuffixHack);
+        assert.isTrue(options.properties.ieSuffixHack);
         assert.isTrue(options.properties.merging);
         assert.isTrue(options.properties.spaceAfterClosingBrace);
         assert.isFalse(options.properties.urlQuotes);
@@ -51,7 +51,7 @@ vows.describe(Compatibility)
         assert.isFalse(options.properties.backgroundSizeMerging);
         assert.isTrue(options.properties.colors);
         assert.isFalse(options.properties.iePrefixHack);
-        assert.isFalse(options.properties.ieSuffixHack);
+        assert.isTrue(options.properties.ieSuffixHack);
         assert.isTrue(options.properties.merging);
         assert.isTrue(options.properties.spaceAfterClosingBrace);
         assert.isTrue(options.properties.zeroUnits);
@@ -174,7 +174,7 @@ vows.describe(Compatibility)
         assert.isFalse(options.properties.backgroundOriginMerging);
         assert.isFalse(options.properties.backgroundSizeMerging);
         assert.isTrue(options.properties.iePrefixHack);
-        assert.isFalse(options.properties.ieSuffixHack);
+        assert.isTrue(options.properties.ieSuffixHack);
         assert.isTrue(options.properties.merging);
         assert.isTrue(options.properties.spaceAfterClosingBrace);
         assert.isFalse(options.properties.urlQuotes);
@@ -202,7 +202,7 @@ vows.describe(Compatibility)
         assert.isFalse(options.properties.backgroundOriginMerging);
         assert.isFalse(options.properties.backgroundSizeMerging);
         assert.isTrue(options.properties.iePrefixHack);
-        assert.isFalse(options.properties.ieSuffixHack);
+        assert.isTrue(options.properties.ieSuffixHack);
         assert.isTrue(options.properties.merging);
         assert.isTrue(options.properties.spaceAfterClosingBrace);
         assert.isFalse(options.properties.urlQuotes);

@@ -1,4 +1,4 @@
-[3.3.3 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.3.2...3.3)
+[3.3.3 / 2015-06-16](https://github.com/jakubpawlowicz/clean-css/compare/v3.3.2...v3.3.3)
 ==================
 
 * Fixed issue [#603](https://github.com/jakubpawlowicz/clean-css/issues/603) - IE suffix hack defaults to on.

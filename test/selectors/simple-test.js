@@ -1,10 +1,10 @@
 var vows = require('vows');
 var assert = require('assert');
 
-var tokenize = require('../../../lib/tokenizer/tokenize');
-var SimpleOptimizer = require('../../../lib/selectors/optimizers/simple');
-var Compatibility = require('../../../lib/utils/compatibility');
-var addOptimizationMetadata = require('../../../lib/selectors/optimization-metadata');
+var tokenize = require('../../lib/tokenizer/tokenize');
+var SimpleOptimizer = require('../../lib/selectors/simple');
+var Compatibility = require('../../lib/utils/compatibility');
+var addOptimizationMetadata = require('../../lib/selectors/optimization-metadata');
 
 function selectorContext(group, specs, options) {
   var context = {};
@@ -78,6 +78,10 @@ vows.describe(SimpleOptimizer)
         ' div  >\n\r\n span{color:red}',
         [['div>span']]
       ],
+      'more line breaks': [
+        '\r\ndiv\n{color:red}',
+        [['div']]
+      ],
       '+html': [
         '*+html .foo{display:inline}',
         null
@@ -85,6 +89,54 @@ vows.describe(SimpleOptimizer)
       'adjacent nav': [
         'div + nav{color:red}',
         [['div+nav']]
+      ],
+      'heading & trailing': [
+        ' a {color:red}',
+        [['a']]
+      ],
+      'descendant selector': [
+        'div > a{color:red}',
+        [['div>a']]
+      ],
+      'next selector': [
+        'div + a{color:red}',
+        [['div+a']]
+      ],
+      'sibling selector': [
+        'div  ~ a{color:red}',
+        [['div~a']]
+      ],
+      'pseudo classes': [
+        'div  :first-child{color:red}',
+        [['div :first-child']]
+      ],
+      'tabs': [
+        'div\t\t{color:red}',
+        [['div']]
+      ],
+      'universal selector - id, class, and property': [
+        '* > *#id > *.class > *[property]{color:red}',
+        [['*>#id>.class>[property]']]
+      ],
+      'universal selector - pseudo': [
+        '*:first-child{color:red}',
+        [[':first-child']]
+      ],
+      'universal selector - standalone': [
+        'label ~ * + span{color:red}',
+        [['label~*+span']]
+      ],
+      'order': [
+        'b,div,a{color:red}',
+        [['a'], ['b'], ['div']]
+      ],
+      'duplicates': [
+        'a,div,.class,.class,a ,div > a{color:red}',
+        [['.class'], ['a'], ['div'], ['div>a']]
+      ],
+      'mixed': [
+        ' label   ~  \n*  +  span , div>*.class, section\n\n{color:red}',
+        [['div>.class'], ['label~*+span'], ['section']]
       ]
     })
   )
@@ -657,6 +709,22 @@ vows.describe(SimpleOptimizer)
       'stripped spaces': [
         'div{text-shadow:rgba(255,1,1,.5) 1px}',
         [['text-shadow', 'rgba(255,1,1,.5)', '1px']]
+      ],
+      'calc': [
+        'a{width:-moz-calc(100% - 1em);width:calc(100% - 1em)}',
+        [['width', '-moz-calc(100% - 1em)'], ['width', 'calc(100% - 1em)']]
+      ],
+      'empty body': [
+        'a{}',
+        null
+      ],
+      'in a body': [
+        'a{   \n }',
+        null
+      ],
+      'after calc()': [
+        'div{margin:calc(100% - 20px) 1px}',
+        [['margin', 'calc(100% - 20px)', '1px']]
       ]
     })
   )

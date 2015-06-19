@@ -1,30 +1,16 @@
 var vows = require('vows');
 var assert = require('assert');
-var SelectorsOptimizer = require('../../lib/selectors/optimizer');
-var stringify = require('../../lib/stringifier/simple');
-var Compatibility = require('../../lib/utils/compatibility');
-var Validator = require('../../lib/properties/validator');
-var SourceTracker = require('../../lib/utils/source-tracker');
+var CleanCSS = require('../../lib/clean');
 
 function optimizerContext(group, specs, options) {
-  function restoreCallback(data) {
-    return data;
-  }
-
   var context = {};
   options = options || {};
   options.shorthandCompacting = true;
   options.restructuring = true;
-  options.compatibility = new Compatibility(options.compatibility).toOptions();
-  var outerContext = {
-    options: {},
-    sourceTracker: new SourceTracker(),
-    validator: new Validator(options.compatibility)
-  };
 
   function optimized(target) {
     return function (source) {
-      assert.equal(new SelectorsOptimizer(options, outerContext).process(source, stringify, restoreCallback).styles, target);
+      assert.equal(new CleanCSS(options).minify(source).styles, target);
     };
   }
 
@@ -38,67 +24,7 @@ function optimizerContext(group, specs, options) {
   return context;
 }
 
-vows.describe(SelectorsOptimizer)
-  .addBatch(
-    optimizerContext('selectors', {
-      'whitespace - heading & trailing': [
-        ' a {color:red}',
-        'a{color:red}'
-      ],
-      'whitespace - descendant selector': [
-        'div > a{color:red}',
-        'div>a{color:red}'
-      ],
-      'whitespace - next selector': [
-        'div + a{color:red}',
-        'div+a{color:red}'
-      ],
-      'whitespace - sibling selector': [
-        'div  ~ a{color:red}',
-        'div~a{color:red}'
-      ],
-      'whitespace - pseudo classes': [
-        'div  :first-child{color:red}',
-        'div :first-child{color:red}'
-      ],
-      'whitespace - line breaks': [
-        '\r\ndiv\n{color:red}',
-        'div{color:red}'
-      ],
-      'whitespace - tabs': [
-        'div\t\t{color:red}',
-        'div{color:red}'
-      ],
-      'universal selector - id, class, and property': [
-        '* > *#id > *.class > *[property]{color:red}',
-        '*>#id>.class>[property]{color:red}'
-      ],
-      'universal selector - pseudo': [
-        '*:first-child{color:red}',
-        ':first-child{color:red}'
-      ],
-      'universal selector - standalone': [
-        'label ~ * + span{color:red}',
-        'label~*+span{color:red}'
-      ],
-      'order': [
-        'b,div,a{color:red}',
-        'a,b,div{color:red}'
-      ],
-      'duplicates': [
-        'a,div,.class,.class,a ,div > a{color:red}',
-        '.class,a,div,div>a{color:red}'
-      ],
-      'mixed': [
-        ' label   ~  \n*  +  span , div>*.class, section\n\n{color:red}',
-        'div>.class,label~*+span,section{color:red}'
-      ],
-      'calc': [
-        'a{width:-moz-calc(100% - 1em);width:calc(100% - 1em)}',
-        'a{width:-moz-calc(100% - 1em);width:calc(100% - 1em)}'
-      ]
-    })
-  )
+vows.describe('advanced optimizer')
   .addBatch(
     optimizerContext('selectors - restructuring', {
       'up until changed': [
@@ -210,24 +136,24 @@ vows.describe(SelectorsOptimizer)
         '@-moz-keyframes test{0%{transform:scale3d(1,1,1);opacity:1}100%{transform:scale3d(.5,.5,.5);opacity:1}}'
       ],
       'with one important comment': [
-        '__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0__a{width:100px}div{color:red}.one{display:block}.two{display:inline;color:red}',
-        '__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0__.two,div{color:red}a{width:100px}.one{display:block}.two{display:inline}'
+        '/*! comment */a{width:100px}div{color:red}.one{display:block}.two{display:inline;color:red}',
+        '/*! comment */.two,div{color:red}a{width:100px}.one{display:block}.two{display:inline}'
       ],
       'with many important comments': [
-        '__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0____ESCAPED_COMMENT_SPECIAL_CLEAN_CSS1__a{width:100px}div{color:red}.one{display:block}.two{display:inline;color:red}',
-        '__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0____ESCAPED_COMMENT_SPECIAL_CLEAN_CSS1__.two,div{color:red}a{width:100px}.one{display:block}.two{display:inline}'
+        '/*! comment 1 *//*! comment 2 */a{width:100px}div{color:red}.one{display:block}.two{display:inline;color:red}',
+        '/*! comment 1 *//*! comment 2 */.two,div{color:red}a{width:100px}.one{display:block}.two{display:inline}'
       ],
       'with important comment and charset': [
-        '@charset "utf-8";__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0__a{width:100px}div{color:red}.one{display:block}.two{display:inline;color:red}',
-        '@charset "utf-8";__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0__.two,div{color:red}a{width:100px}.one{display:block}.two{display:inline}'
+        '@charset "utf-8";/*! comment */a{width:100px}div{color:red}.one{display:block}.two{display:inline;color:red}',
+        '@charset "utf-8";/*! comment */.two,div{color:red}a{width:100px}.one{display:block}.two{display:inline}'
       ],
       'with charset and import': [
         '@charset "UTF-8";@import url(http://fonts.googleapis.com/css?family=Lora:400,700);a{width:100px}div{color:red}.one{display:block}.two{display:inline;color:red}',
         '@charset "UTF-8";@import url(http://fonts.googleapis.com/css?family=Lora:400,700);.two,div{color:red}a{width:100px}.one{display:block}.two{display:inline}'
       ],
       'with charset and import and comments': [
-        '@charset "UTF-8";@import url(http://fonts.googleapis.com/css?family=Lora:400,700);__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0__a{width:100px}div{color:red}.one{display:block}.two{display:inline;color:red}',
-        '@charset "UTF-8";@import url(http://fonts.googleapis.com/css?family=Lora:400,700);__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0__.two,div{color:red}a{width:100px}.one{display:block}.two{display:inline}'
+        '@charset "UTF-8";@import url(http://fonts.googleapis.com/css?family=Lora:400,700);/*! comment */a{width:100px}div{color:red}.one{display:block}.two{display:inline;color:red}',
+        '@charset "UTF-8";@import url(http://fonts.googleapis.com/css?family=Lora:400,700);/*! comment */.two,div{color:red}a{width:100px}.one{display:block}.two{display:inline}'
       ],
       'with vendor prefixed value group': [
         'a{-moz-box-sizing:content-box;box-sizing:content-box}div{color:red}p{-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box}',
@@ -271,22 +197,6 @@ vows.describe(SelectorsOptimizer)
         // '.block1__element,.block2{color:#000}.block1__element--modifier{color:red}.block2{display:block;width:100%}' - pending #588
       ]
     }, { advanced: true, semanticMerging: true })
-  )
-  .addBatch(
-    optimizerContext('properties', {
-      'empty body': [
-        'a{}',
-        ''
-      ],
-      'whitespace body': [
-        'a{   \n }',
-        ''
-      ],
-      'whitespace after calc()': [
-        'div{margin:calc(100% - 20px) 1px}',
-        'div{margin:calc(100% - 20px) 1px}'
-      ]
-    })
   )
   .addBatch(
     optimizerContext('@media', {
@@ -387,22 +297,6 @@ vows.describe(SelectorsOptimizer)
         'a{color:red;display:block}.one{font-size:12px}a{color:#fff;margin:2px}'
       ]
     }, { advanced: false })
-  )
-  .addBatch(
-    optimizerContext('@charset', {
-      'multiple': [
-        '@charset \'utf-8\';a{color:red}@charset \'utf-8\';',
-        '@charset \'utf-8\';a{color:red}'
-      ],
-      'not at beginning': [
-        'a{color:red}@charset \'utf-8\';',
-        '@charset \'utf-8\';a{color:red}'
-      ],
-      'different case': [
-        'a{color:red}@ChArSeT \'utf-8\';',
-        'a{color:red}'
-      ]
-    })
   )
   .addBatch(
     optimizerContext('@font-face', {

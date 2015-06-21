@@ -209,10 +209,6 @@ vows.describe('advanced optimizer')
         'a{color:red;color:red}',
         'a{color:red}'
       ],
-      'adjacent': [
-        'a{color:red}a{display:block;width:100px}div{color:#fff}',
-        'a{color:red;display:block;width:100px}div{color:#fff}'
-      ],
       'non-adjacent': [
         'a{color:red;display:block}.one{margin:12px}a{color:#fff;margin:2px}',
         '.one{margin:12px}a{display:block;color:#fff;margin:2px}'
@@ -248,10 +244,6 @@ vows.describe('advanced optimizer')
       'repeated' : [
         'a{color:red;color:red}',
         'a{color:red;color:red}'
-      ],
-      'adjacent': [
-        'a{color:red}a{display:block;width:100px}div{color:#fff}',
-        'a{color:red}a{display:block;width:100px}div{color:#fff}'
       ],
       'non-adjacent': [
         'a{color:red;display:block}.one{font-size:12px}a{color:#fff;margin:2px}',

@@ -20,6 +20,10 @@ vows.describe('remove duplicates')
         '.one{color:red}.one{font-weight:700}.one{font-size:12px}',
         '.one{color:red;font-weight:700;font-size:12px}'
       ],
+      'of three adjacent complex, multiple selectors': [
+        '.one{color:red}#two.three{color:red}.four>.five{color:red}',
+        '#two.three,.four>.five,.one{color:red}'
+      ],
       'of two adjacent single, complex selectors': [
         '#box>.one{color:red}#box>.one{font-weight:700}',
         '#box>.one{color:red;font-weight:700}'

@@ -139,43 +139,6 @@ vows.describe('advanced optimizer')
     }, { advanced: true })
   )
   .addBatch(
-    optimizerContext('selectors - semantic merging mode', {
-      'simple': [
-        '.a{color:red}.b{color:#000}.c{color:red}',
-        '.a,.c{color:red}.b{color:#000}'
-      ],
-      'BEM - modifiers #1': [
-        '.block{color:red}.block__element{color:#000}.block__element--modifier{color:red}',
-        '.block{color:red}.block__element{color:#000}.block__element--modifier{color:red}'
-      ],
-      'BEM - modifiers #2': [
-        '.block1{color:red}.block1__element,.block2{color:#000}.block1__element--modifier{color:red}',
-        '.block1{color:red}.block1__element,.block2{color:#000}.block1__element--modifier{color:red}'
-      ],
-      'BEM - modifiers #3': [
-        '.block1{color:red}.block1--modifier,.block2{color:#000}.block1--another-modifier{color:red}',
-        '.block1{color:red}.block1--modifier,.block2{color:#000}.block1--another-modifier{color:red}'
-      ],
-      'BEM - tail merging': [
-        '.block1{color:red}.block1__element{color:#000}.block1__element--modifier{color:red}a{color:red}.block2__element--modifier{color:red}',
-        '.block1{color:red}.block1__element{color:#000}.block1__element--modifier,.block2__element--modifier,a{color:red}'
-      ],
-      'BEM - two blocks #1': [
-        '.block1__element{color:#000}.block2{color:red}.block2__element{color:#000}.block2__element--modifier{color:red}',
-        '.block1__element,.block2__element{color:#000}.block2,.block2__element--modifier{color:red}'
-      ],
-      'BEM - two blocks #2': [
-        '.block1__element{color:#000}.block1__element--modifier{color:red}.block2{color:red}.block2__element{color:#000}.block2__element--modifier{color:red}',
-        '.block1__element,.block2__element{color:#000}.block1__element--modifier,.block2,.block2__element--modifier{color:red}'
-      ],
-      'BEM - complex traversing #1': [
-        '.block1__element{color:#000}.block1__element--modifier{color:red}.block2{color:#000;display:block;width:100%}',
-        '.block1__element{color:#000}.block1__element--modifier{color:red}.block2{color:#000;display:block;width:100%}'
-        // '.block1__element,.block2{color:#000}.block1__element--modifier{color:red}.block2{display:block;width:100%}' - pending #588
-      ]
-    }, { advanced: true, semanticMerging: true })
-  )
-  .addBatch(
     optimizerContext('@media', {
       'empty': [
         '@media (min-width:980px){}',

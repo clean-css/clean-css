@@ -208,14 +208,6 @@ vows.describe('advanced optimizer')
       'repeated' : [
         'a{color:red;color:red}',
         'a{color:red}'
-      ],
-      'non-adjacent': [
-        'a{color:red;display:block}.one{margin:12px}a{color:#fff;margin:2px}',
-        '.one{margin:12px}a{display:block;color:#fff;margin:2px}'
-      ],
-      'non-adjacent with multi selectors': [
-        'a{padding:10px;margin:0;color:red}.one{color:red}a,p{color:red;padding:0}',
-        '.one,a,p{color:red}a{margin:0}a,p{padding:0}'
       ]
     }, { advanced: true, aggressiveMerging: true })
   )
@@ -232,10 +224,6 @@ vows.describe('advanced optimizer')
       'repeated' : [
         'a{color:red;color:red}',
         'a{color:red}'
-      ],
-      'non-adjacent with multi selectors': [
-        'a{padding:10px;margin:0;color:red}.one{color:red}a,p{color:red;padding:0}',
-        '.one,a,p{color:red}a{padding:10px;margin:0}a,p{padding:0}'
       ]
     }, { advanced: true, aggressiveMerging: false })
   )
@@ -244,10 +232,6 @@ vows.describe('advanced optimizer')
       'repeated' : [
         'a{color:red;color:red}',
         'a{color:red;color:red}'
-      ],
-      'non-adjacent': [
-        'a{color:red;display:block}.one{font-size:12px}a{color:#fff;margin:2px}',
-        'a{color:red;display:block}.one{font-size:12px}a{color:#fff;margin:2px}'
       ]
     }, { advanced: false })
   )

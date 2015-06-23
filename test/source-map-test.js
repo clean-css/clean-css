@@ -16,6 +16,7 @@ var enableDestroy = require('server-destroy');
 var port = 24682;
 
 var lineBreak = require('os').EOL;
+var escape = global.escape;
 
 vows.describe('source-map')
   .addBatch({
@@ -548,6 +549,13 @@ vows.describe('source-map')
         assert.deepEqual(minified.sourceMap._mappings._array[2], mapping);
       }
     },
+    'input map as inlined data URI with implicit charset us-ascii, not base64, no content-type': inlineDataUriContext('data:,' + escape(inputMap)),
+    'input map as inlined data URI with implicit charset us-ascii, base64': inlineDataUriContext('data:application/json;base64,' + new Buffer(inputMap, 'ascii').toString('base64')),
+    'input map as inlined data URI with implicit charset us-ascii, not base64': inlineDataUriContext('data:application/json,' + escape(inputMap)),
+    'input map as inlined data URI with charset utf-8, base64': inlineDataUriContext('data:application/json;charset=utf-8;base64,' + new Buffer(inputMap, 'utf8').toString('base64')),
+    'input map as inlined data URI with charset utf-8, not base64': inlineDataUriContext('data:application/json;charset=utf-8,' + escape(String.fromCharCode.apply(String, new Buffer(inputMap, 'utf8')))),
+    'input map as inlined data URI with explicit charset us-ascii, base64': inlineDataUriContext('data:application/json;charset=us-ascii;base64,' + new Buffer(inputMap, 'ascii').toString('base64')),
+    'input map as inlined data URI with explicit charset us-ascii, not base64': inlineDataUriContext('data:application/json;charset=us-ascii,' + escape(inputMap)),
     'complex input map': {
       'topic': function () {
         return new CleanCSS({ sourceMap: true, root: path.dirname(inputMapPath) }).minify('@import url(import.css);');
@@ -1918,3 +1926,47 @@ vows.describe('source-map')
     }
   })
   .export(module);
+
+  function inlineDataUriContext(dataUri) {
+    return {
+      'topic': function() {
+        return new CleanCSS({sourceMap: true}).minify('div > a {\n  color: red;\n}/*# sourceMappingURL=' + dataUri + ' */');
+      },
+      'has 3 mappings': function(minified) {
+        assert.lengthOf(minified.sourceMap._mappings._array, 3);
+      },
+      'has `div > a` mapping': function(minified) {
+        var mapping = {
+          generatedLine: 1,
+          generatedColumn: 0,
+          originalLine: 1,
+          originalColumn: 4,
+          source: 'styles.less',
+          name: null
+        };
+        assert.deepEqual(minified.sourceMap._mappings._array[0], mapping);
+      },
+      'has `color` mapping': function(minified) {
+        var mapping = {
+          generatedLine: 1,
+          generatedColumn: 6,
+          originalLine: 2,
+          originalColumn: 2,
+          source: 'styles.less',
+          name: null
+        };
+        assert.deepEqual(minified.sourceMap._mappings._array[1], mapping);
+      },
+      'has second `color` mapping': function(minified) {
+        var mapping = {
+          generatedLine: 1,
+          generatedColumn: 12,
+          originalLine: 2,
+          originalColumn: 2,
+          source: 'styles.less',
+          name: null
+        };
+        assert.deepEqual(minified.sourceMap._mappings._array[2], mapping);
+      }
+    };
+  }

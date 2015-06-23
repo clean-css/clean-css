@@ -2,7 +2,7 @@ var assert = require('assert');
 
 var CleanCSS = require('../lib/clean');
 var tokenize = require('../lib/tokenizer/tokenize');
-var SimpleOptimizer = require('../lib/selectors/simple');
+var simpleOptimize = require('../lib/selectors/simple');
 var Compatibility = require('../lib/utils/compatibility');
 var addOptimizationMetadata = require('../lib/selectors/optimization-metadata');
 
@@ -36,7 +36,7 @@ function selectorContext(group, specs, options) {
   function optimized(selectors) {
     return function (source) {
       var tokens = tokenize(source, { options: {} });
-      new SimpleOptimizer(options).optimize(tokens);
+      simpleOptimize(tokens, options);
 
       assert.deepEqual(tokens[0] ? tokens[0][1] : null, selectors);
     };
@@ -61,7 +61,7 @@ function propertyContext(group, specs, options) {
     return function (source) {
       var tokens = tokenize(source, { options: {} });
       addOptimizationMetadata(tokens);
-      new SimpleOptimizer(options).optimize(tokens);
+      simpleOptimize(tokens, options);
 
       var value = tokens[0] ?
         tokens[0][2].map(function (property) {

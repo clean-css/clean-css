@@ -1259,6 +1259,14 @@ vows.describe('integration tests')
         'a{background:url("/images/blank.png")}',
         'a{background:url(/images/blank.png)}'
       ],
+      'keep quoting if whitespace': [
+        'a{background:url("/images/blank image.png")}',
+        'a{background:url("/images/blank image.png")}'
+      ],
+      'keep quoting if whitespace inside @font-face': [
+        '@font-face{src:url("Helvetica Neue.eot")}',
+        '@font-face{src:url("Helvetica Neue.eot")}'
+      ],
       'strip more': [
         'p{background:url("/images/blank.png")}b{display:block}a{background:url("/images/blank2.png")}',
         'p{background:url(/images/blank.png)}b{display:block}a{background:url(/images/blank2.png)}'
@@ -1308,6 +1316,26 @@ vows.describe('integration tests')
         '*{background:url(test.png) no-repeat}'
       ]
     }, { compatibility: 'ie8' })
+  )
+  .addBatch(
+    optimizerContext('urls whitespace with url rewriting', {
+      'strip single parentheses': [
+        'a{background:url("/images/blank.png")}',
+        'a{background:url(/images/blank.png)}'
+      ],
+      'strip double parentheses': [
+        'a{background:url("/images/blank.png")}',
+        'a{background:url(/images/blank.png)}'
+      ],
+      'keep quoting if whitespace': [
+        'a{background:url("/images/blank image.png")}',
+        'a{background:url(\'/images/blank image.png\')}'
+      ],
+      'keep quoting if whitespace inside @font-face': [
+        '@font-face{src:url("/Helvetica Neue.eot")}',
+        '@font-face{src:url(\'/Helvetica Neue.eot\')}'
+      ]
+    }, { root: process.cwd(), relativeTo: process.cwd() })
   )
   .addBatch(
     optimizerContext('urls quotes in compatibility mode', {

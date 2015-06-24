@@ -173,7 +173,7 @@ vows.describe(restore)
       },
       'inherit': {
         'topic': function () {
-          return _restore(_breakUp([['border'], ['inherit']]));
+          return _restore(_breakUp([['border-radius'], ['inherit']]));
         },
         'gives right value back': function (restoredValue) {
           assert.deepEqual(restoredValue, [['inherit']]);
@@ -211,6 +211,14 @@ vows.describe(restore)
         },
         'gives right value back': function (restoredValue) {
           assert.deepEqual(restoredValue, [['0px']]);
+        }
+      },
+      'inherit': {
+        'topic': function () {
+          return _restore(_breakUp([['padding'], ['inherit']]));
+        },
+        'gives right value back': function (restoredValue) {
+          assert.deepEqual(restoredValue, [['inherit']]);
         }
       }
     },
@@ -257,6 +265,14 @@ vows.describe(restore)
           assert.deepEqual(restoredValue, [['none']]);
         }
       },
+      'border with inherit': {
+        'topic': function () {
+          return _restore(_breakUp([['border'], ['inherit']]));
+        },
+        'gives right value back': function (restoredValue) {
+          assert.deepEqual(restoredValue, [['inherit']]);
+        }
+      },
       'list with some values': {
         'topic': function () {
           return _restore(_breakUp([['list-style'], ['circle']]));
@@ -281,6 +297,14 @@ vows.describe(restore)
           assert.deepEqual(restoredValue, [['circle'], ['__ESCAPED_URL_CLEAN_CSS0__']]);
         }
       },
+      'list with inherit': {
+        'topic': function () {
+          return _restore(_breakUp([['list-style'], ['inherit']]));
+        },
+        'gives right value back': function (restoredValue) {
+          assert.deepEqual(restoredValue, [['inherit']]);
+        }
+      },
       'outline with some values': {
         'topic': function () {
           return _restore(_breakUp([['outline'], ['dotted']]));
@@ -303,6 +327,14 @@ vows.describe(restore)
         },
         'gives right value back': function (restoredValue) {
           assert.deepEqual(restoredValue, [['0']]);
+        }
+      },
+      'outline with inherit': {
+        'topic': function () {
+          return _restore(_breakUp([['outline'], ['inherit']]));
+        },
+        'gives right value back': function (restoredValue) {
+          assert.deepEqual(restoredValue, [['inherit']]);
         }
       }
     }

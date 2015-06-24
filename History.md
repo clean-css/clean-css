@@ -1,6 +1,7 @@
 [3.3.4 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.3.3...3.3)
 ==================
 
+* Fixed issue [#610](https://github.com/jakubpawlowicz/clean-css/issues/610) - `border:inherit` restoring.
 * Fixed issue [#611](https://github.com/jakubpawlowicz/clean-css/issues/611) - edge case in quote stripping.
 
 [3.3.3 / 2015-06-16](https://github.com/jakubpawlowicz/clean-css/compare/v3.3.2...v3.3.3)

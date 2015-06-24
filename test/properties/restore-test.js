@@ -170,6 +170,14 @@ vows.describe(restore)
         'gives right value back': function (restoredValue) {
           assert.deepEqual(restoredValue, [['0px'], ['1px'], ['2px'], ['3px'], ['/'], ['0px'], ['1px']]);
         }
+      },
+      'inherit': {
+        'topic': function () {
+          return _restore(_breakUp([['border'], ['inherit']]));
+        },
+        'gives right value back': function (restoredValue) {
+          assert.deepEqual(restoredValue, [['inherit']]);
+        }
       }
     },
     'four values': {

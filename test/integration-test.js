@@ -1066,6 +1066,16 @@ path")}',
       '@font-face{src:url(\'/Helvetica Neue.eot\')}'
     ]
   }, { root: process.cwd(), relativeTo: process.cwd() }),
+  'urls custom protocol and url rewriting': cssContext({
+    'simple': [
+      'a{background:url(app://abc.png)}',
+      'a{background:url(app://abc.png)}'
+    ],
+    'complex': [
+      'a{background:url(git+ssh2://abc.png)}',
+      'a{background:url(git+ssh2://abc.png)}'
+    ]
+  }, { root: process.cwd(), relativeTo: process.cwd() }),
   'urls quotes in compatibility mode': cssContext({
     'keeps quotes as they are': [
       'div{background:url("test.png")}',

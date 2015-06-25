@@ -1310,6 +1310,18 @@ vows.describe('integration tests')
     })
   )
   .addBatch(
+    optimizerContext('urls custom protocol and url rewriting', {
+      'simple': [
+        'a{background:url(app://abc.png)}',
+        'a{background:url(app://abc.png)}'
+      ],
+      'complex': [
+        'a{background:url(git+ssh2://abc.png)}',
+        'a{background:url(git+ssh2://abc.png)}'
+      ]
+    }, { root: process.cwd(), relativeTo: process.cwd() })
+  )
+  .addBatch(
     optimizerContext('urls whitespace in compatibility mode', {
       'keeps spaces as they are': [
         '*{background:url(test.png) no-repeat}',

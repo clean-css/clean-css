@@ -3,6 +3,11 @@
 
 * Fixed issue [#599](https://github.com/jakubpawlowicz/clean-css/issues/599) - support for inlined source maps.
 
+[3.3.5 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.3.4...3.3)
+==================
+
+* Fixed issue [#608](https://github.com/jakubpawlowicz/clean-css/issues/608) - custom URI protocols handling.
+
 [3.3.4 / 2015-06-24](https://github.com/jakubpawlowicz/clean-css/compare/v3.3.3...v3.3.4)
 ==================
 

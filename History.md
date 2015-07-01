@@ -1,4 +1,4 @@
-[3.3.5 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.3.4...3.3)
+[3.3.5 / 2015-07-01](https://github.com/jakubpawlowicz/clean-css/compare/v3.3.4...v3.3.5)
 ==================
 
 * Fixed issue [#608](https://github.com/jakubpawlowicz/clean-css/issues/608) - custom URI protocols handling.

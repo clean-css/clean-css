@@ -4,7 +4,6 @@ var CleanCSS = require('../lib/clean');
 var tokenize = require('../lib/tokenizer/tokenize');
 var simpleOptimize = require('../lib/selectors/simple');
 var Compatibility = require('../lib/utils/compatibility');
-var addOptimizationMetadata = require('../lib/selectors/optimization-metadata');
 
 function optimizerContext(group, specs, options) {
   var context = {};
@@ -60,7 +59,6 @@ function propertyContext(group, specs, options) {
   function optimized(selectors) {
     return function (source) {
       var tokens = tokenize(source, { options: {} });
-      addOptimizationMetadata(tokens);
       simpleOptimize(tokens, options);
 
       var value = tokens[0] ?

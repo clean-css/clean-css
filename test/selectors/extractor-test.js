@@ -59,10 +59,10 @@ vows.describe(extractor)
       }
     },
     'with source map info': {
-      'topic': extractor(['selector', [['a', 1, 0, undefined]], [[['color', false, false, 1, 3, undefined], ['red', 1, 9, undefined]]]]),
+      'topic': extractor(['selector', [['a', 1, 0, undefined]], [[['color', 1, 3, undefined], ['red', 1, 9, undefined]]]]),
       'has one property': function (tokens) {
         assert.deepEqual(tokens, [
-          ['color', 'red', 'color', [['color', false, false, 1, 3, undefined], ['red', 1, 9, undefined]], 'color:red', [['a', 1, 0, undefined]], true],
+          ['color', 'red', 'color', [['color', 1, 3, undefined], ['red', 1, 9, undefined]], 'color:red', [['a', 1, 0, undefined]], true],
         ]);
       }
     }

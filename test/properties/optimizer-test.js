@@ -7,8 +7,6 @@ var tokenize = require('../../lib/tokenizer/tokenize');
 var SourceTracker = require('../../lib/utils/source-tracker');
 var Compatibility = require('../../lib/utils/compatibility');
 var Validator = require('../../lib/properties/validator');
-var addOptimizationMetadata = require('../../lib/selectors/optimization-metadata');
-
 
 function _optimize(source, mergeAdjacent, aggressiveMerging, compatibilityOptions) {
   var compatibility = new Compatibility(compatibilityOptions).toOptions();
@@ -20,7 +18,6 @@ function _optimize(source, mergeAdjacent, aggressiveMerging, compatibilityOption
     warnings: []
   });
 
-  addOptimizationMetadata(tokens);
   optimize(tokens[0][1], tokens[0][2], mergeAdjacent, true, { compatibility: compatibility, aggressiveMerging: aggressiveMerging }, validator);
 
   return tokens[0][2];
@@ -32,8 +29,8 @@ vows.describe(optimize)
       'topic': 'a{display:-moz-inline-box;display:inline-block}',
       'into': function (topic) {
         assert.deepEqual(_optimize(topic, false, true), [
-          [['display', false, false], ['-moz-inline-box']],
-          [['display', false, false], ['inline-block']]
+          [['display'], ['-moz-inline-box']],
+          [['display'], ['inline-block']]
         ]);
       }
     },
@@ -41,8 +38,8 @@ vows.describe(optimize)
       'topic': 'a{display:inline-block;color:red;display:block}',
       'into': function (topic) {
         assert.deepEqual(_optimize(topic, false, true), [
-          [['color', false , false], ['red']],
-          [['display', false , false], ['block']]
+          [['color'], ['red']],
+          [['display'], ['block']]
         ]);
       }
     },
@@ -50,8 +47,8 @@ vows.describe(optimize)
       'topic': 'a{display:inline-block!important;color:red;display:block}',
       'into': function (topic) {
         assert.deepEqual(_optimize(topic, false, true), [
-          [['display', true , false], ['inline-block']],
-          [['color', false , false], ['red']]
+          [['display'], ['inline-block!important']],
+          [['color'], ['red']]
         ]);
       }
     },
@@ -59,8 +56,8 @@ vows.describe(optimize)
       'topic': 'a{display:inline-block;color:red;display:block!important}',
       'into': function (topic) {
         assert.deepEqual(_optimize(topic, false, true), [
-          [['color', false , false], ['red']],
-          [['display', true , false], ['block']]
+          [['color'], ['red']],
+          [['display'], ['block!important']]
         ]);
       }
     },
@@ -68,8 +65,8 @@ vows.describe(optimize)
       'topic': 'a{display:inline-block!important;color:red;display:block!important}',
       'into': function (topic) {
         assert.deepEqual(_optimize(topic, false, true), [
-          [['color', false , false], ['red']],
-          [['display', true , false], ['block']]
+          [['color'], ['red']],
+          [['display'], ['block!important']]
         ]);
       }
     },
@@ -77,10 +74,10 @@ vows.describe(optimize)
       'topic': 'a{display:inline-block;color:red;font-weight:bolder;font-weight:700;display:block!important;color:#fff}',
       'into': function (topic) {
         assert.deepEqual(_optimize(topic, false, true), [
-          [['font-weight', false , false], ['bolder']],
-          [['font-weight', false , false], ['700']],
-          [['display', true , false], ['block']],
-          [['color', false , false], ['#fff']]
+          [['font-weight'], ['bolder']],
+          [['font-weight'], ['700']],
+          [['display'], ['block!important']],
+          [['color'], ['#fff']]
         ]);
       }
     },
@@ -88,8 +85,8 @@ vows.describe(optimize)
       'topic': 'p{display:block;display:-moz-inline-box;color:red;display:table-cell}',
       'into': function (topic) {
         assert.deepEqual(_optimize(topic, false, true), [
-          [['color', false , false], ['red']],
-          [['display', false , false], ['table-cell']]
+          [['color'], ['red']],
+          [['display'], ['table-cell']]
         ]);
       }
     },
@@ -97,10 +94,10 @@ vows.describe(optimize)
       'topic': 'p{background:-moz-linear-gradient();background:-webkit-linear-gradient();filter:"progid:DXImageTransform";background:linear-gradient()}',
       'into': function (topic) {
         assert.deepEqual(_optimize(topic, false, true), [
-          [['background', false , false], ['-moz-linear-gradient()']],
-          [['background', false , false], ['-webkit-linear-gradient()']],
-          [['filter', false , false], ['"progid:DXImageTransform"']],
-          [['background', false , false], ['linear-gradient()']]
+          [['background'], ['-moz-linear-gradient()']],
+          [['background'], ['-webkit-linear-gradient()']],
+          [['filter'], ['"progid:DXImageTransform"']],
+          [['background'], ['linear-gradient()']]
         ]);
       }
     },
@@ -108,10 +105,10 @@ vows.describe(optimize)
       'topic': 'p{background-image:-moz-linear-gradient();background-image:-webkit-linear-gradient();filter:"progid:DXImageTransform";background-image:linear-gradient()}',
       'into': function (topic) {
         assert.deepEqual(_optimize(topic, false, true), [
-          [['background-image', false , false], ['-moz-linear-gradient()']],
-          [['background-image', false , false], ['-webkit-linear-gradient()']],
-          [['filter', false , false], ['"progid:DXImageTransform"']],
-          [['background-image', false , false], ['linear-gradient()']]
+          [['background-image'], ['-moz-linear-gradient()']],
+          [['background-image'], ['-webkit-linear-gradient()']],
+          [['filter'], ['"progid:DXImageTransform"']],
+          [['background-image'], ['linear-gradient()']]
         ]);
       }
     },
@@ -119,10 +116,10 @@ vows.describe(optimize)
       'topic': 'p{background:-moz-linear-gradient();background:-webkit-linear-gradient();-ms-filter:"progid:DXImageTransform";background:linear-gradient()}',
       'into': function (topic) {
         assert.deepEqual(_optimize(topic, false, true), [
-          [['background', false , false], ['-moz-linear-gradient()']],
-          [['background', false , false], ['-webkit-linear-gradient()']],
-          [['-ms-filter', false , false], ['"progid:DXImageTransform"']],
-          [['background', false , false], ['linear-gradient()']]
+          [['background'], ['-moz-linear-gradient()']],
+          [['background'], ['-webkit-linear-gradient()']],
+          [['-ms-filter'], ['"progid:DXImageTransform"']],
+          [['background'], ['linear-gradient()']]
         ]);
       }
     },
@@ -130,10 +127,10 @@ vows.describe(optimize)
       'topic': 'p{background-image:-moz-linear-gradient();background-image:-webkit-linear-gradient();-ms-filter:"progid:DXImageTransform";background-image:linear-gradient()}',
       'into': function (topic) {
         assert.deepEqual(_optimize(topic, false, true), [
-          [['background-image', false , false], ['-moz-linear-gradient()']],
-          [['background-image', false , false], ['-webkit-linear-gradient()']],
-          [['-ms-filter', false , false], ['"progid:DXImageTransform"']],
-          [['background-image', false , false], ['linear-gradient()']]
+          [['background-image'], ['-moz-linear-gradient()']],
+          [['background-image'], ['-webkit-linear-gradient()']],
+          [['-ms-filter'], ['"progid:DXImageTransform"']],
+          [['background-image'], ['linear-gradient()']]
         ]);
       }
     },
@@ -141,7 +138,7 @@ vows.describe(optimize)
       'topic': 'p{border-left-style:solid;border:1px dotted red}',
       'into': function (topic) {
         assert.deepEqual(_optimize(topic, false, true), [
-          [['border', false , false], ['1px'], ['dotted'], ['red']]
+          [['border'], ['1px'], ['dotted'], ['red']]
         ]);
       }
     },
@@ -149,8 +146,8 @@ vows.describe(optimize)
       'topic': 'p{border-left-style:solid!important;border:1px dotted red}',
       'into': function (topic) {
         assert.deepEqual(_optimize(topic, false, true), [
-          [['border-left-style', true, false], ['solid']],
-          [['border', false , false], ['1px'], ['dotted'], ['red']]
+          [['border-left-style'], ['solid!important']],
+          [['border'], ['1px'], ['dotted'], ['red']]
         ]);
       }
     },
@@ -158,8 +155,8 @@ vows.describe(optimize)
       'topic': 'p{background:url(image.png);background-image:#fff}',
       'into': function (topic) {
         assert.deepEqual(_optimize(topic, false, true), [
-          [['background', false , false], ['url(image.png)']],
-          [['background-image', false , false], ['#fff']]
+          [['background'], ['url(image.png)']],
+          [['background-image'], ['#fff']]
         ]);
       }
     }
@@ -169,7 +166,7 @@ vows.describe(optimize)
       'topic': 'p{list-style:inside none}',
       'into': function (topic) {
         assert.deepEqual(_optimize(topic, false, true), [
-          [['list-style', false , false], ['none'], ['inside']]
+          [['list-style'], ['none'], ['inside']]
         ]);
       }
     }
@@ -179,9 +176,9 @@ vows.describe(optimize)
       'topic': 'p{color:red;display:none;color:#fff\\9}',
       'into': function (topic) {
         assert.deepEqual(_optimize(topic, false, true), [
-          [['color', false , false], ['red']],
-          [['display', false , false], ['none']],
-          [['color', false , 'suffix'], ['#fff']]
+          [['color'], ['red']],
+          [['display'], ['none']],
+          [['color'], ['#fff\\9']]
         ]);
       }
     },
@@ -189,9 +186,9 @@ vows.describe(optimize)
       'topic': 'p{color:red\\9;display:none;color:#fff}',
       'into': function (topic) {
         assert.deepEqual(_optimize(topic, false, true), [
-          [['color', false , 'suffix'], ['red']],
-          [['display', false , false], ['none']],
-          [['color', false , false], ['#fff']]
+          [['color'], ['red\\9']],
+          [['display'], ['none']],
+          [['color'], ['#fff']]
         ]);
       }
     },
@@ -199,8 +196,8 @@ vows.describe(optimize)
       'topic': 'p{color:red\\9;display:none;color:#fff\\9}',
       'into': function (topic) {
         assert.deepEqual(_optimize(topic, false, true), [
-          [['display', false , false], ['none']],
-          [['color', false , 'suffix'], ['#fff']]
+          [['display'], ['none']],
+          [['color'], ['#fff\\9']]
         ]);
       }
     }
@@ -210,7 +207,7 @@ vows.describe(optimize)
       'topic': 'p{display:block;display:inline-block}',
       'into': function (topic) {
         assert.deepEqual(_optimize(topic, true, true), [
-          [['display', false , false], ['inline-block']]
+          [['display'], ['inline-block']]
         ]);
       }
     },
@@ -218,8 +215,8 @@ vows.describe(optimize)
       'topic': 'p{display:block;display:inline-block}',
       'into': function (topic) {
         assert.deepEqual(_optimize(topic, false, true), [
-          [['display', false , false], ['block']],
-          [['display', false , false], ['inline-block']]
+          [['display'], ['block']],
+          [['display'], ['inline-block']]
         ]);
       }
     },
@@ -227,9 +224,9 @@ vows.describe(optimize)
       'topic': 'p{display:block;display:inline-block;color:red}',
       'into': function (topic) {
         assert.deepEqual(_optimize(topic, [2], true), [
-          [['display', false , false], ['block']],
-          [['display', false , false], ['inline-block']],
-          [['color', false , false], ['red']]
+          [['display'], ['block']],
+          [['display'], ['inline-block']],
+          [['color'], ['red']]
         ]);
       }
     },
@@ -237,8 +234,8 @@ vows.describe(optimize)
       'topic': 'p{display:block;display:inline-block;color:red}',
       'into': function (topic) {
         assert.deepEqual(_optimize(topic, [1], true), [
-          [['display', false , false], ['inline-block']],
-          [['color', false , false], ['red']]
+          [['display'], ['inline-block']],
+          [['color'], ['red']]
         ]);
       }
     }
@@ -247,10 +244,10 @@ vows.describe(optimize)
     'aggressive off - (yet) not overriddable': {
       'topic': 'a{display:inline-block;color:red;display:-moz-block}',
       'into': function (topic) {
-        assert.deepEqual(_optimize(topic, false, false), [
-          [['display', false , false], ['inline-block']],
-          [['color', false , false], ['red']],
-          [['display', false , false], ['-moz-block']]
+        assert.deepEqual(_optimize(topic, false), [
+          [['display'], ['inline-block']],
+          [['color'], ['red']],
+          [['display'], ['-moz-block']]
         ]);
       }
     }
@@ -260,9 +257,9 @@ vows.describe(optimize)
       'topic': 'a{color:red!important;display:block;color:rgba(0,255,0,.5)!important}',
       'into': function (topic) {
         assert.deepEqual(_optimize(topic, false, true), [
-          [['color', true , false], ['red']],
-          [['display', false , false], ['block']],
-          [['color', true , false], ['rgba(0,255,0,.5)']]
+          [['color'], ['red!important']],
+          [['display'], ['block']],
+          [['color'], ['rgba(0,255,0,.5)!important']]
         ]);
       }
     },
@@ -270,8 +267,8 @@ vows.describe(optimize)
       'topic': 'a{color:rgba(0,255,0,.5)!important;display:block;color:red!important}',
       'into': function (topic) {
         assert.deepEqual(_optimize(topic, false, true), [
-          [['display', false , false], ['block']],
-          [['color', true , false], ['red']]
+          [['display'], ['block']],
+          [['color'], ['red!important']]
         ]);
       }
     },
@@ -279,8 +276,8 @@ vows.describe(optimize)
       'topic': 'a{background:red!important;background:rgba(0,255,0,.5)!important}',
       'into': function (topic) {
         assert.deepEqual(_optimize(topic, false, true), [
-          [['background', true , false], ['red']],
-          [['background', true , false], ['rgba(0,255,0,.5)']]
+          [['background'], ['red!important']],
+          [['background'], ['rgba(0,255,0,.5)!important']]
         ]);
       }
     },
@@ -288,8 +285,8 @@ vows.describe(optimize)
       'topic': 'a{background:rgba(0,255,0,.5)!important;background:red!important}',
       'into': function (topic) {
         assert.deepEqual(_optimize(topic, false, true), [
-          [['background', true , false], ['rgba(0,255,0,.5)']],
-          [['background', true , false], ['red']]
+          [['background'], ['rgba(0,255,0,.5)!important']],
+          [['background'], ['red!important']]
         ]);
       }
     },
@@ -297,8 +294,8 @@ vows.describe(optimize)
       'topic': 'div{-ms-transform:translate(0,0);-ms-transform:translate3d(0,0,0)}',
       'into': function (topic) {
         assert.deepEqual(_optimize(topic, false, true), [
-          [['-ms-transform', false , false], ['translate(0,0)']],
-          [['-ms-transform', false , false], ['translate3d(0,0,0)']]
+          [['-ms-transform'], ['translate(0,0)']],
+          [['-ms-transform'], ['translate3d(0,0,0)']]
         ]);
       }
     },
@@ -306,9 +303,9 @@ vows.describe(optimize)
       'topic': 'div{-ms-transform:translate(0,0);-webkit-transform:translate3d(0,0,0);-ms-transform:translate3d(0,0,0)}',
       'into': function (topic) {
         assert.deepEqual(_optimize(topic, false, true), [
-          [['-ms-transform', false , false], ['translate(0,0)']],
-          [['-webkit-transform', false , false], ['translate3d(0,0,0)']],
-          [['-ms-transform', false , false], ['translate3d(0,0,0)']]
+          [['-ms-transform'], ['translate(0,0)']],
+          [['-webkit-transform'], ['translate3d(0,0,0)']],
+          [['-ms-transform'], ['translate3d(0,0,0)']]
         ]);
       }
     },
@@ -316,8 +313,8 @@ vows.describe(optimize)
       'topic': 'div{transform:translate(0,0);transform:translate3d(0,0,0)}',
       'into': function (topic) {
         assert.deepEqual(_optimize(topic, false, true), [
-          [['transform', false , false], ['translate(0,0)']],
-          [['transform', false , false], ['translate3d(0,0,0)']]
+          [['transform'], ['translate(0,0)']],
+          [['transform'], ['translate3d(0,0,0)']]
         ]);
       }
     },
@@ -325,9 +322,9 @@ vows.describe(optimize)
       'topic': 'div{transform:translate(0,0);-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}',
       'into': function (topic) {
         assert.deepEqual(_optimize(topic, false, true), [
-          [['transform', false , false], ['translate(0,0)']],
-          [['-webkit-transform', false , false], ['translate3d(0,0,0)']],
-          [['transform', false , false], ['translate3d(0,0,0)']]
+          [['transform'], ['translate(0,0)']],
+          [['-webkit-transform'], ['translate3d(0,0,0)']],
+          [['transform'], ['translate3d(0,0,0)']]
         ]);
       }
     },
@@ -335,8 +332,8 @@ vows.describe(optimize)
       'topic': 'a{border:1px solid #fff;border:1px solid rgba(1,0,0,.5)}',
       'into': function (topic) {
         assert.deepEqual(_optimize(topic, false, true), [
-          [['border', false , false], ['1px'], ['solid'], ['#fff']],
-          [['border', false , false], ['1px'], ['solid'], ['rgba(1,0,0,.5)']]
+          [['border'], ['1px'], ['solid'], ['#fff']],
+          [['border'], ['1px'], ['solid'], ['rgba(1,0,0,.5)']]
         ]);
       }
     },
@@ -344,8 +341,8 @@ vows.describe(optimize)
       'topic': 'a{border:1px solid #fff;border:1px solid rgba(1,0,0,.5)!important}',
       'into': function (topic) {
         assert.deepEqual(_optimize(topic, false, true), [
-          [['border', false , false], ['1px'], ['solid'], ['#fff']],
-          [['border', true , false], ['1px'], ['solid'], ['rgba(1,0,0,.5)']]
+          [['border'], ['1px'], ['solid'], ['#fff']],
+          [['border'], ['1px'], ['solid'], ['rgba(1,0,0,.5)!important']]
         ]);
       }
     },
@@ -353,8 +350,8 @@ vows.describe(optimize)
       'topic': 'a{border:1px solid #fff!important;display:block;border:1px solid #fff}',
       'into': function (topic) {
         assert.deepEqual(_optimize(topic, false, true), [
-          [['border', true , false], ['1px'], ['solid'], ['#fff']],
-          [['display', false , false], ['block']]
+          [['border'], ['1px'], ['solid'], ['#fff!important']],
+          [['display'], ['block']]
         ]);
       }
     },
@@ -362,8 +359,8 @@ vows.describe(optimize)
       'topic': 'a{border:1px solid #fff;display:block;border:1px solid #fff!important}',
       'into': function (topic) {
         assert.deepEqual(_optimize(topic, false, true), [
-          [['display', false , false], ['block']],
-          [['border', true , false], ['1px'], ['solid'], ['#fff']]
+          [['display'], ['block']],
+          [['border'], ['1px'], ['solid'], ['#fff!important']]
         ]);
       }
     },
@@ -371,8 +368,8 @@ vows.describe(optimize)
       'topic': 'a{border-top-width:calc(100%);display:block;border-top-width:1px}',
       'into': function (topic) {
         assert.deepEqual(_optimize(topic, false, true), [
-          [['display', false , false], ['block']],
-          [['border-top-width', false , false], ['1px']]
+          [['display'], ['block']],
+          [['border-top-width'], ['1px']]
         ]);
       }
     },
@@ -380,9 +377,9 @@ vows.describe(optimize)
       'topic': 'a{border-top-width:1px;display:block;border-top-width:calc(100%)}',
       'into': function (topic) {
         assert.deepEqual(_optimize(topic, false, true), [
-          [['border-top-width', false , false], ['1px']],
-          [['display', false , false], ['block']],
-          [['border-top-width', false , false], ['calc(100%)']]
+          [['border-top-width'], ['1px']],
+          [['display'], ['block']],
+          [['border-top-width'], ['calc(100%)']]
         ]);
       }
     },
@@ -390,20 +387,20 @@ vows.describe(optimize)
       'topic': 'a{margin-top:100px;padding-top:30px;margin-top:10vmin}',
       'into': function (topic) {
         assert.deepEqual(_optimize(topic, false, true), [
-          [['padding-top', false , false], ['30px']],
-          [['margin-top', false , false], ['10vmin']]
+          [['padding-top'], ['30px']],
+          [['margin-top'], ['10vmin']]
         ]);
       }
     }
   })
   .addBatch({
-    'understandable - non adjacent units in IE8 mode 123': {
+    'understandable - non adjacent units in IE8 mode': {
       'topic': 'a{margin-top:100px;padding-top:30px;margin-top:10vmin}',
       'into': function (topic) {
         assert.deepEqual(_optimize(topic, false, true, 'ie8'), [
-          [['margin-top', false , false], ['100px']],
-          [['padding-top', false , false], ['30px']],
-          [['margin-top', false , false], ['10vmin']]
+          [['margin-top'], ['100px']],
+          [['padding-top'], ['30px']],
+          [['margin-top'], ['10vmin']]
         ]);
       }
     }

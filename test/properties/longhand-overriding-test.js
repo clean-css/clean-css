@@ -7,7 +7,6 @@ var tokenize = require('../../lib/tokenizer/tokenize');
 var SourceTracker = require('../../lib/utils/source-tracker');
 var Compatibility = require('../../lib/utils/compatibility');
 var Validator = require('../../lib/properties/validator');
-var addOptimizationMetadata = require('../../lib/selectors/optimization-metadata');
 
 function _optimize(source) {
   var tokens = tokenize(source, {
@@ -15,8 +14,6 @@ function _optimize(source) {
     sourceTracker: new SourceTracker(),
     warnings: []
   });
-
-  addOptimizationMetadata(tokens);
 
   var compatibility = new Compatibility().toOptions();
   var validator = new Validator(compatibility);
@@ -34,7 +31,7 @@ function longhandFirst(prefixedLonghand, prefixedShorthand, zeroValue) {
       assert.lengthOf(body, 1);
     },
     'has zero value only': function (body) {
-      assert.deepEqual(body[0][0], [prefixedShorthand, false, false]);
+      assert.deepEqual(body[0][0], [prefixedShorthand]);
       assert.deepEqual(body[0][1], [zeroValue]);
     }
   };
@@ -49,11 +46,11 @@ function shorthandFirst(prefixedLonghand, prefixedShorthand, zeroValue) {
       assert.lengthOf(body, 2);
     },
     'first is shorthand': function (body) {
-      assert.deepEqual(body[0][0], [prefixedShorthand, false, false]);
+      assert.deepEqual(body[0][0], [prefixedShorthand]);
       assert.deepEqual(body[0][1], [zeroValue]);
     },
     'second is longhand': function (body) {
-      assert.deepEqual(body[1][0], [prefixedLonghand, false, false]);
+      assert.deepEqual(body[1][0], [prefixedLonghand]);
       assert.deepEqual(body[1][1], ['inherit']);
     }
   };

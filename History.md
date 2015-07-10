@@ -1,6 +1,7 @@
 [3.4.0 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.3.6...master)
 ==================
 
+* Unifies wrappers for simple & advanced optimizations.
 * Fixed issue [#599](https://github.com/jakubpawlowicz/clean-css/issues/599) - support for inlined source maps.
 
 [3.3.6 / 2015-07-14](https://github.com/jakubpawlowicz/clean-css/compare/v3.3.5...v3.3.6)

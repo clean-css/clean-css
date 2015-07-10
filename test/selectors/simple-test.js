@@ -364,7 +364,7 @@ vows.describe('simple optimizations')
       ],
       'backslash': [
         'a{width:100px\\9}',
-        [['width', '100px']]
+        [['width', '100px\\9']]
       ]
     })
   )
@@ -372,15 +372,15 @@ vows.describe('simple optimizations')
     propertyContext('ie hacks in compatibility mode', {
       'underscore': [
         'a{_width:100px}',
-        [['width', '100px']]
+        [['_width', '100px']]
       ],
       'star': [
         'a{*width:100px}',
-        [['width', '100px']]
+        [['*width', '100px']]
       ],
       'backslash': [
         'a{width:100px\\9}',
-        [['width', '100px']]
+        [['width', '100px\\9']]
       ]
     }, { compatibility: 'ie8' })
   )
@@ -388,15 +388,15 @@ vows.describe('simple optimizations')
     propertyContext('important', {
       'minified': [
         'a{color:red!important}',
-        [['color', 'red']]
+        [['color', 'red!important']]
       ],
       'space before !': [
         'a{color:red !important}',
-        [['color', 'red']]
+        [['color', 'red!important']]
       ],
       'space after !': [
         'a{color:red! important}',
-        [['color', 'red']]
+        [['color', 'red!important']]
       ]
     }, { compatibility: 'ie8' })
   )

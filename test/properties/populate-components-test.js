@@ -8,7 +8,7 @@ vows.describe(populateComponents)
   .addBatch({
     'shorthand': {
       'topic': function () {
-        var wrapped = wrapForOptimizing([[['margin', false, false], ['0px'], ['1px'], ['2px'], ['3px']]]);
+        var wrapped = wrapForOptimizing([[['margin'], ['0px'], ['1px'], ['2px'], ['3px']]]);
 
         populateComponents(wrapped);
         return wrapped;
@@ -44,7 +44,7 @@ vows.describe(populateComponents)
     },
     'longhand': {
       'topic': function () {
-        var wrapped = wrapForOptimizing([[['margin-top', false, false], ['0px']]]);
+        var wrapped = wrapForOptimizing([[['margin-top'], ['0px']]]);
 
         populateComponents(wrapped);
         return wrapped;
@@ -58,7 +58,7 @@ vows.describe(populateComponents)
     },
     'no value': {
       'topic': function () {
-        var wrapped = wrapForOptimizing([[['margin', false, false]]]);
+        var wrapped = wrapForOptimizing([[['margin']]]);
 
         populateComponents(wrapped);
         return wrapped;

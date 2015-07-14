@@ -329,6 +329,18 @@ vows.describe(SimpleOptimizer)
       'with line height': [
         'a{font: 11px/normal sans-serif}',
         [['font', '11px', '/', 'normal', 'sans-serif']]
+      ],
+      'with mixed bold weight and variant #1': [
+        'a{font:normal bold 16px sans-serif}',
+        [['font', 'normal', '700', '16px', 'sans-serif']]
+      ],
+      'with mixed bold weight and variant #2': [
+        'a{font:bold normal 16px sans-serif}',
+        [['font', '700', 'normal', '16px', 'sans-serif']]
+      ],
+      'with mixed bold weight and variant #3': [
+        'a{font:bold normal normal 16px sans-serif}',
+        [['font', 'bold', 'normal', 'normal', '16px', 'sans-serif']] // pending #254
       ]
     })
   )

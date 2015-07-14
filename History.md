@@ -1,3 +1,8 @@
+[3.3.6 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.3.5...3.3)
+==================
+
+* Fixed issue [#620](https://github.com/jakubpawlowicz/clean-css/issues/620) - `bold` style in font shorthands.
+
 [3.3.5 / 2015-07-01](https://github.com/jakubpawlowicz/clean-css/compare/v3.3.4...v3.3.5)
 ==================
 

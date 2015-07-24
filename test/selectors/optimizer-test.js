@@ -197,6 +197,10 @@ vows.describe(SelectorsOptimizer)
         'input:-ms-input-placeholder{color:red;text-align:center}input::placeholder{color:red;text-align:center}',
         'input:-ms-input-placeholder{color:red;text-align:center}input::placeholder{color:red;text-align:center}'
       ],
+      'granular two level deep': [
+        '.one{border:1px solid red;border-right-width:0}.two{border:1px solid red}',
+        '.one{border:1px solid red;border-right-width:0}.two{border:1px solid red}'
+      ],
       'moving one already being moved with different value': [
         '.one{color:red}.two{display:block}.three{color:red;display:inline}.four{display:inline-block}.five{color:#000}',
         '.one,.three{color:red}.two{display:block}.three{display:inline}.four{display:inline-block}.five{color:#000}'
@@ -229,9 +233,13 @@ vows.describe(SelectorsOptimizer)
         '@charset "UTF-8";@import url(http://fonts.googleapis.com/css?family=Lora:400,700);__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0__a{width:100px}div{color:red}.one{display:block}.two{display:inline;color:red}',
         '@charset "UTF-8";@import url(http://fonts.googleapis.com/css?family=Lora:400,700);__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0__.two,div{color:red}a{width:100px}.one{display:block}.two{display:inline}'
       ],
-      'with vendor prefixed value group': [
+      'with same vendor prefixed value group': [
+        'a{-moz-box-sizing:content-box;box-sizing:content-box}div{color:red}p{-moz-box-sizing:content-box;box-sizing:content-box}',
+        'a,p{-moz-box-sizing:content-box;box-sizing:content-box}div{color:red}'
+      ],
+      'with different vendor prefixed value group': [
         'a{-moz-box-sizing:content-box;box-sizing:content-box}div{color:red}p{-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box}',
-        'a{box-sizing:content-box}a,p{-moz-box-sizing:content-box}div{color:red}p{-webkit-box-sizing:content-box;box-sizing:content-box}'
+        'a{-moz-box-sizing:content-box;box-sizing:content-box}div{color:red}p{-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box}'
       ]
     }, { advanced: true })
   )

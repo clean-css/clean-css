@@ -1,3 +1,8 @@
+[3.3.7 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.3.6...3.3)
+==================
+
+* Fixed issue [#616](https://github.com/jakubpawlowicz/clean-css/issues/616) - ordering in restructuring.
+
 [3.3.6 / 2015-07-14](https://github.com/jakubpawlowicz/clean-css/compare/v3.3.5...v3.3.6)
 ==================
 

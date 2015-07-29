@@ -1,10 +1,10 @@
-[3.4.0 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.3.6...master)
+[3.4.0 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.3.7...master)
 ==================
 
 * Unifies wrappers for simple & advanced optimizations.
 * Fixed issue [#599](https://github.com/jakubpawlowicz/clean-css/issues/599) - support for inlined source maps.
 
-[3.3.7 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.3.6...3.3)
+[3.3.7 / 2015-07-29](https://github.com/jakubpawlowicz/clean-css/compare/v3.3.6...v3.3.7)
 ==================
 
 * Fixed issue [#616](https://github.com/jakubpawlowicz/clean-css/issues/616) - ordering in restructuring.

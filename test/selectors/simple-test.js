@@ -517,6 +517,14 @@ vows.describe('simple optimizations')
       'flex–basis': [
         'a{flex-basis:0%}',
         [['flex-basis', '0%']]
+      ],
+      'prefixed flex': [
+        'a{-ms-flex:1 0 0px;-webkit-flex:1 0 0px;}',
+        [['-ms-flex', '1', '0', '0px'], ['-webkit-flex', '1', '0', '0px']]
+      ],
+      'prefixed flex–basis': [
+        'a{-webkit-flex-basis:0px}',
+        [['-webkit-flex-basis', '0px']]
       ]
     })
   )

@@ -1,6 +1,7 @@
 [3.3.8 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.3.6...3.3)
 ==================
 
+* Fixed issue [#629](https://github.com/jakubpawlowicz/clean-css/issues/629) - source maps & background shorthands.
 * Fixed issue [#630](https://github.com/jakubpawlowicz/clean-css/issues/630) - vendor prefixed flex optimizations.
 * Fixed issue [#633](https://github.com/jakubpawlowicz/clean-css/issues/633) - handling data URI with brackets.
 

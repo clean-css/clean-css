@@ -1346,6 +1346,14 @@ vows.describe('integration tests')
       'keep quoting if whitespace inside @font-face': [
         '@font-face{src:url("/Helvetica Neue.eot")}',
         '@font-face{src:url(\'/Helvetica Neue.eot\')}'
+      ],
+      'keep SVG data URI unchanged for background-uri': [
+        'div{background-image:url(data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2018%2018%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Crect%20width%3D%2214%22%20height%3D%2214%22%20transform%3D%22translate(2%202)%22%2F%3E%3C%2Fsvg%3E)}',
+        'div{background-image:url(data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2018%2018%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Crect%20width%3D%2214%22%20height%3D%2214%22%20transform%3D%22translate(2%202)%22%2F%3E%3C%2Fsvg%3E)}'
+      ],
+      'keep SVG data URI unchanged1 for background': [
+        'div{background:url(data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2018%2018%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Crect%20width%3D%2214%22%20height%3D%2214%22%20transform%3D%22translate(2%202)%22%2F%3E%3C%2Fsvg%3E) bottom left}',
+        'div{background:url(data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2018%2018%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Crect%20width%3D%2214%22%20height%3D%2214%22%20transform%3D%22translate(2%202)%22%2F%3E%3C%2Fsvg%3E) bottom left}'
       ]
     }, { root: process.cwd(), relativeTo: process.cwd() })
   )

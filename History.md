@@ -2,6 +2,7 @@
 ==================
 
 * Fixed issue [#630](https://github.com/jakubpawlowicz/clean-css/issues/630) - vendor prefixed flex optimizations.
+* Fixed issue [#633](https://github.com/jakubpawlowicz/clean-css/issues/633) - handling data URI with brackets.
 
 [3.3.7 / 2015-07-29](https://github.com/jakubpawlowicz/clean-css/compare/v3.3.6...v3.3.7)
 ==================

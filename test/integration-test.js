@@ -2120,6 +2120,10 @@ title']{display:block}",
     'rules with not-so-well-supported pseudo classes should not be merged #4': [
       'a:first{color:red}b{color:red}',
       'a:first{color:red}b{color:red}'
+    ],
+    'rules with not-so-well-supported pseudo classes should not be merged #5': [
+      ':placeholder{color:red}b{color:red}',
+      ':placeholder{color:red}b{color:red}'
     ]
   }),
   'grouping with advanced optimizations': cssContext({

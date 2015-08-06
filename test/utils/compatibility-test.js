@@ -22,7 +22,6 @@ vows.describe(Compatibility)
         assert.isTrue(options.properties.zeroUnits);
         assert.isFalse(options.selectors.adjacentSpace);
         assert.isFalse(options.selectors.ie7Hack);
-        assert.deepEqual(options.selectors.special, /(\-moz\-|\-ms\-|\-o\-|\-webkit\-|:dir\([a-z-]*\)|:first(?![a-z-])|:fullscreen|:left|:read-only|:read-write|:right)/);
         assert.isTrue(options.units.ch);
         assert.isTrue(options.units.rem);
         assert.isTrue(options.units.vh);
@@ -57,7 +56,6 @@ vows.describe(Compatibility)
         assert.isTrue(options.properties.zeroUnits);
         assert.isFalse(options.selectors.adjacentSpace);
         assert.isFalse(options.selectors.ie7Hack);
-        assert.deepEqual(options.selectors.special, /(\-moz\-|\-ms\-|\-o\-|\-webkit\-|:dir\([a-z-]*\)|:first(?![a-z-])|:fullscreen|:left|:read-only|:read-write|:right)/);
         assert.isTrue(options.units.ch);
         assert.isFalse(options.units.rem);
         assert.isTrue(options.units.vh);
@@ -87,7 +85,6 @@ vows.describe(Compatibility)
         assert.isTrue(options.properties.zeroUnits);
         assert.isFalse(options.selectors.adjacentSpace);
         assert.isFalse(options.selectors.ie7Hack);
-        assert.deepEqual(options.selectors.special, /(\-moz\-|\-ms\-|\-o\-|\-webkit\-|:root|:nth|:first\-of|:last|:only|:empty|:target|:checked|::selection|:enabled|:disabled|:not)/);
         assert.isFalse(options.units.ch);
         assert.isFalse(options.units.rem);
         assert.isFalse(options.units.vh);
@@ -115,7 +112,6 @@ vows.describe(Compatibility)
         assert.isTrue(options.properties.zeroUnits);
         assert.isFalse(options.selectors.adjacentSpace);
         assert.isTrue(options.selectors.ie7Hack);
-        assert.deepEqual(options.selectors.special, /(\-moz\-|\-ms\-|\-o\-|\-webkit\-|:focus|:before|:after|:root|:nth|:first\-of|:last|:only|:empty|:target|:checked|::selection|:enabled|:disabled|:not)/);
         assert.isFalse(options.units.ch);
         assert.isFalse(options.units.rem);
         assert.isFalse(options.units.vh);
@@ -153,7 +149,6 @@ vows.describe(Compatibility)
         assert.isTrue(options.properties.zeroUnits);
         assert.isFalse(options.selectors.adjacentSpace);
         assert.isFalse(options.selectors.ie7Hack);
-        assert.deepEqual(options.selectors.special, /(\-moz\-|\-ms\-|\-o\-|\-webkit\-|:root|:nth|:first\-of|:last|:only|:empty|:target|:checked|::selection|:enabled|:disabled|:not)/);
         assert.isFalse(options.units.ch);
         assert.isFalse(options.units.rem);
         assert.isFalse(options.units.vh);
@@ -181,7 +176,6 @@ vows.describe(Compatibility)
         assert.isTrue(options.properties.zeroUnits);
         assert.isFalse(options.selectors.adjacentSpace);
         assert.isFalse(options.selectors.ie7Hack);
-        assert.deepEqual(options.selectors.special, /(\-moz\-|\-ms\-|\-o\-|\-webkit\-|:dir\([a-z-]*\)|:first(?![a-z-])|:fullscreen|:left|:read-only|:read-write|:right)/);
         assert.isTrue(options.units.ch);
         assert.isTrue(options.units.rem);
         assert.isTrue(options.units.vh);
@@ -209,7 +203,6 @@ vows.describe(Compatibility)
         assert.isTrue(options.properties.zeroUnits);
         assert.isFalse(options.selectors.adjacentSpace);
         assert.isFalse(options.selectors.ie7Hack);
-        assert.deepEqual(options.selectors.special, /(\-moz\-|\-ms\-|\-o\-|\-webkit\-|:dir\([a-z-]*\)|:first(?![a-z-])|:fullscreen|:left|:read-only|:read-write|:right)/);
         assert.isTrue(options.units.ch);
         assert.isFalse(options.units.rem);
         assert.isTrue(options.units.vh);

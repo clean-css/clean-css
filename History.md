@@ -4,7 +4,7 @@
 * Unifies wrappers for simple & advanced optimizations.
 * Fixed issue [#599](https://github.com/jakubpawlowicz/clean-css/issues/599) - support for inlined source maps.
 
-[3.3.8 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.3.6...3.3)
+[3.3.8 / 2015-08-06](https://github.com/jakubpawlowicz/clean-css/compare/v3.3.7...v3.3.8)
 ==================
 
 * Fixed issue [#629](https://github.com/jakubpawlowicz/clean-css/issues/629) - source maps & background shorthands.

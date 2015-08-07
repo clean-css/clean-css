@@ -328,11 +328,11 @@ with the following options available:
 * `'[+-]units.vmin'` - turn on / off treating `vmin` as a proper unit
 * `'[+-]units.vm'` - turn on / off treating `vm` as a proper unit
 
-For example, using `--compatibility 'ie8,+units.rem'` will ensure IE8 compatiblity while enabling `rem` units so the following style `margin:0px 0rem` can be shortened to `margin:0`, while in pure IE8 mode it can't be.
+For example, using `--compatibility 'ie8,+units.rem'` will ensure IE8 compatibility while enabling `rem` units so the following style `margin:0px 0rem` can be shortened to `margin:0`, while in pure IE8 mode it can't be.
 
 To pass a single off (-) switch in CLI please use the following syntax `--compatibility *,-units.rem`.
 
-In library mode you can also pass `compatiblity` as a hash of options.
+In library mode you can also pass `compatibility` as a hash of options.
 
 ## Acknowledgments (sorted alphabetically)
 

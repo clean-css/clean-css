@@ -4,6 +4,7 @@
 * Adds unit compatibility switches to disable length optimizations.
 * Unifies wrappers for simple & advanced optimizations.
 * Fixed issue [#599](https://github.com/jakubpawlowicz/clean-css/issues/599) - support for inlined source maps.
+* Fixed issue [#612](https://github.com/jakubpawlowicz/clean-css/issues/612) - adds HTTP proxy support.
 * Fixed issue [#625](https://github.com/jakubpawlowicz/clean-css/issues/625) - adds length unit optimizations.
 * Fixed issue [#644](https://github.com/jakubpawlowicz/clean-css/issues/644) - adds time unit optimizations.
 

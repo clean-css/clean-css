@@ -3,8 +3,10 @@
 var vows = require('vows');
 var assert = require('assert');
 var http = require('http');
+var httpProxy = require('http-proxy');
 var enableDestroy = require('server-destroy');
 var nock = require('nock');
+var url = require('url');
 var CleanCSS = require('../index');
 
 var port = 24682;
@@ -491,6 +493,46 @@ vows.describe('protocol imports').addBatch({
     teardown: function () {
       this.server.destroy();
       nock.disableNetConnect();
+    }
+  },
+  'of a proxied resource': {
+    topic: function () {
+      this.proxied = false;
+
+      var self = this;
+      var proxy = httpProxy.createProxyServer();
+      this.proxyServer = http.createServer(function (req, res) {
+        self.proxied = true;
+        proxy.web(req, res, { target: 'http://' + url.parse(req.url).host });
+      });
+      this.proxyServer.listen(8080);
+      enableDestroy(this.proxyServer);
+
+      this.reqMocks = nock('http://assets.127.0.0.1')
+        .get('/styles.css')
+        .reply(200, 'a{color:red}');
+
+      var options = {
+        inliner: {
+          request: {
+            hostname: '127.0.0.1',
+            port: 8080
+          }
+        }
+      };
+
+      new CleanCSS(options).minify('@import url(http://assets.127.0.0.1/styles.css);', this.callback);
+    },
+    'proxies the connection': function () {
+      assert.isTrue(this.proxied);
+    },
+    'gets right output': function (errors, minified) {
+      assert.equal(minified.styles, 'a{color:red}');
+    },
+    teardown: function () {
+      assert.isTrue(this.reqMocks.isDone());
+      nock.cleanAll();
+      this.proxyServer.destroy();
     }
   }
 }).export(module);

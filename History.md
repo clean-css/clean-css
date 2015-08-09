@@ -405,7 +405,7 @@
 ==================
 
 * Improved performance of advanced mode validators.
-* Fixed issue [#307](https://github.com/jakubpawlowicz/clean-css/issues/307) - `background-color` in muliple backgrounds.
+* Fixed issue [#307](https://github.com/jakubpawlowicz/clean-css/issues/307) - `background-color` in multiple backgrounds.
 * Fixed issue [#322](https://github.com/jakubpawlowicz/clean-css/issues/322) - adds `background-size` support.
 * Fixed issue [#323](https://github.com/jakubpawlowicz/clean-css/issues/323) - stripping variable references.
 * Fixed issue [#325](https://github.com/jakubpawlowicz/clean-css/issues/325) - removing invalid `@charset` declarations.

@@ -799,11 +799,11 @@ vows.describe('integration tests')
         'div{margin:.1em .1em .1em .1em}',
         'div{margin:.1em}'
       ],
-      'preceeding value': [
+      'preceding value': [
         'div{padding:010px 00015px}',
         'div{padding:10px 15px}'
       ],
-      'preceeding value with fraction zeros': [
+      'preceding value with fraction zeros': [
         'div{padding:010.0em .05rem}',
         'div{padding:10em .05rem}'
       ]

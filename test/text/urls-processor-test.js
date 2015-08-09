@@ -80,6 +80,11 @@ vows.describe(UrlsProcessor)
         'div{background:url("some/).png") repeat}',
         'div{background:__ESCAPED_URL_CLEAN_CSS0__ repeat}',
         'div{background:url("some/).png") repeat}'
+      ],
+      'followed by attribute matcher selector': [
+        'a{background:url(url)}div:not([test]){color:red}',
+        'a{background:__ESCAPED_URL_CLEAN_CSS0__}div:not([test]){color:red}',
+        'a{background:url(url)}div:not([test]){color:red}'
       ]
     })
   )

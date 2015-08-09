@@ -1,3 +1,8 @@
+[3.3.9 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.3.8...3.3)
+==================
+
+* Fixed issue [#640](https://github.com/jakubpawlowicz/clean-css/issues/640) - URI processing regression.
+
 [3.3.8 / 2015-08-06](https://github.com/jakubpawlowicz/clean-css/compare/v3.3.7...v3.3.8)
 ==================
 

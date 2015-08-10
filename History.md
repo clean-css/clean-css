@@ -3,6 +3,7 @@
 
 * Unifies wrappers for simple & advanced optimizations.
 * Fixed issue [#599](https://github.com/jakubpawlowicz/clean-css/issues/599) - support for inlined source maps.
+* Fixed issue [#644](https://github.com/jakubpawlowicz/clean-css/issues/644) - adds time unit optimizations.
 
 [3.3.9 / 2015-08-09](https://github.com/jakubpawlowicz/clean-css/compare/v3.3.8...v3.3.9)
 ==================

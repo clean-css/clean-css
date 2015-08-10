@@ -688,4 +688,36 @@ vows.describe('simple optimizations')
       ]
     })
   )
+  .addBatch(
+    propertyContext('time units', {
+      'positive miliseconds to seconds': [
+        'div{transition-duration:500ms}',
+        [['transition-duration', '.5s']]
+      ],
+      'negative miliseconds to seconds': [
+        'div{transition-duration:-500ms}',
+        [['transition-duration', '-.5s']]
+      ],
+      'miliseconds to seconds when results in a too long value': [
+        'div{transition-duration:1515ms}',
+        [['transition-duration', '1515ms']]
+      ],
+      'zero miliseconds to seconds': [
+        'div{transition-duration:0ms}',
+        [['transition-duration', '0s']]
+      ],
+      'positive seconds to miliseconds': [
+        'div{transition-duration:0.005s}',
+        [['transition-duration', '5ms']]
+      ],
+      'negative seconds to miliseconds': [
+        'div{transition-duration:-0.005s}',
+        [['transition-duration', '-5ms']]
+      ],
+      'seconds to miliseconds when results in a too long value': [
+        'div{transition-duration:1.2s}',
+        [['transition-duration', '1.2s']]
+      ]
+    })
+  )
   .export(module);

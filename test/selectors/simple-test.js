@@ -772,4 +772,20 @@ vows.describe('simple optimizations')
       ]
     }, { compatibility: 'ie8' })
   )
+  .addBatch(
+    propertyContext('length units when turned off', {
+      'px to in': [
+        'div{left:480px}',
+        [['left', '480px']]
+      ],
+      'px to pc': [
+        'div{left:32px}',
+        [['left', '32px']]
+      ],
+      'px to pt': [
+        'div{left:120px}',
+        [['left', '120px']]
+      ]
+    }, { compatibility: { units: { in: false, pc: false, pt: false } } })
+  )
   .export(module);

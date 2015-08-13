@@ -1,6 +1,7 @@
 [3.4.0 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.3.7...master)
 ==================
 
+* Adds unit compatibility switches to disable length optimizations.
 * Unifies wrappers for simple & advanced optimizations.
 * Fixed issue [#599](https://github.com/jakubpawlowicz/clean-css/issues/599) - support for inlined source maps.
 * Fixed issue [#625](https://github.com/jakubpawlowicz/clean-css/issues/625) - adds length unit optimizations.

@@ -23,6 +23,9 @@ vows.describe(Compatibility)
         assert.isFalse(options.selectors.adjacentSpace);
         assert.isFalse(options.selectors.ie7Hack);
         assert.isTrue(options.units.ch);
+        assert.isTrue(options.units.in);
+        assert.isTrue(options.units.pc);
+        assert.isTrue(options.units.pt);
         assert.isTrue(options.units.rem);
         assert.isTrue(options.units.vh);
         assert.isTrue(options.units.vm);
@@ -57,6 +60,9 @@ vows.describe(Compatibility)
         assert.isFalse(options.selectors.adjacentSpace);
         assert.isFalse(options.selectors.ie7Hack);
         assert.isTrue(options.units.ch);
+        assert.isTrue(options.units.in);
+        assert.isTrue(options.units.pc);
+        assert.isTrue(options.units.pt);
         assert.isFalse(options.units.rem);
         assert.isTrue(options.units.vh);
         assert.isTrue(options.units.vm);
@@ -86,6 +92,9 @@ vows.describe(Compatibility)
         assert.isFalse(options.selectors.adjacentSpace);
         assert.isFalse(options.selectors.ie7Hack);
         assert.isFalse(options.units.ch);
+        assert.isTrue(options.units.in);
+        assert.isTrue(options.units.pc);
+        assert.isTrue(options.units.pt);
         assert.isFalse(options.units.rem);
         assert.isFalse(options.units.vh);
         assert.isFalse(options.units.vm);
@@ -113,6 +122,9 @@ vows.describe(Compatibility)
         assert.isFalse(options.selectors.adjacentSpace);
         assert.isTrue(options.selectors.ie7Hack);
         assert.isFalse(options.units.ch);
+        assert.isTrue(options.units.in);
+        assert.isTrue(options.units.pc);
+        assert.isTrue(options.units.pt);
         assert.isFalse(options.units.rem);
         assert.isFalse(options.units.vh);
         assert.isFalse(options.units.vm);
@@ -150,6 +162,9 @@ vows.describe(Compatibility)
         assert.isFalse(options.selectors.adjacentSpace);
         assert.isFalse(options.selectors.ie7Hack);
         assert.isFalse(options.units.ch);
+        assert.isTrue(options.units.in);
+        assert.isTrue(options.units.pc);
+        assert.isTrue(options.units.pt);
         assert.isFalse(options.units.rem);
         assert.isFalse(options.units.vh);
         assert.isFalse(options.units.vm);
@@ -177,6 +192,9 @@ vows.describe(Compatibility)
         assert.isFalse(options.selectors.adjacentSpace);
         assert.isFalse(options.selectors.ie7Hack);
         assert.isTrue(options.units.ch);
+        assert.isTrue(options.units.in);
+        assert.isTrue(options.units.pc);
+        assert.isTrue(options.units.pt);
         assert.isTrue(options.units.rem);
         assert.isTrue(options.units.vh);
         assert.isTrue(options.units.vm);
@@ -204,6 +222,9 @@ vows.describe(Compatibility)
         assert.isFalse(options.selectors.adjacentSpace);
         assert.isFalse(options.selectors.ie7Hack);
         assert.isTrue(options.units.ch);
+        assert.isTrue(options.units.in);
+        assert.isTrue(options.units.pc);
+        assert.isTrue(options.units.pt);
         assert.isFalse(options.units.rem);
         assert.isTrue(options.units.vh);
         assert.isTrue(options.units.vm);

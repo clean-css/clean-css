@@ -395,10 +395,10 @@ vows.describe(optimize)
   })
   .addBatch({
     'understandable - non adjacent units in IE8 mode': {
-      'topic': 'a{margin-top:100px;padding-top:30px;margin-top:10vmin}',
+      'topic': 'a{margin-top:80px;padding-top:30px;margin-top:10vmin}',
       'into': function (topic) {
         assert.deepEqual(_optimize(topic, false, true, 'ie8'), [
-          [['margin-top'], ['100px']],
+          [['margin-top'], ['80px']],
           [['padding-top'], ['30px']],
           [['margin-top'], ['10vmin']]
         ]);

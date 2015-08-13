@@ -33,12 +33,12 @@ vows.describe('remove duplicates')
         'a{color:red}div{width:100%}ol{margin:0}p{color:#fff}'
       ],
       'with global and media scope': [
-        'a{color:red}@media screen{a{color:red}p{width:100px}a{color:red}}',
-        'a{color:red}@media screen{p{width:100px}a{color:red}}'
+        'a{color:red}@media screen{a{color:red}p{width:75px}a{color:red}}',
+        'a{color:red}@media screen{p{width:75px}a{color:red}}'
       ],
       'with two media scopes': [
-        '@media (min-width:100px){a{color:red}}@media screen{a{color:red}p{width:100px}a{color:red}}',
-        '@media (min-width:100px){a{color:red}}@media screen{p{width:100px}a{color:red}}'
+        '@media (min-width:75px){a{color:red}}@media screen{a{color:red}p{width:75px}a{color:red}}',
+        '@media (min-width:75px){a{color:red}}@media screen{p{width:75px}a{color:red}}'
       ]
     })
   )

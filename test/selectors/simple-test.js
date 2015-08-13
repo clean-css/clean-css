@@ -323,16 +323,16 @@ vows.describe('simple optimizations')
         [['font', '11px', '/', 'normal', 'sans-serif']]
       ],
       'with mixed bold weight and variant #1': [
-        'a{font:normal bold 16px sans-serif}',
-        [['font', 'normal', '700', '16px', 'sans-serif']]
+        'a{font:normal bold 17px sans-serif}',
+        [['font', 'normal', '700', '17px', 'sans-serif']]
       ],
       'with mixed bold weight and variant #2': [
-        'a{font:bold normal 16px sans-serif}',
-        [['font', '700', 'normal', '16px', 'sans-serif']]
+        'a{font:bold normal 17px sans-serif}',
+        [['font', '700', 'normal', '17px', 'sans-serif']]
       ],
       'with mixed bold weight and variant #3': [
-        'a{font:bold normal normal 16px sans-serif}',
-        [['font', 'bold', 'normal', 'normal', '16px', 'sans-serif']] // pending #254
+        'a{font:bold normal normal 17px sans-serif}',
+        [['font', 'bold', 'normal', 'normal', '17px', 'sans-serif']] // pending #254
       ]
     })
   )
@@ -355,32 +355,32 @@ vows.describe('simple optimizations')
   .addBatch(
     propertyContext('ie hacks', {
       'underscore': [
-        'a{_width:100px}',
+        'a{_width:101px}',
         null
       ],
       'star': [
-        'a{*width:100px}',
+        'a{*width:101px}',
         null
       ],
       'backslash': [
-        'a{width:100px\\9}',
-        [['width', '100px\\9']]
+        'a{width:101px\\9}',
+        [['width', '101px\\9']]
       ]
     })
   )
   .addBatch(
     propertyContext('ie hacks in compatibility mode', {
       'underscore': [
-        'a{_width:100px}',
-        [['_width', '100px']]
+        'a{_width:101px}',
+        [['_width', '101px']]
       ],
       'star': [
-        'a{*width:100px}',
-        [['*width', '100px']]
+        'a{*width:101px}',
+        [['*width', '101px']]
       ],
       'backslash': [
-        'a{width:100px\\9}',
-        [['width', '100px\\9']]
+        'a{width:101px\\9}',
+        [['width', '101px\\9']]
       ]
     }, { compatibility: 'ie8' })
   )
@@ -683,8 +683,8 @@ vows.describe('simple optimizations')
         null
       ],
       'after calc()': [
-        'div{margin:calc(100% - 20px) 1px}',
-        [['margin', 'calc(100% - 20px)', '1px']]
+        'div{margin:calc(100% - 21px) 1px}',
+        [['margin', 'calc(100% - 21px)', '1px']]
       ]
     })
   )
@@ -719,5 +719,57 @@ vows.describe('simple optimizations')
         [['transition-duration', '1.2s']]
       ]
     })
+  )
+  .addBatch(
+    propertyContext('size units', {
+      'positive px to in': [
+        'div{left:480px}',
+        [['left', '5in']]
+      ],
+      'negative px to in': [
+        'div{left:-96px}',
+        [['left', '-1in']]
+      ],
+      'positive px to pc': [
+        'div{left:32px}',
+        [['left', '2pc']]
+      ],
+      'negative px to pc': [
+        'div{left:-160px}',
+        [['left', '-10pc']]
+      ],
+      'positive px to pt': [
+        'div{left:120px}',
+        [['left', '90pt']]
+      ],
+      'negative px to pt': [
+        'div{left:-120px}',
+        [['left', '-90pt']]
+      ],
+      'in calc': [
+        'div{left:calc(100% - 480px)}',
+        [['left', 'calc(100% - 5in)']]
+      ],
+      'in transform': [
+        'div{transform:translateY(32px)}',
+        [['transform', 'translateY(2pc)']]
+      ]
+    })
+  )
+  .addBatch(
+    propertyContext('length units in compatibility mode', {
+      'px to in': [
+        'div{left:480px}',
+        [['left', '5in']]
+      ],
+      'px to pc': [
+        'div{left:32px}',
+        [['left', '2pc']]
+      ],
+      'px to pt': [
+        'div{left:120px}',
+        [['left', '90pt']]
+      ]
+    }, { compatibility: 'ie8' })
   )
   .export(module);

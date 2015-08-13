@@ -5,8 +5,8 @@ vows.describe('remove duplicates')
   .addBatch(
     optimizerContext('advanced on', {
       'single selectors': [
-        'a{color:red;display:block}.one{margin:12px}a{color:#fff;margin:2px}',
-        '.one{margin:12px}a{display:block;color:#fff;margin:2px}'
+        'a{color:red;display:block}.one{margin:13px}a{color:#fff;margin:2px}',
+        '.one{margin:13px}a{display:block;color:#fff;margin:2px}'
       ],
       'multiple selectors': [
         'a{padding:10px;margin:0;color:red}.one{color:red}a,p{color:red;padding:0}',
@@ -17,20 +17,20 @@ vows.describe('remove duplicates')
         '.one{color:red}a{display:block;color:#fff;margin:2px}'
       ],
       'with intentionally redefined properties on joins': [
-        'a{display:inline-block;display:-moz-inline-box;color:red}.one{margin:12px}a{color:#fff;margin:2px}',
-        '.one{margin:12px}a{display:inline-block;display:-moz-inline-box;color:#fff;margin:2px}'
+        'a{display:inline-block;display:-moz-inline-box;color:red}.one{margin:13px}a{color:#fff;margin:2px}',
+        '.one{margin:13px}a{display:inline-block;display:-moz-inline-box;color:#fff;margin:2px}'
       ],
       'with intentionally redefined properties on multiple joins': [
-        'a{color:red}.one{font-size:12px}a{color:#fff;margin:2px}.two{margin:10px}a{margin:0}',
-        '.one{font-size:12px}.two{margin:10px}a{color:#fff;margin:0}'
+        'a{color:red}.one{font-size:13px}a{color:#fff;margin:2px}.two{margin:10px}a{margin:0}',
+        '.one{font-size:13px}.two{margin:10px}a{color:#fff;margin:0}'
       ],
       'with all redefined properties': [
-        'a{color:red;display:block}.one{font-size:12px}a{color:#fff;display:inline-block;margin:2px}',
-        '.one{font-size:12px}a{color:#fff;display:inline-block;margin:2px}'
+        'a{color:red;display:block}.one{font-size:13px}a{color:#fff;display:inline-block;margin:2px}',
+        '.one{font-size:13px}a{color:#fff;display:inline-block;margin:2px}'
       ],
       'many with all redefined properties': [
-        'a{padding:10px}.zero{color:transparent}a{color:red;display:block}.one{font-size:12px}a{color:#fff;display:inline-block;margin:2px}',
-        '.zero{color:transparent}.one{font-size:12px}a{padding:10px;color:#fff;display:inline-block;margin:2px}'
+        'a{padding:10px}.zero{color:transparent}a{color:red;display:block}.one{font-size:13px}a{color:#fff;display:inline-block;margin:2px}',
+        '.zero{color:transparent}.one{font-size:13px}a{padding:10px;color:#fff;display:inline-block;margin:2px}'
       ],
       'when overriden by an empty selector': [
         'a{padding:10px}.one{color:red}a{}',
@@ -57,12 +57,12 @@ vows.describe('remove duplicates')
         '#zero,.one>.two,.three,.www{color:#fff;margin:0}a{color:red}.one>.two,.three{line-height:2rem;font-size:1.5rem}'
       ],
       'when undefined is used as a value': [
-        '.one{text-shadow:undefined}p{font-size:14px}.one{font-size:12px}',
-        'p{font-size:14px}.one{text-shadow:undefined;font-size:12px}'
+        '.one{text-shadow:undefined}p{font-size:14px}.one{font-size:13px}',
+        'p{font-size:14px}.one{text-shadow:undefined;font-size:13px}'
       ],
       'when undefined is used as a value with reduction': [
-        '.one{text-shadow:undefined}p{color:red}.one{font-size:12px;text-shadow:none}',
-        'p{color:red}.one{font-size:12px;text-shadow:none}'
+        '.one{text-shadow:undefined}p{color:red}.one{font-size:13px;text-shadow:none}',
+        'p{color:red}.one{font-size:13px;text-shadow:none}'
       ],
       'when overriden with a browser specific selector': [
         'a{color:red}p{display:block}::-moz-selection,a{color:#fff}',
@@ -77,28 +77,28 @@ vows.describe('remove duplicates')
         '.two{color:#fff}.one{height:7rem;line-height:7rem;color:red}'
       ],
       'with two intermediate, non-overriding selectors': [
-        '.one{color:red;margin:0}.two{color:#fff}.one{font-size:12px}',
-        '.one{color:red;margin:0;font-size:12px}.two{color:#fff}'
+        '.one{color:red;margin:0}.two{color:#fff}.one{font-size:13px}',
+        '.one{color:red;margin:0;font-size:13px}.two{color:#fff}'
       ],
       'with two intermediate, overriding more specific selectors': [
-        '.one{color:red;margin:0}.two{font:12px serif}.one{font-size:12px}',
-        '.two{font:12px serif}.one{color:red;margin:0;font-size:12px}'
+        '.one{color:red;margin:0}.two{font:13px serif}.one{font-size:13px}',
+        '.two{font:13px serif}.one{color:red;margin:0;font-size:13px}'
       ],
       'with granular selectors from the same shorthand': [
-        '.one{color:red;margin:0}.two{font-weight:700}.one{font-size:12px}',
-        '.one{color:red;margin:0;font-size:12px}.two{font-weight:700}'
+        '.one{color:red;margin:0}.two{font-weight:700}.one{font-size:13px}',
+        '.one{color:red;margin:0;font-size:13px}.two{font-weight:700}'
       ],
       'with three intermediate, non-overriding selectors': [
-        '.one{color:red;margin:0}.two{color:#fff}.one{font-size:12px}.three{color:#000}.one{padding:0}',
-        '.one{color:red;margin:0;font-size:12px;padding:0}.two{color:#fff}.three{color:#000}'
+        '.one{color:red;margin:0}.two{color:#fff}.one{font-size:13px}.three{color:#000}.one{padding:0}',
+        '.one{color:red;margin:0;font-size:13px;padding:0}.two{color:#fff}.three{color:#000}'
       ],
       'successive selectors': [
         'footer,header{top:1.25em;bottom:1.25em}header{top:2.5em}footer{bottom:2.5em}',
         'footer,header{top:1.25em;bottom:1.25em}header{top:2.5em}footer{bottom:2.5em}'
       ],
       'over a @media block': [
-        '.one{color:red;margin:0}@media{.two{font-weight:700}}.one{font-size:12px}',
-        '.one{color:red;margin:0;font-size:12px}@media{.two{font-weight:700}}'
+        '.one{color:red;margin:0}@media{.two{font-weight:700}}.one{font-size:13px}',
+        '.one{color:red;margin:0;font-size:13px}@media{.two{font-weight:700}}'
       ]
     })
   )
@@ -113,8 +113,8 @@ vows.describe('remove duplicates')
   .addBatch(
     optimizerContext('advanced off', {
       'non-adjacent': [
-        'a{color:red;display:block}.one{font-size:12px}a{color:#fff;margin:2px}',
-        'a{color:red;display:block}.one{font-size:12px}a{color:#fff;margin:2px}'
+        'a{color:red;display:block}.one{font-size:13px}a{color:#fff;margin:2px}',
+        'a{color:red;display:block}.one{font-size:13px}a{color:#fff;margin:2px}'
       ]
     }, { advanced: false })
   )

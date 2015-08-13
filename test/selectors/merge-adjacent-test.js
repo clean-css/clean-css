@@ -5,8 +5,8 @@ vows.describe('remove duplicates')
   .addBatch(
     optimizerContext('advanced on', {
       'same context': [
-        'a{color:red}a{display:block;width:100px}div{color:#fff}',
-        'a{color:red;display:block;width:100px}div{color:#fff}'
+        'a{color:red}a{display:block;width:75px}div{color:#fff}',
+        'a{color:red;display:block;width:75px}div{color:#fff}'
       ],
       'of two non-adjacent selectors': [
         '.one{color:red}.two{color:#00f}.one{font-weight:700}',
@@ -17,8 +17,8 @@ vows.describe('remove duplicates')
         '.one{color:red;font-weight:700}'
       ],
       'of three adjacent single selectors': [
-        '.one{color:red}.one{font-weight:700}.one{font-size:12px}',
-        '.one{color:red;font-weight:700;font-size:12px}'
+        '.one{color:red}.one{font-weight:700}.one{font-size:13px}',
+        '.one{color:red;font-weight:700;font-size:13px}'
       ],
       'of three adjacent complex, multiple selectors': [
         '.one{color:red}#two.three{color:red}.four>.five{color:red}',
@@ -69,8 +69,8 @@ vows.describe('remove duplicates')
   .addBatch(
     optimizerContext('advanced off', {
       'same context': [
-        'a{color:red}a{display:block;width:100px}div{color:#fff}',
-        'a{color:red}a{display:block;width:100px}div{color:#fff}'
+        'a{color:red}a{display:block;width:75px}div{color:#fff}',
+        'a{color:red}a{display:block;width:75px}div{color:#fff}'
       ],
     }, { advanced: false })
   )

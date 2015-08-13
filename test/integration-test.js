@@ -80,8 +80,8 @@ vows.describe('integration tests')
         'div{margin:-moz-calc(50% + 15px);margin:calc(50% + .5rem)}'
       ],
       'not inside calc method with more parentheses': [
-        'div{height:-moz-calc((10% + 12px)/ 2 + 10em)}',
-        'div{height:-moz-calc((10% + 12px)/ 2 + 10em)}'
+        'div{height:-moz-calc((10% + 13px)/ 2 + 10em)}',
+        'div{height:-moz-calc((10% + 13px)/ 2 + 10em)}'
       ],
       'not inside calc method with multiplication': [
         'div{height:-moz-calc(3 * 2em + 10px)}',
@@ -89,7 +89,7 @@ vows.describe('integration tests')
       ],
       'not inside calc method with brackets': [
         'body{margin-left:calc(50vw + (1024px/2))}',
-        'body{margin-left:calc(50vw + (1024px/2))}'
+        'body{margin-left:calc(50vw + (64pc/2))}'
       ],
       'not inside calc method with brackets #2': [
         'body{width:calc((978px * 2/3) - 30px)}',
@@ -100,8 +100,8 @@ vows.describe('integration tests')
         'body{margin:calc(99.99% * 1/3 - (30px - 30px * 1/3) + 30px)}'
       ],
       'with space between braces': [
-        'body{width:calc( ( 100% - 12px) / 3 )}',
-        'body{width:calc((100% - 12px)/ 3)}'
+        'body{width:calc( ( 100% - 13px) / 3 )}',
+        'body{width:calc((100% - 13px)/ 3)}'
       ],
       'before colon': [
         '#test{padding-left :0}',
@@ -1200,8 +1200,8 @@ vows.describe('integration tests')
         'p{font:700 .9rem Helvetica}'
       ],
       'multiple changes': [
-        'p{font-weight:bold!important;width:100%;font:normal 12px Helvetica}',
-        'p{font-weight:700!important;width:100%;font:400 12px Helvetica}'
+        'p{font-weight:bold!important;width:100%;font:normal 13px Helvetica}',
+        'p{font-weight:700!important;width:100%;font:400 13px Helvetica}'
       ],
       'font weight in extended font declarations': [
         'a{font:normal normal normal 13px/20px Helvetica}',
@@ -1544,16 +1544,16 @@ vows.describe('integration tests')
         'a{font-family:\'123font\'}'
       ],
       'remove font quotation': [
-        'a{font:12px/16px "Helvetica",\'Arial\'}',
-        'a{font:12px/16px Helvetica,Arial}'
+        'a{font:13px/15px "Helvetica",\'Arial\'}',
+        'a{font:13px/15px Helvetica,Arial}'
       ],
       'remove font quotation #2': [
-        'a{font:12px/16px "Helvetica1_12",\'Arial_1451\'}',
-        'a{font:12px/16px Helvetica1_12,Arial_1451}'
+        'a{font:13px/15px "Helvetica1_12",\'Arial_1451\'}',
+        'a{font:13px/15px Helvetica1_12,Arial_1451}'
       ],
       'remove font quotation #3': [
-        'a{font:12px/16px "Helvetica-Regular",\'Arial-Bold\'}',
-        'a{font:12px/16px Helvetica-Regular,Arial-Bold}'
+        'a{font:13px/15px "Helvetica-Regular",\'Arial-Bold\'}',
+        'a{font:13px/15px Helvetica-Regular,Arial-Bold}'
       ],
       'do not remove quotation from enclosed JSON (weird, I know)': [
         'p{font-family:\'{ "current" : "large", "all" : ["small", "medium", "large"], "position" : 2 }\'}',
@@ -1656,8 +1656,8 @@ vows.describe('integration tests')
   .addBatch(
     optimizerContext('animations', {
       'shorten': [
-        '@keyframes test\n{ from\n { width:100px; }\n to { width:200px; }\n}',
-        '@keyframes test{from{width:100px}to{width:200px}}'
+        '@keyframes test\n{ from\n { width:90px; }\n to { width:200px; }\n}',
+        '@keyframes test{from{width:90px}to{width:200px}}'
       ],
       'remove name quotes': [
         '@keyframes "test1"{a{display:block}}@keyframes \'test2\'{a{display:block}}',
@@ -2217,8 +2217,8 @@ vows.describe('integration tests')
   .addBatch(
     optimizerContext('units - IE8 compatibility', {
       'rems': [
-        'div{padding-top:16px;color:red;padding-top:1rem}',
-        'div{padding-top:16px;color:red;padding-top:1rem}'
+        'div{padding-top:15px;color:red;padding-top:1rem}',
+        'div{padding-top:15px;color:red;padding-top:1rem}'
       ]
     }, { compatibility: 'ie8' })
   )

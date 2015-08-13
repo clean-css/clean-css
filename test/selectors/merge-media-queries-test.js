@@ -29,8 +29,8 @@ vows.describe('merge media queries')
         '@media screen{a{color:red}div{display:block}body{width:100%}}'
       ],
       'same two with selectors in between': [
-        '@media screen{a{color:red}}body{width:100%}.one{height:100px}@media screen{div{display:block}}',
-        'body{width:100%}.one{height:100px}@media screen{a{color:red}div{display:block}}'
+        '@media screen{a{color:red}}body{width:100%}.one{height:75px}@media screen{div{display:block}}',
+        'body{width:100%}.one{height:75px}@media screen{a{color:red}div{display:block}}'
       ],
       'same two with other @media in between': [
         '@media screen{a{color:red}}@media (min-width:1024px){body{width:100%}}@media screen{div{display:block}}',
@@ -53,8 +53,8 @@ vows.describe('merge media queries')
         '@media screen{a{color:red}div{display:block}}@media (min-width:1024px){p{width:100%}body{height:100%}}'
       ],
       'same two with overriding shorthand in between': [
-        '@media screen{a{font-size:10px}}@media (min-width:1024px){.one{font:12px Helvetica}}@media screen{div{display:block}}',
-        '@media screen{a{font-size:10px}}@media (min-width:1024px){.one{font:12px Helvetica}}@media screen{div{display:block}}'
+        '@media screen{a{font-size:10px}}@media (min-width:1024px){.one{font:13px Helvetica}}@media screen{div{display:block}}',
+        '@media screen{a{font-size:10px}}@media (min-width:1024px){.one{font:13px Helvetica}}@media screen{div{display:block}}'
       ],
       'same two with different component property in between': [
         '@media screen{a{font-size:10px}}@media (min-width:1024px){.one{font-weight:700}}@media screen{div{display:block}}',

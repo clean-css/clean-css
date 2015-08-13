@@ -9,12 +9,12 @@ vows.describe('restructure')
         'a{color:#000}.two,div{color:red}.one{display:block}.two{display:inline}'
       ],
       'up until top': [
-        'a{width:100px}div{color:red}.one{display:block}.two{display:inline;color:red}',
-        '.two,div{color:red}a{width:100px}.one{display:block}.two{display:inline}'
+        'a{width:75px}div{color:red}.one{display:block}.two{display:inline;color:red}',
+        '.two,div{color:red}a{width:75px}.one{display:block}.two{display:inline}'
       ],
       'up until top with charset': [
-        '@charset "utf-8";a{width:100px}div{color:red}.one{display:block}.two{display:inline;color:red}',
-        '@charset "utf-8";.two,div{color:red}a{width:100px}.one{display:block}.two{display:inline}'
+        '@charset "utf-8";a{width:75px}div{color:red}.one{display:block}.two{display:inline;color:red}',
+        '@charset "utf-8";.two,div{color:red}a{width:75px}.one{display:block}.two{display:inline}'
       ],
       'two at once': [
         '.one,.two,.three{color:red;display:block}div{margin:0}.four,.five,.six{color:red;display:block}',
@@ -93,8 +93,8 @@ vows.describe('restructure')
         '.one{border:1px solid #bbb}.two{border-color:#666}.three{border-width:1px;border-style:solid}'
       ],
       'multiple granular - complex case': [
-        '.one{background:red;padding:8px 16px}.two{padding-left:16px;padding-right:16px}.three{padding-top:20px}.four{border-left:1px solid #000;border-right:1px solid #000;border-bottom:1px solid #000}.five{background-color:#fff;background-image:-moz-linear-gradient();background-image:-ms-linear-gradient();background-image:-webkit-gradient();background-image:-webkit-linear-gradient()}',
-        '.one{background:red;padding:8px 16px}.two{padding-left:16px;padding-right:16px}.three{padding-top:20px}.four{border-left:1px solid #000;border-right:1px solid #000;border-bottom:1px solid #000}.five{background-color:#fff;background-image:-moz-linear-gradient();background-image:-ms-linear-gradient();background-image:-webkit-gradient();background-image:-webkit-linear-gradient()}'
+        '.one{background:red;padding:8px 24px}.two{padding-left:24px;padding-right:24px}.three{padding-top:20px}.four{border-left:1px solid #000;border-right:1px solid #000;border-bottom:1px solid #000}.five{background-color:#fff;background-image:-moz-linear-gradient();background-image:-ms-linear-gradient();background-image:-webkit-gradient();background-image:-webkit-linear-gradient()}',
+        '.one{background:red;padding:8px 24px}.two{padding-left:24px;padding-right:24px}.three{padding-top:20px}.four{border-left:1px solid #000;border-right:1px solid #000;border-bottom:1px solid #000}.five{background-color:#fff;background-image:-moz-linear-gradient();background-image:-ms-linear-gradient();background-image:-webkit-gradient();background-image:-webkit-linear-gradient()}'
       ],
       'multiple granular - special': [
         'input:-ms-input-placeholder{color:red;text-align:center}input::placeholder{color:red;text-align:center}',
@@ -117,24 +117,24 @@ vows.describe('restructure')
         '@-moz-keyframes test{0%{transform:scale3d(1,1,1);opacity:1}100%{transform:scale3d(.5,.5,.5);opacity:1}}'
       ],
       'with one important comment': [
-        '/*! comment */a{width:100px}div{color:red}.one{display:block}.two{display:inline;color:red}',
-        '/*! comment */.two,div{color:red}a{width:100px}.one{display:block}.two{display:inline}'
+        '/*! comment */a{width:75px}div{color:red}.one{display:block}.two{display:inline;color:red}',
+        '/*! comment */.two,div{color:red}a{width:75px}.one{display:block}.two{display:inline}'
       ],
       'with many important comments': [
-        '/*! comment 1 *//*! comment 2 */a{width:100px}div{color:red}.one{display:block}.two{display:inline;color:red}',
-        '/*! comment 1 *//*! comment 2 */.two,div{color:red}a{width:100px}.one{display:block}.two{display:inline}'
+        '/*! comment 1 *//*! comment 2 */a{width:75px}div{color:red}.one{display:block}.two{display:inline;color:red}',
+        '/*! comment 1 *//*! comment 2 */.two,div{color:red}a{width:75px}.one{display:block}.two{display:inline}'
       ],
       'with important comment and charset': [
-        '@charset "utf-8";/*! comment */a{width:100px}div{color:red}.one{display:block}.two{display:inline;color:red}',
-        '@charset "utf-8";/*! comment */.two,div{color:red}a{width:100px}.one{display:block}.two{display:inline}'
+        '@charset "utf-8";/*! comment */a{width:75px}div{color:red}.one{display:block}.two{display:inline;color:red}',
+        '@charset "utf-8";/*! comment */.two,div{color:red}a{width:75px}.one{display:block}.two{display:inline}'
       ],
       'with charset and import': [
-        '@charset "UTF-8";@import url(http://fonts.googleapis.com/css?family=Lora:400,700);a{width:100px}div{color:red}.one{display:block}.two{display:inline;color:red}',
-        '@charset "UTF-8";@import url(http://fonts.googleapis.com/css?family=Lora:400,700);.two,div{color:red}a{width:100px}.one{display:block}.two{display:inline}'
+        '@charset "UTF-8";@import url(http://fonts.googleapis.com/css?family=Lora:400,700);a{width:75px}div{color:red}.one{display:block}.two{display:inline;color:red}',
+        '@charset "UTF-8";@import url(http://fonts.googleapis.com/css?family=Lora:400,700);.two,div{color:red}a{width:75px}.one{display:block}.two{display:inline}'
       ],
       'with charset and import and comments': [
-        '@charset "UTF-8";@import url(http://fonts.googleapis.com/css?family=Lora:400,700);/*! comment */a{width:100px}div{color:red}.one{display:block}.two{display:inline;color:red}',
-        '@charset "UTF-8";@import url(http://fonts.googleapis.com/css?family=Lora:400,700);/*! comment */.two,div{color:red}a{width:100px}.one{display:block}.two{display:inline}'
+        '@charset "UTF-8";@import url(http://fonts.googleapis.com/css?family=Lora:400,700);/*! comment */a{width:75px}div{color:red}.one{display:block}.two{display:inline;color:red}',
+        '@charset "UTF-8";@import url(http://fonts.googleapis.com/css?family=Lora:400,700);/*! comment */.two,div{color:red}a{width:75px}.one{display:block}.two{display:inline}'
       ],
       'with same vendor prefixed value group': [
         'a{-moz-box-sizing:content-box;box-sizing:content-box}div{color:red}p{-moz-box-sizing:content-box;box-sizing:content-box}',

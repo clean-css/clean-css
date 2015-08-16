@@ -8,6 +8,7 @@
 * Fixed issue [#612](https://github.com/jakubpawlowicz/clean-css/issues/612) - adds HTTP proxy support.
 * Fixed issue [#618](https://github.com/jakubpawlowicz/clean-css/issues/618) - adds safer function validation.
 * Fixed issue [#625](https://github.com/jakubpawlowicz/clean-css/issues/625) - adds length unit optimizations.
+* Fixed issue [#635](https://github.com/jakubpawlowicz/clean-css/issues/635) - adds safer `0%` optimizations.
 * Fixed issue [#644](https://github.com/jakubpawlowicz/clean-css/issues/644) - adds time unit optimizations.
 * Fixed issue [#645](https://github.com/jakubpawlowicz/clean-css/issues/645) - adds bottom to top `media` merging.
 * Fixed issue [#648](https://github.com/jakubpawlowicz/clean-css/issues/648) - adds property level at-rule support.

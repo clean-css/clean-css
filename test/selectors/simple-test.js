@@ -625,6 +625,18 @@ vows.describe('simple optimizations')
       'rect zeros with commas': [
         'a{clip:rect(0px, 0px, 0px, 0px)}',
         [['clip', 'rect(0,0,0,0)']]
+      ],
+      'height': [
+        'a{height:0%}',
+        [['height', '0%']]
+      ],
+      'min-height': [
+        'a{min-height:0%}',
+        [['min-height', '0']]
+      ],
+      'max-height': [
+        'a{max-height:0%}',
+        [['max-height', '0%']]
       ]
     })
   )

@@ -1306,6 +1306,10 @@ vows.describe('integration tests')
       'uppercase': [
         'a{background-image: URL("images/image.png");}',
         'a{background-image:url(images/image.png)}'
+      ],
+      'image-set': [
+        'a{background:url(one.png);background:-webkit-image-set(url(one.png) 1x,url(two.png) 2x)}',
+        'a{background:url(one.png);background:-webkit-image-set(url(one.png) 1x,url(two.png) 2x)}'
       ]
     })
   )

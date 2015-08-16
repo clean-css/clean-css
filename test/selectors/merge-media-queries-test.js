@@ -37,24 +37,24 @@ vows.describe('merge media queries')
         '@media (min-width:1024px){body{width:100%}}@media screen{a{color:red}div{display:block}}'
       ],
       'same two with breaking properties in between': [
-        '@media screen{a{color:red}}.one{color:#00f}@media screen{div{display:block}}',
-        '@media screen{a{color:red}}.one{color:#00f}@media screen{div{display:block}}'
+        '@media screen{a{color:red}}.one{color:#00f;display:inline}@media screen{div{display:block}}',
+        '@media screen{a{color:red}}.one{color:#00f;display:inline}@media screen{div{display:block}}'
       ],
       'same two with breaking @media in between': [
-        '@media screen{a{color:red}}@media (min-width:1024px){.one{color:#00f}}@media screen{div{display:block}}',
-        '@media screen{a{color:red}}@media (min-width:1024px){.one{color:#00f}}@media screen{div{display:block}}'
+        '@media screen{a{color:red}}@media (min-width:1024px){.one{color:#00f;display:inline}}@media screen{div{display:block}}',
+        '@media screen{a{color:red}}@media (min-width:1024px){.one{color:#00f;display:inline}}@media screen{div{display:block}}'
       ],
       'same two with breaking nested @media in between': [
-        '@media screen{a{color:red}}@media (min-width:1024px){@media screen{.one{color:#00f}}}@media screen{div{display:block}}',
-        '@media screen{a{color:red}}@media (min-width:1024px){@media screen{.one{color:#00f}}}@media screen{div{display:block}}'
+        '@media screen{a{color:red}}@media (min-width:1024px){@media screen{.one{color:#00f;display:inline}}}@media screen{div{display:block}}',
+        '@media screen{a{color:red}}@media (min-width:1024px){@media screen{.one{color:#00f;display:inline}}}@media screen{div{display:block}}'
       ],
       'intermixed': [
         '@media screen{a{color:red}}@media (min-width:1024px){p{width:100%}}@media screen{div{display:block}}@media (min-width:1024px){body{height:100%}}',
         '@media screen{a{color:red}div{display:block}}@media (min-width:1024px){p{width:100%}body{height:100%}}'
       ],
       'same two with overriding shorthand in between': [
-        '@media screen{a{font-size:10px}}@media (min-width:1024px){.one{font:13px Helvetica}}@media screen{div{display:block}}',
-        '@media screen{a{font-size:10px}}@media (min-width:1024px){.one{font:13px Helvetica}}@media screen{div{display:block}}'
+        '@media screen{a{font-size:10px}}@media (min-width:1024px){.one{font:13px Helvetica;display:inline}}@media screen{div{display:block}}',
+        '@media screen{a{font-size:10px}}@media (min-width:1024px){.one{font:13px Helvetica;display:inline}}@media screen{div{display:block}}'
       ],
       'same two with different component property in between': [
         '@media screen{a{font-size:10px}}@media (min-width:1024px){.one{font-weight:700}}@media screen{div{display:block}}',
@@ -71,6 +71,14 @@ vows.describe('merge media queries')
       'with comments': [
         '@media screen{a{color:red}}/*! a comment */@media screen{a{display:block}}',
         '/*! a comment */@media screen{a{color:red;display:block}}'
+      ],
+      'backwards': [
+        '@media (max-width:768px){.one{padding-right:0}}.one{padding:10px}@media (max-width:768px){.one{margin:0}}',
+        '@media (max-width:768px){.one{padding-right:0;margin:0}}.one{padding:10px}'
+      ],
+      'backward of two with overriding shorthand in between': [
+        '@media screen{a{font-size:10px}}@media (min-width:1024px){.one{font:13px Helvetica}}@media screen{div{display:block}}',
+        '@media screen{a{font-size:10px}div{display:block}}@media (min-width:1024px){.one{font:13px Helvetica}}'
       ]
     })
   )

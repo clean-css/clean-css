@@ -387,6 +387,7 @@ dl{margin-bottom:20px}
 dd{margin-left:0}
 @media (min-width:768px){.dl-horizontal dt{float:left;width:10pc;overflow:hidden;clear:left;text-align:right;text-overflow:ellipsis;white-space:nowrap}
 .dl-horizontal dd{margin-left:180px}
+.container{width:750px}
 }
 abbr[data-original-title],abbr[title]{cursor:help;border-bottom:1px dotted #777}
 .initialism{font-size:90%;text-transform:uppercase}
@@ -410,8 +411,6 @@ pre{display:block;padding:9.5px;margin:0 0 10px;font-size:13px;color:#333;word-b
 pre code{padding:0;font-size:inherit;color:inherit;white-space:pre-wrap;border-radius:0}
 .container,.container-fluid{padding-right:15px;padding-left:15px}
 .pre-scrollable{overflow-y:scroll}
-@media (min-width:768px){.container{width:750px}
-}
 @media (min-width:992px){.container{width:970px}
 }
 @media (min-width:1200px){.container{width:1170px}
@@ -739,13 +738,13 @@ select[multiple].form-group-lg .form-control,textarea.form-group-lg .form-contro
 .form-inline .checkbox label,.form-inline .radio label{padding-left:0}
 .form-inline .checkbox input[type=checkbox],.form-inline .radio input[type=radio]{position:relative;margin-left:0}
 .form-inline .has-feedback .form-control-feedback{top:0}
+.form-horizontal .control-label{padding-top:7px;margin-bottom:0;text-align:right}
 }
 .form-horizontal .checkbox,.form-horizontal .checkbox-inline,.form-horizontal .radio,.form-horizontal .radio-inline{padding-top:7px;margin-top:0;margin-bottom:0}
 .form-horizontal .checkbox,.form-horizontal .radio{min-height:27px}
 .form-horizontal .form-group{margin-right:-15px;margin-left:-15px}
 .form-horizontal .has-feedback .form-control-feedback{right:15px}
-@media (min-width:768px){.form-horizontal .control-label{padding-top:7px;margin-bottom:0;text-align:right}
-.form-horizontal .form-group-lg .control-label{padding-top:14.33px}
+@media (min-width:768px){.form-horizontal .form-group-lg .control-label{padding-top:14.33px}
 .form-horizontal .form-group-sm .control-label{padding-top:6px}
 }
 .btn{display:inline-block;padding:6px 9pt;margin-bottom:0;font-size:14px;font-weight:400;line-height:1.42857143;text-align:center;white-space:nowrap;vertical-align:middle;-ms-touch-action:manipulation;touch-action:manipulation;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;border:1px solid transparent;border-radius:4px}
@@ -969,13 +968,12 @@ select[multiple].input-group-sm>.form-control,select[multiple].input-group-sm>.i
 .navbar-form .checkbox label,.navbar-form .radio label{padding-left:0}
 .navbar-form .checkbox input[type=checkbox],.navbar-form .radio input[type=radio]{position:relative;margin-left:0}
 .navbar-form .has-feedback .form-control-feedback{top:0}
+.navbar-form{width:auto;padding-top:0;padding-bottom:0;margin-right:0;margin-left:0;border:0;-webkit-box-shadow:none;box-shadow:none}
 }
 .breadcrumb>li,.pagination{display:inline-block}
 .btn .badge,.btn .label{top:-1px;position:relative}
 @media (max-width:767px){.navbar-form .form-group{margin-bottom:5px}
 .navbar-form .form-group:last-child{margin-bottom:0}
-}
-@media (min-width:768px){.navbar-form{width:auto;padding-top:0;padding-bottom:0;margin-right:0;margin-left:0;border:0;-webkit-box-shadow:none;box-shadow:none}
 }
 .navbar-nav>li>.dropdown-menu{margin-top:0;border-top-left-radius:0;border-top-right-radius:0}
 .navbar-fixed-bottom .navbar-nav>li>.dropdown-menu{margin-bottom:0;border-radius:4px 4px 0 0}
@@ -1398,14 +1396,13 @@ td.visible-lg,th.visible-lg{display:table-cell!important}
 .visible-lg-block{display:block!important}
 .visible-lg-inline{display:inline!important}
 .visible-lg-inline-block{display:inline-block!important}
+.hidden-lg{display:none!important}
 }
 @media (max-width:767px){.hidden-xs{display:none!important}
 }
 @media (min-width:768px) and (max-width:991px){.hidden-sm{display:none!important}
 }
 @media (min-width:992px) and (max-width:1199px){.hidden-md{display:none!important}
-}
-@media (min-width:1200px){.hidden-lg{display:none!important}
 }
 .visible-print{display:none!important}
 @media print{.visible-print{display:block!important}

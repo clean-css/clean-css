@@ -1,4 +1,4 @@
-/* jshint unused: false */
+/* jshint unused: false, camelcase: false */
 
 var vows = require('vows');
 var assert = require('assert');
@@ -494,34 +494,37 @@ vows.describe('protocol imports').addBatch({
       this.server.destroy();
       nock.disableNetConnect();
     }
-  },
+  }
+}).addBatch({
   'of a proxied resource': {
     topic: function () {
-      this.proxied = false;
-
       var self = this;
-      var proxy = httpProxy.createProxyServer();
-      this.proxyServer = http.createServer(function (req, res) {
-        self.proxied = true;
-        proxy.web(req, res, { target: 'http://' + url.parse(req.url).host });
-      });
-      this.proxyServer.listen(8080);
-      enableDestroy(this.proxyServer);
+      nock.enableNetConnect();
+
+      this.proxied = false;
 
       this.reqMocks = nock('http://assets.127.0.0.1')
         .get('/styles.css')
         .reply(200, 'a{color:red}');
 
-      var options = {
-        inliner: {
-          request: {
-            hostname: '127.0.0.1',
-            port: 8080
+      var proxy = httpProxy.createProxyServer();
+      this.proxyServer = http.createServer(function (req, res) {
+        self.proxied = true;
+        proxy.web(req, res, { target: 'http://' + url.parse(req.url).host }, function () {});
+      });
+      this.proxyServer.listen(8080, function () {
+        var options = {
+          inliner: {
+            request: {
+              hostname: '127.0.0.1',
+              port: 8080
+            }
           }
-        }
-      };
+        };
 
-      new CleanCSS(options).minify('@import url(http://assets.127.0.0.1/styles.css);', this.callback);
+        new CleanCSS(options).minify('@import url(http://assets.127.0.0.1/styles.css);', self.callback);
+      });
+      enableDestroy(this.proxyServer);
     },
     'proxies the connection': function () {
       assert.isTrue(this.proxied);
@@ -533,6 +536,85 @@ vows.describe('protocol imports').addBatch({
       assert.isTrue(this.reqMocks.isDone());
       nock.cleanAll();
       this.proxyServer.destroy();
+    }
+  }
+}).addBatch({
+  'of a proxied resource via env variables': {
+    topic: function () {
+      var self = this;
+      nock.enableNetConnect();
+
+      this.reqMocks = nock('http://assets.127.0.0.1')
+        .get('/styles.css')
+        .reply(200, 'a{color:red}');
+
+      var proxy = httpProxy.createProxyServer();
+      this.proxied = false;
+      this.proxyServer = http.createServer(function (req, res) {
+        self.proxied = true;
+        proxy.web(req, res, { target: 'http://' + url.parse(req.url).host }, function (e) { console.log(e); });
+      });
+      this.proxyServer.listen(8081, function () {
+        process.env.http_proxy = 'http://127.0.0.1:8081';
+        new CleanCSS().minify('@import url(http://assets.127.0.0.1/styles.css);', self.callback);
+      });
+      enableDestroy(this.proxyServer);
+    },
+    'proxies the connection': function () {
+      assert.isTrue(this.proxied);
+    },
+    'gets right output': function (errors, minified) {
+      assert.equal(minified.styles, 'a{color:red}');
+    },
+    teardown: function () {
+      assert.isTrue(this.reqMocks.isDone());
+      nock.cleanAll();
+      this.proxyServer.destroy();
+      delete process.env.http_proxy;
+    }
+  }
+}).addBatch({
+  'of a proxied resource via env variables overridden by options': {
+    topic: function () {
+      var self = this;
+      nock.enableNetConnect();
+
+      this.reqMocks = nock('http://assets.127.0.0.1')
+        .get('/styles.css')
+        .reply(200, 'a{color:red}');
+
+      var proxy = httpProxy.createProxyServer();
+      this.proxied = false;
+      this.proxyServer = http.createServer(function (req, res) {
+        self.proxied = true;
+        proxy.web(req, res, { target: 'http://' + url.parse(req.url).host }, function () {});
+      });
+      this.proxyServer.listen(8082, function () {
+        var options = {
+          inliner: {
+            request: {
+              hostname: '127.0.0.1',
+              port: 8082
+            }
+          }
+        };
+
+        process.env.http_proxy = 'http://some-fake-proxy:8082';
+        new CleanCSS(options).minify('@import url(http://assets.127.0.0.1/styles.css);', self.callback);
+      });
+      enableDestroy(this.proxyServer);
+    },
+    'proxies the connection': function () {
+      assert.isTrue(this.proxied);
+    },
+    'gets right output': function (errors, minified) {
+      assert.equal(minified.styles, 'a{color:red}');
+    },
+    teardown: function () {
+      assert.isTrue(this.reqMocks.isDone());
+      nock.cleanAll();
+      this.proxyServer.destroy();
+      delete process.env.http_proxy;
     }
   }
 }).export(module);

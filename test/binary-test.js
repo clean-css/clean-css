@@ -3,7 +3,9 @@ var assert = require('assert');
 var exec = require('child_process').exec;
 var fs = require('fs');
 var http = require('http');
+var httpProxy = require('http-proxy');
 var path = require('path');
+var url = require('url');
 var SourceMapConsumer = require('source-map').SourceMapConsumer;
 
 var isWindows = process.platform == 'win32';
@@ -329,6 +331,39 @@ vows.describe('./bin/cleancss')
         assert.isEmpty(stdout);
       },
       teardown: function () {
+        this.server.close();
+      }
+    })
+  })
+  .addBatch({
+    'HTTP proxy': unixOnlyContext({
+      topic: function () {
+        var self = this;
+        this.proxied = false;
+
+        var proxy = httpProxy.createProxyServer();
+        this.proxyServer = http.createServer(function (req, res) {
+          self.proxied = true;
+          proxy.web(req, res, { target: 'http://' + url.parse(req.url).host }, function () {});
+        });
+        this.proxyServer.listen(8081);
+
+        this.server = http.createServer(function (req, res) {
+          res.writeHead(200);
+          res.end('a{color:red}');
+        });
+        this.server.listen(8080);
+
+        exec('echo "@import url(http://127.0.0.1:8080/test.css);" | HTTP_PROXY=http://127.0.0.1:8081 ./bin/cleancss', this.callback);
+      },
+      'proxies the connection': function () {
+        assert.isTrue(this.proxied);
+      },
+      'gives right output': function (error, stdout) {
+        assert.equal(stdout, 'a{color:red}');
+      },
+      teardown: function () {
+        this.proxyServer.close();
         this.server.close();
       }
     })

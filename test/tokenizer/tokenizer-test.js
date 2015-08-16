@@ -170,6 +170,16 @@ vows.describe(tokenize)
           ['selector', [['div:nth-child(2n):not(.test)']], []]
         ]
       ],
+      '@apply': [
+        'a{@apply(--rule);}',
+        [
+          [
+            'selector',
+            [['a']],
+            [['at-rule', '@apply(--rule)']]
+          ]
+        ]
+      ],
       'media query': [
         '@media (min-width:980px){}',
         [

@@ -2143,6 +2143,22 @@ vows.describe('integration tests')
     }, { processImport: false, root: process.cwd(), relativeTo: process.cwd() })
   )
   .addBatch(
+    optimizerContext('body at-rules', {
+      'single @apply': [
+        'a{@apply(--rule)}',
+        'a{@apply(--rule)}'
+      ],
+      'multiple @apply': [
+        'a{@apply(--rule1);@apply(--rule2)}',
+        'a{@apply(--rule1);@apply(--rule2)}'
+      ],
+      'multiple @apply with some styling': [
+        'a{@apply(--rule1);@apply(--rule2);color:red;display:block}',
+        'a{@apply(--rule1);@apply(--rule2);color:red;display:block}'
+      ]
+    })
+  )
+  .addBatch(
     optimizerContext('duplicate selectors with disabled advanced processing', {
       'of a duplicate selector': [
         'a,a{color:red}',

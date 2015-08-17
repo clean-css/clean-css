@@ -2274,6 +2274,7 @@ form .btn-rounded-degraded input[type=button],form .btn-rounded-degraded input[t
 #core-liberation .toolbox li.spacer span{display:block;width:1px;height:20px;margin-top:5px}
 #core-liberation .toolbox .txt-min,#core-liberation .toolbox .txt-plus{display:block;font-size:15px;padding-top:4px}
 #core-liberation .toolbox .txt-reset{display:block;font-family:"Times New Roman",Times,Georgia,serif;font-size:19px;padding:4px 0 0 3px}
+#page-mailfriend,#page-paywall{font-family:Verdana,sans-serif}
 .site-liberation .toolbox li a span{display:block}
 .site-liberation .toolbox li a.print span{margin-top:7px;width:1pc;height:1pc}
 .site-liberation .toolbox li a.favorite span{margin-top:5px;width:20px;height:18px}
@@ -2300,7 +2301,6 @@ form .btn-rounded-degraded input[type=button],form .btn-rounded-degraded input[t
 #core-liberation .sb-podcasts ul li a.itunes{background-position:-267px 0;width:50px}
 #core-liberation .sb-podcasts ul li a.xml{background-position:-322px 0;width:41px}
 #bar-liberation{display:block;position:fixed;top:0;left:0;z-index:10000;width:100%;height:40px;border-bottom:1px solid;font-family:Arial,Verdana,sans-serif;font-size:9pt;line-height:14px}
-#page-mailfriend,#page-paywall{font-family:Verdana,sans-serif}
 body.init-bar-is-closed #bar-liberation{height:15px}
 #bar-liberation a,#bar-liberation a p{text-decoration:none;outline:0}
 #bar-liberation .content{position:relative;margin:auto;height:40px;width:801pt}
@@ -2868,13 +2868,13 @@ body.slideshow .ad-top .megaban{background:#333}
 #bar-liberation{background-color:#fff;box-shadow:0 1px 2px 0 #E2E2E2;-webkit-box-shadow:0 1px 2px 0 #E2E2E2;-moz-box-shadow:0 1px 2px 0 #E2E2E2}
 #bar-liberation,#bar-liberation a{color:#3c3c3c}
 #bar-liberation .content .activities-stream,#bar-liberation .content .close,#bar-liberation .content .login,#bar-liberation .content .mail-box,#bar-liberation .content .open,#bar-liberation .content .other,#bar-liberation .content .personal-options{background:#fff;border-left-color:#dadada;border-right-color:#dadada;border-bottom-color:#dadada}
+#bar-liberation #personal-options-content,#bar-liberation .content .open a .arrow{border-left-color:1px solid #dadada;border-right-color:1px solid #dadada}
 #bar-liberation .content ul.list li,#bar-liberation .content ul.list li a,#core-liberation .block-activities .block-content ul li,#core-liberation .block-activities .block-content ul li a{color:#222}
 #bar-liberation .content ul.list li span,#core-liberation .block-activities .block-content ul li span{color:#878787}
-#bar-liberation .content .open a .arrow{border-left-color:1px solid #dadada;border-right-color:1px solid #dadada}
 #bar-liberation .content .login a.subscribe{background-color:#656565;color:#fff}
 #bar-liberation .content .login a.subscribe:hover{background-color:#3c3c3c}
 #bar-liberation #login-box-content{background-color:#fff;border-left-color:#dadada;border-right-color:#dadada;box-shadow:0 1px 1px 0 #E2E2E2;-webkit-box-shadow:0 1px 1px 0 #E2E2E2;-moz-box-shadow:0 1px 1px 0 #E2E2E2}
-#bar-liberation #personal-options-content{background-color:#fff;border-left-color:1px solid #dadada;border-right-color:1px solid #dadada;border-bottom-color:1px solid #dadada;box-shadow:0 1px 1px 0 #E2E2E2;-webkit-box-shadow:0 1px 1px 0 #E2E2E2;-moz-box-shadow:0 1px 1px 0 #E2E2E2}
+#bar-liberation #personal-options-content{background-color:#fff;border-bottom-color:1px solid #dadada;box-shadow:0 1px 1px 0 #E2E2E2;-webkit-box-shadow:0 1px 1px 0 #E2E2E2;-moz-box-shadow:0 1px 1px 0 #E2E2E2}
 #bar-liberation #personal-options-content ul.subscription li.subscribe,#bar-liberation #personal-options-content ul.subscription li.subscribe a,#bar-liberation #personal-options-content ul.subscription strong{color:#a40000}
 #bar-liberation #personal-options-content ul li{color:#878787}
 #bar-liberation #personal-options-content ul li a,#bar-liberation #personal-options-content ul li strong{color:#3c3c3c}

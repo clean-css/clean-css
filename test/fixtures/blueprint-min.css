@@ -1,6 +1,6 @@
-h1,h3{line-height:1}
+h1 img,h2 img,h3 img,h4 img,h5 img,h6 img,html{margin:0}
 .clear,hr{clear:both}
-html{margin:0;padding:0;border:0;font-size:100.01%}
+html{padding:0;border:0;font-size:100.01%}
 a,abbr,acronym,address,article,aside,blockquote,body,caption,code,dd,del,dfn,dialog,div,dl,dt,em,fieldset,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,iframe,img,label,legend,li,nav,object,ol,p,pre,q,section,span,table,tbody,td,tfoot,th,thead,tr,ul{margin:0;padding:0;border:0;font-weight:inherit;font-style:inherit;font-size:100%;font-family:inherit;vertical-align:baseline}
 address,blockquote,dfn,em,tfoot{font-style:italic}
 h5,h6{font-size:1em;font-weight:700}
@@ -13,17 +13,17 @@ blockquote,q{quotes:"" ""}
 a img{border:none}
 :focus{outline:0}
 h1,h2,h3,h4,h5,h6{font-weight:400;color:#111}
-h1{font-size:3em;margin-bottom:.5em}
+h1{font-size:3em;line-height:1;margin-bottom:.5em}
 h2{font-size:2em;margin-bottom:.75em}
-h3{font-size:1.5em;margin-bottom:1em}
+h3{font-size:1.5em;line-height:1;margin-bottom:1em}
 h4{font-size:1.2em;line-height:1.25;margin-bottom:1.25em}
 h5{margin-bottom:1.5em}
-h1 img,h2 img,h3 img,h4 img,h5 img,h6 img{margin:0}
 p{margin:0 0 1.5em}
 .left{float:left!important}
 p .left{margin:1.5em 1.5em 1.5em 0;padding:0}
 .right{float:right!important}
 p .right{margin:1.5em 0 1.5em 1.5em;padding:0}
+address,dl{margin:0 0 1.5em}
 a:focus,a:hover{color:#09f}
 a{color:#06c;text-decoration:underline}
 .quiet,blockquote,del{color:#666}
@@ -31,14 +31,12 @@ blockquote{margin:1.5em}
 dfn,dl dt,strong,th{font-weight:700}
 sub,sup{line-height:0}
 abbr,acronym{border-bottom:1px dotted #666}
-address{margin:0 0 1.5em}
 pre{margin:1.5em 0;white-space:pre}
 code,pre,tt{font:1em 'andale mono','lucida console',monospace;line-height:1.5}
 li ol,li ul{margin:0}
 ol,ul{margin:0 1.5em 1.5em 0;padding-left:1.5em}
 ul{list-style-type:disc}
 ol{list-style-type:decimal}
-dl{margin:0 0 1.5em}
 dd{margin-left:1.5em}
 table{border-collapse:separate;border-spacing:0;margin-bottom:1.4em;width:100%}
 thead th{background:#c3d9ff}

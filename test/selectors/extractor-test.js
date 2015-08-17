@@ -33,6 +33,12 @@ vows.describe(extractor)
         assert.deepEqual(tokens, [['color', 'red!important', 'color', [['color'], ['red!important']], 'color:red!important', [['a']], true]]);
       }
     },
+    'one property - simple selector': {
+      'topic': extractor(buildToken('#one span{color:red}')),
+      'has no properties': function (tokens) {
+        assert.deepEqual(tokens, [['color', 'red', 'color', [['color'], ['red']], 'color:red', [['#one span']], true]]);
+      }
+    },
     'one property - complex selector': {
       'topic': extractor(buildToken('.one{color:red}')),
       'has no properties': function (tokens) {

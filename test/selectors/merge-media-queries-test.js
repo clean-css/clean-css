@@ -72,6 +72,10 @@ vows.describe('merge media queries')
         '@media screen{a{color:red}}/*! a comment */@media screen{a{display:block}}',
         '/*! a comment */@media screen{a{color:red;display:block}}'
       ],
+      'with IDs mixed with type selectors': [
+        '@media (max-width:768px){#id img{display:none}}#id span{display:inline-block;width:50%}@media (max-width:768px){#id span{width:100%}}',
+        '#id span{display:inline-block;width:50%}@media (max-width:768px){#id img{display:none}#id span{width:100%}}'
+      ],
       'backwards': [
         '@media (max-width:768px){.one{padding-right:0}}.one{padding:10px}@media (max-width:768px){.one{margin:0}}',
         '@media (max-width:768px){.one{padding-right:0;margin:0}}.one{padding:10px}'

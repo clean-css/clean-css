@@ -5,6 +5,7 @@
 * Adds inferring proxy settings from HTTP_PROXY environment variable.
 * Unifies wrappers for simple & advanced optimizations.
 * Fixed issue [#599](https://github.com/jakubpawlowicz/clean-css/issues/599) - support for inlined source maps.
+* Fixed issue [#607](https://github.com/jakubpawlowicz/clean-css/issues/607) - adds better rule reordering.
 * Fixed issue [#612](https://github.com/jakubpawlowicz/clean-css/issues/612) - adds HTTP proxy support.
 * Fixed issue [#618](https://github.com/jakubpawlowicz/clean-css/issues/618) - adds safer function validation.
 * Fixed issue [#625](https://github.com/jakubpawlowicz/clean-css/issues/625) - adds length unit optimizations.

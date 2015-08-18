@@ -352,6 +352,25 @@ vows.describe('protocol imports').addBatch({
       nock.cleanAll();
     }
   },
+  'of a resource with a protocol and absolute URL without a protocol': {
+    topic: function () {
+      this.reqMocks = nock('http://127.0.0.1')
+        .get('/no-protocol.css')
+        .reply(200, 'a{background:url(//127.0.0.1/image.png)}');
+
+      new CleanCSS().minify('@import url(http://127.0.0.1/no-protocol.css);', this.callback);
+    },
+    'should not raise errors': function (errors, minified) {
+      assert.isNull(errors);
+    },
+    'should process @import': function (errors, minified) {
+      assert.equal(minified.styles, 'a{background:url(//127.0.0.1/image.png)}');
+    },
+    teardown: function () {
+      assert.isTrue(this.reqMocks.isDone());
+      nock.cleanAll();
+    }
+  },
   'of a resource without protocol with rebase to another domain': {
     topic: function () {
       this.reqMocks = nock('http://127.0.0.1')

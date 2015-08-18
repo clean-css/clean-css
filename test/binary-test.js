@@ -215,6 +215,23 @@ vows.describe('./bin/cleancss')
     })
   })
   .addBatch({
+    'disable all @import': pipedContext('@import url(http://127.0.0.1/remote.css);@import url(test/fixtures/partials/one.css);', '--skip-import-from all', {
+      'should disable the remote import processing': function (error, stdout) {
+        assert.equal(stdout, '@import url(http://127.0.0.1/remote.css);@import url(test/fixtures/partials/one.css);');
+      }
+    }),
+    'disable remote @import': pipedContext('@import url(http://127.0.0.1/remote.css);@import url(test/fixtures/partials/one.css);', '--skip-import-from remote', {
+      'should disable the remote import processing': function (error, stdout) {
+        assert.equal(stdout, '@import url(http://127.0.0.1/remote.css);.one{color:red}');
+      }
+    }),
+    'disable remote @import by host': pipedContext('@import url(http://127.0.0.1/remote.css);@import url(test/fixtures/partials/one.css);', '--skip-import-from 127.0.0.1', {
+      'should disable the remote import processing': function (error, stdout) {
+        assert.equal(stdout, '@import url(http://127.0.0.1/remote.css);.one{color:red}');
+      }
+    })
+  })
+  .addBatch({
     'relative image paths': {
       'no root & output': binaryContext('./test/fixtures/partials-relative/base.css', {
         'should leave paths': function (error, stdout) {

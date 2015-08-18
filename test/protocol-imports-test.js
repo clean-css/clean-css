@@ -459,6 +459,21 @@ vows.describe('protocol imports').addBatch({
       nock.cleanAll();
     }
   },
+  'of a remote resource mixed with local ones and disabled remote imports': {
+    topic: function () {
+      var source = '@import url(http://127.0.0.1/skipped.css);@import url(test/fixtures/partials/one.css);';
+      new CleanCSS({ processImportFrom: ['local'] }).minify(source, this.callback);
+    },
+    'should not raise errors': function (error, minified) {
+      assert.isEmpty(minified.errors);
+    },
+    'should not raise warnings': function (error, minified) {
+      assert.isEmpty(minified.warnings);
+    },
+    'should keep imports': function (error, minified) {
+      assert.equal(minified.styles, '@import url(http://127.0.0.1/skipped.css);.one{color:red}');
+    }
+  },
   'of a remote file that imports relative stylesheets': {
     topic: function () {
       var source = '@import url(http://127.0.0.1/test/folder/remote.css);';
@@ -634,6 +649,146 @@ vows.describe('protocol imports').addBatch({
       nock.cleanAll();
       this.proxyServer.destroy();
       delete process.env.http_proxy;
+    }
+  }
+}).addBatch({
+  'allowed imports - not set': {
+    topic: function () {
+      var source = '@import url(http://127.0.0.1/remote.css);@import url(http://assets.127.0.0.1/remote.css);@import url(test/fixtures/partials/one.css);';
+      this.reqMocks1 = nock('http://127.0.0.1')
+        .get('/remote.css')
+        .reply(200, 'div{border:0}');
+      this.reqMocks2 = nock('http://assets.127.0.0.1')
+        .get('/remote.css')
+        .reply(200, 'p{width:100%}');
+
+      new CleanCSS().minify(source, this.callback);
+    },
+    'should not raise errors': function (error, minified) {
+      assert.isEmpty(minified.errors);
+    },
+    'should not raise warnings': function (error, minified) {
+      assert.isEmpty(minified.warnings);
+    },
+    'should process imports': function (error, minified) {
+      assert.equal(minified.styles, 'div{border:0}p{width:100%}.one{color:red}');
+    },
+    teardown: function () {
+      assert.isTrue(this.reqMocks1.isDone());
+      assert.isTrue(this.reqMocks2.isDone());
+      nock.cleanAll();
+    }
+  },
+  'allowed imports - not set and disabled by processImport': {
+    topic: function () {
+      var source = '@import url(http://127.0.0.1/remote.css);@import url(http://assets.127.0.0.1/remote.css);@import url(test/fixtures/partials/one.css);';
+      new CleanCSS({ processImport: false }).minify(source, this.callback);
+    },
+    'should not raise errors': function (error, minified) {
+      assert.isEmpty(minified.errors);
+    },
+    'should not raise warnings': function (error, minified) {
+      assert.isEmpty(minified.warnings);
+    },
+    'should process imports': function (error, minified) {
+      assert.equal(minified.styles, '@import url(http://127.0.0.1/remote.css);@import url(http://assets.127.0.0.1/remote.css);@import url(test/fixtures/partials/one.css);');
+    }
+  },
+  'allowed imports - local': {
+    topic: function () {
+      var source = '@import url(http://127.0.0.1/remote.css);@import url(http://assets.127.0.0.1/remote.css);@import url(test/fixtures/partials/one.css);';
+      new CleanCSS({ processImportFrom: ['local'] }).minify(source, this.callback);
+    },
+    'should not raise errors': function (error, minified) {
+      assert.isEmpty(minified.errors);
+    },
+    'should not raise warnings': function (error, minified) {
+      assert.isEmpty(minified.warnings);
+    },
+    'should keeps imports': function (error, minified) {
+      assert.equal(minified.styles, '@import url(http://127.0.0.1/remote.css);@import url(http://assets.127.0.0.1/remote.css);.one{color:red}');
+    }
+  },
+  'allowed imports - remote': {
+    topic: function () {
+      var source = '@import url(http://127.0.0.1/remote.css);@import url(http://assets.127.0.0.1/remote.css);@import url(test/fixtures/partials/one.css);';
+      this.reqMocks1 = nock('http://127.0.0.1')
+        .get('/remote.css')
+        .reply(200, 'div{border:0}');
+      this.reqMocks2 = nock('http://assets.127.0.0.1')
+        .get('/remote.css')
+        .reply(200, 'p{width:100%}');
+      new CleanCSS({ processImportFrom: ['remote'] }).minify(source, this.callback);
+    },
+    'should not raise errors': function (error, minified) {
+      assert.isEmpty(minified.errors);
+    },
+    'should not raise warnings': function (error, minified) {
+      assert.lengthOf(minified.warnings, 1);
+    },
+    'should process imports': function (error, minified) {
+      assert.equal(minified.styles, 'div{border:0}p{width:100%}');
+    },
+    teardown: function () {
+      assert.isTrue(this.reqMocks1.isDone());
+      assert.isTrue(this.reqMocks2.isDone());
+      nock.cleanAll();
+    }
+  },
+  'allowed imports - all': {
+    topic: function () {
+      var source = '@import url(http://127.0.0.1/remote.css);@import url(http://assets.127.0.0.1/remote.css);@import url(test/fixtures/partials/one.css);';
+      this.reqMocks1 = nock('http://127.0.0.1')
+        .get('/remote.css')
+        .reply(200, 'div{border:0}');
+      this.reqMocks2 = nock('http://assets.127.0.0.1')
+        .get('/remote.css')
+        .reply(200, 'p{width:100%}');
+      new CleanCSS({ processImportFrom: ['all'] }).minify(source, this.callback);
+    },
+    'should not raise errors': function (error, minified) {
+      assert.isEmpty(minified.errors);
+    },
+    'should not raise warnings': function (error, minified) {
+      assert.isEmpty(minified.warnings);
+    },
+    'should process imports': function (error, minified) {
+      assert.equal(minified.styles, 'div{border:0}p{width:100%}.one{color:red}');
+    },
+    teardown: function () {
+      assert.isTrue(this.reqMocks1.isDone());
+      assert.isTrue(this.reqMocks2.isDone());
+      nock.cleanAll();
+    }
+  },
+  'allowed imports - blacklisted': {
+    topic: function () {
+      var source = '@import url(http://127.0.0.1/remote.css);@import url(http://assets.127.0.0.1/remote.css);@import url(test/fixtures/partials/one.css);';
+      new CleanCSS({ processImportFrom: ['remote', 'local', '!assets.127.0.0.1', '!127.0.0.1', '!test/fixtures/partials/one.css'] }).minify(source, this.callback);
+    },
+    'should not raise errors': function (error, minified) {
+      assert.isEmpty(minified.errors);
+    },
+    'should raise a warning': function (error, minified) {
+      assert.isEmpty(minified.warnings);
+    },
+    'should process first imports': function (error, minified) {
+      assert.equal(minified.styles, '@import url(http://127.0.0.1/remote.css);@import url(http://assets.127.0.0.1/remote.css);@import url(test/fixtures/partials/one.css);');
+    }
+  },
+  'allowed imports - blacklisted & no-protocol': {
+    topic: function () {
+      var source = '@import url(//127.0.0.1/remote.css);@import url(test/fixtures/partials/one.css);';
+      new CleanCSS({ processImportFrom: ['!127.0.0.1'] }).minify(source, this.callback);
+    },
+    'should not raise errors': function (error, minified) {
+      assert.isEmpty(minified.errors);
+    },
+    'should raise a warning': function (error, minified) {
+      assert.isEmpty(minified.warnings);
+    },
+    'should process first imports': function (error, minified) {
+      assert.equal(minified.styles, '@import url(//127.0.0.1/remote.css);.one{color:red}');
     }
   }
 }).export(module);

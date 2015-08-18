@@ -48,6 +48,7 @@ cleancss [options] source-file, [source-file, ...]
 --semantic-merging             Enables unsafe mode by assuming BEM-like semantic stylesheets (warning, this may break your styling!)
 --skip-advanced                Disable advanced optimizations - ruleset reordering & merging
 --skip-aggressive-merging      Disable properties merging based on their order
+--skip-import-from [rules]     Disable @import processing for specified rules
 --skip-media-merging           Disable @media merging
 --skip-rebase                  Disable URLs rebasing
 --skip-restructuring           Disable restructuring optimizations
@@ -110,6 +111,7 @@ CleanCSS constructor accepts a hash as a parameter, i.e.,
 * `keepSpecialComments` - `*` for keeping all (default), `1` for keeping first one only, `0` for removing all
 * `mediaMerging` - whether to merge `@media` at-rules (default is true)
 * `processImport` - whether to process `@import` rules
+* `processImportFrom` - a list of `@import` rules, can be `['all']` (default), `['local']`, `['remote']`, or a blacklisted path e.g. `['!fonts.googleapis.com']`
 * `rebase` - set to false to skip URL rebasing
 * `relativeTo` - path to **resolve** relative `@import` rules and URLs
 * `restructuring` - set to false to disable restructuring in advanced optimizations

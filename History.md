@@ -1,6 +1,7 @@
 [3.4.0 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.3.7...master)
 ==================
 
+* Adds an option for a fine-grained `@import` control.
 * Adds unit compatibility switches to disable length optimizations.
 * Adds inferring proxy settings from HTTP_PROXY environment variable.
 * Adds support for Polymer / Web Components special selectors.
@@ -12,6 +13,7 @@
 * Fixed issue [#612](https://github.com/jakubpawlowicz/clean-css/issues/612) - adds HTTP proxy support.
 * Fixed issue [#618](https://github.com/jakubpawlowicz/clean-css/issues/618) - adds safer function validation.
 * Fixed issue [#625](https://github.com/jakubpawlowicz/clean-css/issues/625) - adds length unit optimizations.
+* Fixed issue [#632](https://github.com/jakubpawlowicz/clean-css/issues/632) - adds disabling remote `import`s.
 * Fixed issue [#635](https://github.com/jakubpawlowicz/clean-css/issues/635) - adds safer `0%` optimizations.
 * Fixed issue [#644](https://github.com/jakubpawlowicz/clean-css/issues/644) - adds time unit optimizations.
 * Fixed issue [#645](https://github.com/jakubpawlowicz/clean-css/issues/645) - adds bottom to top `media` merging.

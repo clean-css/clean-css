@@ -28,6 +28,7 @@ commands
   .option('--semantic-merging', 'Enables unsafe mode by assuming BEM-like semantic stylesheets (warning, this may break your styling!)')
   .option('--skip-advanced', 'Disable advanced optimizations - ruleset reordering & merging')
   .option('--skip-aggressive-merging', 'Disable properties merging based on their order')
+  .option('--skip-import-from [rules]', 'Disable @import processing for specified rules', function (val) { return val.split(','); }, [])
   .option('--skip-media-merging', 'Disable @media merging')
   .option('--skip-rebase', 'Disable URLs rebasing')
   .option('--skip-restructuring', 'Disable restructuring optimizations')
@@ -69,6 +70,7 @@ var options = {
   keepSpecialComments: commands.s0 ? 0 : (commands.s1 ? 1 : '*'),
   mediaMerging: commands.skipMediaMerging ? false : true,
   processImport: commands.skipImport ? false : true,
+  processImportFrom: processImportFrom(commands.skipImportFrom),
   rebase: commands.skipRebase ? false : true,
   restructuring: commands.skipRestructuring ? false : true,
   root: commands.root,
@@ -101,6 +103,23 @@ if (commands.args.length > 0) {
   stdin.on('end', function () {
     minify(data);
   });
+}
+
+function processImportFrom(rules) {
+  if (rules.length === 0) {
+    return ['all'];
+  } else if (rules.length == 1 && rules[0] == 'all') {
+    return [];
+  } else {
+    return rules.map(function (rule) {
+      if (rule == 'local')
+        return 'remote';
+      else if (rule == 'remote')
+        return 'local';
+      else
+        return '!' + rule;
+    });
+  }
 }
 
 function minify(data) {

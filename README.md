@@ -16,7 +16,7 @@ According to [tests](http://goalsmashers.github.io/css-minification-benchmark/) 
 ### What are the requirements?
 
 ```
-Node.js 0.10.0+ (tested on CentOS, Ubuntu, OS X 10.6+, and Windows 7+)
+Node.js 0.10+ (tested on CentOS, Ubuntu, OS X 10.6+, and Windows 7+) or io.js 3.0+
 ```
 
 ### How to install clean-css?

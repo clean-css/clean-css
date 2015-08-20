@@ -308,6 +308,9 @@ with the following options available:
 * `'[+-]selectors.ie7Hack'` - turn on / off IE7 selector hack removal (`*+html...`)
 * `'[+-]selectors.special'` - a regular expression with all special, unmergeable selectors (leave it empty unless you know what you are doing)
 * `'[+-]units.ch'` - turn on / off treating `ch` as a proper unit
+* `'[+-]units.in'` - turn on / off treating `in` as a proper unit
+* `'[+-]units.pc'` - turn on / off treating `pc` as a proper unit
+* `'[+-]units.pt'` - turn on / off treating `pt` as a proper unit
 * `'[+-]units.rem'` - turn on / off treating `rem` as a proper unit
 * `'[+-]units.vh'` - turn on / off treating `vh` as a proper unit
 * `'[+-]units.vm'` - turn on / off treating `vm` as a proper unit

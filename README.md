@@ -56,13 +56,12 @@ cleancss [options] source-file, [source-file, ...]
 -o, --output [output-file]      Use [output-file] as output instead of STDOUT
 -s, --skip-import               Disable @import processing
 --skip-rebase                   Disable URLs rebasing
---skip-advanced                 Disable advanced optimizations - selector & property merging,
-                                reduction, etc.
---skip-aggressive-merging       Disable properties merging based on their order
+--skip-advanced                 Disable advanced optimizations - ruleset reordering & merging reduction, etc.
+--skip-aggressive-merging       Disable property merging based on their order
 --skip-media-merging            Disable `@media` merging
 --skip-restructuring            Disable restructuring optimizations
 --skip-shorthand-compacting     Disable shorthand compacting
---rounding-precision [N]        Rounds to `N` decimal places. Defaults to 2. -1 disables rounding.
+--rounding-precision [N]        Rounds to `N` decimal places. Defaults to 2. -1 disables rounding
 -c, --compatibility [ie7|ie8]   Force compatibility mode (see Readme for advanced examples)
 --source-map                    Enables building input's source map
 --source-map-inline-sources     Enables inlining sources inside source map's `sourcesContent` field
@@ -103,7 +102,7 @@ Or even gzip the result at once:
 cat one.css two.css three.css | cleancss | gzip -9 -c > merged-minified-and-gzipped.css.gz
 ```
 
-### How to use clean-css programmatically?
+### How to use clean-css API?
 
 ```js
 var CleanCSS = require('clean-css');
@@ -122,7 +121,7 @@ CleanCSS constructor accepts a hash as a parameter, i.e.,
 * `inliner` - a hash of options for `@import` inliner, see [test/protocol-imports-test.js](https://github.com/jakubpawlowicz/clean-css/blob/master/test/protocol-imports-test.js#L372) for examples, or [this comment](https://github.com/jakubpawlowicz/clean-css/issues/612#issuecomment-119594185) for a proxy use case.
 * `keepBreaks` - whether to keep line breaks (default is false)
 * `keepSpecialComments` - `*` for keeping all (default), `1` for keeping first one only, `0` for removing all
-* `mediaMerging` - whether to merge `@media` blocks (default is true)
+* `mediaMerging` - whether to merge `@media` at-rules (default is true)
 * `processImport` - whether to process `@import` rules
 * `rebase` - set to false to skip URL rebasing
 * `relativeTo` - path to **resolve** relative `@import` rules and URLs
@@ -200,7 +199,7 @@ Use the `/*!` notation instead of the standard one `/*`:
 */
 ```
 
-### How to rebase relative image URLs
+### How to rebase relative image URLs?
 
 Clean-css will handle it automatically for you (since version 1.1) in the following cases:
 
@@ -213,7 +212,7 @@ Clean-css will handle it automatically for you (since version 1.1) in the follow
   2. Use a combination of `relativeTo` and `root` options for absolute rebase (same as 2 in CLI).
   3. `root` takes precendence over `target` as in CLI.
 
-### How to generate source maps
+### How to generate source maps?
 
 Source maps are supported since version 3.0.
 
@@ -272,7 +271,7 @@ new CleanCSS({ sourceMap: true, target: pathToOutputDirectory }).minify({
 });
 ```
 
-### How to minify multiple files with API
+### How to minify multiple files with API?
 
 #### Passing an array
 
@@ -293,7 +292,7 @@ new CleanCSS().minify({
 });
 ```
 
-### How to set compatibility mode
+### How to set a compatibility mode?
 
 Compatibility settings are controlled by `--compatibility` switch (CLI) and `compatibility` option (library mode).
 

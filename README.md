@@ -25,19 +25,6 @@ Node.js 0.10.0+ (tested on CentOS, Ubuntu, OS X 10.6+, and Windows 7+)
 npm install clean-css
 ```
 
-### How to upgrade clean-css from 2.x to 3.x?
-
-#### Command-line interface (CLI) - no breaking changes.
-
-#### Node.js module
-
-* `noAdvanced` became `advanced` - make sure to reverse the value;
-* `noAggressiveMerging` became `aggressiveMerging` - make sure to reverse the value;
-* `noRebase` became `rebase` - make sure to reverse the value;
-* no longer possible to use `CleanCSS` as a function as `new CleanCSS` is always required;
-* `minify` method returns a hash instead of a string now, so use `new CleanCSS().minify(source).styles` instead of `new CleanCSS().minify(source)`. This change is due to addition of source-maps.
-* `stats`, `errors`, and `warnings` are now a properties of a hash returned by `minify` method (see above) instead of CleanCSS instance.
-
 ### How to use clean-css CLI?
 
 Clean-css accepts the following command line arguments (please make sure

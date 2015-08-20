@@ -335,6 +335,21 @@ To pass a single off (-) switch in CLI please use the following syntax `--compat
 
 In library mode you can also pass `compatibility` as a hash of options.
 
+### What advanced optimizations are applied?
+
+All advanced optimizations are dispatched [here](https://github.com/jakubpawlowicz/clean-css/blob/master/lib/selectors/advanced.js#L59), and this is what they do:
+
+* `recursivelyOptimizeBlocks` - does all the following operations on a block (think `@media` or `@keyframe` at-rules);
+* `recursivelyOptimizeProperties` - optimizes properties in rulesets and "flat at-rules" (like @font-face) by splitting them into components (e.g. `margin` into `margin-(*)`), optimizing, and rebuilding them back. You may want to use `shorthandCompacting` option to control whether you want to turn multiple (long-hand) properties into a shorthand ones;
+* `removeDuplicates` - gets rid of duplicate rulesets with exactly the same set of properties (think of including the same Sass / Less partial twice for no good reason);
+* `mergeAdjacent` - merges adjacent rulesets with the same selector or rules;
+* `reduceNonAdjacent` - identifies which properties are overridden in same-selector non-adjacent rulesets, and removes them;
+* `mergeNonAdjacentBySelector` - identifies same-selector non-adjacent rulesets which can be moved (!) to be merged, requires all intermediate rulesets to not redefine the moved properties, or if redefined to be either more coarse grained (e.g. `margin` vs `margin-top`) or have the same value;
+* `mergeNonAdjacentByBody` - same as the one above but for same-rules non-adjacent rulesets;
+* `restructure` - tries to reorganize different-selector different-rules rulesets so they take less space, e.g. `.one{padding:0}.two{margin:0}.one{margin-bottom:3px}` into `.two{margin:0}.one{padding:0;margin-bottom:3px}`;
+* `removeDuplicateMediaQueries` - removes duplicated `@media` at-rules;
+* `mergeMediaQueries` - merges non-adjacent `@media` at-rules by same rules as `mergeNonAdjacentBy*` above;
+
 ## Acknowledgments (sorted alphabetically)
 
 * Anthony Barre ([@abarre](https://github.com/abarre)) for improvements to

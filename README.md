@@ -33,27 +33,27 @@ you use `<source-file>` as the very last argument to avoid potential issues):
 ```
 cleancss [options] source-file, [source-file, ...]
 
--h, --help                      Output usage information
--v, --version                   Output the version number
--b, --keep-line-breaks          Keep line breaks
---s0                            Remove all special comments, i.e. /*! comment */
---s1                            Remove all special comments but the first one
--r, --root [root-path]          A root path to which resolve absolute @import rules
-                                and rebase relative URLs
--o, --output [output-file]      Use [output-file] as output instead of STDOUT
--s, --skip-import               Disable @import processing
---skip-rebase                   Disable URLs rebasing
---skip-advanced                 Disable advanced optimizations - ruleset reordering & merging reduction, etc.
---skip-aggressive-merging       Disable property merging based on their order
---skip-media-merging            Disable `@media` merging
---skip-restructuring            Disable restructuring optimizations
---skip-shorthand-compacting     Disable shorthand compacting
---rounding-precision [N]        Rounds to `N` decimal places. Defaults to 2. -1 disables rounding
--c, --compatibility [ie7|ie8]   Force compatibility mode (see Readme for advanced examples)
---source-map                    Enables building input's source map
---source-map-inline-sources     Enables inlining sources inside source map's `sourcesContent` field
---semantic-merging              Enables semantic merging mode by assuming BEM-like content (warning, this may break your styling!)
--d, --debug                     Shows debug information (minification time & compression efficiency)
+-h, --help                     output usage information
+-v, --version                  output the version number
+-b, --keep-line-breaks         Keep line breaks
+-c, --compatibility [ie7|ie8]  Force compatibility mode (see Readme for advanced examples)
+-d, --debug                    Shows debug information (minification time & compression efficiency)
+-o, --output [output-file]     Use [output-file] as output instead of STDOUT
+-r, --root [root-path]         Set a root path to which resolve absolute @import rules
+-s, --skip-import              Disable @import processing
+-t, --timeout [seconds]        Per connection timeout when fetching remote @imports (defaults to 5 seconds)
+--rounding-precision [n]       Rounds to `N` decimal places. Defaults to 2. -1 disables rounding
+--s0                           Remove all special comments, i.e. /*! comment */
+--s1                           Remove all special comments but the first one
+--semantic-merging             Enables unsafe mode by assuming BEM-like semantic stylesheets (warning, this may break your styling!)
+--skip-advanced                Disable advanced optimizations - ruleset reordering & merging
+--skip-aggressive-merging      Disable properties merging based on their order
+--skip-media-merging           Disable @media merging
+--skip-rebase                  Disable URLs rebasing
+--skip-restructuring           Disable restructuring optimizations
+--skip-shorthand-compacting    Disable shorthand compacting
+--source-map                   Enables building input's source map
+--source-map-inline-sources    Enables inlining sources inside source maps
 ```
 
 #### Examples:

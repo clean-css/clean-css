@@ -365,11 +365,15 @@ vows.describe('simple optimizations')
       'backslash': [
         'a{width:101px\\9}',
         [['width', '101px\\9']]
+      ],
+      'bang': [
+        'a{color:red !ie}',
+        null
       ]
     })
   )
   .addBatch(
-    propertyContext('ie hacks in compatibility mode', {
+    propertyContext('ie hacks in IE8 mode', {
       'underscore': [
         'a{_width:101px}',
         [['_width', '101px']]
@@ -381,8 +385,32 @@ vows.describe('simple optimizations')
       'backslash': [
         'a{width:101px\\9}',
         [['width', '101px\\9']]
+      ],
+      'bang': [
+        'a{color:red !ie}',
+        null
       ]
     }, { compatibility: 'ie8' })
+  )
+  .addBatch(
+    propertyContext('ie hacks in IE7 mode', {
+      'underscore': [
+        'a{_width:101px}',
+        [['_width', '101px']]
+      ],
+      'star': [
+        'a{*width:101px}',
+        [['*width', '101px']]
+      ],
+      'backslash': [
+        'a{width:101px\\9}',
+        [['width', '101px\\9']]
+      ],
+      'bang': [
+        'a{color:red !ie}',
+        [['color', 'red !ie']]
+      ]
+    }, { compatibility: 'ie7' })
   )
   .addBatch(
     propertyContext('important', {

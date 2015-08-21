@@ -298,6 +298,7 @@ with the following options available:
 * `'[+-]properties.backgroundOriginMerging'` - turn on / off background-origin merging into shorthand
 * `'[+-]properties.backgroundSizeMerging'` - turn on / off background-size merging into shorthand
 * `'[+-]properties.colors'` - turn on / off any color optimizations
+* `'[+-]properties.ieBangHack'` - turn on / off IE bang hack removal
 * `'[+-]properties.iePrefixHack'` - turn on / off IE prefix hack removal
 * `'[+-]properties.ieSuffixHack'` - turn on / off IE suffix hack removal
 * `'[+-]properties.merging'` - turn on / off property merging based on understandability

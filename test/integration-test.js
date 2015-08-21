@@ -1566,7 +1566,7 @@ vows.describe('integration tests')
     })
   )
   .addBatch(
-    optimizerContext('IE hacks', {
+    optimizerContext('IE 8 hacks', {
       'star': [
         'a{*color:#fff}',
         'a{*color:#fff}'
@@ -1632,6 +1632,14 @@ vows.describe('integration tests')
         'a{color:hsla(120,100%,50%,0)}'
       ]
     }, { compatibility: 'ie8' })
+  )
+  .addBatch(
+    optimizerContext('IE 7 hacks', {
+      'keeps !ie hack 123': [
+        'a{list-style-type:none;list-style-type:decimal !ie}',
+        'a{list-style-type:none;list-style-type:decimal !ie}'
+      ]
+    }, { compatibility: 'ie7' })
   )
   .addBatch(
     optimizerContext('IE hacks without IE compatibility', {

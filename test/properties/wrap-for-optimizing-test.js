@@ -140,7 +140,7 @@ vows.describe(wrapForOptimizing)
         assert.deepEqual(wrapped[0].value, [['0']]);
       },
       'is a hack': function (wrapped) {
-        assert.equal(wrapped[0].hack, 'suffix');
+        assert.equal(wrapped[0].hack, 'backslash');
       }
     },
     'backslash hack - single value': {
@@ -168,7 +168,41 @@ vows.describe(wrapForOptimizing)
         assert.deepEqual(wrapped[0].value, [['0']]);
       },
       'is a hack': function (wrapped) {
-        assert.equal(wrapped[0].hack, 'suffix');
+        assert.equal(wrapped[0].hack, 'backslash');
+      }
+    },
+    'bang hack': {
+      'topic': function () {
+        return wrapForOptimizing([[['margin'], ['0'], ['!ie']]]);
+      },
+      'has one wrap': function (wrapped) {
+        assert.lengthOf(wrapped, 1);
+      },
+      'has right value': function (wrapped) {
+        assert.deepEqual(wrapped[0].value, [['0']]);
+      },
+      'is a hack': function (wrapped) {
+        assert.equal(wrapped[0].hack, 'bang');
+      },
+      'is not important': function (wrapped) {
+        assert.isFalse(wrapped[0].important);
+      }
+    },
+    'bang hack - space between values': {
+      'topic': function () {
+        return wrapForOptimizing([[['margin'], ['0 !ie']]]);
+      },
+      'has one wrap': function (wrapped) {
+        assert.lengthOf(wrapped, 1);
+      },
+      'has right value': function (wrapped) {
+        assert.deepEqual(wrapped[0].value, [['0']]);
+      },
+      'is a hack': function (wrapped) {
+        assert.equal(wrapped[0].hack, 'bang');
+      },
+      'is not important': function (wrapped) {
+        assert.isFalse(wrapped[0].important);
       }
     },
     'source map': {
@@ -185,7 +219,7 @@ vows.describe(wrapForOptimizing)
         assert.isTrue(wrapped[0].important);
       },
       'is a hack': function (wrapped) {
-        assert.equal(wrapped[0].hack, 'suffix');
+        assert.equal(wrapped[0].hack, 'backslash');
       }
     }
   })

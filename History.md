@@ -4,6 +4,7 @@
 * Adds unit compatibility switches to disable length optimizations.
 * Adds inferring proxy settings from HTTP_PROXY environment variable.
 * Unifies wrappers for simple & advanced optimizations.
+* Fixed issue [#596](https://github.com/jakubpawlowicz/clean-css/issues/596) - support for !ie IE<8 hack.
 * Fixed issue [#599](https://github.com/jakubpawlowicz/clean-css/issues/599) - support for inlined source maps.
 * Fixed issue [#607](https://github.com/jakubpawlowicz/clean-css/issues/607) - adds better rule reordering.
 * Fixed issue [#612](https://github.com/jakubpawlowicz/clean-css/issues/612) - adds HTTP proxy support.

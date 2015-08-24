@@ -103,6 +103,12 @@ vows.describe(split)
       split: function (input) {
         assert.deepEqual(split(input, ';', false, '{', '}'), ['--my-toolbar:{color:red;width:100%}']);
       }
+    },
+    'with custom wrappers - on close brace': {
+      topic: 'a{ color:red; --var { color:red; display: none } } p{ color:red }',
+      split: function (input) {
+        assert.deepEqual(split(input, '}', true, '{', '}'), [ 'a{ color:red; --var { color:red; display: none } }', ' p{ color:red }', '' ]);
+      }
     }
   })
   .export(module);

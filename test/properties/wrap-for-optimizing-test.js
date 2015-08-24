@@ -18,6 +18,9 @@ vows.describe(wrapForOptimizing)
       'has value': function (wrapped) {
         assert.deepEqual(wrapped[0].value, [['0'], ['0']]);
       },
+      'is not a block': function (wrapped) {
+        assert.isFalse(wrapped[0].block);
+      },
       'has no components': function (wrapped) {
         assert.lengthOf(wrapped[0].components, 0);
       },
@@ -74,6 +77,46 @@ vows.describe(wrapForOptimizing)
       },
       'is multiplex': function (wrapped) {
         assert.isTrue(wrapped[0].multiplex);
+      }
+    },
+    'variable': {
+      'topic': function () {
+        return wrapForOptimizing([[['--color'], ['red']]]);
+      },
+      'has one wrap': function (wrapped) {
+        assert.lengthOf(wrapped, 1);
+      },
+      'has name': function (wrapped) {
+        assert.deepEqual(wrapped[0].name, '--color');
+      },
+      'has value': function (wrapped) {
+        assert.deepEqual(wrapped[0].value, [['red']]);
+      },
+      'is not a block': function (wrapped) {
+        assert.isFalse(wrapped[0].block);
+      },
+      'is variable': function (wrapped) {
+        assert.isTrue(wrapped[0].variable);
+      }
+    },
+    'variable block': {
+      'topic': function () {
+        return wrapForOptimizing([[['--color'], [ [['color'], ['red']], [['text-color'], ['red']] ]]]);
+      },
+      'has one wrap': function (wrapped) {
+        assert.lengthOf(wrapped, 1);
+      },
+      'has name': function (wrapped) {
+        assert.deepEqual(wrapped[0].name, '--color');
+      },
+      'has value': function (wrapped) {
+        assert.deepEqual(wrapped[0].value, [[ [['color'], ['red']], [['text-color'], ['red']] ]]);
+      },
+      'is not a block': function (wrapped) {
+        assert.isTrue(wrapped[0].block);
+      },
+      'is variable': function (wrapped) {
+        assert.isTrue(wrapped[0].variable);
       }
     },
     'without value': {

@@ -4,6 +4,7 @@
 * Adds unit compatibility switches to disable length optimizations.
 * Adds inferring proxy settings from HTTP_PROXY environment variable.
 * Adds support for Polymer / Web Components special selectors.
+* Adds support for Polymer mixins.
 * Unifies wrappers for simple & advanced optimizations.
 * Fixed issue [#596](https://github.com/jakubpawlowicz/clean-css/issues/596) - support for !ie IE<8 hack.
 * Fixed issue [#599](https://github.com/jakubpawlowicz/clean-css/issues/599) - support for inlined source maps.

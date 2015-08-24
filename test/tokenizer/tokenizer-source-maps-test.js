@@ -358,6 +358,19 @@ vows.describe('source-maps/analyzer')
             ]
           ]
         ]
+      ],
+      'variable blocks': [
+        '\ndiv {\n--test1:{\n color:red}; --test2:{ color: blue };}',
+        [
+          [
+            'selector',
+            [['div', [[2, 0, undefined]]]],
+            [
+              [['--test1', [[3, 0, undefined]]], [[['color', [[4, 1, undefined]]], ['red', [[4, 7, undefined]] ]]]],
+              [['--test2', [[4, 13, undefined]]], [[['color', [[4, 23, undefined]]], ['blue', [[4, 30, undefined]] ]]]]
+            ]
+          ]
+        ]
       ]
     })
   )

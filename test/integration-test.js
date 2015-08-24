@@ -1635,7 +1635,7 @@ vows.describe('integration tests')
   )
   .addBatch(
     optimizerContext('IE 7 hacks', {
-      'keeps !ie hack 123': [
+      'keeps !ie hack': [
         'a{list-style-type:none;list-style-type:decimal !ie}',
         'a{list-style-type:none;list-style-type:decimal !ie}'
       ]
@@ -2571,6 +2571,22 @@ vows.describe('integration tests')
       'all values': [
         'a{--width:1px;--style:solid;--color:#000}.one{border:var(--width)var(--style)var(--color)}',
         'a{--width:1px;--style:solid;--color:#000}.one{border:var(--width)var(--style)var(--color)}'
+      ],
+      'Polymer mixins - simple optimizations': [
+        'a{ display:block; --my-toolbar: { color:#f00; width:96px }; color:blue}',
+        'a{display:block;--my-toolbar:{color:red;width:1in};color:#00f}'
+      ],
+      'Polymer mixins - override optimizations': [
+        'a{--my-toolbar: { margin:15px!important; margin:10px};}',
+        'a{--my-toolbar:{margin:15px!important};}'
+      ],
+      'Polymer mixins - shorthand optimizations': [
+        'a{--my-toolbar: { margin:10px; margin-top:10px };}',
+        'a{--my-toolbar:{margin:10px};}'
+      ],
+      'Polymer mixins - not fitting into a single chunk of 128 bytes': [
+        ':host{--live-head-theme: { line-height: 40px !important; vertical-align: middle; background: transparent; height: 40px; z-index: 999; }; }',
+        ':host{--live-head-theme:{line-height:40px!important;vertical-align:middle;background:0 0;height:40px;z-index:999};}'
       ]
     })
   )

@@ -290,6 +290,43 @@ vows.describe(tokenize)
     })
   )
   .addBatch(
+    tokenizerContext('Polymer mixins', {
+      'flat value': [
+        'a{--my-toolbar-color:red}',
+        [
+          ['selector', [['a']], [[['--my-toolbar-color'], ['red']]]]
+        ]
+      ],
+      'block value': [
+        'a{--my-toolbar:{color:red;width:100%}}',
+        [
+          [
+            'selector',
+            [['a']],
+            [[['--my-toolbar'], [
+              [['color'], ['red']],
+              [['width'], ['100%']]
+            ]]]
+          ]
+        ]
+      ],
+      'mixed block value': [
+        'a{display:block;--my-toolbar:{color:red;width:100%};color:blue}',
+        [
+          [
+            'selector',
+            [['a']],
+            [
+              [['display'], ['block']],
+              [['--my-toolbar'], [[['color'], ['red']], [['width'], ['100%']]]],
+              [['color'], ['blue']]
+            ]
+          ]
+        ]
+      ]
+    })
+  )
+  .addBatch(
     tokenizerContext('multiple values', {
       'comma - no spaces': [
         'a{background:no-repeat,no-repeat}',

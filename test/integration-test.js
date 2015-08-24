@@ -2379,6 +2379,22 @@ vows.describe('integration tests')
       'rules with not-so-well-supported pseudo classes should not be merged #5': [
         ':placeholder{color:red}b{color:red}',
         ':placeholder{color:red}b{color:red}'
+      ],
+      'rules with :host Polymer pseudo class should not be merged into': [
+        ':host{color:red}b{color:red}',
+        ':host{color:red}b{color:red}'
+      ],
+      'rules with ::content Polymer pseudo element should not be merged into': [
+        '.wrapper ::content a{color:red}b{color:red}',
+        '.wrapper ::content a{color:red}b{color:red}'
+      ],
+      'rules with /deep/ Polymer combinator not be merged into': [
+        '.wrapper /deep/ a{color:red}b{color:red}',
+        '.wrapper /deep/ a{color:red}b{color:red}'
+      ],
+      'rules with ::shadow Polymer combinator not be merged into': [
+        '.wrapper ::shadow a{color:red}b{color:red}',
+        '.wrapper ::shadow a{color:red}b{color:red}'
       ]
     })
   )

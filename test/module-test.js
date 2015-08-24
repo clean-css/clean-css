@@ -123,7 +123,7 @@ vows.describe('module tests').addBatch({
     },
     'should raise one warning': function (error, minified) {
       assert.lengthOf(minified.warnings, 1);
-      assert.equal(minified.warnings[0], 'Unexpected \'}\' in \'a{display:block}}\'. Ignoring.');
+      assert.equal(minified.warnings[0], 'Unexpected \'}\' in \'}\'. Ignoring.');
     }
   },
   'warnings on missing closing brace': {

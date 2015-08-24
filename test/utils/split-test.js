@@ -107,7 +107,13 @@ vows.describe(split)
     'with custom wrappers - on close brace': {
       topic: 'a{ color:red; --var { color:red; display: none } } p{ color:red }',
       split: function (input) {
-        assert.deepEqual(split(input, '}', true, '{', '}'), [ 'a{ color:red; --var { color:red; display: none } }', ' p{ color:red }', '' ]);
+        assert.deepEqual(split(input, '}', true, '{', '}'), [ 'a{ color:red; --var { color:red; display: none } }', ' p{ color:red }' ]);
+      }
+    },
+    'with custom wrappers - one block on close brace': {
+      topic: '{ color:red; --var { color:red; display: none } color:blue }',
+      split: function (input) {
+        assert.deepEqual(split(input, '}', true, '{', '}'), [ '{ color:red; --var { color:red; display: none } color:blue }' ]);
       }
     }
   })

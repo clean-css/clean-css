@@ -85,4 +85,24 @@ vows.describe(split)
       }
     }
   })
+  .addBatch({
+    'with custom wrappers - level 1': {
+      topic: 'a{ color:red; width:100% } p{ color:red }',
+      split: function (input) {
+        assert.deepEqual(split(input, ' ', true, '{', '}'), [ 'a{ color:red; width:100% } ', 'p{ color:red }' ]);
+      }
+    },
+    'with custom wrappers - level 2': {
+      topic: 'a{ color:red; --var { color:red; display: none } } p{ color:red }',
+      split: function (input) {
+        assert.deepEqual(split(input, ' ', true, '{', '}'), [ 'a{ color:red; --var { color:red; display: none } } ', 'p{ color:red }' ]);
+      }
+    },
+    'semicolon separated - variable list': {
+      topic: '--my-toolbar:{color:red;width:100%}',
+      split: function (input) {
+        assert.deepEqual(split(input, ';', false, '{', '}'), ['--my-toolbar:{color:red;width:100%}']);
+      }
+    }
+  })
   .export(module);

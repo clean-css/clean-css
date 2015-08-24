@@ -52,6 +52,18 @@ vows.describe(split)
         assert.deepEqual(split(input, ' '), ['linear-gradient(0, #fff, rgba(0, 0, 0))', 'red']);
       }
     },
+    'semicolon separated - single': {
+      topic: 'apply(--var);',
+      split: function (input) {
+        assert.deepEqual(split(input, ';'), ['apply(--var)']);
+      }
+    },
+    'semicolon separated - double': {
+      topic: 'apply(--var);color:red;',
+      split: function (input) {
+        assert.deepEqual(split(input, ';'), ['apply(--var)', 'color:red']);
+      }
+    },
     'with regex': {
       topic: 'no-repeat,0/0',
       split: function (input) {

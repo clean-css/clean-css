@@ -180,6 +180,16 @@ vows.describe(tokenize)
           ]
         ]
       ],
+      '@apply with whitespace': [
+        'a{  @apply(--rule); }',
+        [
+          [
+            'selector',
+            [['a']],
+            [['at-rule', '@apply(--rule)']]
+          ]
+        ]
+      ],
       'media query': [
         '@media (min-width:980px){}',
         [

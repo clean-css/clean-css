@@ -2167,6 +2167,10 @@ vows.describe('integration tests')
       'multiple @apply with some styling': [
         'a{@apply(--rule1);@apply(--rule2);color:red;display:block}',
         'a{@apply(--rule1);@apply(--rule2);color:red;display:block}'
+      ],
+      'multiple @apply with whitespace': [
+        'a{' + lineBreak + '@apply(--rule1);' + lineBreak + '  @apply(--rule2);' + lineBreak + 'color:red;display:block}',
+        'a{@apply(--rule1);@apply(--rule2);color:red;display:block}'
       ]
     })
   )

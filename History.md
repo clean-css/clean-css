@@ -18,6 +18,7 @@
 * Fixed issue [#644](https://github.com/jakubpawlowicz/clean-css/issues/644) - adds time unit optimizations.
 * Fixed issue [#645](https://github.com/jakubpawlowicz/clean-css/issues/645) - adds bottom to top `media` merging.
 * Fixed issue [#648](https://github.com/jakubpawlowicz/clean-css/issues/648) - adds property level at-rule support.
+* Refixed issue [#629](https://github.com/jakubpawlowicz/clean-css/issues/629) - source maps & background shorthands.
 
 [3.3.9 / 2015-08-09](https://github.com/jakubpawlowicz/clean-css/compare/v3.3.8...v3.3.9)
 ==================

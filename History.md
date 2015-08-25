@@ -1,3 +1,8 @@
+[3.3.10 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.3.9...3.3)
+==================
+
+* Refixed issue [#629](https://github.com/jakubpawlowicz/clean-css/issues/629) - source maps & background shorthands.
+
 [3.3.9 / 2015-08-09](https://github.com/jakubpawlowicz/clean-css/compare/v3.3.8...v3.3.9)
 ==================
 

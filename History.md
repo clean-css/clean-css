@@ -1,4 +1,4 @@
-[3.4.0 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.3.10...master)
+[3.4.0 / 2015-08-27](https://github.com/jakubpawlowicz/clean-css/compare/v3.3.10...v3.4.0)
 ==================
 
 * Adds an option for a fine-grained `@import` control.

@@ -119,7 +119,7 @@ vows.describe(CommentsProcessor)
   )
   .addBatch(
     processorContext('zero with breaks', {
-      'content and special comments': [
+      'remove comment and a break': [
         'a{}' + lineBreak + '/*! some text */' + lineBreak + 'p{}',
         'a{}' + lineBreak + '__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0__' + lineBreak + 'p{}',
         'a{}' + lineBreak + 'p{}'
@@ -128,12 +128,12 @@ vows.describe(CommentsProcessor)
   )
   .addBatch(
     processorContext('one with breaks', {
-      'forces break after comments': [
+      'keeps content as is': [
         'a{}/*! some text */p{}',
         'a{}__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0__p{}',
-        'a{}/*! some text */' + lineBreak + 'p{}'
+        'a{}/*! some text */p{}'
       ],
-      'if not given already comments': [
+      'keeps if not given already': [
         'a{}/*! some text */' + lineBreak + 'p{}',
         'a{}__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0__' + lineBreak + 'p{}',
         'a{}/*! some text */' + lineBreak + 'p{}'

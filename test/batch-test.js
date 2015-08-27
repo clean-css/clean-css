@@ -25,12 +25,33 @@ var batchContexts = function () {
           root: path.dirname(plainPath)
         };
       },
-      minifying: {
+      'minifying': {
         topic: function (data) {
           var self = this;
 
           new CleanCSS({
             keepBreaks: true,
+            root: data.root
+          }).minify(data.plain, function (errors, minified) {
+            self.callback(errors, minified.styles, data);
+          });
+        },
+        'should output right content': function (errors, minified, data) {
+          var minifiedTokens = minified.split(lineBreak);
+          var preminifiedTokens = data.preminified.split(lineBreak);
+
+          minifiedTokens.forEach(function (line, i) {
+            assert.equal(line, preminifiedTokens[i]);
+          });
+        }
+      },
+      'minifying with source maps': {
+        topic: function (data) {
+          var self = this;
+
+          new CleanCSS({
+            keepBreaks: true,
+            sourceMap: true,
             root: data.root
           }).minify(data.plain, function (errors, minified) {
             self.callback(errors, minified.styles, data);

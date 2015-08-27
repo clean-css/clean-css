@@ -4,6 +4,7 @@
 * Adds better comments + keepBreaks handling.
 * Adds better text normalizing in source maps mode.
 * Fixes non-adjacent optimizations for source maps.
+* Improves `outline` break up with source maps.
 * Refixed issue [#629](https://github.com/jakubpawlowicz/clean-css/issues/629) - source maps & background shorthands.
 
 [3.3.9 / 2015-08-09](https://github.com/jakubpawlowicz/clean-css/compare/v3.3.8...v3.3.9)

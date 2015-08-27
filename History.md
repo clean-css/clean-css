@@ -1,4 +1,4 @@
-[3.3.10 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.3.9...3.3)
+[3.3.10 / 2015-08-27](https://github.com/jakubpawlowicz/clean-css/compare/v3.3.9...v3.3.10)
 ==================
 
 * Adds better comments + keepBreaks handling.

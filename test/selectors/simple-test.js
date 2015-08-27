@@ -369,6 +369,10 @@ vows.describe('simple optimizations')
       'bang': [
         'a{color:red !ie}',
         null
+      ],
+      'before content': [
+        'a{*width:101px;color:red!important}',
+        [['color', 'red!important']]
       ]
     })
   )

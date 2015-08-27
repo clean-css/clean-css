@@ -1,6 +1,7 @@
 [3.3.10 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.3.9...3.3)
 ==================
 
+* Adds better text normalizing in source maps mode.
 * Fixes non-adjacent optimizations for source maps.
 * Refixed issue [#629](https://github.com/jakubpawlowicz/clean-css/issues/629) - source maps & background shorthands.
 

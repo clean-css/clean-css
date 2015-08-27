@@ -1,4 +1,4 @@
-[3.4.1 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.0...3.4)
+[3.4.1 / 2015-08-27](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.0...v3.4.1)
 ==================
 
 * Fixed issue [#652](https://github.com/jakubpawlowicz/clean-css/issues/652) - order of restoring and removing tokens.

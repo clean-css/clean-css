@@ -319,7 +319,6 @@ with the following options available:
 * `'[+-]units.vm'` - turn on / off treating `vm` as a proper unit
 * `'[+-]units.vmax'` - turn on / off treating `vmax` as a proper unit
 * `'[+-]units.vmin'` - turn on / off treating `vmin` as a proper unit
-* `'[+-]units.vm'` - turn on / off treating `vm` as a proper unit
 
 For example, using `--compatibility 'ie8,+units.rem'` will ensure IE8 compatibility while enabling `rem` units so the following style `margin:0px 0rem` can be shortened to `margin:0`, while in pure IE8 mode it can't be.
 

@@ -1,3 +1,8 @@
+[3.4.2 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.1...3.4)
+==================
+
+* Fixed issue [#660](https://github.com/jakubpawlowicz/clean-css/issues/660) - !important token overriding.
+
 [3.4.1 / 2015-08-27](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.0...v3.4.1)
 ==================
 

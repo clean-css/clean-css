@@ -85,6 +85,14 @@ vows.describe(optimize)
         ]);
       }
     },
+    'shorthand multiple !important': {
+      'topic': 'a{border-color:#123 !important;border-top-color: #456 !important}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['border-color'], ['#456'], ['#123'], ['#123!important']]
+        ]);
+      }
+    },
     'shorthand list-style #1': {
       'topic': 'a{list-style-type:circle;list-style-position:outside;list-style-image:__ESCAPED_URL_CLEAN_CSS0__}',
       'into': function (topic) {

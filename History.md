@@ -2,6 +2,7 @@
 ==================
 
 * Fixed issue [#660](https://github.com/jakubpawlowicz/clean-css/issues/660) - !important token overriding.
+* Fixed issue [#662](https://github.com/jakubpawlowicz/clean-css/issues/662) - !important selector reducing.
 
 [3.4.1 / 2015-08-27](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.0...v3.4.1)
 ==================

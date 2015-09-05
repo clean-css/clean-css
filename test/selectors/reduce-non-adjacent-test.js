@@ -99,6 +99,10 @@ vows.describe('remove duplicates')
       'over a @media block': [
         '.one{color:red;margin:0}@media{.two{font-weight:700}}.one{font-size:13px}',
         '.one{color:red;margin:0;font-size:13px}@media{.two{font-weight:700}}'
+      ],
+      '!important values': [
+        '.one,.two{margin:0!important}.one{margin:1px!important}',
+        '.one,.two{margin:0!important}.one{margin:1px!important}'
       ]
     })
   )

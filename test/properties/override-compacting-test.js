@@ -473,6 +473,15 @@ vows.describe(optimize)
     }
   })
   .addBatch({
+    'shorthand then shorthand multiplex': {
+      'topic': 'p{background:url(one.png);background:url(two.png) center 1px,url(three.png) center 2px}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['background'], ['url(one.png)']],
+          [['background'], ['url(two.png)'], ['center'], ['1px'], [','], ['url(three.png)'], ['center'], ['2px']]
+        ]);
+      }
+    },
     'shorthand then longhand multiplex': {
       'topic': 'p{background:top left;background-repeat:no-repeat,no-repeat}',
       'into': function (topic) {

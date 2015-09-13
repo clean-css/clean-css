@@ -1390,6 +1390,10 @@ vows.describe('integration tests')
       'document-local reference': [
         'svg{marker-end:url(#arrow)}',
         'svg{marker-end:url(#arrow)}'
+      ],
+      'chrome extension': [
+        'a{background-image:url("chrome-extension://__MSG_@@extension_id__/someFile.png")}',
+        'a{background-image:url(chrome-extension://__MSG_@@extension_id__/someFile.png)}'
       ]
     })
   )
@@ -1418,6 +1422,10 @@ vows.describe('integration tests')
       'internal page': [
         'a{background:url(about:blank)}',
         'a{background:url(about:blank)}'
+      ],
+      'chrome extension': [
+        'a{background-image:url("chrome-extension://__MSG_@@extension_id__/someFile.png")}',
+        'a{background-image:url(chrome-extension://__MSG_@@extension_id__/someFile.png)}'
       ]
     }, {
       root: process.cwd(),

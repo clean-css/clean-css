@@ -1,6 +1,7 @@
 [3.4.2 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.1...3.4)
 ==================
 
+* Fixed issue [#598](https://github.com/jakubpawlowicz/clean-css/issues/598) - restructuring border properties.
 * Fixed issue [#655](https://github.com/jakubpawlowicz/clean-css/issues/655) - shorthands override merging.
 * Fixed issue [#660](https://github.com/jakubpawlowicz/clean-css/issues/660) - !important token overriding.
 * Fixed issue [#662](https://github.com/jakubpawlowicz/clean-css/issues/662) - !important selector reducing.

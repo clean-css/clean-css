@@ -193,6 +193,14 @@ vows.describe(canReorderSingle)
         assert.isFalse(result);
       }
     },
+    'different properties with same root - border #9': {
+      'topic': function () {
+        return canReorderSingle(propertiesIn('a{border-color:red}')[0], propertiesIn('a{border-right:1px dotted}')[0]);
+      },
+      'must be false': function (result) {
+        assert.isFalse(result);
+      }
+    },
     'shorhand and longhand with different value': {
       'topic': function () {
         return canReorderSingle(propertiesIn('a{margin:3px}')[0], propertiesIn('a{margin-bottom:5px}')[0]);

@@ -100,6 +100,10 @@ vows.describe('restructure')
         'input:-ms-input-placeholder{color:red;text-align:center}input::placeholder{color:red;text-align:center}',
         'input:-ms-input-placeholder{color:red;text-align:center}input::placeholder{color:red;text-align:center}'
       ],
+      'multiple - over longhand': [
+        '.one{overflow:hidden;border-right:1px solid;border-color:#d4d4d4}.one:last-child{border-right:0}.two{overflow:hidden;border-right:1px solid;border-color:#d4d4d4}',
+        '.one,.two{overflow:hidden}.one{border-right:1px solid;border-color:#d4d4d4}.one:last-child{border-right:0}.two{border-right:1px solid;border-color:#d4d4d4}'
+      ],
       'granular two level deep': [
         '.one{border:1px solid red;border-right-width:0}.two{border:1px solid red}',
         '.one{border:1px solid red;border-right-width:0}.two{border:1px solid red}'

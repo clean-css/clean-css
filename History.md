@@ -1,4 +1,4 @@
-[3.4.2 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.1...3.4)
+[3.4.2 / 2015-09-14](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.1...v3.4.2)
 ==================
 
 * Fixed issue [#598](https://github.com/jakubpawlowicz/clean-css/issues/598) - restructuring border properties.

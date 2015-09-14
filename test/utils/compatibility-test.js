@@ -18,6 +18,7 @@ vows.describe(Compatibility)
         assert.isFalse(options.properties.iePrefixHack);
         assert.isTrue(options.properties.ieSuffixHack);
         assert.isTrue(options.properties.merging);
+        assert.isFalse(options.properties.shorterLengthUnits);
         assert.isTrue(options.properties.spaceAfterClosingBrace);
         assert.isFalse(options.properties.urlQuotes);
         assert.isTrue(options.properties.zeroUnits);
@@ -57,6 +58,7 @@ vows.describe(Compatibility)
         assert.isFalse(options.properties.iePrefixHack);
         assert.isTrue(options.properties.ieSuffixHack);
         assert.isTrue(options.properties.merging);
+        assert.isFalse(options.properties.shorterLengthUnits);
         assert.isTrue(options.properties.spaceAfterClosingBrace);
         assert.isTrue(options.properties.zeroUnits);
         assert.isFalse(options.selectors.adjacentSpace);
@@ -89,6 +91,7 @@ vows.describe(Compatibility)
         assert.isTrue(options.properties.iePrefixHack);
         assert.isTrue(options.properties.ieSuffixHack);
         assert.isFalse(options.properties.merging);
+        assert.isFalse(options.properties.shorterLengthUnits);
         assert.isTrue(options.properties.spaceAfterClosingBrace);
         assert.isFalse(options.properties.urlQuotes);
         assert.isTrue(options.properties.zeroUnits);
@@ -120,6 +123,7 @@ vows.describe(Compatibility)
         assert.isTrue(options.properties.iePrefixHack);
         assert.isTrue(options.properties.ieSuffixHack);
         assert.isFalse(options.properties.merging);
+        assert.isFalse(options.properties.shorterLengthUnits);
         assert.isTrue(options.properties.spaceAfterClosingBrace);
         assert.isFalse(options.properties.urlQuotes);
         assert.isTrue(options.properties.zeroUnits);
@@ -161,6 +165,7 @@ vows.describe(Compatibility)
         assert.isFalse(options.properties.iePrefixHack);
         assert.isTrue(options.properties.ieSuffixHack);
         assert.isFalse(options.properties.merging);
+        assert.isFalse(options.properties.shorterLengthUnits);
         assert.isTrue(options.properties.spaceAfterClosingBrace);
         assert.isFalse(options.properties.urlQuotes);
         assert.isTrue(options.properties.zeroUnits);
@@ -192,6 +197,7 @@ vows.describe(Compatibility)
         assert.isTrue(options.properties.iePrefixHack);
         assert.isTrue(options.properties.ieSuffixHack);
         assert.isTrue(options.properties.merging);
+        assert.isFalse(options.properties.shorterLengthUnits);
         assert.isTrue(options.properties.spaceAfterClosingBrace);
         assert.isFalse(options.properties.urlQuotes);
         assert.isTrue(options.properties.zeroUnits);
@@ -223,6 +229,7 @@ vows.describe(Compatibility)
         assert.isTrue(options.properties.iePrefixHack);
         assert.isTrue(options.properties.ieSuffixHack);
         assert.isTrue(options.properties.merging);
+        assert.isFalse(options.properties.shorterLengthUnits);
         assert.isTrue(options.properties.spaceAfterClosingBrace);
         assert.isFalse(options.properties.urlQuotes);
         assert.isTrue(options.properties.zeroUnits);

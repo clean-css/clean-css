@@ -765,7 +765,39 @@ vows.describe('simple optimizations')
     })
   )
   .addBatch(
-    propertyContext('size units', {
+    propertyContext('length units', {
+      'px to in': [
+        'div{left:480px}',
+        [['left', '480px']]
+      ],
+      'px to pc': [
+        'div{left:32px}',
+        [['left', '32px']]
+      ],
+      'px to pt': [
+        'div{left:120px}',
+        [['left', '120px']]
+      ]
+    })
+  )
+  .addBatch(
+    propertyContext('length units in compatibility mode', {
+      'px to in': [
+        'div{left:480px}',
+        [['left', '480px']]
+      ],
+      'px to pc': [
+        'div{left:32px}',
+        [['left', '32px']]
+      ],
+      'px to pt': [
+        'div{left:120px}',
+        [['left', '120px']]
+      ]
+    }, { compatibility: 'ie8' })
+  )
+  .addBatch(
+    propertyContext('length units when turned on', {
       'positive px to in': [
         'div{left:480px}',
         [['left', '5in']]
@@ -798,13 +830,13 @@ vows.describe('simple optimizations')
         'div{transform:translateY(32px)}',
         [['transform', 'translateY(2pc)']]
       ]
-    })
+    }, { compatibility: { properties: { shorterLengthUnits: true } } })
   )
   .addBatch(
-    propertyContext('length units in compatibility mode', {
+    propertyContext('length units when turned on selectively', {
       'px to in': [
         'div{left:480px}',
-        [['left', '5in']]
+        [['left', '30pc']]
       ],
       'px to pc': [
         'div{left:32px}',
@@ -812,24 +844,8 @@ vows.describe('simple optimizations')
       ],
       'px to pt': [
         'div{left:120px}',
-        [['left', '90pt']]
-      ]
-    }, { compatibility: 'ie8' })
-  )
-  .addBatch(
-    propertyContext('length units when turned off', {
-      'px to in': [
-        'div{left:480px}',
-        [['left', '480px']]
-      ],
-      'px to pc': [
-        'div{left:32px}',
-        [['left', '32px']]
-      ],
-      'px to pt': [
-        'div{left:120px}',
         [['left', '120px']]
       ]
-    }, { compatibility: { units: { in: false, pc: false, pt: false } } })
+    }, { compatibility: { properties: { shorterLengthUnits: true }, units: { in: false, pt: false } } })
   )
   .export(module);

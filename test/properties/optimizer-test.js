@@ -43,7 +43,25 @@ vows.describe(optimize)
         ]);
       }
     },
-    'of two properties  where former is !important': {
+    'of two same properties with same value where latter is a hack': {
+      'topic': 'a{margin:0;_margin:0}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic, false, true), [
+          [['margin'], ['0']],
+          [['_margin'], ['0']]
+        ]);
+      }
+    },
+    'of two same properties with same value where latter is !important': {
+      'topic': 'a{margin:0;margin:0 !important}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic, false, true), [
+          [['margin'], ['0']],
+          [['margin'], ['0!important']]
+        ]);
+      }
+    },
+    'of two properties where former is !important': {
       'topic': 'a{display:inline-block!important;color:red;display:block}',
       'into': function (topic) {
         assert.deepEqual(_optimize(topic, false, true), [

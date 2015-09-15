@@ -66,6 +66,14 @@ vows.describe('module tests').addBatch({
       assert.lengthOf(errors, 1);
     }
   },
+  'with callback passed to remote import': {
+    topic: function () {
+      new CleanCSS({ processImportFrom: ['local'] }).minify('@import url(https://fonts.googleapis.com/css?family=Open+Sans);', this.callback);
+    },
+    'should yield no error and minify': function (errors, minified) {
+      assert.equal(minified.styles, '@import url(https://fonts.googleapis.com/css?family=Open+Sans);');
+    }
+  },
   'no debug': {
     'topic': function () {
       return new CleanCSS().minify('a{ color: #f00 }');

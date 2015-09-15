@@ -304,6 +304,7 @@ with the following options available:
 * `'[+-]properties.iePrefixHack'` - turn on / off IE prefix hack removal
 * `'[+-]properties.ieSuffixHack'` - turn on / off IE suffix hack removal
 * `'[+-]properties.merging'` - turn on / off property merging based on understandability
+* `'[+-]properties.shorterLengthUnits'` - turn on / off shortening pixel units into `pc`, `pt`, or `in` units
 * `'[+-]properties.spaceAfterClosingBrace'` - turn on / off removing space after closing brace - `url() no-repeat` into `url()no-repeat`
 * `'[+-]properties.urlQuotes'` - turn on / off `url()` quoting
 * `'[+-]properties.zeroUnits'` - turn on / off units removal after a `0` value

@@ -280,6 +280,14 @@ vows.describe(optimize)
         ]);
       }
     },
+    'shorthand then shorthand - same value and latter important': {
+      'topic': 'a{margin:0;margin:0 !important}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['margin'], ['0!important']]
+        ]);
+      }
+    },
     'with aggressive off': {
       'topic': 'a{background:white;color:red;background:red}',
       'into': function (topic) {

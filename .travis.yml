@@ -2,8 +2,6 @@ sudo: false
 language: node_js
 cache: npm
 node_js:
-  - '0.10'
-  - '0.12'
-  - 'iojs-v3.0.0'
+  - '4.0'
 matrix:
   fast_finish: true

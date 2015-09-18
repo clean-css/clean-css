@@ -1,3 +1,8 @@
+[3.5.0-pre / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.3...HEAD)
+==================
+
+* Requires Node.js 4.0+ to run.
+
 [3.4.3 / 2015-09-15](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.2...v3.4.3)
 ==================
 

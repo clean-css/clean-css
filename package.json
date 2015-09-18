@@ -44,7 +44,7 @@
     "jshint": "2.8.x",
     "nock": "2.x",
     "server-destroy": "1.x",
-    "uglify-js": "2.4.x",
+    "uglify-js": ">= 2.4.24",
     "vows": "0.8.x"
   },
   "engines": {

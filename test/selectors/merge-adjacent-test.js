@@ -63,6 +63,10 @@ vows.describe('remove duplicates')
       'two same bodies over a block': [
         '.one{color:red}@media print{.two{display:block}}.three{color:red}',
         '.one,.three{color:red}@media print{.two{display:block}}'
+      ],
+      'two rules with latter with suffix properties': [
+        'a{display:none}a{display:none;visibility:hidden}',
+        'a{display:none;visibility:hidden}'
       ]
     })
   )

@@ -1,3 +1,8 @@
+[3.4.4 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.3...3.4)
+==================
+
+* Fixed issue [#674](https://github.com/jakubpawlowicz/clean-css/issues/674) - adjacent merging order.
+
 [3.4.3 / 2015-09-15](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.2...v3.4.3)
 ==================
 

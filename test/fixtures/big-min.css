@@ -1590,7 +1590,7 @@ img.spacer{width:1px;height:1px}
 #header-liberation .header-base .sites-info-search .search{display:block;width:278px;height:22px;border:1px solid grey}
 #header-liberation .header-base .sites-info-search .search input[type=text]{border:0;color:grey;height:22px;width:220px;padding:0 5px}
 #header-liberation .header-base .sites-info-search .search input[type=submit]{background:url(http://s0.libe.com/libe/img/common/_sprites_header/header.png?df8de01457fa) 0 -32px no-repeat;display:block;float:right;width:29px;height:22px;border:0}
-#header-liberation .header-base .nav .nav2 li,#header-liberation .header-base .nav li{display:block;float:left}
+#header-liberation .header-base .nav .nav2 li,#header-liberation .header-base .nav li{float:left;display:block}
 #header-liberation .header-base .links h2{font-weight:400;text-transform:uppercase;font-size:11px;height:16px}
 #header-liberation .header-base .links ul li{font-family:Arial,Verdana,sans-serif;font-size:11.5px}
 #header-liberation .header-base .links ul li a{color:grey}
@@ -1598,7 +1598,7 @@ img.spacer{width:1px;height:1px}
 #header-liberation .header-base .nav .nav1{font-weight:400;text-transform:uppercase;font-size:11px}
 #header-liberation .header-base .nav .nav1 a{display:block}
 #header-liberation .header-base .nav .nav2{position:absolute;z-index:5000;bottom:0;left:0;width:100%}
-#core-liberation .block-basic-curled,#header-liberation .header-base .nav .nav2 li a{position:relative}
+#header-liberation .header-base .nav .nav2 li a{position:relative;display:block}
 #core-liberation form h2{margin-bottom:10px}
 #core-liberation form p{padding-top:10px;padding-bottom:10px}
 #core-liberation form .hidden{display:none}
@@ -1611,6 +1611,7 @@ ul.errorlist li{font-size:11px;font-weight:400;color:#e20000}
 #core-liberation .block .block-bottom span.right{float:right;display:block}
 #core-liberation .block-basic-rounded .block-top h5{text-tranform:uppercase;font-weight:400}
 #core-liberation .block-basic-rounded .block-content{border:1px solid #D8D8D8;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px}
+#core-liberation .block-basic-curled{position:relative}
 #core-liberation .block-basic-curled .shadow-left,#core-liberation .block-basic-curled .shadow-right,#core-liberation .block-basic-curled .shadow-top-left,#core-liberation .block-basic-curled .shadow-top-right{display:block;position:absolute;z-index:0;width:35%;max-width:100%;max-height:100%}
 #core-liberation .block-basic-curled .shadow-left,#core-liberation .block-basic-curled .shadow-right{bottom:-4px}
 #core-liberation .block-basic-curled .shadow-top-left,#core-liberation .block-basic-curled .shadow-top-right{top:-4px}
@@ -1729,7 +1730,7 @@ body.iframe{padding-top:0}
 #header-liberation .header-base .nav .nav1 .on a span,#header-liberation .header-base .nav .nav1 a:hover span,#header-liberation .header-base .nav-no-js>li:hover .nav1 a span{width:9px;height:9px}
 #header-liberation .header-base .nav .nav2{display:none;height:28px}
 #header-liberation .header-base .nav .on .nav2{display:block}
-#header-liberation .header-base .nav .nav2 li a{display:block;height:26px;padding:6px 24px 0 0;font-size:12px;font-family:Arial,Verdana,sans-serif;text-transform:none}
+#header-liberation .header-base .nav .nav2 li a{height:26px;padding:6px 24px 0 0;font-size:12px;font-family:Arial,Verdana,sans-serif;text-transform:none}
 #header-liberation .header-base .nav .nav2 li.on{font-weight:700}
 #header-liberation .header-base .nav .nav2 li a span{display:block;position:absolute;top:6px;right:11px;width:1px;height:13px;left:auto}
 #header-liberation .header-base .nav .nav2 li:last-of-type a span{display:none}
@@ -2534,7 +2535,7 @@ body.access-ess #page-paywall .content .arguments .arg{float:none;margin:auto}
 .site-liberation .block-call-items .tpl-labo-podcast .emission p.subtitle{margin-bottom:10px}
 .site-liberation .block-call-items .tpl-labo-podcast .emission .visual{width:60px;height:40px}
 .site-liberation .block-call-items .tpl-labo-podcast .emission .subscribe{clear:both}
-.site-liberation .block-call-items .tpl-labo-podcast .emission .subscribe p.infos{font-weight:700}
+.site-liberation .block-call-items .tpl-labo-podcast .emission .subscribe p.infos{font-weight:700;color:#222}
 .site-liberation .block-call-items .tpl-labo-podcast .emission .subscribe p.infos span{text-transform:uppercase}
 .site-liberation .block-call-items .tpl-labo-podcast .emission .subscribe .sb-podcasts{margin-top:10px}
 .site-liberation .block-call-items .tpl-labo-podcast .episode h4{font-weight:700;min-height:35px}
@@ -2725,7 +2726,6 @@ body.slideshow .ad-top .megaban{background:#333}
 .site-liberation .block-call-items .tpl-labo-spotlight .subtitle{color:#c6c6c6}
 .site-liberation .block-call-items .tpl-labo-spotlight .subscribe .infos,.site-liberation .block-call-items .tpl-labo-spotlight .subscribe p.toggle a{color:#fff}
 .site-liberation .block-call-items .tpl-labo-podcast .emission .subscribe p{color:#e20000}
-.site-liberation .block-call-items .tpl-labo-podcast .emission .subscribe p.infos{color:#222}
 .site-liberation .block-call-items .tpl-search-results h4,.site-liberation .block-call-items .tpl-search-results h4 a{color:#959595}
 .site-liberation .block-call-items .tpl-search-results .object-picture .np .p1,.site-liberation .block-call-items .tpl-search-results .object-picture .np .p2{background-color:#fff;border-color:#c8c8c8}
 #core-liberation .block-comments .block-content .comment_outer,#core-liberation .block-item-read-more{border-color:#ddd}

@@ -3,6 +3,14 @@ var optimizerContext = require('../test-helper').optimizerContext;
 
 vows.describe('advanced optimizer')
   .addBatch(
+    optimizerContext('all optimizations', {
+      'adjacent': [
+        'a{display:none}a{display:none;visibility:hidden}',
+        'a{display:none;visibility:hidden}'
+      ]
+    }, { advanced: true })
+  )
+  .addBatch(
     optimizerContext('advanced on & aggressive merging on', {
       'repeated' : [
         'a{color:red;color:red}',

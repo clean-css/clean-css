@@ -258,6 +258,16 @@ vows.describe('module tests').addBatch({
       });
     }
   },
+  'local imports': {
+    'inside a comment preceding a quote': {
+      'topic': function () {
+        new CleanCSS().minify('@import "test/fixtures/partials/with-commented-import.css";', this.callback);
+      },
+      'has right output': function (errors, minified) {
+        assert.equal(minified.styles, '@font-face{font-family:Font;src:url(/path/to/font)}');
+      }
+    }
+  },
   'external imports and no callback': {
     'without content': {
       'topic': function () {
@@ -603,7 +613,7 @@ vows.describe('module tests').addBatch({
           assert.equal(minified.styles, '.one{color:red}.three{color:#0f0}.four{color:#00f}.two{color:#fff}');
         }
       },
-      'with two import URLs when one is a string plus a callback 123': {
+      'with two import URLs when one is a string plus a callback': {
         'topic': function () {
           new CleanCSS().minify({
             'main.css': {

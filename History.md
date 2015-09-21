@@ -1,4 +1,4 @@
-[3.4.4 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.3...3.4)
+[3.4.4 / 2015-09-21](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.3...v3.4.4)
 ==================
 
 * Fixed issue [#626](https://github.com/jakubpawlowicz/clean-css/issues/626) - edge case in import rebasing.

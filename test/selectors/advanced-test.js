@@ -7,6 +7,10 @@ vows.describe('advanced optimizer')
       'adjacent': [
         'a{display:none}a{display:none;visibility:hidden}',
         'a{display:none;visibility:hidden}'
+      ],
+      'overriding by !important': [
+        'a{margin:0}a{margin:0!important}',
+        'a{margin:0!important}'
       ]
     }, { advanced: true })
   )

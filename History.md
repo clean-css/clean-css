@@ -1,3 +1,8 @@
+[3.4.5 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.4...3.4)
+==================
+
+* Fixed issue [#675](https://github.com/jakubpawlowicz/clean-css/issues/675) - overriding with `!important`.
+
 [3.4.4 / 2015-09-21](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.3...v3.4.4)
 ==================
 

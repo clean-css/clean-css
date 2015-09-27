@@ -195,7 +195,7 @@ Clean-css will handle it automatically for you (since version 1.1) in the follow
 * When using the CLI:
   1. Use an output path via `-o`/`--output` to rebase URLs as relative to the output file.
   2. Use a root path via `-r`/`--root` to rebase URLs as absolute from the given root path.
-  3. If you specify both then `-r`/`--root` takes precendence.
+  3. If you specify both then `-r`/`--root` takes precedence.
 * When using clean-css as a library:
   1. Use a combination of `relativeTo` and `target` options for relative rebase (same as 1 in CLI).
   2. Use a combination of `relativeTo` and `root` options for absolute rebase (same as 2 in CLI).

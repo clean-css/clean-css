@@ -1,5 +1,4 @@
 /*! normalize.css 2012-01-31T16:06 UTC - http://github.com/necolas/normalize.css */
-small,sub,sup{font-size:75%}
 .bt_abo:hover,a{text-decoration:none}
 .bt_fonce a,.btn,.btn_abo,.btn_fonce,.btn_petit{filter:progid:dximagetransform.microsoft.gradient(enabled=false)}
 article,aside,details,figcaption,figure,footer,header,hgroup,nav,section{display:block}
@@ -17,6 +16,7 @@ blockquote{margin:1em 40px}
 dfn{font-style:italic}
 mark{background:#ff0;color:#000}
 code,kbd,pre,samp{font-family:monospace,serif;font-size:1em}
+small,sub,sup{font-size:75%}
 pre{white-space:pre;white-space:pre-wrap;word-wrap:break-word}
 q{quotes:none}
 q:after,q:before{content:'';content:none}
@@ -2275,7 +2275,6 @@ form .btn-rounded-degraded input[type=button],form .btn-rounded-degraded input[t
 #core-liberation .toolbox li.spacer span{display:block;width:1px;height:20px;margin-top:5px}
 #core-liberation .toolbox .txt-min,#core-liberation .toolbox .txt-plus{display:block;font-size:15px;padding-top:4px}
 #core-liberation .toolbox .txt-reset{display:block;font-family:"Times New Roman",Times,Georgia,serif;font-size:19px;padding:4px 0 0 3px}
-#page-mailfriend,#page-paywall{font-family:Verdana,sans-serif}
 .site-liberation .toolbox li a span{display:block}
 .site-liberation .toolbox li a.print span{margin-top:7px;width:16px;height:16px}
 .site-liberation .toolbox li a.favorite span{margin-top:5px;width:20px;height:18px}
@@ -2302,6 +2301,7 @@ form .btn-rounded-degraded input[type=button],form .btn-rounded-degraded input[t
 #core-liberation .sb-podcasts ul li a.itunes{background-position:-267px 0;width:50px}
 #core-liberation .sb-podcasts ul li a.xml{background-position:-322px 0;width:41px}
 #bar-liberation{display:block;position:fixed;top:0;left:0;z-index:10000;width:100%;height:40px;border-bottom:1px solid;font-family:Arial,Verdana,sans-serif;font-size:12px;line-height:14px}
+#page-mailfriend,#page-paywall{font-family:Verdana,sans-serif}
 body.init-bar-is-closed #bar-liberation{height:15px}
 #bar-liberation a,#bar-liberation a p{text-decoration:none;outline:0}
 #bar-liberation .content{position:relative;margin:auto;height:40px;width:1068px}

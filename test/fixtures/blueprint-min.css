@@ -1,22 +1,23 @@
 h1 img,h2 img,h3 img,h4 img,h5 img,h6 img,html{margin:0}
+.pull-1,.pull-10,.pull-11,.pull-12,.pull-13,.pull-14,.pull-15,.pull-16,.pull-17,.pull-18,.pull-19,.pull-2,.pull-20,.pull-21,.pull-22,.pull-23,.pull-24,.pull-3,.pull-4,.pull-5,.pull-6,.pull-7,.pull-8,.pull-9,.push-1,.push-10,.push-11,.push-12,.push-13,.push-14,.push-15,.push-16,.push-17,.push-18,.push-19,.push-2,.push-20,.push-21,.push-22,.push-23,.push-24,.push-3,.push-4,.push-5,.push-6,.push-7,.push-8,.push-9{position:relative;float:left}
 .clear,hr{clear:both}
-html{padding:0;border:0;font-size:100.01%}
 a,abbr,acronym,address,article,aside,blockquote,body,caption,code,dd,del,dfn,dialog,div,dl,dt,em,fieldset,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,iframe,img,label,legend,li,nav,object,ol,p,pre,q,section,span,table,tbody,td,tfoot,th,thead,tr,ul{margin:0;padding:0;border:0;font-weight:inherit;font-style:inherit;font-size:100%;font-family:inherit;vertical-align:baseline}
-address,blockquote,dfn,em,tfoot{font-style:italic}
-h5,h6{font-size:1em;font-weight:700}
+address,blockquote,dfn,em{font-style:italic}
 article,aside,dialog,figure,footer,header,hgroup,nav,section{display:block}
-body{line-height:1.5;font-size:75%;color:#222;background:#fff;font-family:"Helvetica Neue",Arial,Helvetica,sans-serif}
 caption,td,th{text-align:left;font-weight:400;float:none!important}
 table,td,th{vertical-align:middle}
 blockquote:after,blockquote:before,q:after,q:before{content:''}
 blockquote,q{quotes:"" ""}
 a img{border:none}
 :focus{outline:0}
+html{padding:0;border:0;font-size:100.01%}
+body{line-height:1.5;font-size:75%;color:#222;background:#fff;font-family:"Helvetica Neue",Arial,Helvetica,sans-serif}
 h1,h2,h3,h4,h5,h6{font-weight:400;color:#111}
 h1{font-size:3em;line-height:1;margin-bottom:.5em}
 h2{font-size:2em;margin-bottom:.75em}
 h3{font-size:1.5em;line-height:1;margin-bottom:1em}
 h4{font-size:1.2em;line-height:1.25;margin-bottom:1.25em}
+h5,h6{font-size:1em;font-weight:700}
 h5{margin-bottom:1.5em}
 p{margin:0 0 1.5em}
 .left{float:left!important}
@@ -33,6 +34,7 @@ sub,sup{line-height:0}
 abbr,acronym{border-bottom:1px dotted #666}
 pre{margin:1.5em 0;white-space:pre}
 code,pre,tt{font:1em 'andale mono','lucida console',monospace;line-height:1.5}
+label,legend{font-weight:700}
 li ol,li ul{margin:0}
 ol,ul{margin:0 1.5em 1.5em 0;padding-left:1.5em}
 ul{list-style-type:disc}
@@ -42,6 +44,7 @@ table{border-collapse:separate;border-spacing:0;margin-bottom:1.4em;width:100%}
 thead th{background:#c3d9ff}
 caption,td,th{padding:4px 10px 4px 5px}
 tbody tr.even td,tbody tr:nth-child(even) td{background:#e5ecf9}
+tfoot{font-style:italic}
 caption{background:#eee}
 .small{font-size:.8em;margin-bottom:1.875em;line-height:1.875em}
 .large,legend{font-size:1.2em}
@@ -55,9 +58,7 @@ caption{background:#eee}
 .last{padding-right:0}
 .top{margin-top:0;padding-top:0}
 .bottom{margin-bottom:0;padding-bottom:0}
-label{font-weight:700}
 fieldset{padding:0 1.4em 1.4em;margin:0 0 1.5em;border:1px solid #ccc}
-legend{font-weight:700}
 #IE8#HACK,fieldset{padding-top:1.4em}
 #IE8#HACK,legend{margin-top:0;margin-bottom:0}
 input.text,input.title,input[type=password],input[type=text],textarea{background-color:#fff;border:1px solid #bbb}
@@ -204,7 +205,6 @@ input.span-24,textarea.span-24{width:938px}
 .pull-22{margin-left:-880px}
 .pull-23{margin-left:-920px}
 .pull-24{margin-left:-960px}
-.pull-1,.pull-10,.pull-11,.pull-12,.pull-13,.pull-14,.pull-15,.pull-16,.pull-17,.pull-18,.pull-19,.pull-2,.pull-20,.pull-21,.pull-22,.pull-23,.pull-24,.pull-3,.pull-4,.pull-5,.pull-6,.pull-7,.pull-8,.pull-9{float:left;position:relative}
 .push-1{margin:0 -40px 1.5em 40px}
 .push-2{margin:0 -80px 1.5em 80px}
 .push-3{margin:0 -120px 1.5em 120px}
@@ -230,7 +230,6 @@ input.span-24,textarea.span-24{width:938px}
 .push-23{margin:0 -920px 1.5em 920px}
 .push-24{margin:0 -960px 1.5em 960px}
 .append-bottom,.box,div.append-bottom{margin-bottom:1.5em}
-.push-1,.push-10,.push-11,.push-12,.push-13,.push-14,.push-15,.push-16,.push-17,.push-18,.push-19,.push-2,.push-20,.push-21,.push-22,.push-23,.push-24,.push-3,.push-4,.push-5,.push-6,.push-7,.push-8,.push-9{float:left;position:relative}
 .prepend-top,div.prepend-top{margin-top:1.5em}
 .box{padding:1.5em;background:#e5eCf9}
 hr{background:#ddd;color:#ddd;float:none;width:100%;height:1px;margin:0 0 1.45em;border:none}

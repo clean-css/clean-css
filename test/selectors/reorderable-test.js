@@ -241,6 +241,14 @@ vows.describe(canReorderSingle)
         assert.isTrue(result);
       }
     },
+    'different, non-overlapping simple selectors with inheritable property': {
+      'topic': function () {
+        return canReorderSingle(propertiesIn('a{font:inherit}')[0], propertiesIn('div{font-family:Helvetica}')[0]);
+      },
+      'must be false': function (result) {
+        assert.isFalse(result);
+      }
+    },
     'different, non-overlapping complex selectors': {
       'topic': function () {
         return canReorderSingle(propertiesIn('.one{border:none}')[0], propertiesIn('div{border:1px solid #f00}')[0]);

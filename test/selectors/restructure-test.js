@@ -4,9 +4,13 @@ var optimizerContext = require('../test-helper').optimizerContext;
 vows.describe('restructure')
   .addBatch(
     optimizerContext('advanced on', {
-      'up until changed': [
+      'up until changed #1': [
         'a{color:#000}div{color:red}.one{display:block}.two{display:inline;color:red}',
         'a{color:#000}.two,div{color:red}.one{display:block}.two{display:inline}'
+      ],
+      'up until changed #2': [
+        'p{margin:0;font:inherit}h1{font-family:Helvetica;margin:20px}section h1{font-family:Helvetica;margin:40px}',
+        'p{margin:0;font:inherit}h1,section h1{font-family:Helvetica}h1{margin:20px}section h1{margin:40px}'
       ],
       'up until top': [
         'a{width:75px}div{color:red}.one{display:block}.two{display:inline;color:red}',

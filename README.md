@@ -144,7 +144,7 @@ In order to inline remote `@import` statements you need to provide a callback to
 ```js
 var CleanCSS = require('clean-css');
 var source = '@import url(http://path/to/remote/styles);';
-new CleanCSS().minify(source, function (errors, minified) {
+new CleanCSS().minify(source, function (error, minified) {
   // minified.styles
 });
 ```
@@ -225,7 +225,7 @@ To generate a source map, use `sourceMap: true` option, e.g.:
 
 ```js
 new CleanCSS({ sourceMap: true, target: pathToOutputDirectory })
-  .minify(source, function (minified) {
+  .minify(source, function (error, minified) {
     // access minified.sourceMap for SourceMapGenerator object
     // see https://github.com/mozilla/source-map/#sourcemapgenerator for more details
     // see https://github.com/jakubpawlowicz/clean-css/blob/master/bin/cleancss#L114 on how it's used in clean-css' CLI
@@ -236,7 +236,7 @@ Using API you can also pass an input source map directly:
 
 ```js
 new CleanCSS({ sourceMap: inputSourceMapAsString, target: pathToOutputDirectory })
-  .minify(source, function (minified) {
+  .minify(source, function (error, minified) {
     // access minified.sourceMap to access SourceMapGenerator object
     // see https://github.com/mozilla/source-map/#sourcemapgenerator for more details
     // see https://github.com/jakubpawlowicz/clean-css/blob/master/bin/cleancss#L114 on how it's used in clean-css' CLI
@@ -255,7 +255,7 @@ new CleanCSS({ sourceMap: true, target: pathToOutputDirectory }).minify({
     styles: '...styles...',
     sourceMap: '...source-map...'
   }
-}, function (minified) {
+}, function (error, minified) {
   // access minified.sourceMap as above
 });
 ```

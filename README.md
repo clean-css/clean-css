@@ -199,7 +199,7 @@ Clean-css will handle it automatically for you (since version 1.1) in the follow
 * When using clean-css as a library:
   1. Use a combination of `relativeTo` and `target` options for relative rebase (same as 1 in CLI).
   2. Use a combination of `relativeTo` and `root` options for absolute rebase (same as 2 in CLI).
-  3. `root` takes precendence over `target` as in CLI.
+  3. `root` takes precedence over `target` as in CLI.
 
 ### How to generate source maps?
 

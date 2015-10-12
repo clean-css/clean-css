@@ -1,3 +1,8 @@
+[3.4.6 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.5...3.4)
+==================
+
+* Fixed issue [#679](https://github.com/jakubpawlowicz/clean-css/issues/679) - wrong rebasing of remote URLs.
+
 [3.4.5 / 2015-09-28](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.4...v3.4.5)
 ==================
 

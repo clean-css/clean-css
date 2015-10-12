@@ -239,6 +239,25 @@ vows.describe('protocol imports').addBatch({
       nock.cleanAll();
     }
   },
+  'of an existing file with absolute URLs in different domain': {
+    topic: function () {
+      this.reqMocks = nock('http://127.0.0.1')
+        .get('/base.css')
+        .reply(200, 'a{background:url(http://example.com/deeply/images/test.png)}');
+
+      new CleanCSS().minify('@import url(http://127.0.0.1/base.css);', this.callback);
+    },
+    'should not raise errors': function (errors, minified) {
+      assert.isNull(errors);
+    },
+    'should process @import': function (errors, minified) {
+      assert.equal(minified.styles, 'a{background:url(http://example.com/deeply/images/test.png)}');
+    },
+    teardown: function () {
+      assert.isTrue(this.reqMocks.isDone());
+      nock.cleanAll();
+    }
+  },
   'of an unreachable domain': {
     topic: function () {
       new CleanCSS().minify('@import url(http://0.0.0.0/custom.css);a{color:red}', this.callback);

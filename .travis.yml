@@ -2,6 +2,6 @@ sudo: false
 language: node_js
 cache: npm
 node_js:
-  - '4.0'
+  - 4
 matrix:
   fast_finish: true

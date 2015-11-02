@@ -81,6 +81,15 @@ vows.describe(optimize)
         ]);
       }
     },
+    'longhand then shorthand - with unprefixed function 123': {
+      'topic': 'p{background-color:red;background:linear-gradient(red,blue)}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['background-color'], ['red']],
+          [['background'], ['linear-gradient(red,blue)']]
+        ]);
+      }
+    },
     'shorthand then longhand': {
       'topic': 'p{background:__ESCAPED_URL_CLEAN_CSS0__ repeat;background-repeat:no-repeat}',
       'into': function (topic) {

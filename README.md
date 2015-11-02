@@ -13,6 +13,8 @@ According to [tests](http://goalsmashers.github.io/css-minification-benchmark/) 
 
 ## Usage
 
+### This documentation refers to a pre-release version of clean-css. See [3.4 branch](https://github.com/jakubpawlowicz/clean-css/tree/3.4) for the current release docs.
+
 ### What are the requirements?
 
 ```

@@ -1366,6 +1366,18 @@ vows.describe('integration tests')
       'keeps quotes as they are': [
         'div{background:url("test.png")}',
         'div{background:url("test.png")}'
+      ],
+      'keeps quotes as they are when minify hash data': [
+        {'temp/file.css': {
+          styles: 'div{background:url("test.png")}'
+        }},
+        'div{background:url("temp/test.png")}'
+      ],
+      'no quotes added when minify hash data': [
+        {'temp/file.css': {
+          styles: 'div{background:url(test.png)}'
+        }},
+        'div{background:url(temp/test.png)}'
       ]
     }, { compatibility: { properties: { urlQuotes: true } } })
   )

@@ -1119,6 +1119,14 @@ vows.describe('integration tests')
         'a{color:hsla(0.0,0.0,0.0,0)}',
         'a{color:transparent}'
       ],
+      'keeps rgba(0,0,0,0) for background': [
+        'a{background:rgba(0,0,0,0)}',
+        'a{background:rgba(0,0,0,0)}'
+      ],
+      'keeps rgba(0,0,0,0) for background-color': [
+        'a{background-color:rgba(0,0,0,0)}',
+        'a{background-color:rgba(0,0,0,0)}'
+      ],
       'keeps rgba(255,255,255,0)': [
         'a{color:rgba(255,255,255,0)}',
         'a{color:rgba(255,255,255,0)}'
@@ -1153,7 +1161,7 @@ vows.describe('integration tests')
       ],
       'removes only right transparent colors': [
         'a{background-color:linear-gradient(0,#000,hsla(120,100%,50%,0)),rgba(0,0,0,0)}',
-        'a{background-color:linear-gradient(0,#000,hsla(120,100%,50%,0)),transparent}'
+        'a{background-color:linear-gradient(0,#000,hsla(120,100%,50%,0)),rgba(0,0,0,0)}'
       ]
     })
   )

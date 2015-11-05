@@ -9,6 +9,7 @@
 * Fixed issue [#692](https://github.com/jakubpawlowicz/clean-css/issues/692) - edge case in URL quoting.
 * Fixed issue [#695](https://github.com/jakubpawlowicz/clean-css/issues/695) - shorthand overriding edge case.
 * Fixed issue [#699](https://github.com/jakubpawlowicz/clean-css/issues/699) - IE9 transparent hack.
+* Fixed issue [#701](https://github.com/jakubpawlowicz/clean-css/issues/701) - `url` quoting with hash arguments.
 
 [3.4.6 / 2015-10-14](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.5...v3.4.6)
 ==================

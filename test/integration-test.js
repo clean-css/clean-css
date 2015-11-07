@@ -1159,9 +1159,9 @@ vows.describe('integration tests')
         'a{background:linear-gradient(0,#000,hsla(120,100%,50%,0))}',
         'a{background:linear-gradient(0,#000,hsla(120,100%,50%,0))}'
       ],
-      'removes only right transparent colors': [
-        'a{background-color:linear-gradient(0,#000,hsla(120,100%,50%,0)),rgba(0,0,0,0)}',
-        'a{background-color:linear-gradient(0,#000,hsla(120,100%,50%,0)),rgba(0,0,0,0)}'
+      'keeps transparent color in layered background': [
+        'a{background:linear-gradient(0,#000,hsla(120,100%,50%,0)),rgba(0,0,0,0)}',
+        'a{background:linear-gradient(0,#000,hsla(120,100%,50%,0)),rgba(0,0,0,0)}'
       ]
     })
   )

@@ -3,7 +3,7 @@
 
 * Requires Node.js 4.0+ to run.
 
-[3.4.7 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.6...3.4)
+[3.4.7 / 2015-11-10](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.6...v3.4.7)
 ==================
 
 * Fixed issue [#692](https://github.com/jakubpawlowicz/clean-css/issues/692) - edge case in URL quoting.

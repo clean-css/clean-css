@@ -273,6 +273,14 @@ vows.describe('./bin/cleancss')
     }
   })
   .addBatch({
+    'import rebasing': binaryContext('test/fixtures/partials/quoted-svg.css', {
+      'should keep quoting intact': function (error, stdout) {
+        assert.include(stdout, 'div{background:url(\'data:image');
+        assert.include(stdout, 'svg%3E\')}');
+      }
+    })
+  })
+  .addBatch({
     'complex import and url rebasing': {
       'absolute': binaryContext('-r ./test/fixtures/129-assets ./test/fixtures/129-assets/assets/ui.css', {
         'should rebase urls correctly': function (error, stdout) {

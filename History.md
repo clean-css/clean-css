@@ -3,6 +3,11 @@
 
 * Requires Node.js 4.0+ to run.
 
+[3.4.8 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.7...3.4)
+==================
+
+* Fixed issue [#676](https://github.com/jakubpawlowicz/clean-css/issues/676) - fuzzy matching unqoted data URIs.
+
 [3.4.7 / 2015-11-10](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.6...v3.4.7)
 ==================
 

@@ -1492,6 +1492,14 @@ vows.describe('integration tests')
       'document-local reference': [
         'svg{marker-end:url(#arrow)}',
         'svg{marker-end:url(#arrow)}'
+      ],
+      'quoting URLs #1': [
+        'div{background:url("data:image/svg+xml;base64,==")}li:nth-child(odd){color:red}',
+        'div{background:url(data:image/svg+xml;base64,==)}li:nth-child(odd){color:red}'
+      ],
+      'quoting URLs #2': [
+        'div{background:url("data:image/svg+xml;base64,==");border-image:url(1.png)}li:nth-child(odd){color:red}',
+        'div{background:url(data:image/svg+xml;base64,==);border-image:url(test/fixtures/partials-relative/1.png)}li:nth-child(odd){color:red}'
       ]
     }, {
       target: process.cwd(),

@@ -1,4 +1,4 @@
-[3.4.8 / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.7...3.4)
+[3.4.8 / 2015-11-13](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.7...v3.4.8)
 ==================
 
 * Fixed issue [#676](https://github.com/jakubpawlowicz/clean-css/issues/676) - fuzzy matching unqoted data URIs.

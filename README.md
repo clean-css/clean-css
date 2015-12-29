@@ -165,6 +165,11 @@ If you don't provide a callback, then remote `@import`s will be left intact.
 * [Metalsmith](http://metalsmith.io): [metalsmith-clean-css](https://github.com/aymericbeaumet/metalsmith-clean-css)
 * [Lasso](https://github.com/lasso-js/lasso): [lasso-clean-css](https://github.com/yomed/lasso-clean-css)
 
+### How to use clean-css from a web browser?
+
+* http://refresh-sf.com/
+* http://adamburgess.github.io/clean-css-online/
+
 ### What are the clean-css' dev commands?
 
 First clone the source, then run:

@@ -3,6 +3,11 @@
 
 * Requires Node.js 4.0+ to run.
 
+[3.4.9 / 2016-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.8...3.4)
+==================
+
+* Fixed issue [#693](https://github.com/jakubpawlowicz/clean-css/issues/693) - restructuring edge case.
+
 [3.4.8 / 2015-11-13](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.7...v3.4.8)
 ==================
 

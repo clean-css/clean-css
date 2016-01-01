@@ -108,6 +108,10 @@ vows.describe('restructure')
         '.one{overflow:hidden;border-right:1px solid;border-color:#d4d4d4}.one:last-child{border-right:0}.two{overflow:hidden;border-right:1px solid;border-color:#d4d4d4}',
         '.one,.two{overflow:hidden}.one{border-right:1px solid;border-color:#d4d4d4}.one:last-child{border-right:0}.two{border-right:1px solid;border-color:#d4d4d4}'
       ],
+      'multiple - over redefined property': [
+        'a,div{text-decoration:none}a{text-decoration:underline;color:#00f}p{text-decoration:underline}',
+        'a,div{text-decoration:none}a,p{text-decoration:underline}a{color:#00f}'
+      ],
       'granular two level deep': [
         '.one{border:1px solid red;border-right-width:0}.two{border:1px solid red}',
         '.one{border:1px solid red;border-right-width:0}.two{border:1px solid red}'

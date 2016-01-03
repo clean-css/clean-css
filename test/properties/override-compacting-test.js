@@ -81,7 +81,7 @@ vows.describe(optimize)
         ]);
       }
     },
-    'longhand then shorthand - with unprefixed function 123': {
+    'longhand then shorthand - with unprefixed function': {
       'topic': 'p{background-color:red;background:linear-gradient(red,blue)}',
       'into': function (topic) {
         assert.deepEqual(_optimize(topic), [
@@ -164,6 +164,23 @@ vows.describe(optimize)
         assert.deepEqual(_optimize(topic), [
           [['background'], ['__ESCAPED_URL_CLEAN_CSS0__']],
           [['background-color'], ['none']]
+        ]);
+      }
+    },
+    'shorthand then longhand - border with rgba() and color opacity on': {
+      'topic': 'p{border:solid rgba(0,0,0,0);border-color:transparent}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic, { colors: { opacity: true } }), [
+          [['border'], ['solid'], ['transparent']]
+        ]);
+      }
+    },
+    'shorthand then longhand - border with rgba() and color opacity off': {
+      'topic': 'p{border:solid rgba(0,0,0,0);border-color:transparent}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic, { colors: { opacity: false } }), [
+          [['border'], ['solid'], ['rgba(0,0,0,0)']],
+          [['border-color'], ['transparent']]
         ]);
       }
     },

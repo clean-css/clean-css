@@ -280,6 +280,26 @@ vows.describe(breakUp)
           assert.deepEqual(components[2].name, 'border-color');
           assert.deepEqual(components[2].value, [['red']]);
         }
+      },
+      'missing width': {
+        'topic': function () {
+          return _breakUp([[['border'], ['solid'], ['rgba(0,0,0,0)']]]);
+        },
+        'has 3 components': function (components) {
+          assert.lengthOf(components, 3);
+        },
+        'has border-width': function (components) {
+          assert.deepEqual(components[0].name, 'border-width');
+          assert.deepEqual(components[0].value, [['medium']]);
+        },
+        'has border-style': function (components) {
+          assert.deepEqual(components[1].name, 'border-style');
+          assert.deepEqual(components[1].value, [['solid']]);
+        },
+        'has border-color': function (components) {
+          assert.deepEqual(components[2].name, 'border-color');
+          assert.deepEqual(components[2].value, [['rgba(0,0,0,0)']]);
+        }
       }
     },
     'border radius': {

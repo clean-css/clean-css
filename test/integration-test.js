@@ -2207,6 +2207,10 @@ vows.describe('integration tests')
       'multiple @apply with whitespace': [
         'a{' + lineBreak + '@apply(--rule1);' + lineBreak + '  @apply(--rule2);' + lineBreak + 'color:red;display:block}',
         'a{@apply(--rule1);@apply(--rule2);color:red;display:block}'
+      ],
+      '@apply another rule within :root context 123': [
+        ':root{--layout:{display:flex};--layout-horizontal:{@apply(--layout)};}',
+        ':root{--layout:{display:flex};--layout-horizontal:{@apply(--layout)};}'
       ]
     })
   )

@@ -4,6 +4,17 @@ var path = require('path');
 var optimizerContext = require('./test-helper').optimizerContext;
 var lineBreak = require('os').EOL;
 
+function generateComments(count) {
+  var output = [];
+  var i;
+
+  for (i = 0; i < count; i++) {
+    output.push('/* */');
+  }
+
+  return output.join('');
+}
+
 vows.describe('integration tests')
   .addBatch(
     optimizerContext('identity', {
@@ -2075,6 +2086,10 @@ vows.describe('integration tests')
       'remote inside local after imported content': [
         '@import url(test/fixtures/partials/one.css);@import url(test/fixtures/partials/remote.css);',
         '.one{color:red}'
+      ],
+      'scanning comments and stack too deep exception': [
+        generateComments(30000) + '@import url(fonts.google.com/some.css);',
+        ''
       ]
     }, { root: process.cwd() })
   )

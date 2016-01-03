@@ -7,6 +7,7 @@
 ==================
 
 * Fixed issue [#693](https://github.com/jakubpawlowicz/clean-css/issues/693) - restructuring edge case.
+* Fixed issue [#711](https://github.com/jakubpawlowicz/clean-css/issues/711) - border fuzzy matching.
 
 [3.4.8 / 2015-11-13](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.7...v3.4.8)
 ==================

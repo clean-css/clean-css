@@ -3,7 +3,7 @@
 
 * Requires Node.js 4.0+ to run.
 
-[3.4.9 / 2016-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.8...3.4)
+[3.4.9 / 2016-01-03](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.8...v3.4.9)
 ==================
 
 * Sped up merging by body advanced optimization.

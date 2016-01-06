@@ -10,6 +10,7 @@ init:
 environment:
   matrix:
     - nodejs_version: 4
+    - nodejs_version: 5
 
 install:
   - ps: Install-Product node $env:nodejs_version
@@ -25,5 +26,4 @@ matrix:
   fast_finish: true
 
 cache:
-  - C:\Users\appveyor\AppData\Roaming\npm-cache -> package.json     # npm cache
-  - node_modules -> package.json                                    # local npm modules
+  - node_modules -> package.json    # local npm modules

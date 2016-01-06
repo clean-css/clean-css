@@ -159,7 +159,7 @@ If you don't provide a callback, then remote `@import`s will be left intact.
 * [Broccoli](https://github.com/broccolijs/broccoli#broccoli): [broccoli-clean-css](https://github.com/shinnn/broccoli-clean-css)
 * [Brunch](http://brunch.io/): [clean-css-brunch](https://github.com/brunch/clean-css-brunch)
 * [Grunt](http://gruntjs.com): [grunt-contrib-cssmin](https://github.com/gruntjs/grunt-contrib-cssmin)
-* [Gulp](http://gulpjs.com/): [gulp-minify-css](https://github.com/jonathanepollack/gulp-minify-css)
+* [Gulp](http://gulpjs.com/): [gulp-cleancss](https://github.com/mgcrea/gulp-cleancss)
 * [Gulp](http://gulpjs.com/): [using vinyl-map as a wrapper - courtesy of @sogko](https://github.com/jakubpawlowicz/clean-css/issues/342)
 * [component-builder2](https://github.com/component/builder2.js): [builder-clean-css](https://github.com/poying/builder-clean-css)
 * [Metalsmith](http://metalsmith.io): [metalsmith-clean-css](https://github.com/aymericbeaumet/metalsmith-clean-css)

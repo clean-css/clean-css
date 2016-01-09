@@ -35,16 +35,16 @@
     "test": "vows"
   },
   "dependencies": {
-    "commander": "2.8.x",
+    "commander": "2.9.x",
     "source-map": "0.5.x"
   },
   "devDependencies": {
-    "browserify": "11.x",
+    "browserify": "12.x",
     "http-proxy": "1.x",
     "jshint": "2.8.x",
-    "nock": "2.x",
+    "nock": "4.x",
     "server-destroy": "1.x",
-    "uglify-js": ">= 2.4.24",
+    "uglify-js": ">=2.6.1",
     "vows": "0.8.x"
   },
   "engines": {

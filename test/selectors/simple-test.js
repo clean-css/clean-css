@@ -77,6 +77,22 @@ vows.describe('simple optimizations')
       'mixed': [
         ' label   ~  \n*  +  span , div>*.class, section\n\n{color:red}',
         [['div>.class'], ['label~*+span'], ['section']]
+      ],
+      'escaped joining character #1': [
+        '.class\\~ div{color: red}',
+        [['.class\\~ div']]
+      ],
+      'escaped joining character #2': [
+        '.class\\+\\+ div{color: red}',
+        [['.class\\+\\+ div']]
+      ],
+      'escaped joining character #3': [
+        '.class\\>  \\~div{color: red}',
+        [['.class\\> \\~div']]
+      ],
+      'escaped characters': [
+        '.a\\+\\+b{color: red}',
+        [['.a\\+\\+b']]
       ]
     })
   )

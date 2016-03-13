@@ -164,6 +164,7 @@ If you don't provide a callback, then remote `@import`s will be left intact.
 * [component-builder2](https://github.com/component/builder2.js): [builder-clean-css](https://github.com/poying/builder-clean-css)
 * [Metalsmith](http://metalsmith.io): [metalsmith-clean-css](https://github.com/aymericbeaumet/metalsmith-clean-css)
 * [Lasso](https://github.com/lasso-js/lasso): [lasso-clean-css](https://github.com/yomed/lasso-clean-css)
+* [Start](https://github.com/start-runner/start): [start-clean-css](https://github.com/start-runner/clean-css)
 
 ### How to use clean-css from a web browser?
 

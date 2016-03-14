@@ -1882,6 +1882,14 @@ vows.describe('integration tests')
       'space between ! and important': [
         'body{background-color:#fff  ! important}',
         'body{background-color:#fff!important}'
+      ],
+      'Capital letters': [
+        'a{color: red !ImporTant }',
+        'a{color:red!important}'
+      ],
+      'Match word': [
+        'a{color: red !importante }',
+        ''
       ]
     })
   )

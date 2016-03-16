@@ -36,6 +36,7 @@
   },
   "dependencies": {
     "commander": "2.9.x",
+    "request": "^2.69.0",
     "source-map": "0.5.x"
   },
   "devDependencies": {

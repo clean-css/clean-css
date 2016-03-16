@@ -350,7 +350,7 @@ vows.describe('./bin/cleancss')
         });
       },
       'should raise warning': function (error, stdout, stderr) {
-        assert.include(stderr, 'Broken @import declaration of "http://localhost:24682/timeout.css" - timeout');
+        assert.include(stderr, 'Broken @import declaration of "http://localhost:24682/timeout.css" - ETIMEDOUT');
       },
       'should output empty response': function (error, stdout) {
         assert.isEmpty(stdout);

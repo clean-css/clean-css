@@ -538,7 +538,7 @@ vows.describe('protocol imports').addBatch({
     },
     'should raise errors': function (errors, minified) {
       assert.lengthOf(errors, 1);
-      assert.equal(errors[0], 'Broken @import declaration of "http://localhost:' + port + '/timeout.css" - timeout');
+      assert.equal(errors[0], 'Broken @import declaration of "http://localhost:' + port + '/timeout.css" - ETIMEDOUT');
     },
     'should process @import': function (errors, minified) {
       assert.equal(minified.styles, '@import url(http://localhost:' + port + '/timeout.css);a{color:red}');

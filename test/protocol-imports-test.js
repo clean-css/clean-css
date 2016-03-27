@@ -592,6 +592,53 @@ vows.describe('protocol imports').addBatch({
     }
   }
 }).addBatch({
+  'of a proxied resource with https url': {
+    topic: function () {
+      var self = this;
+      nock.enableNetConnect();
+
+      this.proxied = false;
+
+      this.reqMocks = nock('http://assets.127.0.0.1')
+        .get('/sslstyles.css')
+        .reply(200, 'a{color:red}');
+
+      var proxy = httpProxy.createProxyServer();
+      this.proxyServer = http.createServer(function (req, res) {
+        self.proxied = true;
+        self.isSSL = req.url.indexOf('https://') === 0;
+        proxy.web(req, res, { target: 'http://' + url.parse(req.url).host }, function () {});
+      });
+      this.proxyServer.listen(8080, function () {
+        var options = {
+          inliner: {
+            request: {
+              hostname: '127.0.0.1',
+              port: 8080
+            }
+          }
+        };
+
+        new CleanCSS(options).minify('@import url(https://assets.127.0.0.1/sslstyles.css);', self.callback);
+      });
+      enableDestroy(this.proxyServer);
+    },
+    'proxies the connection': function () {
+      assert.isTrue(this.proxied);
+    },
+    'ssl was used': function () {
+      assert.isTrue(this.isSSL);
+    },
+    'gets right output': function (errors, minified) {
+      assert.equal(minified.styles, 'a{color:red}');
+    },
+    teardown: function () {
+      assert.isTrue(this.reqMocks.isDone());
+      nock.cleanAll();
+      this.proxyServer.destroy();
+    }
+  }
+}).addBatch({
   'of a proxied resource via env variables': {
     topic: function () {
       var self = this;

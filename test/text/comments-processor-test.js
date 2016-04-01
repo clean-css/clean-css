@@ -67,6 +67,11 @@ vows.describe(CommentsProcessor)
         '__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0____ESCAPED_COMMENT_SPECIAL_CLEAN_CSS1__',
         '/*! one text *//*! another text */'
       ],
+      'two special comments when second with @ sign and preceded by quote sign': [
+        '/*! comment 1 */*{box-sizing: border-box}div:before{content:" "}/*! comment 2 */div{display:inline-block}',
+        '__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0__*{box-sizing: border-box}div:before{content:" "}__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS1__div{display:inline-block}',
+        '/*! comment 1 */*{box-sizing: border-box}div:before{content:" "}/*! comment 2 */div{display:inline-block}'
+      ],
       'commented selector': [
         '/* a{color:red} */',
         '',

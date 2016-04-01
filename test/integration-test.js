@@ -425,6 +425,10 @@ vows.describe('integration tests')
       'two important after value': [
         'div{color:red;/*!1*//*!2*/}',
         'div{color:red/*!1*//*!2*/}'
+      ],
+      'two comments, general selector right after first, and quotes': [
+        '/*! comment */*{box-sizing:border-box}div:before{content:" "}/*! @comment */div{display:inline-block}',
+        '/*! comment */*{box-sizing:border-box}div:before{content:" "}/*! @comment */div{display:inline-block}'
       ]
     })
   )
@@ -2231,7 +2235,7 @@ vows.describe('integration tests')
         'a{' + lineBreak + '@apply(--rule1);' + lineBreak + '  @apply(--rule2);' + lineBreak + 'color:red;display:block}',
         'a{@apply(--rule1);@apply(--rule2);color:red;display:block}'
       ],
-      '@apply another rule within :root context 123': [
+      '@apply another rule within :root context': [
         ':root{--layout:{display:flex};--layout-horizontal:{@apply(--layout)};}',
         ':root{--layout:{display:flex};--layout-horizontal:{@apply(--layout)};}'
       ]

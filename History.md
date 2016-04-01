@@ -3,7 +3,7 @@
 
 * Requires Node.js 4.0+ to run.
 
-[3.4.11 / 2016-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.10...3.4)
+[3.4.11 / 2016-04-01](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.10...v3.4.11)
 ==================
 
 * Fixed issue [#738](https://github.com/jakubpawlowicz/clean-css/issues/738) - edge case in comment processing.

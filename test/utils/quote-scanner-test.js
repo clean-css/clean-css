@@ -115,6 +115,19 @@ vows.describe(QuoteScanner)
 
         assert.equal(index, 2);
       }
-    }
+    },
+    'between comments': {
+      topic: '/*! comment */*{box-sizing:border-box}div:before{content:" "}/*! @comment */',
+      iterator: function (topic) {
+        var index = 0;
+        new QuoteScanner(topic).each(function iterator(match) {
+          index++;
+
+          assert.equal(match, '" "');
+        });
+
+        assert.equal(index, 1);
+      }
+    },
   })
   .export(module);

@@ -52,6 +52,14 @@ vows.describe('source-map')
         assert.equal(minified.styles, 'a{background:url(image.png) 0 0/100% no-repeat}');
       }
     },
+    'background position and size without image': {
+      'topic': function () {
+        return new CleanCSS({ sourceMap: true }).minify('a{background: 50% 50% / 100% auto no-repeat currentColor}');
+      },
+      'gets right output': function (minified) {
+        assert.equal(minified.styles, 'a{background:50% 50%/100% auto no-repeat currentColor}');
+      }
+    },
     'important': {
       'topic': function () {
         return new CleanCSS({ sourceMap: true }).minify('@font-face{font-family:si}a{font-family:si!important}');

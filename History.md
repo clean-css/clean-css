@@ -6,6 +6,7 @@
 [3.4.11 / 2016-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.10...3.4)
 ==================
 
+* Fixed issue [#741](https://github.com/jakubpawlowicz/clean-css/issues/741) - HTTP proxy with HTTPS inlining.
 * Fixed issue [#745](https://github.com/jakubpawlowicz/clean-css/issues/745) - matching mixed case `!important`.
 
 [3.4.10 / 2016-02-29](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.9...v3.4.10)

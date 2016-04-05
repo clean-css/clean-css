@@ -540,6 +540,7 @@ vows.describe('./bin/cleancss')
         );
       },
       'teardown': function () {
+        deleteFile('reset.css');
         deleteFile('reset.min.css');
         deleteFile('reset.min.css.map');
       }

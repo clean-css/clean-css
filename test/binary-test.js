@@ -316,6 +316,20 @@ vows.describe('./bin/cleancss')
     }
   })
   .addBatch({
+    'relative import with just a filename': pipedContext('@import "one.css";', '-r ./test/fixtures/partials', {
+      'imports sources correctly': function(error, stdout) {
+        assert.equal(error, null);
+        assert.include(stdout, '.one{color:red}');
+      }
+    }),
+    'relative import with ./': pipedContext('@import "./one.css";', '-r ./test/fixtures/partials', {
+      'imports sources correctly': function(error, stdout) {
+        assert.equal(error, null);
+        assert.include(stdout, '.one{color:red}');
+      }
+    })
+  })
+  .addBatch({
     'remote import': {
       topic: function () {
         this.server = http.createServer(function (req, res) {

@@ -82,8 +82,19 @@ var options = {
   target: commands.output
 };
 
-if (options.root || commands.args.length > 0)
-  options.relativeTo = path.dirname(path.resolve(options.root || commands.args[0]));
+if (options.root || commands.args.length > 0) {
+  var relativeTo = options.root || commands.args[0];
+
+  if (isRemote(relativeTo)) {
+    options.relativeTo = relativeTo;
+  } else {
+    var resolvedRelativeTo = path.resolve(relativeTo);
+
+    options.relativeTo = fs.statSync(resolvedRelativeTo).isFile() ?
+      path.dirname(resolvedRelativeTo) :
+      resolvedRelativeTo;
+  }
+}
 
 if (options.sourceMap && !options.target) {
   outputFeedback(['Source maps will not be built because you have not specified an output file.'], true);
@@ -103,6 +114,10 @@ if (commands.args.length > 0) {
   stdin.on('end', function () {
     minify(data);
   });
+}
+
+function isRemote(path) {
+  return /^https?:\/\//.test(path) || /^\/\//.test(path);
 }
 
 function processImportFrom(rules) {

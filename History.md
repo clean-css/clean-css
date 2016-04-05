@@ -1,3 +1,8 @@
+[3.4.12 / 2016-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.11...3.4)
+==================
+
+* Fixed issue [#734](https://github.com/jakubpawlowicz/clean-css/issues/734) - `--root` option edge case.
+
 [3.4.11 / 2016-04-01](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.10...v3.4.11)
 ==================
 

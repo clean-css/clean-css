@@ -1582,6 +1582,10 @@ vows.describe('integration tests')
         '@font-face{font-family:PublicVintage;src:url(/PublicVintage.otf) format("opentype")}',
         '@font-face{font-family:PublicVintage;src:url(/PublicVintage.otf) format("opentype")}'
       ],
+      'keep local quotation': [
+        '@font-face{font-family:X;src:local("Pacifico") format("opentype")}',
+        '@font-face{font-family:X;src:local("Pacifico") format("opentype")}'
+      ],
       'remove font family quotation': [
         'a{font-family:"Helvetica",\'Arial\'}',
         'a{font-family:Helvetica,Arial}'

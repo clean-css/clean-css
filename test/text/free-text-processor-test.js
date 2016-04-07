@@ -56,6 +56,11 @@ vows.describe(FreeTextProcessor)
         '@font-face{font-family:X;src:X.ttf format(__ESCAPED_FREE_TEXT_CLEAN_CSS0__)}',
         '@font-face{font-family:X;src:X.ttf format(\'opentype\')}'
       ],
+      'inside local': [
+        '@font-face{font-family:X;src:local(\'Pacifico\') format(\'opentype\')}',
+        '@font-face{font-family:X;src:local(__ESCAPED_FREE_TEXT_CLEAN_CSS0__) format(__ESCAPED_FREE_TEXT_CLEAN_CSS1__)}',
+        '@font-face{font-family:X;src:local(\'Pacifico\') format(\'opentype\')}'
+      ],
       'attribute': [
         'a[data-type="search"]{}',
         'a[data-type=__ESCAPED_FREE_TEXT_CLEAN_CSS0__]{}',

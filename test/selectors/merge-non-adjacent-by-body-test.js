@@ -27,6 +27,10 @@ vows.describe('merge non djacent by body')
       'of element selectors with an empty class selector in between': [
         'p{color:red}.a{}div{color:red}',
         'div,p{color:red}'
+      ],
+      'no rule after comma': [
+        'h1{color:#000}div{color:red},h2{color:#000}',
+        'h1{color:#000}div{color:red},h2{color:#000}'
       ]
     })
   )

@@ -41,7 +41,7 @@
   "devDependencies": {
     "browserify": "13.x",
     "http-proxy": "1.x",
-    "jshint": "2.8.x",
+    "jshint": "2.x",
     "nock": "4.x",
     "server-destroy": "1.x",
     "uglify-js": ">=2.6.1",

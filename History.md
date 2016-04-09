@@ -7,6 +7,7 @@
 ==================
 
 * Fixed issue [#734](https://github.com/jakubpawlowicz/clean-css/issues/734) - `--root` option edge case.
+* Fixed issue [#758](https://github.com/jakubpawlowicz/clean-css/issues/758) - treats empty rule as unmergeable.
 
 [3.4.11 / 2016-04-01](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.10...v3.4.11)
 ==================

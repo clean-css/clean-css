@@ -155,6 +155,10 @@ vows.describe('restructure')
       'with different vendor prefixed value group': [
         'a{-moz-box-sizing:content-box;box-sizing:content-box}div{color:red}p{-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box}',
         'a{-moz-box-sizing:content-box;box-sizing:content-box}div{color:red}p{-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box}'
+      ],
+      'no rule after comma': [
+        'h1{color:#000}div{color:red},h2{color:#000;display:block}',
+        'h1{color:#000}div{color:red},h2{color:#000;display:block}'
       ]
     })
   )

@@ -67,6 +67,14 @@ vows.describe('remove duplicates')
       'two rules with latter with suffix properties': [
         'a{display:none}a{display:none;visibility:hidden}',
         'a{display:none;visibility:hidden}'
+      ],
+      'no rule after comma': [
+        'h1{color:#000},h2{color:#000}',
+        'h1{color:#000},h2{color:#000}'
+      ],
+      'no rule after comma with comma last': [
+        'h1{color:#000}h2,{color:#000}',
+        'h1{color:#000},h2{color:#000}'
       ]
     })
   )

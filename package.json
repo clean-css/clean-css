@@ -39,7 +39,7 @@
     "source-map": "0.5.x"
   },
   "devDependencies": {
-    "browserify": "12.x",
+    "browserify": "13.x",
     "http-proxy": "1.x",
     "jshint": "2.8.x",
     "nock": "4.x",

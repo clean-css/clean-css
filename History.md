@@ -1,3 +1,8 @@
+[3.4.13 / 2016-05-23](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.12...v3.4.13)
+==================
+
+* Fixed issue [#734](https://github.com/jakubpawlowicz/clean-css/issues/769) - Node.js 6.x support.
+
 [3.4.12 / 2016-04-09](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.11...v3.4.12)
 ==================
 

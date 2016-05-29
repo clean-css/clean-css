@@ -1,3 +1,8 @@
+[3.4.14 / 2016-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.13...3.4)
+==================
+
+* Fixed issue [#751](https://github.com/jakubpawlowicz/clean-css/issues/751) - stringifying CSS variables.
+
 [3.4.13 / 2016-05-23](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.12...v3.4.13)
 ==================
 

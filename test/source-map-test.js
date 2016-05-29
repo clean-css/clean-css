@@ -67,6 +67,22 @@ vows.describe('source-map')
       'gets right output': function (minified) {
         assert.equal(minified.styles, '@font-face{font-family:si}a{font-family:si!important}');
       }
+    },
+    'variables': {
+      'topic': function () {
+        return new CleanCSS({ sourceMap: true }).minify(':root{--color:red}');
+      },
+      'gets right output': function (minified) {
+        assert.equal(minified.styles, ':root{--color:red}');
+      }
+    },
+    'variables reused': {
+      'topic': function () {
+        return new CleanCSS({ sourceMap: true }).minify(':root{--color:var(--otherColor)}');
+      },
+      'gets right output': function (minified) {
+        assert.equal(minified.styles, ':root{--color:var(--otherColor)}');
+      }
     }
   })
   .addBatch({

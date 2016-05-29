@@ -247,6 +247,16 @@ vows.describe(tokenize)
           ]
         ]
       ],
+      'variable declarations': [
+        ':root{--color:var(--otherColor)}',
+        [
+          [
+            'selector',
+            [[':root']],
+            [[['--color'], ['var(--otherColor)']]]
+          ]
+        ]
+      ],
       '! important': [
         'a{color:red! important}',
         [

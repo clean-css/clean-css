@@ -1381,6 +1381,14 @@ vows.describe('integration tests')
       'quotes SVG data URI if with parentheses': [
         'div{background:url(data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2018%2018%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Crect%20width%3D%2214%22%20height%3D%2214%22%20transform%3D%22translate(2%202)%22%2F%3E%3C%2Fsvg%3E) bottom left}',
         'div{background:url(\'data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2018%2018%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Crect%20width%3D%2214%22%20height%3D%2214%22%20transform%3D%22translate(2%202)%22%2F%3E%3C%2Fsvg%3E\') bottom left}'
+      ],
+      'do not unquote double quoted URI with unescaped single quotes inside': [
+        'a{background:url("data:image/svg+xml,%3csvg%20xmlns%3d\'http://www.w3.org/2000/svg\'/%3e")}',
+        'a{background:url("data:image/svg+xml,%3csvg%20xmlns%3d\'http://www.w3.org/2000/svg\'/%3e")}'
+      ],
+      'do not unquote single quoted URI with unescaped double quotes inside': [
+        'a{background:url(\'data:image/svg+xml,%3csvg%20xmlns%3d"http://www.w3.org/2000/svg"/%3e\')}',
+        'a{background:url(\'data:image/svg+xml,%3csvg%20xmlns%3d"http://www.w3.org/2000/svg"/%3e\')}'
       ]
     }, { root: process.cwd(), relativeTo: process.cwd() })
   )

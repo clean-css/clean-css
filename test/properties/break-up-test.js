@@ -312,19 +312,19 @@ vows.describe(breakUp)
         },
         'has border-top-left-radius': function (components) {
           assert.equal(components[0].name, 'border-top-left-radius');
-          assert.deepEqual(components[0].value, [['0px']]);
+          assert.deepEqual(components[0].value, [['0px'], ['0px']]);
         },
         'has border-top-right-radius': function (components) {
           assert.equal(components[1].name, 'border-top-right-radius');
-          assert.deepEqual(components[1].value, [['1px']]);
+          assert.deepEqual(components[1].value, [['1px'], ['1px']]);
         },
         'has border-bottom-right-radius': function (components) {
           assert.equal(components[2].name, 'border-bottom-right-radius');
-          assert.deepEqual(components[2].value, [['2px']]);
+          assert.deepEqual(components[2].value, [['2px'], ['2px']]);
         },
         'has border-bottom-left': function (components) {
           assert.equal(components[3].name, 'border-bottom-left-radius');
-          assert.deepEqual(components[3].value, [['3px']]);
+          assert.deepEqual(components[3].value, [['3px'], ['3px']]);
         }
       },
       'horizontal vertical split': {
@@ -336,22 +336,22 @@ vows.describe(breakUp)
         },
         'has border-top-left-radius': function (components) {
           assert.equal(components[0].name, 'border-top-left-radius');
-          assert.deepEqual(components[0].value, [['0px'], ['/'], ['1px']]);
+          assert.deepEqual(components[0].value, [['0px'], ['1px']]);
         },
         'has border-top-right-radius': function (components) {
           assert.equal(components[1].name, 'border-top-right-radius');
-          assert.deepEqual(components[1].value, [['1px'], ['/'], ['2px']]);
+          assert.deepEqual(components[1].value, [['1px'], ['2px']]);
         },
         'has border-bottom-right-radius': function (components) {
           assert.equal(components[2].name, 'border-bottom-right-radius');
-          assert.deepEqual(components[2].value, [['2px'], ['/'], ['3px']]);
+          assert.deepEqual(components[2].value, [['2px'], ['3px']]);
         },
         'has border-bottom-left': function (components) {
           assert.equal(components[3].name, 'border-bottom-left-radius');
-          assert.deepEqual(components[3].value, [['3px'], ['/'], ['4px']]);
+          assert.deepEqual(components[3].value, [['3px'], ['4px']]);
         }
       },
-      'vendor prefix asymetrical horizontal vertical split': {
+      'vendor prefix asymmetrical horizontal vertical split': {
         'topic': function () {
           return _breakUp([[['-webkit-border-radius'], ['0px'], ['1px'], ['2px'], ['/'], ['1px'], ['4px']]]);
         },
@@ -360,19 +360,19 @@ vows.describe(breakUp)
         },
         'has border-top-left-radius': function (components) {
           assert.equal(components[0].name, '-webkit-border-top-left-radius');
-          assert.deepEqual(components[0].value, [['0px'], ['/'], ['1px']]);
+          assert.deepEqual(components[0].value, [['0px'], ['1px']]);
         },
         'has border-top-right-radius': function (components) {
           assert.equal(components[1].name, '-webkit-border-top-right-radius');
-          assert.deepEqual(components[1].value, [['1px'], ['/'], ['4px']]);
+          assert.deepEqual(components[1].value, [['1px'], ['4px']]);
         },
         'has border-bottom-right-radius': function (components) {
           assert.equal(components[2].name, '-webkit-border-bottom-right-radius');
-          assert.deepEqual(components[2].value, [['2px'], ['/'], ['1px']]);
+          assert.deepEqual(components[2].value, [['2px'], ['1px']]);
         },
         'has border-bottom-left': function (components) {
           assert.equal(components[3].name, '-webkit-border-bottom-left-radius');
-          assert.deepEqual(components[3].value, [['1px'], ['/'], ['4px']]);
+          assert.deepEqual(components[3].value, [['1px'], ['4px']]);
         }
       }
     },

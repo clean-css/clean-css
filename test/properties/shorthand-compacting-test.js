@@ -85,6 +85,30 @@ vows.describe(optimize)
         ]);
       }
     },
+    'shorthand multiplexed border-radius': {
+      'topic': 'p{border-radius:7px/3px}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['border-radius'], ['7px'], ['/'], ['3px']]
+        ]);
+      }
+    },
+    'shorthand asymmetric border-radius with same values': {
+      'topic': 'p{border-top-left-radius:7px 3px;border-top-right-radius:7px 3px;border-bottom-right-radius:7px 3px;border-bottom-left-radius:7px 3px}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['border-radius'], ['7px'], ['/'], ['3px']]
+        ]);
+      }
+    },
+    'shorthand asymmetric border-radius': {
+      'topic': 'p{border-top-left-radius:7px 3px;border-top-right-radius:6px 2px;border-bottom-right-radius:5px 1px;border-bottom-left-radius:4px 0}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['border-radius'], ['7px'], ['6px'], ['5px'], ['4px'], ['/'], ['3px'], ['2px'], ['1px'], ['0']]
+        ]);
+      }
+    },
     'shorthand multiple !important': {
       'topic': 'a{border-color:#123 !important;border-top-color: #456 !important}',
       'into': function (topic) {

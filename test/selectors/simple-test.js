@@ -159,12 +159,16 @@ vows.describe('simple optimizations')
   .addBatch(
     propertyContext('@border-*-radius', {
       'spaces around /': [
-        'a{border-top-left-radius:2em  /  1em}',
-        [['border-top-left-radius', '2em', '/', '1em']]
+        'a{border-radius:2em  /  1em}',
+        [['border-radius', '2em', '/', '1em']]
       ],
       'symmetric expanded to shorthand': [
-        'a{border-top-left-radius:1em 2em 3em 4em / 1em 2em 3em 4em}',
-        [['border-top-left-radius', '1em', '2em', '3em', '4em']]
+        'a{border-radius:1em 2em 3em 4em / 1em 2em 3em 4em}',
+        [['border-radius', '1em', '2em', '3em', '4em']]
+      ],
+      'asymmetric kept as is': [
+        'a{border-top-left-radius:1em 2em}',
+        [['border-top-left-radius', '1em', '2em']]
       ]
     })
   )

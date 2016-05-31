@@ -22,7 +22,7 @@ function _optimize(source, compatibility, aggressiveMerging) {
     compatibility: compatibility,
     shorthandCompacting: true
   };
-  optimize(tokens[0][1], tokens[0][2], false, true, options, validator);
+  optimize(tokens[0][1], tokens[0][2], false, true, options, { validator: validator });
 
   return tokens[0][2];
 }

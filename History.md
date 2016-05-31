@@ -9,6 +9,7 @@
 * Fixed issue [#751](https://github.com/jakubpawlowicz/clean-css/issues/751) - stringifying CSS variables.
 * Fixed issue [#763](https://github.com/jakubpawlowicz/clean-css/issues/763) - data URI SVG and quoting.
 * Fixed issue [#765](https://github.com/jakubpawlowicz/clean-css/issues/765) - two values of border-radius.
+* Fixed issue [#768](https://github.com/jakubpawlowicz/clean-css/issues/768) - invalid border-radius property.
 
 [3.4.13 / 2016-05-23](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.12...v3.4.13)
 ==================

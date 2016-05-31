@@ -17,7 +17,7 @@ function _optimize(source) {
 
   var compatibility = new Compatibility().toOptions();
   var validator = new Validator(compatibility);
-  optimize(tokens[0][1], tokens[0][2], false, true, { compatibility: compatibility, aggressiveMerging: true, shorthandCompacting: true }, validator);
+  optimize(tokens[0][1], tokens[0][2], false, true, { compatibility: compatibility, aggressiveMerging: true, shorthandCompacting: true }, { validator: validator });
 
   return tokens[0][2];
 }

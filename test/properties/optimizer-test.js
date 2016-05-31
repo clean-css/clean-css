@@ -18,7 +18,7 @@ function _optimize(source, mergeAdjacent, aggressiveMerging, compatibilityOption
     warnings: []
   });
 
-  optimize(tokens[0][1], tokens[0][2], mergeAdjacent, true, { compatibility: compatibility, aggressiveMerging: aggressiveMerging }, validator);
+  optimize(tokens[0][1], tokens[0][2], mergeAdjacent, true, { compatibility: compatibility, aggressiveMerging: aggressiveMerging }, { validator: validator });
 
   return tokens[0][2];
 }

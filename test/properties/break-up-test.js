@@ -11,7 +11,7 @@ var breakUp = require('../../lib/properties/break-up');
 function _breakUp(properties) {
   var validator = new Validator(new Compatibility().toOptions());
   var wrapped = wrapForOptimizing(properties);
-  populateComponents(wrapped, validator);
+  populateComponents(wrapped, validator, []);
 
   return wrapped[0].components;
 }
@@ -373,6 +373,22 @@ vows.describe(breakUp)
         'has border-bottom-left': function (components) {
           assert.equal(components[3].name, '-webkit-border-bottom-left-radius');
           assert.deepEqual(components[3].value, [['1px'], ['4px']]);
+        }
+      },
+      'with missing vertical value': {
+        'topic': function () {
+          return _breakUp([[['border-radius'], ['0px'], ['/']]]);
+        },
+        'has no components': function (components) {
+          assert.lengthOf(components, 0);
+        }
+      },
+      'with missing horizontal value': {
+        'topic': function () {
+          return _breakUp([[['border-radius'], ['/'], ['0px']]]);
+        },
+        'has no components': function (components) {
+          assert.lengthOf(components, 0);
         }
       }
     },

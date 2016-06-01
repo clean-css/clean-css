@@ -2649,7 +2649,7 @@ vows.describe('integration tests')
       ],
       'all values': [
         'a{--width:1px;--style:solid;--color:#000}.one{border:var(--width)var(--style)var(--color)}',
-        'a{--width:1px;--style:solid;--color:#000}.one{border:var(--width)var(--style)var(--color)}'
+        'a{--width:1px;--style:solid;--color:#000}.one{border:var(--width) var(--style) var(--color)}'
       ],
       'Polymer mixins - simple optimizations': [
         'a{ display:block; --my-toolbar: { color:#f00; width:96px }; color:blue}',
@@ -2666,6 +2666,10 @@ vows.describe('integration tests')
       'Polymer mixins - not fitting into a single chunk of 128 bytes': [
         ':host{--live-head-theme: { line-height: 40px !important; vertical-align: middle; background: transparent; height: 40px; z-index: 999; }; }',
         ':host{--live-head-theme:{line-height:40px!important;vertical-align:middle;background:0 0;height:40px;z-index:999};}'
+      ],
+      'Polymer mixins - inlined variables': [
+        '.spinner{-webkit-animation:container-rotate var(--paper-spinner-container-rotation-duration) linear infinite}',
+        '.spinner{-webkit-animation:container-rotate var(--paper-spinner-container-rotation-duration) linear infinite}'
       ]
     })
   )

@@ -38,6 +38,49 @@ vows.describe(optimize)
         ]);
       }
     },
+    'longhand then longhand - background position as function': {
+      'topic': 'p{background-position:-moz-calc(100% - 1em) 0;background-position:calc(100% - 1em) 0}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['background-position'], ['-moz-calc(100% - 1em)'], ['0']],
+          [['background-position'], ['calc(100% - 1em)'], ['0']]
+        ]);
+      }
+    },
+    'longhand then longhand - background position as same function': {
+      'topic': 'p{background-position:calc(100% - 1em) 0;background-position:calc(100% - 1em) 1em}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['background-position'], ['calc(100% - 1em)'], ['1em']]
+        ]);
+      }
+    },
+    'longhand then longhand - background position as function by value': {
+      'topic': 'p{background-position:calc(100% - 1em) 0;background-position:1em 1em}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['background-position'], ['1em'], ['1em']]
+        ]);
+      }
+    },
+    'longhand then longhand - background position as value by function': {
+      'topic': 'p{background-position:1em 0;background-position:calc(100% - 1em) 1em}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['background-position'], ['1em'], ['0']],
+          [['background-position'], ['calc(100% - 1em)'], ['1em']]
+        ]);
+      }
+    },
+    'longhand then longhand - background size as function': {
+      'topic': 'p{background-size:-moz-calc(100% - 1em) 0;background-size:calc(100% - 1em) 0}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['background-size'], ['-moz-calc(100% - 1em)'], ['0']],
+          [['background-size'], ['calc(100% - 1em)'], ['0']]
+        ]);
+      }
+    },
     'longhand then shorthand': {
       'topic': 'p{background-image:none;background:__ESCAPED_URL_CLEAN_CSS0__}',
       'into': function (topic) {

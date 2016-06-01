@@ -3,6 +3,11 @@
 
 * Requires Node.js 4.0+ to run.
 
+[3.4.15 / 2016-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.14...3.4)
+==================
+
+* Fixed issue [#779](https://github.com/jakubpawlowicz/clean-css/issues/779) - merging `background-(position|size)`.
+
 [3.4.14 / 2016-05-31](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.13...v3.4.14)
 ==================
 

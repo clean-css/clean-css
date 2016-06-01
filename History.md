@@ -7,6 +7,7 @@
 ==================
 
 * Fixed issue [#779](https://github.com/jakubpawlowicz/clean-css/issues/779) - merging `background-(position|size)`.
+* Fixed issue [#780](https://github.com/jakubpawlowicz/clean-css/issues/780) - space after inlined variables.
 
 [3.4.14 / 2016-05-31](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.13...v3.4.14)
 ==================

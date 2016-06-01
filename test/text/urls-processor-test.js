@@ -85,6 +85,16 @@ vows.describe(UrlsProcessor)
         'a{background:url(url)}div:not([test]){color:red}',
         'a{background:__ESCAPED_URL_CLEAN_CSS0__}div:not([test]){color:red}',
         'a{background:url(url)}div:not([test]){color:red}'
+      ],
+      'data URI with single brackets': [
+        'a{background-image:url(\'data:image/svg+xml;charset=utf-8,<svg viewBox=\'0 0 120 120\'><g transform=\'rotate(30 60,60)\'></g></svg>\')}',
+        'a{background-image:__ESCAPED_URL_CLEAN_CSS0__}',
+        'a{background-image:url(\'data:image/svg+xml;charset=utf-8,<svg viewBox=\'0 0 120 120\'><g transform=\'rotate(30 60,60)\'></g></svg>\')}'
+      ],
+      'data URI with double brackets': [
+        'a{background-image:url("data:image/svg+xml;charset=utf-8,<svg viewBox=\'0 0 120 120\'><g transform=\'rotate(30 60,60)\'></g></svg>")}',
+        'a{background-image:__ESCAPED_URL_CLEAN_CSS0__}',
+        'a{background-image:url("data:image/svg+xml;charset=utf-8,<svg viewBox=\'0 0 120 120\'><g transform=\'rotate(30 60,60)\'></g></svg>")}'
       ]
     })
   )

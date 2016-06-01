@@ -6,6 +6,7 @@
 [3.4.15 / 2016-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.14...3.4)
 ==================
 
+* Fixed issue [#776](https://github.com/jakubpawlowicz/clean-css/issues/776) - edge case in quoted data URIs.
 * Fixed issue [#779](https://github.com/jakubpawlowicz/clean-css/issues/779) - merging `background-(position|size)`.
 * Fixed issue [#780](https://github.com/jakubpawlowicz/clean-css/issues/780) - space after inlined variables.
 

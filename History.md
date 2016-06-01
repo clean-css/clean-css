@@ -1,4 +1,4 @@
-[3.4.15 / 2016-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.14...3.4)
+[3.4.15 / 2016-06-01](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.14...v3.4.15)
 ==================
 
 * Fixed issue [#776](https://github.com/jakubpawlowicz/clean-css/issues/776) - edge case in quoted data URIs.

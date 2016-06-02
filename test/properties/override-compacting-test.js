@@ -210,6 +210,15 @@ vows.describe(optimize)
         ]);
       }
     },
+    'shorthand then multiplex longhand - non mergeable value': {
+      'topic': 'p{background:#fff;background-image:__ESCAPED_URL_CLEAN_CSS0__,linear-gradient()}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['background'], ['#fff']],
+          [['background-image'], ['__ESCAPED_URL_CLEAN_CSS0__'], [','], ['linear-gradient()']]
+        ]);
+      }
+    },
     'shorthand then longhand - border with rgba() and color opacity on': {
       'topic': 'p{border:solid rgba(0,0,0,0);border-color:transparent}',
       'into': function (topic) {

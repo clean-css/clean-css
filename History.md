@@ -7,6 +7,7 @@
 ==================
 
 * Fixed issue [#781](https://github.com/jakubpawlowicz/clean-css/issues/781) - regression in override compacting.
+* Fixed issue [#782](https://github.com/jakubpawlowicz/clean-css/issues/782) - regression in processing data URIs.
 
 [3.4.15 / 2016-06-01](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.14...v3.4.15)
 ==================

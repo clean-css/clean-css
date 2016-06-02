@@ -86,15 +86,20 @@ vows.describe(UrlsProcessor)
         'a{background:__ESCAPED_URL_CLEAN_CSS0__}div:not([test]){color:red}',
         'a{background:url(url)}div:not([test]){color:red}'
       ],
-      'data URI with single brackets': [
+      'data URI wrapped in single quotes': [
         'a{background-image:url(\'data:image/svg+xml;charset=utf-8,<svg viewBox=\'0 0 120 120\'><g transform=\'rotate(30 60,60)\'></g></svg>\')}',
         'a{background-image:__ESCAPED_URL_CLEAN_CSS0__}',
         'a{background-image:url(\'data:image/svg+xml;charset=utf-8,<svg viewBox=\'0 0 120 120\'><g transform=\'rotate(30 60,60)\'></g></svg>\')}'
       ],
-      'data URI with double brackets': [
+      'data URI wrapped in double quotes': [
         'a{background-image:url("data:image/svg+xml;charset=utf-8,<svg viewBox=\'0 0 120 120\'><g transform=\'rotate(30 60,60)\'></g></svg>")}',
         'a{background-image:__ESCAPED_URL_CLEAN_CSS0__}',
         'a{background-image:url("data:image/svg+xml;charset=utf-8,<svg viewBox=\'0 0 120 120\'><g transform=\'rotate(30 60,60)\'></g></svg>")}'
+      ],
+      'two quoted data URIs with closing brackets': [
+        '.a{cursor:url("data:application/octet-stream;base64,A...rotate(30 60,60)...="),move!important}.b{cursor:url("data:application/octet-stream;base64,A...rotate(30 60,60)...=")}',
+        '.a{cursor:__ESCAPED_URL_CLEAN_CSS0__,move!important}.b{cursor:__ESCAPED_URL_CLEAN_CSS0__}',
+        '.a{cursor:url("data:application/octet-stream;base64,A...rotate(30 60,60)...="),move!important}.b{cursor:url("data:application/octet-stream;base64,A...rotate(30 60,60)...=")}',
       ]
     })
   )

@@ -1,3 +1,8 @@
+[3.4.16 / 2016-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.15...3.4)
+==================
+
+* Fixed issue [#781](https://github.com/jakubpawlowicz/clean-css/issues/781) - regression in override compacting.
+
 [3.4.15 / 2016-06-01](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.14...v3.4.15)
 ==================
 

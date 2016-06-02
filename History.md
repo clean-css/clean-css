@@ -1,4 +1,4 @@
-[3.4.16 / 2016-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.15...3.4)
+[3.4.16 / 2016-06-02](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.15...v3.4.16)
 ==================
 
 * Fixed issue [#781](https://github.com/jakubpawlowicz/clean-css/issues/781) - regression in override compacting.

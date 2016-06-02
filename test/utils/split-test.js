@@ -129,4 +129,24 @@ vows.describe(split)
       }
     }
   })
+  .addBatch({
+    'just first one': {
+      topic: 'linear-gradient(0, #fff, rgba(0, 0, 0)) red',
+      split: function (input) {
+        assert.deepEqual(split(input, ' ', false, '(', ')', true), ['linear-gradient(0, #fff, rgba(0, 0, 0))']);
+      }
+    },
+    'just first one when no opening token': {
+      topic: 'red blue',
+      split: function (input) {
+        assert.deepEqual(split(input, ' ', false, '(', ')', true), ['red']);
+      }
+    },
+    'just first one when no closing token in last token': {
+      topic: 'red linear-gradient(0 0',
+      split: function (input) {
+        assert.deepEqual(split(input, ' ', false, '(', ')', true), ['red']);
+      }
+    }
+  })
   .export(module);

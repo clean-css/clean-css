@@ -3,7 +3,7 @@
 
 * Requires Node.js 4.0+ to run.
 
-[3.4.18 / 2016-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.17...3.4)
+[3.4.18 / 2016-06-15](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.17...v3.4.18)
 ==================
 
 * Fixed issue [#787](https://github.com/jakubpawlowicz/clean-css/issues/787) - regression in processing data URIs.

@@ -100,6 +100,11 @@ vows.describe(UrlsProcessor)
         '.a{cursor:url("data:application/octet-stream;base64,A...rotate(30 60,60)...="),move!important}.b{cursor:url("data:application/octet-stream;base64,A...rotate(30 60,60)...=")}',
         '.a{cursor:__ESCAPED_URL_CLEAN_CSS0__,move!important}.b{cursor:__ESCAPED_URL_CLEAN_CSS0__}',
         '.a{cursor:url("data:application/octet-stream;base64,A...rotate(30 60,60)...="),move!important}.b{cursor:url("data:application/octet-stream;base64,A...rotate(30 60,60)...=")}',
+      ],
+      'quoted data URI with unbalanced closing brackets': [
+        '.a{cursor:url("data:application/octet-stream;base64,A...%3C!--)--%3E...=");color:red;}',
+        '.a{cursor:__ESCAPED_URL_CLEAN_CSS0__;color:red;}',
+        '.a{cursor:url("data:application/octet-stream;base64,A...%3C!--)--%3E...=");color:red;}'
       ]
     })
   )

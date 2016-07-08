@@ -1,5 +1,6 @@
 <h1 align="center">
-    <img width="300" src="https://cdn.rawgit.com/scniro/clean-css/master/logo.svg" alt="clean-css">
+    <br/>
+    <img width="525" src="https://cdn.rawgit.com/scniro/clean-css/master/logo.svg" alt="clean-css">
     <br/>
     <br/>
 </h1>

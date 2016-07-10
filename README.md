@@ -1,3 +1,10 @@
+<h1 align="center">
+    <br/>
+    <img width="525" src="https://cdn.rawgit.com/scniro/clean-css/master/logo.svg" alt="clean-css">
+    <br/>
+    <br/>
+</h1>
+
 [![NPM version](https://img.shields.io/npm/v/clean-css.svg?style=flat)](https://www.npmjs.com/package/clean-css)
 [![Linux Build Status](https://img.shields.io/travis/jakubpawlowicz/clean-css/master.svg?style=flat&label=Linux%20build)](https://travis-ci.org/jakubpawlowicz/clean-css)
 [![Windows Build status](https://img.shields.io/appveyor/ci/jakubpawlowicz/clean-css/master.svg?style=flat&label=Windows%20build)](https://ci.appveyor.com/project/jakubpawlowicz/clean-css/branch/master)

@@ -1,8 +1,8 @@
 <h1 align="center">
-    <br/>
-    <img width="525" src="https://cdn.rawgit.com/jakubpawlowicz/clean-css/master/logo.svg" alt="clean-css">
-    <br/>
-    <br/>
+  <br/>
+  <img src="https://cdn.rawgit.com/jakubpawlowicz/clean-css/master/logo.svg" alt="clean-css logo" width="525px"/>
+  <br/>
+  <br/>
 </h1>
 
 [![NPM version](https://img.shields.io/npm/v/clean-css.svg?style=flat)](https://www.npmjs.com/package/clean-css)

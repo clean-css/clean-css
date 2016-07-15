@@ -1,6 +1,6 @@
 <h1 align="center">
   <br/>
-  <img src="https://cdn.rawgit.com/jakubpawlowicz/clean-css/master/logo.svg" alt="clean-css logo" width="525px"/>
+  <img src="https://cdn.rawgit.com/jakubpawlowicz/clean-css/master/logo.v2.svg" alt="clean-css logo" width="525px"/>
   <br/>
   <br/>
 </h1>

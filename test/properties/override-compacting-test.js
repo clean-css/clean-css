@@ -142,10 +142,10 @@ vows.describe(optimize)
       }
     },
     'shorthand then longhand - important then non-important': {
-      'topic': 'p{background:__ESCAPED_URL_CLEAN_CSS0__ repeat!important;background-repeat:no-repeat}',
+      'topic': 'p{background:__ESCAPED_URL_CLEAN_CSS0__ repeat-x!important;background-repeat:no-repeat}',
       'into': function (topic) {
         assert.deepEqual(_optimize(topic), [
-          [['background'], ['__ESCAPED_URL_CLEAN_CSS0__'], ['no-repeat!important']]
+          [['background'], ['__ESCAPED_URL_CLEAN_CSS0__'], ['repeat-x!important']]
         ]);
       }
     },
@@ -709,6 +709,16 @@ vows.describe(optimize)
         assert.deepEqual(_optimize(topic), [
           [['background-image'], ['__ESCAPED_URL_CLEAN_CSS0__']],
           [['background-image'], ['__ESCAPED_URL_CLEAN_CSS1__'], [','], ['none']]
+        ]);
+      }
+    }
+  })
+  .addBatch({
+    'padding !important then not !important': {
+      'topic': 'a{padding:0!important;padding-left:3px}',
+      'into': function (topic) {
+        assert.deepEqual(_optimize(topic), [
+          [['padding'], ['0!important']]
         ]);
       }
     }

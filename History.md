@@ -3,7 +3,7 @@
 
 * Requires Node.js 4.0+ to run.
 
-[3.4.19 / 2016-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.18...3.4)
+[3.4.19 / 2016-07-25](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.18...v3.4.19)
 ==================
 
 * Fixed issue [#795](https://github.com/jakubpawlowicz/clean-css/issues/795) - `!important` and override compacting.

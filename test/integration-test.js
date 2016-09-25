@@ -2467,6 +2467,10 @@ vows.describe('integration tests')
         ':placeholder{color:red}b{color:red}',
         ':placeholder{color:red}b{color:red}'
       ],
+      'rules with not-so-well-supported pseudo classes should not be merged #6': [
+        ':selection{color:red}b{color:red}',
+        ':selection{color:red}b{color:red}'
+      ],
       'rules with :host Polymer pseudo class should not be merged into': [
         ':host{color:red}b{color:red}',
         ':host{color:red}b{color:red}'

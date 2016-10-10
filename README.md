@@ -52,7 +52,7 @@ cleancss [options] source-file, [source-file, ...]
 -r, --root [root-path]         Set a root path to which resolve absolute @import rules
 -s, --skip-import              Disable @import processing
 -t, --timeout [seconds]        Per connection timeout when fetching remote @imports (defaults to 5 seconds)
---rounding-precision [n]       Rounds to `N` decimal places. Defaults to 2. -1 disables rounding
+--rounding-precision [n]       Rounds pixel values to `N` decimal places. Defaults to 2. -1 disables rounding
 --s0                           Remove all special comments, i.e. /*! comment */
 --s1                           Remove all special comments but the first one
 --semantic-merging             Enables unsafe mode by assuming BEM-like semantic stylesheets (warning, this may break your styling!)

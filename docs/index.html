@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>clean-css: fast and efficient CSS optimizer</title>
+  <link rel="stylesheet" type="text/css" href="css/vendor/normalize.css"/>
+  <link rel="stylesheet" type="text/css" href="css/home.css"/>
+  <script src="js/optimizer.js"></script>
+  <script src="js/drag-drop.js"></script>
+</head>
+<body>
+  <h1 class="logo">
+    <a class="logo__link" href="//github.com/jakubpawlowicz/clean-css" title="Go to clean-css project page">Go to clean-css project page</a>
+  </h1>
+  <article class="content">
+    <ol class="drag-target dropped-files" title="Drop your files here to optimize them"></ol>
+    <p class="legend">
+      CSS optimizing happens directly in your browser using a browser-compatible build of clean-css. If you miss any functionality, you are more than welcome to <a href="//github.com/jakubpawlowicz/clean-css/tree/master/docs">add it</a>!
+    </p>
+  </article>
+  <footer class="footer">
+    Hosted with <span class="footer__heart">❤️</span> on <a href="//pages.github.com/">GitHub Pages.</a>
+  </footer>
+  <template class="dropped-file-template">
+    <li class="dropped-files__file">
+      <span class="dropped-files__file__name"></span>
+      <a class="dropped-files__file__save" href="#" download="test.css">save</a>
+    </li>
+  </template>
+</body>
+</html>

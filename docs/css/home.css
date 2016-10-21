@@ -1,0 +1,63 @@
+a, article, body, div, fieldset, form, h1, h2, h3, h4, h5, h6, input, label, li, nav, ol, p, section, span, textarea, ul {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding-left: 0;
+  padding-top: 0;
+  margin-left: 0;
+  margin-top: 0;
+}
+
+.logo__link {
+  background: url(../img/logo.svg) no-repeat center 55%;
+  display: block;
+  height: 10rem;
+  outline: none;
+  overflow: hidden;
+  text-indent: -999rem;
+}
+
+.content {
+  line-height: 1.35rem;
+  margin: 0 5% 5rem;
+  width: 90%;
+}
+
+.drag-target {
+  border: 5px dashed hsl(0, 0%, 90%);
+  margin-bottom: 2rem;
+  min-height: 10rem;
+}
+
+.drag-target:empty:before {
+  content: attr(title);
+  color: hsl(0, 0%, 15%);
+  display: block;
+  font-weight: bold;
+  height: inherit;
+  padding-top: 3rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.dropped-files {
+  list-style: none;
+  padding: 1rem;
+}
+
+.dropped-files__file:not(:last-child) {
+  margin-bottom: 0.5rem;
+}
+
+.dropped-files__file:not(.dropped-files__file--optimized) > .dropped-files__file__save {
+  display: none;
+}
+
+.footer {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.footer__heart {
+  color: hsl(0, 100%, 45%);
+}

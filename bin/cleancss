@@ -74,7 +74,7 @@ var options = {
   rebase: commands.skipRebase ? false : true,
   restructuring: commands.skipRestructuring ? false : true,
   root: commands.root,
-  roundingPrecision: commands.roundingPrecision === undefined ? undefined : parseInt(commands.roundingPrecision),
+  roundingPrecision: commands.roundingPrecision,
   semanticMerging: commands.semanticMerging ? true : false,
   shorthandCompacting: commands.skipShorthandCompacting ? false : true,
   sourceMap: commands.sourceMap,

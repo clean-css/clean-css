@@ -22,7 +22,7 @@ commands
   .option('-r, --root [root-path]', 'Set a root path to which resolve absolute @import rules')
   .option('-s, --skip-import', 'Disable @import processing')
   .option('-t, --timeout [seconds]', 'Per connection timeout when fetching remote @imports (defaults to 5 seconds)')
-  .option('--rounding-precision [n]', 'Rounds pixel values to `N` decimal places. Defaults to 2. -1 disables rounding', parseInt)
+  .option('--rounding-precision [n]', 'Rounds pixel values to `N` decimal places. Defaults to 2. -1 disables rounding')
   .option('--s0', 'Remove all special comments, i.e. /*! comment */')
   .option('--s1', 'Remove all special comments but the first one')
   .option('--semantic-merging', 'Enables unsafe mode by assuming BEM-like semantic stylesheets (warning, this may break your styling!)')
@@ -74,7 +74,7 @@ var options = {
   rebase: commands.skipRebase ? false : true,
   restructuring: commands.skipRestructuring ? false : true,
   root: commands.root,
-  roundingPrecision: commands.roundingPrecision,
+  roundingPrecision: commands.roundingPrecision === undefined ? undefined : parseInt(commands.roundingPrecision),
   semanticMerging: commands.semanticMerging ? true : false,
   shorthandCompacting: commands.skipShorthandCompacting ? false : true,
   sourceMap: commands.sourceMap,

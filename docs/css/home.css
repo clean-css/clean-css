@@ -86,6 +86,11 @@ a, article, body, div, fieldset, form, h1, h2, h3, h4, h5, h6, input, label, li,
   display: none;
 }
 
+.dropped-files__file__summary {
+  color: hsl(0, 0%, 45%);
+  font-style: italic;
+}
+
 .dropped-files__file__action {
   display: inline-block;
   float: right;

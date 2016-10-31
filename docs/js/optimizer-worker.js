@@ -9,7 +9,8 @@ onmessage = function(event) {
           command: 'optimized',
           id: event.data.id,
           error: error,
-          output: output
+          output: output,
+          saved: event.data.input.length - output.styles.length
         })
       })
   }

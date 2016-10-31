@@ -4,7 +4,7 @@ Optimizer = {
     this.worker.onmessage = function (event) {
       switch (event.data.command) {
         case 'optimized':
-          Optimizer.oncomplete(event.data.id, event.data.output)
+          Optimizer.oncomplete(event.data.id, event.data.output, event.data.saved)
       }
     }
     this.worker.onerror = function (event) {

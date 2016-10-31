@@ -58,13 +58,15 @@
     dropContainer.appendChild(importedNode)
   }
 
-  function optimizationCompleted(optimizationId, output) {
+  function optimizationCompleted(optimizationId, output, saved) {
     var fileNode = document.querySelector('.dropped-files__file--' + optimizationId)
+    var summaryNode = fileNode.querySelector('.dropped-files__file__summary')
     var downloadNode = fileNode.querySelector('.dropped-files__file__action--save')
     var copyToClipboardNode = fileNode.querySelector('.dropped-files__file__action--copy')
     var stylesBlob = new Blob([output.styles])
 
     fileNode.classList.add('dropped-files__file--optimized')
+    summaryNode.innerText = ' - saved ' + formatAsKb(saved, 1) + ' kB'
     downloadNode.href = URL.createObjectURL(stylesBlob)
 
     copyToClipboardNode.addEventListener('click', function (event) {
@@ -86,6 +88,12 @@
         copyToClipboardNode.innerText = copyToClipboardNode.dataset.originalLabel
       }, COPY_TO_CLIPBOARD_RESET_DELAY)
     })
+  }
+
+  function formatAsKb(value, precision) {
+    var factor = Math.pow(10.0, precision)
+
+    return parseInt((value / 1024.0) * factor) / factor
   }
 
   window.addEventListener('DOMContentLoaded', function () {

@@ -38,10 +38,12 @@
     var importedNode = document.importNode(templateNode.content, true)
     var fileNode = importedNode.querySelector('.dropped-files__file')
     var nameNode = importedNode.querySelector('.dropped-files__file__name')
+    var downloadNode = importedNode.querySelector('.dropped-files__file__action--save')
     var reader
 
     fileNode.classList.add('dropped-files__file--' + optimizationId)
     nameNode.innerText = file.name
+    downloadNode.download = file.name.replace(/\.css$/, '.min.css')
 
     if (file.type == 'text/css') {
       reader = new FileReader()

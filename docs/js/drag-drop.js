@@ -58,8 +58,8 @@
 
   function optimizationCompleted(optimizationId, output) {
     var fileNode = document.querySelector('.dropped-files__file--' + optimizationId)
-    var downloadNode = fileNode.querySelector('.dropped-files__file__save')
-    var copyToClipboardNode = fileNode.querySelector('.dropped-files__file__copy')
+    var downloadNode = fileNode.querySelector('.dropped-files__file__action--save')
+    var copyToClipboardNode = fileNode.querySelector('.dropped-files__file__action--copy')
     var stylesBlob = new Blob([output.styles])
 
     fileNode.classList.add('dropped-files__file--optimized')

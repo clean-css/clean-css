@@ -45,12 +45,26 @@ a, article, body, div, fieldset, form, h1, h2, h3, h4, h5, h6, input, label, li,
   padding: 1rem;
 }
 
-.dropped-files__file:not(:last-child) {
-  margin-bottom: 0.5rem;
+.dropped-files__file {
+  padding: 0.25rem 0.5rem;
 }
 
-.dropped-files__file:not(.dropped-files__file--optimized) > .dropped-files__file__save {
+.dropped-files__file:nth-child(2n) {
+  background-color: hsl(0, 0%, 92%);
+}
+
+.dropped-files__file:nth-child(2n + 1) {
+  background-color: hsl(0, 0%, 98%);
+}
+
+.dropped-files__file:not(.dropped-files__file--optimized) > .dropped-files__file__action {
   display: none;
+}
+
+.dropped-files__file__action {
+  display: inline-block;
+  float: right;
+  margin-left: 0.5rem;
 }
 
 .clipboard-copy {

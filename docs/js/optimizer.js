@@ -7,6 +7,9 @@ Optimizer = {
           Optimizer.oncomplete(event.data.id, event.data.output)
       }
     }
+    this.worker.onerror = function (event) {
+      console.error(event)
+    }
   },
 
   process: function (id, styles) {

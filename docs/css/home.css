@@ -1,3 +1,12 @@
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 a, article, body, div, fieldset, form, h1, h2, h3, h4, h5, h6, input, label, li, nav, ol, p, section, span, textarea, ul {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -55,6 +64,22 @@ a, article, body, div, fieldset, form, h1, h2, h3, h4, h5, h6, input, label, li,
 
 .dropped-files__file:nth-child(2n + 1) {
   background-color: hsl(0, 0%, 98%);
+}
+
+.dropped-files__file:not(.dropped-files__file--optimized) {
+  position: relative;
+}
+
+.dropped-files__file:not(.dropped-files__file--optimized):after {
+  animation: rotate 1.25s linear infinite;
+  background: url(../img/spinner.svg) center center / 1.25rem 1.25rem no-repeat;
+  content: " ";
+  display: block;
+  height: 100%;
+  position: absolute;
+  right: 0.25rem;
+  top: 0;
+  width: 1.5rem;
 }
 
 .dropped-files__file:not(.dropped-files__file--optimized) > .dropped-files__file__action {

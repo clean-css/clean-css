@@ -501,6 +501,22 @@ vows.describe('simple optimizations')
     }, { roundingPrecision: -1 })
   )
   .addBatch(
+    propertyContext('rounding disabled when option value not castable to int', {
+      'pixels': [
+        'a{transform:translateY(123.31135px)}',
+        [['transform', 'translateY(123.31135px)']]
+      ],
+      'percents': [
+        'a{left:20.1231%}',
+        [['left', '20.1231%']]
+      ],
+      'ems': [
+        'a{left:1.1231em}',
+        [['left', '1.1231em']]
+      ]
+    }, { roundingPrecision: '\'-1\'' })
+  )
+  .addBatch(
     propertyContext('units', {
       'pixels': [
         'a{width:0px}',

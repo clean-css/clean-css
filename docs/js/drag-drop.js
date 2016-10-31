@@ -1,4 +1,6 @@
 (function () {
+  var COPY_TO_CLIPBOARD_RESET_DELAY = 2500
+
   var uniqueID = (function () {
     var UID = new Date().getTime()
 
@@ -57,10 +59,31 @@
   function optimizationCompleted(optimizationId, output) {
     var fileNode = document.querySelector('.dropped-files__file--' + optimizationId)
     var downloadNode = fileNode.querySelector('.dropped-files__file__save')
+    var copyToClipboardNode = fileNode.querySelector('.dropped-files__file__copy')
     var stylesBlob = new Blob([output.styles])
 
     fileNode.classList.add('dropped-files__file--optimized')
     downloadNode.href = URL.createObjectURL(stylesBlob)
+
+    copyToClipboardNode.addEventListener('click', function (event) {
+      var clipboardCopyNode = document.querySelector('.clipboard-copy')
+
+      event.preventDefault()
+      clipboardCopyNode.value = output.styles
+      clipboardCopyNode.select()
+
+      try {
+        document.execCommand('copy')
+        copyToClipboardNode.innerText = copyToClipboardNode.dataset.successLabel
+      } catch (e) {
+        console.error(e)
+        copyToClipboardNode.innerText = copyToClipboardNode.dataset.errorLabel
+      }
+
+      setTimeout(function () {
+        copyToClipboardNode.innerText = copyToClipboardNode.dataset.originalLabel
+      }, COPY_TO_CLIPBOARD_RESET_DELAY)
+    })
   }
 
   window.addEventListener('DOMContentLoaded', function () {

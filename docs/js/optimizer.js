@@ -1,4 +1,6 @@
 Optimizer = {
+  options: null, // see setOptionsFrom in settings.js
+
   start: function () {
     this.worker = new Worker('./js/optimizer-worker.js')
     this.worker.onmessage = function (event) {
@@ -16,7 +18,8 @@ Optimizer = {
     this.worker.postMessage({
       command: 'optimize',
       id: id,
-      input: styles
+      input: styles,
+      options: this.options
     })
   },
 

@@ -7,13 +7,72 @@
   <link rel="stylesheet" type="text/css" href="css/home.css"/>
   <script src="js/optimizer.js"></script>
   <script src="js/drag-drop.js"></script>
+  <script src="js/settings.js"></script>
 </head>
 <body>
   <h1 class="logo">
     <a class="logo__link" href="//github.com/jakubpawlowicz/clean-css" title="Go to clean-css project page">Go to clean-css project page</a>
   </h1>
   <article class="content">
-    <ol class="drag-target dropped-files" title="Drop your files here to optimize them"></ol>
+    <section class="drag-target">
+      <ol class="dropped-files" title="Drop your files here to optimize them"></ol>
+      <form class="settings settings--collapsed">
+        <fieldset class="settings__group">
+          <select class="settings__option settings__option--version" name="version">
+            <option value="v3.4.20" selected>3.4.20 (latest)</option>
+          </select>
+        </fieldset>
+        <fieldset class="settings__group settings__group--advanced">
+          <div class="settings__group__wrapper">
+            <input class="settings__option settings__option--checkbox settings__option--advanced" type="checkbox" id="advanced" name="advanced" />
+            <label class="settings__label" for="advanced">advanced optimizations</label>
+          </div>
+          <div class="settings__group__wrapper">
+            <input class="settings__option settings__option--checkbox" type="checkbox" id="aggressive_merging" name="aggressive-merging" disabled />
+            <label class="settings__label" for="aggressive_merging">aggressive merging</label>
+          </div>
+          <div class="settings__group__wrapper">
+            <input class="settings__option settings__option--checkbox" type="checkbox" id="media_merging" name="media-merging" disabled />
+            <label class="settings__label" for="media_merging">@media merging</label>
+          </div>
+          <div class="settings__group__wrapper">
+            <input class="settings__option settings__option--checkbox" type="checkbox" id="restructuring" name="restructuring" disabled />
+            <label class="settings__label" for="restructuring">restructuring</label>
+          </div>
+          <div class="settings__group__wrapper">
+            <input class="settings__option settings__option--checkbox" type="checkbox" id="shorthand_compacting" name="shorthand-compacting" disabled />
+            <label class="settings__label" for="shorthand_compacting">shorthand compacting</label>
+          </div>
+        </fieldset>
+        <fieldset class="settings__group">
+          <div class="settings__group__wrapper">
+            <input class="settings__option" type="checkbox" id="keep_breaks" name="keep-breaks" checked />
+            <label class="settings__label" for="keep_breaks">keep line breaks</label>
+          </div>
+          <div class="settings__group__wrapper">
+            <input class="settings__option settings__option--precision" type="number" min="-1" max="999999" id="rounding_precision" name="rounding-precision" value="2" />
+            <label class="settings__label" for="rounding_precision">rounding precision</label>
+          </div>
+          <div class="settings__group__wrapper">
+            <select class="settings__option settings__option--compatibility" id="compatibility" name="compatibility">
+              <option value="" selected>Modern browsers compatibility</option>
+              <option value="ie8">Modern browsers &amp; Internet Explorer 8 compatibility</option>
+              <option value="ie7">Modern browsers &amp; Internet Explorer 7/8 compatibility</option>
+            </select>
+          </div>
+          <div class="settings__group__wrapper">
+            <select class="settings__option settings__option--keep-special-comments" id="keep_special_comments" name="keep-special-comments">
+              <option value="*" selected>Keep all special comments</option>
+              <option value="1">Remove all special but one special comment</option>
+              <option value="0">Remove all special comments</option>
+            </select>
+          </div>
+        </fieldset>
+        <fieldset class="settings__group">
+          <input class="settings__option settings__option--apply" type="button" name="" value="Apply"/>
+        </fieldset>
+      </form>
+    </section>
     <p class="legend">
       CSS optimizing happens directly in your browser using a browser-compatible build of clean-css. If you miss any functionality, you are more than welcome to <a href="//github.com/jakubpawlowicz/clean-css/tree/master/docs">add it</a>!
     </p>

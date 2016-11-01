@@ -4,7 +4,7 @@ onmessage = function(event) {
 
   switch (event.data.command) {
     case 'optimize':
-      new CleanCSS().minify(event.data.input, function (error, output) {
+      new CleanCSS(event.data.options).minify(event.data.input, function (error, output) {
         postMessage({
           command: 'optimized',
           id: event.data.id,

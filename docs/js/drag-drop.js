@@ -98,10 +98,11 @@
 
   window.addEventListener('DOMContentLoaded', function () {
     var dragTarget = document.querySelector('.drag-target')
+    var dropContainer = document.querySelector('.dropped-files')
 
     dragTarget.addEventListener('dragenter', fileDraggedIn, false)
     dragTarget.addEventListener('dragover', fileDraggedOver, false)
-    dragTarget.addEventListener('drop', fileDropped(dragTarget), false)
+    dragTarget.addEventListener('drop', fileDropped(dropContainer), false)
 
     Optimizer.oncomplete = optimizationCompleted
   })

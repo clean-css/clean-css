@@ -17,6 +17,10 @@ a, article, body, div, fieldset, form, h1, h2, h3, h4, h5, h6, input, label, li,
   margin-top: 0;
 }
 
+select {
+  font-size: 16px;
+}
+
 .logo__link {
   background: url(../img/logo.svg) no-repeat center 55%;
   display: block;
@@ -35,23 +39,24 @@ a, article, body, div, fieldset, form, h1, h2, h3, h4, h5, h6, input, label, li,
 .drag-target {
   border: 5px dashed hsl(0, 0%, 90%);
   margin-bottom: 2rem;
-  min-height: 10rem;
-}
-
-.drag-target:empty:before {
-  content: attr(title);
-  color: hsl(0, 0%, 15%);
-  display: block;
-  font-weight: bold;
-  height: inherit;
-  padding-top: 3rem;
-  text-align: center;
-  text-transform: uppercase;
+  padding: 1rem;
+  position: relative;
 }
 
 .dropped-files {
   list-style: none;
-  padding: 1rem;
+  min-height: 10rem;
+}
+
+.dropped-files:empty:before {
+  content: attr(title);
+  color: hsl(0, 0%, 15%);
+  display: block;
+  font-weight: bold;
+  height: 10rem;
+  line-height: 12rem;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .dropped-files__file {
@@ -95,6 +100,81 @@ a, article, body, div, fieldset, form, h1, h2, h3, h4, h5, h6, input, label, li,
   display: inline-block;
   float: right;
   margin-left: 0.5rem;
+}
+
+.settings:not(.settings--collapsed) {
+  border-top: 3px solid hsl(0, 0%, 90%);
+  margin-top: 2rem;
+  padding: 1rem 0 0;
+}
+
+.settings--collapsed {
+  cursor: pointer;
+  height: 1rem;
+}
+
+.settings--collapsed:before {
+  background: url(../img/gear.svg) center center no-repeat;
+  bottom: 1rem;
+  content: " ";
+  display: block;
+  height: 1.5rem;
+  right: 1rem;
+  position: absolute;
+  width: 1.5rem;
+}
+
+.settings--collapsed > .settings__group {
+  display: none;
+}
+
+.settings__group {
+  border: none;
+}
+
+.settings__group {
+  padding: 0.25rem 0 0.25rem 0.75rem;
+}
+
+.settings__group:not(:last-child) {
+  border-left: 0.25rem solid hsl(198, 76%, 52%);
+  margin-bottom: 0.5rem;
+}
+
+.settings__group__wrapper:not(:last-child) {
+  margin-bottom: 0.25rem;
+}
+
+.settings__option--version {
+  width: 100%;
+}
+
+.settings__option--checkbox {
+  vertical-align: 1px;
+}
+
+.settings__option--checkbox:disabled + .settings__label {
+  color: hsl(0, 0%, 40%);
+}
+
+.settings__option--precision {
+  text-align: center;
+  width: 2.5rem;
+}
+
+.settings__option--compatibility {
+  width: 100%;
+}
+
+.settings__option--keep-special-comments {
+  width: 100%;
+}
+
+.settings__option--apply {
+  background: transparent;
+  border: 1px solid hsl(0, 0%, 80%);
+  float: right;
+  padding: 0.5rem 1rem;
 }
 
 .clipboard-copy {

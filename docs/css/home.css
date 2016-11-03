@@ -21,6 +21,10 @@ select {
   font-size: 16px;
 }
 
+template {
+  display: none; /* IE<12 needs it */
+}
+
 noscript {
   color: hsl(0, 70%, 50%);
   display: block;

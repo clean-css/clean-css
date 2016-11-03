@@ -21,6 +21,14 @@ select {
   font-size: 16px;
 }
 
+noscript {
+  color: hsl(0, 70%, 50%);
+  display: block;
+  font-weight: bold;
+  padding: 2rem;
+  text-align: center;
+}
+
 .logo__link {
   background: url(../img/logo.svg) no-repeat center 55%;
   display: block;

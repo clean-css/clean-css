@@ -1,8 +1,13 @@
-onmessage = function(event) {
-  if (!event.data)
-    return
+var initialized = false
 
+onmessage = function(event) {
   switch (event.data.command) {
+    case 'initialize':
+      if (!initialized) {
+        initialized = true
+        importScripts('//jakubpawlowicz.github.io/clean-css-builds/v3.4.20.js')
+      }
+      break
     case 'optimize':
       new CleanCSS(event.data.options).minify(event.data.input, function (error, output) {
         postMessage({
@@ -16,4 +21,4 @@ onmessage = function(event) {
   }
 }
 
-importScripts('//jakubpawlowicz.github.io/clean-css-builds/v3.4.20.js')
+

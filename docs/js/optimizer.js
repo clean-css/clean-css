@@ -14,6 +14,12 @@ Optimizer = {
     }
   },
 
+  initialize: function() {
+    this.worker.postMessage({
+      command: 'initialize'
+    })
+  },
+
   process: function (id, styles) {
     this.worker.postMessage({
       command: 'optimize',

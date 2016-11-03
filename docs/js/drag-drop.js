@@ -12,6 +12,8 @@
   function fileDraggedIn(event) {
     event.preventDefault()
     event.dataTransfer.dropEffect = 'copy'
+
+    Optimizer.initialize()
   }
 
   function fileDraggedOver(event) {

@@ -2,6 +2,7 @@
 ==================
 
 * Requires Node.js 4.0+ to run.
+* Replaces the old tokenizer with a new one which doesn't use any escaping.
 
 [3.4.22 / 2016-12-12](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.21...v3.4.22)
 ==================

@@ -7,163 +7,298 @@ var shallowClone = require('../../lib/properties/clone').shallow;
 
 var restoreFromOptimizing = require('../../lib/properties/restore-from-optimizing');
 
-var Compatibility = require('../../lib/utils/compatibility');
+var compatibility = require('../../lib/utils/compatibility');
 var Validator = require('../../lib/properties/validator');
 
-var validator = new Validator(new Compatibility().toOptions());
+var validator = new Validator(compatibility());
 
 vows.describe(restoreFromOptimizing)
   .addBatch({
     'without descriptor': {
       'topic': function () {
-        var properties = [[['margin-top'], ['0']]];
-        var _properties = wrapForOptimizing(properties);
-        restoreFromOptimizing(_properties);
+        var properties = [
+          [
+            'property',
+            ['property-name', 'margin-top'],
+            ['property-value', '0']
+          ]
+        ];
+        var wrapped = wrapForOptimizing(properties);
+        restoreFromOptimizing(wrapped);
 
         return properties;
       },
       'is same as source': function (properties) {
-        assert.deepEqual(properties, [[['margin-top'], ['0']]]);
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'margin-top'],
+            ['property-value', '0']
+          ]
+        ]);
       }
     },
     'with changed value but without descriptor': {
       'topic': function () {
-        var properties = [[['margin-top'], ['0']]];
-        var _properties = wrapForOptimizing(properties);
-        _properties[0].value = [['1px']];
-        _properties[0].dirty = true;
-        restoreFromOptimizing(_properties);
+        var properties = [
+          [
+            'property',
+            ['property-name', 'margin-top'],
+            ['property-value', '0']
+          ]
+        ];
+        var wrapped = wrapForOptimizing(properties);
+        wrapped[0].value = [['property-value', '1px']];
+        wrapped[0].dirty = true;
+        restoreFromOptimizing(wrapped);
 
         return properties;
       },
       'has right output': function (properties) {
-        assert.deepEqual(properties, [[['margin-top'], ['1px']]]);
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'margin-top'],
+            ['property-value', '1px']
+          ]
+        ]);
       }
     },
-    'longhands': {
+    'with comment': {
       'topic': function () {
-        var properties = ['/*comment */', [['margin-top'], ['0']]];
-        var _properties = wrapForOptimizing(properties);
-        populateComponents(_properties, validator);
-        restoreFromOptimizing(_properties);
+        var properties = [
+          [
+            'comment',
+            '/* comment */'
+          ],
+          [
+            'property',
+            ['property-name', 'margin-top'],
+            ['property-value', '0']
+          ]
+        ];
+        var wrapped = wrapForOptimizing(properties);
+        populateComponents(wrapped, validator);
+        restoreFromOptimizing(wrapped);
 
         return properties;
       },
       'is same as source': function (properties) {
-        assert.deepEqual(properties, ['/*comment */', [['margin-top'], ['0']]]);
+        assert.deepEqual(properties, [
+          [
+            'comment',
+            '/* comment */'
+          ],
+          [
+            'property',
+            ['property-name', 'margin-top'],
+            ['property-value', '0']
+          ]
+        ]);
       }
     },
     'shorthands': {
       'topic': function () {
-        var properties = ['/*comment */', [['background'], ['url(image.png)']]];
-        var _properties = wrapForOptimizing(properties);
-        populateComponents(_properties, validator);
+        var properties = [
+          [
+            'property',
+            ['property-name', 'background'],
+            ['property-value', 'url(image.png)']
+          ]
+        ];
+        var wrapped = wrapForOptimizing(properties);
+        populateComponents(wrapped, validator);
 
-        properties[1].pop();
-        _properties[0].dirty = true;
+        wrapped[0].dirty = true;
 
-        restoreFromOptimizing(_properties);
+        restoreFromOptimizing(wrapped);
         return properties;
       },
       'is same as source': function (properties) {
-        assert.deepEqual(properties, ['/*comment */', [['background'], ['url(image.png)']]]);
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'background'],
+            ['property-value', 'url(image.png)']
+          ]
+        ]);
       }
     },
     'shorthands in simple mode': {
       'topic': function () {
-        var properties = [[['margin'], ['1px'], ['2px']]];
-        var _properties = wrapForOptimizing(properties);
+        var properties = [
+          [
+            'property',
+            ['property-name', 'margin'],
+            ['property-value', '1px'],
+            ['property-value', '2px']
+          ]
+        ];
+        var wrapped = wrapForOptimizing(properties);
 
-        _properties[0].dirty = true;
+        wrapped[0].dirty = true;
 
-        restoreFromOptimizing(_properties, true);
+        restoreFromOptimizing(wrapped, true);
         return properties;
       },
       'is same as source': function (properties) {
-        assert.deepEqual(properties, [[['margin'], ['1px'], ['2px']]]);
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'margin'],
+            ['property-value', '1px'],
+            ['property-value', '2px']
+          ]
+        ]);
       }
     },
     'values': {
       'topic': function () {
-        var properties = [[['background'], ['url(image.png)']]];
-        var _properties = wrapForOptimizing(properties);
-        populateComponents(_properties, validator);
+        var properties = [
+          [
+            'property',
+            ['property-name', 'background'],
+            ['property-value', 'url(image.png)']
+          ]
+        ];
+        var wrapped = wrapForOptimizing(properties);
+        populateComponents(wrapped, validator);
 
-        _properties[0].value = [];
-        _properties[0].dirty = true;
+        wrapped[0].value = [];
+        wrapped[0].dirty = true;
 
-        restoreFromOptimizing(_properties);
-        return _properties;
+        restoreFromOptimizing(wrapped);
+        return properties;
       },
-      'updates value': function (_properties) {
-        assert.deepEqual(_properties[0].value, [['url(image.png)']]);
+      'updates value': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'background'],
+            ['property-value', 'url(image.png)']
+          ]
+        ]);
       }
     },
     'in cloned without reference to `all`': {
       'topic': function () {
-        var properties = [[['background'], ['url(image.png)']]];
-        var _properties = wrapForOptimizing(properties);
-        populateComponents(_properties, validator);
+        var properties = [
+          [
+            'property',
+            ['property-name', 'background'],
+            ['property-value', 'url(image.png)']
+          ]
+        ];
+        var wrapped = wrapForOptimizing(properties);
+        populateComponents(wrapped, validator);
 
-        var cloned = shallowClone(_properties[0]);
-        cloned.components = _properties[0].components;
+        var cloned = shallowClone(wrapped[0]);
+        cloned.components = wrapped[0].components;
         cloned.dirty = true;
 
         restoreFromOptimizing([cloned]);
         return cloned;
       },
       'does not fail': function (cloned) {
-        assert.deepEqual(cloned.value, [['url(image.png)']]);
+        assert.deepEqual(cloned.value, [['property-value', 'url(image.png)']]);
       }
     }
   })
   .addBatch({
     'important': {
       'topic': function () {
-        var properties = [[['color'], ['red!important']]];
-        var _properties = wrapForOptimizing(properties);
+        var properties = [
+          [
+            'property',
+            ['property-name', 'color'],
+            ['property-value', 'red!important']
+          ]
+        ];
+        var wrapped = wrapForOptimizing(properties);
 
-        restoreFromOptimizing(_properties, true);
+        restoreFromOptimizing(wrapped, true);
         return properties;
       },
       'restores important': function (properties) {
-        assert.deepEqual(properties, [[['color'], ['red!important']]]);
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'color'],
+            ['property-value', 'red!important']
+          ]
+        ]);
       }
     },
     'underscore hack': {
       'topic': function () {
-        var properties = [[['_color'], ['red']]];
-        var _properties = wrapForOptimizing(properties);
+        var properties = [
+          [
+            'property',
+            ['property-name', '_color'],
+            ['property-value', 'red']
+          ]
+        ];
+        var wrapped = wrapForOptimizing(properties);
 
-        restoreFromOptimizing(_properties, true);
+        restoreFromOptimizing(wrapped, true);
         return properties;
       },
       'restores hack': function (properties) {
-        assert.deepEqual(properties, [[['_color'], ['red']]]);
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', '_color'],
+            ['property-value', 'red']
+          ]
+        ]);
       }
     },
     'star hack': {
       'topic': function () {
-        var properties = [[['*color'], ['red']]];
-        var _properties = wrapForOptimizing(properties);
+        var properties = [
+          [
+            'property',
+            ['property-name', '*color'],
+            ['property-value', 'red']
+          ]
+        ];
+        var wrapped = wrapForOptimizing(properties);
 
-        restoreFromOptimizing(_properties, true);
+        restoreFromOptimizing(wrapped, true);
         return properties;
       },
       'restores hack': function (properties) {
-        assert.deepEqual(properties, [[['*color'], ['red']]]);
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', '*color'],
+            ['property-value', 'red']
+          ]
+        ]);
       }
     },
     'suffix hack': {
       'topic': function () {
-        var properties = [[['color'], ['red\\9']]];
-        var _properties = wrapForOptimizing(properties);
+        var properties = [
+          [
+            'property',
+            ['property-name', 'color'],
+            ['property-value', 'red\\9']
+          ]
+        ];
+        var wrapped = wrapForOptimizing(properties);
 
-        restoreFromOptimizing(_properties, true);
+        restoreFromOptimizing(wrapped, true);
         return properties;
       },
       'restores hack': function (properties) {
-        assert.deepEqual(properties, [[['color'], ['red\\9']]]);
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'color'],
+            ['property-value', 'red\\9']
+          ]
+        ]);
       }
     }
   })

@@ -396,7 +396,7 @@ vows.describe('integration tests')
       ],
       'inside url': [
         'p{background-image:url(\'/*\')}/* */',
-        'p{background-image:url(/*)}'
+        'p{background-image:url(\'/*\')}'
       ],
       'inside url twice': [
         'p{background-image:url(\'/* */\" /*\')}/* */',
@@ -404,7 +404,7 @@ vows.describe('integration tests')
       ],
       'inside url with more quotation': [
         'p{background-image:url(\'/*\');content:""/* */}',
-        'p{background-image:url(/*);content:""}'
+        'p{background-image:url(\'/*\');content:""}'
       ],
       'with quote marks': [
         '/*"*//* */',
@@ -524,7 +524,7 @@ vows.describe('integration tests')
       ],
       'open ended (broken)': [
         'a{width:expression(this.parentNode.innerText == }',
-        'a{width:expression(this.parentNode.innerText == }'
+        'a{width:expression(this.parentNode.innerText ==}'
       ],
       'function call & advanced': [
         'a{zoom:expression(function (el){el.style.zoom="1"}(this))}',
@@ -1250,10 +1250,6 @@ vows.describe('integration tests')
         'a{background:url(/images/blank.png)}',
         'a{background:url(/images/blank.png)}'
       ],
-      'keep non-encoded data URI unchanged': [
-        '.icon-logo{background-image:url(\'data:image/svg+xml;charset=US-ASCII\')}',
-        '.icon-logo{background-image:url(\'data:image/svg+xml;charset=US-ASCII\')}'
-      ],
       'strip quotes from base64 encoded PNG data URI': [
         '.icon-logo{background-image:url(\'data:image/png;base64,iVBORw0\')}',
         '.icon-logo{background-image:url(data:image/png;base64,iVBORw0)}'
@@ -1264,11 +1260,11 @@ vows.describe('integration tests')
       ],
       'cut off url content on selector level': [
         'a{background:url(image/}',
-        'a{background:url(image/}'
+        ''
       ],
       'cut off url content on block level': [
         '@font-face{src:url(data:application/x-font-woff;base64,d09GRk9UVE8AAENAAA0AAAAA}',
-        '@font-face{src:url(data:application/x-font-woff;base64,d09GRk9UVE8AAENAAA0AAAAA}'
+        ''
       ],
       'cut off url content on top level': [
         '@font-face{src:url(data:application/x-font-woff;base64,d09GRk9UVE8AAENAAA0AAAAA',
@@ -1368,11 +1364,11 @@ vows.describe('integration tests')
       ],
       'keep quoting if whitespace': [
         'a{background:url("/images/blank image.png")}',
-        'a{background:url(\'/images/blank image.png\')}'
+        'a{background:url("/images/blank image.png")}'
       ],
       'keep quoting if whitespace inside @font-face': [
         '@font-face{src:url("/Helvetica Neue.eot")}',
-        '@font-face{src:url(\'/Helvetica Neue.eot\')}'
+        '@font-face{src:url("/Helvetica Neue.eot")}'
       ],
       'keep SVG data URI unchanged': [
         'div{background:url(data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2018%2018%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Crect%20width%3D%2214%22%20height%3D%2214%22%2Fsvg%3E)}',
@@ -1838,12 +1834,12 @@ vows.describe('integration tests')
         'a[href="/version-0.01.html"]{display:block}',
         'a[href="/version-0.01.html"]{display:block}'
       ],
-      'should strip new lines inside attributes': [
-        '.test[title="my very long ' + lineBreak + 'title"]{display:block}',
+      'should strip escaped new lines inside attributes': [
+        '.test[title="my very long \\' + lineBreak + 'title"]{display:block}',
         '.test[title="my very long title"]{display:block}'
       ],
-      'should strip new lines inside attributes which can be unquoted': [
-        '.test[title="my_very_long_' + lineBreak + 'title"]{display:block}',
+      'should strip escaped new lines inside attributes which can be unquoted': [
+        '.test[title="my_very_long_\\' + lineBreak + 'title"]{display:block}',
         '.test[title=my_very_long_title]{display:block}'
       ],
       'should strip whitespace between square brackets': [
@@ -2674,10 +2670,6 @@ vows.describe('integration tests')
       'Polymer mixins - shorthand optimizations': [
         'a{--my-toolbar: { margin:10px; margin-top:10px };}',
         'a{--my-toolbar:{margin:10px};}'
-      ],
-      'Polymer mixins - not fitting into a single chunk of 128 bytes': [
-        ':host{--live-head-theme: { line-height: 40px !important; vertical-align: middle; background: transparent; height: 40px; z-index: 999; }; }',
-        ':host{--live-head-theme:{line-height:40px!important;vertical-align:middle;background:0 0;height:40px;z-index:999};}'
       ],
       'Polymer mixins - inlined variables': [
         '.spinner{-webkit-animation:container-rotate var(--paper-spinner-container-rotation-duration) linear infinite}',

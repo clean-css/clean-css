@@ -6,6 +6,9 @@ var CleanCSS = require('../index');
 
 var lineBreak = require('os').EOL;
 
+if (process.platform == 'win32')
+  return;
+
 var batchContexts = function () {
   var context = {};
   var dir = path.join(__dirname, 'fixtures');

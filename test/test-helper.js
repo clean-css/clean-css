@@ -1,9 +1,6 @@
 var assert = require('assert');
 
 var CleanCSS = require('../lib/clean');
-var tokenize = require('../lib/tokenizer/tokenize');
-var simpleOptimize = require('../lib/selectors/simple');
-var Compatibility = require('../lib/utils/compatibility');
 
 function optimizerContext(group, specs, options) {
   var context = {};
@@ -27,64 +24,6 @@ function optimizerContext(group, specs, options) {
   return context;
 }
 
-function selectorContext(group, specs, options) {
-  var context = {};
-  options = options || {};
-  options.compatibility = new Compatibility(options.compatibility).toOptions();
-
-  function optimized(selectors) {
-    return function (source) {
-      var tokens = tokenize(source, { options: {} });
-      simpleOptimize(tokens, options, {});
-
-      assert.deepEqual(tokens[0] ? tokens[0][1] : null, selectors);
-    };
-  }
-
-  for (var name in specs) {
-    context['selector - ' + group + ' - ' + name] = {
-      topic: specs[name][0],
-      optimized: optimized(specs[name][1])
-    };
-  }
-
-  return context;
-}
-
-function propertyContext(group, specs, options) {
-  var context = {};
-  options = options || {};
-  options.compatibility = new Compatibility(options.compatibility).toOptions();
-
-  function optimized(selectors) {
-    return function (source) {
-      var tokens = tokenize(source, { options: {} });
-      simpleOptimize(tokens, options, {});
-
-      var value = tokens[0] ?
-        tokens[0][2].map(function (property) {
-          return typeof property == 'string' ?
-            property :
-            property.map(function (t) { return t[0]; });
-        }) :
-        null;
-
-      assert.deepEqual(value, selectors);
-    };
-  }
-
-  for (var name in specs) {
-    context['property - ' + group + ' - ' + name] = {
-      topic: specs[name][0],
-      optimized: optimized(specs[name][1])
-    };
-  }
-
-  return context;
-}
-
 module.exports = {
-  optimizerContext: optimizerContext,
-  selectorContext: selectorContext,
-  propertyContext: propertyContext
+  optimizerContext: optimizerContext
 };

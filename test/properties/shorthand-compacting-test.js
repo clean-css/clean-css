@@ -4,25 +4,23 @@ var assert = require('assert');
 var optimize = require('../../lib/properties/optimizer');
 
 var tokenize = require('../../lib/tokenizer/tokenize');
-var SourceTracker = require('../../lib/utils/source-tracker');
-var Compatibility = require('../../lib/utils/compatibility');
+var compatibility = require('../../lib/utils/compatibility');
 var Validator = require('../../lib/properties/validator');
 
 function _optimize(source) {
   var tokens = tokenize(source, {
     options: {},
-    sourceTracker: new SourceTracker(),
     warnings: []
   });
 
-  var compatibility = new Compatibility(compatibility).toOptions();
-  var validator = new Validator(compatibility);
+  var compat = compatibility(compat);
+  var validator = new Validator(compat);
   var options = {
     aggressiveMerging: true,
-    compatibility: compatibility,
+    compatibility: compat,
     shorthandCompacting: true
   };
-  optimize(tokens[0][1], tokens[0][2], false, true, options, { validator: validator });
+  optimize(tokens[0][1], tokens[0][2], false, true, { options: options, validator: validator });
 
   return tokens[0][2];
 }
@@ -30,222 +28,503 @@ function _optimize(source) {
 vows.describe(optimize)
   .addBatch({
     'shorthand background #1': {
-      'topic': 'p{background-color:#111;background-image:__ESCAPED_URL_CLEAN_CSS0__;background-repeat:repeat;background-position:0 0;background-attachment:scroll;background-size:auto;background-origin:padding-box;background-clip:border-box}',
-      'into': function (topic) {
-        assert.deepEqual(_optimize(topic), [
-          [['background'], ['__ESCAPED_URL_CLEAN_CSS0__'], ['#111']]
+      'topic': function () {
+        return _optimize('p{background-color:#111;background-image:url(image.png);background-repeat:repeat;background-position:0 0;background-attachment:scroll;background-size:auto;background-origin:padding-box;background-clip:border-box}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'background'],
+            ['property-value', 'url(image.png)', [[1, 41, undefined]]],
+            ['property-value', '#111', [[1, 19, undefined]]]
+          ]
         ]);
       }
     },
     'shorthand background #2': {
-      'topic': 'p{background-color:#111;background-image:__ESCAPED_URL_CLEAN_CSS0__;background-repeat:no-repeat;background-position:0 0;background-attachment:scroll;background-size:auto;background-origin:padding-box;background-clip:border-box}',
-      'into': function (topic) {
-        assert.deepEqual(_optimize(topic), [
-          [['background'], ['__ESCAPED_URL_CLEAN_CSS0__'], ['no-repeat'], ['#111']]
+      'topic': function () {
+        return _optimize('p{background-color:#111;background-image:url(image.png);background-repeat:no-repeat;background-position:0 0;background-attachment:scroll;background-size:auto;background-origin:padding-box;background-clip:border-box}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'background'],
+            ['property-value', 'url(image.png)', [[1, 41, undefined]]],
+            ['property-value', 'no-repeat', [[1, 74, undefined]]],
+            ['property-value', '#111', [[1, 19, undefined]]]
+          ]
         ]);
       }
     },
     'shorthand important background': {
-      'topic': 'p{background-color:#111!important;background-image:__ESCAPED_URL_CLEAN_CSS0__!important;background-repeat:repeat!important;background-position:0 0!important;background-attachment:scroll!important;background-size:auto!important;background-origin:padding-box!important;background-clip:border-box!important}',
-      'into': function (topic) {
-        assert.deepEqual(_optimize(topic), [
-          [['background'], ['__ESCAPED_URL_CLEAN_CSS0__'], ['#111!important']]
+      'topic': function () {
+        return _optimize('p{background-color:#111!important;background-image:url(image.png)!important;background-repeat:repeat!important;background-position:0 0!important;background-attachment:scroll!important;background-size:auto!important;background-origin:padding-box!important;background-clip:border-box!important}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'background'],
+            ['property-value', 'url(image.png)', [[1, 51, undefined]]],
+            ['property-value', '#111!important', [[1, 19, undefined]]]
+          ]
         ]);
       }
     },
     'shorthand border-width': {
-      'topic': 'p{border-top-width:7px;border-bottom-width:7px;border-left-width:4px;border-right-width:4px}',
-      'into': function (topic) {
-        assert.deepEqual(_optimize(topic), [
-          [['border-width'], ['7px'], ['4px']]
+      'topic': function () {
+        return _optimize('p{border-top-width:7px;border-bottom-width:7px;border-left-width:4px;border-right-width:4px}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'border-width'],
+            ['property-value', '7px', [[1, 19, undefined]]],
+            ['property-value', '4px', [[1, 88, undefined]]]
+          ]
         ]);
       }
     },
     'shorthand border-color #1': {
-      'topic': 'p{border-top-color:#9fce00;border-bottom-color:#9fce00;border-left-color:#9fce00;border-right-color:#9fce00}',
-      'into': function (topic) {
-        assert.deepEqual(_optimize(topic), [
-          [['border-color'], ['#9fce00']]
+      'topic': function () {
+        return _optimize('p{border-top-color:#9fce00;border-bottom-color:#9fce00;border-left-color:#9fce00;border-right-color:#9fce00}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'border-color'],
+            ['property-value', '#9fce00', [[1, 19, undefined]]]
+          ]
         ]);
       }
     },
     'shorthand border-color #2': {
-      'topic': 'p{border-right-color:#002;border-bottom-color:#003;border-top-color:#001;border-left-color:#004}',
-      'into': function (topic) {
-        assert.deepEqual(_optimize(topic), [
-          [['border-color'], ['#001'], ['#002'], ['#003'], ['#004']]
+      'topic': function () {
+        return _optimize('p{border-right-color:#002;border-bottom-color:#003;border-top-color:#001;border-left-color:#004}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'border-color'],
+            ['property-value', '#001', [[1, 68, undefined]]],
+            ['property-value', '#002', [[1, 21, undefined]]],
+            ['property-value', '#003', [[1, 46, undefined]]],
+            ['property-value', '#004', [[1, 91, undefined]]]
+          ]
         ]);
       }
     },
     'shorthand border-radius': {
-      'topic': 'p{border-top-left-radius:7px;border-bottom-right-radius:6px;border-bottom-left-radius:5px;border-top-right-radius:3px}',
-      'into': function (topic) {
-        assert.deepEqual(_optimize(topic), [
-          [['border-radius'], ['7px'], ['3px'], ['6px'], ['5px']]
+      'topic': function () {
+        return _optimize('p{border-top-left-radius:7px;border-bottom-right-radius:6px;border-bottom-left-radius:5px;border-top-right-radius:3px}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'border-radius'],
+            ['property-value', '7px', [[1, 25, undefined]]],
+            ['property-value', '3px', [[1, 114, undefined]]],
+            ['property-value', '6px', [[1, 56, undefined]]],
+            ['property-value', '5px', [[1, 86, undefined]]]
+          ]
         ]);
       }
     },
     'shorthand multiplexed border-radius': {
-      'topic': 'p{border-radius:7px/3px}',
-      'into': function (topic) {
-        assert.deepEqual(_optimize(topic), [
-          [['border-radius'], ['7px'], ['/'], ['3px']]
+      'topic': function () {
+        return _optimize('p{border-radius:7px/3px}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'border-radius', [[1, 2, undefined]]],
+            ['property-value', '7px', [[1, 16, undefined]]],
+            ['property-value', '/'],
+            ['property-value', '3px', [[1, 20, undefined]]]
+          ]
         ]);
       }
     },
     'shorthand asymmetric border-radius with same values': {
-      'topic': 'p{border-top-left-radius:7px 3px;border-top-right-radius:7px 3px;border-bottom-right-radius:7px 3px;border-bottom-left-radius:7px 3px}',
-      'into': function (topic) {
-        assert.deepEqual(_optimize(topic), [
-          [['border-radius'], ['7px'], ['/'], ['3px']]
+      'topic': function () {
+        return _optimize('p{border-top-left-radius:7px 3px;border-top-right-radius:7px 3px;border-bottom-right-radius:7px 3px;border-bottom-left-radius:7px 3px}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'border-radius'],
+            ['property-value', '7px', [[1, 25, undefined]]],
+            ['property-value', '/'],
+            ['property-value', '3px', [[1, 29, undefined]]]
+          ]
         ]);
       }
     },
     'shorthand asymmetric border-radius': {
-      'topic': 'p{border-top-left-radius:7px 3px;border-top-right-radius:6px 2px;border-bottom-right-radius:5px 1px;border-bottom-left-radius:4px 0}',
-      'into': function (topic) {
-        assert.deepEqual(_optimize(topic), [
-          [['border-radius'], ['7px'], ['6px'], ['5px'], ['4px'], ['/'], ['3px'], ['2px'], ['1px'], ['0']]
+      'topic': function () {
+        return _optimize('p{border-top-left-radius:7px 3px;border-top-right-radius:6px 2px;border-bottom-right-radius:5px 1px;border-bottom-left-radius:4px 0}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'border-radius'],
+            ['property-value', '7px', [[1, 25, undefined]]],
+            ['property-value', '6px', [[1, 57, undefined]]],
+            ['property-value', '5px', [[1, 92, undefined]]],
+            ['property-value', '4px', [[1, 126, undefined]]],
+            ['property-value', '/'],
+            ['property-value', '3px', [[1, 29, undefined]]],
+            ['property-value', '2px', [[1, 61, undefined]]],
+            ['property-value', '1px', [[1, 96, undefined]]],
+            ['property-value', '0', [[1, 130, undefined]]]
+          ]
         ]);
       }
     },
     'shorthand multiple !important': {
-      'topic': 'a{border-color:#123 !important;border-top-color: #456 !important}',
-      'into': function (topic) {
-        assert.deepEqual(_optimize(topic), [
-          [['border-color'], ['#456'], ['#123'], ['#123!important']]
+      'topic': function () {
+        return _optimize('a{border-color:#123 !important;border-top-color: #456 !important}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'border-color', [[1, 2, undefined]]],
+            ['property-value', '#456', [[1, 49, undefined]]],
+            ['property-value', '#123', [[1, 15, undefined]]],
+            ['property-value', '#123!important', [[1, 15, undefined]]]
+          ]
         ]);
       }
     },
     'shorthand list-style #1': {
-      'topic': 'a{list-style-type:circle;list-style-position:outside;list-style-image:__ESCAPED_URL_CLEAN_CSS0__}',
-      'into': function (topic) {
-        assert.deepEqual(_optimize(topic), [
-          [['list-style'], ['circle'], ['__ESCAPED_URL_CLEAN_CSS0__']]
+      'topic': function () {
+        return _optimize('a{list-style-type:circle;list-style-position:outside;list-style-image:url(image.png)}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'list-style'],
+            ['property-value', 'circle', [[1, 18, undefined]]],
+            ['property-value', 'url(image.png)', [[1, 70, undefined]]]
+          ]
         ]);
       }
     },
     'shorthand list-style #2': {
-      'topic': 'a{list-style-image:__ESCAPED_URL_CLEAN_CSS0__;list-style-type:circle;list-style-position:inside}',
-      'into': function (topic) {
-        assert.deepEqual(_optimize(topic), [
-          [['list-style'], ['circle'], ['inside'], ['__ESCAPED_URL_CLEAN_CSS0__']]
+      'topic': function () {
+        return _optimize('a{list-style-image:url(image.png);list-style-type:circle;list-style-position:inside}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'list-style'],
+            ['property-value', 'circle', [[1, 50, undefined]]],
+            ['property-value', 'inside', [[1, 77, undefined]]],
+            ['property-value', 'url(image.png)', [[1, 19, undefined]]]
+          ]
         ]);
       }
     },
     'shorthand margin': {
-      'topic': 'a{margin-top:10px;margin-right:5px;margin-bottom:3px;margin-left:2px}',
-      'into': function (topic) {
-        assert.deepEqual(_optimize(topic), [
-          [['margin'], ['10px'], ['5px'], ['3px'], ['2px']]
+      'topic': function () {
+        return _optimize('a{margin-top:10px;margin-right:5px;margin-bottom:3px;margin-left:2px}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'margin'],
+            ['property-value', '10px', [[1, 13, undefined]]],
+            ['property-value', '5px', [[1, 31, undefined]]],
+            ['property-value', '3px', [[1, 49, undefined]]],
+            ['property-value', '2px', [[1, 65, undefined]]]
+          ]
         ]);
       }
     },
     'shorthand padding': {
-      'topic': 'a{padding-top:10px;padding-left:5px;padding-bottom:3px;padding-right:2px}',
-      'into': function (topic) {
-        assert.deepEqual(_optimize(topic), [
-          [['padding'], ['10px'], ['2px'], ['3px'], ['5px']]
+      'topic': function () {
+        return _optimize('a{padding-top:10px;padding-left:5px;padding-bottom:3px;padding-right:2px}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'padding'],
+            ['property-value', '10px', [[1, 14, undefined]]],
+            ['property-value', '2px', [[1, 69, undefined]]],
+            ['property-value', '3px', [[1, 51, undefined]]],
+            ['property-value', '5px', [[1, 32, undefined]]]
+          ]
         ]);
       }
     },
     'mixed': {
-      'topic': 'a{padding-top:10px;margin-top:3px;padding-left:5px;margin-left:3px;padding-bottom:3px;margin-bottom:3px;padding-right:2px;margin-right:3px}',
-      'into': function (topic) {
-        assert.deepEqual(_optimize(topic), [
-          [['padding'], ['10px'], ['2px'], ['3px'], ['5px']],
-          [['margin'], ['3px']]
+      'topic': function () {
+        return _optimize('a{padding-top:10px;margin-top:3px;padding-left:5px;margin-left:3px;padding-bottom:3px;margin-bottom:3px;padding-right:2px;margin-right:3px}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'padding'],
+            ['property-value', '10px', [[1, 14, undefined]]],
+            ['property-value', '2px', [[1, 118, undefined]]],
+            ['property-value', '3px', [[1, 82, undefined]]],
+            ['property-value', '5px', [[1, 47, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'margin'],
+            ['property-value', '3px', [[1, 30, undefined]]]
+          ]
         ]);
       }
     },
     'with other properties': {
-      'topic': 'a{padding-top:10px;padding-left:5px;padding-bottom:3px;color:red;padding-right:2px;width:100px}',
-      'into': function (topic) {
-        assert.deepEqual(_optimize(topic), [
-          [['color'], ['red']],
-          [['width'], ['100px']],
-          [['padding'], ['10px'], ['2px'], ['3px'], ['5px']]
+      'topic': function () {
+        return _optimize('a{padding-top:10px;padding-left:5px;padding-bottom:3px;color:red;padding-right:2px;width:100px}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'color', [[1, 55, undefined]]],
+            ['property-value', 'red', [[1, 61, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'width', [[1, 83, undefined]]],
+            ['property-value', '100px', [[1, 89, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'padding'],
+            ['property-value', '10px', [[1, 14, undefined]]],
+            ['property-value', '2px', [[1, 79, undefined]]],
+            ['property-value', '3px', [[1, 51, undefined]]],
+            ['property-value', '5px', [[1, 32, undefined]]]
+          ]
         ]);
       }
     },
     'with hacks': {
-      'topic': 'a{padding-top:10px;padding-left:5px;padding-bottom:3px;_padding-right:2px}',
-      'into': function (topic) {
-        assert.deepEqual(_optimize(topic), [
-          [['padding-top'], ['10px']],
-          [['padding-left'], ['5px']],
-          [['padding-bottom'], ['3px']],
-          [['_padding-right'], ['2px']]
+      'topic': function () {
+        return _optimize('a{padding-top:10px;padding-left:5px;padding-bottom:3px;_padding-right:2px}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'padding-top', [[1, 2, undefined]]],
+            ['property-value', '10px', [[1, 14, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'padding-left', [[1, 19, undefined]]],
+            ['property-value', '5px', [[1, 32, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'padding-bottom', [[1, 36, undefined]]],
+            ['property-value', '3px', [[1, 51, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', '_padding-right', [[1, 55, undefined]]],
+            ['property-value', '2px', [[1, 70, undefined]]]
+          ]
         ]);
       }
     },
     'just inherit': {
-      'topic': 'a{background:inherit}',
-      'into': function (topic) {
-        assert.deepEqual(_optimize(topic), [
-          [['background'], ['inherit']]
+      'topic': function () {
+        return _optimize('a{background:inherit}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'background', [[1, 2, undefined]]],
+            ['property-value', 'inherit', [[1, 13, undefined]]]
+          ]
         ]);
       }
     }
   })
   .addBatch({
     'not enough components': {
-      'topic': 'a{padding-top:10px;padding-left:5px;padding-bottom:3px}',
-      'into': function (topic) {
-        assert.deepEqual(_optimize(topic), [
-          [['padding-top'], ['10px']],
-          [['padding-left'], ['5px']],
-          [['padding-bottom'], ['3px']]
+      'topic': function () {
+        return _optimize('a{padding-top:10px;padding-left:5px;padding-bottom:3px}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'padding-top', [[1, 2, undefined]]],
+            ['property-value', '10px', [[1, 14, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'padding-left', [[1, 19, undefined]]],
+            ['property-value', '5px', [[1, 32, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'padding-bottom', [[1, 36, undefined]]],
+            ['property-value', '3px', [[1, 51, undefined]]]
+          ]
         ]);
       }
     },
     'with inherit - pending #525': {
-      'topic': 'a{padding-top:10px;padding-left:5px;padding-bottom:3px;padding-right:inherit}',
-      'into': function (topic) {
-        assert.deepEqual(_optimize(topic), [
-          [['padding-top'], ['10px']],
-          [['padding-left'], ['5px']],
-          [['padding-bottom'], ['3px']],
-          [['padding-right'], ['inherit']]
+      'topic': function () {
+        return _optimize('a{padding-top:10px;padding-left:5px;padding-bottom:3px;padding-right:inherit}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'padding-top', [[1, 2, undefined]]],
+            ['property-value', '10px', [[1, 14, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'padding-left', [[1, 19, undefined]]],
+            ['property-value', '5px', [[1, 32, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'padding-bottom', [[1, 36, undefined]]],
+            ['property-value', '3px', [[1, 51, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'padding-right', [[1, 55, undefined]]],
+            ['property-value', 'inherit', [[1, 69, undefined]]]
+          ]
         ]);
       }
     },
     'mixed importance': {
-      'topic': 'a{padding-top:10px;padding-left:5px;padding-bottom:3px;padding-right:2px!important}',
-      'into': function (topic) {
-        assert.deepEqual(_optimize(topic), [
-          [['padding-top'], ['10px']],
-          [['padding-left'], ['5px']],
-          [['padding-bottom'], ['3px']],
-          [['padding-right'], ['2px!important']]
+      'topic': function () {
+        return _optimize('a{padding-top:10px;padding-left:5px;padding-bottom:3px;padding-right:2px!important}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'padding-top', [[1, 2, undefined]]],
+            ['property-value', '10px', [[1, 14, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'padding-left', [[1, 19, undefined]]],
+            ['property-value', '5px', [[1, 32, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'padding-bottom', [[1, 36, undefined]]],
+            ['property-value', '3px', [[1, 51, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'padding-right', [[1, 55, undefined]]],
+            ['property-value', '2px!important', [[1, 69, undefined]]]
+          ]
         ]);
       }
     },
     'mixed understandability of units': {
-      'topic': 'a{padding-top:10px;padding-left:5px;padding-bottom:3px;padding-right:calc(100% - 20px)}',
-      'into': function (topic) {
-        assert.deepEqual(_optimize(topic), [
-          [['padding-top'], ['10px']],
-          [['padding-left'], ['5px']],
-          [['padding-bottom'], ['3px']],
-          [['padding-right'], ['calc(100% - 20px)']]
+      'topic': function () {
+        return _optimize('a{padding-top:10px;padding-left:5px;padding-bottom:3px;padding-right:calc(100% - 20px)}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'padding-top', [[1, 2, undefined]]],
+            ['property-value', '10px', [[1, 14, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'padding-left', [[1, 19, undefined]]],
+            ['property-value', '5px', [[1, 32, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'padding-bottom', [[1, 36, undefined]]],
+            ['property-value', '3px', [[1, 51, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'padding-right', [[1, 55, undefined]]],
+            ['property-value', 'calc(100% - 20px)', [[1, 69, undefined]]]
+          ]
         ]);
       }
     },
     'mixed understandability of images': {
-      'topic': 'p{background-color:#111;background-image:linear-gradient(sth);background-repeat:repeat;background-position:0 0;background-attachment:scroll;background-size:auto;background-origin:padding-box;background-clip:border-box}',
-      'into': function (topic) {
-        assert.deepEqual(_optimize(topic), [
-          [['background-color'], ['#111']],
-          [['background-image'], ['linear-gradient(sth)']],
-          [['background-repeat'], ['repeat']],
-          [['background-position'], ['0'], ['0']],
-          [['background-attachment'], ['scroll']],
-          [['background-size'], ['auto']],
-          [['background-origin'], ['padding-box']],
-          [['background-clip'], ['border-box']]
+      'topic': function () {
+        return _optimize('p{background-color:#111;background-image:linear-gradient(sth);background-repeat:repeat;background-position:0 0;background-attachment:scroll;background-size:auto;background-origin:padding-box;background-clip:border-box}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'background-color', [[1, 2, undefined]]],
+            ['property-value', '#111', [[1, 19, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'background-image', [[1, 24, undefined]]],
+            ['property-value', 'linear-gradient(sth)', [[1, 41, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'background-repeat', [[1, 62, undefined]]],
+            ['property-value', 'repeat', [[1, 80, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'background-position', [[1, 87, undefined]]],
+            ['property-value', '0', [[1, 107, undefined]]],
+            ['property-value', '0', [[1, 109, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'background-attachment', [[1, 111, undefined]]],
+            ['property-value', 'scroll', [[1, 133, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'background-size', [[1, 140, undefined]]],
+            ['property-value', 'auto', [[1, 156, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'background-origin', [[1, 161, undefined]]],
+            ['property-value', 'padding-box', [[1, 179, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'background-clip', [[1, 191, undefined]]],
+            ['property-value', 'border-box', [[1, 207, undefined]]]
+          ]
         ]);
       }
-    }
+  }
   })
   .export(module);

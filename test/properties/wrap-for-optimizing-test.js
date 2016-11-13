@@ -7,7 +7,14 @@ vows.describe(wrapForOptimizing)
   .addBatch({
     'one': {
       'topic': function () {
-        return wrapForOptimizing([[['margin'], ['0'], ['0']]]);
+        return wrapForOptimizing([
+          [
+            'property',
+            ['property-name', 'margin'],
+            ['property-value', '0'],
+            ['property-value', '0']
+          ]
+        ]);
       },
       'has one wrap': function (wrapped) {
         assert.lengthOf(wrapped, 1);
@@ -16,7 +23,7 @@ vows.describe(wrapForOptimizing)
         assert.deepEqual(wrapped[0].name, 'margin');
       },
       'has value': function (wrapped) {
-        assert.deepEqual(wrapped[0].value, [['0'], ['0']]);
+        assert.deepEqual(wrapped[0].value, [['property-value', '0'], ['property-value', '0']]);
       },
       'is not a block': function (wrapped) {
         assert.isFalse(wrapped[0].block);
@@ -45,7 +52,19 @@ vows.describe(wrapForOptimizing)
     },
     'two': {
       'topic': function () {
-        return wrapForOptimizing([[['margin'], ['0'], ['0']], [['color'], ['red']]]);
+        return wrapForOptimizing([
+          [
+            'property',
+            ['property-name', 'margin'],
+            ['property-value', '0'],
+            ['property-value', '0']
+          ],
+          [
+            'property',
+            ['property-name', 'color'],
+            ['property-value', 'red']
+          ]
+        ]);
       },
       'has two wraps': function (wrapped) {
         assert.lengthOf(wrapped, 2);
@@ -53,7 +72,17 @@ vows.describe(wrapForOptimizing)
     },
     'with comments': {
       'topic': function () {
-        return wrapForOptimizing([['/* comment */'], [['color'], ['red']]]);
+        return wrapForOptimizing([
+          [
+            'comment',
+            ['/* comment */']
+          ],
+          [
+            'property',
+            ['property-name', 'color'],
+            ['property-value', 'red']
+          ]
+        ]);
       },
       'has one wrap': function (wrapped) {
         assert.lengthOf(wrapped, 1);
@@ -64,7 +93,15 @@ vows.describe(wrapForOptimizing)
     },
     'longhand': {
       'topic': function () {
-        return wrapForOptimizing([[['border-radius-top-left'], ['1px'], ['/'], ['2px']]]);
+        return wrapForOptimizing([
+          [
+            'property',
+            ['property-name', 'border-radius-top-left'],
+            ['property-value', '1px'],
+            ['property-value', '/'],
+            ['property-value', '2px']
+          ]
+        ]);
       },
       'has one wrap': function (wrapped) {
         assert.lengthOf(wrapped, 1);
@@ -73,7 +110,7 @@ vows.describe(wrapForOptimizing)
         assert.deepEqual(wrapped[0].name, 'border-radius-top-left');
       },
       'has value': function (wrapped) {
-        assert.deepEqual(wrapped[0].value, [['1px'], ['/'], ['2px']]);
+        assert.deepEqual(wrapped[0].value, [['property-value', '1px'], ['property-value', '/'], ['property-value', '2px']]);
       },
       'is multiplex': function (wrapped) {
         assert.isTrue(wrapped[0].multiplex);
@@ -81,7 +118,13 @@ vows.describe(wrapForOptimizing)
     },
     'variable': {
       'topic': function () {
-        return wrapForOptimizing([[['--color'], ['red']]]);
+        return wrapForOptimizing([
+          [
+            'property',
+            ['property-name', '--color'],
+            ['property-value', 'red']
+          ]
+        ]);
       },
       'has one wrap': function (wrapped) {
         assert.lengthOf(wrapped, 1);
@@ -89,19 +132,33 @@ vows.describe(wrapForOptimizing)
       'has name': function (wrapped) {
         assert.deepEqual(wrapped[0].name, '--color');
       },
-      'has value': function (wrapped) {
-        assert.deepEqual(wrapped[0].value, [['red']]);
-      },
       'is not a block': function (wrapped) {
         assert.isFalse(wrapped[0].block);
-      },
-      'is variable': function (wrapped) {
-        assert.isTrue(wrapped[0].variable);
       }
     },
     'variable block': {
       'topic': function () {
-        return wrapForOptimizing([[['--color'], [ [['color'], ['red']], [['text-color'], ['red']] ]]]);
+        return wrapForOptimizing([
+          [
+            'property',
+            ['property-name', '--color'],
+            [
+              'property-block',
+              [
+                [
+                  'property',
+                  ['property-name', 'color'],
+                  ['property-value', 'red']
+                ],
+                [
+                  'property',
+                  ['property-name', 'text-color'],
+                  ['property-value', 'red']
+                ]
+              ]
+            ]
+          ]
+        ]);
       },
       'has one wrap': function (wrapped) {
         assert.lengthOf(wrapped, 1);
@@ -110,43 +167,143 @@ vows.describe(wrapForOptimizing)
         assert.deepEqual(wrapped[0].name, '--color');
       },
       'has value': function (wrapped) {
-        assert.deepEqual(wrapped[0].value, [[ [['color'], ['red']], [['text-color'], ['red']] ]]);
+        assert.deepEqual(wrapped[0].value, [
+          [
+            'property-block',
+            [
+              [
+                'property',
+                ['property-name', 'color'],
+                ['property-value', 'red']
+              ],
+              [
+                'property',
+                ['property-name', 'text-color'],
+                ['property-value', 'red']
+              ]
+            ]
+          ]
+        ]);
       },
-      'is not a block': function (wrapped) {
+      'is a block': function (wrapped) {
         assert.isTrue(wrapped[0].block);
-      },
-      'is variable': function (wrapped) {
-        assert.isTrue(wrapped[0].variable);
       }
     },
     'without value': {
       'topic': function () {
-        return wrapForOptimizing([[['margin']]]);
+        return wrapForOptimizing([
+          [
+            'property',
+            ['property-name', 'margin']
+          ]
+        ]);
       },
       'has one wrap': function (wrapped) {
         assert.lengthOf(wrapped, 1);
       },
-      'is unused': function (wrapped) {
-        assert.isTrue(wrapped[0].unused);
+      'has value': function (wrapped) {
+        assert.isUndefined(wrapped.value);
+      },
+      'unused is not set': function (wrapped) {
+        assert.isFalse(wrapped[0].unused);
       }
     },
     'important': {
       'topic': function () {
-        return wrapForOptimizing([[['margin'], ['0!important']]]);
+        return wrapForOptimizing([
+          [
+            'property',
+            ['property-name', 'margin'],
+            ['property-value', '0!important']
+          ]
+        ]);
       },
       'has one wrap': function (wrapped) {
         assert.lengthOf(wrapped, 1);
       },
       'has right value': function (wrapped) {
-        assert.deepEqual(wrapped[0].value, [['0']]);
+        assert.deepEqual(wrapped[0].value, [['property-value', '0']]);
       },
-      'is important': function (wrapped) {
+      'has important set': function (wrapped) {
         assert.isTrue(wrapped[0].important);
+      }
+    },
+    'important with prefix space': {
+      'topic': function () {
+        return wrapForOptimizing([
+          [
+            'property',
+            ['property-name', 'margin'],
+            ['property-value', '0'],
+            ['property-value', '!important']
+          ]
+        ]);
+      },
+      'has one wrap': function (wrapped) {
+        assert.lengthOf(wrapped, 1);
+      },
+      'has right value': function (wrapped) {
+        assert.deepEqual(wrapped[0].value, [['property-value', '0']]);
+      },
+      'has important set': function (wrapped) {
+        assert.isTrue(wrapped[0].important);
+      }
+    },
+    'important with suffix space': {
+      'topic': function () {
+        return wrapForOptimizing([
+          [
+            'property',
+            ['property-name', 'margin'],
+            ['property-value', '0!'],
+            ['property-value', 'important']
+          ]
+        ]);
+      },
+      'has one wrap': function (wrapped) {
+        assert.lengthOf(wrapped, 1);
+      },
+      'has right value': function (wrapped) {
+        assert.deepEqual(wrapped[0].value, [['property-value', '0']]);
+      },
+      'has important set': function (wrapped) {
+        assert.isTrue(wrapped[0].important);
+      }
+    },
+    'important with two spaces': {
+      'topic': function () {
+        return wrapForOptimizing([
+          [
+            'property',
+            ['property-name', 'margin'],
+            ['property-value', '0'],
+            ['property-value', '!'],
+            ['property-value', 'important']
+          ]
+        ]);
+      },
+      'has one wrap': function (wrapped) {
+        assert.lengthOf(wrapped, 1);
+      },
+      'has right value': function (wrapped) {
+        assert.deepEqual(wrapped[0].value, [['property-value', '0']]);
+      },
+      'has important set': function (wrapped) {
+        assert.isTrue(wrapped[0].important);
+      },
+      'is not a bang hack': function (wrapped) {
+        assert.isFalse(wrapped[0].hack);
       }
     },
     'underscore hack': {
       'topic': function () {
-        return wrapForOptimizing([[['_color'], ['red']]]);
+        return wrapForOptimizing([
+          [
+            'property',
+            ['property-name', '_color'],
+            ['property-value', 'red']
+          ]
+        ]);
       },
       'has one wrap': function (wrapped) {
         assert.lengthOf(wrapped, 1);
@@ -160,7 +317,13 @@ vows.describe(wrapForOptimizing)
     },
     'star hack': {
       'topic': function () {
-        return wrapForOptimizing([[['*color'], ['red']]]);
+        return wrapForOptimizing([
+          [
+            'property',
+            ['property-name', '*color'],
+            ['property-value', 'red']
+          ]
+        ]);
       },
       'has one wrap': function (wrapped) {
         assert.lengthOf(wrapped, 1);
@@ -174,13 +337,19 @@ vows.describe(wrapForOptimizing)
     },
     'backslash hack': {
       'topic': function () {
-        return wrapForOptimizing([[['margin'], ['0\\9']]]);
+        return wrapForOptimizing([
+          [
+            'property',
+            ['property-name', 'margin'],
+            ['property-value', '0\\9']
+          ]
+        ]);
       },
       'has one wrap': function (wrapped) {
         assert.lengthOf(wrapped, 1);
       },
       'has right value': function (wrapped) {
-        assert.deepEqual(wrapped[0].value, [['0']]);
+        assert.deepEqual(wrapped[0].value, [['property-value', '0']]);
       },
       'is a hack': function (wrapped) {
         assert.equal(wrapped[0].hack, 'backslash');
@@ -188,13 +357,19 @@ vows.describe(wrapForOptimizing)
     },
     'backslash hack - single value': {
       'topic': function () {
-        return wrapForOptimizing([[['margin'], ['0']]]);
+        return wrapForOptimizing([
+          [
+            'property',
+            ['property-name', 'margin'],
+            ['property-value', '0']
+          ]
+        ]);
       },
       'has one wrap': function (wrapped) {
         assert.lengthOf(wrapped, 1);
       },
       'has right value': function (wrapped) {
-        assert.deepEqual(wrapped[0].value, [['0']]);
+        assert.deepEqual(wrapped[0].value, [['property-value', '0']]);
       },
       'is a hack': function (wrapped) {
         assert.isFalse(wrapped[0].hack);
@@ -202,13 +377,20 @@ vows.describe(wrapForOptimizing)
     },
     'backslash hack - space between values': {
       'topic': function () {
-        return wrapForOptimizing([[['margin'], ['0'], ['\\9']]]);
+        return wrapForOptimizing([
+          [
+            'property',
+            ['property-name', 'margin'],
+            ['property-value', '0'],
+            ['property-value', '\\9']
+          ]
+        ]);
       },
       'has one wrap': function (wrapped) {
         assert.lengthOf(wrapped, 1);
       },
       'has right value': function (wrapped) {
-        assert.deepEqual(wrapped[0].value, [['0']]);
+        assert.deepEqual(wrapped[0].value, [['property-value', '0']]);
       },
       'is a hack': function (wrapped) {
         assert.equal(wrapped[0].hack, 'backslash');
@@ -216,13 +398,42 @@ vows.describe(wrapForOptimizing)
     },
     'bang hack': {
       'topic': function () {
-        return wrapForOptimizing([[['margin'], ['0'], ['!ie']]]);
+        return wrapForOptimizing([
+          [
+            'property',
+            ['property-name', 'margin'],
+            ['property-value', '0!ie']
+          ]
+        ]);
       },
       'has one wrap': function (wrapped) {
         assert.lengthOf(wrapped, 1);
       },
       'has right value': function (wrapped) {
-        assert.deepEqual(wrapped[0].value, [['0']]);
+        assert.deepEqual(wrapped[0].value, [['property-value', '0']]);
+      },
+      'is a hack': function (wrapped) {
+        assert.equal(wrapped[0].hack, 'bang');
+      },
+      'is not important': function (wrapped) {
+        assert.isFalse(wrapped[0].important);
+      }
+    },
+    'bang hack with space': {
+      'topic': function () {
+        return wrapForOptimizing([
+          [
+            'property',
+            ['property-name', 'margin'],
+            ['property-value', '0 !ie']
+          ]
+        ]);
+      },
+      'has one wrap': function (wrapped) {
+        assert.lengthOf(wrapped, 1);
+      },
+      'has right value': function (wrapped) {
+        assert.deepEqual(wrapped[0].value, [['property-value', '0']]);
       },
       'is a hack': function (wrapped) {
         assert.equal(wrapped[0].hack, 'bang');
@@ -233,13 +444,20 @@ vows.describe(wrapForOptimizing)
     },
     'bang hack - space between values': {
       'topic': function () {
-        return wrapForOptimizing([[['margin'], ['0 !ie']]]);
+        return wrapForOptimizing([
+          [
+            'property',
+            ['property-name', 'margin'],
+            ['property-value', '0'],
+            ['property-value', '!ie']
+          ]
+        ]);
       },
       'has one wrap': function (wrapped) {
         assert.lengthOf(wrapped, 1);
       },
       'has right value': function (wrapped) {
-        assert.deepEqual(wrapped[0].value, [['0']]);
+        assert.deepEqual(wrapped[0].value, [['property-value', '0']]);
       },
       'is a hack': function (wrapped) {
         assert.equal(wrapped[0].hack, 'bang');
@@ -248,21 +466,44 @@ vows.describe(wrapForOptimizing)
         assert.isFalse(wrapped[0].important);
       }
     },
-    'source map': {
+    'two hacks': {
       'topic': function () {
-        return wrapForOptimizing([[['color', 1, 2, undefined], ['red\\9!important', 1, 2, undefined]]]);
+        return wrapForOptimizing([
+          [
+            'property',
+            ['property-name', 'color'],
+            ['property-value', 'red\\9!important']
+          ]
+        ]);
       },
       'has one wrap': function (wrapped) {
         assert.lengthOf(wrapped, 1);
       },
       'has right value': function (wrapped) {
-        assert.deepEqual(wrapped[0].value, [['red', 1, 2, undefined]]);
+        assert.deepEqual(wrapped[0].value, [['property-value', 'red']]);
       },
       'is important': function (wrapped) {
         assert.isTrue(wrapped[0].important);
       },
       'is a hack': function (wrapped) {
         assert.equal(wrapped[0].hack, 'backslash');
+      }
+    },
+    'source map': {
+      'topic': function () {
+        return wrapForOptimizing([
+          [
+            'property',
+            ['property-name', 'color', [[1, 2, undefined]]],
+            ['property-value', 'red', [[1, 2, undefined]]]
+          ]
+        ]);
+      },
+      'has one wrap': function (wrapped) {
+        assert.lengthOf(wrapped, 1);
+      },
+      'has right value': function (wrapped) {
+        assert.deepEqual(wrapped[0].value, [['property-value', 'red', [[1, 2, undefined]]]]);
       }
     }
   })

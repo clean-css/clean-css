@@ -9,8 +9,16 @@ vows.describe(removeUnused)
     'it removes unused only': {
       'topic': function () {
         var properties = [
-          [['background'], ['none']],
-          [['color'], ['red']]
+          [
+            'property',
+            ['property-name', 'background'],
+            ['property-value', 'none']
+          ],
+          [
+            'property',
+            ['property-name', 'color'],
+            ['property-value', 'red']
+          ]
         ];
         var _properties = wrapForOptimizing(properties);
         _properties[0].unused = true;
@@ -20,15 +28,26 @@ vows.describe(removeUnused)
       },
       'it has one property left': function (properties) {
         assert.lengthOf(properties, 1);
-        assert.equal(properties[0][0], 'color');
+        assert.equal(properties[0][1][1], 'color');
       }
     },
     'it respects comments': {
       'topic': function () {
         var properties = [
-          [['background'], ['none']],
-          '__ESCAPED_COMMENT_CLEAN_CSS0__',
-          [['color'], ['red']]
+          [
+            'property',
+            ['property-name', 'background'],
+            ['property-value', 'none']
+          ],
+          [
+            'comment',
+            ['/* comment */']
+          ],
+          [
+            'property',
+            ['property-name', 'color'],
+            ['property-value', 'red']
+          ]
         ];
         var _properties = wrapForOptimizing(properties);
         _properties[1].unused = true;
@@ -38,8 +57,8 @@ vows.describe(removeUnused)
       },
       'it has one property left': function (properties) {
         assert.lengthOf(properties, 2);
-        assert.equal(properties[0][0], 'background');
-        assert.equal(properties[1], '__ESCAPED_COMMENT_CLEAN_CSS0__');
+        assert.equal(properties[0][1][1], 'background');
+        assert.equal(properties[1][1][0], '/* comment */');
       }
     }
   })

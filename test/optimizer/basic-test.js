@@ -1,887 +1,886 @@
 var vows = require('vows');
 
-var selectorContext = require('../test-helper').selectorContext;
-var propertyContext = require('../test-helper').propertyContext;
+var optimizerContext = require('../test-helper').optimizerContext;
 
 vows.describe('simple optimizations')
   .addBatch(
-    selectorContext('default', {
+    optimizerContext('selectors', {
       'optimized': [
         'a{}',
-        null
+        ''
       ],
       'whitespace': [
         ' div  > span{color:red}',
-        [['div>span']]
+        'div>span{color:red}'
       ],
       'line breaks': [
         ' div  >\n\r\n span{color:red}',
-        [['div>span']]
+        'div>span{color:red}'
       ],
       'more line breaks': [
         '\r\ndiv\n{color:red}',
-        [['div']]
+        'div{color:red}'
       ],
       '+html': [
-        '*+html .foo{display:inline}',
-        null
+        '*+html .foo{color:red}',
+        ''
       ],
       'adjacent nav': [
         'div + nav{color:red}',
-        [['div+nav']]
+        'div+nav{color:red}'
       ],
       'heading & trailing': [
         ' a {color:red}',
-        [['a']]
+        'a{color:red}'
       ],
       'descendant selector': [
         'div > a{color:red}',
-        [['div>a']]
+        'div>a{color:red}'
       ],
       'next selector': [
         'div + a{color:red}',
-        [['div+a']]
+        'div+a{color:red}'
       ],
       'sibling selector': [
         'div  ~ a{color:red}',
-        [['div~a']]
+        'div~a{color:red}'
       ],
       'pseudo classes': [
         'div  :first-child{color:red}',
-        [['div :first-child']]
+        'div :first-child{color:red}'
       ],
       'tabs': [
         'div\t\t{color:red}',
-        [['div']]
+        'div{color:red}'
       ],
       'universal selector - id, class, and property': [
         '* > *#id > *.class > *[property]{color:red}',
-        [['*>#id>.class>[property]']]
+        '*>#id>.class>[property]{color:red}'
       ],
       'universal selector - pseudo': [
         '*:first-child{color:red}',
-        [[':first-child']]
+        ':first-child{color:red}'
       ],
       'universal selector - standalone': [
         'label ~ * + span{color:red}',
-        [['label~*+span']]
+        'label~*+span{color:red}'
       ],
       'order': [
         'b,div,a{color:red}',
-        [['a'], ['b'], ['div']]
+        'a,b,div{color:red}'
       ],
       'duplicates': [
         'a,div,.class,.class,a ,div > a{color:red}',
-        [['.class'], ['a'], ['div'], ['div>a']]
+        '.class,a,div,div>a{color:red}',
       ],
       'mixed': [
         ' label   ~  \n*  +  span , div>*.class, section\n\n{color:red}',
-        [['div>.class'], ['label~*+span'], ['section']]
+        'div>.class,label~*+span,section{color:red}'
       ],
       'escaped joining character #1': [
-        '.class\\~ div{color: red}',
-        [['.class\\~ div']]
+        '.class\\~ div{color:red}',
+        '.class\\~ div{color:red}'
       ],
       'escaped joining character #2': [
-        '.class\\+\\+ div{color: red}',
-        [['.class\\+\\+ div']]
+        '.class\\+\\+ div{color:red}',
+        '.class\\+\\+ div{color:red}'
       ],
       'escaped joining character #3': [
-        '.class\\>  \\~div{color: red}',
-        [['.class\\> \\~div']]
+        '.class\\>  \\~div{color:red}',
+        '.class\\> \\~div{color:red}'
       ],
       'escaped characters': [
-        '.a\\+\\+b{color: red}',
-        [['.a\\+\\+b']]
+        '.a\\+\\+b{color:red}',
+        '.a\\+\\+b{color:red}'
       ]
-    })
+    }, { advanced: false })
   )
   .addBatch(
-    selectorContext('ie8', {
+    optimizerContext('selectors - ie8', {
       '+html': [
-        '*+html .foo{display:inline}',
-        null
+        '*+html .foo{color:red}',
+        ''
       ],
       '+first-child html': [
-        '*:first-child+html .foo{display:inline}',
-        null
+        '*:first-child+html .foo{color:red}',
+        ''
       ],
       '+html - complex': [
-        '*+html .foo,.bar{display:inline}',
-        [['.bar']]
+        '*+html .foo,.bar{color:red}',
+        '.bar{color:red}'
       ]
-    }, { compatibility: 'ie8' })
+    }, { advanced: false, compatibility: 'ie8' })
   )
   .addBatch(
-    selectorContext('ie7', {
+    optimizerContext('selectors - ie7', {
       '+html': [
-        '*+html .foo{display:inline}',
-        [['*+html .foo']]
+        '*+html .foo{color:red}',
+        '*+html .foo{color:red}'
       ],
       '+html - complex': [
-        '*+html .foo,.bar{display:inline}',
-        [['*+html .foo'], ['.bar']]
+        '*+html .foo,.bar{color:red}',
+        '*+html .foo,.bar{color:red}'
       ]
-    }, { compatibility: 'ie7' })
+    }, { advanced: false, compatibility: 'ie7' })
   )
   .addBatch(
-    selectorContext('+adjacentSpace', {
+    optimizerContext('selectors - adjacent space', {
       'with whitespace': [
         'div + nav{color:red}',
-        [['div+ nav']]
+        'div+ nav{color:red}'
       ],
       'without whitespace': [
         'div+nav{color:red}',
-        [['div+ nav']]
+        'div+ nav{color:red}'
       ]
-    }, { compatibility: { selectors: { adjacentSpace: true } } })
+    }, { advanced: false, compatibility: { selectors: { adjacentSpace: true } } })
   )
   .addBatch(
-    propertyContext('@background', {
+    optimizerContext('background', {
       'none to 0 0': [
         'a{background:none}',
-        [['background', '0 0']]
+        'a{background:0 0}'
       ],
       'transparent to 0 0': [
         'a{background:transparent}',
-        [['background', '0 0']]
+        'a{background:0 0}'
       ],
       'any other': [
         'a{background:red}',
-        [['background', 'red']]
+        'a{background:red}'
       ],
       'none to other': [
         'a{background:transparent no-repeat}',
-        [['background', 'transparent', 'no-repeat']]
+        'a{background:transparent no-repeat}'
       ]
-    })
+    }, { advanced: false })
   )
   .addBatch(
-    propertyContext('@border-*-radius', {
+    optimizerContext('border-*-radius', {
       'spaces around /': [
         'a{border-radius:2em  /  1em}',
-        [['border-radius', '2em', '/', '1em']]
+        'a{border-radius:2em/1em}'
       ],
       'symmetric expanded to shorthand': [
         'a{border-radius:1em 2em 3em 4em / 1em 2em 3em 4em}',
-        [['border-radius', '1em', '2em', '3em', '4em']]
+        'a{border-radius:1em 2em 3em 4em}'
       ],
       'asymmetric kept as is': [
         'a{border-top-left-radius:1em 2em}',
-        [['border-top-left-radius', '1em', '2em']]
+        'a{border-top-left-radius:1em 2em}'
       ]
-    })
+    }, { advanced: false })
   )
   .addBatch(
-    propertyContext('@box-shadow', {
+    optimizerContext('box-shadow', {
       'four zeros': [
         'a{box-shadow:0 0 0 0}',
-        [['box-shadow', '0', '0']]
+        'a{box-shadow:0 0}'
       ],
       'four zeros in vendor prefixed': [
         'a{-webkit-box-shadow:0 0 0 0}',
-        [['-webkit-box-shadow', '0', '0']]
+        'a{-webkit-box-shadow:0 0}'
       ]
-    })
+    }, { advanced: false })
   )
   .addBatch(
-    propertyContext('colors', {
+    optimizerContext('colors', {
       'rgb to hex': [
         'a{color:rgb(255,254,253)}',
-        [['color', '#fffefd']]
+        'a{color:#fffefd}'
       ],
       'rgba not to hex': [
         'a{color:rgba(255,254,253,.5)}',
-        [['color', 'rgba(255,254,253,.5)']]
+        'a{color:rgba(255,254,253,.5)}'
       ],
       'hsl to hex': [
         'a{color:hsl(240,100%,50%)}',
-        [['color', '#00f']]
+        'a{color:#00f}'
       ],
       'hsla not to hex': [
         'a{color:hsla(240,100%,50%,.5)}',
-        [['color', 'hsla(240,100%,50%,.5)']]
+        'a{color:hsla(240,100%,50%,.5)}'
       ],
       'long hex to short hex': [
         'a{color:#ff00ff}',
-        [['color', '#f0f']]
+        'a{color:#f0f}'
       ],
       'hex to name': [
         'a{color:#f00}',
-        [['color', 'red']]
+        'a{color:red}'
       ],
       'name to hex': [
         'a{color:white}',
-        [['color', '#fff']]
+        'a{color:#fff}'
       ],
       'transparent black rgba to transparent': [
         'a{color:rgba(0,0,0,0)}',
-        [['color', 'transparent']]
+        'a{color:transparent}'
       ],
       'transparent non-black rgba': [
         'a{color:rgba(255,0,0,0)}',
-        [['color', 'rgba(255,0,0,0)']]
+        'a{color:rgba(255,0,0,0)}'
       ],
       'transparent black hsla to transparent': [
         'a{color:hsla(0,0%,0%,0)}',
-        [['color', 'transparent']]
+        'a{color:transparent}'
       ],
       'transparent non-black hsla': [
         'a{color:rgba(240,0,0,0)}',
-        [['color', 'rgba(240,0,0,0)']]
+        'a{color:rgba(240,0,0,0)}'
       ],
       'partial hex to name': [
         'a{color:#f00000}',
-        [['color', '#f00000']]
+        'a{color:#f00000}'
       ],
       'partial hex further down to name': [
         'a{background:url(test.png) #f00000}',
-        [['background', 'url(test.png)', '#f00000']]
+        'a{background:url(test.png) #f00000}'
       ],
       'partial name to hex': [
         'a{color:greyish}',
-        [['color', 'greyish']]
+        'a{color:greyish}'
       ],
       'partial name further down to hex': [
         'a{background:url(test.png) blueish}',
-        [['background', 'url(test.png)', 'blueish']]
+        'a{background:url(test.png) blueish}'
       ],
       'partial name as a suffix': [
         'a{font-family:alrightsanslp-black}',
-        [['font-family', 'alrightsanslp-black']]
+        'a{font-family:alrightsanslp-black}'
       ],
       'invalid rgba declaration - color': [
         'a{color:rgba(255 0 0)}',
-        [['color', 'rgba(255 0 0)']]
+        'a{color:rgba(255 0 0)}'
       ],
       'invalid rgba declaration - background': [
         'a{background:rgba(255 0 0)}',
-        [['background', 'rgba(255 0 0)']]
+        'a{background:rgba(255 0 0)}'
       ]
-    })
+    }, { advanced: false })
   )
   .addBatch(
-    propertyContext('colors - ie8 compatibility', {
+    optimizerContext('colors - ie8 compatibility', {
       'transparent black rgba': [
         'a{color:rgba(0,0,0,0)}',
-        [['color', 'rgba(0,0,0,0)']]
+        'a{color:rgba(0,0,0,0)}'
       ],
       'transparent non-black rgba': [
         'a{color:rgba(255,0,0,0)}',
-        [['color', 'rgba(255,0,0,0)']]
+        'a{color:rgba(255,0,0,0)}'
       ],
       'transparent black hsla': [
         'a{color:hsla(0,0%,0%,0)}',
-        [['color', 'hsla(0,0%,0%,0)']]
+        'a{color:hsla(0,0%,0%,0)}'
       ],
       'transparent non-black hsla': [
         'a{color:rgba(240,0,0,0)}',
-        [['color', 'rgba(240,0,0,0)']]
+        'a{color:rgba(240,0,0,0)}'
       ]
-    }, { compatibility: 'ie8' })
+    }, { advanced: false, compatibility: 'ie8' })
   )
   .addBatch(
-    propertyContext('colors - no optimizations', {
+    optimizerContext('colors - no optimizations', {
       'long hex into short': [
         'a{color:#ff00ff}',
-        [['color', '#ff00ff']]
+        'a{color:#ff00ff}'
       ],
       'short hex into name': [
         'a{color:#f00}',
-        [['color', '#f00']]
+        'a{color:#f00}'
       ],
       'name into hex': [
         'a{color:white}',
-        [['color', 'white']]
+        'a{color:white}'
       ]
-    }, { compatibility: { properties: { colors: false } } })
+    }, { advanced: false, compatibility: { properties: { colors: false } } })
   )
   .addBatch(
-    propertyContext('@filter', {
+    optimizerContext('filter', {
       'spaces after comma': [
         'a{filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=\'#cccccc\',endColorstr=\'#000000\', enabled=true)}',
-        [['filter', 'progid:DXImageTransform.Microsoft.gradient(startColorstr=\'#cccccc\', endColorstr=\'#000000\', enabled=true)']]
+        'a{filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=\'#cccccc\', endColorstr=\'#000000\', enabled=true)}'
       ],
       'single Alpha filter': [
         'a{filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=80)}',
-        [['filter', 'alpha(Opacity=80)']]
+        'a{filter:alpha(Opacity=80)}'
       ],
       'single Chroma filter': [
         'a{filter:progid:DXImageTransform.Microsoft.Chroma(color=#919191)}',
-        [['filter', 'chroma(color=#919191)']]
+        'a{filter:chroma(color=#919191)}'
       ],
       'multiple filters': [
         'a{filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=80) progid:DXImageTransform.Microsoft.Chroma(color=#919191)}',
-        [['filter', 'progid:DXImageTransform.Microsoft.Alpha(Opacity=80)', 'progid:DXImageTransform.Microsoft.Chroma(color=#919191)']]
+        'a{filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=80) progid:DXImageTransform.Microsoft.Chroma(color=#919191)}'
       ]
-    })
+    }, { advanced: false })
   )
   .addBatch(
-    propertyContext('@font', {
+    optimizerContext('font', {
       'in shorthand': [
         'a{font:normal 13px/20px sans-serif}',
-        [['font', '400', '13px', '/', '20px', 'sans-serif']]
+        'a{font:400 13px/20px sans-serif}'
       ],
       'in shorthand with fractions': [
         'a{font:bold .9em sans-serif}',
-        [['font', '700', '.9em', 'sans-serif']]
+        'a{font:700 .9em sans-serif}'
       ],
       'with font wariant and style': [
         'a{font:normal normal normal 13px/20px sans-serif}',
-        [['font', 'normal', 'normal', 'normal', '13px', '/', '20px', 'sans-serif']]
+        'a{font:normal normal normal 13px/20px sans-serif}'
       ],
       'with mixed order of variant and style': [
         'a{font:normal 300 normal 13px/20px sans-serif}',
-        [['font', 'normal', '300', 'normal', '13px', '/', '20px', 'sans-serif']]
+        'a{font:normal 300 normal 13px/20px sans-serif}'
       ],
       'with mixed normal and weight': [
-        'a{font: normal small-caps 400 medium Georgia, sans-serif;}',
-        [['font', 'normal', 'small-caps', '400', 'medium', 'Georgia', ',', 'sans-serif']]
+        'a{font:normal small-caps 400 medium Georgia,sans-serif}',
+        'a{font:normal small-caps 400 medium Georgia,sans-serif}'
       ],
       'with line height': [
-        'a{font: 11px/normal sans-serif}',
-        [['font', '11px', '/', 'normal', 'sans-serif']]
+        'a{font:11px/normal sans-serif}',
+        'a{font:11px/normal sans-serif}'
       ],
       'with mixed bold weight and variant #1': [
         'a{font:normal bold 17px sans-serif}',
-        [['font', 'normal', '700', '17px', 'sans-serif']]
+        'a{font:normal 700 17px sans-serif}'
       ],
       'with mixed bold weight and variant #2': [
         'a{font:bold normal 17px sans-serif}',
-        [['font', '700', 'normal', '17px', 'sans-serif']]
+        'a{font:700 normal 17px sans-serif}'
       ],
       'with mixed bold weight and variant #3': [
         'a{font:bold normal normal 17px sans-serif}',
-        [['font', 'bold', 'normal', 'normal', '17px', 'sans-serif']] // pending #254
+        'a{font:bold normal normal 17px sans-serif}' // pending #254
       ]
-    })
+    }, { advanced: false })
   )
   .addBatch(
-    propertyContext('@font-weight', {
+    optimizerContext('font-weight', {
       'normal to 400': [
         'a{font-weight:normal}',
-        [['font-weight', '400']]
+        'a{font-weight:400}'
       ],
       'bold to 700': [
         'a{font-weight:bold}',
-        [['font-weight', '700']]
+        'a{font-weight:700}'
       ],
       'any other': [
         'a{font-weight:bolder}',
-        [['font-weight', 'bolder']]
+        'a{font-weight:bolder}'
       ]
-    })
+    }, { advanced: false })
   )
   .addBatch(
-    propertyContext('ie hacks', {
+    optimizerContext('ie hacks', {
       'underscore': [
         'a{_width:101px}',
-        null
+        ''
       ],
       'star': [
         'a{*width:101px}',
-        null
+        ''
       ],
       'backslash': [
         'a{width:101px\\9}',
-        [['width', '101px\\9']]
+        'a{width:101px\\9}'
       ],
       'bang': [
         'a{color:red !ie}',
-        null
+        ''
       ],
       'before content': [
         'a{*width:101px;color:red!important}',
-        [['color', 'red!important']]
+        'a{color:red!important}'
       ]
-    })
+    }, { advanced: false })
   )
   .addBatch(
-    propertyContext('ie hacks in IE8 mode', {
+    optimizerContext('ie hacks in IE8 mode', {
       'underscore': [
         'a{_width:101px}',
-        [['_width', '101px']]
+        'a{_width:101px}'
       ],
       'star': [
         'a{*width:101px}',
-        [['*width', '101px']]
+        'a{*width:101px}'
       ],
       'backslash': [
         'a{width:101px\\9}',
-        [['width', '101px\\9']]
+        'a{width:101px\\9}'
       ],
       'bang': [
         'a{color:red !ie}',
-        null
+        ''
       ]
-    }, { compatibility: 'ie8' })
+    }, { advanced: false, compatibility: 'ie8' })
   )
   .addBatch(
-    propertyContext('ie hacks in IE7 mode', {
+    optimizerContext('ie hacks in IE7 mode', {
       'underscore': [
         'a{_width:101px}',
-        [['_width', '101px']]
+        'a{_width:101px}'
       ],
       'star': [
         'a{*width:101px}',
-        [['*width', '101px']]
+        'a{*width:101px}'
       ],
       'backslash': [
         'a{width:101px\\9}',
-        [['width', '101px\\9']]
+        'a{width:101px\\9}'
       ],
       'bang': [
         'a{color:red !ie}',
-        [['color', 'red !ie']]
+        'a{color:red !ie}'
       ]
-    }, { compatibility: 'ie7' })
+    }, { advanced: false, compatibility: 'ie7' })
   )
   .addBatch(
-    propertyContext('important', {
+    optimizerContext('important', {
       'minified': [
         'a{color:red!important}',
-        [['color', 'red!important']]
+        'a{color:red!important}'
       ],
       'space before !': [
         'a{color:red !important}',
-        [['color', 'red!important']]
+        'a{color:red!important}',
       ],
       'space after !': [
         'a{color:red! important}',
-        [['color', 'red!important']]
+        'a{color:red!important}'
       ]
-    }, { compatibility: 'ie8' })
+    }, { advanced: false })
   )
   .addBatch(
-    propertyContext('@outline', {
+    optimizerContext('outline', {
       'none to 0': [
         'a{outline:none}',
-        [['outline', '0']]
+        'a{outline:0}'
       ],
       'any other': [
         'a{outline:10px}',
-        [['outline', '10px']]
+        'a{outline:10px}'
       ],
       'none and any other': [
         'a{outline:none solid 1px}',
-        [['outline', 'none', 'solid', '1px']]
+        'a{outline:none solid 1px}'
       ]
-    })
+    }, { advanced: false })
   )
   .addBatch(
-    propertyContext('rounding', {
+    optimizerContext('rounding', {
       'pixels': [
         'a{transform:translateY(123.31135px)}',
-        [['transform', 'translateY(123.311px)']]
+        'a{transform:translateY(123.311px)}'
       ],
       'percents': [
         'a{left:20.1231%}',
-        [['left', '20.1231%']]
+        'a{left:20.1231%}'
       ],
       'ems': [
         'a{left:1.1231em}',
-        [['left', '1.1231em']]
+        'a{left:1.1231em}'
       ]
-    }, { roundingPrecision: 3 })
+    }, { advanced: false, roundingPrecision: 3 })
   )
   .addBatch(
-    propertyContext('rounding disabled', {
+    optimizerContext('rounding disabled', {
       'pixels': [
         'a{transform:translateY(123.31135px)}',
-        [['transform', 'translateY(123.31135px)']]
+        'a{transform:translateY(123.31135px)}'
       ],
       'percents': [
         'a{left:20.1231%}',
-        [['left', '20.1231%']]
+        'a{left:20.1231%}'
       ],
       'ems': [
         'a{left:1.1231em}',
-        [['left', '1.1231em']]
+        'a{left:1.1231em}'
       ]
-    }, { roundingPrecision: -1 })
+    }, { advanced: false, roundingPrecision: -1 })
   )
   .addBatch(
-    propertyContext('rounding disabled when option value not castable to int', {
+    optimizerContext('rounding disabled when option value not castable to int', {
       'pixels': [
         'a{transform:translateY(123.31135px)}',
-        [['transform', 'translateY(123.31135px)']]
+        'a{transform:translateY(123.31135px)}'
       ],
       'percents': [
         'a{left:20.1231%}',
-        [['left', '20.1231%']]
+        'a{left:20.1231%}'
       ],
       'ems': [
         'a{left:1.1231em}',
-        [['left', '1.1231em']]
+        'a{left:1.1231em}'
       ]
-    }, { roundingPrecision: '\'-1\'' })
+    }, { advanced: false, roundingPrecision: '\'-1\'' })
   )
   .addBatch(
-    propertyContext('units', {
+    optimizerContext('units', {
       'pixels': [
         'a{width:0px}',
-        [['width', '0']]
+        'a{width:0}'
       ],
       'degrees': [
         'div{background:linear-gradient(0deg,red,#fff)}',
-        [['background', 'linear-gradient(0deg,red,#fff)']]
+        'div{background:linear-gradient(0deg,red,#fff)}'
       ],
       'degrees when not mixed': [
         'div{transform:rotate(0deg) skew(0deg)}',
-        [['transform', 'rotate(0)', 'skew(0)']]
+        'div{transform:rotate(0) skew(0)}'
       ],
       'non-zero degrees when not mixed': [
         'div{transform:rotate(10deg) skew(.5deg)}',
-        [['transform', 'rotate(10deg)', 'skew(.5deg)']]
+        'div{transform:rotate(10deg) skew(.5deg)}'
       ],
       'ch': [
         'div{width:0ch;height:0ch}',
-        [['width', '0'], ['height', '0']]
+        'div{width:0;height:0}'
       ],
       'rem': [
         'div{width:0rem;height:0rem}',
-        [['width', '0'], ['height', '0']]
+        'div{width:0;height:0}'
       ],
       'vh': [
         'div{width:0vh;height:0vh}',
-        [['width', '0'], ['height', '0']]
+        'div{width:0;height:0}'
       ],
       'vm': [
         'div{width:0vm;height:0vm}',
-        [['width', '0'], ['height', '0']]
+        'div{width:0;height:0}'
       ],
       'vmax': [
         'div{width:0vmax;height:0vmax}',
-        [['width', '0'], ['height', '0']]
+        'div{width:0;height:0}'
       ],
       'vmin': [
         'div{width:0vmin;height:0vmin}',
-        [['width', '0'], ['height', '0']]
+        'div{width:0;height:0}'
       ],
       'vw': [
         'div{width:0vw;height:0vw}',
-        [['width', '0'], ['height', '0']]
+        'div{width:0;height:0}'
       ],
       'mixed units': [
         'a{margin:0em 0rem 0px 0pt}',
-        [['margin', '0']]
+        'a{margin:0}'
       ],
       'mixed values #1': [
         'a{padding:10px 0em 30% 0rem}',
-        [['padding', '10px', '0', '30%', '0']]
+        'a{padding:10px 0 30% 0}'
       ],
       'mixed values #2': [
         'a{padding:10ch 0vm 30vmin 0vw}',
-        [['padding', '10ch', '0', '30vmin', '0']]
+        'a{padding:10ch 0 30vmin 0}'
       ],
       'inside calc': [
         'a{font-size:calc(100% + 0px)}',
-        [['font-size', 'calc(100% + 0px)']]
+        'a{font-size:calc(100% + 0px)}'
       ],
       'flex': [
-        'a{flex: 1 0 0%}',
-        [['flex', '1', '0', '0%']]
+        'a{flex:1 0 0%}',
+        'a{flex:1 0 0%}'
       ],
       'flex–basis': [
         'a{flex-basis:0%}',
-        [['flex-basis', '0%']]
+        'a{flex-basis:0%}'
       ],
       'prefixed flex': [
-        'a{-ms-flex:1 0 0px;-webkit-flex:1 0 0px;}',
-        [['-ms-flex', '1', '0', '0px'], ['-webkit-flex', '1', '0', '0px']]
+        'a{-ms-flex:1 0 0px;-webkit-flex:1 0 0px}',
+        'a{-ms-flex:1 0 0px;-webkit-flex:1 0 0px}'
       ],
       'prefixed flex–basis': [
         'a{-webkit-flex-basis:0px}',
-        [['-webkit-flex-basis', '0px']]
+        'a{-webkit-flex-basis:0px}'
       ]
-    })
+    }, { advanced: false })
   )
   .addBatch(
-    propertyContext('units in compatibility mode', {
+    optimizerContext('units in compatibility mode', {
       'pixels': [
         'a{width:0px}',
-        [['width', '0']]
+        'a{width:0}'
       ],
       'mixed units': [
         'a{margin:0em 0rem 0px 0pt}',
-        [['margin', '0', '0rem', '0', '0']]
+        'a{margin:0 0rem 0 0}'
       ],
       'mixed values #1': [
         'a{padding:10px 0em 30% 0rem}',
-        [['padding', '10px', '0', '30%', '0rem']]
+        'a{padding:10px 0 30% 0rem}'
       ],
       'mixed values #2': [
         'a{padding:10ch 0vm 30vmin 0vw}',
-        [['padding', '10ch', '0vm', '30vmin', '0vw']]
+        'a{padding:10ch 0vm 30vmin 0vw}'
       ]
-    }, { compatibility: 'ie8' })
+    }, { advanced: false, compatibility: 'ie8' })
   )
   .addBatch(
-    propertyContext('zeros', {
+    optimizerContext('zeros', {
       '-0 to 0': [
         'a{margin:-0}',
-        [['margin', '0']]
+        'a{margin:0}'
       ],
       '-0px to 0': [
         'a{margin:-0px}',
-        [['margin', '0']]
+        'a{margin:0}'
       ],
       '-0% to 0': [
         'a{width:-0%}',
-        [['width', '0']]
+        'a{width:0}'
       ],
       'missing': [
         'a{opacity:1.}',
-        [['opacity', '1']]
+        'a{opacity:1}'
       ],
       'multiple': [
         'a{margin:-0 -0 -0 -0}',
-        [['margin', '0']]
+        'a{margin:0}'
       ],
       'keeps negative non-zero': [
         'a{margin:-0.5em}',
-        [['margin', '-.5em']]
+        'a{margin:-.5em}'
       ],
       'inside names #1': [
         'div{animation-name:test-0-bounce}',
-        [['animation-name', 'test-0-bounce']]
+        'div{animation-name:test-0-bounce}'
       ],
       'inside names #2': [
         'div{animation-name:test-0bounce}',
-        [['animation-name', 'test-0bounce']]
+        'div{animation-name:test-0bounce}'
       ],
       'inside names #3': [
         'div{animation-name:test-0px}',
-        [['animation-name', 'test-0px']]
+        'div{animation-name:test-0px}'
       ],
       'strips leading from value': [
         'a{padding:010px 0015px}',
-        [['padding', '10px', '15px']]
+        'a{padding:10px 15px}'
       ],
       'strips leading from fractions': [
         'a{margin:-0.5em}',
-        [['margin', '-.5em']]
+        'a{margin:-.5em}'
       ],
       'strips trailing from opacity': [
         'a{opacity:1.0}',
-        [['opacity', '1']]
+        'a{opacity:1}'
       ],
       '.0 to 0': [
         'a{margin:.0 .0 .0 .0}',
-        [['margin', '0']]
+        'a{margin:0}'
       ],
       'fraction zeros': [
         'a{margin:10.0em 15.50em 10.01em 0.0em}',
-        [['margin', '10em', '15.5em', '10.01em', '0']]
+        'a{margin:10em 15.5em 10.01em 0}'
       ],
       'fraction zeros after rounding': [
         'a{margin:10.0010px}',
-        [['margin', '10px']]
+        'a{margin:10px}'
       ],
       'four zeros into one': [
         'a{margin:0 0 0 0}',
-        [['margin', '0']]
+        'a{margin:0}'
       ],
       'rect zeros': [
         'a{clip:rect(0px 0px 0px 0px)}',
-        [['clip', 'rect(0 0 0 0)']]
+        'a{clip:rect(0 0 0 0)}'
       ],
       'rect zeros with non-zero value': [
         'a{clip:rect(0.5% 0px  0px 0px)}',
-        [['clip', 'rect(.5% 0 0 0)']]
+        'a{clip:rect(.5% 0 0 0)}'
       ],
       'rect zeros with commas': [
         'a{clip:rect(0px, 0px, 0px, 0px)}',
-        [['clip', 'rect(0,0,0,0)']]
+        'a{clip:rect(0,0,0,0)}'
       ],
       'height': [
         'a{height:0%}',
-        [['height', '0%']]
+        'a{height:0%}'
       ],
       'min-height': [
         'a{min-height:0%}',
-        [['min-height', '0']]
+        'a{min-height:0}'
       ],
       'max-height': [
         'a{max-height:0%}',
-        [['max-height', '0%']]
+        'a{max-height:0%}'
       ]
-    })
+    }, { advanced: false })
   )
   .addBatch(
-    propertyContext('zeros with disabled zeroUnits', {
+    optimizerContext('zeros with disabled zeroUnits', {
       '10.0em': [
         'a{margin:10.0em}',
-        [['margin', '10em']]
+        'a{margin:10em}'
       ],
       '0px': [
         'a{margin:0px}',
-        [['margin', '0px']]
+        'a{margin:0px}'
       ],
       '0px 0px': [
         'a{margin:0px 0px}',
-        [['margin', '0px', '0px']]
+        'a{margin:0px 0px}'
       ],
       '0deg': [
         'div{transform:rotate(0deg) skew(0deg)}',
-        [['transform', 'rotate(0deg)', 'skew(0deg)']]
+        'div{transform:rotate(0deg) skew(0deg)}'
       ],
       '0%': [
         'a{height:0%}',
-        [['height', '0%']]
+        'a{height:0%}'
       ],
       '10%': [
         'a{width:10%}',
-        [['width', '10%']]
+        'a{width:10%}'
       ]
-    }, { compatibility: { properties: { zeroUnits: false } } })
+    }, { advanced: false, compatibility: { properties: { zeroUnits: false } } })
   )
   .addBatch(
-    propertyContext('comments', {
+    optimizerContext('comments', {
       'comment': [
-        'a{__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0__color:red__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS1__}',
-        ['__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS0__', '__ESCAPED_COMMENT_SPECIAL_CLEAN_CSS1__', ['color', 'red']]
+        'a{/*! comment 1 */color:red/*! comment 2 */}',
+        'a{/*! comment 1 */color:red/*! comment 2 */}'
       ]
-    })
+    }, { advanced: false })
   )
   .addBatch(
-    propertyContext('whitespace', {
+    optimizerContext('whitespace', {
       'stripped spaces': [
         'div{text-shadow:rgba(255,1,1,.5) 1px}',
-        [['text-shadow', 'rgba(255,1,1,.5)', '1px']]
+        'div{text-shadow:rgba(255,1,1,.5) 1px}'
       ],
       'calc': [
         'a{width:-moz-calc(100% - 1em);width:calc(100% - 1em)}',
-        [['width', '-moz-calc(100% - 1em)'], ['width', 'calc(100% - 1em)']]
+        'a{width:-moz-calc(100% - 1em);width:calc(100% - 1em)}'
       ],
       'empty body': [
         'a{}',
-        null
+        ''
       ],
       'in a body': [
         'a{   \n }',
-        null
+        ''
       ],
       'after calc()': [
         'div{margin:calc(100% - 21px) 1px}',
-        [['margin', 'calc(100% - 21px)', '1px']]
+        'div{margin:calc(100% - 21px) 1px}'
       ]
-    })
+    }, { advanced: false })
   )
   .addBatch(
-    propertyContext('time units', {
+    optimizerContext('time units', {
       'positive miliseconds to seconds': [
         'div{transition-duration:500ms}',
-        [['transition-duration', '.5s']]
+        'div{transition-duration:.5s}'
       ],
       'negative miliseconds to seconds': [
         'div{transition-duration:-500ms}',
-        [['transition-duration', '-.5s']]
+        'div{transition-duration:-.5s}'
       ],
       'miliseconds to seconds when results in a too long value': [
         'div{transition-duration:1515ms}',
-        [['transition-duration', '1515ms']]
+        'div{transition-duration:1515ms}'
       ],
       'zero miliseconds to seconds': [
         'div{transition-duration:0ms}',
-        [['transition-duration', '0s']]
+        'div{transition-duration:0s}'
       ],
       'positive seconds to miliseconds': [
         'div{transition-duration:0.005s}',
-        [['transition-duration', '5ms']]
+        'div{transition-duration:5ms}'
       ],
       'negative seconds to miliseconds': [
         'div{transition-duration:-0.005s}',
-        [['transition-duration', '-5ms']]
+        'div{transition-duration:-5ms}'
       ],
       'seconds to miliseconds when results in a too long value': [
         'div{transition-duration:1.2s}',
-        [['transition-duration', '1.2s']]
+        'div{transition-duration:1.2s}'
       ]
-    })
+    }, { advanced: false })
   )
   .addBatch(
-    propertyContext('length units', {
+    optimizerContext('length units', {
       'px to in': [
         'div{left:480px}',
-        [['left', '480px']]
+        'div{left:480px}'
       ],
       'px to pc': [
         'div{left:32px}',
-        [['left', '32px']]
+        'div{left:32px}'
       ],
       'px to pt': [
         'div{left:120px}',
-        [['left', '120px']]
+        'div{left:120px}'
       ]
-    })
+    }, { advanced: false })
   )
   .addBatch(
-    propertyContext('length units in compatibility mode', {
+    optimizerContext('length units in compatibility mode', {
       'px to in': [
         'div{left:480px}',
-        [['left', '480px']]
+        'div{left:480px}'
       ],
       'px to pc': [
         'div{left:32px}',
-        [['left', '32px']]
+        'div{left:32px}'
       ],
       'px to pt': [
         'div{left:120px}',
-        [['left', '120px']]
+        'div{left:120px}'
       ]
-    }, { compatibility: 'ie8' })
+    }, { advanced: false, compatibility: 'ie8' })
   )
   .addBatch(
-    propertyContext('length units when turned on', {
+    optimizerContext('length units when turned on', {
       'positive px to in': [
         'div{left:480px}',
-        [['left', '5in']]
+        'div{left:5in}'
       ],
       'negative px to in': [
         'div{left:-96px}',
-        [['left', '-1in']]
+        'div{left:-1in}'
       ],
       'positive px to pc': [
         'div{left:32px}',
-        [['left', '2pc']]
+        'div{left:2pc}'
       ],
       'negative px to pc': [
         'div{left:-160px}',
-        [['left', '-10pc']]
+        'div{left:-10pc}'
       ],
       'positive px to pt': [
         'div{left:120px}',
-        [['left', '90pt']]
+        'div{left:90pt}'
       ],
       'negative px to pt': [
         'div{left:-120px}',
-        [['left', '-90pt']]
+        'div{left:-90pt}'
       ],
       'in calc': [
         'div{left:calc(100% - 480px)}',
-        [['left', 'calc(100% - 5in)']]
+        'div{left:calc(100% - 5in)}'
       ],
       'in transform': [
         'div{transform:translateY(32px)}',
-        [['transform', 'translateY(2pc)']]
+        'div{transform:translateY(2pc)}'
       ]
-    }, { compatibility: { properties: { shorterLengthUnits: true } } })
+    }, { advanced: false, compatibility: { properties: { shorterLengthUnits: true } } })
   )
   .addBatch(
-    propertyContext('length units when turned on selectively', {
+    optimizerContext('length units when turned on selectively', {
       'px to in': [
         'div{left:480px}',
-        [['left', '30pc']]
+        'div{left:30pc}'
       ],
       'px to pc': [
         'div{left:32px}',
-        [['left', '2pc']]
+        'div{left:2pc}'
       ],
       'px to pt': [
         'div{left:120px}',
-        [['left', '120px']]
+        'div{left:120px}'
       ]
-    }, { compatibility: { properties: { shorterLengthUnits: true }, units: { in: false, pt: false } } })
+    }, { advanced: false, compatibility: { properties: { shorterLengthUnits: true }, units: { in: false, pt: false } } })
   )
   .export(module);

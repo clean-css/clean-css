@@ -4,20 +4,18 @@ var assert = require('assert');
 var optimize = require('../../lib/properties/optimizer');
 
 var tokenize = require('../../lib/tokenizer/tokenize');
-var SourceTracker = require('../../lib/utils/source-tracker');
-var Compatibility = require('../../lib/utils/compatibility');
+var compatibility = require('../../lib/utils/compatibility');
 var Validator = require('../../lib/properties/validator');
 
 function _optimize(source) {
   var tokens = tokenize(source, {
     options: {},
-    sourceTracker: new SourceTracker(),
     warnings: []
   });
 
-  var compatibility = new Compatibility().toOptions();
-  var validator = new Validator(compatibility);
-  optimize(tokens[0][1], tokens[0][2], false, true, { compatibility: compatibility, aggressiveMerging: true, shorthandCompacting: true }, { validator: validator });
+  var compat = compatibility();
+  var validator = new Validator(compat);
+  optimize(tokens[0][1], tokens[0][2], false, true, { options: { compatibility: compat, aggressiveMerging: true, shorthandCompacting: true }, validator: validator });
 
   return tokens[0][2];
 }
@@ -27,12 +25,12 @@ function longhandFirst(prefixedLonghand, prefixedShorthand, zeroValue) {
     'topic': function () {
       return _optimize('a{' + prefixedLonghand + ':inherit;' + prefixedShorthand + ':' + zeroValue + '}');
     },
-    'has one token': function (body) {
-      assert.lengthOf(body, 1);
+    'has one token': function (properties) {
+      assert.lengthOf(properties, 1);
     },
-    'has zero value only': function (body) {
-      assert.deepEqual(body[0][0], [prefixedShorthand]);
-      assert.deepEqual(body[0][1], [zeroValue]);
+    'has zero value only': function (properties) {
+      assert.deepEqual(properties[0][1][1], prefixedShorthand);
+      assert.deepEqual(properties[0][2][1], zeroValue);
     }
   };
 }
@@ -42,16 +40,16 @@ function shorthandFirst(prefixedLonghand, prefixedShorthand, zeroValue) {
     'topic': function () {
       return _optimize('a{' + prefixedShorthand + ':' + zeroValue + ';' + prefixedLonghand + ':inherit}');
     },
-    'has two tokens': function (body) {
-      assert.lengthOf(body, 2);
+    'has two tokens': function (properties) {
+      assert.lengthOf(properties, 2);
     },
-    'first is shorthand': function (body) {
-      assert.deepEqual(body[0][0], [prefixedShorthand]);
-      assert.deepEqual(body[0][1], [zeroValue]);
+    'first is shorthand': function (properties) {
+      assert.deepEqual(properties[0][1][1], prefixedShorthand);
+      assert.deepEqual(properties[0][2][1], zeroValue);
     },
-    'second is longhand': function (body) {
-      assert.deepEqual(body[1][0], [prefixedLonghand]);
-      assert.deepEqual(body[1][1], ['inherit']);
+    'second is longhand': function (properties) {
+      assert.deepEqual(properties[1][1][1], prefixedLonghand);
+      assert.deepEqual(properties[1][2][1], 'inherit');
     }
   };
 }

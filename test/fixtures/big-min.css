@@ -253,7 +253,7 @@ section article{margin:0 0 16px}
 .bord_double_gris_blanc{line-height:25px;font-size:12px;display:inline-block;border:solid #d2d6db;border-width:1px 0}
 .bord_double_gris_blanc span{display:inline-block;border:solid #fff;border-width:1px 0}
 .bloc_abo{border-top:3px solid #ffd500}
-img[width="642"],img[width="312"]{margin-bottom:6px}
+img[width="312"],img[width="642"]{margin-bottom:6px}
 img[width="202"]{margin-bottom:4px}
 .btn,.btn_abo,.btn_fonce,.btn_petit{display:inline-block;padding:4px 10px;margin-bottom:0;color:#000b15;text-align:center;font-weight:700;vertical-align:middle;background-color:#f5f5f5;background-image:-moz-linear-gradient(top,#fff,#e6e6e6);background-image:-ms-linear-gradient(top,#fff,#e6e6e6);background-image:-webkit-gradient(linear,0 0,0 100%,from(#fff),to(#e6e6e6));background-image:-webkit-linear-gradient(top,#fff,#e6e6e6);background-image:-o-linear-gradient(top,#fff,#e6e6e6);background-image:linear-gradient(top,#fff,#e6e6e6);background-repeat:repeat-x;border:1px solid #ccc;border-bottom-color:#b3b3b3;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;-webkit-box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 1px 2px rgba(0,0,0,.05);-moz-box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 1px 2px rgba(0,0,0,.05);box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 1px 2px rgba(0,0,0,.05);cursor:pointer}
 .bt_fonce a,.btn_fonce{color:#fff;background-color:#000b15;background-image:-moz-linear-gradient(top,#5d666d,#000b15);background-image:-ms-linear-gradient(top,#5d666d,#000b15);background-image:-webkit-gradient(linear,0 0,0 100%,from(#5d666d),to(#000b15));background-image:-webkit-linear-gradient(top,#5d666d,#000b15);background-image:-o-linear-gradient(top,#5d666d,#000b15);background-image:linear-gradient(top,#5d666d,#000b15);background-repeat:repeat-x;border-color:#000b15;border-color:rgba(0,0,0,.1)}
@@ -2374,13 +2374,12 @@ body.init-bar-is-closed #bar-liberation{height:15px}
 #page-mailfriend .content input[type=checkbox]{float:right;margin-top:5px}
 #page-mailfriend .content label{float:left;display:block;width:80%;font-weight:700}
 #page-paywall{width:520px;font-size:12px}
-#page-paywall .content .arguments .arg .price,#page-paywall .content .arguments .arg h4,#page-paywall .content .video h5{font-family:Georgia,"Times New Roman",Times,serif}
 #page-paywall .content{position:relative;padding:20px 0}
 #page-paywall .content a.close{display:block;float:right}
 #page-paywall .content a.close span{background:url(http://s0.libe.com/libe/img/common/_sprites_icons/icons.png?9914d0d70a49) -20px -98px no-repeat;display:block;margin:auto;width:15px;height:15px}
 #page-paywall .content a.close strong{text-transform:uppercase;font-size:8px}
 #page-paywall .content .video{margin-bottom:20px;width:437px}
-#page-paywall .content .video h5{margin-bottom:15px;padding:3px 0 5px;border-top:1px dotted;border-bottom:1px dotted;float:right;font-size:16px;font-style:italic;font-weight:400}
+#page-paywall .content .video h5{margin-bottom:15px;padding:3px 0 5px;border-top:1px dotted;border-bottom:1px dotted;float:right;font-family:Georgia,"Times New Roman",Times,serif;font-size:16px;font-style:italic;font-weight:400}
 #page-paywall .content .arguments,#page-paywall .content .video h4{margin-bottom:20px;clear:both}
 #page-paywall .content .video h4 span{float:right;padding:0 0 0 10px;text-transform:uppercase;line-height:13px;font-size:16px;font-weight:400}
 #page-paywall .content .video .player{width:354px;height:200px;float:right}
@@ -2390,8 +2389,8 @@ body.access-ess #page-paywall .content .arguments .arg{float:none;margin:auto}
 #page-paywall .content .arguments .arg .visual1{height:71px}
 #page-paywall .content .arguments .arg .visual2{height:76px}
 #page-paywall .content .arguments .arg h5{margin-bottom:10px;text-transform:uppercase;line-height:13px;font-size:14px;font-weight:400}
-#page-paywall .content .arguments .arg h4{margin-bottom:10px;font-size:13px;font-style:italic;font-weight:400}
-#page-paywall .content .arguments .arg .price{float:right;width:120px;font-size:13px;margin-bottom:15px}
+#page-paywall .content .arguments .arg h4{margin-bottom:10px;font-family:Georgia,"Times New Roman",Times,serif;font-size:13px;font-style:italic;font-weight:400}
+#page-paywall .content .arguments .arg .price{float:right;width:120px;font-family:Georgia,"Times New Roman",Times,serif;font-size:13px;margin-bottom:15px}
 #page-paywall .content .arguments .arg .price strong{display:block;float:left;margin-right:10px;line-height:25px;font-family:Verdana,sans-serif;font-size:30px;letter-spacing:-3px}
 #page-paywall .content .arguments .arg .price strong .currency,#page-paywall .content .arguments .arg .price strong .decimals{font-size:20px}
 #page-paywall .content .arguments .arg .price strong .currency{padding-left:3px}

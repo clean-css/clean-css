@@ -2,9 +2,9 @@ var vows = require('vows');
 var assert = require('assert');
 
 var tokenize = require('../../lib/tokenizer/tokenize');
-var extractProperties = require('../../lib/selectors/extractor');
-var canReorder = require('../../lib/selectors/reorderable').canReorder;
-var canReorderSingle = require('../../lib/selectors/reorderable').canReorderSingle;
+var extractProperties = require('../../lib/optimizer/extract-properties');
+var canReorder = require('../../lib/optimizer/reorderable').canReorder;
+var canReorderSingle = require('../../lib/optimizer/reorderable').canReorderSingle;
 
 function propertiesIn(source) {
   return extractProperties(tokenize(source, { options: {} })[0]);

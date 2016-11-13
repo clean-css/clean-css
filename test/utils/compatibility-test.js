@@ -1,250 +1,250 @@
 var vows = require('vows');
 var assert = require('assert');
-var Compatibility = require('../../lib/utils/compatibility');
+var compatibility = require('../../lib/utils/compatibility');
 
-vows.describe(Compatibility)
+vows.describe(compatibility)
   .addBatch({
     'as an empty hash': {
       'topic': function () {
-        return new Compatibility({}).toOptions();
+        return compatibility({});
       },
-      'gets default options': function (options) {
-        assert.isTrue(options.colors.opacity);
-        assert.isTrue(options.properties.colors);
-        assert.isFalse(options.properties.backgroundClipMerging);
-        assert.isFalse(options.properties.backgroundOriginMerging);
-        assert.isFalse(options.properties.backgroundSizeMerging);
-        assert.isFalse(options.properties.ieBangHack);
-        assert.isFalse(options.properties.iePrefixHack);
-        assert.isTrue(options.properties.ieSuffixHack);
-        assert.isTrue(options.properties.merging);
-        assert.isFalse(options.properties.shorterLengthUnits);
-        assert.isTrue(options.properties.spaceAfterClosingBrace);
-        assert.isFalse(options.properties.urlQuotes);
-        assert.isTrue(options.properties.zeroUnits);
-        assert.isFalse(options.selectors.adjacentSpace);
-        assert.isFalse(options.selectors.ie7Hack);
-        assert.isTrue(options.units.ch);
-        assert.isTrue(options.units.in);
-        assert.isTrue(options.units.pc);
-        assert.isTrue(options.units.pt);
-        assert.isTrue(options.units.rem);
-        assert.isTrue(options.units.vh);
-        assert.isTrue(options.units.vm);
-        assert.isTrue(options.units.vmax);
-        assert.isTrue(options.units.vmin);
-        assert.isTrue(options.units.vw);
+      'gets default compatibility': function (compat) {
+        assert.isTrue(compat.colors.opacity);
+        assert.isTrue(compat.properties.colors);
+        assert.isFalse(compat.properties.backgroundClipMerging);
+        assert.isFalse(compat.properties.backgroundOriginMerging);
+        assert.isFalse(compat.properties.backgroundSizeMerging);
+        assert.isFalse(compat.properties.ieBangHack);
+        assert.isFalse(compat.properties.iePrefixHack);
+        assert.isTrue(compat.properties.ieSuffixHack);
+        assert.isTrue(compat.properties.merging);
+        assert.isFalse(compat.properties.shorterLengthUnits);
+        assert.isTrue(compat.properties.spaceAfterClosingBrace);
+        assert.isFalse(compat.properties.urlQuotes);
+        assert.isTrue(compat.properties.zeroUnits);
+        assert.isFalse(compat.selectors.adjacentSpace);
+        assert.isFalse(compat.selectors.ie7Hack);
+        assert.isTrue(compat.units.ch);
+        assert.isTrue(compat.units.in);
+        assert.isTrue(compat.units.pc);
+        assert.isTrue(compat.units.pt);
+        assert.isTrue(compat.units.rem);
+        assert.isTrue(compat.units.vh);
+        assert.isTrue(compat.units.vm);
+        assert.isTrue(compat.units.vmax);
+        assert.isTrue(compat.units.vmin);
+        assert.isTrue(compat.units.vw);
       }
     },
     'not given': {
       'topic': function () {
-        return new Compatibility().toOptions();
+        return compatibility();
       },
-      'gets default options': function (options) {
-        assert.deepEqual(options, new Compatibility({}).toOptions());
+      'gets default compatibility': function (compat) {
+        assert.deepEqual(compat, compatibility({}));
       }
     },
     'as a populated hash': {
       'topic': function () {
-        return new Compatibility({ units: { rem: false, vmax: false }, properties: { prefix: true } }).toOptions();
+        return compatibility({ units: { rem: false, vmax: false }, properties: { prefix: true } });
       },
-      'gets merged options': function (options) {
-        assert.isTrue(options.colors.opacity);
-        assert.isFalse(options.properties.backgroundClipMerging);
-        assert.isFalse(options.properties.backgroundOriginMerging);
-        assert.isFalse(options.properties.backgroundSizeMerging);
-        assert.isTrue(options.properties.colors);
-        assert.isFalse(options.properties.ieBangHack);
-        assert.isFalse(options.properties.iePrefixHack);
-        assert.isTrue(options.properties.ieSuffixHack);
-        assert.isTrue(options.properties.merging);
-        assert.isFalse(options.properties.shorterLengthUnits);
-        assert.isTrue(options.properties.spaceAfterClosingBrace);
-        assert.isTrue(options.properties.zeroUnits);
-        assert.isFalse(options.selectors.adjacentSpace);
-        assert.isFalse(options.selectors.ie7Hack);
-        assert.isTrue(options.units.ch);
-        assert.isTrue(options.units.in);
-        assert.isTrue(options.units.pc);
-        assert.isTrue(options.units.pt);
-        assert.isFalse(options.units.rem);
-        assert.isTrue(options.units.vh);
-        assert.isTrue(options.units.vm);
-        assert.isFalse(options.units.vmax);
-        assert.isTrue(options.units.vmin);
-        assert.isTrue(options.units.vw);
+      'gets merged compatibility': function (compat) {
+        assert.isTrue(compat.colors.opacity);
+        assert.isFalse(compat.properties.backgroundClipMerging);
+        assert.isFalse(compat.properties.backgroundOriginMerging);
+        assert.isFalse(compat.properties.backgroundSizeMerging);
+        assert.isTrue(compat.properties.colors);
+        assert.isFalse(compat.properties.ieBangHack);
+        assert.isFalse(compat.properties.iePrefixHack);
+        assert.isTrue(compat.properties.ieSuffixHack);
+        assert.isTrue(compat.properties.merging);
+        assert.isFalse(compat.properties.shorterLengthUnits);
+        assert.isTrue(compat.properties.spaceAfterClosingBrace);
+        assert.isTrue(compat.properties.zeroUnits);
+        assert.isFalse(compat.selectors.adjacentSpace);
+        assert.isFalse(compat.selectors.ie7Hack);
+        assert.isTrue(compat.units.ch);
+        assert.isTrue(compat.units.in);
+        assert.isTrue(compat.units.pc);
+        assert.isTrue(compat.units.pt);
+        assert.isFalse(compat.units.rem);
+        assert.isTrue(compat.units.vh);
+        assert.isTrue(compat.units.vm);
+        assert.isFalse(compat.units.vmax);
+        assert.isTrue(compat.units.vmin);
+        assert.isTrue(compat.units.vw);
       }
     }
   })
   .addBatch({
     'as an ie8 template': {
       'topic': function () {
-        return new Compatibility('ie8').toOptions();
+        return compatibility('ie8');
       },
-      'gets template options': function (options) {
-        assert.isFalse(options.colors.opacity);
-        assert.isFalse(options.properties.backgroundClipMerging);
-        assert.isFalse(options.properties.backgroundOriginMerging);
-        assert.isFalse(options.properties.backgroundSizeMerging);
-        assert.isTrue(options.properties.colors);
-        assert.isFalse(options.properties.ieBangHack);
-        assert.isTrue(options.properties.iePrefixHack);
-        assert.isTrue(options.properties.ieSuffixHack);
-        assert.isFalse(options.properties.merging);
-        assert.isFalse(options.properties.shorterLengthUnits);
-        assert.isTrue(options.properties.spaceAfterClosingBrace);
-        assert.isFalse(options.properties.urlQuotes);
-        assert.isTrue(options.properties.zeroUnits);
-        assert.isFalse(options.selectors.adjacentSpace);
-        assert.isFalse(options.selectors.ie7Hack);
-        assert.isFalse(options.units.ch);
-        assert.isTrue(options.units.in);
-        assert.isTrue(options.units.pc);
-        assert.isTrue(options.units.pt);
-        assert.isFalse(options.units.rem);
-        assert.isFalse(options.units.vh);
-        assert.isFalse(options.units.vm);
-        assert.isFalse(options.units.vmax);
-        assert.isFalse(options.units.vmin);
-        assert.isFalse(options.units.vw);
+      'gets template compatibility': function (compat) {
+        assert.isFalse(compat.colors.opacity);
+        assert.isFalse(compat.properties.backgroundClipMerging);
+        assert.isFalse(compat.properties.backgroundOriginMerging);
+        assert.isFalse(compat.properties.backgroundSizeMerging);
+        assert.isTrue(compat.properties.colors);
+        assert.isFalse(compat.properties.ieBangHack);
+        assert.isTrue(compat.properties.iePrefixHack);
+        assert.isTrue(compat.properties.ieSuffixHack);
+        assert.isFalse(compat.properties.merging);
+        assert.isFalse(compat.properties.shorterLengthUnits);
+        assert.isTrue(compat.properties.spaceAfterClosingBrace);
+        assert.isFalse(compat.properties.urlQuotes);
+        assert.isTrue(compat.properties.zeroUnits);
+        assert.isFalse(compat.selectors.adjacentSpace);
+        assert.isFalse(compat.selectors.ie7Hack);
+        assert.isFalse(compat.units.ch);
+        assert.isTrue(compat.units.in);
+        assert.isTrue(compat.units.pc);
+        assert.isTrue(compat.units.pt);
+        assert.isFalse(compat.units.rem);
+        assert.isFalse(compat.units.vh);
+        assert.isFalse(compat.units.vm);
+        assert.isFalse(compat.units.vmax);
+        assert.isFalse(compat.units.vmin);
+        assert.isFalse(compat.units.vw);
       }
     },
     'as an ie7 template': {
       'topic': function () {
-        return new Compatibility('ie7').toOptions();
+        return compatibility('ie7');
       },
-      'gets template options': function (options) {
-        assert.isFalse(options.colors.opacity);
-        assert.isFalse(options.properties.backgroundClipMerging);
-        assert.isFalse(options.properties.backgroundOriginMerging);
-        assert.isFalse(options.properties.backgroundSizeMerging);
-        assert.isTrue(options.properties.colors);
-        assert.isTrue(options.properties.ieBangHack);
-        assert.isTrue(options.properties.iePrefixHack);
-        assert.isTrue(options.properties.ieSuffixHack);
-        assert.isFalse(options.properties.merging);
-        assert.isFalse(options.properties.shorterLengthUnits);
-        assert.isTrue(options.properties.spaceAfterClosingBrace);
-        assert.isFalse(options.properties.urlQuotes);
-        assert.isTrue(options.properties.zeroUnits);
-        assert.isFalse(options.selectors.adjacentSpace);
-        assert.isTrue(options.selectors.ie7Hack);
-        assert.isFalse(options.units.ch);
-        assert.isTrue(options.units.in);
-        assert.isTrue(options.units.pc);
-        assert.isTrue(options.units.pt);
-        assert.isFalse(options.units.rem);
-        assert.isFalse(options.units.vh);
-        assert.isFalse(options.units.vm);
-        assert.isFalse(options.units.vmax);
-        assert.isFalse(options.units.vmin);
-        assert.isFalse(options.units.vw);
+      'gets template compatibility': function (compat) {
+        assert.isFalse(compat.colors.opacity);
+        assert.isFalse(compat.properties.backgroundClipMerging);
+        assert.isFalse(compat.properties.backgroundOriginMerging);
+        assert.isFalse(compat.properties.backgroundSizeMerging);
+        assert.isTrue(compat.properties.colors);
+        assert.isTrue(compat.properties.ieBangHack);
+        assert.isTrue(compat.properties.iePrefixHack);
+        assert.isTrue(compat.properties.ieSuffixHack);
+        assert.isFalse(compat.properties.merging);
+        assert.isFalse(compat.properties.shorterLengthUnits);
+        assert.isTrue(compat.properties.spaceAfterClosingBrace);
+        assert.isFalse(compat.properties.urlQuotes);
+        assert.isTrue(compat.properties.zeroUnits);
+        assert.isFalse(compat.selectors.adjacentSpace);
+        assert.isTrue(compat.selectors.ie7Hack);
+        assert.isFalse(compat.units.ch);
+        assert.isTrue(compat.units.in);
+        assert.isTrue(compat.units.pc);
+        assert.isTrue(compat.units.pt);
+        assert.isFalse(compat.units.rem);
+        assert.isFalse(compat.units.vh);
+        assert.isFalse(compat.units.vm);
+        assert.isFalse(compat.units.vmax);
+        assert.isFalse(compat.units.vmin);
+        assert.isFalse(compat.units.vw);
       }
     },
     'as an unknown template': {
       'topic': function () {
-        return new Compatibility('').toOptions();
+        return compatibility('');
       },
-      'gets default options': function (options) {
-        assert.deepEqual(options, new Compatibility({}).toOptions());
+      'gets default compatibility': function (compat) {
+        assert.deepEqual(compat, compatibility({}));
       }
     }
   })
   .addBatch({
     'as a complex string value with group': {
       'topic': function () {
-        return new Compatibility('ie8,-properties.iePrefixHack,+colors.opacity').toOptions();
+        return compatibility('ie8,-properties.iePrefixHack,+colors.opacity');
       },
-      'gets calculated options': function (options) {
-        assert.isTrue(options.colors.opacity);
-        assert.isFalse(options.properties.backgroundClipMerging);
-        assert.isFalse(options.properties.backgroundOriginMerging);
-        assert.isFalse(options.properties.backgroundSizeMerging);
-        assert.isTrue(options.properties.colors);
-        assert.isFalse(options.properties.ieBangHack);
-        assert.isFalse(options.properties.iePrefixHack);
-        assert.isTrue(options.properties.ieSuffixHack);
-        assert.isFalse(options.properties.merging);
-        assert.isFalse(options.properties.shorterLengthUnits);
-        assert.isTrue(options.properties.spaceAfterClosingBrace);
-        assert.isFalse(options.properties.urlQuotes);
-        assert.isTrue(options.properties.zeroUnits);
-        assert.isFalse(options.selectors.adjacentSpace);
-        assert.isFalse(options.selectors.ie7Hack);
-        assert.isFalse(options.units.ch);
-        assert.isTrue(options.units.in);
-        assert.isTrue(options.units.pc);
-        assert.isTrue(options.units.pt);
-        assert.isFalse(options.units.rem);
-        assert.isFalse(options.units.vh);
-        assert.isFalse(options.units.vm);
-        assert.isFalse(options.units.vmax);
-        assert.isFalse(options.units.vmin);
-        assert.isFalse(options.units.vw);
+      'gets calculated compatibility': function (compat) {
+        assert.isTrue(compat.colors.opacity);
+        assert.isFalse(compat.properties.backgroundClipMerging);
+        assert.isFalse(compat.properties.backgroundOriginMerging);
+        assert.isFalse(compat.properties.backgroundSizeMerging);
+        assert.isTrue(compat.properties.colors);
+        assert.isFalse(compat.properties.ieBangHack);
+        assert.isFalse(compat.properties.iePrefixHack);
+        assert.isTrue(compat.properties.ieSuffixHack);
+        assert.isFalse(compat.properties.merging);
+        assert.isFalse(compat.properties.shorterLengthUnits);
+        assert.isTrue(compat.properties.spaceAfterClosingBrace);
+        assert.isFalse(compat.properties.urlQuotes);
+        assert.isTrue(compat.properties.zeroUnits);
+        assert.isFalse(compat.selectors.adjacentSpace);
+        assert.isFalse(compat.selectors.ie7Hack);
+        assert.isFalse(compat.units.ch);
+        assert.isTrue(compat.units.in);
+        assert.isTrue(compat.units.pc);
+        assert.isTrue(compat.units.pt);
+        assert.isFalse(compat.units.rem);
+        assert.isFalse(compat.units.vh);
+        assert.isFalse(compat.units.vm);
+        assert.isFalse(compat.units.vmax);
+        assert.isFalse(compat.units.vmin);
+        assert.isFalse(compat.units.vw);
       }
     },
     'as a single string value without group': {
       'topic': function () {
-        return new Compatibility('+properties.iePrefixHack').toOptions();
+        return compatibility('+properties.iePrefixHack');
       },
-      'gets calculated options': function (options) {
-        assert.isTrue(options.colors.opacity);
-        assert.isTrue(options.properties.colors);
-        assert.isFalse(options.properties.backgroundClipMerging);
-        assert.isFalse(options.properties.backgroundOriginMerging);
-        assert.isFalse(options.properties.backgroundSizeMerging);
-        assert.isFalse(options.properties.ieBangHack);
-        assert.isTrue(options.properties.iePrefixHack);
-        assert.isTrue(options.properties.ieSuffixHack);
-        assert.isTrue(options.properties.merging);
-        assert.isFalse(options.properties.shorterLengthUnits);
-        assert.isTrue(options.properties.spaceAfterClosingBrace);
-        assert.isFalse(options.properties.urlQuotes);
-        assert.isTrue(options.properties.zeroUnits);
-        assert.isFalse(options.selectors.adjacentSpace);
-        assert.isFalse(options.selectors.ie7Hack);
-        assert.isTrue(options.units.ch);
-        assert.isTrue(options.units.in);
-        assert.isTrue(options.units.pc);
-        assert.isTrue(options.units.pt);
-        assert.isTrue(options.units.rem);
-        assert.isTrue(options.units.vh);
-        assert.isTrue(options.units.vm);
-        assert.isTrue(options.units.vmax);
-        assert.isTrue(options.units.vmin);
-        assert.isTrue(options.units.vw);
+      'gets calculated compatibility': function (compat) {
+        assert.isTrue(compat.colors.opacity);
+        assert.isTrue(compat.properties.colors);
+        assert.isFalse(compat.properties.backgroundClipMerging);
+        assert.isFalse(compat.properties.backgroundOriginMerging);
+        assert.isFalse(compat.properties.backgroundSizeMerging);
+        assert.isFalse(compat.properties.ieBangHack);
+        assert.isTrue(compat.properties.iePrefixHack);
+        assert.isTrue(compat.properties.ieSuffixHack);
+        assert.isTrue(compat.properties.merging);
+        assert.isFalse(compat.properties.shorterLengthUnits);
+        assert.isTrue(compat.properties.spaceAfterClosingBrace);
+        assert.isFalse(compat.properties.urlQuotes);
+        assert.isTrue(compat.properties.zeroUnits);
+        assert.isFalse(compat.selectors.adjacentSpace);
+        assert.isFalse(compat.selectors.ie7Hack);
+        assert.isTrue(compat.units.ch);
+        assert.isTrue(compat.units.in);
+        assert.isTrue(compat.units.pc);
+        assert.isTrue(compat.units.pt);
+        assert.isTrue(compat.units.rem);
+        assert.isTrue(compat.units.vh);
+        assert.isTrue(compat.units.vm);
+        assert.isTrue(compat.units.vmax);
+        assert.isTrue(compat.units.vmin);
+        assert.isTrue(compat.units.vw);
       }
     },
     'as a complex string value without group': {
       'topic': function () {
-        return new Compatibility('+properties.iePrefixHack,-units.rem').toOptions();
+        return compatibility('+properties.iePrefixHack,-units.rem');
       },
-      'gets calculated options': function (options) {
-        assert.isTrue(options.colors.opacity);
-        assert.isTrue(options.properties.colors);
-        assert.isFalse(options.properties.backgroundClipMerging);
-        assert.isFalse(options.properties.backgroundOriginMerging);
-        assert.isFalse(options.properties.backgroundSizeMerging);
-        assert.isFalse(options.properties.ieBangHack);
-        assert.isTrue(options.properties.iePrefixHack);
-        assert.isTrue(options.properties.ieSuffixHack);
-        assert.isTrue(options.properties.merging);
-        assert.isFalse(options.properties.shorterLengthUnits);
-        assert.isTrue(options.properties.spaceAfterClosingBrace);
-        assert.isFalse(options.properties.urlQuotes);
-        assert.isTrue(options.properties.zeroUnits);
-        assert.isFalse(options.selectors.adjacentSpace);
-        assert.isFalse(options.selectors.ie7Hack);
-        assert.isTrue(options.units.ch);
-        assert.isTrue(options.units.in);
-        assert.isTrue(options.units.pc);
-        assert.isTrue(options.units.pt);
-        assert.isFalse(options.units.rem);
-        assert.isTrue(options.units.vh);
-        assert.isTrue(options.units.vm);
-        assert.isTrue(options.units.vmax);
-        assert.isTrue(options.units.vmin);
-        assert.isTrue(options.units.vw);
+      'gets calculated compatibility': function (compat) {
+        assert.isTrue(compat.colors.opacity);
+        assert.isTrue(compat.properties.colors);
+        assert.isFalse(compat.properties.backgroundClipMerging);
+        assert.isFalse(compat.properties.backgroundOriginMerging);
+        assert.isFalse(compat.properties.backgroundSizeMerging);
+        assert.isFalse(compat.properties.ieBangHack);
+        assert.isTrue(compat.properties.iePrefixHack);
+        assert.isTrue(compat.properties.ieSuffixHack);
+        assert.isTrue(compat.properties.merging);
+        assert.isFalse(compat.properties.shorterLengthUnits);
+        assert.isTrue(compat.properties.spaceAfterClosingBrace);
+        assert.isFalse(compat.properties.urlQuotes);
+        assert.isTrue(compat.properties.zeroUnits);
+        assert.isFalse(compat.selectors.adjacentSpace);
+        assert.isFalse(compat.selectors.ie7Hack);
+        assert.isTrue(compat.units.ch);
+        assert.isTrue(compat.units.in);
+        assert.isTrue(compat.units.pc);
+        assert.isTrue(compat.units.pt);
+        assert.isFalse(compat.units.rem);
+        assert.isTrue(compat.units.vh);
+        assert.isTrue(compat.units.vm);
+        assert.isTrue(compat.units.vmax);
+        assert.isTrue(compat.units.vmin);
+        assert.isTrue(compat.units.vw);
       }
     }
   })

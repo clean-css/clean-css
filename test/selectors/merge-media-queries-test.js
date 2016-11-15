@@ -83,6 +83,10 @@ vows.describe('merge media queries')
       'backward of two with overriding shorthand in between': [
         '@media screen{a{font-size:10px}}@media (min-width:1024px){.one{font:13px Helvetica}}@media screen{div{display:block}}',
         '@media screen{a{font-size:10px}div{display:block}}@media (min-width:1024px){.one{font:13px Helvetica}}'
+      ],
+      'with at sign in rule name': [
+        '@media screen{.one{margin-left:-16px}}.two{margin-left:0}.three{width:50%!important}.four{width:25%!important}@media screen{.three\\\@m{width:50%!important}.four\\\@m{width:25%!important}}',
+        '@media screen{.one{margin-left:-16px}}.two{margin-left:0}.three{width:50%!important}.four{width:25%!important}@media screen{.three\\\@m{width:50%!important}.four\\\@m{width:25%!important}}'
       ]
     })
   )

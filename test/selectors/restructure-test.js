@@ -159,6 +159,10 @@ vows.describe('restructure')
       'no rule after comma': [
         'h1{color:#000}div{color:red},h2{color:#000;display:block}',
         'h1{color:#000}div{color:red},h2{color:#000;display:block}'
+      ],
+      'border color as hex and function': [
+        '.one{border-color:#000;border-bottom-color:rgb(0,0,0,.2)}.two{border-color:#fff;border-bottom-color:rgb(0,0,0,.2)}',
+        '.one{border-color:#000;border-bottom-color:rgb(0,0,0,.2)}.two{border-color:#fff;border-bottom-color:rgb(0,0,0,.2)}'
       ]
     })
   )

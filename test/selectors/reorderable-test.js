@@ -201,6 +201,22 @@ vows.describe(canReorderSingle)
         assert.isFalse(result);
       }
     },
+    'different properties with same root - border #10': {
+      'topic': function () {
+        return canReorderSingle(propertiesIn('a{border-color:red}')[0], propertiesIn('a{border-bottom-color:rgba(0,0,0,0.5)}')[0]);
+      },
+      'must be false': function (result) {
+        assert.isFalse(result);
+      }
+    },
+    'different properties with same root - border #11': {
+      'topic': function () {
+        return canReorderSingle(propertiesIn('a{border-color:red}')[0], propertiesIn('a{border-bottom-color:red}')[0]);
+      },
+      'must be false': function (result) {
+        assert.isTrue(result);
+      }
+    },
     'shorhand and longhand with different value': {
       'topic': function () {
         return canReorderSingle(propertiesIn('a{margin:3px}')[0], propertiesIn('a{margin-bottom:5px}')[0]);

@@ -2688,7 +2688,6 @@ body.slideshow .ad-top .megaban{background:#333}
 #core-liberation ul.list-forums span,#core-liberation ul.list-items span,#core-liberation ul.list-items-mosts li strong{color:#e20000}
 #core-liberation ul.list-labo-meetings li{border-bottom-color:#c6c6c6}
 #core-liberation .list-man-of-day a{border-left-color:#e20000}
-.site-liberation .block-call-items .tpl-labo,.site-liberation .block-call-items .tpl-labo-podcast{border-left-color:#b30804}
 .site-liberation .block-solid-c2{background-color:#c6c6c6}
 .site-liberation .block-solid-c2 hr{border-top-color:#c6c6c6;border-bottom-color:#c6c6c6}
 .site-liberation .block-solid-c2 h5 a.theme:hover{color:#fff}
@@ -2704,13 +2703,15 @@ body.slideshow .ad-top .megaban{background:#333}
 .site-liberation .col-contextual .block-nobg .block-top{border-bottom-color:#e20000}
 .site-liberation .col-contextual .block-solid-c2{background-color:#333;color:#c6c6c6}
 .site-liberation .col-contextual .block-solid-c2 .block-top{color:#c6c6c6;border-bottom-color:#c6c6c6}
-.site-liberation .block-call-items .mini-tpl,.site-liberation .block-call-items .tpl-breaking-news,.site-liberation .block-call-items .tpl-breaking-news:last-of-type,.site-liberation .block-call-items .tpl-flash-news-29col,.site-liberation .block-call-items .tpl-flash-news-29col:last-of-type,.site-liberation .block-call-items .tpl-search-results .object-content{border-bottom-color:#ddd}
 .site-liberation .col-contextual .block-solid-c2 a,.site-liberation .col-contextual .block-solid-c2 a p{color:#c6c6c6}
 .site-liberation .col-part .block{background-color:#d7d7d7}
 .site-liberation .col-part .block .block-top{color:#fff}
 .site-liberation .col-part .block hr{border-top-color:#ccc}
+.site-liberation .block-call-items .mini-tpl{border-bottom-color:#ddd}
 .site-liberation .block-call-items .mini-tpl .light{color:#bbbaba}
 .site-liberation .block-call-items .mini-tpl .label{border-color:#e7e7e7}
+.site-liberation .block-call-items .tpl-labo,.site-liberation .block-call-items .tpl-labo-podcast{border-left-color:#b30804}
+.site-liberation .block-call-items .tpl-breaking-news,.site-liberation .block-call-items .tpl-breaking-news:last-of-type,.site-liberation .block-call-items .tpl-flash-news-29col,.site-liberation .block-call-items .tpl-flash-news-29col:last-of-type,.site-liberation .block-call-items .tpl-search-results .object-content{border-bottom-color:#ddd}
 .site-liberation .block-call-items .mini-tpl .whosaid{background-color:#e20000}
 .site-liberation .block-call-items .mini-tpl .whosaid h4,.site-liberation .block-call-items .mini-tpl .whosaid h5 .theme{color:#fff}
 .site-liberation .block-call-items .mini-tpl .whosaid h3 a{color:#fafafa}
@@ -2728,12 +2729,11 @@ body.slideshow .ad-top .megaban{background:#333}
 .site-liberation .block-call-items .tpl-labo-podcast .emission .subscribe p{color:#e20000}
 .site-liberation .block-call-items .tpl-search-results h4,.site-liberation .block-call-items .tpl-search-results h4 a{color:#959595}
 .site-liberation .block-call-items .tpl-search-results .object-picture .np .p1,.site-liberation .block-call-items .tpl-search-results .object-picture .np .p2{background-color:#fff;border-color:#c8c8c8}
-#core-liberation .block-comments .block-content .comment_outer,#core-liberation .block-item-read-more{border-color:#ddd}
 .site-liberation .block-call-items .tpl-search-results .object-picture .np a.date{z-index:500;background-color:#c8c8c8}
 #core-liberation .block-item .object-picture .legende{color:#838383}
 .site-liberation .block-item .object-content a:hover{color:#e20000}
 #core-liberation .block-item-locked{border-top-color:#c1b0bb;border-bottom-color:#c1b0bb;background:#fff;background:-moz-linear-gradient(top,#dbdad6 0,#fff 2%,#fff 98%,#e1e0de 100%);background:-webkit-gradient(linear,left top,left bottom,color-stop(0,#dbdad6),color-stop(2%,#fff),color-stop(98%,#fff),color-stop(100%,#e1e0de));background:-o-linear-gradient(top,#dbdad6 0,#fff 2%,#fff 98%,#e1e0de 100%)}
-#core-liberation .block-all-blogs .block-content .headrest,#core-liberation .block-all-forums .forum,#core-liberation .block-all-forums .headrest,#core-liberation .block-comments .comment_replies{border-bottom-color:#ddd}
+#core-liberation .block-comments .block-content .comment_outer,#core-liberation .block-item-read-more{border-color:#ddd}
 #core-liberation .block-item-locked .block-top span{background-color:#fff}
 #core-liberation .block-item-locked .btn-zoneabo a:hover{color:#fff}
 #core-liberation .block-item-read-more .block-top{background-color:#fff;color:#555}
@@ -2755,6 +2755,7 @@ body.slideshow .ad-top .megaban{background:#333}
 #core-liberation .block-comments .block-content .comment_libe>.comment_outer{background:#f8f8f8}
 #core-liberation .block-comments .block-content .is_removed>.comment_outer{background-color:#878787;color:#fff}
 #core-liberation .block-comments .comment_replies_count{background:#F8F8F8}
+#core-liberation .block-comments .comment_replies{border-bottom-color:#ddd}
 #core-liberation .block-comments .headrest-community h3 a{color:#555}
 #core-liberation .block-pager-labo{background-color:#e7e7e7}
 #core-liberation .block-pager-labo .block-bottom{border-top-color:#222}
@@ -2766,6 +2767,7 @@ body.slideshow .ad-top .megaban{background:#333}
 #core-liberation .block-np .tomorrow .progress-bar .done{background-color:#ee3e30}
 #core-liberation .block-np .block-content .railway ul li img{border-color:#222}
 #core-liberation .block-np .from ul li img.visual{border-color:#878787}
+#core-liberation .block-all-blogs .block-content .headrest,#core-liberation .block-all-forums .forum,#core-liberation .block-all-forums .headrest{border-bottom-color:#ddd}
 #core-liberation .block-all-forums .headrest h4{color:#555}
 #core-liberation .block-all-forums .headrest h5{color:#fa9900}
 #core-liberation .block-all-forums .forum h5.title,#core-liberation .block-all-forums .forum span.infos,#core-liberation .block-all-forums .forum span.infos a{color:#555}
@@ -2822,10 +2824,9 @@ body.slideshow .ad-top .megaban{background:#333}
 .site-liberation form .btn-rounded-degraded input[type=button],.site-liberation form .btn-rounded-degraded input[type=submit]{background:#e20000;background:-moz-linear-gradient(top,#f33333 0,#b33 100%);background:-webkit-gradient(linear,left top,left bottom,color-stop(0,#f33333),color-stop(100%,#b33));background:-webkit-linear-gradient(top,#f33333 0,#b33 100%);background:-o-linear-gradient(top,#f33333 0,#b33 100%);background:-ms-linear-gradient(top,#f33333 0,#b33 100%);background:linear-gradient(top,#f33333 0,#b33 100%);color:#fff}
 .site-liberation form .btn-rounded-degraded input[type=button]:focus,.site-liberation form .btn-rounded-degraded input[type=button]:hover,.site-liberation form .btn-rounded-degraded input[type=submit]:focus,.site-liberation form .btn-rounded-degraded input[type=submit]:hover{background:#e20000;background:-moz-linear-gradient(top,#b33 0,#f33333 100%);background:-webkit-gradient(linear,left top,left bottom,color-stop(0,#b33),color-stop(100%,#f33333));background:-webkit-linear-gradient(top,#b33 0,#f33333 100%);background:-o-linear-gradient(top,#b33 0,#f33333 100%);background:-ms-linear-gradient(top,#b33 0,#f33333 100%);background:linear-gradient(top,#b33 0,#f33333 100%);color:#fff}
 .site-liberation .btn-read-digitalpaper{border-color:#878787}
-.site-liberation .toolbox,.site-liberation .toolbox li.fold-options ul,.site-liberation .toolbox li.fold-options+li.fold-options{border-color:#d7d7d7}
 .site-liberation .btn-read-digitalpaper a,.site-liberation .btn-read-digitalpaper span{color:#2e2e2e}
 #core-liberation .pagination{background-color:#e7e7e7;border-top-color:#b7b7b7;border-bottom-color:#b7b7b7}
-#bar-liberation,#bar-liberation #login-box-content,#bar-liberation .content ul.list li{border-bottom-color:#dadada}
+.site-liberation .toolbox,.site-liberation .toolbox li.fold-options ul,.site-liberation .toolbox li.fold-options+li.fold-options{border-color:#d7d7d7}
 #core-liberation .pagination .disabled{background-color:transparent;color:#c8c8c8}
 #core-liberation .pagination .current{background-color:transparent;color:#e20000}
 .site-liberation .bg-sprites-icons .icon{display:block;background-image:url(http://s0.libe.com/libe/img/common/_sprites_icons/icons.png?9914d0d70a49);background-repeat:no-repeat}
@@ -2865,6 +2866,7 @@ body.slideshow .ad-top .megaban{background:#333}
 .site-liberation .toolbox li.btn-comment a:hover{color:#f8f8f8;background:grey;text-decoration:none}
 .site-liberation .toolbox li.abo-1-euro a span{background:0 0}
 .site-liberation .toolbox li.fold-options,.site-liberation .toolbox li.fold-options ul{background:#f8f8f8}
+#bar-liberation,#bar-liberation #login-box-content,#bar-liberation .content ul.list li{border-bottom-color:#dadada}
 .site-liberation .toolbox li.fold-options>a{color:#818181}
 #bar-liberation{background-color:#fff;box-shadow:0 1px 2px 0 #E2E2E2;-webkit-box-shadow:0 1px 2px 0 #E2E2E2;-moz-box-shadow:0 1px 2px 0 #E2E2E2}
 #bar-liberation,#bar-liberation a{color:#3c3c3c}

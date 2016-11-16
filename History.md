@@ -1,4 +1,4 @@
-[3.4.21 / 2016-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.20...3.4)
+[3.4.21 / 2016-11-16](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.20...v3.4.21)
 ==================
 
 * Fixed issue [#821](https://github.com/jakubpawlowicz/clean-css/issues/821) - reducing non-adjacent rules.

@@ -103,6 +103,10 @@ vows.describe('remove duplicates')
       '!important values': [
         '.one,.two{margin:0!important}.one{margin:1px!important}',
         '.one,.two{margin:0!important}.one{margin:1px!important}'
+      ],
+      'multiple backgrounds': [
+        '.two{background-color:#000}.one,.two{background-color:#fff;background-image:url(x),-moz-linear-gradient(top,#aaa,#aaa);background-image:url(x),linear-gradient(to bottom,#aaa,#aaa)}.two{background-image:url(x),-moz-linear-gradient(top,#bbb,#bbb);background-image:url(x),linear-gradient(to bottom,#bbb,#bbb)}.one,.two{display:block}',
+        '.one,.two{background-color:#fff;background-image:url(x),-moz-linear-gradient(top,#aaa,#aaa);background-image:url(x),linear-gradient(to bottom,#aaa,#aaa);display:block}.two{background-image:url(x),-moz-linear-gradient(top,#bbb,#bbb);background-image:url(x),linear-gradient(to bottom,#bbb,#bbb)}'
       ]
     })
   )

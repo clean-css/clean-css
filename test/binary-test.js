@@ -15,7 +15,7 @@ var binaryContext = function (options, context) {
   if (isWindows)
     return {};
 
-  context.topic = function () {
+    context.topic = function () {
     // We add __DIRECT__=1 to force binary into 'non-piped' mode
     exec('__DIRECT__=1 ./bin/cleancss ' + options, this.callback);
   };
@@ -259,6 +259,15 @@ vows.describe('./bin/cleancss')
         },
         teardown: function () {
           deleteFile('./base2-min.css');
+        }
+      }),
+      'data url': binaryContext('-r ./test/fixtures -o ./data-min.css ./test/fixtures/partials-relative/data.css', {
+        'should rewrite data urls quoted': function () {
+          var minimized = readFile('./data-min.css');
+          assert.equal(minimized, 'a{background-image:url(\'data:svg+xml,SGV_DATA\')}');
+        },
+        teardown: function () {
+          deleteFile('./data-min.css');
         }
       }),
       'piped with output': pipedContext('a{background:url(test/fixtures/partials/extra/down.gif)}', '-o base3-min.css', {

@@ -454,6 +454,30 @@ vows.describe('protocol imports').addBatch({
       nock.cleanAll();
     }
   },
+  'of a remote resource after content and no callback': {
+    topic: function () {
+      var source = '.one{color:red}@import url(http://127.0.0.1/remote.css);';
+      this.reqMocks = nock('http://127.0.0.1')
+        .get('/remote.css')
+        .reply(200, 'div{padding:0}');
+
+      return new CleanCSS().minify(source);
+    },
+    'should not raise errors': function (error, minified) {
+      assert.isEmpty(minified.errors);
+    },
+    'should raise warnings': function (error, minified) {
+      assert.lengthOf(minified.warnings, 1);
+      assert.match(minified.warnings[0], /no callback given/);
+    },
+    'should process @import': function (error, minified) {
+      assert.equal(minified.styles, '.one{color:red}');
+    },
+    teardown: function () {
+      assert.isFalse(this.reqMocks.isDone());
+      nock.cleanAll();
+    }
+  },
   'of a remote resource mixed with local ones but no callback': {
     topic: function () {
       var source = '@import url(test/fixtures/partials/one.css);@import url(http://127.0.0.1/remote.css);';
@@ -486,8 +510,9 @@ vows.describe('protocol imports').addBatch({
     'should not raise errors': function (error, minified) {
       assert.isEmpty(minified.errors);
     },
-    'should not raise warnings': function (error, minified) {
-      assert.isEmpty(minified.warnings);
+    'should raise warnings': function (error, minified) {
+      assert.lengthOf(minified.warnings, 1);
+      assert.equal(minified.warnings[0], 'Skipping remote @import of "http://127.0.0.1/skipped.css" as resource not allowed.');
     },
     'should keep imports': function (error, minified) {
       assert.equal(minified.styles, '@import url(http://127.0.0.1/skipped.css);.one{color:red}');
@@ -768,8 +793,10 @@ vows.describe('protocol imports').addBatch({
     'should not raise errors': function (error, minified) {
       assert.isEmpty(minified.errors);
     },
-    'should not raise warnings': function (error, minified) {
-      assert.isEmpty(minified.warnings);
+    'should raise warnings': function (error, minified) {
+      assert.lengthOf(minified.warnings, 2);
+      assert.equal(minified.warnings[0], 'Skipping remote @import of "http://127.0.0.1/remote.css" as resource not allowed.');
+      assert.equal(minified.warnings[1], 'Skipping remote @import of "http://assets.127.0.0.1/remote.css" as resource not allowed.');
     },
     'should keeps imports': function (error, minified) {
       assert.equal(minified.styles, '@import url(http://127.0.0.1/remote.css);@import url(http://assets.127.0.0.1/remote.css);.one{color:red}');
@@ -836,7 +863,10 @@ vows.describe('protocol imports').addBatch({
       assert.isEmpty(minified.errors);
     },
     'should raise a warning': function (error, minified) {
-      assert.isEmpty(minified.warnings);
+      assert.lengthOf(minified.warnings, 3);
+      assert.equal(minified.warnings[0], 'Skipping remote @import of "http://127.0.0.1/remote.css" as resource not allowed.');
+      assert.equal(minified.warnings[1], 'Skipping remote @import of "http://assets.127.0.0.1/remote.css" as resource not allowed.');
+      assert.equal(minified.warnings[2], 'Skipping local @import of "test/fixtures/partials/one.css" as resource not allowed.');
     },
     'should process first imports': function (error, minified) {
       assert.equal(minified.styles, '@import url(http://127.0.0.1/remote.css);@import url(http://assets.127.0.0.1/remote.css);@import url(test/fixtures/partials/one.css);');
@@ -851,7 +881,8 @@ vows.describe('protocol imports').addBatch({
       assert.isEmpty(minified.errors);
     },
     'should raise a warning': function (error, minified) {
-      assert.isEmpty(minified.warnings);
+      assert.lengthOf(minified.warnings, 1);
+      assert.equal(minified.warnings[0], 'Skipping remote @import of "//127.0.0.1/remote.css" as resource not allowed.');
     },
     'should process first imports': function (error, minified) {
       assert.equal(minified.styles, '@import url(//127.0.0.1/remote.css);.one{color:red}');

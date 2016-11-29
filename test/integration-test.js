@@ -2087,7 +2087,7 @@ vows.describe('integration tests')
         '@import url(test/fixtures/partials/comment.css);',
         'a{display:block}'
       ],
-      'of a file (with media) with a comment': [
+      'of a file with media having a comment': [
         '@import url(test/fixtures/partials/comment.css) screen and (device-height: 600px);',
         '@media screen and (device-height:600px){a{display:block}}'
       ],

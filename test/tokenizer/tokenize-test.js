@@ -3379,7 +3379,7 @@ vows.describe(tokenize)
         return warnings;
       },
       'logs them correctly': function (warnings) {
-        assert.deepEqual(warnings, ['Missing \'}\' at line 1, column 15']);
+        assert.deepEqual(warnings, ['Missing \'}\' at line 1, column 15.']);
       }
     }
   })

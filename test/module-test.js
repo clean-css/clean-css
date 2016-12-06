@@ -131,22 +131,7 @@ vows.describe('module tests').addBatch({
     },
     'should raise one warning': function (error, minified) {
       assert.lengthOf(minified.warnings, 1);
-      assert.equal(minified.warnings[0], 'Unexpected \'}\' in \'}\'. Ignoring.');
-    }
-  },
-  'warnings on missing closing brace': {
-    'topic': function () {
-      return new CleanCSS().minify('a{display:block');
-    },
-    'should minify correctly': function (error, minified) {
-      assert.equal(minified.styles, '');
-    },
-    'should raise no errors': function (error, minified) {
-      assert.isEmpty(minified.errors);
-    },
-    'should raise one warning': function (error, minified) {
-      assert.lengthOf(minified.warnings, 1);
-      assert.equal(minified.warnings[0], 'Missing \'}\' after \'display:block\'. Ignoring.');
+      assert.equal(minified.warnings[0], 'Unexpected \'}\' at line 1, column 16.');
     }
   },
   'warnings on unexpected body': {
@@ -154,17 +139,18 @@ vows.describe('module tests').addBatch({
       return new CleanCSS().minify('a{display:block}color:#535353}p{color:red}');
     },
     'should minify correctly': function (error, minified) {
-      assert.equal(minified.styles, 'a{display:block}p{color:red}');
+      assert.equal(minified.styles, 'a{display:block}');
     },
     'should raise no errors': function (error, minified) {
       assert.isEmpty(minified.errors);
     },
     'should raise one warning': function (error, minified) {
-      assert.lengthOf(minified.warnings, 1);
-      assert.equal(minified.warnings[0], 'Unexpected content: \'color:#535353}\'. Ignoring.');
+      assert.lengthOf(minified.warnings, 2);
+      assert.equal(minified.warnings[0], 'Unexpected \'}\' at line 1, column 29.');
+      assert.equal(minified.warnings[1], 'Invalid selector \'color:#535353}p\' at line 1, column 16. Ignoring.');
     }
   },
-  'warnings on invalid properties': {
+  'warnings on empty properties': {
     'topic': function () {
       return new CleanCSS().minify('a{color:}');
     },
@@ -176,7 +162,7 @@ vows.describe('module tests').addBatch({
     },
     'should raise one warning': function (error, minified) {
       assert.lengthOf(minified.warnings, 1);
-      assert.equal(minified.warnings[0], 'Empty property \'color\' inside \'a\' selector. Ignoring.');
+      assert.equal(minified.warnings[0], 'Empty property \'color\' at line 1, column 2. Ignoring.');
     }
   },
   'warnings on broken urls': {
@@ -184,44 +170,15 @@ vows.describe('module tests').addBatch({
       return new CleanCSS().minify('a{background:url(image/}');
     },
     'should output correct content': function (error, minified) {
-      assert.equal(minified.styles, 'a{background:url(image/}');
+      assert.equal(minified.styles, '');
     },
     'should raise no errors': function (error, minified) {
       assert.isEmpty(minified.errors.length);
     },
     'should raise one warning': function (error, minified) {
-      assert.lengthOf(minified.warnings, 1);
-      assert.equal(minified.warnings[0], 'Broken URL declaration: \'url(image/\'.');
-    }
-  },
-  'warnings on broken imports': {
-    'topic': function () {
-      return new CleanCSS().minify('@impor');
-    },
-    'should output correct content': function (error, minified) {
-      assert.isEmpty(minified.styles);
-    },
-    'should raise no errors': function (error, minified) {
-      assert.isEmpty(minified.errors.length);
-    },
-    'should raise one warning': function (error, minified) {
-      assert.lengthOf(minified.warnings, 1);
-      assert.equal(minified.warnings[0], 'Broken declaration: \'@impor\'.');
-    }
-  },
-  'warnings on broken comments': {
-    'topic': function () {
-      return new CleanCSS().minify('a{}/* ');
-    },
-    'should output correct content': function (error, minified) {
-      assert.isEmpty(minified.styles);
-    },
-    'should raise no errors': function (error, minified) {
-      assert.isEmpty(minified.errors.length);
-    },
-    'should raise one warning': function (error, minified) {
-      assert.lengthOf(minified.warnings, 1);
-      assert.equal(minified.warnings[0], 'Broken comment: \'/* \'.');
+      assert.lengthOf(minified.warnings, 2);
+      assert.equal(minified.warnings[0], 'Missing \'}\' at line 1, column 24.');
+      assert.equal(minified.warnings[1], 'Broken URL \'url(image/\' at line 1, column 13. Ignoring.');
     }
   },
   'no errors': {
@@ -241,7 +198,7 @@ vows.describe('module tests').addBatch({
         minifier.minify('@import url(/some/fake/file);', function (errors) {
           assert.isArray(errors);
           assert.lengthOf(errors, 1);
-          assert.equal(errors[0], 'Broken @import declaration of "/some/fake/file"');
+          assert.equal(errors[0], 'Ignoring local @import of "/some/fake/file" as resource is missing.');
         });
       });
     }
@@ -254,8 +211,23 @@ vows.describe('module tests').addBatch({
       minifier.minify('@import url(/some/fake/file);');
       minifier.minify('@import url(/some/fake/file);', function (errors) {
         assert.lengthOf(errors, 1);
-        assert.equal(errors[0], 'Broken @import declaration of "/some/fake/file"');
+        assert.equal(errors[0], 'Ignoring local @import of "/some/fake/file" as resource is missing.');
       });
+    }
+  },
+  'error on broken imports': {
+    'topic': function () {
+      return new CleanCSS().minify('@import test;');
+    },
+    'should output correct content': function (error, minified) {
+      assert.isEmpty(minified.styles);
+    },
+    'should raise no warnings': function (error, minified) {
+      assert.isEmpty(minified.warnings.length);
+    },
+    'should raise one error': function (error, minified) {
+      assert.lengthOf(minified.errors, 1);
+      assert.equal(minified.errors[0], 'Ignoring local @import of "test" as resource is missing.');
     }
   },
   'local imports': {
@@ -280,7 +252,7 @@ vows.describe('module tests').addBatch({
         assert.isEmpty(minified.errors);
       },
       'has a warning': function (minified) {
-        assert.deepEqual(minified.warnings, []);
+        assert.deepEqual(minified.warnings, ['Skipping remote @import of "http://jakubpawlowicz.com/styles.css" as no callback given.']);
       }
     },
     'after content': {
@@ -294,7 +266,7 @@ vows.describe('module tests').addBatch({
         assert.isEmpty(minified.errors);
       },
       'has a warning': function (minified) {
-        assert.deepEqual(minified.warnings, ['Ignoring remote @import of "http://jakubpawlowicz.com/styles.css" as no callback given.']);
+        assert.deepEqual(minified.warnings, ['Ignoring remote @import of "http://jakubpawlowicz.com/styles.css" as no callback given and after other content.']);
       }
     },
     'after local import': {
@@ -308,7 +280,7 @@ vows.describe('module tests').addBatch({
         assert.isEmpty(minified.errors);
       },
       'has a warning': function (minified) {
-        assert.deepEqual(minified.warnings, ['Ignoring remote @import of "http://jakubpawlowicz.com/styles.css" as no callback given.']);
+        assert.deepEqual(minified.warnings, ['Skipping remote @import of "http://jakubpawlowicz.com/styles.css" as no callback given.']);
       }
     },
     'after remote import': {
@@ -322,7 +294,10 @@ vows.describe('module tests').addBatch({
         assert.isEmpty(minified.errors);
       },
       'has a warning': function (minified) {
-        assert.deepEqual(minified.warnings, []);
+        assert.deepEqual(minified.warnings, [
+          'Skipping remote @import of "http://jakubpawlowicz.com/reset.css" as no callback given.',
+          'Skipping remote @import of "http://jakubpawlowicz.com/styles.css" as no callback given.'
+        ]);
       }
     }
   },

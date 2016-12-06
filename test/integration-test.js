@@ -2277,11 +2277,11 @@ vows.describe('integration tests')
     optimizerContext('invalid data tokenization', {
       'extra top-level closing brace': [
         'a{color:red}}p{width:auto}',
-        'a{color:red}p{width:auto}'
+        'a{color:red}'
       ],
       'extra top-level closing braces': [
         'a{color:red}}}}p{width:auto}',
-        'a{color:red}p{width:auto}'
+        'a{color:red}'
       ]
     })
   )

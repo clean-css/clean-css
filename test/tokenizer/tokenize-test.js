@@ -3335,9 +3335,9 @@ vows.describe(tokenize)
             'rule',
             [
               [
-                'a',
+                '}a',
                 [
-                  [1, 16, undefined]
+                  [1, 15, undefined]
                 ]
               ]
             ],

@@ -115,7 +115,6 @@ CleanCSS constructor accepts a hash as a parameter, i.e.,
 * `aggressiveMerging` - set to false to disable aggressive merging of properties.
 * `benchmark` - turns on benchmarking mode measuring time spent on cleaning up (run `npm run bench` to see example)
 * `compatibility` - enables compatibility mode, see [below for more examples](#how-to-set-a-compatibility-mode)
-* `debug` - set to true to get minification statistics under `stats` property (see `test/custom-test.js` for examples)
 * `inliner` - a hash of options for `@import` inliner, see [test/protocol-imports-test.js](https://github.com/jakubpawlowicz/clean-css/blob/master/test/protocol-imports-test.js#L372) for examples, or [this comment](https://github.com/jakubpawlowicz/clean-css/issues/612#issuecomment-119594185) for a proxy use case.
 * `keepBreaks` - whether to keep line breaks (default is false)
 * `keepSpecialComments` - `*` for keeping all (default), `1` for keeping first one only, `0` for removing all
@@ -141,7 +140,7 @@ The output of `minify` method (or the 2nd argument to passed callback) is a hash
 * `sourceMap` - output source map (if requested with `sourceMap` option)
 * `errors` - a list of errors raised
 * `warnings` - a list of warnings raised
-* `stats` - a hash of statistic information (if requested with `debug` option):
+* `stats` - a hash of statistic information:
   * `originalSize` - original content size (after import inlining)
   * `minifiedSize` - optimized content size
   * `timeSpent` - time spent on optimizations

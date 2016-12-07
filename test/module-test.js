@@ -74,17 +74,9 @@ vows.describe('module tests').addBatch({
       assert.equal(minified.styles, '@import url(https://fonts.googleapis.com/css?family=Open+Sans);');
     }
   },
-  'no debug': {
+  'debug info': {
     'topic': function () {
       return new CleanCSS().minify('a{ color: #f00 }');
-    },
-    'should not populate stats hash': function (error, minified) {
-      assert.isEmpty(minified.stats);
-    }
-  },
-  'debug': {
-    'topic': function () {
-      return new CleanCSS({ debug: true }).minify('a{ color: #f00 }');
     },
     'should give time taken': function (error, minified) {
       assert.isNumber(minified.stats.timeSpent);

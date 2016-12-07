@@ -60,11 +60,11 @@ if (!fromStdin && commands.args.length === 0) {
 }
 
 // Now coerce commands into CleanCSS configuration...
+var debugMode = commands.debug;
 var options = {
   advanced: commands.skipAdvanced ? false : true,
   aggressiveMerging: commands.skipAggressiveMerging ? false : true,
   compatibility: commands.compatibility,
-  debug: commands.debug,
   inliner: commands.timeout ? { timeout: parseFloat(commands.timeout) * 1000 } : undefined,
   keepBreaks: !!commands.keepLineBreaks,
   keepSpecialComments: commands.s0 ? 0 : (commands.s1 ? 1 : '*'),
@@ -139,7 +139,7 @@ function processImportFrom(rules) {
 
 function minify(data) {
   new CleanCSS(options).minify(data, function (errors, minified) {
-    if (options.debug) {
+    if (debugMode) {
       console.error('Original: %d bytes', minified.stats.originalSize);
       console.error('Minified: %d bytes', minified.stats.minifiedSize);
       console.error('Efficiency: %d%', ~~(minified.stats.efficiency * 10000) / 100.0);

@@ -49,7 +49,6 @@ cleancss [options] source-file, [source-file, ...]
 -c, --compatibility [ie7|ie8]  Force compatibility mode (see Readme for advanced examples)
 -d, --debug                    Shows debug information (minification time & compression efficiency)
 -o, --output [output-file]     Use [output-file] as output instead of STDOUT
--r, --root [root-path]         Set a root path to which resolve absolute @import rules
 -s, --skip-import              Disable @import processing
 -t, --timeout [seconds]        Per connection timeout when fetching remote @imports (defaults to 5 seconds)
 --rounding-precision [n]       Rounds pixel values to `N` decimal places. Defaults to 2. -1 disables rounding
@@ -122,9 +121,8 @@ CleanCSS constructor accepts a hash as a parameter, i.e.,
 * `processImport` - whether to process `@import` rules
 * `processImportFrom` - a list of `@import` rules, can be `['all']` (default), `['local']`, `['remote']`, or a blacklisted path e.g. `['!fonts.googleapis.com']`
 * `rebase` - set to false to skip URL rebasing
-* `relativeTo` - path to **resolve** relative `@import` rules and URLs
+* `rebaseTo` - a directory to which all URLs are rebased (most likely the directory under which the output file will live), defaults to the current directory
 * `restructuring` - set to false to disable restructuring in advanced optimizations
-* `root` - path to **resolve** absolute `@import` rules and **rebase** relative URLs
 * `roundingPrecision` - rounding precision; defaults to `2`; `-1` disables rounding
 * `semanticMerging` - set to true to enable semantic merging mode which assumes BEM-like content (default is false as it's highly likely this will break your stylesheets - **use with caution**!)
 * `shorthandCompacting` - set to false to skip shorthand compacting (default is true unless sourceMap is set when it's false)
@@ -132,7 +130,6 @@ CleanCSS constructor accepts a hash as a parameter, i.e.,
   If input styles are a product of CSS preprocessor (Less, Sass) an input source map can be passed as a string.
 * `sourceMapInlineSources` - set to true to inline sources inside a source map's `sourcesContent` field (defaults to false)
   It is also required to process inlined sources from input source maps.
-* `target` - path to a folder or an output file to which **rebase** all URLs
 
 The output of `minify` method (or the 2nd argument to passed callback) is a hash containing the following fields:
 
@@ -205,16 +202,10 @@ Use the `/*!` notation instead of the standard one `/*`:
 
 ### How to rebase relative image URLs?
 
-Clean-css will handle it automatically for you (since version 1.1) in the following cases:
+Clean-css will handle it automatically for you in the following cases:
 
-* When using the CLI:
-  1. Use an output path via `-o`/`--output` to rebase URLs as relative to the output file.
-  2. Use a root path via `-r`/`--root` to rebase URLs as absolute from the given root path.
-  3. If you specify both then `-r`/`--root` takes precedence.
-* When using clean-css as a library:
-  1. Use a combination of `relativeTo` and `target` options for relative rebase (same as 1 in CLI).
-  2. Use a combination of `relativeTo` and `root` options for absolute rebase (same as 2 in CLI).
-  3. `root` takes precedence over `target` as in CLI.
+* When using the CLI specify output path via `-o`/`--output` to rebase URLs as relative to the output file
+* When using the API use `rebaseTo` to rebase URLs to the given path (same as with CLI)
 
 ### How to generate source maps?
 
@@ -239,7 +230,7 @@ Name of the output file is required, so a map file, named by adding `.map` suffi
 To generate a source map, use `sourceMap: true` option, e.g.:
 
 ```js
-new CleanCSS({ sourceMap: true, target: pathToOutputDirectory })
+new CleanCSS({ sourceMap: true, rebaseTo: pathToOutputDirectory })
   .minify(source, function (error, minified) {
     // access minified.sourceMap for SourceMapGenerator object
     // see https://github.com/mozilla/source-map/#sourcemapgenerator for more details
@@ -250,7 +241,7 @@ new CleanCSS({ sourceMap: true, target: pathToOutputDirectory })
 Using API you can also pass an input source map directly:
 
 ```js
-new CleanCSS({ sourceMap: inputSourceMapAsString, target: pathToOutputDirectory })
+new CleanCSS({ sourceMap: inputSourceMapAsString, rebaseTo: pathToOutputDirectory })
   .minify(source, function (error, minified) {
     // access minified.sourceMap to access SourceMapGenerator object
     // see https://github.com/mozilla/source-map/#sourcemapgenerator for more details
@@ -261,7 +252,7 @@ new CleanCSS({ sourceMap: inputSourceMapAsString, target: pathToOutputDirectory 
 Or even multiple input source maps at once (available since version 3.1):
 
 ```js
-new CleanCSS({ sourceMap: true, target: pathToOutputDirectory }).minify({
+new CleanCSS({ sourceMap: true, rebaseTo: pathToOutputDirectory }).minify({
   'path/to/source/1': {
     styles: '...styles...',
     sourceMap: '...source-map...'

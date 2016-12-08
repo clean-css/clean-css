@@ -122,9 +122,9 @@ vows.describe('./bin/cleancss')
   .addBatch({
     'piped with correct debug info on inlining': pipedContext('@import url(test/fixtures/imports.css);', '-d', {
       'should output correct info': function (error, stdout, stderr) {
-        assert.include(stderr, 'Original: 120 bytes');
+        assert.include(stderr, 'Original: 339 bytes');
         assert.include(stderr, 'Minified: 86 bytes');
-        assert.include(stderr, 'Efficiency: 28.33%');
+        assert.include(stderr, 'Efficiency: 74.63%');
       }
     })
   })
@@ -162,18 +162,11 @@ vows.describe('./bin/cleancss')
     })
   })
   .addBatch({
-    'no relative to path': binaryContext('./test/fixtures/partials-absolute/base.css', {
+    'no relative to path': binaryContext('./fixtures/partials-absolute/base.css', {
       'should not be able to resolve it fully': function (error, stdout, stderr) {
         assert.isEmpty(stdout);
         assert.notEqual(error, null);
         assert.notEqual(stderr, '');
-      }
-    })
-  })
-  .addBatch({
-    'relative to path': binaryContext('-r ./test/fixtures ./test/fixtures/partials-absolute/base.css', {
-      'should be able to resolve it': function (error, stdout) {
-        assert.equal(stdout, '.base2{border-width:0}.sub{padding:0}.base{margin:0}');
       }
     })
   })
@@ -210,7 +203,7 @@ vows.describe('./bin/cleancss')
   .addBatch({
     'disable @import': binaryContext('-s ./test/fixtures/imports.css', {
       'should disable the import processing': function (error, stdout) {
-        assert.equal(stdout, '@import url(./partials/one.css);@import url(./partials/two.css);.imports{color:#000}');
+        assert.equal(stdout, '@import url(test/fixtures/partials/one.css);@import url(test/fixtures/partials/two.css);.imports{color:#000}');
       }
     })
   })
@@ -233,32 +226,18 @@ vows.describe('./bin/cleancss')
   })
   .addBatch({
     'relative image paths': {
-      'no root & output': binaryContext('./test/fixtures/partials-relative/base.css', {
+      'no output': binaryContext('./test/fixtures/partials-relative/base.css', {
         'should leave paths': function (error, stdout) {
-          assert.equal(stdout, 'a{background:url(../partials/extra/down.gif) no-repeat}');
+          assert.equal(stdout, 'a{background:url(test/fixtures/partials/extra/down.gif) no-repeat}');
         }
       }),
-      'root but no output': binaryContext('-r ./test ./test/fixtures/partials-relative/base.css', {
-        'should rewrite path relative to ./test': function (error, stdout) {
-          assert.equal(stdout, 'a{background:url(/fixtures/partials/extra/down.gif) no-repeat}');
-        }
-      }),
-      'no root but output': binaryContext('-o ./base1-min.css ./test/fixtures/partials-relative/base.css', {
+      'output': binaryContext('-o ./base1-min.css ./test/fixtures/partials-relative/base.css', {
         'should rewrite path relative to current path': function () {
           var minimized = readFile('./base1-min.css');
           assert.equal(minimized, 'a{background:url(test/fixtures/partials/extra/down.gif) no-repeat}');
         },
         teardown: function () {
           deleteFile('./base1-min.css');
-        }
-      }),
-      'root and output': binaryContext('-r ./test/fixtures -o ./base2-min.css ./test/fixtures/partials-relative/base.css', {
-        'should rewrite path relative to ./test/fixtures/': function () {
-          var minimized = readFile('./base2-min.css');
-          assert.equal(minimized, 'a{background:url(/partials/extra/down.gif) no-repeat}');
-        },
-        teardown: function () {
-          deleteFile('./base2-min.css');
         }
       }),
       'piped with output': pipedContext('a{background:url(test/fixtures/partials/extra/down.gif)}', '-o base3-min.css', {
@@ -275,37 +254,36 @@ vows.describe('./bin/cleancss')
   .addBatch({
     'import rebasing': binaryContext('test/fixtures/partials/quoted-svg.css', {
       'should keep quoting intact': function (error, stdout) {
-        assert.include(stdout, 'div{background:url(\'data:image');
-        assert.include(stdout, 'svg%3E\')}');
+        assert.include(stdout, 'div{background:url("data:image');
+        assert.include(stdout, 'svg%3E")}');
       }
     })
   })
   .addBatch({
     'complex import and url rebasing': {
-      'absolute': binaryContext('-r ./test/fixtures/129-assets ./test/fixtures/129-assets/assets/ui.css', {
+      'absolute': binaryContext('./test/fixtures/129-assets/assets/ui.css', {
         'should rebase urls correctly': function (error, stdout) {
-          assert.isNull(error);
-          assert.include(stdout, 'url(/components/bootstrap/images/glyphs.gif)');
-          assert.include(stdout, 'url(/components/jquery-ui/images/prev.gif)');
-          assert.include(stdout, 'url(/components/jquery-ui/images/next.gif)');
+          assert.include(stdout, 'url(test/fixtures/129-assets/components/bootstrap/images/glyphs.gif)');
+          assert.include(stdout, 'url(test/fixtures/129-assets/components/jquery-ui/images/prev.gif)');
+          assert.include(stdout, 'url(test/fixtures/129-assets/components/jquery-ui/images/next.gif)');
         }
       }),
-      'relative': binaryContext('-o ui.bundled.css ./test/fixtures/129-assets/assets/ui.css', {
+      'relative': binaryContext('-o test/ui.bundled.css ./test/fixtures/129-assets/assets/ui.css', {
         'should rebase urls correctly': function () {
-          var minimized = readFile('ui.bundled.css');
-          assert.include(minimized, 'url(test/fixtures/129-assets/components/bootstrap/images/glyphs.gif)');
-          assert.include(minimized, 'url(test/fixtures/129-assets/components/jquery-ui/images/prev.gif)');
-          assert.include(minimized, 'url(test/fixtures/129-assets/components/jquery-ui/images/next.gif)');
+          var minimized = readFile('test/ui.bundled.css');
+          assert.include(minimized, 'url(fixtures/129-assets/components/bootstrap/images/glyphs.gif)');
+          assert.include(minimized, 'url(fixtures/129-assets/components/jquery-ui/images/prev.gif)');
+          assert.include(minimized, 'url(fixtures/129-assets/components/jquery-ui/images/next.gif)');
         },
         teardown: function () {
-          deleteFile('ui.bundled.css');
+          deleteFile('test/ui.bundled.css');
         }
       })
     }
   })
   .addBatch({
     'complex import and skipped url rebasing': {
-      'absolute': binaryContext('-r ./test/fixtures/129-assets --skip-rebase ./test/fixtures/129-assets/assets/ui.css', {
+      'absolute': binaryContext('--skip-rebase ./test/fixtures/129-assets/assets/ui.css', {
         'should rebase urls correctly': function (error, stdout) {
           assert.isNull(error);
           assert.include(stdout, 'url(../images/glyphs.gif)');
@@ -314,20 +292,6 @@ vows.describe('./bin/cleancss')
         }
       })
     }
-  })
-  .addBatch({
-    'relative import with just a filename': pipedContext('@import "one.css";', '-r ./test/fixtures/partials', {
-      'imports sources correctly': function(error, stdout) {
-        assert.equal(error, null);
-        assert.include(stdout, '.one{color:red}');
-      }
-    }),
-    'relative import with ./': pipedContext('@import "./one.css";', '-r ./test/fixtures/partials', {
-      'imports sources correctly': function(error, stdout) {
-        assert.equal(error, null);
-        assert.include(stdout, '.one{color:red}');
-      }
-    })
   })
   .addBatch({
     'remote import': {
@@ -467,7 +431,7 @@ vows.describe('./bin/cleancss')
     }
   })
   .addBatch({
-    '@media merging': pipedContext('@media screen{a{color:red}}@media screen{a{display:block}}', '--skip-media-merging', {
+    '@media merging ': pipedContext('@media screen{a{color:red}}@media screen{a{display:block}}', '--skip-media-merging', {
       'gets right result': function (error, stdout) {
         assert.equal(stdout, '@media screen{a{color:red}}@media screen{a{display:block}}');
       }
@@ -587,32 +551,6 @@ vows.describe('./bin/cleancss')
     })
   })
   .addBatch({
-    'source maps - output file with root path': binaryContext('--source-map -o ./reset-root.min.css -r ./test ./test/fixtures/reset.css', {
-      'includes map in minified file': function () {
-        assert.include(readFile('./reset-root.min.css'), '/*# sourceMappingURL=reset-root.min.css.map */');
-      },
-      'creates a map file': function () {
-        assert.isTrue(fs.existsSync('./reset-root.min.css.map'));
-      },
-      'includes right content in map file': function () {
-        var sourceMap = new SourceMapConsumer(readFile('./reset-root.min.css.map'));
-        assert.deepEqual(
-          sourceMap.originalPositionFor({ line: 1, column: 1 }),
-          {
-            source: 'fixtures/reset.css',
-            line: 4,
-            column: 0,
-            name: null
-          }
-        );
-      },
-      'teardown': function () {
-        deleteFile('reset-root.min.css');
-        deleteFile('reset-root.min.css.map');
-      }
-    })
-  })
-  .addBatch({
     'source maps - with input source map': binaryContext('--source-map -o ./import.min.css ./test/fixtures/source-maps/import.css', {
       'includes map in minified file': function () {
         assert.include(readFile('./import.min.css'), '/*# sourceMappingURL=import.min.css.map */');
@@ -631,7 +569,7 @@ vows.describe('./bin/cleancss')
     })
   })
   .addBatch({
-    'source maps - with input source map and source 1inlining': binaryContext('--source-map --source-map-inline-sources -o ./import-inline.min.css ./test/fixtures/source-maps/import.css', {
+    'source maps - with input source map and source inlining': binaryContext('--source-map --source-map-inline-sources -o ./import-inline.min.css ./test/fixtures/source-maps/import.css', {
       'includes map in minified file': function () {
         assert.include(readFile('./import-inline.min.css'), '/*# sourceMappingURL=import-inline.min.css.map */');
       },

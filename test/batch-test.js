@@ -19,13 +19,12 @@ var batchContexts = function () {
 
     context[testName] = {
       topic: function () {
-        var plainPath = path.join(__dirname, 'fixtures', testName + '.css');
+        var plainPath = path.join('test', 'fixtures', testName + '.css');
         var minPath = path.join(__dirname, 'fixtures', testName + '-min.css');
 
         return {
-          plain: fs.readFileSync(plainPath, 'utf-8'),
-          preminified: fs.readFileSync(minPath, 'utf-8'),
-          root: path.dirname(plainPath)
+          plain: '@import "' + plainPath + '";',
+          preminified: fs.readFileSync(minPath, 'utf8')
         };
       },
       'minifying': {
@@ -33,18 +32,17 @@ var batchContexts = function () {
           var self = this;
 
           new CleanCSS({
-            keepBreaks: true,
-            root: data.root
+            keepBreaks: true
           }).minify(data.plain, function (errors, minified) {
             self.callback(errors, minified.styles, data);
           });
         },
         'should output right content': function (errors, minified, data) {
-          var minifiedTokens = minified.split(lineBreak);
-          var preminifiedTokens = data.preminified.split(lineBreak);
+          var minifiedRules = minified.split(lineBreak);
+          var preminifiedRules = data.preminified.split(lineBreak);
 
-          minifiedTokens.forEach(function (line, i) {
-            assert.equal(line, preminifiedTokens[i]);
+          minifiedRules.forEach(function (line, i) {
+            assert.equal(line, preminifiedRules[i]);
           });
         }
       },
@@ -54,8 +52,7 @@ var batchContexts = function () {
 
           new CleanCSS({
             keepBreaks: true,
-            sourceMap: true,
-            root: data.root
+            sourceMap: true
           }).minify(data.plain, function (errors, minified) {
             self.callback(errors, minified.styles, data);
           });

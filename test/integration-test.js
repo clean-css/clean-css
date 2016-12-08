@@ -1342,7 +1342,7 @@ vows.describe('integration tests')
         'a{background:url(git+ssh2://abc.png)}',
         'a{background:url(git+ssh2://abc.png)}'
       ]
-    }, { root: process.cwd(), relativeTo: process.cwd() })
+    })
   )
   .addBatch(
     optimizerContext('urls whitespace in compatibility mode', {
@@ -1394,7 +1394,7 @@ vows.describe('integration tests')
         'a{background:url(\'data:image/svg+xml,%3csvg%20xmlns%3d"http://www.w3.org/2000/svg"/%3e\')}',
         'a{background:url(\'data:image/svg+xml,%3csvg%20xmlns%3d"http://www.w3.org/2000/svg"/%3e\')}'
       ]
-    }, { root: process.cwd(), relativeTo: process.cwd() })
+    })
   )
   .addBatch(
     optimizerContext('urls quotes in compatibility mode', {
@@ -1417,22 +1417,22 @@ vows.describe('integration tests')
     }, { compatibility: { properties: { urlQuotes: true } } })
   )
   .addBatch(
-    optimizerContext('urls rewriting - no root or target', {
+    optimizerContext('urls rewriting - rebaseTo', {
       'no @import': [
         'a{background:url(test/fixtures/partials/extra/down.gif) no-repeat}',
-        'a{background:url(test/fixtures/partials/extra/down.gif) no-repeat}'
+        'a{background:url(partials/extra/down.gif) no-repeat}'
       ],
       'relative @import': [
         '@import url(test/fixtures/partials-relative/base.css);',
-        'a{background:url(test/fixtures/partials/extra/down.gif) no-repeat}'
+        'a{background:url(partials/extra/down.gif) no-repeat}'
       ],
       'relative @import twice': [
         '@import url(test/fixtures/partials-relative/extra/included.css);',
-        'a{background:url(test/fixtures/partials/extra/down.gif) no-repeat}'
+        'a{background:url(partials/extra/down.gif) no-repeat}'
       ],
       'absolute @import': [
         '@import url(/test/fixtures/partials-relative/base.css);',
-        'a{background:url(test/fixtures/partials/extra/down.gif) no-repeat}'
+        'a{background:url(partials/extra/down.gif) no-repeat}'
       ],
       'document-local reference': [
         'svg{marker-end:url(#arrow)}',
@@ -1442,149 +1442,31 @@ vows.describe('integration tests')
         'a{background-image:url("chrome-extension://__MSG_@@extension_id__/someFile.png")}',
         'a{background-image:url(chrome-extension://__MSG_@@extension_id__/someFile.png)}'
       ]
-    })
+    }, { rebaseTo: path.join('test', 'fixtures') })
   )
   .addBatch(
-    optimizerContext('urls rewriting - root but no target', {
-      'no @import': [
-        'a{background:url(../partials/extra/down.gif) no-repeat}',
-        'a{background:url(/test/fixtures/partials/extra/down.gif) no-repeat}'
-      ],
-      'relative @import': [
-        '@import url(base.css);',
-        'a{background:url(/test/fixtures/partials/extra/down.gif) no-repeat}'
-      ],
-      'absolute @import': [
-        '@import url(/test/fixtures/partials-relative/base.css);',
-        'a{background:url(/test/fixtures/partials/extra/down.gif) no-repeat}'
-      ],
-      'SVG': [
-        'a{background-image:url("data:image/svg+xml,<svg version=\'1.1\'/>")}',
-        'a{background-image:url("data:image/svg+xml,<svg version=\'1.1\'/>")}'
-      ],
-      'document-local reference': [
-        'svg{marker-end:url(#arrow)}',
-        'svg{marker-end:url(#arrow)}'
-      ],
-      'internal page': [
-        'a{background:url(about:blank)}',
-        'a{background:url(about:blank)}'
-      ],
-      'chrome extension': [
-        'a{background-image:url("chrome-extension://__MSG_@@extension_id__/someFile.png")}',
-        'a{background-image:url(chrome-extension://__MSG_@@extension_id__/someFile.png)}'
-      ]
-    }, {
-      root: process.cwd(),
-      relativeTo: path.join('test', 'fixtures', 'partials-relative')
-    })
-  )
-  .addBatch(
-    optimizerContext('urls rewriting - no root but target as file', {
-      'no @import': [
-        'a{background:url(../partials/extra/down.gif) no-repeat}',
-        'a{background:url(test/fixtures/partials/extra/down.gif) no-repeat}'
-      ],
-      'relative @import': [
-        '@import url(base.css);',
-        'a{background:url(test/fixtures/partials/extra/down.gif) no-repeat}'
-      ],
-      'absolute @import': [
-        '@import url(/test/fixtures/partials-relative/base.css);',
-        'a{background:url(test/fixtures/partials/extra/down.gif) no-repeat}'
-      ],
-      'document-local reference': [
-        'svg{marker-end:url(#arrow)}',
-        'svg{marker-end:url(#arrow)}'
-      ]
-    }, {
-      target: path.join(process.cwd(), 'test.css'),
-      relativeTo: path.join('test', 'fixtures', 'partials-relative')
-    })
-  )
-  .addBatch(
-    optimizerContext('urls rewriting - no root but target as a directory', {
-      'no @import': [
-        'a{background:url(../partials/extra/down.gif) no-repeat}',
-        'a{background:url(test/fixtures/partials/extra/down.gif) no-repeat}'
-      ],
-      'relative @import': [
-        '@import url(base.css);',
-        'a{background:url(test/fixtures/partials/extra/down.gif) no-repeat}'
-      ],
-      'absolute @import': [
-        '@import url(/test/fixtures/partials-relative/base.css);',
-        'a{background:url(test/fixtures/partials/extra/down.gif) no-repeat}'
-      ],
-      'document-local reference': [
-        'svg{marker-end:url(#arrow)}',
-        'svg{marker-end:url(#arrow)}'
-      ],
-      'quoting URLs #1': [
-        'div{background:url("data:image/svg+xml;base64,==")}li:nth-child(odd){color:red}',
-        'div{background:url(data:image/svg+xml;base64,==)}li:nth-child(odd){color:red}'
-      ],
-      'quoting URLs #2': [
-        'div{background:url("data:image/svg+xml;base64,==");border-image:url(1.png)}li:nth-child(odd){color:red}',
-        'div{background:url(data:image/svg+xml;base64,==);border-image:url(test/fixtures/partials-relative/1.png)}li:nth-child(odd){color:red}'
-      ]
-    }, {
-      target: process.cwd(),
-      relativeTo: path.join('test', 'fixtures', 'partials-relative')
-    })
-  )
-  .addBatch(
-    optimizerContext('urls rewriting - no root but target as a missing directory', {
+    optimizerContext('urls rewriting - rebaseTo as a missing directory', {
       'url': [
-        'a{background:url(../partials/extra/down.gif) no-repeat}',
-        'a{background:url(../fixtures/partials/extra/down.gif) no-repeat}'
+        'a{background:url(test/partials/extra/down.gif) no-repeat}',
+        'a{background:url(../partials/extra/down.gif) no-repeat}'
       ],
       'relative @import': [
-        '@import url(base.css);',
+        '@import url(test/fixtures/partials-relative/base.css);',
         'a{background:url(../fixtures/partials/extra/down.gif) no-repeat}'
       ],
       'absolute @import': [
         '@import url(/test/fixtures/partials-relative/base.css);',
         'a{background:url(../fixtures/partials/extra/down.gif) no-repeat}'
       ]
-    }, {
-      target: path.join('test', 'fixtures2'),
-      relativeTo: path.join('test', 'fixtures', 'partials-relative')
-    })
-  )
-  .addBatch(
-    optimizerContext('urls rewriting - root and target', {
-      'no @import': [
-        'a{background:url(../partials/extra/down.gif) no-repeat}',
-        'a{background:url(/test/fixtures/partials/extra/down.gif) no-repeat}'
-      ],
-      'relative @import': [
-        '@import url(base.css);',
-        'a{background:url(/test/fixtures/partials/extra/down.gif) no-repeat}'
-      ],
-      'absolute @import': [
-        '@import url(/test/fixtures/partials-relative/base.css);',
-        'a{background:url(/test/fixtures/partials/extra/down.gif) no-repeat}'
-      ],
-      'document-local reference': [
-        'svg{marker-end:url(#arrow)}',
-        'svg{marker-end:url(#arrow)}'
-      ]
-    }, {
-      root: process.cwd(),
-      target: path.join(process.cwd(), 'test.css'),
-      relativeTo: path.join('test', 'fixtures', 'partials-relative')
-    })
+    }, { rebaseTo: path.join('test', 'fixtures2') })
   )
   .addBatch(
     optimizerContext('urls rewriting - rebase off', {
       'keeps urls the same': [
-        '@import url(base.css);',
+        '@import url(test/fixtures/partials-relative/base.css);',
         'a{background:url(../partials/extra/down.gif) no-repeat}'
       ]
     }, {
-      target: path.join(process.cwd(), 'test.css'),
-      relativeTo: path.join('test', 'fixtures', 'partials-relative'),
       rebase: false
     })
   )
@@ -2119,7 +2001,7 @@ vows.describe('integration tests')
         generateComments(30000) + '@import url(fonts.google.com/some.css);',
         ''
       ]
-    }, { root: process.cwd() })
+    })
   )
   .addBatch(
     optimizerContext('malformed but still valid @import', {
@@ -2167,7 +2049,7 @@ vows.describe('integration tests')
         '@import url(\'test/fixtures/partials/one.css   \');',
         '.one{color:red}'
       ]
-    }, { root: process.cwd() })
+    })
   )
   .addBatch(
     optimizerContext('@import with absolute paths', {
@@ -2176,26 +2058,26 @@ vows.describe('integration tests')
         ''
       ],
       'of a real file': [
-        '@import url(/partials/one.css);',
+        '@import url(/test/fixtures/partials/one.css);',
         '.one{color:red}'
       ],
       'of a real file with quoted paths': [
-        '@import url("/partials/one.css");',
+        '@import url("/test/fixtures/partials/one.css");',
         '.one{color:red}'
       ],
       'of two files with mixed paths': [
-        '@import url(/partials/one.css);@import url(partials/extra/three.css);a{display:block}',
+        '@import url(/test/fixtures/partials/one.css);@import url(/test/fixtures/partials/extra/three.css);a{display:block}',
         '.one{color:red}.three{color:#0f0}a{display:block}'
       ],
       'of a multi-level, circular dependency file': [
-        '@import url(/partials/two.css);',
+        '@import url(/test/fixtures/partials/two.css);',
         '.one{color:red}.three{color:#0f0}.four{color:#00f}.two{color:#fff}'
       ],
       'of a multi-level, circular dependency file with mixed paths': [
-        '@import url(/partials-absolute/base.css);',
+        '@import url(/test/fixtures/partials-absolute/base.css);',
         '.base2{border-width:0}.sub{padding:0}.base{margin:0}'
       ]
-    }, { root: path.join(process.cwd(), 'test', 'fixtures') })
+    })
   )
   .addBatch(
     optimizerContext('@import with option processImport', {
@@ -2209,7 +2091,7 @@ vows.describe('integration tests')
       ],
       'of comment chars within import url': [
         '@import \'necolas/normalize.css@*/normalize.css\';',
-        '@import \'necolas/normalize.css@*/normalize.css\';'
+        '@import url(necolas/normalize.css@*/normalize.css);'
       ]
     }, { processImport: false })
   )
@@ -2231,7 +2113,7 @@ vows.describe('integration tests')
         '@import url(test.css);@font-face{font-family:"icomoon"}',
         '@import url(test.css);@font-face{font-family:icomoon}'
       ]
-    }, { processImport: false, root: process.cwd(), relativeTo: process.cwd() })
+    }, { processImport: false })
   )
   .addBatch(
     optimizerContext('body at-rules', {

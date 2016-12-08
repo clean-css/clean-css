@@ -19,7 +19,6 @@ commands
   .option('-c, --compatibility [ie7|ie8]', 'Force compatibility mode (see Readme for advanced examples)')
   .option('-d, --debug', 'Shows debug information (minification time & compression efficiency)')
   .option('-o, --output [output-file]', 'Use [output-file] as output instead of STDOUT')
-  .option('-r, --root [root-path]', 'Set a root path to which resolve absolute @import rules')
   .option('-s, --skip-import', 'Disable @import processing')
   .option('-t, --timeout [seconds]', 'Per connection timeout when fetching remote @imports (defaults to 5 seconds)')
   .option('--rounding-precision [n]', 'Rounds pixel values to `N` decimal places. Defaults to 2. -1 disables rounding')
@@ -69,34 +68,20 @@ var options = {
   keepBreaks: !!commands.keepLineBreaks,
   keepSpecialComments: commands.s0 ? 0 : (commands.s1 ? 1 : '*'),
   mediaMerging: commands.skipMediaMerging ? false : true,
+  output: commands.output,
   processImport: commands.skipImport ? false : true,
   processImportFrom: processImportFrom(commands.skipImportFrom),
   rebase: commands.skipRebase ? false : true,
+  rebaseTo: ('output' in commands) && commands.output.length > 0 ? path.dirname(path.resolve(commands.output)) : process.cwd(),
   restructuring: commands.skipRestructuring ? false : true,
-  root: commands.root,
   roundingPrecision: commands.roundingPrecision,
   semanticMerging: commands.semanticMerging ? true : false,
   shorthandCompacting: commands.skipShorthandCompacting ? false : true,
   sourceMap: commands.sourceMap,
-  sourceMapInlineSources: commands.sourceMapInlineSources,
-  target: commands.output
+  sourceMapInlineSources: commands.sourceMapInlineSources
 };
 
-if (options.root || commands.args.length > 0) {
-  var relativeTo = options.root || commands.args[0];
-
-  if (isRemote(relativeTo)) {
-    options.relativeTo = relativeTo;
-  } else {
-    var resolvedRelativeTo = path.resolve(relativeTo);
-
-    options.relativeTo = fs.statSync(resolvedRelativeTo).isFile() ?
-      path.dirname(resolvedRelativeTo) :
-      resolvedRelativeTo;
-  }
-}
-
-if (options.sourceMap && !options.target) {
+if (options.sourceMap && !options.output) {
   outputFeedback(['Source maps will not be built because you have not specified an output file.'], true);
   options.sourceMap = false;
 }
@@ -116,10 +101,6 @@ if (commands.args.length > 0) {
   });
 }
 
-function isRemote(path) {
-  return /^https?:\/\//.test(path) || /^\/\//.test(path);
-}
-
 function processImportFrom(rules) {
   if (rules.length === 0) {
     return ['all'];
@@ -127,12 +108,13 @@ function processImportFrom(rules) {
     return [];
   } else {
     return rules.map(function (rule) {
-      if (rule == 'local')
+      if (rule == 'local') {
         return 'remote';
-      else if (rule == 'remote')
+      } else if (rule == 'remote') {
         return 'local';
-      else
+      } else {
         return '!' + rule;
+      }
     });
   }
 }
@@ -149,11 +131,12 @@ function minify(data) {
     outputFeedback(minified.errors, true);
     outputFeedback(minified.warnings);
 
-    if (minified.errors.length > 0)
+    if (minified.errors.length > 0) {
       process.exit(1);
+    }
 
     if (minified.sourceMap) {
-      var mapFilename = path.basename(options.target) + '.map';
+      var mapFilename = path.basename(options.output) + '.map';
       output(minified.styles + '/*# sourceMappingURL=' + mapFilename + ' */');
       outputMap(minified.sourceMap, mapFilename);
     } else {
@@ -163,14 +146,15 @@ function minify(data) {
 }
 
 function output(minified) {
-  if (options.target)
-    fs.writeFileSync(options.target, minified, 'utf8');
-  else
+  if (options.output) {
+    fs.writeFileSync(options.output, minified, 'utf8');
+  } else {
     process.stdout.write(minified);
+  }
 }
 
 function outputMap(sourceMap, mapFilename) {
-  var mapPath = path.join(path.dirname(options.target), mapFilename);
+  var mapPath = path.join(path.dirname(options.output), mapFilename);
   fs.writeFileSync(mapPath, sourceMap.toString(), 'utf-8');
 }
 

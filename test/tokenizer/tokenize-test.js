@@ -1,7 +1,7 @@
 var vows = require('vows');
 var assert = require('assert');
 var tokenize = require('../../lib/tokenizer/tokenize');
-var inputSourceMapTracker = require('../../lib/utils/input-source-map-tracker-2');
+var inputSourceMapTracker = require('../../lib/utils/input-source-map-tracker');
 
 var fs = require('fs');
 var path = require('path');
@@ -20,6 +20,7 @@ function tokenizerContext(group, specs) {
   function toTokens(source) {
     return function () {
       return tokenize(source, {
+        inputSourceMapTracker: inputSourceMapTracker(),
         options: {},
         warnings: []
       });
@@ -3426,8 +3427,9 @@ vows.describe(tokenize)
         var warnings = [];
 
         tokenize('a{display:block', {
-          source: 'one.css',
+          inputSourceMapTracker: inputSourceMapTracker(),
           options: {},
+          source: 'one.css',
           warnings: warnings
         });
 
@@ -3442,8 +3444,9 @@ vows.describe(tokenize)
     'sources - rule with properties': {
       'topic': function () {
         return tokenize('a{color:red}', {
-          source: 'one.css',
+          inputSourceMapTracker: inputSourceMapTracker(),
           options: {},
+          source: 'one.css',
           warnings: []
         });
       },
@@ -3487,14 +3490,11 @@ vows.describe(tokenize)
   .addBatch({
     'input source maps - simple': {
       'topic': function () {
-        var sourceMapTracker = inputSourceMapTracker({
-          errors: {}
-        });
+        var sourceMapTracker = inputSourceMapTracker();
         sourceMapTracker.track('styles.css', inputMap);
 
         return tokenize('div > a {\n  color: red;\n}', {
           source: 'styles.css',
-          inputSourceMap: true,
           inputSourceMapTracker: sourceMapTracker,
           options: {},
           warnings: []
@@ -3509,7 +3509,7 @@ vows.describe(tokenize)
                 'rule-scope',
                 'div > a',
                 [
-                  [1, 0, 'styles.less']
+                  [1, 4, 'styles.less']
                 ]
               ]
             ],
@@ -3538,14 +3538,11 @@ vows.describe(tokenize)
     },
     'with fallback for properties': {
       'topic': function () {
-        var sourceMapTracker = inputSourceMapTracker({
-          errors: {}
-        });
+        var sourceMapTracker = inputSourceMapTracker();
         sourceMapTracker.track('styles.css', inputMap);
 
         return tokenize('div > a {\n  color: red red;\n}', {
           source: 'styles.css',
-          inputSourceMap: true,
           inputSourceMapTracker: sourceMapTracker,
           options: {},
           warnings: []
@@ -3560,7 +3557,7 @@ vows.describe(tokenize)
                 'rule-scope',
                 'div > a',
                 [
-                  [1, 0, 'styles.less']
+                  [1, 4, 'styles.less']
                 ]
               ]
             ],

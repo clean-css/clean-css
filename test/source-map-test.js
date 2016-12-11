@@ -1,20 +1,19 @@
 /* jshint unused: false */
 
-var vows = require('vows');
 var assert = require('assert');
-var CleanCSS = require('../index');
-
 var fs = require('fs');
-var path = require('path');
-var inputMapPath = path.join('test', 'fixtures', 'source-maps', 'styles.css.map');
-var inputMap = fs.readFileSync(inputMapPath, 'utf-8');
-
-var nock = require('nock');
 var http = require('http');
-var enableDestroy = require('server-destroy');
+var path = require('path');
 
+var enableDestroy = require('server-destroy');
+var nock = require('nock');
+var vows = require('vows');
 var port = 24682;
 
+var CleanCSS = require('../index');
+
+var inputMapPath = path.join('test', 'fixtures', 'source-maps', 'styles.css.map');
+var inputMap = fs.readFileSync(inputMapPath, 'utf-8');
 var lineBreak = require('os').EOL;
 var escape = global.escape;
 
@@ -91,7 +90,18 @@ vows.describe('source-map')
         return new CleanCSS({ sourceMap: true }).minify('/*! a */div[data-id=" abc "] { color:red; }');
       },
       'has 3 mappings': function (minified) {
-        assert.lengthOf(minified.sourceMap._mappings._array, 3);
+        assert.lengthOf(minified.sourceMap._mappings._array, 4);
+      },
+      'has comment mapping': function (minified) {
+        var mapping = {
+          generatedLine: 1,
+          generatedColumn: 0,
+          originalLine: 1,
+          originalColumn: 0,
+          source: '$stdin',
+          name: null
+        };
+        assert.deepEqual(minified.sourceMap._mappings._array[0], mapping);
       },
       'has selector mapping': function (minified) {
         var mapping = {
@@ -102,7 +112,7 @@ vows.describe('source-map')
           source: '$stdin',
           name: null
         };
-        assert.deepEqual(minified.sourceMap._mappings._array[0], mapping);
+        assert.deepEqual(minified.sourceMap._mappings._array[1], mapping);
       },
       'has name mapping': function (minified) {
         var mapping = {
@@ -113,7 +123,7 @@ vows.describe('source-map')
           source: '$stdin',
           name: null
         };
-        assert.deepEqual(minified.sourceMap._mappings._array[1], mapping);
+        assert.deepEqual(minified.sourceMap._mappings._array[2], mapping);
       },
       'has value mapping': function (minified) {
         var mapping = {
@@ -124,7 +134,7 @@ vows.describe('source-map')
           source: '$stdin',
           name: null
         };
-        assert.deepEqual(minified.sourceMap._mappings._array[2], mapping);
+        assert.deepEqual(minified.sourceMap._mappings._array[3], mapping);
       }
     },
     'module #2': {
@@ -479,7 +489,7 @@ vows.describe('source-map')
           generatedColumn: 0,
           originalLine: 1,
           originalColumn: 4,
-          source: 'test/fixtures/source-maps/styles.less',
+          source: path.join('test', 'fixtures', 'source-maps', 'styles.less'),
           name: null
         };
         assert.deepEqual(minified.sourceMap._mappings._array[0], mapping);
@@ -490,7 +500,7 @@ vows.describe('source-map')
           generatedColumn: 6,
           originalLine: 2,
           originalColumn: 2,
-          source: 'test/fixtures/source-maps/styles.less',
+          source: path.join('test', 'fixtures', 'source-maps', 'styles.less'),
           name: null
         };
         assert.deepEqual(minified.sourceMap._mappings._array[1], mapping);
@@ -501,15 +511,15 @@ vows.describe('source-map')
           generatedColumn: 12,
           originalLine: 2,
           originalColumn: 2,
-          source: 'test/fixtures/source-maps/styles.less',
+          source: path.join('test', 'fixtures', 'source-maps', 'styles.less'),
           name: null
         };
         assert.deepEqual(minified.sourceMap._mappings._array[2], mapping);
       }
     },
-    'input map from source with root': {
+    'input map from source with rebaseTo': {
       'topic': function () {
-        return new CleanCSS({ sourceMap: true, root: './test/fixtures' }).minify('div > a {\n  color: red;\n}/*# sourceMappingURL=source-maps/styles.css.map */');
+        return new CleanCSS({ sourceMap: true, rebaseTo: './test/fixtures' }).minify('div > a {\n  color: red;\n}/*# sourceMappingURL=' + inputMapPath + ' */');
       },
       'has 3 mappings': function (minified) {
         assert.lengthOf(minified.sourceMap._mappings._array, 3);
@@ -520,7 +530,7 @@ vows.describe('source-map')
           generatedColumn: 0,
           originalLine: 1,
           originalColumn: 4,
-          source: 'source-maps/styles.less',
+          source: path.join('source-maps', 'styles.less'),
           name: null
         };
         assert.deepEqual(minified.sourceMap._mappings._array[0], mapping);
@@ -531,7 +541,7 @@ vows.describe('source-map')
           generatedColumn: 6,
           originalLine: 2,
           originalColumn: 2,
-          source: 'source-maps/styles.less',
+          source: path.join('source-maps', 'styles.less'),
           name: null
         };
         assert.deepEqual(minified.sourceMap._mappings._array[1], mapping);
@@ -542,48 +552,7 @@ vows.describe('source-map')
           generatedColumn: 12,
           originalLine: 2,
           originalColumn: 2,
-          source: 'source-maps/styles.less',
-          name: null
-        };
-        assert.deepEqual(minified.sourceMap._mappings._array[2], mapping);
-      }
-    },
-    'input map from source with target': {
-      'topic': function () {
-        return new CleanCSS({ sourceMap: true, target: './test' }).minify('div > a {\n  color: red;\n}/*# sourceMappingURL=' + inputMapPath + ' */');
-      },
-      'has 3 mappings': function (minified) {
-        assert.lengthOf(minified.sourceMap._mappings._array, 3);
-      },
-      'has `div > a` mapping': function (minified) {
-        var mapping = {
-          generatedLine: 1,
-          generatedColumn: 0,
-          originalLine: 1,
-          originalColumn: 4,
-          source: 'fixtures/source-maps/styles.less',
-          name: null
-        };
-        assert.deepEqual(minified.sourceMap._mappings._array[0], mapping);
-      },
-      'has `color` mapping': function (minified) {
-        var mapping = {
-          generatedLine: 1,
-          generatedColumn: 6,
-          originalLine: 2,
-          originalColumn: 2,
-          source: 'fixtures/source-maps/styles.less',
-          name: null
-        };
-        assert.deepEqual(minified.sourceMap._mappings._array[1], mapping);
-      },
-      'has `red` mapping': function (minified) {
-        var mapping = {
-          generatedLine: 1,
-          generatedColumn: 12,
-          originalLine: 2,
-          originalColumn: 2,
-          source: 'fixtures/source-maps/styles.less',
+          source: path.join('source-maps', 'styles.less'),
           name: null
         };
         assert.deepEqual(minified.sourceMap._mappings._array[2], mapping);
@@ -598,7 +567,7 @@ vows.describe('source-map')
     'input map as inlined data URI with explicit charset us-ascii, not base64': inlineDataUriContext('data:application/json;charset=us-ascii,' + escape(inputMap)),
     'complex input map': {
       'topic': function () {
-        return new CleanCSS({ sourceMap: true, root: path.dirname(inputMapPath) }).minify('@import url(import.css);');
+        return new CleanCSS({ sourceMap: true }).minify('@import url(' + path.dirname(inputMapPath) + '/import.css);');
       },
       'has 6 mappings': function (minified) {
         assert.lengthOf(minified.sourceMap._mappings._array, 6);
@@ -609,7 +578,7 @@ vows.describe('source-map')
           generatedColumn: 0,
           originalLine: 1,
           originalColumn: 0,
-          source: 'some.less',
+          source: path.join(path.dirname(inputMapPath), 'some.less'),
           name: null
         };
         assert.deepEqual(minified.sourceMap._mappings._array[0], mapping);
@@ -620,7 +589,7 @@ vows.describe('source-map')
           generatedColumn: 4,
           originalLine: 2,
           originalColumn: 2,
-          source: 'some.less',
+          source: path.join(path.dirname(inputMapPath), 'some.less'),
           name: null
         };
         assert.deepEqual(minified.sourceMap._mappings._array[1], mapping);
@@ -631,7 +600,7 @@ vows.describe('source-map')
           generatedColumn: 10,
           originalLine: 2,
           originalColumn: 2,
-          source: 'some.less',
+          source: path.join(path.dirname(inputMapPath), 'some.less'),
           name: null
         };
         assert.deepEqual(minified.sourceMap._mappings._array[2], mapping);
@@ -642,7 +611,7 @@ vows.describe('source-map')
           generatedColumn: 14,
           originalLine: 1,
           originalColumn: 4,
-          source: 'styles.less',
+          source: path.join(path.dirname(inputMapPath), 'styles.less'),
           name: null
         };
         assert.deepEqual(minified.sourceMap._mappings._array[3], mapping);
@@ -653,7 +622,7 @@ vows.describe('source-map')
           generatedColumn: 20,
           originalLine: 2,
           originalColumn: 2,
-          source: 'styles.less',
+          source: path.join(path.dirname(inputMapPath), 'styles.less'),
           name: null
         };
         assert.deepEqual(minified.sourceMap._mappings._array[4], mapping);
@@ -664,18 +633,10 @@ vows.describe('source-map')
           generatedColumn: 26,
           originalLine: 2,
           originalColumn: 2,
-          source: 'styles.less',
+          source: path.join(path.dirname(inputMapPath), 'styles.less'),
           name: null
         };
         assert.deepEqual(minified.sourceMap._mappings._array[5], mapping);
-      }
-    },
-    'complex input map referenced by path': {
-      'topic': function () {
-        return new CleanCSS({ sourceMap: true }).minify('@import url(test/fixtures/source-maps/import.css);');
-      },
-      'has 6 mappings': function (minified) {
-        assert.lengthOf(minified.sourceMap._mappings._array, 6);
       }
     },
     'complex but partial input map referenced by path': {
@@ -687,20 +648,20 @@ vows.describe('source-map')
       },
       'has 3 mappings to .less file': function (minified) {
         var fromLess = minified.sourceMap._mappings._array.filter(function (mapping) {
-          return mapping.source == 'test/fixtures/source-maps/styles.less';
+          return mapping.source == path.join('test', 'fixtures', 'source-maps', 'styles.less');
         });
         assert.lengthOf(fromLess, 3);
       },
       'has 3 mappings to .css file': function (minified) {
         var fromCSS = minified.sourceMap._mappings._array.filter(function (mapping) {
-          return mapping.source == 'test/fixtures/source-maps/no-map.css';
+          return mapping.source == path.join('test', 'fixtures', 'source-maps', 'no-map.css');
         });
         assert.lengthOf(fromCSS, 3);
       }
     },
-    'complex input map with an existing file as target': {
+    'complex input map with an existing file as rebaseTo': {
       'topic': function () {
-        return new CleanCSS({ sourceMap: true, target: path.join('test', 'fixtures', 'source-maps', 'styles.css') }).minify('@import url(test/fixtures/source-maps/styles.css);');
+        return new CleanCSS({ sourceMap: true, rebaseTo: path.join('test', 'fixtures', 'source-maps') }).minify('@import url(test/fixtures/source-maps/styles.css);');
       },
       'has 3 mappings': function (minified) {
         assert.lengthOf(minified.sourceMap._mappings._array, 3);
@@ -725,7 +686,7 @@ vows.describe('source-map')
           generatedColumn: 0,
           originalLine: 2,
           originalColumn: 8,
-          source: 'test/fixtures/source-maps/nested/once.less',
+          source: path.join('test', 'fixtures', 'source-maps', 'nested/once.less'),
           name: null
         };
         assert.deepEqual(minified.sourceMap._mappings._array[0], mapping);
@@ -736,7 +697,7 @@ vows.describe('source-map')
           generatedColumn: 14,
           originalLine: 3,
           originalColumn: 4,
-          source: 'test/fixtures/source-maps/nested/once.less',
+          source: path.join('test', 'fixtures', 'source-maps', 'nested/once.less'),
           name: null
         };
         assert.deepEqual(minified.sourceMap._mappings._array[1], mapping);
@@ -747,7 +708,7 @@ vows.describe('source-map')
           generatedColumn: 20,
           originalLine: 3,
           originalColumn: 4,
-          source: 'test/fixtures/source-maps/nested/once.less',
+          source: path.join('test', 'fixtures', 'source-maps', 'nested/once.less'),
           name: null
         };
         assert.deepEqual(minified.sourceMap._mappings._array[2], mapping);
@@ -766,7 +727,7 @@ vows.describe('source-map')
           generatedColumn: 0,
           originalLine: 3,
           originalColumn: 4,
-          source: 'test/fixtures/source-maps/nested/twice.less',
+          source: path.join('test', 'fixtures', 'source-maps', 'nested/twice.less'),
           name: null
         };
         assert.deepEqual(minified.sourceMap._mappings._array[0], mapping);
@@ -777,7 +738,7 @@ vows.describe('source-map')
           generatedColumn: 11,
           originalLine: 4,
           originalColumn: 6,
-          source: 'test/fixtures/source-maps/nested/twice.less',
+          source: path.join('test', 'fixtures', 'source-maps', 'nested/twice.less'),
           name: null
         };
         assert.deepEqual(minified.sourceMap._mappings._array[1], mapping);
@@ -788,7 +749,7 @@ vows.describe('source-map')
           generatedColumn: 17,
           originalLine: 4,
           originalColumn: 6,
-          source: 'test/fixtures/source-maps/nested/twice.less',
+          source: path.join('test', 'fixtures', 'source-maps', 'nested/twice.less'),
           name: null
         };
         assert.deepEqual(minified.sourceMap._mappings._array[2], mapping);
@@ -935,9 +896,12 @@ vows.describe('source-map')
       'has mapping': function (errors, minified) {
         assert.isDefined(minified.sourceMap);
       },
-      'raises an error': function (errors, _) {
-        assert.lengthOf(errors, 1);
-        assert.equal(errors[0], 'Broken source map at "http://127.0.0.1/remote.css.map" - 404');
+      'raises no errors': function (errors, _) {
+        assert.isNull(errors);
+      },
+      'raises a warning': function (_, minified) {
+        assert.lengthOf(minified.warnings, 1);
+        assert.equal(minified.warnings[0], 'Missing source map at "http://127.0.0.1/remote.css.map" - 404');
       },
       teardown: function () {
         assert.isTrue(this.reqMocks.isDone());
@@ -971,9 +935,12 @@ vows.describe('source-map')
       'has mapping': function (errors, minified) {
         assert.isDefined(minified.sourceMap);
       },
-      'raises an error': function (errors, _) {
-        assert.lengthOf(errors, 1);
-        assert.include(errors[0], 'Broken source map at "http://127.0.0.1:' + port + '/remote.css.map"');
+      'raises no errors': function (errors, _) {
+        assert.isNull(errors);
+      },
+      'raises a warning': function (_, minified) {
+        assert.lengthOf(minified.warnings, 1);
+        assert.equal(minified.warnings[0], 'Missing source map at "http://127.0.0.1:24682/remote.css.map" - timeout');
       },
       teardown: function () {
         this.server.destroy();
@@ -1005,7 +972,7 @@ vows.describe('source-map')
       topic: function () {
         this.reqMocks = nock('https://127.0.0.1')
           .get('/remote.css')
-          .reply(200, '/*# sourceMappingURL=https://127.0.0.1/remote.css.map */')
+          .reply(200, 'div>a{color:blue}/*# sourceMappingURL=https://127.0.0.1/remote.css.map */')
           .get('/remote.css.map')
           .reply(200, inputMap);
 
@@ -1013,6 +980,9 @@ vows.describe('source-map')
       },
       'has mapping': function (errors, minified) {
         assert.isDefined(minified.sourceMap);
+      },
+      'maps to external source file': function (errors, minified) {
+        assert.equal(minified.sourceMap._mappings._array[0].source, 'https://127.0.0.1/styles.less');
       },
       teardown: function () {
         assert.isTrue(this.reqMocks.isDone());
@@ -1023,7 +993,7 @@ vows.describe('source-map')
       topic: function () {
         this.reqMocks = nock('http://127.0.0.1')
           .get('/remote.css')
-          .reply(200, '/*# sourceMappingURL=remote.css.map */')
+          .reply(200, 'div>a{color:blue}/*# sourceMappingURL=remote.css.map */')
           .get('/remote.css.map')
           .reply(200, inputMap);
 
@@ -1031,6 +1001,9 @@ vows.describe('source-map')
       },
       'has mapping': function (errors, minified) {
         assert.isDefined(minified.sourceMap);
+      },
+      'maps to external source file': function (errors, minified) {
+        assert.equal(minified.sourceMap._mappings._array[0].source, 'http://127.0.0.1/styles.less');
       },
       teardown: function () {
         assert.isTrue(this.reqMocks.isDone());
@@ -1041,7 +1014,7 @@ vows.describe('source-map')
       topic: function () {
         this.reqMocks = nock('http://127.0.0.1')
           .post('/remote.css')
-          .reply(200, '/*# sourceMappingURL=remote.css.map */')
+          .reply(200, 'div>a{color:blue}/*# sourceMappingURL=remote.css.map */')
           .post('/remote.css.map')
           .reply(200, inputMap);
 
@@ -1050,6 +1023,9 @@ vows.describe('source-map')
       },
       'has mapping': function (errors, minified) {
         assert.isDefined(minified.sourceMap);
+      },
+      'maps to external source file': function (errors, minified) {
+        assert.equal(minified.sourceMap._mappings._array[0].source, 'http://127.0.0.1/styles.less');
       },
       teardown: function () {
         assert.isTrue(this.reqMocks.isDone());
@@ -1087,7 +1063,7 @@ vows.describe('source-map')
         return new CleanCSS({ sourceMap: true, keepSpecialComments: 1 }).minify('div { color: #f00 !important; /*!1*/} /*!2*/ a{/*!3*/}');
       },
       'has right output': function (errors, minified) {
-        assert.equal(minified.styles, 'div{color:red!important/*!1*/}a{}');
+        assert.equal(minified.styles, 'div{color:red!important/*!1*/}');
       }
     }
   })
@@ -1122,7 +1098,7 @@ vows.describe('source-map')
             generatedColumn: 0,
             originalLine: 1,
             originalColumn: 0,
-            source: 'test/fixtures/source-maps/some.less',
+            source: path.join('test', 'fixtures', 'source-maps', 'some.less'),
             name: null
           };
           assert.deepEqual(minified.sourceMap._mappings._array[0], mapping);
@@ -1133,7 +1109,7 @@ vows.describe('source-map')
             generatedColumn: 4,
             originalLine: 2,
             originalColumn: 8,
-            source: 'test/fixtures/source-maps/nested/once.less',
+            source: path.join('test', 'fixtures', 'source-maps', 'nested/once.less'),
             name: null
           };
           assert.deepEqual(minified.sourceMap._mappings._array[1], mapping);
@@ -1144,7 +1120,7 @@ vows.describe('source-map')
             generatedColumn: 18,
             originalLine: 2,
             originalColumn: 2,
-            source: 'test/fixtures/source-maps/some.less',
+            source: path.join('test', 'fixtures', 'source-maps', 'some.less'),
             name: null
           };
           assert.deepEqual(minified.sourceMap._mappings._array[2], mapping);
@@ -1155,7 +1131,7 @@ vows.describe('source-map')
             generatedColumn: 24,
             originalLine: 2,
             originalColumn: 2,
-            source: 'test/fixtures/source-maps/some.less',
+            source: path.join('test', 'fixtures', 'source-maps', 'some.less'),
             name: null
           };
           assert.deepEqual(minified.sourceMap._mappings._array[3], mapping);
@@ -1166,7 +1142,7 @@ vows.describe('source-map')
             generatedColumn: 28,
             originalLine: 1,
             originalColumn: 4,
-            source: 'test/fixtures/source-maps/styles.less',
+            source: path.join('test', 'fixtures', 'source-maps', 'styles.less'),
             name: null
           };
           assert.deepEqual(minified.sourceMap._mappings._array[4], mapping);
@@ -1177,7 +1153,7 @@ vows.describe('source-map')
             generatedColumn: 34,
             originalLine: 2,
             originalColumn: 2,
-            source: 'test/fixtures/source-maps/styles.less',
+            source: path.join('test', 'fixtures', 'source-maps', 'styles.less'),
             name: null
           };
           assert.deepEqual(minified.sourceMap._mappings._array[5], mapping);
@@ -1188,7 +1164,7 @@ vows.describe('source-map')
             generatedColumn: 40,
             originalLine: 2,
             originalColumn: 2,
-            source: 'test/fixtures/source-maps/styles.less',
+            source: path.join('test', 'fixtures', 'source-maps', 'styles.less'),
             name: null
           };
           assert.deepEqual(minified.sourceMap._mappings._array[6], mapping);
@@ -1198,7 +1174,7 @@ vows.describe('source-map')
     'relative to path': {
       'complex but partial input map referenced by path': {
         'topic': function () {
-          return new CleanCSS({ sourceMap: true, target: './test' }).minify({
+          return new CleanCSS({ sourceMap: true, rebaseTo: './test' }).minify({
             'test/fixtures/source-maps/some.css': {
               styles: 'div {\n  color: red;\n}',
               sourceMap: '{"version":3,"sources":["some.less"],"names":[],"mappings":"AAAA;EACE,UAAA","file":"some.css"}'
@@ -1224,9 +1200,9 @@ vows.describe('source-map')
           });
 
           assert.deepEqual(sources, [
-            'fixtures/source-maps/some.less',
-            'fixtures/source-maps/nested/once.less',
-            'fixtures/source-maps/styles.less'
+            path.join('fixtures', 'source-maps', 'some.less'),
+            path.join('fixtures', 'source-maps', 'nested', 'once.less'),
+            path.join('fixtures', 'source-maps', 'styles.less')
           ]);
         }
       }
@@ -1298,8 +1274,8 @@ vows.describe('source-map')
       'from array - off': {
         'topic': function () {
           return new CleanCSS({ sourceMap: true }).minify([
-            'test/fixtures/partials/one.css',
-            'test/fixtures/partials/three.css'
+            path.join('test', 'fixtures', 'partials', 'one.css'),
+            path.join('test', 'fixtures', 'partials', 'three.css')
           ]);
         },
         'has 6 mappings': function (minified) {
@@ -1307,8 +1283,8 @@ vows.describe('source-map')
         },
         'has embedded sources': function (minified) {
           assert.deepEqual(JSON.parse(minified.sourceMap.toString()).sources, [
-            'test/fixtures/partials/one.css',
-            'test/fixtures/partials/three.css'
+            path.join('test', 'fixtures', 'partials', 'one.css'),
+            path.join('test', 'fixtures', 'partials', 'three.css')
           ]);
         },
         'has embedded sources content': function (minified) {
@@ -1318,8 +1294,8 @@ vows.describe('source-map')
       'from array - on': {
         'topic': function () {
           return new CleanCSS({ sourceMap: true, sourceMapInlineSources: true }).minify([
-            'test/fixtures/partials/one.css',
-            'test/fixtures/partials/three.css'
+            path.join('test', 'fixtures', 'partials', 'one.css'),
+            path.join('test', 'fixtures', 'partials', 'three.css')
           ]);
         },
         'has 6 mappings': function (minified) {
@@ -1327,14 +1303,14 @@ vows.describe('source-map')
         },
         'has embedded sources': function (minified) {
           assert.deepEqual(JSON.parse(minified.sourceMap.toString()).sources, [
-            'test/fixtures/partials/one.css',
-            'test/fixtures/partials/three.css'
+            path.join('test', 'fixtures', 'partials', 'one.css'),
+            path.join('test', 'fixtures', 'partials', 'three.css')
           ]);
         },
         'has embedded sources content': function (minified) {
           assert.deepEqual(JSON.parse(minified.sourceMap.toString()).sourcesContent, [
-            '.one { color:#f00; }' + lineBreak,
-            '.three {background-image: url(test/fixtures/partials/extra/down.gif);}' + lineBreak
+            '.one { color:#f00; }\n',
+            '.three {background-image: url(extra/down.gif);}\n'
           ]);
         }
       },
@@ -1358,7 +1334,7 @@ vows.describe('source-map')
         },
         'has embedded sources content': function (minified) {
           assert.deepEqual(JSON.parse(minified.sourceMap.toString()).sourcesContent, [
-            'div{background:url(http://127.0.0.1/image.png)}',
+            'div{background:url(image.png)}',
           ]);
         },
         'teardown': function () {
@@ -1502,9 +1478,9 @@ vows.describe('source-map')
         },
         'has embedded sources': function (minified) {
           assert.deepEqual(JSON.parse(minified.sourceMap.toString()).sources, [
-            'test/fixtures/source-maps/some.less',
-            'test/fixtures/source-maps/nested/once.less',
-            'test/fixtures/source-maps/styles.less'
+            path.join('test', 'fixtures', 'source-maps', 'some.less'),
+            path.join('test', 'fixtures', 'source-maps', 'nested', 'once.less'),
+            path.join('test', 'fixtures', 'source-maps', 'styles.less')
           ]);
         },
         'has embedded sources content': function (minified) {
@@ -1515,9 +1491,9 @@ vows.describe('source-map')
           ]);
         }
       },
-      'multiple relative to a target path': {
+      'multiple relative to rebaseTo path': {
         'topic': function () {
-          return new CleanCSS({ sourceMap: true, sourceMapInlineSources: true, target: path.join(process.cwd(), 'test') }).minify({
+          return new CleanCSS({ sourceMap: true, sourceMapInlineSources: true, rebaseTo: './test' }).minify({
             'test/fixtures/source-maps/some.css': {
               styles: 'div {\n  color: red;\n}',
               sourceMap: '{"version":3,"sources":["some.less"],"names":[],"mappings":"AAAA;EACE,UAAA","file":"some.css","sourcesContent":["div {\\n  color: red;\\n}\\n"]}'
@@ -1537,9 +1513,9 @@ vows.describe('source-map')
         },
         'has embedded sources': function (minified) {
           assert.deepEqual(JSON.parse(minified.sourceMap.toString()).sources, [
-            'fixtures/source-maps/some.less',
-            'fixtures/source-maps/nested/once.less',
-            'fixtures/source-maps/styles.less'
+            path.join('fixtures', 'source-maps', 'some.less'),
+            path.join('fixtures', 'source-maps', 'nested', 'once.less'),
+            path.join('fixtures', 'source-maps', 'styles.less')
           ]);
         },
         'has embedded sources content': function (minified) {
@@ -1572,16 +1548,16 @@ vows.describe('source-map')
         },
         'has embedded sources': function (minified) {
           assert.deepEqual(JSON.parse(minified.sourceMap.toString()).sources, [
-            'test/fixtures/source-maps/some.less',
-            'test/fixtures/source-maps/nested/once.less',
-            'test/fixtures/source-maps/styles.less'
+            path.join('test', 'fixtures', 'source-maps', 'some.less'),
+            path.join('test', 'fixtures', 'source-maps', 'nested', 'once.less'),
+            path.join('test', 'fixtures', 'source-maps', 'styles.less')
           ]);
         },
         'has embedded sources content': function (minified) {
           assert.deepEqual(JSON.parse(minified.sourceMap.toString()).sourcesContent, [
             'div {\n  color: red;\n}\n',
             'section {\n  > div a {\n    color:red;\n  }\n}\n',
-            'div > a {' + lineBreak + '  color: blue;' + lineBreak + '}' + lineBreak
+            'div > a {\n  color: blue;\n}\n'
           ]);
         }
       },
@@ -1607,9 +1583,9 @@ vows.describe('source-map')
         },
         'has embedded sources': function (minified) {
           assert.deepEqual(JSON.parse(minified.sourceMap.toString()).sources, [
-            'test/fixtures/source-maps/some.less',
-            'test/fixtures/source-maps/nested/once.less',
-            'test/fixtures/source-maps/styles.less'
+            path.join('test', 'fixtures', 'source-maps', 'some.less'),
+            path.join('test', 'fixtures', 'source-maps', 'nested', 'once.less'),
+            path.join('test', 'fixtures', 'source-maps', 'styles.less')
           ]);
         },
         'has embedded sources content': function (minified) {
@@ -1639,20 +1615,20 @@ vows.describe('source-map')
             }
           }, this.callback);
         },
-        'has 7 mappings': function (minified) {
+        'has 7 mappings': function (errors, minified) {
           assert.lengthOf(minified.sourceMap._mappings._array, 7);
         },
-        'has embedded sources': function (minified) {
+        'has embedded sources': function (errors, minified) {
           assert.deepEqual(JSON.parse(minified.sourceMap.toString()).sources, [
             'http://127.0.0.1/some.less',
-            'test/fixtures/source-maps/nested/once.less',
+            path.join('test', 'fixtures', 'source-maps', 'nested', 'once.less'),
             'http://127.0.0.1/styles.less'
           ]);
         },
-        'has embedded sources content': function (minified) {
+        'has embedded sources content': function (errors, minified) {
           assert.deepEqual(JSON.parse(minified.sourceMap.toString()).sourcesContent, [
             'div {\n  color: red;\n}\n',
-            'section {' + lineBreak + '  > div a {' + lineBreak + '    color:red;' + lineBreak + '  }' + lineBreak + '}' + lineBreak,
+            'section {\n  > div a {\n    color:red;\n  }\n}\n',
             'div > a {\n  color: blue;\n}\n'
           ]);
         },
@@ -1688,19 +1664,19 @@ vows.describe('source-map')
           assert.lengthOf(minified.sourceMap._mappings._array, 7);
         },
         'should warn about some.less': function (minified) {
-          assert.deepEqual(minified.warnings, ['Broken original source file at "http://127.0.0.1/some.less" - 404']);
+          assert.deepEqual(minified.warnings, ['Missing original source at "http://127.0.0.1/some.less" - 404']);
         },
         'has embedded sources': function (minified) {
           assert.deepEqual(JSON.parse(minified.sourceMap.toString()).sources, [
             'http://127.0.0.1/some.less',
-            'test/fixtures/source-maps/nested/once.less',
+            path.join('test', 'fixtures', 'source-maps', 'nested', 'once.less'),
             'http://127.0.0.1/styles.less'
           ]);
         },
         'has embedded sources content': function (minified) {
           assert.deepEqual(JSON.parse(minified.sourceMap.toString()).sourcesContent, [
             null,
-            'section {' + lineBreak + '  > div a {' + lineBreak + '    color:red;' + lineBreak + '  }' + lineBreak + '}' + lineBreak,
+            'section {\n  > div a {\n    color:red;\n  }\n}\n',
             'div > a {\n  color: blue;\n}\n'
           ]);
         },
@@ -1731,21 +1707,21 @@ vows.describe('source-map')
         },
         'should warn about some.less and styles.less': function (minified) {
           assert.deepEqual(minified.warnings, [
-            'No callback given to `#minify` method, cannot fetch a remote file from "http://127.0.0.1/some.less"',
-            'No callback given to `#minify` method, cannot fetch a remote file from "http://127.0.0.1/styles.less"'
+            'Cannot fetch remote resource from "http://127.0.0.1/some.less" as no callback given.',
+            'Cannot fetch remote resource from "http://127.0.0.1/styles.less" as no callback given.'
           ]);
         },
         'has embedded sources': function (minified) {
           assert.deepEqual(JSON.parse(minified.sourceMap.toString()).sources, [
             'http://127.0.0.1/some.less',
-            'test/fixtures/source-maps/nested/once.less',
+            path.join('test', 'fixtures', 'source-maps', 'nested', 'once.less'),
             'http://127.0.0.1/styles.less'
           ]);
         },
         'has embedded sources content': function (minified) {
           assert.deepEqual(JSON.parse(minified.sourceMap.toString()).sourcesContent, [
             null,
-            'section {' + lineBreak + '  > div a {' + lineBreak + '    color:red;' + lineBreak + '  }' + lineBreak + '}' + lineBreak,
+            'section {\n  > div a {\n    color:red;\n  }\n}\n',
             null
           ]);
         }

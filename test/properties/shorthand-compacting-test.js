@@ -4,11 +4,13 @@ var assert = require('assert');
 var optimize = require('../../lib/properties/optimizer');
 
 var tokenize = require('../../lib/tokenizer/tokenize');
+var inputSourceMapTracker = require('../../lib/utils/input-source-map-tracker');
 var compatibility = require('../../lib/utils/compatibility');
 var Validator = require('../../lib/properties/validator');
 
 function _optimize(source) {
   var tokens = tokenize(source, {
+    inputSourceMapTracker: inputSourceMapTracker(),
     options: {},
     warnings: []
   });
@@ -35,7 +37,16 @@ vows.describe(optimize)
         assert.deepEqual(properties, [
           [
             'property',
-            ['property-name', 'background'],
+            ['property-name', 'background', [
+              [1, 2, undefined],
+              [1, 24, undefined],
+              [1, 56, undefined],
+              [1, 81, undefined],
+              [1, 105, undefined],
+              [1, 134, undefined],
+              [1, 155, undefined],
+              [1, 185, undefined]
+            ]],
             ['property-value', 'url(image.png)', [[1, 41, undefined]]],
             ['property-value', '#111', [[1, 19, undefined]]]
           ]
@@ -50,7 +61,16 @@ vows.describe(optimize)
         assert.deepEqual(properties, [
           [
             'property',
-            ['property-name', 'background'],
+            ['property-name', 'background', [
+              [1, 2, undefined],
+              [1, 24, undefined],
+              [1, 56, undefined],
+              [1, 84, undefined],
+              [1, 108, undefined],
+              [1, 137, undefined],
+              [1, 158, undefined],
+              [1, 188, undefined]
+            ]],
             ['property-value', 'url(image.png)', [[1, 41, undefined]]],
             ['property-value', 'no-repeat', [[1, 74, undefined]]],
             ['property-value', '#111', [[1, 19, undefined]]]
@@ -66,7 +86,16 @@ vows.describe(optimize)
         assert.deepEqual(properties, [
           [
             'property',
-            ['property-name', 'background'],
+            ['property-name', 'background', [
+              [1, 2, undefined],
+              [1, 34, undefined],
+              [1, 76, undefined],
+              [1, 111, undefined],
+              [1, 145, undefined],
+              [1, 184, undefined],
+              [1, 215, undefined],
+              [1, 255, undefined]
+            ]],
             ['property-value', 'url(image.png)', [[1, 51, undefined]]],
             ['property-value', '#111!important', [[1, 19, undefined]]]
           ]
@@ -81,7 +110,12 @@ vows.describe(optimize)
         assert.deepEqual(properties, [
           [
             'property',
-            ['property-name', 'border-width'],
+            ['property-name', 'border-width', [
+              [1, 2, undefined],
+              [1, 23, undefined],
+              [1, 47, undefined],
+              [1, 69, undefined]
+            ]],
             ['property-value', '7px', [[1, 19, undefined]]],
             ['property-value', '4px', [[1, 88, undefined]]]
           ]
@@ -96,7 +130,12 @@ vows.describe(optimize)
         assert.deepEqual(properties, [
           [
             'property',
-            ['property-name', 'border-color'],
+            ['property-name', 'border-color', [
+              [1, 2, undefined],
+              [1, 27, undefined],
+              [1, 55, undefined],
+              [1, 81, undefined]
+            ]],
             ['property-value', '#9fce00', [[1, 19, undefined]]]
           ]
         ]);
@@ -110,7 +149,12 @@ vows.describe(optimize)
         assert.deepEqual(properties, [
           [
             'property',
-            ['property-name', 'border-color'],
+            ['property-name', 'border-color', [
+              [1, 2, undefined],
+              [1, 26, undefined],
+              [1, 51, undefined],
+              [1, 73, undefined]
+            ]],
             ['property-value', '#001', [[1, 68, undefined]]],
             ['property-value', '#002', [[1, 21, undefined]]],
             ['property-value', '#003', [[1, 46, undefined]]],
@@ -127,7 +171,12 @@ vows.describe(optimize)
         assert.deepEqual(properties, [
           [
             'property',
-            ['property-name', 'border-radius'],
+            ['property-name', 'border-radius', [
+              [1, 2, undefined],
+              [1, 29, undefined],
+              [1, 60, undefined],
+              [1, 90, undefined]
+            ]],
             ['property-value', '7px', [[1, 25, undefined]]],
             ['property-value', '3px', [[1, 114, undefined]]],
             ['property-value', '6px', [[1, 56, undefined]]],
@@ -160,7 +209,12 @@ vows.describe(optimize)
         assert.deepEqual(properties, [
           [
             'property',
-            ['property-name', 'border-radius'],
+            ['property-name', 'border-radius', [
+              [1, 2, undefined],
+              [1, 33, undefined],
+              [1, 65, undefined],
+              [1, 100, undefined]
+            ]],
             ['property-value', '7px', [[1, 25, undefined]]],
             ['property-value', '/'],
             ['property-value', '3px', [[1, 29, undefined]]]
@@ -176,7 +230,12 @@ vows.describe(optimize)
         assert.deepEqual(properties, [
           [
             'property',
-            ['property-name', 'border-radius'],
+            ['property-name', 'border-radius', [
+              [1, 2, undefined],
+              [1, 33, undefined],
+              [1, 65, undefined],
+              [1, 100, undefined]
+            ]],
             ['property-value', '7px', [[1, 25, undefined]]],
             ['property-value', '6px', [[1, 57, undefined]]],
             ['property-value', '5px', [[1, 92, undefined]]],
@@ -214,7 +273,11 @@ vows.describe(optimize)
         assert.deepEqual(properties, [
           [
             'property',
-            ['property-name', 'list-style'],
+            ['property-name', 'list-style', [
+              [1, 2, undefined],
+              [1, 25, undefined],
+              [1, 53, undefined]
+            ]],
             ['property-value', 'circle', [[1, 18, undefined]]],
             ['property-value', 'url(image.png)', [[1, 70, undefined]]]
           ]
@@ -229,7 +292,11 @@ vows.describe(optimize)
         assert.deepEqual(properties, [
           [
             'property',
-            ['property-name', 'list-style'],
+            ['property-name', 'list-style', [
+              [1, 2, undefined],
+              [1, 34, undefined],
+              [1, 57, undefined]
+            ]],
             ['property-value', 'circle', [[1, 50, undefined]]],
             ['property-value', 'inside', [[1, 77, undefined]]],
             ['property-value', 'url(image.png)', [[1, 19, undefined]]]
@@ -245,7 +312,12 @@ vows.describe(optimize)
         assert.deepEqual(properties, [
           [
             'property',
-            ['property-name', 'margin'],
+            ['property-name', 'margin', [
+              [1, 2, undefined],
+              [1, 18, undefined],
+              [1, 35, undefined],
+              [1, 53, undefined]
+            ]],
             ['property-value', '10px', [[1, 13, undefined]]],
             ['property-value', '5px', [[1, 31, undefined]]],
             ['property-value', '3px', [[1, 49, undefined]]],
@@ -262,7 +334,12 @@ vows.describe(optimize)
         assert.deepEqual(properties, [
           [
             'property',
-            ['property-name', 'padding'],
+            ['property-name', 'padding', [
+              [1, 2, undefined],
+              [1, 19, undefined],
+              [1, 36, undefined],
+              [1, 55, undefined]
+            ]],
             ['property-value', '10px', [[1, 14, undefined]]],
             ['property-value', '2px', [[1, 69, undefined]]],
             ['property-value', '3px', [[1, 51, undefined]]],
@@ -279,7 +356,12 @@ vows.describe(optimize)
         assert.deepEqual(properties, [
           [
             'property',
-            ['property-name', 'padding'],
+            ['property-name', 'padding', [
+              [1, 2, undefined],
+              [1, 34, undefined],
+              [1, 67, undefined],
+              [1, 104, undefined]
+            ]],
             ['property-value', '10px', [[1, 14, undefined]]],
             ['property-value', '2px', [[1, 118, undefined]]],
             ['property-value', '3px', [[1, 82, undefined]]],
@@ -287,7 +369,12 @@ vows.describe(optimize)
           ],
           [
             'property',
-            ['property-name', 'margin'],
+            ['property-name', 'margin', [
+              [1, 19, undefined],
+              [1, 51, undefined],
+              [1, 86, undefined],
+              [1, 122, undefined]
+            ]],
             ['property-value', '3px', [[1, 30, undefined]]]
           ]
         ]);
@@ -311,7 +398,12 @@ vows.describe(optimize)
           ],
           [
             'property',
-            ['property-name', 'padding'],
+            ['property-name', 'padding', [
+              [1, 2, undefined],
+              [1, 19, undefined],
+              [1, 36, undefined],
+              [1, 65, undefined]
+            ]],
             ['property-value', '10px', [[1, 14, undefined]]],
             ['property-value', '2px', [[1, 79, undefined]]],
             ['property-value', '3px', [[1, 51, undefined]]],

@@ -2,12 +2,21 @@ var vows = require('vows');
 var assert = require('assert');
 
 var tokenize = require('../../lib/tokenizer/tokenize');
+var inputSourceMapTracker = require('../../lib/utils/input-source-map-tracker');
 var extractProperties = require('../../lib/optimizer/extract-properties');
 var canReorder = require('../../lib/optimizer/reorderable').canReorder;
 var canReorderSingle = require('../../lib/optimizer/reorderable').canReorderSingle;
 
 function propertiesIn(source) {
-  return extractProperties(tokenize(source, { options: {} })[0]);
+  return extractProperties(
+    tokenize(
+      source,
+      {
+        inputSourceMapTracker: inputSourceMapTracker(),
+        options: {}
+      }
+    )[0]
+  );
 }
 
 vows.describe(canReorder)

@@ -168,7 +168,7 @@ vows.describe('protocol imports').addBatch({
     },
     'should not raise errors': function (errors, minified) {
       assert.lengthOf(errors, 1);
-      assert.equal(errors[0], 'Broken @import declaration of "http://127.0.0.1/missing.css" - error 404');
+      assert.equal(errors[0], 'Broken @import declaration of "http://127.0.0.1/missing.css" - 404');
     },
     'should process @import': function (errors, minified) {
       assert.equal(minified.styles, '@import url(http://127.0.0.1/missing.css);p{font-size:13px}a{color:red}');
@@ -512,7 +512,7 @@ vows.describe('protocol imports').addBatch({
     },
     'should raise warnings': function (error, minified) {
       assert.lengthOf(minified.warnings, 1);
-      assert.equal(minified.warnings[0], 'Skipping remote @import of "http://127.0.0.1/skipped.css" as resource not allowed.');
+      assert.equal(minified.warnings[0], 'Skipping remote @import of "http://127.0.0.1/skipped.css" as resource is not allowed.');
     },
     'should keep imports': function (error, minified) {
       assert.equal(minified.styles, '@import url(http://127.0.0.1/skipped.css);.one{color:red}');
@@ -795,8 +795,8 @@ vows.describe('protocol imports').addBatch({
     },
     'should raise warnings': function (error, minified) {
       assert.lengthOf(minified.warnings, 2);
-      assert.equal(minified.warnings[0], 'Skipping remote @import of "http://127.0.0.1/remote.css" as resource not allowed.');
-      assert.equal(minified.warnings[1], 'Skipping remote @import of "http://assets.127.0.0.1/remote.css" as resource not allowed.');
+      assert.equal(minified.warnings[0], 'Skipping remote @import of "http://127.0.0.1/remote.css" as resource is not allowed.');
+      assert.equal(minified.warnings[1], 'Skipping remote @import of "http://assets.127.0.0.1/remote.css" as resource is not allowed.');
     },
     'should keeps imports': function (error, minified) {
       assert.equal(minified.styles, '@import url(http://127.0.0.1/remote.css);@import url(http://assets.127.0.0.1/remote.css);.one{color:red}');
@@ -864,9 +864,9 @@ vows.describe('protocol imports').addBatch({
     },
     'should raise a warning': function (error, minified) {
       assert.lengthOf(minified.warnings, 3);
-      assert.equal(minified.warnings[0], 'Skipping remote @import of "http://127.0.0.1/remote.css" as resource not allowed.');
-      assert.equal(minified.warnings[1], 'Skipping remote @import of "http://assets.127.0.0.1/remote.css" as resource not allowed.');
-      assert.equal(minified.warnings[2], 'Skipping local @import of "test/fixtures/partials/one.css" as resource not allowed.');
+      assert.equal(minified.warnings[0], 'Skipping remote @import of "http://127.0.0.1/remote.css" as resource is not allowed.');
+      assert.equal(minified.warnings[1], 'Skipping remote @import of "http://assets.127.0.0.1/remote.css" as resource is not allowed.');
+      assert.equal(minified.warnings[2], 'Skipping local @import of "test/fixtures/partials/one.css" as resource is not allowed.');
     },
     'should process first imports': function (error, minified) {
       assert.equal(minified.styles, '@import url(http://127.0.0.1/remote.css);@import url(http://assets.127.0.0.1/remote.css);@import url(test/fixtures/partials/one.css);');
@@ -882,7 +882,7 @@ vows.describe('protocol imports').addBatch({
     },
     'should raise a warning': function (error, minified) {
       assert.lengthOf(minified.warnings, 1);
-      assert.equal(minified.warnings[0], 'Skipping remote @import of "//127.0.0.1/remote.css" as resource not allowed.');
+      assert.equal(minified.warnings[0], 'Skipping remote @import of "//127.0.0.1/remote.css" as resource is not allowed.');
     },
     'should process first imports': function (error, minified) {
       assert.equal(minified.styles, '@import url(//127.0.0.1/remote.css);.one{color:red}');

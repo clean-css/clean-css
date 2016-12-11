@@ -1,13 +1,20 @@
 var vows = require('vows');
 var assert = require('assert');
 var tokenize = require('../../lib/tokenizer/tokenize');
+var inputSourceMapTracker = require('../../lib/utils/input-source-map-tracker');
 var extractProperties = require('../../lib/optimizer/extract-properties');
+
+function _tokenize(source) {
+  return tokenize(source, {
+    inputSourceMapTracker: inputSourceMapTracker()
+  });
+}
 
 vows.describe(extractProperties)
   .addBatch({
     'no properties': {
       'topic': function () {
-        return extractProperties(tokenize('a{}', {})[0]);
+        return extractProperties(_tokenize('a{}')[0]);
       },
       'has no properties': function (tokens) {
         assert.deepEqual(tokens, []);
@@ -15,7 +22,7 @@ vows.describe(extractProperties)
     },
     'no valid properties': {
       'topic': function () {
-        return extractProperties(tokenize('a{:red}', {})[0]);
+        return extractProperties(_tokenize('a{:red}')[0]);
       },
       'has no properties': function (tokens) {
         assert.deepEqual(tokens, []);
@@ -23,7 +30,7 @@ vows.describe(extractProperties)
     },
     'one property': {
       'topic': function () {
-        return extractProperties(tokenize('a{color:red}', {})[0]);
+        return extractProperties(_tokenize('a{color:red}')[0]);
       },
       'has no properties': function (tokens) {
         assert.deepEqual(tokens, [
@@ -41,7 +48,7 @@ vows.describe(extractProperties)
     },
     'one important property': {
       'topic': function () {
-        return extractProperties(tokenize('a{color:red!important}', {})[0]);
+        return extractProperties(_tokenize('a{color:red!important}')[0]);
       },
       'has no properties': function (tokens) {
         assert.deepEqual(tokens, [
@@ -59,7 +66,7 @@ vows.describe(extractProperties)
     },
     'one property - simple selector': {
       'topic': function () {
-        return extractProperties(tokenize('#one span{color:red}', {})[0]);
+        return extractProperties(_tokenize('#one span{color:red}')[0]);
       },
       'has no properties': function (tokens) {
         assert.deepEqual(tokens, [
@@ -77,7 +84,7 @@ vows.describe(extractProperties)
     },
     'one property - variable': {
       'topic': function () {
-        return extractProperties(tokenize('#one span{--color:red}', {})[0]);
+        return extractProperties(_tokenize('#one span{--color:red}')[0]);
       },
       'has no properties': function (tokens) {
         assert.deepEqual(tokens, []);
@@ -85,7 +92,7 @@ vows.describe(extractProperties)
     },
     'one property - block variable': {
       'topic': function () {
-        return extractProperties(tokenize('#one span{--color:{color:red;display:block};}', {})[0]);
+        return extractProperties(_tokenize('#one span{--color:{color:red;display:block};}')[0]);
       },
       'has no properties': function (tokens) {
         assert.deepEqual(tokens, []);
@@ -93,7 +100,7 @@ vows.describe(extractProperties)
     },
     'one property - complex selector': {
       'topic': function () {
-        return extractProperties(tokenize('.one{color:red}', {})[0]);
+        return extractProperties(_tokenize('.one{color:red}')[0]);
       },
       'has no properties': function (tokens) {
         assert.deepEqual(tokens, [
@@ -111,7 +118,7 @@ vows.describe(extractProperties)
     },
     'two properties': {
       'topic': function () {
-        return extractProperties(tokenize('a{color:red;display:block}', {})[0]);
+        return extractProperties(_tokenize('a{color:red;display:block}')[0]);
       },
       'has no properties': function (tokens) {
         assert.deepEqual(tokens, [
@@ -138,7 +145,7 @@ vows.describe(extractProperties)
     },
     'from @media': {
       'topic': function () {
-        return extractProperties(tokenize('@media{a{color:red;display:block}p{color:red}}', {})[0]);
+        return extractProperties(_tokenize('@media{a{color:red;display:block}p{color:red}}')[0]);
       },
       'has no properties': function (tokens) {
         assert.deepEqual(tokens, [
@@ -177,7 +184,7 @@ vows.describe(extractProperties)
     'name root special cases': {
       'vendor prefix': {
         'topic': function () {
-          return extractProperties(tokenize('a{-moz-transform:none}', {})[0]);
+          return extractProperties(_tokenize('a{-moz-transform:none}')[0]);
         },
         'has no properties': function (tokens) {
           assert.deepEqual(tokens, [
@@ -195,7 +202,7 @@ vows.describe(extractProperties)
       },
       'list-style': {
         'topic': function () {
-          return extractProperties(tokenize('a{list-style:none}', {})[0]);
+          return extractProperties(_tokenize('a{list-style:none}')[0]);
         },
         'has no properties': function (tokens) {
           assert.deepEqual(tokens, [
@@ -213,7 +220,7 @@ vows.describe(extractProperties)
       },
       'border-radius': {
         'topic': function () {
-          return extractProperties(tokenize('a{border-top-left-radius:none}', {})[0]);
+          return extractProperties(_tokenize('a{border-top-left-radius:none}')[0]);
         },
         'has no properties': function (tokens) {
           assert.deepEqual(tokens, [
@@ -231,7 +238,7 @@ vows.describe(extractProperties)
       },
       'vendor prefixed border-radius': {
         'topic': function () {
-          return extractProperties(tokenize('a{-webkit-border-top-left-radius:none}', {})[0]);
+          return extractProperties(_tokenize('a{-webkit-border-top-left-radius:none}')[0]);
         },
         'has no properties': function (tokens) {
           assert.deepEqual(tokens, [
@@ -249,7 +256,7 @@ vows.describe(extractProperties)
       },
       'border-image-width': {
         'topic': function () {
-          return extractProperties(tokenize('a{border-image-width:2px}', {})[0]);
+          return extractProperties(_tokenize('a{border-image-width:2px}')[0]);
         },
         'has no properties': function (tokens) {
           assert.deepEqual(tokens, [
@@ -267,7 +274,7 @@ vows.describe(extractProperties)
       },
       'border-color': {
         'topic': function () {
-          return extractProperties(tokenize('a{border-color:red}', {})[0]);
+          return extractProperties(_tokenize('a{border-color:red}')[0]);
         },
         'has no properties': function (tokens) {
           assert.deepEqual(tokens, [
@@ -285,7 +292,7 @@ vows.describe(extractProperties)
       },
       'border-top-style': {
         'topic': function () {
-          return extractProperties(tokenize('a{border-top-style:none}', {})[0]);
+          return extractProperties(_tokenize('a{border-top-style:none}')[0]);
         },
         'has no properties': function (tokens) {
           assert.deepEqual(tokens, [
@@ -303,7 +310,7 @@ vows.describe(extractProperties)
       },
       'border-top': {
         'topic': function () {
-          return extractProperties(tokenize('a{border-top:none}', {})[0]);
+          return extractProperties(_tokenize('a{border-top:none}')[0]);
         },
         'has no properties': function (tokens) {
           assert.deepEqual(tokens, [
@@ -321,7 +328,7 @@ vows.describe(extractProperties)
       },
       'border-collapse': {
         'topic': function () {
-          return extractProperties(tokenize('a{border-collapse:collapse}', {})[0]);
+          return extractProperties(_tokenize('a{border-collapse:collapse}')[0]);
         },
         'has no properties': function (tokens) {
           assert.deepEqual(tokens, [
@@ -339,7 +346,7 @@ vows.describe(extractProperties)
       },
       'text-shadow': {
         'topic': function () {
-          return extractProperties(tokenize('a{text-shadow:none}', {})[0]);
+          return extractProperties(_tokenize('a{text-shadow:none}')[0]);
         },
         'has no properties': function (tokens) {
           assert.deepEqual(tokens, [

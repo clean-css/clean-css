@@ -447,14 +447,22 @@ vows.describe('module tests').addBatch({
           assert.equal(minified.styles, '@import url(test/fixtures/partials/one.css);@import url(test/fixtures/partials/extra/three.css);@import url(test/fixtures/partials/extra/four.css);.two{color:#fff}');
         }
       },
-      'off and rebase off': {
+      'off - many files': {
         'topic': function () {
-          return new CleanCSS({ processImport: false, rebase: false }).minify(['./test/fixtures/partials/two.css']);
+          return new CleanCSS({ processImport: false }).minify(['./test/fixtures/partials/remote.css', './test/fixtures/partials-absolute/base.css']);
         },
         'should give right output': function (minified) {
-          assert.equal(minified.styles, '@import url(test/fixtures/partials/one.css);@import url(test/fixtures/partials/extra/three.css);@import url(test/fixtures/partials/extra/four.css);.two{color:#fff}');
+          assert.equal(minified.styles, '@import url(http://jakubpawlowicz.com/styles.css);@import url(test/fixtures/partials-absolute/extra/sub.css);.base{margin:0}');
         }
       },
+      'off - many files with content': {
+        'topic': function () {
+          return new CleanCSS({ processImport: false }).minify(['./test/fixtures/partials/two.css', './test/fixtures/partials-absolute/base.css']);
+        },
+        'should give right output': function (minified) {
+          assert.equal(minified.styles, '@import url(test/fixtures/partials/one.css);@import url(test/fixtures/partials/extra/three.css);@import url(test/fixtures/partials/extra/four.css);.two{color:#fff}.base{margin:0}');
+        }
+      }
     }
   },
   'accepts a list of source files as hash': {

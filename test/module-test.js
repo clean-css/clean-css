@@ -603,7 +603,7 @@ vows.describe('module tests').addBatch({
       }
     },
     'with remote paths': {
-      'topic': new CleanCSS({ sourceMap: true }).minify({
+      'topic': new CleanCSS().minify({
         'http://127.0.0.1/styles.css': {
           styles: 'div{background-image:url(image.png)}'
         }

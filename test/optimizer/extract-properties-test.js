@@ -33,7 +33,7 @@ vows.describe(extractProperties)
             'color',
             ['property', ['property-name', 'color', [[1, 2, undefined]]], ['property-value', 'red', [[1, 8, undefined]]]],
             'color:red',
-            [['a', [[1, 0, undefined]]]],
+            [['rule-scope', 'a', [[1, 0, undefined]]]],
             true
           ]
         ]);
@@ -51,7 +51,7 @@ vows.describe(extractProperties)
             'color',
             ['property', ['property-name', 'color', [[1, 2, undefined]]], ['property-value', 'red!important', [[1, 8, undefined]]]],
             'color:red!important',
-            [['a', [[1, 0, undefined]]]],
+            [['rule-scope', 'a', [[1, 0, undefined]]]],
             true
           ]
         ]);
@@ -69,7 +69,7 @@ vows.describe(extractProperties)
             'color',
             ['property', ['property-name', 'color', [[1, 10, undefined]]], ['property-value', 'red', [[1, 16, undefined]]]],
             'color:red',
-            [['#one span', [[1, 0, undefined]]]],
+            [['rule-scope', '#one span', [[1, 0, undefined]]]],
             true
           ]
         ]);
@@ -103,7 +103,7 @@ vows.describe(extractProperties)
             'color',
             ['property', ['property-name', 'color', [[1, 5, undefined]]], ['property-value', 'red', [[1, 11, undefined]]]],
             'color:red',
-            [['.one', [[1, 0, undefined]]]],
+            [['rule-scope', '.one', [[1, 0, undefined]]]],
             false
           ]
         ]);
@@ -121,7 +121,7 @@ vows.describe(extractProperties)
             'color',
             ['property', ['property-name', 'color', [[1, 2, undefined]]], ['property-value', 'red', [[1, 8, undefined]]]],
             'color:red',
-            [['a', [[1, 0, undefined]]]],
+            [['rule-scope', 'a', [[1, 0, undefined]]]],
             true
           ],
           [
@@ -130,7 +130,7 @@ vows.describe(extractProperties)
             'display',
             ['property', ['property-name', 'display', [[1, 12, undefined]]], ['property-value', 'block', [[1, 20, undefined]]]],
             'display:block',
-            [['a', [[1, 0, undefined]]]],
+            [['rule-scope', 'a', [[1, 0, undefined]]]],
             true
           ]
         ]);
@@ -148,7 +148,7 @@ vows.describe(extractProperties)
             'color',
             ['property', ['property-name', 'color', [[1, 9, undefined]]], ['property-value', 'red', [[1, 15, undefined]]]],
             'color:red',
-            [['a', [[1, 7, undefined]]]],
+            [['rule-scope', 'a', [[1, 7, undefined]]]],
             true
           ],
           [
@@ -157,7 +157,7 @@ vows.describe(extractProperties)
             'display',
             ['property', ['property-name', 'display', [[1, 19, undefined]]], ['property-value', 'block', [[1, 27, undefined]]]],
             'display:block',
-            [['a', [[1, 7, undefined]]]],
+            [['rule-scope', 'a', [[1, 7, undefined]]]],
             true
           ],
           [
@@ -166,7 +166,7 @@ vows.describe(extractProperties)
             'color',
             ['property', ['property-name', 'color', [[1, 35, undefined]]], ['property-value', 'red', [[1, 41, undefined]]]],
             'color:red',
-            [['p', [[1, 33, undefined]]]],
+            [['rule-scope', 'p', [[1, 33, undefined]]]],
             true
           ]
         ]);
@@ -187,7 +187,7 @@ vows.describe(extractProperties)
               'transform',
               ['property', ['property-name', '-moz-transform', [[1, 2, undefined]]], ['property-value', 'none', [[1, 17, undefined]]]],
               '-moz-transform:none',
-              [['a', [[1, 0, undefined]]]],
+              [['rule-scope', 'a', [[1, 0, undefined]]]],
               true
             ]
           ]);
@@ -205,7 +205,7 @@ vows.describe(extractProperties)
               'list-style',
               ['property', ['property-name', 'list-style', [[1, 2, undefined]]], ['property-value', 'none', [[1, 13, undefined]]]],
               'list-style:none',
-              [['a', [[1, 0, undefined]]]],
+              [['rule-scope', 'a', [[1, 0, undefined]]]],
               true
             ]
           ]);
@@ -223,7 +223,7 @@ vows.describe(extractProperties)
               'border-radius',
               ['property', ['property-name', 'border-top-left-radius', [[1, 2, undefined]]], ['property-value', 'none', [[1, 25, undefined]]]],
               'border-top-left-radius:none',
-              [['a', [[1, 0, undefined]]]],
+              [['rule-scope', 'a', [[1, 0, undefined]]]],
               true
             ]
           ]);
@@ -241,7 +241,7 @@ vows.describe(extractProperties)
               'border-radius',
               ['property', ['property-name', '-webkit-border-top-left-radius', [[1, 2, undefined]]], ['property-value', 'none', [[1, 33, undefined]]]],
               '-webkit-border-top-left-radius:none',
-              [['a', [[1, 0, undefined]]]],
+              [['rule-scope', 'a', [[1, 0, undefined]]]],
               true
             ]
           ]);
@@ -259,7 +259,7 @@ vows.describe(extractProperties)
               'border-image',
               ['property', ['property-name', 'border-image-width', [[1, 2, undefined]]], ['property-value', '2px', [[1, 21, undefined]]]],
               'border-image-width:2px',
-              [['a', [[1, 0, undefined]]]],
+              [['rule-scope', 'a', [[1, 0, undefined]]]],
               true
             ]
           ]);
@@ -277,7 +277,7 @@ vows.describe(extractProperties)
               'border',
               ['property', ['property-name', 'border-color', [[1, 2, undefined]]], ['property-value', 'red', [[1, 15, undefined]]]],
               'border-color:red',
-              [['a', [[1, 0, undefined]]]],
+              [['rule-scope', 'a', [[1, 0, undefined]]]],
               true
             ]
           ]);
@@ -295,7 +295,7 @@ vows.describe(extractProperties)
               'border-top',
               ['property', ['property-name', 'border-top-style', [[1, 2, undefined]]], ['property-value', 'none', [[1, 19, undefined]]]],
               'border-top-style:none',
-              [['a', [[1, 0, undefined]]]],
+              [['rule-scope', 'a', [[1, 0, undefined]]]],
               true
             ]
           ]);
@@ -313,7 +313,7 @@ vows.describe(extractProperties)
               'border',
               ['property', ['property-name', 'border-top', [[1, 2, undefined]]], ['property-value', 'none', [[1, 13, undefined]]]],
               'border-top:none',
-              [['a', [[1, 0, undefined]]]],
+              [['rule-scope', 'a', [[1, 0, undefined]]]],
               true
             ]
           ]);
@@ -331,7 +331,7 @@ vows.describe(extractProperties)
               'border-collapse',
               ['property', ['property-name', 'border-collapse', [[1, 2, undefined]]], ['property-value', 'collapse', [[1, 18, undefined]]]],
               'border-collapse:collapse',
-              [['a', [[1, 0, undefined]]]],
+              [['rule-scope', 'a', [[1, 0, undefined]]]],
               true
             ]
           ]);
@@ -349,7 +349,7 @@ vows.describe(extractProperties)
               'text-shadow',
               ['property', ['property-name', 'text-shadow', [[1, 2, undefined]]], ['property-value', 'none', [[1, 14, undefined]]]],
               'text-shadow:none',
-              [['a', [[1, 0, undefined]]]],
+              [['rule-scope', 'a', [[1, 0, undefined]]]],
               true
             ]
           ]);

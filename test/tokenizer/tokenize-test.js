@@ -50,11 +50,9 @@ vows.describe(tokenize)
         [
           [
             'comment',
+            '/* comment */',
             [
-              '/* comment */',
-              [
-                [1, 0, undefined]
-              ]
+              [1, 0, undefined]
             ]
           ]
         ]
@@ -64,11 +62,9 @@ vows.describe(tokenize)
         [
           [
             'comment',
+            '/* comment */',
             [
-              '/* comment */',
-              [
-                [1, 0, undefined]
-              ]
+              [1, 0, undefined]
             ]
           ]
         ]
@@ -78,11 +74,9 @@ vows.describe(tokenize)
         [
           [
             'comment',
+            '/*/ comment */',
             [
-              '/*/ comment */',
-              [
-                [1, 0, undefined]
-              ]
+              [1, 0, undefined]
             ]
           ]
         ]
@@ -92,26 +86,23 @@ vows.describe(tokenize)
         [
           [
             'comment',
+            '/* comment 1 */',
             [
-              '/* comment 1 */',
-              [
-                [1, 0, undefined]
-              ]
+              [1, 0, undefined]
             ]
           ],
           [
             'comment',
+            '/* comment 2 */',
             [
-              '/* comment 2 */',
-              [
-                [1, 16, undefined]
-              ]
+              [1, 16, undefined]
             ]
           ],
           [
             'rule',
             [
               [
+                'rule-scope',
                 '*',
                 [
                   [1, 15, undefined]
@@ -129,6 +120,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'a',
                 [
                   [1, 0, undefined]
@@ -144,17 +136,16 @@ vows.describe(tokenize)
         [
           [
             'comment',
+            '/* comment \n\n */',
             [
-              '/* comment \n\n */',
-              [
-                [1, 0, undefined]
-              ]
+              [1, 0, undefined]
             ]
           ],
           [
             'rule',
             [
               [
+                'rule-scope',
                 'a',
                 [
                   [3, 3, undefined]
@@ -172,6 +163,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'a',
                 [
                   [1, 0, undefined]
@@ -189,6 +181,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'a',
                 [
                   [1, 0, undefined]
@@ -224,6 +217,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'a',
                 [
                   [1, 0, undefined]
@@ -273,6 +267,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'a',
                 [
                   [1, 0, undefined]
@@ -308,6 +303,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'a',
                 [
                   [1, 0, undefined]
@@ -360,6 +356,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'div a',
                 [
                   [1, 0, undefined]
@@ -395,6 +392,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'a',
                 [
                   [1, 0, undefined]
@@ -430,6 +428,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'a',
                 [
                   [1, 0, undefined]
@@ -486,6 +485,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'a',
                 [
                   [1, 0, undefined]
@@ -542,6 +542,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'a',
                 [
                   [1, 0, undefined]
@@ -594,6 +595,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'a',
                 [
                   [1, 0, undefined]
@@ -629,6 +631,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'a[data-kind="one two"]',
                 [
                   [1, 0, undefined]
@@ -664,6 +667,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 '.this-class\\\'s-got-an-apostrophe',
                 [
                   [1, 0, undefined]
@@ -699,6 +703,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'a',
                 [
                   [1, 0, undefined]
@@ -734,6 +739,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'a',
                 [
                   [1, 0, undefined]
@@ -769,12 +775,14 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'a',
                 [
                   [1, 0, undefined]
                 ]
               ],
               [
+                'rule-scope',
                 'div.class > p',
                 [
                   [3, 0, undefined]
@@ -810,18 +818,21 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'b',
                 [
                   [1, 0, undefined]
                 ]
               ],
               [
+                'rule-scope',
                 'a',
                 [
                   [1, 2, undefined]
                 ]
               ],
               [
+                'rule-scope',
                 'div',
                 [
                   [1, 4, undefined]
@@ -839,6 +850,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'a',
                 [
                   [1, 0, undefined]
@@ -869,6 +881,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'div',
                 [
                   [2, 1, undefined]
@@ -902,26 +915,23 @@ vows.describe(tokenize)
         [
           [
             'comment',
+            '/* comment 1 */',
             [
-              '/* comment 1 */',
-              [
-                [1, 0, undefined]
-              ]
+              [1, 0, undefined]
             ]
           ],
           [
             'comment',
+            '/* comment 2 */',
             [
-              '/* comment 2 */',
-              [
-                [2, 0, undefined]
-              ]
+              [2, 0, undefined]
             ]
           ],
           [
             'rule',
             [
               [
+                'rule-scope',
                 'div',
                 [
                   [3, 0, undefined]
@@ -937,26 +947,23 @@ vows.describe(tokenize)
         [
           [
             'comment',
+            '/* comment 1 */',
             [
-              '/* comment 1 */',
-              [
-                [1, 0, undefined]
-              ]
+              [1, 0, undefined]
             ]
           ],
           [
             'comment',
+            '/* comment 2 */',
             [
-              '/* comment 2 */',
-              [
-                [1, 18, undefined]
-              ]
+              [1, 18, undefined]
             ]
           ],
           [
             'rule',
             [
               [
+                'rule-scope',
                 'div',
                 [
                   [1, 15, undefined]
@@ -992,6 +999,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'div',
                 [
                   [1, 0, undefined]
@@ -1001,11 +1009,9 @@ vows.describe(tokenize)
             [
               [
                 'comment',
+                '/* comment 1 */',
                 [
-                  '/* comment 1 */',
-                  [
-                    [1, 4, undefined]
-                  ]
+                  [1, 4, undefined]
                 ]
               ],
               [
@@ -1027,11 +1033,9 @@ vows.describe(tokenize)
               ],
               [
                 'comment',
+                '/* comment 2 */',
                 [
-                  '/* comment 2 */',
-                  [
-                    [1, 28, undefined]
-                  ]
+                  [1, 28, undefined]
                 ]
               ]
             ]
@@ -1045,6 +1049,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'div',
                 [
                   [1, 0, undefined]
@@ -1085,11 +1090,9 @@ vows.describe(tokenize)
               ],
               [
                 'comment',
+                '/* comment */',
                 [
-                  '/* comment */',
-                  [
-                    [1, 30, undefined]
-                  ]
+                  [1, 30, undefined]
                 ]
               ]
             ]
@@ -1103,6 +1106,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'div',
                 [
                   [1, 0, undefined]
@@ -1143,11 +1147,9 @@ vows.describe(tokenize)
               ],
               [
                 'comment',
+                '/* comment */',
                 [
-                  '/* comment */',
-                  [
-                    [1, 33, undefined]
-                  ]
+                  [1, 33, undefined]
                 ]
               ]
             ]
@@ -1161,6 +1163,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'div',
                 [
                   [1, 0, undefined]
@@ -1201,13 +1204,11 @@ vows.describe(tokenize)
               ],
               [
                 'comment',
+                '/* comment */',
                 [
-                  '/* comment */',
-                  [
-                    [1, 41, undefined]
-                  ]
+                  [1, 41, undefined]
                 ]
-              ],
+              ]
             ]
           ]
         ]
@@ -1219,6 +1220,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'div:nth-child(2n):not(.test)',
                 [
                   [1, 0, undefined]
@@ -1254,6 +1256,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'a',
                 [
                   [1, 0, undefined]
@@ -1296,6 +1299,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'a',
                 [
                   [1, 0, undefined]
@@ -1338,6 +1342,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'a',
                 [
                   [1, 0, undefined]
@@ -1387,6 +1392,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'a',
                 [
                   [1, 0, undefined]
@@ -1429,6 +1435,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'a',
                 [
                   [1, 0, undefined]
@@ -1454,6 +1461,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 ':root',
                 [
                   [1, 0, undefined]
@@ -1494,6 +1502,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 ':root',
                 [
                   [1, 0, undefined]
@@ -1568,6 +1577,7 @@ vows.describe(tokenize)
             'block',
             [
               [
+                'block-scope',
                 '@media (min-width:980px)',
                 [
                   [1, 0, undefined]
@@ -1585,12 +1595,14 @@ vows.describe(tokenize)
             'block',
             [
               [
+                'block-scope',
                 '@media print',
                 [
                   [1, 0, undefined]
                 ]
               ],
               [
+                'block-scope',
                 '(min-width:980px)',
                 [
                   [1, 13, undefined]
@@ -1602,6 +1614,7 @@ vows.describe(tokenize)
                 'rule',
                 [
                   [
+                    'rule-scope',
                     'a',
                     [
                       [1, 31, undefined]
@@ -1639,6 +1652,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'a',
                 [
                   [1, 0, undefined]
@@ -1669,6 +1683,7 @@ vows.describe(tokenize)
             'block',
             [
               [
+                'block-scope',
                 '@media (min-width:980px)',
                 [
                   [1, 12, undefined]
@@ -1681,6 +1696,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'p',
                 [
                   [1, 38, undefined]
@@ -1716,6 +1732,7 @@ vows.describe(tokenize)
             'block',
             [
               [
+                'block-scope',
                 '@media (min-width:980px)',
                 [
                   [1, 0, undefined]
@@ -1727,6 +1744,7 @@ vows.describe(tokenize)
                 'rule',
                 [
                   [
+                    'rule-scope',
                     'a',
                     [
                       [1, 25, undefined]
@@ -1764,6 +1782,7 @@ vows.describe(tokenize)
             'block',
             [
               [
+                'block-scope',
                 '@media only screen and (max-width:1319px)',
                 [
                   [1, 0, undefined]
@@ -1775,6 +1794,7 @@ vows.describe(tokenize)
                 'block',
                 [
                   [
+                    'block-scope',
                     '@media print',
                     [
                       [2, 0, undefined]
@@ -1786,6 +1806,7 @@ vows.describe(tokenize)
                     'rule',
                     [
                       [
+                        'rule-scope',
                         'a',
                         [
                           [3, 0, undefined]
@@ -1818,6 +1839,7 @@ vows.describe(tokenize)
                 'rule',
                 [
                   [
+                    'rule-scope',
                     'a',
                     [
                       [5, 0, undefined]
@@ -1855,6 +1877,7 @@ vows.describe(tokenize)
             'block',
             [
               [
+                'block-scope',
                 '@media ( min-width:980px )',
                 [
                   [1, 0, undefined]
@@ -1867,6 +1890,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'p',
                 [
                   [1, 29, undefined]
@@ -1902,6 +1926,7 @@ vows.describe(tokenize)
             'block',
             [
               [
+                'block-scope',
                 '@media (min-width:980px)',
                 [
                   [1, 0, undefined]
@@ -1912,17 +1937,16 @@ vows.describe(tokenize)
           ],
           [
             'comment',
+            '/*! comment */',
             [
-              '/*! comment */',
-              [
-                [1, 26, undefined]
-              ]
+              [1, 26, undefined]
             ]
           ],
           [
             'block',
             [
               [
+                'block-scope',
                 '@media screen',
                 [
                   [1, 40, undefined]
@@ -1938,17 +1962,16 @@ vows.describe(tokenize)
         [
           [
             'comment',
+            '/* comment \n */',
             [
-              '/* comment \n */',
-              [
-                [1, 8, undefined]
-              ]
+              [1, 8, undefined]
             ]
           ],
           [
             'block',
             [
               [
+                'block-scope',
                 '@media (min-width:980px)',
                 [
                   [1, 0, undefined]
@@ -1960,6 +1983,7 @@ vows.describe(tokenize)
                 'rule',
                 [
                   [
+                    'rule-scope',
                     'a',
                     [
                       [2, 20, undefined]
@@ -1997,6 +2021,7 @@ vows.describe(tokenize)
             'at-rule-block',
             [
               [
+                'at-rule-block-scope',
                 '@font-face',
                 [
                   [1, 0, undefined]
@@ -2056,6 +2081,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'a',
                 [
                   [1, 17, undefined]
@@ -2103,6 +2129,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'a',
                 [
                   [1, 0, undefined]
@@ -2122,6 +2149,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'a',
                 [
                   [4, 0, undefined]
@@ -2177,6 +2205,7 @@ vows.describe(tokenize)
             'block',
             [
               [
+                'block-scope',
                 '@keyframes "test"',
                 [
                   [1, 0, undefined]
@@ -2188,6 +2217,7 @@ vows.describe(tokenize)
                 'rule',
                 [
                   [
+                    'rule-scope',
                     '0%',
                     [
                       [1, 18, undefined]
@@ -2225,6 +2255,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'a',
                 [
                   [1, 0, undefined]
@@ -2274,6 +2305,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 ':root',
                 [
                   [1, 0, undefined]
@@ -2309,6 +2341,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'div',
                 [
                   [1, 0, undefined]
@@ -2391,6 +2424,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'a',
                 [
                   [1, 0, undefined]
@@ -2458,12 +2492,14 @@ vows.describe(tokenize)
             'at-rule-block',
             [
               [
+                'at-rule-block-scope',
                 '_:-ms-lang(x)',
                 [
                   [1, 0, undefined]
                 ]
               ],
               [
+                'at-rule-block-scope',
                 '@-ms-viewport',
                 [
                   [1, 14, undefined]
@@ -2503,6 +2539,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'a',
                 [
                   [1, 0, undefined]
@@ -2538,6 +2575,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'a',
                 [
                   [1, 0, undefined]
@@ -2605,6 +2643,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'a',
                 [
                   [1, 0, undefined]
@@ -2710,6 +2749,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'a',
                 [
                   [1, 0, undefined]
@@ -2759,6 +2799,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'a',
                 [
                   [1, 0, undefined]
@@ -2808,6 +2849,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'a',
                 [
                   [1, 0, undefined]
@@ -2857,6 +2899,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'a',
                 [
                   [1, 0, undefined]
@@ -2892,6 +2935,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'a',
                 [
                   [1, 0, undefined]
@@ -2941,6 +2985,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'a',
                 [
                   [1, 0, undefined]
@@ -2990,6 +3035,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'a',
                 [
                   [1, 0, undefined]
@@ -3039,6 +3085,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'a',
                 [
                   [1, 0, undefined]
@@ -3074,6 +3121,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'a',
                 [
                   [1, 0, undefined]
@@ -3109,6 +3157,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'a',
                 [
                   [1, 0, undefined]
@@ -3144,6 +3193,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'a',
                 [
                   [1, 0, undefined]
@@ -3183,6 +3233,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'a',
                 [
                   [1, 0, undefined]
@@ -3218,6 +3269,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'a',
                 [
                   [1, 0, undefined]
@@ -3253,6 +3305,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'body',
                 [
                   [1, 0, undefined]
@@ -3305,6 +3358,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'body',
                 [
                   [1, 0, undefined]
@@ -3335,6 +3389,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 '}a',
                 [
                   [1, 15, undefined]
@@ -3398,6 +3453,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'a',
                 [
                   [1, 0, 'one.css']
@@ -3450,6 +3506,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'div > a',
                 [
                   [1, 0, 'styles.less']
@@ -3500,6 +3557,7 @@ vows.describe(tokenize)
             'rule',
             [
               [
+                'rule-scope',
                 'div > a',
                 [
                   [1, 0, 'styles.less']

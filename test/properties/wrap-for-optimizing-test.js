@@ -75,7 +75,7 @@ vows.describe(wrapForOptimizing)
         return wrapForOptimizing([
           [
             'comment',
-            ['/* comment */']
+            '/* comment */'
           ],
           [
             'property',

@@ -35,7 +35,7 @@ function selectorContext(group, specs, options) {
   function optimized(selectors) {
     return function (source) {
       var tokens = tokenize(source, { options: {} });
-      simpleOptimize(tokens, options);
+      simpleOptimize(tokens, options, {});
 
       assert.deepEqual(tokens[0] ? tokens[0][1] : null, selectors);
     };
@@ -59,7 +59,7 @@ function propertyContext(group, specs, options) {
   function optimized(selectors) {
     return function (source) {
       var tokens = tokenize(source, { options: {} });
-      simpleOptimize(tokens, options);
+      simpleOptimize(tokens, options, {});
 
       var value = tokens[0] ?
         tokens[0][2].map(function (property) {

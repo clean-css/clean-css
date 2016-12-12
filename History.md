@@ -3,6 +3,11 @@
 
 * Requires Node.js 4.0+ to run.
 
+[3.4.22 / 2016-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.21...v3.4)
+==================
+
+* Fixed issue [#841](https://github.com/jakubpawlowicz/clean-css/issues/841) - disabled importing and files passed as array.
+
 [3.4.21 / 2016-11-16](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.20...v3.4.21)
 ==================
 

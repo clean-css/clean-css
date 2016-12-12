@@ -1,4 +1,4 @@
-[3.4.22 / 2016-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.21...v3.4)
+[3.4.22 / 2016-12-12](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.21...v3.4.22)
 ==================
 
 * Fixed issue [#841](https://github.com/jakubpawlowicz/clean-css/issues/841) - disabled importing and files passed as array.

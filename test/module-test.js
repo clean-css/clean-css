@@ -467,12 +467,20 @@ vows.describe('module tests').addBatch({
       }
     },
     'with imports': {
-      'off': {
+      'off - one file': {
         'topic': function () {
           return new CleanCSS({ processImport: false }).minify(['./test/fixtures/partials/two.css']);
         },
         'should give right output': function (minified) {
           assert.equal(minified.styles, '@import url(one.css);@import url(extra/three.css);@import url(./extra/four.css);.two{color:#fff}');
+        }
+      },
+      'off - many files': {
+        'topic': function () {
+          return new CleanCSS({ processImport: false }).minify(['./test/fixtures/partials/remote.css', './test/fixtures/partials-absolute/base.css']);
+        },
+        'should give right output': function (minified) {
+          assert.equal(minified.styles, '@import url(http://jakubpawlowicz.com/styles.css);@import url(./extra/sub.css);.base{margin:0}');
         }
       }
     }

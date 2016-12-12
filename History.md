@@ -7,6 +7,7 @@
 ==================
 
 * Fixed issue [#841](https://github.com/jakubpawlowicz/clean-css/issues/841) - disabled importing and files passed as array.
+* Ignores `@import` at-rules if appearing after any non-`@import` rules.
 
 [3.4.21 / 2016-11-16](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.20...v3.4.21)
 ==================

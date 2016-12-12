@@ -789,7 +789,7 @@ vows.describe('protocol imports').addBatch({
     'should not raise errors': function (error, minified) {
       assert.isEmpty(minified.errors);
     },
-    'should not raise warnings': function (error, minified) {
+    'should raise a warning': function (error, minified) {
       assert.lengthOf(minified.warnings, 1);
     },
     'should process imports': function (error, minified) {

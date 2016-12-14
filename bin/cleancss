@@ -126,6 +126,13 @@ function minify(data) {
       console.error('Minified: %d bytes', minified.stats.minifiedSize);
       console.error('Efficiency: %d%', ~~(minified.stats.efficiency * 10000) / 100.0);
       console.error('Time spent: %dms', minified.stats.timeSpent);
+
+      if (minified.inlinedStylesheets.length > 0) {
+        console.error('Inlined stylesheets:');
+        minified.inlinedStylesheets.forEach(function (uri) {
+          console.error('- %s', uri);
+        });
+      }
     }
 
     outputFeedback(minified.errors, true);

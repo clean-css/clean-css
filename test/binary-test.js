@@ -113,7 +113,7 @@ vows.describe('./bin/cleancss')
     })
   })
   .addBatch({
-    'piped with debug info on inlining': pipedContext('@import url(test/fixtures/imports-min.css);', '-d', {
+    'piped with debug info on inlining 123': pipedContext('@import url(test/fixtures/imports-min.css);', '-d', {
       'should output inlining info': function (error, stdout, stderr) {
         assert.include(stderr, path.join(process.cwd(), 'test/fixtures/imports-min.css'));
       }

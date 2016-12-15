@@ -1,4 +1,4 @@
-[3.5.0-pre / 2015-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/3.4...HEAD)
+[4.0.0-pre / 20xx-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/3.4...HEAD)
 ==================
 
 * Adds more detailed error & warning messages on top of the new tokenizer.

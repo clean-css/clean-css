@@ -1,7 +1,7 @@
 var vows = require('vows');
 var assert = require('assert');
 var tokenize = require('../../lib/tokenizer/tokenize');
-var inputSourceMapTracker = require('../../lib/utils/input-source-map-tracker');
+var inputSourceMapTracker = require('../../lib/reader/input-source-map-tracker');
 
 var fs = require('fs');
 var path = require('path');

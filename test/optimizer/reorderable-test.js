@@ -2,7 +2,7 @@ var vows = require('vows');
 var assert = require('assert');
 
 var tokenize = require('../../lib/tokenizer/tokenize');
-var inputSourceMapTracker = require('../../lib/utils/input-source-map-tracker');
+var inputSourceMapTracker = require('../../lib/reader/input-source-map-tracker');
 var extractProperties = require('../../lib/optimizer/extract-properties');
 var canReorder = require('../../lib/optimizer/reorderable').canReorder;
 var canReorderSingle = require('../../lib/optimizer/reorderable').canReorderSingle;

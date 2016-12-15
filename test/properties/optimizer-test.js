@@ -4,7 +4,7 @@ var assert = require('assert');
 var optimize = require('../../lib/properties/optimizer');
 
 var tokenize = require('../../lib/tokenizer/tokenize');
-var inputSourceMapTracker = require('../../lib/utils/input-source-map-tracker');
+var inputSourceMapTracker = require('../../lib/reader/input-source-map-tracker');
 var compatibility = require('../../lib/utils/compatibility');
 var Validator = require('../../lib/properties/validator');
 

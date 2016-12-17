@@ -1,4 +1,4 @@
-[3.4.23 / 2016-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.22...3.4)
+[3.4.23 / 2016-12-17](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.22...v3.4.23)
 ==================
 
 * Fixed issue [#844](https://github.com/jakubpawlowicz/clean-css/issues/844) - regression in property values extraction.

@@ -39,7 +39,7 @@ td,th{padding:0}
 a,a:visited{text-decoration:underline}
 a[href]:after{content:" (" attr(href) ")"}
 abbr[title]:after{content:" (" attr(title) ")"}
-a[href^="#"]:after,a[href^=javascript:]:after{content:""}
+a[href^="#"]:after,a[href^="javascript:"]:after{content:""}
 blockquote,pre{border:1px solid #999}
 thead{display:table-header-group}
 img{max-width:100%!important}

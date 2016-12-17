@@ -96,6 +96,10 @@ vows.describe('simple optimizations')
       'quotes #1': [
         '.a[title="a b c\'s d e f"]{color:red}',
         '.a[title="a b c\'s d e f"]{color:red}'
+      ],
+      'quotes #2': [
+        '.b[data-json=\'"aaaa":"bbbb"\']{color:red}',
+        '.b[data-json=\'"aaaa":"bbbb"\']{color:red}'
       ]
     }, { advanced: false })
   )

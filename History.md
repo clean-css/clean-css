@@ -10,6 +10,11 @@
 * Fixed issue [#840](https://github.com/jakubpawlowicz/clean-css/issues/840) - allows input source map as map object.
 * Fixed issue [#843](https://github.com/jakubpawlowicz/clean-css/issues/843) - regression in selector handling.
 
+[3.4.23 / 2016-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.22...3.4)
+==================
+
+* Fixed issue [#844](https://github.com/jakubpawlowicz/clean-css/issues/844) - regression in property values extraction.
+
 [3.4.22 / 2016-12-12](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.21...v3.4.22)
 ==================
 

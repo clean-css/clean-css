@@ -1309,8 +1309,8 @@ vows.describe('source-map')
         },
         'has embedded sources content': function (minified) {
           assert.deepEqual(JSON.parse(minified.sourceMap.toString()).sourcesContent, [
-            '.one { color:#f00; }\n',
-            '.three {background-image: url(extra/down.gif);}\n'
+            '.one { color:#f00; }' + lineBreak,
+            '.three {background-image: url(extra/down.gif);}' + lineBreak
           ]);
         }
       },
@@ -1557,7 +1557,7 @@ vows.describe('source-map')
           assert.deepEqual(JSON.parse(minified.sourceMap.toString()).sourcesContent, [
             'div {\n  color: red;\n}\n',
             'section {\n  > div a {\n    color:red;\n  }\n}\n',
-            'div > a {\n  color: blue;\n}\n'
+            'div > a {' + lineBreak + '  color: blue;' + lineBreak + '}' + lineBreak
           ]);
         }
       },
@@ -1628,7 +1628,7 @@ vows.describe('source-map')
         'has embedded sources content': function (errors, minified) {
           assert.deepEqual(JSON.parse(minified.sourceMap.toString()).sourcesContent, [
             'div {\n  color: red;\n}\n',
-            'section {\n  > div a {\n    color:red;\n  }\n}\n',
+            'section {' + lineBreak + '  > div a {' + lineBreak + '    color:red;' + lineBreak + '  }' + lineBreak + '}' + lineBreak,
             'div > a {\n  color: blue;\n}\n'
           ]);
         },
@@ -1676,7 +1676,7 @@ vows.describe('source-map')
         'has embedded sources content': function (minified) {
           assert.deepEqual(JSON.parse(minified.sourceMap.toString()).sourcesContent, [
             null,
-            'section {\n  > div a {\n    color:red;\n  }\n}\n',
+            'section {' + lineBreak + '  > div a {' + lineBreak + '    color:red;' + lineBreak + '  }' + lineBreak + '}' + lineBreak,
             'div > a {\n  color: blue;\n}\n'
           ]);
         },
@@ -1721,7 +1721,7 @@ vows.describe('source-map')
         'has embedded sources content': function (minified) {
           assert.deepEqual(JSON.parse(minified.sourceMap.toString()).sourcesContent, [
             null,
-            'section {\n  > div a {\n    color:red;\n  }\n}\n',
+            'section {' + lineBreak + '  > div a {' + lineBreak + '    color:red;' + lineBreak + '  }' + lineBreak + '}' + lineBreak,
             null
           ]);
         }

@@ -92,6 +92,10 @@ vows.describe('simple optimizations')
       'escaped characters': [
         '.a\\+\\+b{color:red}',
         '.a\\+\\+b{color:red}'
+      ],
+      'quotes #1': [
+        '.a[title="a b c\'s d e f"]{color:red}',
+        '.a[title="a b c\'s d e f"]{color:red}'
       ]
     }, { advanced: false })
   )

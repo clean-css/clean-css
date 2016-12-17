@@ -476,6 +476,47 @@ vows.describe('source-map')
         assert.deepEqual(minified.sourceMap._mappings._array[2], mapping);
       }
     },
+    'input map as source map object': {
+      'topic': function () {
+        return new CleanCSS({ sourceMap: JSON.parse(inputMap) }).minify('div > a {\n  color: red;\n}');
+      },
+      'has 3 mappings': function (minified) {
+        assert.lengthOf(minified.sourceMap._mappings._array, 3);
+      },
+      'has `div > a` mapping': function (minified) {
+        var mapping = {
+          generatedLine: 1,
+          generatedColumn: 0,
+          originalLine: 1,
+          originalColumn: 4,
+          source: 'styles.less',
+          name: null
+        };
+        assert.deepEqual(minified.sourceMap._mappings._array[0], mapping);
+      },
+      'has `color` mapping': function (minified) {
+        var mapping = {
+          generatedLine: 1,
+          generatedColumn: 6,
+          originalLine: 2,
+          originalColumn: 2,
+          source: 'styles.less',
+          name: null
+        };
+        assert.deepEqual(minified.sourceMap._mappings._array[1], mapping);
+      },
+      'has `red` mapping': function (minified) {
+        var mapping = {
+          generatedLine: 1,
+          generatedColumn: 12,
+          originalLine: 2,
+          originalColumn: 2,
+          source: 'styles.less',
+          name: null
+        };
+        assert.deepEqual(minified.sourceMap._mappings._array[2], mapping);
+      }
+    },
     'input map from source': {
       'topic': function () {
         return new CleanCSS({ sourceMap: true }).minify('div > a {\n  color: red;\n}/*# sourceMappingURL=' + inputMapPath + ' */');
@@ -1470,6 +1511,41 @@ vows.describe('source-map')
             'test/fixtures/source-maps/nested/once.css': {
               styles: 'section > div a {\n  color: red;\n}',
               sourceMap: '{"version":3,"sources":["once.less"],"names":[],"mappings":"AAAA,OACE,MAAM;EACJ,UAAA","file":"once.css","sourcesContent":["section {\\n  > div a {\\n    color:red;\\n  }\\n}\\n"]}'
+            }
+          });
+        },
+        'has 7 mappings': function (minified) {
+          assert.lengthOf(minified.sourceMap._mappings._array, 7);
+        },
+        'has embedded sources': function (minified) {
+          assert.deepEqual(JSON.parse(minified.sourceMap.toString()).sources, [
+            path.join('test', 'fixtures', 'source-maps', 'some.less'),
+            path.join('test', 'fixtures', 'source-maps', 'nested', 'once.less'),
+            path.join('test', 'fixtures', 'source-maps', 'styles.less')
+          ]);
+        },
+        'has embedded sources content': function (minified) {
+          assert.deepEqual(JSON.parse(minified.sourceMap.toString()).sourcesContent, [
+            'div {\n  color: red;\n}\n',
+            'section {\n  > div a {\n    color:red;\n  }\n}\n',
+            'div > a {\n  color: blue;\n}\n'
+          ]);
+        }
+      },
+      'multiple with map passed as source map object': {
+        'topic': function () {
+          return new CleanCSS({ sourceMap: true, sourceMapInlineSources: true }).minify({
+            'test/fixtures/source-maps/some.css': {
+              styles: 'div {\n  color: red;\n}',
+              sourceMap: { version:3, sources: ['some.less'], names: [], mappings: 'AAAA;EACE,UAAA', file: 'some.css', sourcesContent: ['div {\n  color: red;\n}\n'] }
+            },
+            'test/fixtures/source-maps/styles.css': {
+              styles: 'div > a {\n  color: blue;\n}',
+              sourceMap: { version:3, sources: ['styles.less'], names: [], mappings: 'AAAA,GAAI;EACF,WAAA', file: 'styles.css', sourcesContent: ['div > a {\n  color: blue;\n}\n'] }
+            },
+            'test/fixtures/source-maps/nested/once.css': {
+              styles: 'section > div a {\n  color: red;\n}',
+              sourceMap: { version:3, sources: ['once.less'], names: [], mappings: 'AAAA,OACE,MAAM;EACJ,UAAA', file: 'once.css', sourcesContent: ['section {\n  > div a {\n    color:red;\n  }\n}\n'] }
             }
           });
         },

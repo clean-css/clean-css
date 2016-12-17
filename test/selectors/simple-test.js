@@ -749,6 +749,18 @@ vows.describe('simple optimizations')
       'after calc()': [
         'div{margin:calc(100% - 21px) 1px}',
         [['margin', 'calc(100% - 21px)', '1px']]
+      ],
+      '*nix line break inside property': [
+        'a{border:2px\nsolid}',
+        [['border', '2px', 'solid']]
+      ],
+      'windows line break inside property': [
+        'a{border:2px\r\nsolid}',
+        [['border', '2px', 'solid']]
+      ],
+      'tab inside property': [
+        'a{border:2px\tsolid}',
+        [['border', '2px', 'solid']]
       ]
     })
   )

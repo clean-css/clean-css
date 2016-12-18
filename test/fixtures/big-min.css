@@ -1292,7 +1292,8 @@ label i{font-style:normal;display:none}
 #bandeau_bas .conteneur_lives .live .toast .btn{position:absolute;display:none;color:#000;height:18px;font-size:10px;line-height:18px;top:90px;left:200px;width:100px}
 #bandeau_bas .conteneur_lives .live:hover .toast .btn{display:block}
 .conteneur_lives .live.invisible{display:none}
-@media screen and (min-width:1640px){.conteneur_lives{width:0;margin:auto}
+@media screen and (min-width:1640px){
+.conteneur_lives{width:0;margin:auto}
 .conteneur_lives .lives{left:500px}
 }
 .conteneur_alerte{background:#2e3942;margin:0 auto;position:relative;width:1000px;height:120px;z-index:3}
@@ -1308,9 +1309,11 @@ label i{font-style:normal;display:none}
 .conteneur_alerte .alerte .texte_alerte strong{display:block}
 .conteneur_alerte .sociaux{width:10.2%;display:table-cell;padding:10px 10px 20px;vertical-align:bottom;border-left:1px solid #464f57}
 .conteneur_alerte .sociaux .txt11{display:block;margin:0 0 10px;color:#5d666d;font-weight:700}
-@media screen and (max-width:1640px){.conteneur_alerte{width:72%;margin:0}
+@media screen and (max-width:1640px){
+.conteneur_alerte{width:72%;margin:0}
 }
-@media screen and (max-width:1200px){.conteneur_alerte{width:640px;margin:0}
+@media screen and (max-width:1200px){
+.conteneur_alerte{width:640px;margin:0}
 }
 .txt_ea{color:#998000}
 .txt_abo{color:#ffd500}

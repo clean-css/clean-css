@@ -1,3 +1,4 @@
 .c4:not(.c1,.c2){width:1px}
-@media (min-width:1px){.c3{width:1px}
+@media (min-width:1px){
+.c3{width:1px}
 }

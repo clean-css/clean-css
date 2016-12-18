@@ -209,8 +209,8 @@ vows.describe('source-map')
       },
       'has `a` mapping': function (minified) {
         var mapping = {
-          generatedLine: 1,
-          generatedColumn: 14,
+          generatedLine: 2,
+          generatedColumn: 0,
           originalLine: 1,
           originalColumn: 16,
           source: '$stdin',
@@ -220,8 +220,8 @@ vows.describe('source-map')
       },
       'has `color` mapping': function (minified) {
         var mapping = {
-          generatedLine: 1,
-          generatedColumn: 16,
+          generatedLine: 2,
+          generatedColumn: 2,
           originalLine: 1,
           originalColumn: 18,
           source: '$stdin',
@@ -231,8 +231,8 @@ vows.describe('source-map')
       },
       'has `red` mapping': function (minified) {
         var mapping = {
-          generatedLine: 1,
-          generatedColumn: 22,
+          generatedLine: 2,
+          generatedColumn: 8,
           originalLine: 1,
           originalColumn: 24,
           source: '$stdin',
@@ -242,7 +242,7 @@ vows.describe('source-map')
       },
       'has `p` mapping': function (minified) {
         var mapping = {
-          generatedLine: 2,
+          generatedLine: 3,
           generatedColumn: 0,
           originalLine: 1,
           originalColumn: 29,
@@ -253,7 +253,7 @@ vows.describe('source-map')
       },
       'has second `color` mapping': function (minified) {
         var mapping = {
-          generatedLine: 2,
+          generatedLine: 3,
           generatedColumn: 2,
           originalLine: 1,
           originalColumn: 32,
@@ -264,7 +264,7 @@ vows.describe('source-map')
       },
       'has `blue` mapping': function (minified) {
         var mapping = {
-          generatedLine: 2,
+          generatedLine: 3,
           generatedColumn: 8,
           originalLine: 1,
           originalColumn: 38,
@@ -275,7 +275,7 @@ vows.describe('source-map')
       },
       'has `div` mapping': function (minified) {
         var mapping = {
-          generatedLine: 4,
+          generatedLine: 5,
           generatedColumn: 0,
           originalLine: 1,
           originalColumn: 45,
@@ -286,7 +286,7 @@ vows.describe('source-map')
       },
       'has third `color` mapping': function (minified) {
         var mapping = {
-          generatedLine: 4,
+          generatedLine: 5,
           generatedColumn: 4,
           originalLine: 1,
           originalColumn: 49,
@@ -297,7 +297,7 @@ vows.describe('source-map')
       },
       'has `pink` mapping': function (minified) {
         var mapping = {
-          generatedLine: 4,
+          generatedLine: 5,
           generatedColumn: 10,
           originalLine: 1,
           originalColumn: 55,

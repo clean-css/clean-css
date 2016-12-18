@@ -7,6 +7,7 @@
 * Replaces the old tokenizer with a new one which doesn't use any escaping.
 * Replaces the old `@import` inlining with one on top of the new tokenizer.
 * Simplifies URL rebasing with a single `rebaseTo` option in API or inferred from `--output` in CLI.
+* Fixed issue [#834](https://github.com/jakubpawlowicz/clean-css/issues/834) - adds extra line break in nested blocks.
 * Fixed issue [#839](https://github.com/jakubpawlowicz/clean-css/issues/839) - allows URIs in import inlining rules.
 * Fixed issue [#840](https://github.com/jakubpawlowicz/clean-css/issues/840) - allows input source map as map object.
 * Fixed issue [#843](https://github.com/jakubpawlowicz/clean-css/issues/843) - regression in selector handling.

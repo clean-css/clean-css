@@ -394,22 +394,22 @@ vows.describe('./bin/cleancss')
   })
   .addBatch({
     'rounding precision': {
-      defaults: pipedContext('div{width:0.10051px}', '', {
+      'default': pipedContext('div{width:0.10051px}', '', {
         'should keep 2 decimal places': function (error, stdout) {
-          assert.equal(stdout, 'div{width:.1px}');
+          assert.equal(stdout, 'div{width:.10051px}');
         }
       }),
-      custom: pipedContext('div{width:0.00051px}', '--rounding-precision 4', {
+      'custom': pipedContext('div{width:0.00051px}', '--rounding-precision 4', {
         'should keep 4 decimal places': function (error, stdout) {
           assert.equal(stdout, 'div{width:.0005px}');
         }
       }),
-      zero: pipedContext('div{width:1.5051px}', '--rounding-precision 0', {
+      'zero': pipedContext('div{width:1.5051px}', '--rounding-precision 0', {
         'should keep 0 decimal places': function (error, stdout) {
           assert.equal(stdout, 'div{width:2px}');
         }
       }),
-      disabled: pipedContext('div{width:0.12345px}', '--rounding-precision \\\\-1', {
+      'disabled': pipedContext('div{width:0.12345px}', '--rounding-precision \\\\-1', {
         'should keep all decimal places': function (error, stdout) {
           assert.equal(stdout, 'div{width:.12345px}');
         }

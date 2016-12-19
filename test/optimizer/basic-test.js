@@ -681,10 +681,6 @@ vows.describe('simple optimizations')
         'a{margin:10.0em 15.50em 10.01em 0.0em}',
         'a{margin:10em 15.5em 10.01em 0}'
       ],
-      'fraction zeros after rounding': [
-        'a{margin:10.0010px}',
-        'a{margin:10px}'
-      ],
       'four zeros into one': [
         'a{margin:0 0 0 0}',
         'a{margin:0}'
@@ -714,6 +710,14 @@ vows.describe('simple optimizations')
         'a{max-height:0%}'
       ]
     }, { advanced: false })
+  )
+  .addBatch(
+    optimizerContext('zeros - rounding', {
+      'fractions are removed': [
+        'a{margin:10.0010px}',
+        'a{margin:10px}'
+      ]
+    }, { advanced: false, roundingPrecision: 2 })
   )
   .addBatch(
     optimizerContext('zeros with disabled zeroUnits', {

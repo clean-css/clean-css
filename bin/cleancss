@@ -21,7 +21,7 @@ commands
   .option('-o, --output [output-file]', 'Use [output-file] as output instead of STDOUT')
   .option('-s, --skip-import', 'Disable @import processing')
   .option('-t, --timeout [seconds]', 'Per connection timeout when fetching remote @imports (defaults to 5 seconds)')
-  .option('--rounding-precision [n]', 'Rounds pixel values to `N` decimal places. Defaults to 2. -1 disables rounding')
+  .option('--rounding-precision [n]', 'Rounds pixel values to `N` decimal places. -1 disables rounding (defaults to -1)')
   .option('--s0', 'Remove all special comments, i.e. /*! comment */')
   .option('--s1', 'Remove all special comments but the first one')
   .option('--semantic-merging', 'Enables unsafe mode by assuming BEM-like semantic stylesheets (warning, this may break your styling!)')

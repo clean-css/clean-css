@@ -874,17 +874,9 @@ vows.describe('integration tests')
         'div{margin:1.000em 2.00em 3.100em 4.01em}',
         'div{margin:1em 2em 3.1em 4.01em}'
       ],
-      'round pixels up to 2nd decimal place': [
+      'leave pixels as is': [
         'div{transform:translateY(-418.505123px)}',
-        'div{transform:translateY(-418.51px)}'
-      ],
-      'round pixels down to 2nd decimal place': [
-        'div{transform:translateY(0.504123px)}',
-        'div{transform:translateY(.5px)}'
-      ],
-      'do not round 2nd decimal place pixels': [
-        'div{transform:translateY(20.55px)}',
-        'div{transform:translateY(20.55px)}'
+        'div{transform:translateY(-418.505123px)}'
       ],
       'do not round percentages': [
         'div{left:20.505%}',
@@ -893,6 +885,22 @@ vows.describe('integration tests')
       'do not round ems': [
         'div{font-size:1.505em}',
         'div{font-size:1.505em}'
+      ]
+    })
+  )
+  .addBatch(
+    optimizerContext('floats - rounding to 4', {
+      'gives value correctly rounded': [
+        'div{transform:translateY(-418.505123px)}',
+        'div{transform:translateY(-418.5051px)}'
+      ]
+    }, { roundingPrecision: 4 })
+  )
+  .addBatch(
+    optimizerContext('floats - rounding to 2', {
+      'gives value correctly rounded': [
+        'div{transform:translateY(-418.505123px)}',
+        'div{transform:translateY(-418.51px)}'
       ],
       'rounds .9999 correctly': [
         'a{stroke-width:.99999px}',
@@ -902,18 +910,10 @@ vows.describe('integration tests')
         'a{stroke-width:9.995px}',
         'a{stroke-width:9.99px}'
       ]
-    })
+    }, { roundingPrecision: 2 })
   )
   .addBatch(
-    optimizerContext('floats custom rounding', {
-      'rounds to 4 values': [
-        'div{transform:translateY(-418.505123px)}',
-        'div{transform:translateY(-418.5051px)}'
-      ]
-    }, { roundingPrecision: 4 })
-  )
-  .addBatch(
-    optimizerContext('floats disabled rounding', {
+    optimizerContext('floats - rounding disabled', {
       'does not round': [
         'div{transform:translateY(-418.505123px)}',
         'div{transform:translateY(-418.505123px)}'

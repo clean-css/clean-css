@@ -29,6 +29,7 @@ There will be some breaking changes:
 
 * `root`, `relativeTo`, and `target` options are replaced by a single `rebaseTo` option - this means that rebasing URLs and import inlining is much simpler but may not be (YMMV) as powerful as in 3.x.
 * `debug` API option is gone as stats are always provided in output object under `stats` property
+* `roundingPrecision` is disabled by default
 
 Please note this list is not final. You are more than welcome to comment these changes in [4.0 release discussion](https://github.com/jakubpawlowicz/clean-css/issues/842) thread.
 
@@ -60,7 +61,7 @@ cleancss [options] source-file, [source-file, ...]
 -o, --output [output-file]     Use [output-file] as output instead of STDOUT
 -s, --skip-import              Disable @import processing
 -t, --timeout [seconds]        Per connection timeout when fetching remote @imports (defaults to 5 seconds)
---rounding-precision [n]       Rounds pixel values to `N` decimal places. Defaults to 2. -1 disables rounding
+--rounding-precision [n]       Rounds pixel values to `N` decimal places. -1 disables rounding (defaults to -1)
 --s0                           Remove all special comments, i.e. /*! comment */
 --s1                           Remove all special comments but the first one
 --semantic-merging             Enables unsafe mode by assuming BEM-like semantic stylesheets (warning, this may break your styling!)
@@ -132,7 +133,7 @@ CleanCSS constructor accepts a hash as a parameter, i.e.,
 * `rebase` - set to false to skip URL rebasing
 * `rebaseTo` - a directory to which all URLs are rebased (most likely the directory under which the output file will live), defaults to the current directory
 * `restructuring` - set to false to disable restructuring in advanced optimizations
-* `roundingPrecision` - rounding precision; defaults to `2`; `-1` disables rounding
+* `roundingPrecision` - rounding precision; `-1` disables rounding; defaults to `-1`
 * `semanticMerging` - set to true to enable semantic merging mode which assumes BEM-like content (default is false as it's highly likely this will break your stylesheets - **use with caution**!)
 * `shorthandCompacting` - set to false to skip shorthand compacting (default is true unless sourceMap is set when it's false)
 * `sourceMap` - exposes source map under `sourceMap` property, e.g. `new CleanCSS().minify(source).sourceMap` (default is false)

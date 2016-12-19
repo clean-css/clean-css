@@ -759,7 +759,7 @@ select[multiple].form-group-lg .form-control,textarea.form-group-lg .form-contro
 .form-horizontal .form-group{margin-right:-15px;margin-left:-15px}
 .form-horizontal .has-feedback .form-control-feedback{right:15px}
 @media (min-width:768px){
-.form-horizontal .form-group-lg .control-label{padding-top:14.33px}
+.form-horizontal .form-group-lg .control-label{padding-top:14.333333px}
 .form-horizontal .form-group-sm .control-label{padding-top:6px}
 }
 .btn{display:inline-block;padding:6px 12px;margin-bottom:0;font-size:14px;font-weight:400;line-height:1.42857143;text-align:center;white-space:nowrap;vertical-align:middle;-ms-touch-action:manipulation;touch-action:manipulation;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;border:1px solid transparent;border-radius:4px}
@@ -1296,7 +1296,7 @@ button.close{-webkit-appearance:none;padding:0;cursor:pointer;background:0 0;bor
 .modal-backdrop{position:absolute;top:0;right:0;left:0;background-color:#000}
 .modal-backdrop.fade{filter:alpha(opacity=0);opacity:0}
 .modal-backdrop.in{filter:alpha(opacity=50);opacity:.5}
-.modal-header{min-height:16.43px;padding:15px;border-bottom:1px solid #e5e5e5}
+.modal-header{min-height:16.42857143px;padding:15px;border-bottom:1px solid #e5e5e5}
 .modal-header .close{margin-top:-2px}
 .modal-title{margin:0;line-height:1.42857143}
 .modal-body{position:relative;padding:15px}

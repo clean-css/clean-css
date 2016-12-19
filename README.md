@@ -181,6 +181,7 @@ If you don't provide a callback, then remote `@import`s will be left intact.
 
 ### How to use clean-css from a web browser?
 
+* https://jakubpawlowicz.github.io/clean-css/ (official web interface)
 * http://refresh-sf.com/
 * http://adamburgess.github.io/clean-css-online/
 

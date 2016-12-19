@@ -21,7 +21,16 @@ According to [tests](http://goalsmashers.github.io/css-minification-benchmark/) 
 
 ## Usage
 
-### This documentation refers to a pre-release version of clean-css. See [3.4 branch](https://github.com/jakubpawlowicz/clean-css/tree/3.4) for the current release docs.
+### This documentation refers to a pre-release version of clean-css 4.0. See [3.4 branch](https://github.com/jakubpawlowicz/clean-css/tree/3.4) for the current release docs.
+
+### What will change in clean-css 4?
+
+There will be some breaking changes:
+
+* `root`, `relativeTo`, and `target` options are replaced by a single `rebaseTo` option - this means that rebasing URLs and import inlining is much simpler but may not be (YMMV) as powerful as in 3.x.
+* `debug` API option is gone as stats are always provided in output object under `stats` property
+
+Please note this list is not final. You are more than welcome to comment these changes in [4.0 release discussion](https://github.com/jakubpawlowicz/clean-css/issues/842) thread.
 
 ### What are the requirements?
 

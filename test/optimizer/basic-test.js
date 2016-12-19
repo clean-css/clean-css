@@ -784,6 +784,10 @@ vows.describe('simple optimizations')
       'tab inside property': [
         'a{border:2px\tsolid}',
         'a{border:2px solid}'
+      ],
+      'line breaks and special comments inside a rule': [
+        'a{\ncolor:red;\n/*!*/\n\n\n\n\n\n\n/*!*/\n}',
+        'a{color:red/*!*//*!*/}'
       ]
     }, { advanced: false })
   )

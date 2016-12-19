@@ -75,6 +75,10 @@ vows.describe('remove duplicates')
       'no rule after comma with comma last': [
         'h1{color:#000}h2,{color:#000}',
         'h1{color:#000},h2{color:#000}'
+      ],
+      'with @ chars in rule names': [
+        '.col-1\@4{width:25%}.col-2\@4{width:50%}.col-1\@2{width:50%}.col-3\@4{width:75%}.col-4\@4{width:100%}.col-1\@1{width:100%}',
+        '.col-1\@4{width:25%}.col-1\@2,.col-2\@4{width:50%}.col-3\@4{width:75%}.col-1\@1,.col-4\@4{width:100%}'
       ]
     })
   )

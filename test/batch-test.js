@@ -1,3 +1,4 @@
+var exec = require('child_process').exec;
 var vows = require('vows');
 var path = require('path');
 var fs = require('fs');
@@ -24,7 +25,7 @@ var batchContexts = function () {
 
         return {
           plain: '@import "' + plainPath + '";',
-          preminified: fs.readFileSync(minPath, 'utf8')
+          preminified: fs.readFileSync(minPath, 'utf8').trim()
         };
       },
       'minifying': {
@@ -63,6 +64,25 @@ var batchContexts = function () {
 
           minifiedTokens.forEach(function (line, i) {
             assert.equal(line, preminifiedTokens[i]);
+          });
+        }
+      },
+      'minifying via CLI': {
+        'topic': function (data) {
+          var isIE7Mode = filename.indexOf('ie7') > 0;
+
+          exec(
+            '__DIRECT__=1 ./bin/cleancss -b ' + (isIE7Mode ? '-c ie7 ' : '') + path.join(dir, filename),
+            { maxBuffer: 500 * 1024 },
+            this.callback.bind(null, data)
+          );
+        },
+        'outputs right content': function (data, error, stdout) {
+          var optimizedLines = stdout.split(lineBreak);
+          var preoptimizedLines = data.preminified.split(lineBreak);
+
+          optimizedLines.forEach(function (line, i) {
+            assert.equal(line, preoptimizedLines[i]);
           });
         }
       }

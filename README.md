@@ -30,6 +30,7 @@ There will be some breaking changes:
 * `root`, `relativeTo`, and `target` options are replaced by a single `rebaseTo` option - this means that rebasing URLs and import inlining is much simpler but may not be (YMMV) as powerful as in 3.x.
 * `debug` API option is gone as stats are always provided in output object under `stats` property
 * `roundingPrecision` is disabled by default
+* `roundingPrecision` applies to **all** units now, not only `px` as in 3.x;
 
 Please note this list is not final. You are more than welcome to comment these changes in [4.0 release discussion](https://github.com/jakubpawlowicz/clean-css/issues/842) thread.
 
@@ -225,6 +226,22 @@ Source maps are supported since version 3.0.
 Additionally to mapping original CSS files, clean-css also supports input source maps, so minified styles can be mapped into their [Less](http://lesscss.org/) or [Sass](http://sass-lang.com/) sources directly.
 
 Source maps are generated using [source-map](https://github.com/mozilla/source-map/) module from Mozilla.
+
+### How to specify custom rounding precision?
+
+The `roundingPrecision` (API) and `--rounding-precision` (CLI) option accept a string with per-unit rounding precision settings, e.g.
+
+```
+clean-css --rounding-precision all:3,px:5
+```
+
+or
+
+```js
+new CleanCSS({ roundingPrecision: 'all:3,px:5' }).minify(...)
+```
+
+which sets all units rounding precision to 3 digits except `px` unit precision of 5 digits.
 
 #### Using CLI
 

@@ -483,11 +483,11 @@ vows.describe('simple optimizations')
       ],
       'percents': [
         'a{left:20.1231%}',
-        'a{left:20.1231%}'
+        'a{left:20.123%}'
       ],
       'ems': [
         'a{left:1.1231em}',
-        'a{left:1.1231em}'
+        'a{left:1.123em}'
       ]
     }, { advanced: false, roundingPrecision: 3 })
   )
@@ -522,6 +522,22 @@ vows.describe('simple optimizations')
         'a{left:1.1231em}'
       ]
     }, { advanced: false, roundingPrecision: '\'-1\'' })
+  )
+  .addBatch(
+    optimizerContext('fine-grained rounding', {
+      'pixels': [
+        'a{transform:translateY(123.31135px)}',
+        'a{transform:translateY(123px)}'
+      ],
+      'percents': [
+        'a{left:20.1231%}',
+        'a{left:20.1%}'
+      ],
+      'ems': [
+        'a{left:1.1231em}',
+        'a{left:1.12em}'
+      ]
+    }, { advanced: false, roundingPrecision: '*:2,%:1,px:0' })
   )
   .addBatch(
     optimizerContext('units', {

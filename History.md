@@ -7,6 +7,7 @@
 * Replaces the old tokenizer with a new one which doesn't use any escaping.
 * Replaces the old `@import` inlining with one on top of the new tokenizer.
 * Simplifies URL rebasing with a single `rebaseTo` option in API or inferred from `--output` in CLI.
+* Fixed issue [#686](https://github.com/jakubpawlowicz/clean-css/issues/686) - adds rounding precision for all units.
 * Fixed issue [#818](https://github.com/jakubpawlowicz/clean-css/issues/818) - disables `px` rounding by default.
 * Fixed issue [#834](https://github.com/jakubpawlowicz/clean-css/issues/834) - adds extra line break in nested blocks.
 * Fixed issue [#839](https://github.com/jakubpawlowicz/clean-css/issues/839) - allows URIs in import inlining rules.

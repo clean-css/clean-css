@@ -413,6 +413,11 @@ vows.describe('./bin/cleancss')
         'should keep all decimal places': function (error, stdout) {
           assert.equal(stdout, 'div{width:.12345px}');
         }
+      }),
+      'fine-grained': pipedContext('div{height:10.515rem;width:12.12345px}', '--rounding-precision rem:2,px:1', {
+        'should keep all decimal places': function (error, stdout) {
+          assert.equal(stdout, 'div{height:10.52rem;width:12.1px}');
+        }
       })
     }
   })

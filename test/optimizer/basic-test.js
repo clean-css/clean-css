@@ -911,4 +911,24 @@ vows.describe('simple optimizations')
       ]
     }, { advanced: false, compatibility: { properties: { shorterLengthUnits: true }, units: { in: false, pt: false } } })
   )
+  .addBatch(
+    optimizerContext('property name validation', {
+      'trimmed': [
+        'a{-webkit-:0 0 2px red}',
+        ''
+      ],
+      'with incorrect characters': [
+        'a{color+other:red}',
+        ''
+      ],
+      'for chrome only': [
+        'a{-chrome-:only(;color:red;)}',
+        'a{-chrome-:only(;color:red;)}'
+      ],
+      'custom vendor prefix': [
+        'a{-custom-color:red}',
+        'a{-custom-color:red}'
+      ]
+    }, { advanced: false })
+  )
   .export(module);

@@ -131,6 +131,21 @@ vows.describe('module tests').addBatch({
       assert.equal(minified.warnings[1], 'Invalid selector \'color:#535353}p\' at 1:16. Ignoring.');
     }
   },
+  'warning on invalid property': {
+    'topic': function () {
+      return new CleanCSS().minify('a{-webkit-:0px}');
+    },
+    'should minify correctly': function (error, minified) {
+      assert.isEmpty(minified.styles);
+    },
+    'should raise no errors': function (error, minified) {
+      assert.isEmpty(minified.errors);
+    },
+    'should raise one warning': function (error, minified) {
+      assert.lengthOf(minified.warnings, 1);
+      assert.equal(minified.warnings[0], 'Invalid property name \'-webkit-\' at 1:2. Ignoring.');
+    }
+  },
   'warnings on empty properties': {
     'topic': function () {
       return new CleanCSS().minify('a{color:}');

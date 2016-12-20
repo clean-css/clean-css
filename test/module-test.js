@@ -112,7 +112,7 @@ vows.describe('module tests').addBatch({
     },
     'should raise one warning': function (error, minified) {
       assert.lengthOf(minified.warnings, 1);
-      assert.equal(minified.warnings[0], 'Unexpected \'}\' at line 1, column 16.');
+      assert.equal(minified.warnings[0], 'Unexpected \'}\' at 1:16.');
     }
   },
   'warnings on unexpected body': {
@@ -127,8 +127,8 @@ vows.describe('module tests').addBatch({
     },
     'should raise one warning': function (error, minified) {
       assert.lengthOf(minified.warnings, 2);
-      assert.equal(minified.warnings[0], 'Unexpected \'}\' at line 1, column 29.');
-      assert.equal(minified.warnings[1], 'Invalid selector \'color:#535353}p\' at line 1, column 16. Ignoring.');
+      assert.equal(minified.warnings[0], 'Unexpected \'}\' at 1:29.');
+      assert.equal(minified.warnings[1], 'Invalid selector \'color:#535353}p\' at 1:16. Ignoring.');
     }
   },
   'warnings on empty properties': {
@@ -143,7 +143,7 @@ vows.describe('module tests').addBatch({
     },
     'should raise one warning': function (error, minified) {
       assert.lengthOf(minified.warnings, 1);
-      assert.equal(minified.warnings[0], 'Empty property \'color\' at line 1, column 2. Ignoring.');
+      assert.equal(minified.warnings[0], 'Empty property \'color\' at 1:2. Ignoring.');
     }
   },
   'warnings on broken urls': {
@@ -158,8 +158,8 @@ vows.describe('module tests').addBatch({
     },
     'should raise one warning': function (error, minified) {
       assert.lengthOf(minified.warnings, 2);
-      assert.equal(minified.warnings[0], 'Missing \'}\' at line 1, column 24.');
-      assert.equal(minified.warnings[1], 'Broken URL \'url(image/\' at line 1, column 13. Ignoring.');
+      assert.equal(minified.warnings[0], 'Missing \'}\' at 1:24.');
+      assert.equal(minified.warnings[1], 'Broken URL \'url(image/\' at 1:13. Ignoring.');
     }
   },
   'no errors': {

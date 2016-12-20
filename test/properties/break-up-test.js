@@ -519,7 +519,7 @@ vows.describe(breakUp)
             [
               'property',
               ['property-name', 'border-radius'],
-              ['property-value', '0px'],
+              ['property-value', '0px', [[1, 20, undefined]]],
               ['property-value', '/']
             ]
           ]);
@@ -534,7 +534,7 @@ vows.describe(breakUp)
             [
               'property',
               ['property-name', 'border-radius'],
-              ['property-value', '/'],
+              ['property-value', '/', [[1, 20, undefined]]],
               ['property-value', '0px']
             ]
           ]);

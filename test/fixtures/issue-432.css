@@ -1,0 +1,77 @@
+/* Assets with non-stylistic syntax */
+
+.c {
+
+    background-image:url('images/image.png');
+
+}
+
+.c-2 {
+
+    background-image:    url('images/image.png');
+
+}
+
+.c-3 {
+
+    background-image:
+    url('images/image.png');
+
+}
+
+.c-4 {
+
+    background-image: url(    'images/image.png');
+
+}
+
+.c-5 {
+
+    background-image: url(
+'images/image.png');
+
+}
+
+.c-6 {
+
+    background-image: url('    images/image.png');
+
+}
+
+.c-7 {
+
+    background-image: url('images/image.png    ');
+
+}
+
+.c-8 {
+
+    background-image: url('images/image.png'    );
+
+}
+
+.c-9 {
+
+    background-image: url('images/image.png'
+);
+
+}
+
+.c-10 {
+
+    background-image: url('images/image.png')    ;
+
+}
+
+.c-11 {
+
+    background-image: url('images/image.png')
+;
+
+}
+
+.c-12 {
+
+    background-image: URL('images/image.png');
+
+}

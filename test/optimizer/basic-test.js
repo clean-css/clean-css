@@ -380,6 +380,30 @@ vows.describe('simple optimizations')
     }, { advanced: false })
   )
   .addBatch(
+    optimizerContext('font-weight - when disabled', {
+      'normal to 400': [
+        'a{font-weight:normal}',
+        'a{font-weight:normal}'
+      ],
+      'bold to 700': [
+        'a{font-weight:bold}',
+        'a{font-weight:bold}'
+      ],
+      'any other': [
+        'a{font-weight:bolder}',
+        'a{font-weight:bolder}'
+      ],
+      'in shorthand': [
+        'a{font:normal 13px/20px sans-serif}',
+        'a{font:normal 13px/20px sans-serif}'
+      ],
+      'in shorthand with fractions': [
+        'a{font:bold .9em sans-serif}',
+        'a{font:bold .9em sans-serif}'
+      ]
+    }, { advanced: false, compatibility: { properties: { fontWeight: false } } })
+  )
+  .addBatch(
     optimizerContext('ie hacks', {
       'underscore': [
         'a{_width:101px}',

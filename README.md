@@ -62,6 +62,7 @@ cleancss [options] source-file, [source-file, ...]
 -o, --output [output-file]     Use [output-file] as output instead of STDOUT
 -s, --skip-import              Disable @import processing
 -t, --timeout [seconds]        Per connection timeout when fetching remote @imports (defaults to 5 seconds)
+--beautify                     Formats output CSS by using indentation and one rule or property per line
 --rounding-precision [n]       Rounds pixel values to `N` decimal places. -1 disables rounding (defaults to -1)
 --s0                           Remove all special comments, i.e. /*! comment */
 --s1                           Remove all special comments but the first one
@@ -123,6 +124,7 @@ CleanCSS constructor accepts a hash as a parameter, i.e.,
 
 * `advanced` - set to false to disable advanced optimizations - selector & property merging, reduction, etc.
 * `aggressiveMerging` - set to false to disable aggressive merging of properties.
+* `beautify` - formats output CSS by using indentation and one rule or property per line.
 * `benchmark` - turns on benchmarking mode measuring time spent on cleaning up (run `npm run bench` to see example)
 * `compatibility` - enables compatibility mode, see [below for more examples](#how-to-set-a-compatibility-mode)
 * `inliner` - a hash of options for `@import` inliner, see [test/protocol-imports-test.js](https://github.com/jakubpawlowicz/clean-css/blob/master/test/protocol-imports-test.js#L372) for examples, or [this comment](https://github.com/jakubpawlowicz/clean-css/issues/612#issuecomment-119594185) for a proxy use case.

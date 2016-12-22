@@ -100,6 +100,10 @@ vows.describe('simple optimizations')
       'quotes #2': [
         '.b[data-json=\'"aaaa":"bbbb"\']{color:red}',
         '.b[data-json=\'"aaaa":"bbbb"\']{color:red}'
+      ],
+      'no rule scope': [
+        '{overflow:hidden}',
+        ''
       ]
     }, { advanced: false })
   )

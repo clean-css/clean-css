@@ -1455,6 +1455,66 @@ vows.describe(tokenize)
           ]
         ]
       ],
+      '@apply - between properties': [
+        'a{display:block;@apply(--rule);color:red}',
+        [
+          [
+            'rule',
+            [
+              [
+                'rule-scope',
+                'a',
+                [
+                  [1, 0, undefined]
+                ]
+              ]
+            ],
+            [
+              [
+                'property',
+                [
+                  'property-name',
+                  'display',
+                  [
+                    [1, 2, undefined]
+                  ]
+                ],
+                [
+                  'property-value',
+                  'block',
+                  [
+                    [1, 10, undefined]
+                  ]
+                ]
+              ],
+              [
+                'at-rule',
+                '@apply(--rule)',
+                [
+                  [1, 16, undefined]
+                ]
+              ],
+              [
+                'property',
+                [
+                  'property-name',
+                  'color',
+                  [
+                    [1, 31, undefined]
+                  ]
+                ],
+                [
+                  'property-value',
+                  'red',
+                  [
+                    [1, 37, undefined]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ],
       '@apply within a variable': [
         ':root{--layout-horizontal:{@apply(--layout)};}',
         [

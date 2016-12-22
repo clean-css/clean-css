@@ -913,12 +913,20 @@ vows.describe('integration tests')
     }, { roundingPrecision: 2 })
   )
   .addBatch(
-    optimizerContext('floats - rounding disabled', {
+    optimizerContext('floats - rounding disabled via -1', {
       'does not round': [
         'div{transform:translateY(-418.505123px)}',
         'div{transform:translateY(-418.505123px)}'
       ]
     }, { roundingPrecision: -1 })
+  )
+  .addBatch(
+    optimizerContext('floats - rounding disabled', {
+      'does not round': [
+        'div{transform:translateY(-418.505123px)}',
+        'div{transform:translateY(-418.505123px)}'
+      ]
+    }, { roundingPrecision: 'off' })
   )
   .addBatch(
     optimizerContext('colors', {

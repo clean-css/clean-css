@@ -11,22 +11,22 @@ vows.describe(roundingPrecisionFrom)
         return roundingPrecisionFrom(null);
       },
       'is disabled for all units': function (precision) {
-        assert.equal(precision.ch, -1);
-        assert.equal(precision.cm, -1);
-        assert.equal(precision.em, -1);
-        assert.equal(precision.ex, -1);
-        assert.equal(precision.in, -1);
-        assert.equal(precision.mm, -1);
-        assert.equal(precision.pc, -1);
-        assert.equal(precision.pt, -1);
-        assert.equal(precision.px, -1);
-        assert.equal(precision.q, -1);
-        assert.equal(precision.rem, -1);
-        assert.equal(precision.vh, -1);
-        assert.equal(precision.vmax, -1);
-        assert.equal(precision.vmin, -1);
-        assert.equal(precision.vw, -1);
-        assert.equal(precision['%'], -1);
+        assert.equal(precision.ch, 'off');
+        assert.equal(precision.cm, 'off');
+        assert.equal(precision.em, 'off');
+        assert.equal(precision.ex, 'off');
+        assert.equal(precision.in, 'off');
+        assert.equal(precision.mm, 'off');
+        assert.equal(precision.pc, 'off');
+        assert.equal(precision.pt, 'off');
+        assert.equal(precision.px, 'off');
+        assert.equal(precision.q, 'off');
+        assert.equal(precision.rem, 'off');
+        assert.equal(precision.vh, 'off');
+        assert.equal(precision.vmax, 'off');
+        assert.equal(precision.vmin, 'off');
+        assert.equal(precision.vw, 'off');
+        assert.equal(precision['%'], 'off');
       }
     },
     'shortcut': {
@@ -80,22 +80,45 @@ vows.describe(roundingPrecisionFrom)
         return roundingPrecisionFrom({ px: 5, q: 7 });
       },
       'is set for all units': function (precision) {
-        assert.equal(precision.ch, -1);
-        assert.equal(precision.cm, -1);
-        assert.equal(precision.em, -1);
-        assert.equal(precision.ex, -1);
-        assert.equal(precision.in, -1);
-        assert.equal(precision.mm, -1);
-        assert.equal(precision.pc, -1);
-        assert.equal(precision.pt, -1);
+        assert.equal(precision.ch, 'off');
+        assert.equal(precision.cm, 'off');
+        assert.equal(precision.em, 'off');
+        assert.equal(precision.ex, 'off');
+        assert.equal(precision.in, 'off');
+        assert.equal(precision.mm, 'off');
+        assert.equal(precision.pc, 'off');
+        assert.equal(precision.pt, 'off');
         assert.equal(precision.px, 5);
         assert.equal(precision.q, 7);
-        assert.equal(precision.rem, -1);
-        assert.equal(precision.vh, -1);
-        assert.equal(precision.vmax, -1);
-        assert.equal(precision.vmin, -1);
-        assert.equal(precision.vw, -1);
-        assert.equal(precision['%'], -1);
+        assert.equal(precision.rem, 'off');
+        assert.equal(precision.vh, 'off');
+        assert.equal(precision.vmax, 'off');
+        assert.equal(precision.vmin, 'off');
+        assert.equal(precision.vw, 'off');
+        assert.equal(precision['%'], 'off');
+      }
+    },
+    'keyword': {
+      'topic': function () {
+        return roundingPrecisionFrom('off');
+      },
+      'is set for all units': function (precision) {
+        assert.equal(precision.ch, 'off');
+        assert.equal(precision.cm, 'off');
+        assert.equal(precision.em, 'off');
+        assert.equal(precision.ex, 'off');
+        assert.equal(precision.in, 'off');
+        assert.equal(precision.mm, 'off');
+        assert.equal(precision.pc, 'off');
+        assert.equal(precision.pt, 'off');
+        assert.equal(precision.px, 'off');
+        assert.equal(precision.q, 'off');
+        assert.equal(precision.rem, 'off');
+        assert.equal(precision.vh, 'off');
+        assert.equal(precision.vmax, 'off');
+        assert.equal(precision.vmin, 'off');
+        assert.equal(precision.vw, 'off');
+        assert.equal(precision['%'], 'off');
       }
     }
   })
@@ -161,7 +184,7 @@ vows.describe(roundingPrecisionFrom)
         assert.equal(precision.pt, 3);
         assert.equal(precision.px, 6);
         assert.equal(precision.q, 3);
-        assert.equal(precision.rem, -1);
+        assert.equal(precision.rem, 'off');
         assert.equal(precision.vh, 3);
         assert.equal(precision.vmax, 3);
         assert.equal(precision.vmin, 3);
@@ -175,21 +198,44 @@ vows.describe(roundingPrecisionFrom)
       },
       'is set for all units': function (precision) {
         assert.equal(precision.ch, 1);
-        assert.equal(precision.cm, -1);
-        assert.equal(precision.em, -1);
-        assert.equal(precision.ex, -1);
-        assert.equal(precision.in, -1);
-        assert.equal(precision.mm, -1);
-        assert.equal(precision.pc, -1);
-        assert.equal(precision.pt, -1);
+        assert.equal(precision.cm, 'off');
+        assert.equal(precision.em, 'off');
+        assert.equal(precision.ex, 'off');
+        assert.equal(precision.in, 'off');
+        assert.equal(precision.mm, 'off');
+        assert.equal(precision.pc, 'off');
+        assert.equal(precision.pt, 'off');
         assert.equal(precision.px, 6);
-        assert.equal(precision.q, -1);
-        assert.equal(precision.rem, -1);
-        assert.equal(precision.vh, -1);
-        assert.equal(precision.vmax, -1);
-        assert.equal(precision.vmin, -1);
-        assert.equal(precision.vw, -1);
-        assert.equal(precision['%'], -1);
+        assert.equal(precision.q, 'off');
+        assert.equal(precision.rem, 'off');
+        assert.equal(precision.vh, 'off');
+        assert.equal(precision.vmax, 'off');
+        assert.equal(precision.vmin, 'off');
+        assert.equal(precision.vw, 'off');
+        assert.equal(precision['%'], 'off');
+      }
+    },
+    'overriden values via keyword': {
+      'topic': function () {
+        return roundingPrecisionFrom('ch:1,rem:off,px:6');
+      },
+      'is set for all units': function (precision) {
+        assert.equal(precision.ch, 1);
+        assert.equal(precision.cm, 'off');
+        assert.equal(precision.em, 'off');
+        assert.equal(precision.ex, 'off');
+        assert.equal(precision.in, 'off');
+        assert.equal(precision.mm, 'off');
+        assert.equal(precision.pc, 'off');
+        assert.equal(precision.pt, 'off');
+        assert.equal(precision.px, 6);
+        assert.equal(precision.q, 'off');
+        assert.equal(precision.rem, 'off');
+        assert.equal(precision.vh, 'off');
+        assert.equal(precision.vmax, 'off');
+        assert.equal(precision.vmin, 'off');
+        assert.equal(precision.vw, 'off');
+        assert.equal(precision['%'], 'off');
       }
     },
     'non numeric value': {
@@ -197,22 +243,22 @@ vows.describe(roundingPrecisionFrom)
         return roundingPrecisionFrom('ch:a,rem:2,px:c');
       },
       'is set for all units': function (precision) {
-        assert.equal(precision.ch, -1);
-        assert.equal(precision.cm, -1);
-        assert.equal(precision.em, -1);
-        assert.equal(precision.ex, -1);
-        assert.equal(precision.in, -1);
-        assert.equal(precision.mm, -1);
-        assert.equal(precision.pc, -1);
-        assert.equal(precision.pt, -1);
-        assert.equal(precision.px, -1);
-        assert.equal(precision.q, -1);
+        assert.equal(precision.ch, 'off');
+        assert.equal(precision.cm, 'off');
+        assert.equal(precision.em, 'off');
+        assert.equal(precision.ex, 'off');
+        assert.equal(precision.in, 'off');
+        assert.equal(precision.mm, 'off');
+        assert.equal(precision.pc, 'off');
+        assert.equal(precision.pt, 'off');
+        assert.equal(precision.px, 'off');
+        assert.equal(precision.q, 'off');
         assert.equal(precision.rem, 2);
-        assert.equal(precision.vh, -1);
-        assert.equal(precision.vmax, -1);
-        assert.equal(precision.vmin, -1);
-        assert.equal(precision.vw, -1);
-        assert.equal(precision['%'], -1);
+        assert.equal(precision.vh, 'off');
+        assert.equal(precision.vmax, 'off');
+        assert.equal(precision.vmin, 'off');
+        assert.equal(precision.vw, 'off');
+        assert.equal(precision['%'], 'off');
       }
     }
   })

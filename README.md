@@ -63,7 +63,7 @@ cleancss [options] source-file, [source-file, ...]
 -s, --skip-import              Disable @import processing
 -t, --timeout [seconds]        Per connection timeout when fetching remote @imports (defaults to 5 seconds)
 --beautify                     Formats output CSS by using indentation and one rule or property per line
---rounding-precision [n]       Rounds pixel values to `N` decimal places. -1 disables rounding (defaults to -1)
+--rounding-precision [n]       Rounds pixel values to `N` decimal places. `off` disables rounding (defaults to `off`)
 --s0                           Remove all special comments, i.e. /*! comment */
 --s1                           Remove all special comments but the first one
 --semantic-merging             Enables unsafe mode by assuming BEM-like semantic stylesheets (warning, this may break your styling!)
@@ -136,7 +136,7 @@ CleanCSS constructor accepts a hash as a parameter, i.e.,
 * `rebase` - set to false to skip URL rebasing
 * `rebaseTo` - a directory to which all URLs are rebased (most likely the directory under which the output file will live), defaults to the current directory
 * `restructuring` - set to false to disable restructuring in advanced optimizations
-* `roundingPrecision` - rounding precision; `-1` disables rounding; defaults to `-1`
+* `roundingPrecision` - rounding precision; `off` disables rounding; defaults to `off`
 * `semanticMerging` - set to true to enable semantic merging mode which assumes BEM-like content (default is false as it's highly likely this will break your stylesheets - **use with caution**!)
 * `shorthandCompacting` - set to false to skip shorthand compacting (default is true unless sourceMap is set when it's false)
 * `sourceMap` - exposes source map under `sourceMap` property, e.g. `new CleanCSS().minify(source).sourceMap` (default is false)

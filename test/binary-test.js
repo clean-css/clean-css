@@ -416,7 +416,12 @@ vows.describe('./bin/cleancss')
           assert.equal(stdout, 'div{width:2px}');
         }
       }),
-      'disabled': pipedContext('div{width:0.12345px}', '--rounding-precision \\\\-1', {
+      'disabled': pipedContext('div{width:0.12345px}', '--rounding-precision off', {
+        'should keep all decimal places': function (error, stdout) {
+          assert.equal(stdout, 'div{width:.12345px}');
+        }
+      }),
+      'disabled via -1': pipedContext('div{width:0.12345px}', '--rounding-precision \\\\-1', {
         'should keep all decimal places': function (error, stdout) {
           assert.equal(stdout, 'div{width:.12345px}');
         }

@@ -529,7 +529,7 @@ vows.describe('simple optimizations')
         'a{left:1.1231em}',
         'a{left:1.1231em}'
       ]
-    }, { advanced: false, roundingPrecision: -1 })
+    }, { advanced: false, roundingPrecision: 'off' })
   )
   .addBatch(
     optimizerContext('rounding disabled when option value not castable to int', {

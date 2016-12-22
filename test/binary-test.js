@@ -87,6 +87,13 @@ vows.describe('./bin/cleancss')
     })
   })
   .addBatch({
+    'beautify': pipedContext('a{color: #f00}', '--beautify', {
+      'outputs right styles': function (error, stdout) {
+        assert.equal(stdout, 'a {\n  color: red\n}');
+      }
+    })
+  })
+  .addBatch({
     'strip all but first comment': pipedContext('/*!1st*//*! 2nd */a{display:block}', '--s1', {
       'should keep the 2nd comment': function (error, stdout) {
         assert.equal(stdout, '/*!1st*/a{display:block}');

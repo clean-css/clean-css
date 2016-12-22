@@ -2559,4 +2559,60 @@ vows.describe('integration tests')
       ]
     })
   )
+  .addBatch(
+    optimizerContext('beautify formatting', {
+      'rule': [
+        'a{color:red}',
+        'a {' + lineBreak + '  color: red' + lineBreak + '}'
+      ],
+      'rules': [
+        'a{color:red}p{color:#000;width:100%}',
+        'a {' + lineBreak + '  color: red' + lineBreak + '}' + lineBreak + 'p {' + lineBreak + '  color: #000;' + lineBreak + '  width: 100%' + lineBreak + '}'
+      ],
+      'multi-scope rule': [
+        'a,div{color:red}',
+        'a,' + lineBreak + 'div {' + lineBreak + '  color: red' + lineBreak + '}'
+      ],
+      'relation rule': [
+        '.one>.two{color:red}',
+        '.one > .two {' + lineBreak + '  color: red' + lineBreak + '}'
+      ],
+      'at rule block': [
+        '@font-face{font-family:test;src:url(/fonts/test.woff)}',
+        '@font-face {' + lineBreak + '  font-family: test;' + lineBreak + '  src: url(/fonts/test.woff)' + lineBreak + '}'
+      ],
+      'nested rule block': [
+        '@media screen{a{color:red}}',
+        '@media screen {' + lineBreak + '  a {' + lineBreak + '    color: red' + lineBreak + '  }' + lineBreak + '}'
+      ],
+      'nested rule block rules': [
+        '@media screen{a{color:red}div{color:#000}}',
+        '@media screen {' + lineBreak + '  a {' + lineBreak + '    color: red' + lineBreak + '  }' + lineBreak + '  div {' + lineBreak + '    color: #000' + lineBreak + '  }' + lineBreak + '}'
+      ],
+      'variable': [
+        'a{--my-toolbar:{margin:10px;padding:10px};}',
+        'a {' + lineBreak + '  --my-toolbar: {' + lineBreak + '    margin: 10px;' + lineBreak + '    padding: 10px' + lineBreak + '  };' + lineBreak + '}'
+      ],
+      'variable and rules': [
+        'a{--my-toolbar:{margin:10px;padding:10px};color:red}',
+        'a {' + lineBreak + '  --my-toolbar: {' + lineBreak + '    margin: 10px;' + lineBreak + '    padding: 10px' + lineBreak + '  };' + lineBreak + '  color: red' + lineBreak + '}'
+      ],
+      'at-rule and rules': [
+        'a{display:block;@apply(--rule1);color:red}',
+        'a {' + lineBreak + '  display: block;' + lineBreak + '  @apply(--rule1);' + lineBreak + '  color: red' + lineBreak + '}'
+      ]
+    }, { beautify: true })
+  )
+  .addBatch(
+    optimizerContext('beautify formatting and keep breaks', {
+      'rule': [
+        'a{color:red}',
+        'a {' + lineBreak + '  color: red' + lineBreak + '}'
+      ],
+      'nested rule block rules': [
+        '@media screen{a{color:red}div{color:#000}}',
+        '@media screen {' + lineBreak + '  a {' + lineBreak + '    color: red' + lineBreak + '  }' + lineBreak + '  div {' + lineBreak + '    color: #000' + lineBreak + '  }' + lineBreak + '}'
+      ]
+    }, { beautify: true, keepBreaks: true })
+  )
   .export(module);

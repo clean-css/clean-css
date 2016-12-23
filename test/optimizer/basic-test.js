@@ -104,6 +104,18 @@ vows.describe('simple optimizations')
       'no rule scope': [
         '{overflow:hidden}',
         ''
+      ],
+      'invalid characters #1': [
+        '<![CDATA[p.b{background:red}]]>',
+        ''
+      ],
+      'invalid characters #2': [
+        '<funky{background:red}',
+        ''
+      ],
+      'invalid characters #3 - relation at the beginning': [
+        '>.funky{background:red}',
+        ''
       ]
     }, { advanced: false })
   )

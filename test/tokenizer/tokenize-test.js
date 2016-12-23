@@ -3498,6 +3498,23 @@ vows.describe(tokenize)
       'logs them correctly': function (warnings) {
         assert.deepEqual(warnings, ['Missing \'}\' at one.css:1:15.']);
       }
+    },
+    'warnings - extra characters': {
+      'topic': function () {
+        var warnings = [];
+
+        tokenize('<![CDATA[p.b{background:red}]]>', {
+          inputSourceMapTracker: inputSourceMapTracker(),
+          options: {},
+          source: 'one.css',
+          warnings: warnings
+        });
+
+        return warnings;
+      },
+      'logs them correctly': function (warnings) {
+        assert.deepEqual(warnings, ['Invalid character(s) \']]>\' at one.css:1:28. Ignoring.']);
+      }
     }
   })
   .addBatch({

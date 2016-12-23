@@ -111,8 +111,9 @@ vows.describe('module tests').addBatch({
       assert.isEmpty(minified.errors);
     },
     'should raise one warning': function (error, minified) {
-      assert.lengthOf(minified.warnings, 1);
+      assert.lengthOf(minified.warnings, 2);
       assert.equal(minified.warnings[0], 'Unexpected \'}\' at 1:16.');
+      assert.equal(minified.warnings[1], 'Invalid character(s) \'}\' at 1:16. Ignoring.');
     }
   },
   'warnings on unexpected body': {

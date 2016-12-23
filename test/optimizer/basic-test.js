@@ -280,6 +280,10 @@ vows.describe('simple optimizations')
       'invalid rgba declaration - background': [
         'a{background:rgba(255 0 0)}',
         'a{background:rgba(255 0 0)}'
+      ],
+      'uppercase hex to lowercase hex': [
+        'a{color:#FFF}',
+        'a{color:#fff}'
       ]
     }, { advanced: false })
   )

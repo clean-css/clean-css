@@ -643,12 +643,12 @@ vows.describe('integration tests')
         'a{box-shadow:0 0}'
       ],
       'box shadow with three zeros and a fraction': [
-        'a{box-shadow:0 0 0 0.15em #EBEBEB}',
-        'a{box-shadow:0 0 0 .15em #EBEBEB}'
+        'a{box-shadow:0 0 0 0.15em #ebebeb}',
+        'a{box-shadow:0 0 0 .15em #ebebeb}'
       ],
       'box shadow with three zeros and a value': [
-        'a{box-shadow:0 0 0 15px #EBEBEB}',
-        'a{box-shadow:0 0 0 15px #EBEBEB}'
+        'a{box-shadow:0 0 0 15px #ebebeb}',
+        'a{box-shadow:0 0 0 15px #ebebeb}'
       ],
       'prefixed box shadow zeros': [
         'a{-webkit-box-shadow:0 0 0 0; -moz-box-shadow:0 0 0 0}',

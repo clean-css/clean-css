@@ -231,7 +231,7 @@ input.span-24,textarea.span-24{width:938px}
 .push-24{margin:0 -960px 1.5em 960px}
 .append-bottom,.box,div.append-bottom{margin-bottom:1.5em}
 .prepend-top,div.prepend-top{margin-top:1.5em}
-.box{padding:1.5em;background:#e5eCf9}
+.box{padding:1.5em;background:#e5ecf9}
 hr{background:#ddd;color:#ddd;float:none;width:100%;height:1px;margin:0 0 1.45em;border:none}
 hr.space{background:#fff;color:#fff;visibility:hidden}
 .clearfix:after,.container:after{content:"\0020";display:block;height:0;clear:both;visibility:hidden;overflow:hidden}

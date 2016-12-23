@@ -10,6 +10,7 @@
 * Fixed issue [#209](https://github.com/jakubpawlowicz/clean-css/issues/209) - adds output formatting via `beautify` flag.
 * Fixed issue [#432](https://github.com/jakubpawlowicz/clean-css/issues/432) - adds URLs normalization.
 * Fixed issue [#657](https://github.com/jakubpawlowicz/clean-css/issues/657) - adds property name validation.
+* Fixed issue [#685](https://github.com/jakubpawlowicz/clean-css/issues/685) - adds lowercasing hex colors optimization.
 * Fixed issue [#686](https://github.com/jakubpawlowicz/clean-css/issues/686) - adds rounding precision for all units.
 * Fixed issue [#756](https://github.com/jakubpawlowicz/clean-css/issues/756) - adds disabling font-weight optimizations.
 * Fixed issue [#758](https://github.com/jakubpawlowicz/clean-css/issues/758) - ignores rules with empty selector.

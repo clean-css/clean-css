@@ -20,6 +20,7 @@
 * Fixed issue [#839](https://github.com/jakubpawlowicz/clean-css/issues/839) - allows URIs in import inlining rules.
 * Fixed issue [#840](https://github.com/jakubpawlowicz/clean-css/issues/840) - allows input source map as map object.
 * Fixed issue [#843](https://github.com/jakubpawlowicz/clean-css/issues/843) - regression in selector handling.
+* Fixed issue [#845](https://github.com/jakubpawlowicz/clean-css/issues/845) - web compatibility of 4.0 branch.
 * Fixed issue [#847](https://github.com/jakubpawlowicz/clean-css/issues/847) - regression in handling invalid selectors.
 
 [3.4.23 / 2016-12-17](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.22...v3.4.23)

@@ -82,6 +82,14 @@ vows.describe('source-map')
       'gets right output': function (minified) {
         assert.equal(minified.styles, ':root{--color:var(--otherColor)}');
       }
+    },
+    'empty rules and comments': {
+      'topic': function () {
+        return new CleanCSS({ sourceMap: true }).minify('p{/* comment */}');
+      },
+      'gets right output': function (minified) {
+        assert.equal(minified.styles, '');
+      }
     }
   })
   .addBatch({

@@ -2172,6 +2172,10 @@ vows.describe('integration tests')
       'extra top-level closing braces': [
         'a{color:red}}}}p{width:auto}',
         'a{color:red}'
+      ],
+      'SASS content': [
+        '.one{color:red;&:hover{color:#000}}',
+        '.one{color:red}'
       ]
     })
   )

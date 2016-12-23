@@ -11,6 +11,10 @@ vows.describe('advanced optimizer')
       'overriding by !important': [
         'a{margin:0}a{margin:0!important}',
         'a{margin:0!important}'
+      ],
+      'shorthands and no space after closing brace': [
+        '.a{background:rgba(0,0,0,0)url(//example.com/a.jpg)}',
+        '.a{background:url(//example.com/a.jpg) rgba(0,0,0,0)}'
       ]
     }, { advanced: true })
   )

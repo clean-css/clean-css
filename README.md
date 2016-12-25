@@ -317,6 +317,8 @@ new CleanCSS().minify({
 });
 ```
 
+Important note - any `@import` rules already present in the hash will be automatically resolved in memory.
+
 ### How to set a compatibility mode?
 
 Compatibility settings are controlled by `--compatibility` switch (CLI) and `compatibility` option (library mode).

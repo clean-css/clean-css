@@ -627,18 +627,20 @@ vows.describe('module tests').addBatch({
       }
     },
     'with remote paths': {
-      'topic': new CleanCSS().minify({
-        'http://127.0.0.1/styles.css': {
-          styles: 'div{background-image:url(image.png)}'
-        }
-      }),
+      'topic': function() {
+        return new CleanCSS().minify({
+          'http://127.0.0.1/styles.css': {
+            styles: 'div{background-image:url(image.png)}'
+          }
+        });
+      },
       'gives right output': function (minified) {
         assert.equal(minified.styles, 'div{background-image:url(http://127.0.0.1/image.png)}');
       }
     },
     'with already resolved imports': {
       'topic': function () {
-        new CleanCSS().minify({
+        new CleanCSS({ advanced: false }).minify({
           'main.css': {
             styles: '@import url(test/fixtures/partials/one.css);\n@import url(http://127.0.0.1/test.css);'
           },

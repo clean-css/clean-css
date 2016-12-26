@@ -21,7 +21,7 @@ vows.describe('protocol imports').addBatch({
         .get('/missing.css')
         .reply(404);
 
-      new CleanCSS().minify('@import url(http://127.0.0.1/missing.css);a{color:red}', this.callback);
+      new CleanCSS({ inline: 'all' }).minify('@import url(http://127.0.0.1/missing.css);a{color:red}', this.callback);
     },
     'should raise error': function (errors, minified) {
       assert.lengthOf(errors, 1);
@@ -40,7 +40,7 @@ vows.describe('protocol imports').addBatch({
         .get('/present.css')
         .reply(200, 'p{font-size:13px}');
 
-      new CleanCSS().minify('@import url(http://127.0.0.1/present.css);a{color:red}', this.callback);
+      new CleanCSS({ inline: 'all' }).minify('@import url(http://127.0.0.1/present.css);a{color:red}', this.callback);
     },
     'should not raise errors': function (errors, minified) {
       assert.isNull(errors);
@@ -59,7 +59,7 @@ vows.describe('protocol imports').addBatch({
         .get('/css?family=Oleo%20Script%20Swash%20Caps')
         .reply(200, 'p{font-size:13px}');
 
-      new CleanCSS().minify('@import url(\'//fonts.googleapis.com/css?family=Oleo Script Swash Caps\');', this.callback);
+      new CleanCSS({ inline: 'all' }).minify('@import url(\'//fonts.googleapis.com/css?family=Oleo Script Swash Caps\');', this.callback);
     },
     'should not raise errors': function (errors, minified) {
       assert.isNull(errors);
@@ -78,7 +78,7 @@ vows.describe('protocol imports').addBatch({
         .get('/present.css')
         .reply(200, 'p{font-size:13px}');
 
-      new CleanCSS().minify('@import url(https://127.0.0.1/present.css);a{color:red}', this.callback);
+      new CleanCSS({ inline: 'all' }).minify('@import url(https://127.0.0.1/present.css);a{color:red}', this.callback);
     },
     'should not raise errors': function (errors, minified) {
       assert.isNull(errors);
@@ -97,7 +97,7 @@ vows.describe('protocol imports').addBatch({
         .get('/present.css')
         .reply(200, 'p{font-size:13px}');
 
-      new CleanCSS().minify('@import url(http://127.0.0.1/present.css) screen;a{color:red}', this.callback);
+      new CleanCSS({ inline: 'all' }).minify('@import url(http://127.0.0.1/present.css) screen;a{color:red}', this.callback);
     },
     'should not raise errors': function (errors, minified) {
       assert.isNull(errors);
@@ -121,7 +121,7 @@ vows.describe('protocol imports').addBatch({
         .get('/base.css')
         .reply(200, 'div{padding:0}');
 
-      new CleanCSS().minify('@import url(http://127.0.0.1/present.css);a{color:red}', this.callback);
+      new CleanCSS({ inline: 'all' }).minify('@import url(http://127.0.0.1/present.css);a{color:red}', this.callback);
     },
     'should not raise errors': function (errors, minified) {
       assert.isNull(errors);
@@ -143,7 +143,7 @@ vows.describe('protocol imports').addBatch({
         .get('/vendor/reset.css')
         .reply(200, 'body{margin:0}');
 
-      new CleanCSS().minify('@import url(http://127.0.0.1/nested/present.css);a{color:red}', this.callback);
+      new CleanCSS({ inline: 'all' }).minify('@import url(http://127.0.0.1/nested/present.css);a{color:red}', this.callback);
     },
     'should not raise errors': function (errors, minified) {
       assert.isNull(errors);
@@ -164,7 +164,7 @@ vows.describe('protocol imports').addBatch({
         .get('/missing.css')
         .reply(404);
 
-      new CleanCSS().minify('@import url(http://127.0.0.1/nested/present.css);a{color:red}', this.callback);
+      new CleanCSS({ inline: 'all' }).minify('@import url(http://127.0.0.1/nested/present.css);a{color:red}', this.callback);
     },
     'should not raise errors': function (errors, minified) {
       assert.lengthOf(errors, 1);
@@ -184,7 +184,7 @@ vows.describe('protocol imports').addBatch({
         .get('/urls.css')
         .reply(200, 'a{background:url(test.png)}');
 
-      new CleanCSS().minify('@import url(http://127.0.0.1/urls.css);', this.callback);
+      new CleanCSS({ inline: 'all' }).minify('@import url(http://127.0.0.1/urls.css);', this.callback);
     },
     'should not raise errors': function (errors, minified) {
       assert.isNull(errors);
@@ -205,7 +205,7 @@ vows.describe('protocol imports').addBatch({
         .get('/deeply/nested/urls.css')
         .reply(200, 'a{background:url(../images/test.png)}');
 
-      new CleanCSS().minify('@import url(http://127.0.0.1/base.css);', this.callback);
+      new CleanCSS({ inline: 'all' }).minify('@import url(http://127.0.0.1/base.css);', this.callback);
     },
     'should not raise errors': function (errors, minified) {
       assert.isNull(errors);
@@ -226,7 +226,7 @@ vows.describe('protocol imports').addBatch({
         .get('/deeply/nested/urls.css')
         .reply(200, 'a{background:url(../images/test.png)}');
 
-      new CleanCSS({ rebase: false }).minify('@import url(http://127.0.0.1/base.css);', this.callback);
+      new CleanCSS({ inline: 'all', rebase: false }).minify('@import url(http://127.0.0.1/base.css);', this.callback);
     },
     'should not raise errors': function (errors, minified) {
       assert.isNull(errors);
@@ -245,7 +245,7 @@ vows.describe('protocol imports').addBatch({
         .get('/base.css')
         .reply(200, 'a{background:url(http://example.com/deeply/images/test.png)}');
 
-      new CleanCSS().minify('@import url(http://127.0.0.1/base.css);', this.callback);
+      new CleanCSS({ inline: 'all' }).minify('@import url(http://127.0.0.1/base.css);', this.callback);
     },
     'should not raise errors': function (errors, minified) {
       assert.isNull(errors);
@@ -260,7 +260,7 @@ vows.describe('protocol imports').addBatch({
   },
   'of an unreachable domain': {
     topic: function () {
-      new CleanCSS().minify('@import url(http://0.0.0.0/custom.css);a{color:red}', this.callback);
+      new CleanCSS({ inline: 'all' }).minify('@import url(http://0.0.0.0/custom.css);a{color:red}', this.callback);
     },
     'should not raise errors': function (errors, minified) {
       assert.lengthOf(errors, 1);
@@ -278,7 +278,7 @@ vows.describe('protocol imports').addBatch({
         .get('/present.css')
         .reply(200, 'body{margin:0}');
 
-      new CleanCSS().minify('@import url(http://127.0.0.1/moved.css);a{color:red}', this.callback);
+      new CleanCSS({ inline: 'all' }).minify('@import url(http://127.0.0.1/moved.css);a{color:red}', this.callback);
     },
     'should not raise errors': function (errors, minified) {
       assert.isNull(errors);
@@ -299,7 +299,7 @@ vows.describe('protocol imports').addBatch({
         .get('/present.css')
         .reply(200, 'body{margin:0}');
 
-      new CleanCSS().minify('@import url(http://127.0.0.1/moved.css);a{color:red}', this.callback);
+      new CleanCSS({ inline: 'all' }).minify('@import url(http://127.0.0.1/moved.css);a{color:red}', this.callback);
     },
     'should not raise errors': function (errors, minified) {
       assert.isNull(errors);
@@ -320,7 +320,7 @@ vows.describe('protocol imports').addBatch({
         .get('/two.css')
         .reply(200, '@import url(http://127.0.0.1/two.css);body{margin:0}');
 
-      new CleanCSS().minify('@import url(http://127.0.0.1/one.css);a{color:red}', this.callback);
+      new CleanCSS({ inline: 'all' }).minify('@import url(http://127.0.0.1/one.css);a{color:red}', this.callback);
     },
     'should not raise errors': function (errors, minified) {
       assert.isNull(errors);
@@ -339,7 +339,7 @@ vows.describe('protocol imports').addBatch({
         .get('/no-protocol.css')
         .reply(200, 'div{padding:0}');
 
-      new CleanCSS().minify('@import url(//127.0.0.1/no-protocol.css);a{color:red}', this.callback);
+      new CleanCSS({ inline: 'all' }).minify('@import url(//127.0.0.1/no-protocol.css);a{color:red}', this.callback);
     },
     'should not raise errors': function (errors, minified) {
       assert.isNull(errors);
@@ -358,7 +358,7 @@ vows.describe('protocol imports').addBatch({
         .get('/no-protocol.css')
         .reply(200, 'a{background:url(image.png)}');
 
-      new CleanCSS().minify('@import url(//127.0.0.1/no-protocol.css);', this.callback);
+      new CleanCSS({ inline: 'all' }).minify('@import url(//127.0.0.1/no-protocol.css);', this.callback);
     },
     'should not raise errors': function (errors, minified) {
       assert.isNull(errors);
@@ -377,7 +377,7 @@ vows.describe('protocol imports').addBatch({
         .get('/no-protocol.css')
         .reply(200, 'a{background:url(//127.0.0.1/image.png)}');
 
-      new CleanCSS().minify('@import url(http://127.0.0.1/no-protocol.css);', this.callback);
+      new CleanCSS({ inline: 'all' }).minify('@import url(http://127.0.0.1/no-protocol.css);', this.callback);
     },
     'should not raise errors': function (errors, minified) {
       assert.isNull(errors);
@@ -396,7 +396,7 @@ vows.describe('protocol imports').addBatch({
         .get('/no-protocol.css')
         .reply(200, 'a{background:url(//127.0.0.2/image.png)}');
 
-      new CleanCSS().minify('@import url(http://127.0.0.1/no-protocol.css);', this.callback);
+      new CleanCSS({ inline: 'all' }).minify('@import url(http://127.0.0.1/no-protocol.css);', this.callback);
     },
     'should not raise errors': function (errors, minified) {
       assert.isNull(errors);
@@ -416,6 +416,7 @@ vows.describe('protocol imports').addBatch({
         .reply(200, 'div{padding:0}');
 
       new CleanCSS({
+        inline: 'all',
         inliner: {
           request: {
             method: 'POST'
@@ -441,7 +442,7 @@ vows.describe('protocol imports').addBatch({
         .get('/remote.css')
         .reply(200, 'div{padding:0}');
 
-      new CleanCSS().minify(source, this.callback);
+      new CleanCSS({ inline: 'all' }).minify(source, this.callback);
     },
     'should not raise errors': function (errors, minified) {
       assert.isNull(errors);
@@ -461,7 +462,7 @@ vows.describe('protocol imports').addBatch({
         .get('/remote.css')
         .reply(200, 'div{padding:0}');
 
-      return new CleanCSS().minify(source);
+      return new CleanCSS({ inline: 'all' }).minify(source);
     },
     'should not raise errors': function (error, minified) {
       assert.isEmpty(minified.errors);
@@ -485,7 +486,7 @@ vows.describe('protocol imports').addBatch({
         .get('/remote.css')
         .reply(200, 'div{padding:0}');
 
-      return new CleanCSS().minify(source);
+      return new CleanCSS({ inline: 'all' }).minify(source);
     },
     'should not raise errors': function (error, minified) {
       assert.isEmpty(minified.errors);
@@ -505,7 +506,7 @@ vows.describe('protocol imports').addBatch({
   'of a remote resource mixed with local ones and disabled remote imports': {
     topic: function () {
       var source = '@import url(http://127.0.0.1/skipped.css);@import url(test/fixtures/partials/one.css);';
-      new CleanCSS({ processImportFrom: ['local'] }).minify(source, this.callback);
+      new CleanCSS({ inline: ['local'] }).minify(source, this.callback);
     },
     'should not raise errors': function (error, minified) {
       assert.isEmpty(minified.errors);
@@ -529,7 +530,7 @@ vows.describe('protocol imports').addBatch({
         .get('/test/folder/deepersubfolder/fonts.css')
         .reply(200, 'a{color:red}');
 
-      new CleanCSS().minify(source, this.callback);
+      new CleanCSS({ inline: 'all' }).minify(source, this.callback);
     },
     'should not raise errors': function (error, minified) {
       assert.isEmpty(minified.errors);
@@ -554,6 +555,7 @@ vows.describe('protocol imports').addBatch({
       });
       this.server.listen(port, function () {
         new CleanCSS({
+          inline: 'all',
           inliner: {
             timeout: timeout
           }
@@ -592,6 +594,7 @@ vows.describe('protocol imports').addBatch({
       });
       this.proxyServer.listen(8080, function () {
         var options = {
+          inline: 'all',
           inliner: {
             request: {
               hostname: '127.0.0.1',
@@ -636,6 +639,7 @@ vows.describe('protocol imports').addBatch({
       });
       this.proxyServer.listen(8080, function () {
         var options = {
+          inline: 'all',
           inliner: {
             request: {
               hostname: '127.0.0.1',
@@ -681,7 +685,7 @@ vows.describe('protocol imports').addBatch({
       });
       this.proxyServer.listen(8081, function () {
         process.env.http_proxy = 'http://127.0.0.1:8081';
-        new CleanCSS().minify('@import url(http://assets.127.0.0.1/styles.css);', self.callback);
+        new CleanCSS({ inline: 'all' }).minify('@import url(http://assets.127.0.0.1/styles.css);', self.callback);
       });
       enableDestroy(this.proxyServer);
     },
@@ -716,6 +720,7 @@ vows.describe('protocol imports').addBatch({
       });
       this.proxyServer.listen(8082, function () {
         var options = {
+          inline: 'all',
           inliner: {
             request: {
               hostname: '127.0.0.1',
@@ -746,34 +751,24 @@ vows.describe('protocol imports').addBatch({
   'allowed imports - not set': {
     topic: function () {
       var source = '@import url(http://127.0.0.1/remote.css);@import url(http://assets.127.0.0.1/remote.css);@import url(test/fixtures/partials/one.css);';
-      this.reqMocks1 = nock('http://127.0.0.1')
-        .get('/remote.css')
-        .reply(200, 'div{border:0}');
-      this.reqMocks2 = nock('http://assets.127.0.0.1')
-        .get('/remote.css')
-        .reply(200, 'p{width:100%}');
-
       new CleanCSS().minify(source, this.callback);
     },
     'should not raise errors': function (error, minified) {
       assert.isEmpty(minified.errors);
     },
-    'should not raise warnings': function (error, minified) {
-      assert.isEmpty(minified.warnings);
+    'should raise warnings': function (error, minified) {
+      assert.lengthOf(minified.warnings, 2);
+      assert.equal(minified.warnings[0], 'Skipping remote @import of "http://127.0.0.1/remote.css" as resource is not allowed.');
+      assert.equal(minified.warnings[1], 'Skipping remote @import of "http://assets.127.0.0.1/remote.css" as resource is not allowed.');
     },
     'should process imports': function (error, minified) {
-      assert.equal(minified.styles, 'div{border:0}p{width:100%}.one{color:red}');
-    },
-    teardown: function () {
-      assert.isTrue(this.reqMocks1.isDone());
-      assert.isTrue(this.reqMocks2.isDone());
-      nock.cleanAll();
+      assert.equal(minified.styles, '@import url(http://127.0.0.1/remote.css);@import url(http://assets.127.0.0.1/remote.css);.one{color:red}');
     }
   },
-  'allowed imports - not set and disabled by processImport': {
+  'allowed imports - not set and disabled by `inline`': {
     topic: function () {
       var source = '@import url(http://127.0.0.1/remote.css);@import url(http://assets.127.0.0.1/remote.css);@import url(test/fixtures/partials/one.css);';
-      new CleanCSS({ processImport: false }).minify(source, this.callback);
+      new CleanCSS({ inline: ['none'] }).minify(source, this.callback);
     },
     'should not raise errors': function (error, minified) {
       assert.isEmpty(minified.errors);
@@ -788,7 +783,7 @@ vows.describe('protocol imports').addBatch({
   'allowed imports - local': {
     topic: function () {
       var source = '@import url(http://127.0.0.1/remote.css);@import url(http://assets.127.0.0.1/remote.css);@import url(test/fixtures/partials/one.css);';
-      new CleanCSS({ processImportFrom: ['local'] }).minify(source, this.callback);
+      new CleanCSS({ inline: ['local'] }).minify(source, this.callback);
     },
     'should not raise errors': function (error, minified) {
       assert.isEmpty(minified.errors);
@@ -811,7 +806,7 @@ vows.describe('protocol imports').addBatch({
       this.reqMocks2 = nock('http://assets.127.0.0.1')
         .get('/remote.css')
         .reply(200, 'p{width:100%}');
-      new CleanCSS({ processImportFrom: ['remote'] }).minify(source, this.callback);
+      new CleanCSS({ inline: ['remote'] }).minify(source, this.callback);
     },
     'should not raise errors': function (error, minified) {
       assert.isEmpty(minified.errors);
@@ -837,7 +832,7 @@ vows.describe('protocol imports').addBatch({
       this.reqMocks2 = nock('http://assets.127.0.0.1')
         .get('/remote.css')
         .reply(200, 'p{width:100%}');
-      new CleanCSS({ processImportFrom: ['all'] }).minify(source, this.callback);
+      new CleanCSS({ inline: ['all'] }).minify(source, this.callback);
     },
     'should not raise errors': function (error, minified) {
       assert.isEmpty(minified.errors);
@@ -857,7 +852,7 @@ vows.describe('protocol imports').addBatch({
   'allowed imports - blacklisted': {
     topic: function () {
       var source = '@import url(http://127.0.0.1/remote.css);@import url(http://assets.127.0.0.1/remote.css);@import url(test/fixtures/partials/one.css);';
-      new CleanCSS({ processImportFrom: ['remote', 'local', '!assets.127.0.0.1', '!127.0.0.1', '!test/fixtures/partials/one.css'] }).minify(source, this.callback);
+      new CleanCSS({ inline: ['remote', 'local', '!assets.127.0.0.1', '!127.0.0.1', '!test/fixtures/partials/one.css'] }).minify(source, this.callback);
     },
     'should not raise errors': function (error, minified) {
       assert.isEmpty(minified.errors);
@@ -875,7 +870,7 @@ vows.describe('protocol imports').addBatch({
   'allowed imports - blacklisted & no-protocol': {
     topic: function () {
       var source = '@import url(//127.0.0.1/remote.css);@import url(test/fixtures/partials/one.css);';
-      new CleanCSS({ processImportFrom: ['!127.0.0.1'] }).minify(source, this.callback);
+      new CleanCSS({ inline: ['!127.0.0.1'] }).minify(source, this.callback);
     },
     'should not raise errors': function (error, minified) {
       assert.isEmpty(minified.errors);
@@ -894,7 +889,7 @@ vows.describe('protocol imports').addBatch({
       this.reqMocks = nock('http://assets.127.0.0.1')
         .get('/remote.css')
         .reply(200, 'p{width:100%}');
-      new CleanCSS({ processImportFrom: ['http://assets.127.0.0.1/remote.css', 'test/fixtures/partials/one.css'] }).minify(source, this.callback);
+      new CleanCSS({ inline: ['http://assets.127.0.0.1/remote.css', 'test/fixtures/partials/one.css'] }).minify(source, this.callback);
     },
     'should not raise errors': function (error, minified) {
       assert.isEmpty(minified.errors);
@@ -916,7 +911,7 @@ vows.describe('protocol imports').addBatch({
       this.reqMocks = nock('http://assets.127.0.0.1')
         .get('/remote.css')
         .reply(200, 'p{width:100%}');
-      new CleanCSS({ processImportFrom: ['!http://127.0.0.1/', 'test/fixtures/partials'] }).minify(source, this.callback);
+      new CleanCSS({ inline: ['!http://127.0.0.1/', 'test/fixtures/partials'] }).minify(source, this.callback);
     },
     'should not raise errors': function (error, minified) {
       assert.isEmpty(minified.errors);

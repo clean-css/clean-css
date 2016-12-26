@@ -2088,7 +2088,7 @@ vows.describe('integration tests')
     })
   )
   .addBatch(
-    optimizerContext('@import with option processImport', {
+    optimizerContext('@import with inline option', {
       'of an unknown file': [
         '@import url(/fake.css);',
         '@import url(/fake.css);'
@@ -2101,7 +2101,7 @@ vows.describe('integration tests')
         '@import \'necolas/normalize.css@*/normalize.css\';',
         '@import url(necolas/normalize.css@*/normalize.css);'
       ]
-    }, { processImport: false })
+    }, { inline: 'none' })
   )
   .addBatch(
     optimizerContext('@import with no import and no advanced', {
@@ -2113,7 +2113,7 @@ vows.describe('integration tests')
         '@import url(//fonts.googleapis.com/css?family=Domine:700);body{color:red}body h1{font-family:Domine}',
         '@import url(//fonts.googleapis.com/css?family=Domine:700);body{color:red}body h1{font-family:Domine}'
       ]
-    }, { processImport: false, advanced: false })
+    }, { inline: 'none', advanced: false })
   )
   .addBatch(
     optimizerContext('@import with no url', {
@@ -2121,7 +2121,7 @@ vows.describe('integration tests')
         '@import url(test.css);@font-face{font-family:"icomoon"}',
         '@import url(test.css);@font-face{font-family:icomoon}'
       ]
-    }, { processImport: false })
+    }, { inline: 'none' })
   )
   .addBatch(
     optimizerContext('body at-rules', {

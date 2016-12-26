@@ -208,25 +208,30 @@ vows.describe('./bin/cleancss')
     })
   })
   .addBatch({
-    'disable @import': binaryContext('-s ./test/fixtures/imports.css', {
+    'disable @import': binaryContext('--inline none ./test/fixtures/imports.css', {
       'should disable the import processing': function (error, stdout) {
         assert.equal(stdout, '@import url(test/fixtures/partials/one.css);@import url(test/fixtures/partials/two.css);.imports{color:#000}');
       }
     })
   })
   .addBatch({
-    'disable all @import': pipedContext('@import url(http://127.0.0.1/remote.css);@import url(test/fixtures/partials/one.css);', '--skip-import-from all', {
-      'should disable the remote import processing': function (error, stdout) {
+    'disable all @import': pipedContext('@import url(http://127.0.0.1/remote.css);@import url(test/fixtures/partials/one.css);', '--inline none', {
+      'keeps original import rules': function (error, stdout) {
         assert.equal(stdout, '@import url(http://127.0.0.1/remote.css);@import url(test/fixtures/partials/one.css);');
       }
     }),
-    'disable remote @import': pipedContext('@import url(http://127.0.0.1/remote.css);@import url(test/fixtures/partials/one.css);', '--skip-import-from remote', {
-      'should disable the remote import processing': function (error, stdout) {
+    'disable remote @import': pipedContext('@import url(http://127.0.0.1/remote.css);@import url(test/fixtures/partials/one.css);', '--inline !remote', {
+      'keeps remote import rule': function (error, stdout) {
         assert.equal(stdout, '@import url(http://127.0.0.1/remote.css);.one{color:red}');
       }
     }),
-    'disable remote @import by host': pipedContext('@import url(http://127.0.0.1/remote.css);@import url(test/fixtures/partials/one.css);', '--skip-import-from 127.0.0.1', {
-      'should disable the remote import processing': function (error, stdout) {
+    'disable remote @import as default': pipedContext('@import url(http://127.0.0.1/remote.css);@import url(test/fixtures/partials/one.css);', '', {
+      'keeps remote import rule': function (error, stdout) {
+        assert.equal(stdout, '@import url(http://127.0.0.1/remote.css);.one{color:red}');
+      }
+    }),
+    'disable remote @import by host': pipedContext('@import url(http://127.0.0.1/remote.css);@import url(test/fixtures/partials/one.css);', '--inline !127.0.0.1', {
+      'keeps remote import rule': function (error, stdout) {
         assert.equal(stdout, '@import url(http://127.0.0.1/remote.css);.one{color:red}');
       }
     })
@@ -331,7 +336,7 @@ vows.describe('./bin/cleancss')
           setTimeout(function () {}, 1000);
         });
         this.server.listen('24682', function () {
-          exec('echo "' + source + '" | ./bin/cleancss --timeout 0.01', self.callback);
+          exec('echo "' + source + '" | ./bin/cleancss --timeout 0.01 --inline all', self.callback);
         });
       },
       'should raise warning': function (error, stdout, stderr) {
@@ -364,7 +369,7 @@ vows.describe('./bin/cleancss')
         });
         this.server.listen(8080);
 
-        exec('echo "@import url(http://127.0.0.1:8080/test.css);" | HTTP_PROXY=http://127.0.0.1:8081 ./bin/cleancss', this.callback);
+        exec('echo "@import url(http://127.0.0.1:8080/test.css);" | HTTP_PROXY=http://127.0.0.1:8081 ./bin/cleancss --inline all', this.callback);
       },
       'proxies the connection': function () {
         assert.isTrue(this.proxied);

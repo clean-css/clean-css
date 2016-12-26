@@ -69,7 +69,7 @@ vows.describe('module tests').addBatch({
   },
   'with callback passed to remote import': {
     topic: function () {
-      new CleanCSS({ processImportFrom: ['local'] }).minify('@import url(https://fonts.googleapis.com/css?family=Open+Sans);', this.callback);
+      new CleanCSS({ inline: 'local' }).minify('@import url(https://fonts.googleapis.com/css?family=Open+Sans);', this.callback);
     },
     'should yield no error and minify': function (errors, minified) {
       assert.equal(minified.styles, '@import url(https://fonts.googleapis.com/css?family=Open+Sans);');
@@ -325,7 +325,7 @@ vows.describe('module tests').addBatch({
     },
     'process import': {
       'topic': function () {
-        return new CleanCSS({ processImport: true }).minify('@import url(/test/fixtures/partials/one.css);');
+        return new CleanCSS({ inline: 'all' }).minify('@import url(/test/fixtures/partials/one.css);');
       },
       'gets right output': function (minified) {
         assert.equal(minified.styles, '.one{color:red}');
@@ -457,7 +457,7 @@ vows.describe('module tests').addBatch({
     'with imports': {
       'off - one file': {
         'topic': function () {
-          return new CleanCSS({ processImport: false }).minify(['./test/fixtures/partials/two.css']);
+          return new CleanCSS({ inline: 'none' }).minify(['./test/fixtures/partials/two.css']);
         },
         'should give right output': function (minified) {
           assert.equal(minified.styles, '@import url(test/fixtures/partials/one.css);@import url(test/fixtures/partials/extra/three.css);@import url(test/fixtures/partials/extra/four.css);.two{color:#fff}');
@@ -465,7 +465,7 @@ vows.describe('module tests').addBatch({
       },
       'off - many files': {
         'topic': function () {
-          return new CleanCSS({ processImport: false }).minify(['./test/fixtures/partials/remote.css', './test/fixtures/partials-absolute/base.css']);
+          return new CleanCSS({ inline: 'none' }).minify(['./test/fixtures/partials/remote.css', './test/fixtures/partials-absolute/base.css']);
         },
         'should give right output': function (minified) {
           assert.equal(minified.styles, '@import url(http://jakubpawlowicz.com/styles.css);@import url(test/fixtures/partials-absolute/extra/sub.css);.base{margin:0}');
@@ -473,7 +473,7 @@ vows.describe('module tests').addBatch({
       },
       'off - many files with content': {
         'topic': function () {
-          return new CleanCSS({ processImport: false }).minify(['./test/fixtures/partials/two.css', './test/fixtures/partials-absolute/base.css']);
+          return new CleanCSS({ inline: 'none' }).minify(['./test/fixtures/partials/two.css', './test/fixtures/partials-absolute/base.css']);
         },
         'should give right output': function (minified) {
           assert.equal(minified.styles, '@import url(test/fixtures/partials/one.css);@import url(test/fixtures/partials/extra/three.css);@import url(test/fixtures/partials/extra/four.css);.two{color:#fff}.base{margin:0}');
@@ -591,7 +591,7 @@ vows.describe('module tests').addBatch({
     'with other imports and processing imports off': {
       'relative': {
         'topic': function () {
-          return new CleanCSS({ processImport: false }).minify(
+          return new CleanCSS({ inline: 'none' }).minify(
             sourcesAsHash([
               'test/fixtures/partials/two.css'
             ])
@@ -603,7 +603,7 @@ vows.describe('module tests').addBatch({
       },
       'absolute': {
         'topic': function () {
-          return new CleanCSS({ processImport: false }).minify(
+          return new CleanCSS({ inline: 'none' }).minify(
             sourcesAsHash([
               'test/fixtures/partials/two.css'
             ], true)
@@ -640,7 +640,7 @@ vows.describe('module tests').addBatch({
     },
     'with already resolved imports': {
       'topic': function () {
-        new CleanCSS({ advanced: false }).minify({
+        new CleanCSS({ advanced: false, inline: 'all' }).minify({
           'main.css': {
             styles: '@import url(test/fixtures/partials/one.css);\n@import url(http://127.0.0.1/test.css);'
           },

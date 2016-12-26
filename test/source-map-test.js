@@ -940,7 +940,7 @@ vows.describe('source-map')
           .get('/remote.css.map')
           .reply(404);
 
-        new CleanCSS({ sourceMap: true }).minify('@import url(http://127.0.0.1/remote.css);', this.callback);
+        new CleanCSS({ inline: 'all', sourceMap: true }).minify('@import url(http://127.0.0.1/remote.css);', this.callback);
       },
       'has mapping': function (errors, minified) {
         assert.isDefined(minified.sourceMap);
@@ -976,7 +976,7 @@ vows.describe('source-map')
           }
         });
         this.server.listen(port, '127.0.0.1', function () {
-          new CleanCSS({ sourceMap: true, inliner: { timeout: timeout } })
+          new CleanCSS({ inline: 'all', sourceMap: true, inliner: { timeout: timeout } })
             .minify('@import url(http://127.0.0.1:' + port + '/remote.css);', self.callback);
         });
         enableDestroy(this.server);
@@ -1004,7 +1004,7 @@ vows.describe('source-map')
           .get('/remote.css.map')
           .reply(200, inputMap);
 
-        new CleanCSS({ sourceMap: true }).minify('@import url(http://127.0.0.1/remote.css);', this.callback);
+        new CleanCSS({ inline: 'all', sourceMap: true }).minify('@import url(http://127.0.0.1/remote.css);', this.callback);
       },
       'has mapping': function (errors, minified) {
         assert.isDefined(minified.sourceMap);
@@ -1025,7 +1025,7 @@ vows.describe('source-map')
           .get('/remote.css.map')
           .reply(200, inputMap);
 
-        new CleanCSS({ sourceMap: true }).minify('@import url(https://127.0.0.1/remote.css);', this.callback);
+        new CleanCSS({ inline: 'all', sourceMap: true }).minify('@import url(https://127.0.0.1/remote.css);', this.callback);
       },
       'has mapping': function (errors, minified) {
         assert.isDefined(minified.sourceMap);
@@ -1046,7 +1046,7 @@ vows.describe('source-map')
           .get('/remote.css.map')
           .reply(200, inputMap);
 
-        new CleanCSS({ sourceMap: true }).minify('@import url(http://127.0.0.1/remote.css);', this.callback);
+        new CleanCSS({ inline: 'all', sourceMap: true }).minify('@import url(http://127.0.0.1/remote.css);', this.callback);
       },
       'has mapping': function (errors, minified) {
         assert.isDefined(minified.sourceMap);
@@ -1067,7 +1067,7 @@ vows.describe('source-map')
           .post('/remote.css.map')
           .reply(200, inputMap);
 
-        new CleanCSS({ sourceMap: true, inliner: { request: { method: 'POST' } } })
+        new CleanCSS({ inline: 'all', sourceMap: true, inliner: { request: { method: 'POST' } } })
           .minify('@import url(http://127.0.0.1/remote.css);', this.callback);
       },
       'has mapping': function (errors, minified) {
@@ -1369,7 +1369,7 @@ vows.describe('source-map')
             .get('/some.css')
             .reply(200, 'div{background:url(image.png)}');
 
-          new CleanCSS({ sourceMap: true, sourceMapInlineSources: true }).minify([
+          new CleanCSS({ inline: 'all', sourceMap: true, sourceMapInlineSources: true }).minify([
             'http://127.0.0.1/some.css'
           ], this.callback);
         },
@@ -1684,7 +1684,7 @@ vows.describe('source-map')
             .get('/styles.less')
             .reply(200, 'div > a {\n  color: blue;\n}\n');
 
-          new CleanCSS({ sourceMap: true, sourceMapInlineSources: true }).minify({
+          new CleanCSS({ inline: 'all', sourceMap: true, sourceMapInlineSources: true }).minify({
             'http://127.0.0.1/some.css': {
               styles: 'div {\n  color: red;\n}',
               sourceMap: '{"version":3,"sources":["some.less"],"names":[],"mappings":"AAAA;EACE,UAAA","file":"some.css"}'
@@ -1729,7 +1729,7 @@ vows.describe('source-map')
             .get('/styles.less')
             .reply(200, 'div > a {\n  color: blue;\n}\n');
 
-          new CleanCSS({ sourceMap: true, sourceMapInlineSources: true }).minify({
+          new CleanCSS({ inline: 'all', sourceMap: true, sourceMapInlineSources: true }).minify({
             'http://127.0.0.1/some.css': {
               styles: 'div {\n  color: red;\n}',
               sourceMap: '{"version":3,"sources":["some.less"],"names":[],"mappings":"AAAA;EACE,UAAA","file":"some.css"}'
@@ -1771,7 +1771,7 @@ vows.describe('source-map')
       },
       'mixed remote and no callback': {
         'topic': function () {
-           return new CleanCSS({ sourceMap: true, sourceMapInlineSources: true }).minify({
+           return new CleanCSS({ inline: 'all', sourceMap: true, sourceMapInlineSources: true }).minify({
             'http://127.0.0.1/some.css': {
               styles: 'div {\n  color: red;\n}',
               sourceMap: '{"version":3,"sources":["some.less"],"names":[],"mappings":"AAAA;EACE,UAAA","file":"some.css"}'

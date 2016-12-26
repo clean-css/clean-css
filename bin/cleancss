@@ -19,16 +19,15 @@ commands
   .option('-c, --compatibility [ie7|ie8]', 'Force compatibility mode (see Readme for advanced examples)')
   .option('-d, --debug', 'Shows debug information (minification time & compression efficiency)')
   .option('-o, --output [output-file]', 'Use [output-file] as output instead of STDOUT')
-  .option('-s, --skip-import', 'Disable @import processing')
   .option('-t, --timeout [seconds]', 'Per connection timeout when fetching remote @imports (defaults to 5 seconds)')
   .option('--beautify', 'Formats output CSS by using indentation and one rule or property per line')
+  .option('--inline [rules]', 'Enables inlining for listed sources (defaults to `local`)')
   .option('--rounding-precision [n]', 'Rounds pixel values to `N` decimal places. -1 disables rounding (defaults to -1)')
   .option('--s0', 'Remove all special comments, i.e. /*! comment */')
   .option('--s1', 'Remove all special comments but the first one')
   .option('--semantic-merging', 'Enables unsafe mode by assuming BEM-like semantic stylesheets (warning, this may break your styling!)')
   .option('--skip-advanced', 'Disable advanced optimizations - ruleset reordering & merging')
   .option('--skip-aggressive-merging', 'Disable properties merging based on their order')
-  .option('--skip-import-from [rules]', 'Disable @import processing for specified rules', function (val) { return val.split(','); }, [])
   .option('--skip-media-merging', 'Disable @media merging')
   .option('--skip-rebase', 'Disable URLs rebasing')
   .option('--skip-restructuring', 'Disable restructuring optimizations')
@@ -66,13 +65,12 @@ var options = {
   aggressiveMerging: commands.skipAggressiveMerging ? false : true,
   beautify: commands.beautify,
   compatibility: commands.compatibility,
+  inline: commands.inline || 'local',
   inliner: commands.timeout ? { timeout: parseFloat(commands.timeout) * 1000 } : undefined,
   keepBreaks: !!commands.keepLineBreaks,
   keepSpecialComments: commands.s0 ? 0 : (commands.s1 ? 1 : '*'),
   mediaMerging: commands.skipMediaMerging ? false : true,
   output: commands.output,
-  processImport: commands.skipImport ? false : true,
-  processImportFrom: processImportFrom(commands.skipImportFrom),
   rebase: commands.skipRebase ? false : true,
   rebaseTo: ('output' in commands) && commands.output.length > 0 ? path.dirname(path.resolve(commands.output)) : process.cwd(),
   restructuring: commands.skipRestructuring ? false : true,
@@ -101,24 +99,6 @@ if (commands.args.length > 0) {
   stdin.on('end', function () {
     minify(data);
   });
-}
-
-function processImportFrom(rules) {
-  if (rules.length === 0) {
-    return ['all'];
-  } else if (rules.length == 1 && rules[0] == 'all') {
-    return [];
-  } else {
-    return rules.map(function (rule) {
-      if (rule == 'local') {
-        return 'remote';
-      } else if (rule == 'remote') {
-        return 'local';
-      } else {
-        return '!' + rule;
-      }
-    });
-  }
 }
 
 function minify(data) {

@@ -31,6 +31,7 @@ There will be some breaking changes:
 * `debug` API option is gone as stats are always provided in output object under `stats` property
 * `roundingPrecision` is disabled by default
 * `roundingPrecision` applies to **all** units now, not only `px` as in 3.x;
+* `processImport` and `processImportFrom` are merged into `inline` option which defaults to `local`. Remote `@import` rules are **NOT** inlined by default anymore.
 
 Please note this list is not final. You are more than welcome to comment these changes in [4.0 release discussion](https://github.com/jakubpawlowicz/clean-css/issues/842) thread.
 
@@ -60,16 +61,15 @@ cleancss [options] source-file, [source-file, ...]
 -c, --compatibility [ie7|ie8]  Force compatibility mode (see Readme for advanced examples)
 -d, --debug                    Shows debug information (minification time & compression efficiency)
 -o, --output [output-file]     Use [output-file] as output instead of STDOUT
--s, --skip-import              Disable @import processing
 -t, --timeout [seconds]        Per connection timeout when fetching remote @imports (defaults to 5 seconds)
 --beautify                     Formats output CSS by using indentation and one rule or property per line
+--inline [rules]               Enables inlining for listed sources (defaults to `local`)
 --rounding-precision [n]       Rounds pixel values to `N` decimal places. `off` disables rounding (defaults to `off`)
 --s0                           Remove all special comments, i.e. /*! comment */
 --s1                           Remove all special comments but the first one
 --semantic-merging             Enables unsafe mode by assuming BEM-like semantic stylesheets (warning, this may break your styling!)
 --skip-advanced                Disable advanced optimizations - ruleset reordering & merging
 --skip-aggressive-merging      Disable properties merging based on their order
---skip-import-from [rules]     Disable @import processing for specified rules
 --skip-media-merging           Disable @media merging
 --skip-rebase                  Disable URLs rebasing
 --skip-restructuring           Disable restructuring optimizations
@@ -127,12 +127,11 @@ CleanCSS constructor accepts a hash as a parameter, i.e.,
 * `beautify` - formats output CSS by using indentation and one rule or property per line.
 * `benchmark` - turns on benchmarking mode measuring time spent on cleaning up (run `npm run bench` to see example)
 * `compatibility` - enables compatibility mode, see [below for more examples](#how-to-set-a-compatibility-mode)
+* `inline` - whether to inline `@import` rules, can be `['all']`, `['local']` (default), `['remote']`, or a blacklisted domain/path e.g. `['!fonts.googleapis.com']`
 * `inliner` - a hash of options for `@import` inliner, see [test/protocol-imports-test.js](https://github.com/jakubpawlowicz/clean-css/blob/master/test/protocol-imports-test.js#L372) for examples, or [this comment](https://github.com/jakubpawlowicz/clean-css/issues/612#issuecomment-119594185) for a proxy use case.
 * `keepBreaks` - whether to keep line breaks (default is false)
 * `keepSpecialComments` - `*` for keeping all (default), `1` for keeping first one only, `0` for removing all
 * `mediaMerging` - whether to merge `@media` at-rules (default is true)
-* `processImport` - whether to process `@import` rules
-* `processImportFrom` - a list of `@import` rules, can be `['all']` (default), `['local']`, `['remote']`, or a blacklisted path e.g. `['!fonts.googleapis.com']`
 * `rebase` - set to false to skip URL rebasing
 * `rebaseTo` - a directory to which all URLs are rebased (most likely the directory under which the output file will live), defaults to the current directory
 * `restructuring` - set to false to disable restructuring in advanced optimizations
@@ -384,8 +383,7 @@ All advanced optimizations are dispatched [here](https://github.com/jakubpawlowi
 ## Acknowledgments (sorted alphabetically)
 
 * Anthony Barre ([@abarre](https://github.com/abarre)) for improvements to
-  `@import` processing, namely introducing the `--skip-import` /
-  `processImport` options.
+  `@import` processing.
 * Simon Altschuler ([@altschuler](https://github.com/altschuler)) for fixing
   `@import` processing inside comments.
 * Isaac ([@facelessuser](https://github.com/facelessuser)) for pointing out
@@ -394,6 +392,7 @@ All advanced optimizations are dispatched [here](https://github.com/jakubpawlowi
   removing node.js' old `sys` package.
 * Luke Page ([@lukeapage](https://github.com/lukeapage)) for suggestions and testing the source maps feature.
   Plus everyone else involved in [#125](https://github.com/jakubpawlowicz/clean-css/issues/125) for pushing it forward.
+* Peter Wagenet ([@wagenet](https://github.com/wagenet)) for suggesting improvements to `@import` inlining behavior.
 * Timur Kristóf ([@Venemo](https://github.com/Venemo)) for an outstanding
   contribution of advanced property optimizer for 2.2 release.
 * Vincent Voyer ([@vvo](https://github.com/vvo)) for a patch with better

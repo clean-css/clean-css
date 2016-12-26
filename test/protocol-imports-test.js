@@ -417,10 +417,8 @@ vows.describe('protocol imports').addBatch({
 
       new CleanCSS({
         inline: 'all',
-        inliner: {
-          request: {
-            method: 'POST'
-          }
+        inlineRequest: {
+          method: 'POST'
         }
       }).minify('@import url(http://127.0.0.1/computed.css);a{color:red}', this.callback);
     },
@@ -556,9 +554,7 @@ vows.describe('protocol imports').addBatch({
       this.server.listen(port, function () {
         new CleanCSS({
           inline: 'all',
-          inliner: {
-            timeout: timeout
-          }
+          inlineTimeout: timeout
         }).minify('@import url(http://localhost:' + port + '/timeout.css);a{color:red}', self.callback);
       });
       enableDestroy(self.server);
@@ -595,11 +591,9 @@ vows.describe('protocol imports').addBatch({
       this.proxyServer.listen(8080, function () {
         var options = {
           inline: 'all',
-          inliner: {
-            request: {
-              hostname: '127.0.0.1',
-              port: 8080
-            }
+          inlineRequest: {
+            hostname: '127.0.0.1',
+            port: 8080
           }
         };
 
@@ -640,11 +634,9 @@ vows.describe('protocol imports').addBatch({
       this.proxyServer.listen(8080, function () {
         var options = {
           inline: 'all',
-          inliner: {
-            request: {
-              hostname: '127.0.0.1',
-              port: 8080
-            }
+          inlineRequest: {
+            hostname: '127.0.0.1',
+            port: 8080
           }
         };
 
@@ -721,11 +713,9 @@ vows.describe('protocol imports').addBatch({
       this.proxyServer.listen(8082, function () {
         var options = {
           inline: 'all',
-          inliner: {
-            request: {
-              hostname: '127.0.0.1',
-              port: 8082
-            }
+          inlineRequest: {
+            hostname: '127.0.0.1',
+            port: 8082
           }
         };
 

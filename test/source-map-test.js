@@ -976,7 +976,7 @@ vows.describe('source-map')
           }
         });
         this.server.listen(port, '127.0.0.1', function () {
-          new CleanCSS({ inline: 'all', sourceMap: true, inliner: { timeout: timeout } })
+          new CleanCSS({ inline: 'all', inlineTimeout: timeout, sourceMap: true })
             .minify('@import url(http://127.0.0.1:' + port + '/remote.css);', self.callback);
         });
         enableDestroy(this.server);
@@ -1067,7 +1067,7 @@ vows.describe('source-map')
           .post('/remote.css.map')
           .reply(200, inputMap);
 
-        new CleanCSS({ inline: 'all', sourceMap: true, inliner: { request: { method: 'POST' } } })
+        new CleanCSS({ inline: 'all', inlineRequest: { method: 'POST' }, sourceMap: true })
           .minify('@import url(http://127.0.0.1/remote.css);', this.callback);
       },
       'has mapping': function (errors, minified) {

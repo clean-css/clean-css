@@ -19,9 +19,9 @@ commands
   .option('-c, --compatibility [ie7|ie8]', 'Force compatibility mode (see Readme for advanced examples)')
   .option('-d, --debug', 'Shows debug information (minification time & compression efficiency)')
   .option('-o, --output [output-file]', 'Use [output-file] as output instead of STDOUT')
-  .option('-t, --timeout [seconds]', 'Per connection timeout when fetching remote @imports (defaults to 5 seconds)')
   .option('--beautify', 'Formats output CSS by using indentation and one rule or property per line')
   .option('--inline [rules]', 'Enables inlining for listed sources (defaults to `local`)')
+  .option('--inline-timeout [seconds]', 'Per connection timeout when fetching remote stylesheets (defaults to 5 seconds)', parseFloat)
   .option('--rounding-precision [n]', 'Rounds pixel values to `N` decimal places. -1 disables rounding (defaults to -1)')
   .option('--s0', 'Remove all special comments, i.e. /*! comment */')
   .option('--s1', 'Remove all special comments but the first one')
@@ -66,7 +66,7 @@ var options = {
   beautify: commands.beautify,
   compatibility: commands.compatibility,
   inline: commands.inline || 'local',
-  inliner: commands.timeout ? { timeout: parseFloat(commands.timeout) * 1000 } : undefined,
+  inlineTimeout: commands.inlineTimeout * 1000,
   keepBreaks: !!commands.keepLineBreaks,
   keepSpecialComments: commands.s0 ? 0 : (commands.s1 ? 1 : '*'),
   mediaMerging: commands.skipMediaMerging ? false : true,

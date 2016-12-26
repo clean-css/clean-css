@@ -336,7 +336,7 @@ vows.describe('./bin/cleancss')
           setTimeout(function () {}, 1000);
         });
         this.server.listen('24682', function () {
-          exec('echo "' + source + '" | ./bin/cleancss --timeout 0.01 --inline all', self.callback);
+          exec('echo "' + source + '" | ./bin/cleancss --inline all --inline-timeout 0.01', self.callback);
         });
       },
       'should raise warning': function (error, stdout, stderr) {

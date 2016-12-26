@@ -32,6 +32,8 @@ There will be some breaking changes:
 * `roundingPrecision` is disabled by default
 * `roundingPrecision` applies to **all** units now, not only `px` as in 3.x;
 * `processImport` and `processImportFrom` are merged into `inline` option which defaults to `local`. Remote `@import` rules are **NOT** inlined by default anymore.
+* renames CLI `--timeout` option to `--inline-timeout`;
+* splits API `inliner: { request: ..., timeout: ... }` option into `inlineRequest` and `inlineTimeout` options;
 
 Please note this list is not final. You are more than welcome to comment these changes in [4.0 release discussion](https://github.com/jakubpawlowicz/clean-css/issues/842) thread.
 
@@ -61,9 +63,9 @@ cleancss [options] source-file, [source-file, ...]
 -c, --compatibility [ie7|ie8]  Force compatibility mode (see Readme for advanced examples)
 -d, --debug                    Shows debug information (minification time & compression efficiency)
 -o, --output [output-file]     Use [output-file] as output instead of STDOUT
--t, --timeout [seconds]        Per connection timeout when fetching remote @imports (defaults to 5 seconds)
 --beautify                     Formats output CSS by using indentation and one rule or property per line
 --inline [rules]               Enables inlining for listed sources (defaults to `local`)
+--inline-timeout [seconds]     Per connection timeout when fetching remote stylesheets (defaults to 5 seconds)
 --rounding-precision [n]       Rounds pixel values to `N` decimal places. `off` disables rounding (defaults to `off`)
 --s0                           Remove all special comments, i.e. /*! comment */
 --s1                           Remove all special comments but the first one
@@ -128,7 +130,8 @@ CleanCSS constructor accepts a hash as a parameter, i.e.,
 * `benchmark` - turns on benchmarking mode measuring time spent on cleaning up (run `npm run bench` to see example)
 * `compatibility` - enables compatibility mode, see [below for more examples](#how-to-set-a-compatibility-mode)
 * `inline` - whether to inline `@import` rules, can be `['all']`, `['local']` (default), `['remote']`, or a blacklisted domain/path e.g. `['!fonts.googleapis.com']`
-* `inliner` - a hash of options for `@import` inliner, see [test/protocol-imports-test.js](https://github.com/jakubpawlowicz/clean-css/blob/master/test/protocol-imports-test.js#L372) for examples, or [this comment](https://github.com/jakubpawlowicz/clean-css/issues/612#issuecomment-119594185) for a proxy use case.
+* `inlineRequest` - an object with [HTTP(S) request options](https://nodejs.org/api/http.html#http_http_request_options_callback) for inlining remote `@import` rules
+* `inlineTimeout` - an integer denoting a number of milliseconds after which inlining a remote `@import` fails (defaults to 5000 ms)
 * `keepBreaks` - whether to keep line breaks (default is false)
 * `keepSpecialComments` - `*` for keeping all (default), `1` for keeping first one only, `0` for removing all
 * `mediaMerging` - whether to merge `@media` at-rules (default is true)

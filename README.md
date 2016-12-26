@@ -34,6 +34,7 @@ There will be some breaking changes:
 * `processImport` and `processImportFrom` are merged into `inline` option which defaults to `local`. Remote `@import` rules are **NOT** inlined by default anymore.
 * renames CLI `--timeout` option to `--inline-timeout`;
 * splits API `inliner: { request: ..., timeout: ... }` option into `inlineRequest` and `inlineTimeout` options;
+* remote resources without a protocol, e.g. //fonts.googleapis.com/css?family=Domine:700, are not inlined anymore;
 
 Please note this list is not final. You are more than welcome to comment these changes in [4.0 release discussion](https://github.com/jakubpawlowicz/clean-css/issues/842) thread.
 

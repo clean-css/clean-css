@@ -59,7 +59,7 @@ vows.describe('protocol imports').addBatch({
         .get('/css?family=Oleo%20Script%20Swash%20Caps')
         .reply(200, 'p{font-size:13px}');
 
-      new CleanCSS({ inline: 'all' }).minify('@import url(\'//fonts.googleapis.com/css?family=Oleo Script Swash Caps\');', this.callback);
+      new CleanCSS({ inline: 'all' }).minify('@import url(\'http://fonts.googleapis.com/css?family=Oleo Script Swash Caps\');', this.callback);
     },
     'should not raise errors': function (errors, minified) {
       assert.isNull(errors);
@@ -335,40 +335,24 @@ vows.describe('protocol imports').addBatch({
   },
   'of a resource without protocol': {
     topic: function () {
-      this.reqMocks = nock('http://127.0.0.1')
-        .get('/no-protocol.css')
-        .reply(200, 'div{padding:0}');
-
       new CleanCSS({ inline: 'all' }).minify('@import url(//127.0.0.1/no-protocol.css);a{color:red}', this.callback);
     },
     'should not raise errors': function (errors, minified) {
       assert.isNull(errors);
     },
-    'should process @import': function (errors, minified) {
-      assert.equal(minified.styles, 'div{padding:0}a{color:red}');
-    },
-    teardown: function () {
-      assert.isTrue(this.reqMocks.isDone());
-      nock.cleanAll();
+    'should be kept intact': function (errors, minified) {
+      assert.equal(minified.styles, '@import url(//127.0.0.1/no-protocol.css);a{color:red}');
     }
   },
   'of a resource without protocol with rebase': {
     topic: function () {
-      this.reqMocks = nock('http://127.0.0.1')
-        .get('/no-protocol.css')
-        .reply(200, 'a{background:url(image.png)}');
-
       new CleanCSS({ inline: 'all' }).minify('@import url(//127.0.0.1/no-protocol.css);', this.callback);
     },
     'should not raise errors': function (errors, minified) {
       assert.isNull(errors);
     },
     'should process @import': function (errors, minified) {
-      assert.equal(minified.styles, 'a{background:url(//127.0.0.1/image.png)}');
-    },
-    teardown: function () {
-      assert.isTrue(this.reqMocks.isDone());
-      nock.cleanAll();
+      assert.equal(minified.styles, '@import url(//127.0.0.1/no-protocol.css);');
     }
   },
   'of a resource with a protocol and absolute URL without a protocol': {
@@ -390,7 +374,7 @@ vows.describe('protocol imports').addBatch({
       nock.cleanAll();
     }
   },
-  'of a resource without protocol with rebase to another domain': {
+  'of a resource with protocol with rebase to another domain': {
     topic: function () {
       this.reqMocks = nock('http://127.0.0.1')
         .get('/no-protocol.css')
@@ -857,17 +841,17 @@ vows.describe('protocol imports').addBatch({
       assert.equal(minified.styles, '@import url(http://127.0.0.1/remote.css);@import url(http://assets.127.0.0.1/remote.css);@import url(test/fixtures/partials/one.css);');
     }
   },
-  'allowed imports - blacklisted & no-protocol': {
+  'allowed imports - no-protocol': {
     topic: function () {
       var source = '@import url(//127.0.0.1/remote.css);@import url(test/fixtures/partials/one.css);';
-      new CleanCSS({ inline: ['!127.0.0.1'] }).minify(source, this.callback);
+      new CleanCSS({ inline: ['//127.0.0.1', 'local'] }).minify(source, this.callback);
     },
     'should not raise errors': function (error, minified) {
       assert.isEmpty(minified.errors);
     },
     'should raise a warning': function (error, minified) {
       assert.lengthOf(minified.warnings, 1);
-      assert.equal(minified.warnings[0], 'Skipping remote @import of "//127.0.0.1/remote.css" as resource is not allowed.');
+      assert.equal(minified.warnings[0], 'Skipping remote @import of "//127.0.0.1/remote.css" as no protocol given.');
     },
     'should process first imports': function (error, minified) {
       assert.equal(minified.styles, '@import url(//127.0.0.1/remote.css);.one{color:red}');

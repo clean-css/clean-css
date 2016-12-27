@@ -64,10 +64,10 @@ vows.describe('./bin/cleancss')
         assert.include(stdout, 'cleancss -o one-min.css one.css');
       },
       'should output multiple files example': function (error, stdout) {
-        assert.include(stdout, 'cat one.css two.css three.css | cleancss -o merged-and-minified.css');
+        assert.include(stdout, 'cleancss -o merged-and-minified.css one.css two.css three.css');
       },
       'should output gzipping multiple files example': function (error, stdout) {
-        assert.include(stdout, 'cat one.css two.css three.css | cleancss | gzip -9 -c > merged-minified-and-gzipped.css.gz');
+        assert.include(stdout, 'cleancss one.css two.css three.css | gzip -9 -c > merged-minified-and-gzipped.css.gz');
       }
     })
   })

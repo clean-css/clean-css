@@ -83,36 +83,31 @@ cleancss [options] source-file, [source-file, ...]
 
 #### Examples:
 
-To minify a **public.css** file into **public-min.css** do:
+To minify a **one.css** file into **one-min.css** do:
 
 ```
-cleancss -o public-min.css public.css
+cleancss -o one-min.css one.css
 ```
 
-To minify the same **public.css** into the standard output skip the `-o` parameter:
+To minify the same **one.css** into the standard output skip the `-o` parameter:
 
 ```
-cleancss public.css
+cleancss one.css
 ```
 
-More likely you would like to concatenate a couple of files.
-If you are on a Unix-like system:
+If you would like to minify a couple of files together, pass more paths in:
 
 ```bash
-cat one.css two.css three.css | cleancss -o merged-and-minified.css
+cleancss -o merged-and-minified.css one.css two.css three.css
 ```
 
-On Windows:
-
-```bat
-type one.css two.css three.css | cleancss -o merged-and-minified.css
-```
-
-Or even gzip the result at once:
+You can also pipe results to other commands, e.g. gzip:
 
 ```bash
-cat one.css two.css three.css | cleancss | gzip -9 -c > merged-minified-and-gzipped.css.gz
+cleancss one.css two.css three.css | gzip -9 -c > merged-minified-and-gzipped.css.gz
 ```
+
+Please note there is a difference between passing in a concatenated string and letting clean-css do the job. The former will discard `@import` statements appearing [not at the beginning](https://developer.mozilla.org/en-US/docs/Web/CSS/@import) of the string, while the latter will discard only those appearing not at the beginning of any of the files. Because of this behavior, the latter way (see examples above) is recommended.
 
 ### How to use clean-css API?
 

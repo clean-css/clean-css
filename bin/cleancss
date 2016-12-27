@@ -9,8 +9,6 @@ var commands = require('commander');
 var packageConfig = fs.readFileSync(path.join(path.dirname(fs.realpathSync(process.argv[1])), '../package.json'));
 var buildVersion = JSON.parse(packageConfig).version;
 
-var isWindows = process.platform == 'win32';
-
 // Specify commander options to parse command line params correctly
 commands
   .version(buildVersion, '-v, --version')
@@ -39,12 +37,8 @@ commands.on('--help', function () {
   console.log('  Examples:\n');
   console.log('    %> cleancss one.css');
   console.log('    %> cleancss -o one-min.css one.css');
-  if (isWindows) {
-    console.log('    %> type one.css two.css three.css | cleancss -o merged-and-minified.css');
-  } else {
-    console.log('    %> cat one.css two.css three.css | cleancss -o merged-and-minified.css');
-    console.log('    %> cat one.css two.css three.css | cleancss | gzip -9 -c > merged-minified-and-gzipped.css.gz');
-  }
+  console.log('    %> cleancss -o merged-and-minified.css one.css two.css three.css');
+  console.log('    %> cleancss one.css two.css three.css | gzip -9 -c > merged-minified-and-gzipped.css.gz');
   console.log('');
   process.exit();
 });

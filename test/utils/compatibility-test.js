@@ -17,7 +17,7 @@ vows.describe(compatibility)
         assert.isTrue(compat.properties.fontWeight);
         assert.isFalse(compat.properties.ieBangHack);
         assert.isFalse(compat.properties.iePrefixHack);
-        assert.isTrue(compat.properties.ieSuffixHack);
+        assert.isFalse(compat.properties.ieSuffixHack);
         assert.isTrue(compat.properties.merging);
         assert.isFalse(compat.properties.shorterLengthUnits);
         assert.isTrue(compat.properties.spaceAfterClosingBrace);
@@ -57,7 +57,7 @@ vows.describe(compatibility)
         assert.isTrue(compat.properties.colors);
         assert.isFalse(compat.properties.ieBangHack);
         assert.isFalse(compat.properties.iePrefixHack);
-        assert.isTrue(compat.properties.ieSuffixHack);
+        assert.isFalse(compat.properties.ieSuffixHack);
         assert.isTrue(compat.properties.merging);
         assert.isFalse(compat.properties.shorterLengthUnits);
         assert.isTrue(compat.properties.spaceAfterClosingBrace);
@@ -78,6 +78,39 @@ vows.describe(compatibility)
     }
   })
   .addBatch({
+    'as an ie9 template': {
+      'topic': function () {
+        return compatibility('ie9');
+      },
+      'gets template compatibility': function (compat) {
+        assert.isTrue(compat.colors.opacity);
+        assert.isFalse(compat.properties.backgroundClipMerging);
+        assert.isFalse(compat.properties.backgroundOriginMerging);
+        assert.isFalse(compat.properties.backgroundSizeMerging);
+        assert.isTrue(compat.properties.colors);
+        assert.isTrue(compat.properties.fontWeight);
+        assert.isFalse(compat.properties.ieBangHack);
+        assert.isFalse(compat.properties.iePrefixHack);
+        assert.isTrue(compat.properties.ieSuffixHack);
+        assert.isTrue(compat.properties.merging);
+        assert.isFalse(compat.properties.shorterLengthUnits);
+        assert.isTrue(compat.properties.spaceAfterClosingBrace);
+        assert.isFalse(compat.properties.urlQuotes);
+        assert.isTrue(compat.properties.zeroUnits);
+        assert.isFalse(compat.selectors.adjacentSpace);
+        assert.isFalse(compat.selectors.ie7Hack);
+        assert.isTrue(compat.units.ch);
+        assert.isTrue(compat.units.in);
+        assert.isTrue(compat.units.pc);
+        assert.isTrue(compat.units.pt);
+        assert.isTrue(compat.units.rem);
+        assert.isTrue(compat.units.vh);
+        assert.isTrue(compat.units.vm);
+        assert.isTrue(compat.units.vmax);
+        assert.isTrue(compat.units.vmin);
+        assert.isTrue(compat.units.vw);
+      }
+    },
     'as an ie8 template': {
       'topic': function () {
         return compatibility('ie8');
@@ -198,7 +231,7 @@ vows.describe(compatibility)
         assert.isFalse(compat.properties.backgroundSizeMerging);
         assert.isFalse(compat.properties.ieBangHack);
         assert.isTrue(compat.properties.iePrefixHack);
-        assert.isTrue(compat.properties.ieSuffixHack);
+        assert.isFalse(compat.properties.ieSuffixHack);
         assert.isTrue(compat.properties.merging);
         assert.isFalse(compat.properties.shorterLengthUnits);
         assert.isTrue(compat.properties.spaceAfterClosingBrace);
@@ -230,7 +263,7 @@ vows.describe(compatibility)
         assert.isFalse(compat.properties.backgroundSizeMerging);
         assert.isFalse(compat.properties.ieBangHack);
         assert.isTrue(compat.properties.iePrefixHack);
-        assert.isTrue(compat.properties.ieSuffixHack);
+        assert.isFalse(compat.properties.ieSuffixHack);
         assert.isTrue(compat.properties.merging);
         assert.isFalse(compat.properties.shorterLengthUnits);
         assert.isTrue(compat.properties.spaceAfterClosingBrace);

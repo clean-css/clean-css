@@ -13,6 +13,7 @@
 * Fixed issue [#657](https://github.com/jakubpawlowicz/clean-css/issues/657) - adds property name validation.
 * Fixed issue [#685](https://github.com/jakubpawlowicz/clean-css/issues/685) - adds lowercasing hex colors optimization.
 * Fixed issue [#686](https://github.com/jakubpawlowicz/clean-css/issues/686) - adds rounding precision for all units.
+* Fixed issue [#703](https://github.com/jakubpawlowicz/clean-css/issues/703) - changes default IE compatibility to 10+.
 * Fixed issue [#756](https://github.com/jakubpawlowicz/clean-css/issues/756) - adds disabling font-weight optimizations.
 * Fixed issue [#758](https://github.com/jakubpawlowicz/clean-css/issues/758) - ignores rules with empty selector.
 * Fixed issue [#767](https://github.com/jakubpawlowicz/clean-css/issues/767) - disables remote `@import` inlining by default.

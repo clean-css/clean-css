@@ -1618,7 +1618,7 @@ vows.describe('integration tests')
       ],
       'backslash': [
         'a{color:#fff\\9}',
-        'a{color:#fff\\9}'
+        ''
       ]
     })
   )

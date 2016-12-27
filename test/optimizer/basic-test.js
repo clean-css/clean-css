@@ -435,7 +435,7 @@ vows.describe('simple optimizations')
       ],
       'backslash': [
         'a{width:101px\\9}',
-        'a{width:101px\\9}'
+        ''
       ],
       'bang': [
         'a{color:red !ie}',
@@ -446,6 +446,26 @@ vows.describe('simple optimizations')
         'a{color:red!important}'
       ]
     }, { advanced: false })
+  )
+  .addBatch(
+    optimizerContext('ie hacks in IE9 mode', {
+      'underscore': [
+        'a{_width:101px}',
+        ''
+      ],
+      'star': [
+        'a{*width:101px}',
+        ''
+      ],
+      'backslash': [
+        'a{width:101px\\9}',
+        'a{width:101px\\9}'
+      ],
+      'bang': [
+        'a{color:red !ie}',
+        ''
+      ]
+    }, { advanced: false, compatibility: 'ie9' })
   )
   .addBatch(
     optimizerContext('ie hacks in IE8 mode', {

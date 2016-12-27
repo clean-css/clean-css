@@ -17,6 +17,7 @@
 * Fixed issue [#758](https://github.com/jakubpawlowicz/clean-css/issues/758) - ignores rules with empty selector.
 * Fixed issue [#767](https://github.com/jakubpawlowicz/clean-css/issues/767) - disables remote `@import` inlining by default.
 * Fixed issue [#791](https://github.com/jakubpawlowicz/clean-css/issues/791) - resolves imports in-memory if possible.
+* Fixed issue [#801](https://github.com/jakubpawlowicz/clean-css/issues/801) - smarter `@import` inlining.
 * Fixed issue [#817](https://github.com/jakubpawlowicz/clean-css/issues/817) - makes `off` disable rounding.
 * Fixed issue [#818](https://github.com/jakubpawlowicz/clean-css/issues/818) - disables `px` rounding by default.
 * Fixed issue [#834](https://github.com/jakubpawlowicz/clean-css/issues/834) - adds extra line break in nested blocks.

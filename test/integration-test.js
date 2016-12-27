@@ -1985,6 +1985,10 @@ vows.describe('integration tests')
         'a{display:block}@import url(test/fixtures/partials/one.css);body{margin:0}',
         'a{display:block}body{margin:0}'
       ],
+      'with content between': [
+        '@import url(test/fixtures/partials/one.css);@import url(test/fixtures/partials/extra/three.css);@import url(test/fixtures/partials/extra/four.css);.two { color:#fff; }@import url(test/fixtures/partials/extra/sub.css);.base { margin:0px }',
+        '.one{color:red}.three{color:#0f0}.four{color:#00f}.two{color:#fff}.base{margin:0}'
+      ],
       'after quoted content': [
         '/*a{display:block}*/@import url(test/fixtures/partials/one.css);',
         '.one{color:red}'

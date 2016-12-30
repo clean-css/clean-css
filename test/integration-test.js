@@ -2439,7 +2439,7 @@ vows.describe('integration tests')
       ],
       'with background-size property': [
         'a{background:none;background-image:url(1.png);background-size:28px 28px}',
-        'a{background:url(1.png);background-size:28px 28px}'
+        'a{background:url(1.png) 0 0/28px 28px}'
       ]
     })
   )

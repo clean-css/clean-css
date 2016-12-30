@@ -736,6 +736,55 @@ vows.describe(optimize)
           ]
         ]);
       }
+    },
+    'background-clip, -origin, and -size': {
+      'topic': function () {
+        return _optimize('a{background:url(/image.png);background-size:10px;background-origin:border-box;background-clip:padding-box}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'background', [[1, 2, undefined]]],
+            ['property-value', 'url(/image.png)', [[1, 13, undefined]]],
+            ['property-value', 0],
+            ['property-value', 0],
+            ['property-value', '/'],
+            ['property-value', '10px', [[1, 45, undefined]]],
+            ['property-value', 'border-box', [[1, 68, undefined]]],
+            ['property-value', 'padding-box', [[1, 95, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'background-clip, -origin, and -size - IE8 compatibility mode': {
+      'topic': function () {
+        return _optimize('a{background:url(/image.png);background-size:10px;background-origin:border-box;background-clip:padding-box}', 'ie8');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'background', [[1, 2, undefined]]],
+            ['property-value', 'url(/image.png)', [[1, 13, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'background-size', [[1, 29, undefined]]],
+            ['property-value', '10px', [[1, 45, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'background-origin', [[1, 50, undefined]]],
+            ['property-value', 'border-box', [[1, 68, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'background-clip', [[1, 79, undefined]]],
+            ['property-value', 'padding-box', [[1, 95, undefined]]]
+          ]
+        ]);
+      }
     }
   })
   .addBatch({

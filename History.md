@@ -6,6 +6,7 @@
 * Removes `debug` API switch as stats are always gathered and available under `stats` property.
 * Replaces the old tokenizer with a new one which doesn't use any escaping.
 * Replaces the old `@import` inlining with one on top of the new tokenizer.
+* Re-enables `background-(clip|origin|size)` merging with `background` shorthand.
 * Simplifies URL rebasing with a single `rebaseTo` option in API or inferred from `--output` in CLI.
 * Splits `inliner` option into `inlineRequest` and `inlineTimeout`.
 * Fixed issue [#209](https://github.com/jakubpawlowicz/clean-css/issues/209) - adds output formatting via `beautify` flag.

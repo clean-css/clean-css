@@ -90,7 +90,7 @@ vows.describe('restructure')
       ],
       'over a property in the same selector': [
         'div{background-size:100%}a{background:no-repeat;background-size:100%}',
-        'div{background-size:100%}a{background:no-repeat;background-size:100%}'
+        'div{background-size:100%}a{background:0 0/100% no-repeat}'
       ],
       'multiple granular up to a shorthand': [
         '.one{border:1px solid #bbb}.two{border-color:#666}.three{border-width:1px;border-style:solid}',

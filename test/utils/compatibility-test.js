@@ -11,9 +11,9 @@ vows.describe(compatibility)
       'gets default compatibility': function (compat) {
         assert.isTrue(compat.colors.opacity);
         assert.isTrue(compat.properties.colors);
-        assert.isFalse(compat.properties.backgroundClipMerging);
-        assert.isFalse(compat.properties.backgroundOriginMerging);
-        assert.isFalse(compat.properties.backgroundSizeMerging);
+        assert.isTrue(compat.properties.backgroundClipMerging);
+        assert.isTrue(compat.properties.backgroundOriginMerging);
+        assert.isTrue(compat.properties.backgroundSizeMerging);
         assert.isTrue(compat.properties.fontWeight);
         assert.isFalse(compat.properties.ieBangHack);
         assert.isFalse(compat.properties.iePrefixHack);
@@ -51,9 +51,9 @@ vows.describe(compatibility)
       },
       'gets merged compatibility': function (compat) {
         assert.isTrue(compat.colors.opacity);
-        assert.isFalse(compat.properties.backgroundClipMerging);
-        assert.isFalse(compat.properties.backgroundOriginMerging);
-        assert.isFalse(compat.properties.backgroundSizeMerging);
+        assert.isTrue(compat.properties.backgroundClipMerging);
+        assert.isTrue(compat.properties.backgroundOriginMerging);
+        assert.isTrue(compat.properties.backgroundSizeMerging);
         assert.isTrue(compat.properties.colors);
         assert.isFalse(compat.properties.ieBangHack);
         assert.isFalse(compat.properties.iePrefixHack);
@@ -84,9 +84,9 @@ vows.describe(compatibility)
       },
       'gets template compatibility': function (compat) {
         assert.isTrue(compat.colors.opacity);
-        assert.isFalse(compat.properties.backgroundClipMerging);
-        assert.isFalse(compat.properties.backgroundOriginMerging);
-        assert.isFalse(compat.properties.backgroundSizeMerging);
+        assert.isTrue(compat.properties.backgroundClipMerging);
+        assert.isTrue(compat.properties.backgroundOriginMerging);
+        assert.isTrue(compat.properties.backgroundSizeMerging);
         assert.isTrue(compat.properties.colors);
         assert.isTrue(compat.properties.fontWeight);
         assert.isFalse(compat.properties.ieBangHack);
@@ -226,9 +226,9 @@ vows.describe(compatibility)
       'gets calculated compatibility': function (compat) {
         assert.isTrue(compat.colors.opacity);
         assert.isTrue(compat.properties.colors);
-        assert.isFalse(compat.properties.backgroundClipMerging);
-        assert.isFalse(compat.properties.backgroundOriginMerging);
-        assert.isFalse(compat.properties.backgroundSizeMerging);
+        assert.isTrue(compat.properties.backgroundClipMerging);
+        assert.isTrue(compat.properties.backgroundOriginMerging);
+        assert.isTrue(compat.properties.backgroundSizeMerging);
         assert.isFalse(compat.properties.ieBangHack);
         assert.isTrue(compat.properties.iePrefixHack);
         assert.isFalse(compat.properties.ieSuffixHack);
@@ -258,9 +258,9 @@ vows.describe(compatibility)
       'gets calculated compatibility': function (compat) {
         assert.isTrue(compat.colors.opacity);
         assert.isTrue(compat.properties.colors);
-        assert.isFalse(compat.properties.backgroundClipMerging);
-        assert.isFalse(compat.properties.backgroundOriginMerging);
-        assert.isFalse(compat.properties.backgroundSizeMerging);
+        assert.isTrue(compat.properties.backgroundClipMerging);
+        assert.isTrue(compat.properties.backgroundOriginMerging);
+        assert.isTrue(compat.properties.backgroundSizeMerging);
         assert.isFalse(compat.properties.ieBangHack);
         assert.isTrue(compat.properties.iePrefixHack);
         assert.isFalse(compat.properties.ieSuffixHack);

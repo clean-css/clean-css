@@ -3412,6 +3412,65 @@ vows.describe(tokenize)
           ]
         ]
       ],
+      'missing end brace and semicolon in the middle': [
+        'body{color:red a{color:blue;}',
+        [
+          [
+            'rule',
+            [
+              [
+                'rule-scope',
+                'body',
+                [
+                  [1, 0, undefined]
+                ]
+              ]
+            ],
+            [
+              [
+                'property',
+                [
+                  'property-name',
+                  'color',
+                  [
+                    [1, 5, undefined]
+                  ]
+                ],
+                [
+                  'property-value',
+                  'red',
+                  [
+                    [1, 11, undefined]
+                  ]
+                ],
+                [
+                  'property-block',
+                  [
+                    [
+                      'property',
+                      [
+                        'property-name',
+                        'acolor',
+                        [
+                          [1, 15, undefined]
+                        ]
+                      ],
+                      [
+                        'property-value',
+                        'blue',
+                        [
+                          [1, 23, undefined]
+                        ]
+
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ],
       'extra end brace in the middle': [
         'body{color:red}}a{color:blue;}',
         [

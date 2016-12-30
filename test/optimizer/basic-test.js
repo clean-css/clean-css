@@ -116,6 +116,10 @@ vows.describe('simple optimizations')
       'invalid characters #3 - relation at the beginning': [
         '>.funky{background:red}',
         ''
+      ],
+      'missing semicolon and brace in the middle': [
+        'body{color:red a{color:blue;}',
+        ''
       ]
     }, { advanced: false })
   )

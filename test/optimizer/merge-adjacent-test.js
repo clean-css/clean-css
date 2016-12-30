@@ -56,6 +56,10 @@ vows.describe('remove duplicates')
         'a{color:red}::-webkit-scrollbar,a{color:#fff}',
         'a{color:red}::-webkit-scrollbar,a{color:#fff}'
       ],
+      'when an invalid pseudo selector used': [
+        'a{color:red}a:after:after{color:red}',
+        'a{color:red}a:after:after{color:red}'
+      ],
       'two same selectors over a block': [
         '.one{color:red}@media print{.two{display:block}}.one{display:none}',
         '@media print{.two{display:block}}.one{color:red;display:none}'

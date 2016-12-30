@@ -24,6 +24,7 @@
 * Fixed issue [#801](https://github.com/jakubpawlowicz/clean-css/issues/801) - smarter `@import` inlining.
 * Fixed issue [#817](https://github.com/jakubpawlowicz/clean-css/issues/817) - makes `off` disable rounding.
 * Fixed issue [#818](https://github.com/jakubpawlowicz/clean-css/issues/818) - disables `px` rounding by default.
+* Fixed issue [#829](https://github.com/jakubpawlowicz/clean-css/issues/829) - adds more strict selector merging rules.
 * Fixed issue [#834](https://github.com/jakubpawlowicz/clean-css/issues/834) - adds extra line break in nested blocks.
 * Fixed issue [#839](https://github.com/jakubpawlowicz/clean-css/issues/839) - allows URIs in import inlining rules.
 * Fixed issue [#840](https://github.com/jakubpawlowicz/clean-css/issues/840) - allows input source map as map object.

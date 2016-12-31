@@ -86,4 +86,12 @@ vows.describe('advanced optimizer')
       ]
     })
   )
+  .addBatch(
+    optimizerContext('unit compacting', {
+      'width': [
+        'div{width:1rem;width:16px}',
+        'div{width:16px}'
+      ]
+    })
+  )
   .export(module);

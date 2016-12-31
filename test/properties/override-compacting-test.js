@@ -1606,4 +1606,39 @@ vows.describe(optimize)
       }
     }
   })
+  .addBatch({
+    'one unit value': {
+      'topic': function () {
+        return _optimize('a{width:3px;width:4px}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'width', [[1, 12, undefined]]],
+            ['property-value', '4px', [[1, 18, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'incompatible unit values': {
+      'topic': function () {
+        return _optimize('a{width:4px;width:calc(5rem / 2)}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'width', [[1, 2, undefined]]],
+            ['property-value', '4px', [[1, 8, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'width', [[1, 12, undefined]]],
+            ['property-value', 'calc(5rem / 2)', [[1, 18, undefined]]]
+          ]
+        ]);
+      }
+    }
+  })
   .export(module);

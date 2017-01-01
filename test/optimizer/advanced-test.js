@@ -88,6 +88,10 @@ vows.describe('advanced optimizer')
   )
   .addBatch(
     optimizerContext('unit compacting', {
+      'height': [
+        'div{height:1rem;height:16px}',
+        'div{height:16px}'
+      ],
       'width': [
         'div{width:1rem;width:16px}',
         'div{width:16px}'

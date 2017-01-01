@@ -2,6 +2,7 @@
 ==================
 
 * Adds more detailed error & warning messages on top of the new tokenizer.
+* Fixes a bug ignoring incorrect properties in complex restructuring.
 * Requires Node.js 4.0+ to run.
 * Removes `debug` API switch as stats are always gathered and available under `stats` property.
 * Replaces the old tokenizer with a new one which doesn't use any escaping.

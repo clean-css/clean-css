@@ -91,6 +91,34 @@ vows.describe('merge media queries')
     })
   )
   .addBatch(
+    optimizerContext('semantic merging mode', {
+      'moves over an otherwise blocking property': [
+        '@media (max-width:1px){.a{margin:1px}}.b{margin:2px}@media (max-width:1px){.c{margin:3px}}',
+        '.b{margin:2px}@media (max-width:1px){.a{margin:1px}.c{margin:3px}}'
+      ],
+      'moves over an otherwise blocking longhand property': [
+        '@media (max-width:1px){.a{margin:1px}}.a{margin-bottom:2px}@media (max-width:1px){.a{margin:3px}}',
+        '@media (max-width:1px){.a{margin:1px}}.a{margin-bottom:2px}@media (max-width:1px){.a{margin:3px}}'
+      ],
+      'does not move if separating selector redefines a property': [
+        '@media (max-width:1px){.a{margin:1px}}.a{margin:2px}@media (max-width:1px){.a{margin:3px}}',
+        '@media (max-width:1px){.a{margin:1px}}.a{margin:2px}@media (max-width:1px){.a{margin:3px}}'
+      ],
+      'does not move over blocking BEM block rules': [
+        '@media (max-width:1px){.block{margin:1px}}.block--modifier1{margin:2px}@media (max-width:1px){.block--modifier2{margin:3px}}',
+        '@media (max-width:1px){.block{margin:1px}}.block--modifier1{margin:2px}@media (max-width:1px){.block--modifier2{margin:3px}}'
+      ],
+      'does not move over blocking BEM element rules': [
+        '@media (max-width:1px){.block__element{margin:1px}}.block__element--modifier1{margin:2px}@media (max-width:1px){.block__element--modifier2{margin:3px}}',
+        '@media (max-width:1px){.block__element{margin:1px}}.block__element--modifier1{margin:2px}@media (max-width:1px){.block__element--modifier2{margin:3px}}'
+      ],
+      'moves over non-blocking BEM rules': [
+        '@media (max-width:1px){.block{margin:1px}}.block__element{margin:2px}@media (max-width:1px){.block--modifier{margin:3px}}',
+        '.block__element{margin:2px}@media (max-width:1px){.block{margin:1px}.block--modifier{margin:3px}}'
+      ]
+    }, { semanticMerging: true })
+  )
+  .addBatch(
     optimizerContext('advanced off', {
       'keeps content same': [
         '@media screen{a{color:red}}@media screen{a{display:block}}',

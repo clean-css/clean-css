@@ -2798,6 +2798,108 @@ vows.describe(tokenize)
             ]
           ]
         ]
+      ],
+      'mixed block value with trailing block semicolon 123': [
+        'a{display:block;--my-toolbar:{color:red;width:100%;};color:blue}',
+        [
+          [
+            'rule',
+            [
+              [
+                'rule-scope',
+                'a',
+                [
+                  [1, 0, undefined]
+                ]
+              ]
+            ],
+            [
+              [
+                'property',
+                [
+                  'property-name',
+                  'display',
+                  [
+                    [1, 2, undefined]
+                  ]
+                ],
+                [
+                  'property-value',
+                  'block',
+                  [
+                    [1, 10, undefined]
+                  ]
+                ]
+              ],
+              [
+                'property',
+                [
+                  'property-name',
+                  '--my-toolbar',
+                  [
+                    [1, 16, undefined]
+                  ]
+                ],
+                [
+                  'property-block',
+                  [
+                    [
+                      'property',
+                      [
+                        'property-name',
+                        'color',
+                        [
+                          [1, 30, undefined]
+                        ]
+                      ],
+                      [
+                        'property-value',
+                        'red',
+                        [
+                          [1, 36, undefined]
+                        ]
+                      ]
+                    ],
+                    [
+                      'property',
+                      [
+                        'property-name',
+                        'width',
+                        [
+                          [1, 40, undefined]
+                        ]
+                      ],
+                      [
+                        'property-value',
+                        '100%',
+                        [
+                          [1, 46, undefined]
+                        ]
+                      ]
+                    ]
+                  ]
+                ]
+              ],
+              [
+                'property',
+                [
+                  'property-name',
+                  'color',
+                  [
+                    [1, 53, undefined]
+                  ]
+                ],
+                [
+                  'property-value',
+                  'blue',
+                  [
+                    [1, 59, undefined]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
       ]
     })
   )

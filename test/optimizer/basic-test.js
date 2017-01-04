@@ -117,6 +117,10 @@ vows.describe('simple optimizations')
         '>.funky{background:red}',
         ''
       ],
+      'invalid characters #4 - semicolon': [
+        'body;{body}',
+        ''
+      ],
       'missing semicolon and brace in the middle': [
         'body{color:red a{color:blue;}',
         ''

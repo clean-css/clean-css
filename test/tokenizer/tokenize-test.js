@@ -3639,6 +3639,24 @@ vows.describe(tokenize)
             ]
           ]
         ]
+      ],
+      'unexpected semicolon at root level': [
+        'body;{body}',
+        [
+          [
+            'rule',
+            [
+              [
+                'rule-scope',
+                'body;',
+                [
+                  [1, 0, undefined]
+                ]
+              ]
+            ],
+            []
+          ]
+        ]
       ]
     })
   )

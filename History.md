@@ -12,6 +12,7 @@
 * Splits `inliner` option into `inlineRequest` and `inlineTimeout`.
 * Fixed issue [#209](https://github.com/jakubpawlowicz/clean-css/issues/209) - adds output formatting via `beautify` flag.
 * Fixed issue [#432](https://github.com/jakubpawlowicz/clean-css/issues/432) - adds URLs normalization.
+* Fixed issue [#460](https://github.com/jakubpawlowicz/clean-css/issues/460) - unescaped semicolon in selector.
 * Fixed issue [#657](https://github.com/jakubpawlowicz/clean-css/issues/657) - adds property name validation.
 * Fixed issue [#685](https://github.com/jakubpawlowicz/clean-css/issues/685) - adds lowercasing hex colors optimization.
 * Fixed issue [#686](https://github.com/jakubpawlowicz/clean-css/issues/686) - adds rounding precision for all units.

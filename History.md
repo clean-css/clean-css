@@ -29,6 +29,7 @@
 * Fixed issue [#806](https://github.com/jakubpawlowicz/clean-css/issues/806) - skip optimizing variable properties.
 * Fixed issue [#817](https://github.com/jakubpawlowicz/clean-css/issues/817) - makes `off` disable rounding.
 * Fixed issue [#818](https://github.com/jakubpawlowicz/clean-css/issues/818) - disables `px` rounding by default.
+* Fixed issue [#828](https://github.com/jakubpawlowicz/clean-css/issues/828) - `-chrome-` hack support.
 * Fixed issue [#829](https://github.com/jakubpawlowicz/clean-css/issues/829) - adds more strict selector merging rules.
 * Fixed issue [#834](https://github.com/jakubpawlowicz/clean-css/issues/834) - adds extra line break in nested blocks.
 * Fixed issue [#839](https://github.com/jakubpawlowicz/clean-css/issues/839) - allows URIs in import inlining rules.

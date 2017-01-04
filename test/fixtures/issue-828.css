@@ -1,0 +1,5 @@
+@media screen and(-webkit-min-device-pixel-ratio:0) {
+  .logo img{-chrome-:only(;
+     image-rendering:-webkit-optimize-contrast;
+  );}
+}

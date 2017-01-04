@@ -25,6 +25,7 @@
 * Fixed issue [#791](https://github.com/jakubpawlowicz/clean-css/issues/791) - resolves imports in-memory if possible.
 * Fixed issue [#796](https://github.com/jakubpawlowicz/clean-css/issues/796) - semantic merging for `@media` blocks.
 * Fixed issue [#801](https://github.com/jakubpawlowicz/clean-css/issues/801) - smarter `@import` inlining.
+* Fixed issue [#806](https://github.com/jakubpawlowicz/clean-css/issues/806) - skip optimizing variable properties.
 * Fixed issue [#817](https://github.com/jakubpawlowicz/clean-css/issues/817) - makes `off` disable rounding.
 * Fixed issue [#818](https://github.com/jakubpawlowicz/clean-css/issues/818) - disables `px` rounding by default.
 * Fixed issue [#829](https://github.com/jakubpawlowicz/clean-css/issues/829) - adds more strict selector merging rules.

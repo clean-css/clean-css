@@ -102,4 +102,20 @@ vows.describe('advanced optimizer')
       ]
     })
   )
+  .addBatch(
+    optimizerContext('variables', {
+      'skip processing properties with variable values - border - 1st value': [
+        '.one{border:var(--color) solid 1px}',
+        '.one{border:var(--color) solid 1px}'
+      ],
+      'skip processing properties with variable values - border - 2nd value': [
+        '.one{border:red var(--style) 1px}',
+        '.one{border:red var(--style) 1px}'
+      ],
+      'skip processing properties with variable values - border - 3rd value': [
+        '.one{border:red solid var(--width)}',
+        '.one{border:red solid var(--width)}'
+      ]
+    })
+  )
   .export(module);

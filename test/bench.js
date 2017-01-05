@@ -5,7 +5,7 @@ var total = 0;
 
 for (var i = 1; i <= 10; i++) {
   var start = process.hrtime();
-  new CleanCSS({ benchmark: i == 10 }).minify(input);
+  new CleanCSS().minify(input);
 
   var itTook = process.hrtime(start);
   total += 1000 * itTook[0] + itTook[1] / 1000000;

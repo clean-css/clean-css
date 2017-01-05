@@ -124,7 +124,6 @@ CleanCSS constructor accepts a hash as a parameter, i.e.,
 * `advanced` - set to false to disable advanced optimizations - selector & property merging, reduction, etc.
 * `aggressiveMerging` - set to false to disable aggressive merging of properties.
 * `beautify` - formats output CSS by using indentation and one rule or property per line.
-* `benchmark` - turns on benchmarking mode measuring time spent on cleaning up (run `npm run bench` to see example)
 * `compatibility` - enables compatibility mode, see [below for more examples](#how-to-set-a-compatibility-mode)
 * `inline` - whether to inline `@import` rules, can be `['all']`, `['local']` (default), `['remote']`, or a blacklisted domain/path e.g. `['!fonts.googleapis.com']`
 * `inlineRequest` - an object with [HTTP(S) request options](https://nodejs.org/api/http.html#http_http_request_options_callback) for inlining remote `@import` rules

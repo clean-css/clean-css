@@ -4,6 +4,7 @@
 * Adds more detailed error & warning messages on top of the new tokenizer.
 * Fixes a bug ignoring incorrect properties in complex restructuring.
 * Requires Node.js 4.0+ to run.
+* Removes `benchmark` API option as total time is always reported under `stats` property.
 * Removes `debug` API switch as stats are always gathered and available under `stats` property.
 * Replaces the old tokenizer with a new one which doesn't use any escaping.
 * Replaces the old `@import` inlining with one on top of the new tokenizer.

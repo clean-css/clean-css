@@ -3,7 +3,7 @@ var optimizerContext = require('../test-helper').optimizerContext;
 
 vows.describe('remove duplicates')
   .addBatch(
-    optimizerContext('advanced on', {
+    optimizerContext('level 2 on', {
       'single selectors': [
         'a{color:red;display:block}.one{margin:13px}a{color:#fff;margin:2px}',
         '.one{margin:13px}a{display:block;color:#fff;margin:2px}'
@@ -111,7 +111,7 @@ vows.describe('remove duplicates')
     })
   )
   .addBatch(
-    optimizerContext('advanced on and aggressive merging off', {
+    optimizerContext('level 2 on and aggressive merging off', {
       'non-adjacent with multi selectors': [
         'a{padding:10px;margin:0;color:red}.one{color:red}a,p{color:red;padding:0}',
         '.one,a,p{color:red}a{padding:10px;margin:0}a,p{padding:0}'
@@ -119,11 +119,11 @@ vows.describe('remove duplicates')
     }, { aggressiveMerging: false })
   )
   .addBatch(
-    optimizerContext('advanced off', {
+    optimizerContext('level 2 off', {
       'non-adjacent': [
         'a{color:red;display:block}.one{font-size:13px}a{color:#fff;margin:2px}',
         'a{color:red;display:block}.one{font-size:13px}a{color:#fff;margin:2px}'
       ]
-    }, { advanced: false })
+    }, { level: 1 })
   )
   .export(module);

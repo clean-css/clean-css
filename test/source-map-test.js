@@ -1109,7 +1109,7 @@ vows.describe('source-map')
     },
     'important comments after a property with remove comments': {
       'topic': function () {
-        return new CleanCSS({ sourceMap: true, keepSpecialComments: 1 }).minify('div { color: #f00 !important; /*!1*/} /*!2*/ a{/*!3*/}');
+        return new CleanCSS({ sourceMap: true, level: { 1: { specialComments: 1 } } }).minify('div { color: #f00 !important; /*!1*/} /*!2*/ a{/*!3*/}');
       },
       'has right output': function (errors, minified) {
         assert.equal(minified.styles, 'div{color:red!important/*!1*/}');
@@ -1813,7 +1813,7 @@ vows.describe('source-map')
     }
   })
   .addBatch({
-    'advanced optimizations': {
+    'level 2 optimizations': {
       'new property in restructuring': {
         'topic': function () {
           return new CleanCSS({ sourceMap: true }).minify('a{color:#000}div{color:red}.one{display:block}.two{display:inline;color:red}');

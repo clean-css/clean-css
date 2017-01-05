@@ -125,7 +125,7 @@ vows.describe(roundingPrecisionFrom)
   .addBatch({
     'all': {
       'topic': function () {
-        return roundingPrecisionFrom('all:6');
+        return roundingPrecisionFrom('all=6');
       },
       'is set for all units': function (precision) {
         assert.equal(precision.ch, 6);
@@ -148,7 +148,7 @@ vows.describe(roundingPrecisionFrom)
     },
     'all via star': {
       'topic': function () {
-        return roundingPrecisionFrom('*:3');
+        return roundingPrecisionFrom('*=3');
       },
       'is set for all units': function (precision) {
         assert.equal(precision.ch, 3);
@@ -171,7 +171,7 @@ vows.describe(roundingPrecisionFrom)
     },
     'all with overriden values': {
       'topic': function () {
-        return roundingPrecisionFrom('all:3,ch:1,rem:-1,px:6');
+        return roundingPrecisionFrom('all=3,ch=1,rem=-1,px=6');
       },
       'is set for all units': function (precision) {
         assert.equal(precision.ch, 1);
@@ -194,7 +194,7 @@ vows.describe(roundingPrecisionFrom)
     },
     'overriden values': {
       'topic': function () {
-        return roundingPrecisionFrom('ch:1,rem:-1,px:6');
+        return roundingPrecisionFrom('ch=1,rem=-1,px=6');
       },
       'is set for all units': function (precision) {
         assert.equal(precision.ch, 1);
@@ -217,7 +217,7 @@ vows.describe(roundingPrecisionFrom)
     },
     'overriden values via keyword': {
       'topic': function () {
-        return roundingPrecisionFrom('ch:1,rem:off,px:6');
+        return roundingPrecisionFrom('ch=1,rem=off,px=6');
       },
       'is set for all units': function (precision) {
         assert.equal(precision.ch, 1);
@@ -240,7 +240,7 @@ vows.describe(roundingPrecisionFrom)
     },
     'non numeric value': {
       'topic': function () {
-        return roundingPrecisionFrom('ch:a,rem:2,px:c');
+        return roundingPrecisionFrom('ch=a,rem=2,px=c');
       },
       'is set for all units': function (precision) {
         assert.equal(precision.ch, 'off');

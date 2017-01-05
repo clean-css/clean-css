@@ -36,6 +36,9 @@ There will be some breaking changes:
 * splits API `inliner: { request: ..., timeout: ... }` option into `inlineRequest` and `inlineTimeout` options;
 * remote resources without a protocol, e.g. //fonts.googleapis.com/css?family=Domine:700, are not inlined anymore;
 * changes default Internet Explorer compatibility from 9+ to 10+, to revert the old default use `--compatibility ie9` flag;
+* renames `keepSpecialComments` to `specialComments`;
+* moves `roundingPrecision` and `specialComments` to level 1 optimizations options, see examples below;
+* moves `mediaMerging`, `restructuring`, `semanticMerging`, and `shorthandCompacting` to level 2 optimizations options, see examples below;
 
 Please note this list is not final. You are more than welcome to comment these changes in [4.0 release discussion](https://github.com/jakubpawlowicz/clean-css/issues/842) thread.
 
@@ -57,29 +60,26 @@ Clean-css accepts the following command line arguments (please make sure
 you use `<source-file>` as the very last argument to avoid potential issues):
 
 ```
-cleancss [options] source-file, [source-file, ...]
+Usage: cleancss [options] <source-file ...>
 
--h, --help                     output usage information
--v, --version                  output the version number
--b, --keep-line-breaks         Keep line breaks
--c, --compatibility [ie7|ie8]  Force compatibility mode (see Readme for advanced examples)
--d, --debug                    Shows debug information (minification time & compression efficiency)
--o, --output [output-file]     Use [output-file] as output instead of STDOUT
---beautify                     Formats output CSS by using indentation and one rule or property per line
---inline [rules]               Enables inlining for listed sources (defaults to `local`)
---inline-timeout [seconds]     Per connection timeout when fetching remote stylesheets (defaults to 5 seconds)
---rounding-precision [n]       Rounds pixel values to `N` decimal places. `off` disables rounding (defaults to `off`)
---s0                           Remove all special comments, i.e. /*! comment */
---s1                           Remove all special comments but the first one
---semantic-merging             Enables unsafe mode by assuming BEM-like semantic stylesheets (warning, this may break your styling!)
---skip-advanced                Disable advanced optimizations - ruleset reordering & merging
---skip-aggressive-merging      Disable properties merging based on their order
---skip-media-merging           Disable @media merging
---skip-rebase                  Disable URLs rebasing
---skip-restructuring           Disable restructuring optimizations
---skip-shorthand-compacting    Disable shorthand compacting
---source-map                   Enables building input's source map
---source-map-inline-sources    Enables inlining sources inside source maps
+Options:
+
+  -h, --help                     output usage information
+  -v, --version                  output the version number
+  -b, --keep-line-breaks         Keep line breaks
+  -c, --compatibility [ie7|ie8]  Force compatibility mode (see Readme for advanced examples)
+  -d, --debug                    Shows debug information (minification time & compression efficiency)
+  -o, --output [output-file]     Use [output-file] as output instead of STDOUT
+  --O0                           Turn on level 0 optimizations
+  --O1 [optimizations]           Turn on level 1 optimizations, see examples below
+  --O2 [optimizations]           Turn on level 2 optimizations (default), see examples below
+  --beautify                     Formats output CSS by using indentation and one rule or property per line
+  --inline [rules]               Enables inlining for listed sources (defaults to `local`)
+  --inline-timeout [seconds]     Per connection timeout when fetching remote stylesheets (defaults to 5 seconds)
+  --skip-aggressive-merging      Disable properties merging based on their order
+  --skip-rebase                  Disable URLs rebasing
+  --source-map                   Enables building input's source map
+  --source-map-inline-sources    Enables inlining sources inside source maps
 ```
 
 #### Examples:
@@ -110,6 +110,32 @@ cleancss one.css two.css three.css | gzip -9 -c > merged-minified-and-gzipped.cs
 
 Please note there is a difference between passing in a concatenated string and letting clean-css do the job. The former will discard `@import` statements appearing [not at the beginning](https://developer.mozilla.org/en-US/docs/Web/CSS/@import) of the string, while the latter will discard only those appearing not at the beginning of any of the files. Because of this behavior, the latter way (see examples above) is recommended.
 
+Level 0 optimizations:
+
+```bash
+cleancss --O0 one.css
+```
+
+Level 1 optimizations:
+
+```bash
+cleancss --O1 one.css
+cleancss --O1 roundingPrecision:4;specialComments:1 one.css
+# `roundingPrecision` rounds pixel values to `N` decimal places; `off` disables rounding; defaults to `off`
+# `specialComments` denotes a number of /*! ... */ comments preserved; defaults to `all`
+```
+
+Level 2 optimizations:
+
+```bash
+cleancss --O2 one.css
+cleancss --O2 mediaMerging:false;restructuring:false;semanticMerging:true;shorthandCompacting:false one.css
+# `mediaMerging` controls `@media` merging behavior; defaults to true
+# `restructuring` controls content restructuring behavior; defaults to true
+# `semanticMerging` controls semantic merging behavior; defaults to false
+# `shorthandCompacting` controls shorthand compacting behavior; defaults to true
+```
+
 ### How to use clean-css API?
 
 ```js
@@ -121,22 +147,16 @@ var minified = new CleanCSS().minify(source).styles;
 CleanCSS constructor accepts a hash as a parameter, i.e.,
 `new CleanCSS(options)` with the following options available:
 
-* `advanced` - set to false to disable advanced optimizations - selector & property merging, reduction, etc.
 * `aggressiveMerging` - set to false to disable aggressive merging of properties.
 * `beautify` - formats output CSS by using indentation and one rule or property per line.
 * `compatibility` - enables compatibility mode, see [below for more examples](#how-to-set-a-compatibility-mode)
 * `inline` - whether to inline `@import` rules, can be `['all']`, `['local']` (default), `['remote']`, or a blacklisted domain/path e.g. `['!fonts.googleapis.com']`
 * `inlineRequest` - an object with [HTTP(S) request options](https://nodejs.org/api/http.html#http_http_request_options_callback) for inlining remote `@import` rules
 * `inlineTimeout` - an integer denoting a number of milliseconds after which inlining a remote `@import` fails (defaults to 5000 ms)
+* `level` - an integer denoting optimization level applied or a hash with a fine-grained configuration; see examples below; defaults to `2`
 * `keepBreaks` - whether to keep line breaks (default is false)
-* `keepSpecialComments` - `*` for keeping all (default), `1` for keeping first one only, `0` for removing all
-* `mediaMerging` - whether to merge `@media` at-rules (default is true)
 * `rebase` - set to false to skip URL rebasing
 * `rebaseTo` - a directory to which all URLs are rebased (most likely the directory under which the output file will live), defaults to the current directory
-* `restructuring` - set to false to disable restructuring in advanced optimizations
-* `roundingPrecision` - rounding precision; `off` disables rounding; defaults to `off`
-* `semanticMerging` - set to true to enable semantic merging mode which assumes BEM-like content (default is false as it's highly likely this will break your stylesheets - **use with caution**!)
-* `shorthandCompacting` - set to false to skip shorthand compacting (default is true unless sourceMap is set when it's false)
 * `sourceMap` - exposes source map under `sourceMap` property, e.g. `new CleanCSS().minify(source).sourceMap` (default is false)
   If input styles are a product of CSS preprocessor (Less, Sass) an input source map can be passed as a string.
 * `sourceMapInlineSources` - set to true to inline sources inside a source map's `sourcesContent` field (defaults to false)
@@ -153,6 +173,36 @@ The output of `minify` method (or the 2nd argument to passed callback) is a hash
   * `minifiedSize` - optimized content size
   * `timeSpent` - time spent on optimizations
   * `efficiency` - a ratio of output size to input size (e.g. 25% if content was reduced from 100 bytes to 75 bytes)
+
+#### How to specify optimization levels
+
+The `level` option can be either `0`, `1`, or `2` (default), or a fine-grained configuration given via a hash:
+
+```js
+// level 1 optimizations
+new CleanCSS({
+  level: {
+    1: {
+      roundingPrecision: 3, // rounds pixel values to `N` decimal places; `off` disables rounding; defaults to `off`
+      specialComments: 0 // denotes a number of /*! ... */ comments preserved; defaults to `all`
+    }
+  }
+});
+```
+
+```js
+// level 2 optimizations
+new CleanCSS({
+  level: {
+    2: {
+      mediaMerging: true, // controls `@media` merging behavior; defaults to true
+      restructuring: false, // controls content restructuring behavior; defaults to true
+      semanticMerging: false, // controls semantic merging behavior; defaults to false
+      shorthandCompacting: true // controls shorthand compacting behavior; defaults to true
+    }
+  }
+});
+```
 
 #### How to make sure remote `@import`s are processed correctly?
 
@@ -229,16 +279,16 @@ Source maps are generated using [source-map](https://github.com/mozilla/source-m
 
 ### How to specify custom rounding precision?
 
-The `roundingPrecision` (API) and `--rounding-precision` (CLI) option accept a string with per-unit rounding precision settings, e.g.
+The level 1 `roundingPrecision` optimization option accept a string with per-unit rounding precision settings, e.g.
 
 ```
-clean-css --rounding-precision all:3,px:5
+clean-css --O1 roundingPrecision:all=3,px=5
 ```
 
 or
 
 ```js
-new CleanCSS({ roundingPrecision: 'all:3,px:5' }).minify(...)
+new CleanCSS({ level: { 1: { roundingPrecision: 'all=3,px=5' } } }).minify(...)
 ```
 
 which sets all units rounding precision to 3 digits except `px` unit precision of 5 digits.
@@ -364,9 +414,9 @@ To pass a single off (-) switch in CLI please use the following syntax `--compat
 
 In library mode you can also pass `compatibility` as a hash of options.
 
-### What advanced optimizations are applied?
+### What level 2 optimizations are applied?
 
-All advanced optimizations are dispatched [here](https://github.com/jakubpawlowicz/clean-css/blob/master/lib/selectors/advanced.js#L59), and this is what they do:
+All level 2 optimizations are dispatched [here](https://github.com/jakubpawlowicz/clean-css/blob/master/lib/selectors/advanced.js#L59), and this is what they do:
 
 * `recursivelyOptimizeBlocks` - does all the following operations on a block (think `@media` or `@keyframe` at-rules);
 * `recursivelyOptimizeProperties` - optimizes properties in rulesets and "flat at-rules" (like @font-face) by splitting them into components (e.g. `margin` into `margin-(*)`), optimizing, and rebuilding them back. You may want to use `shorthandCompacting` option to control whether you want to turn multiple (long-hand) properties into a shorthand ones;

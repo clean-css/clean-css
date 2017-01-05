@@ -3,7 +3,7 @@ var optimizerContext = require('../test-helper').optimizerContext;
 
 vows.describe('remove duplicates')
   .addBatch(
-    optimizerContext('advanced on', {
+    optimizerContext('with level 2 on', {
       'same context': [
         'a{color:red}a{display:block;width:75px}div{color:#fff}',
         'a{color:red;display:block;width:75px}div{color:#fff}'
@@ -91,11 +91,11 @@ vows.describe('remove duplicates')
     })
   )
   .addBatch(
-    optimizerContext('advanced off', {
+    optimizerContext('with level 2 off', {
       'same context': [
         'a{color:red}a{display:block;width:75px}div{color:#fff}',
         'a{color:red}a{display:block;width:75px}div{color:#fff}'
       ],
-    }, { advanced: false })
+    }, { level: 1 })
   )
   .export(module);

@@ -3,7 +3,7 @@ var optimizerContext = require('../test-helper').optimizerContext;
 
 vows.describe('remove duplicate @font-face at-rules')
   .addBatch(
-    optimizerContext('advanced on', {
+    optimizerContext('level 2 on', {
       'adjacent': [
         '@font-face{font-family:test;src:url(fonts/test.woff2)}@font-face{font-family:test;src:url(fonts/test.woff2)}',
         '@font-face{font-family:test;src:url(fonts/test.woff2)}'
@@ -19,11 +19,11 @@ vows.describe('remove duplicate @font-face at-rules')
     })
   )
   .addBatch(
-    optimizerContext('advanced off', {
+    optimizerContext('level 2 off', {
       'keeps content same': [
         '@font-face{font-family:test;src:url(fonts/test.woff2)}@font-face{font-family:test;src:url(fonts/test.woff2)}',
         '@font-face{font-family:test;src:url(fonts/test.woff2)}@font-face{font-family:test;src:url(fonts/test.woff2)}'
       ]
-    }, { advanced: false })
+    }, { level: 1 })
   )
   .export(module);

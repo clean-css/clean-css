@@ -10,15 +10,26 @@ var Validator = require('../../lib/properties/validator');
 
 function _optimize(source, mergeAdjacent, aggressiveMerging, compatibilityOptions) {
   var compat = compatibility(compatibilityOptions);
+  var options = {
+    aggressiveMerging: aggressiveMerging,
+    compatibility: compat,
+    level: {
+      2: {
+        mediaMerging: false,
+        restructuring: false,
+        semanticMerging: false,
+        shorthandCompacting: false
+      }
+    }
+  };
   var validator = new Validator(compat);
-
   var tokens = tokenize(source, {
     inputSourceMapTracker: inputSourceMapTracker(),
     options: {},
     warnings: []
   });
 
-  optimize(tokens[0][1], tokens[0][2], mergeAdjacent, true, { options: { compatibility: compat, aggressiveMerging: aggressiveMerging }, validator: validator });
+  optimize(tokens[0][1], tokens[0][2], mergeAdjacent, true, { options: options, validator: validator });
 
   return tokens[0][2];
 }

@@ -20,7 +20,11 @@ function _optimize(source, compat, aggressiveMerging) {
   var options = {
     aggressiveMerging: undefined === aggressiveMerging ? true : aggressiveMerging,
     compatibility: compat,
-    shorthandCompacting: true
+    level: {
+      2: {
+        shorthandCompacting: true
+      }
+    }
   };
   optimize(tokens[0][1], tokens[0][2], false, true, { options: options, validator: validator });
 

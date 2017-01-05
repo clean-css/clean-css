@@ -125,7 +125,7 @@ vows.describe('simple optimizations')
         'body{color:red a{color:blue;}',
         ''
       ]
-    }, { advanced: false })
+    }, { level: 1 })
   )
   .addBatch(
     optimizerContext('selectors - ie8', {
@@ -141,7 +141,7 @@ vows.describe('simple optimizations')
         '*+html .foo,.bar{color:red}',
         '.bar{color:red}'
       ]
-    }, { advanced: false, compatibility: 'ie8' })
+    }, { level: 1, compatibility: 'ie8' })
   )
   .addBatch(
     optimizerContext('selectors - ie7', {
@@ -153,7 +153,7 @@ vows.describe('simple optimizations')
         '*+html .foo,.bar{color:red}',
         '*+html .foo,.bar{color:red}'
       ]
-    }, { advanced: false, compatibility: 'ie7' })
+    }, { level: 1, compatibility: 'ie7' })
   )
   .addBatch(
     optimizerContext('selectors - adjacent space', {
@@ -165,7 +165,7 @@ vows.describe('simple optimizations')
         'div+nav{color:red}',
         'div+ nav{color:red}'
       ]
-    }, { advanced: false, compatibility: { selectors: { adjacentSpace: true } } })
+    }, { level: 1, compatibility: { selectors: { adjacentSpace: true } } })
   )
   .addBatch(
     optimizerContext('background', {
@@ -185,7 +185,7 @@ vows.describe('simple optimizations')
         'a{background:transparent no-repeat}',
         'a{background:transparent no-repeat}'
       ]
-    }, { advanced: false })
+    }, { level: 1 })
   )
   .addBatch(
     optimizerContext('border-*-radius', {
@@ -201,7 +201,7 @@ vows.describe('simple optimizations')
         'a{border-top-left-radius:1em 2em}',
         'a{border-top-left-radius:1em 2em}'
       ]
-    }, { advanced: false })
+    }, { level: 1 })
   )
   .addBatch(
     optimizerContext('box-shadow', {
@@ -213,7 +213,7 @@ vows.describe('simple optimizations')
         'a{-webkit-box-shadow:0 0 0 0}',
         'a{-webkit-box-shadow:0 0}'
       ]
-    }, { advanced: false })
+    }, { level: 1 })
   )
   .addBatch(
     optimizerContext('colors', {
@@ -293,7 +293,7 @@ vows.describe('simple optimizations')
         'a{color:#FFF}',
         'a{color:#fff}'
       ]
-    }, { advanced: false })
+    }, { level: 1 })
   )
   .addBatch(
     optimizerContext('colors - ie8 compatibility', {
@@ -313,7 +313,7 @@ vows.describe('simple optimizations')
         'a{color:rgba(240,0,0,0)}',
         'a{color:rgba(240,0,0,0)}'
       ]
-    }, { advanced: false, compatibility: 'ie8' })
+    }, { level: 1, compatibility: 'ie8' })
   )
   .addBatch(
     optimizerContext('colors - no optimizations', {
@@ -329,7 +329,7 @@ vows.describe('simple optimizations')
         'a{color:white}',
         'a{color:white}'
       ]
-    }, { advanced: false, compatibility: { properties: { colors: false } } })
+    }, { level: 1, compatibility: { properties: { colors: false } } })
   )
   .addBatch(
     optimizerContext('filter', {
@@ -349,7 +349,7 @@ vows.describe('simple optimizations')
         'a{filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=80) progid:DXImageTransform.Microsoft.Chroma(color=#919191)}',
         'a{filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=80) progid:DXImageTransform.Microsoft.Chroma(color=#919191)}'
       ]
-    }, { advanced: false })
+    }, { level: 1 })
   )
   .addBatch(
     optimizerContext('font', {
@@ -389,7 +389,7 @@ vows.describe('simple optimizations')
         'a{font:bold normal normal 17px sans-serif}',
         'a{font:bold normal normal 17px sans-serif}' // pending #254
       ]
-    }, { advanced: false })
+    }, { level: 1 })
   )
   .addBatch(
     optimizerContext('font-weight', {
@@ -405,7 +405,7 @@ vows.describe('simple optimizations')
         'a{font-weight:bolder}',
         'a{font-weight:bolder}'
       ]
-    }, { advanced: false })
+    }, { level: 1 })
   )
   .addBatch(
     optimizerContext('font-weight - when disabled', {
@@ -429,7 +429,7 @@ vows.describe('simple optimizations')
         'a{font:bold .9em sans-serif}',
         'a{font:bold .9em sans-serif}'
       ]
-    }, { advanced: false, compatibility: { properties: { fontWeight: false } } })
+    }, { level: 1, compatibility: { properties: { fontWeight: false } } })
   )
   .addBatch(
     optimizerContext('ie hacks', {
@@ -453,7 +453,7 @@ vows.describe('simple optimizations')
         'a{*width:101px;color:red!important}',
         'a{color:red!important}'
       ]
-    }, { advanced: false })
+    }, { level: 1 })
   )
   .addBatch(
     optimizerContext('ie hacks in IE9 mode', {
@@ -473,7 +473,7 @@ vows.describe('simple optimizations')
         'a{color:red !ie}',
         ''
       ]
-    }, { advanced: false, compatibility: 'ie9' })
+    }, { level: 1, compatibility: 'ie9' })
   )
   .addBatch(
     optimizerContext('ie hacks in IE8 mode', {
@@ -493,7 +493,7 @@ vows.describe('simple optimizations')
         'a{color:red !ie}',
         ''
       ]
-    }, { advanced: false, compatibility: 'ie8' })
+    }, { level: 1, compatibility: 'ie8' })
   )
   .addBatch(
     optimizerContext('ie hacks in IE7 mode', {
@@ -513,7 +513,7 @@ vows.describe('simple optimizations')
         'a{color:red !ie}',
         'a{color:red !ie}'
       ]
-    }, { advanced: false, compatibility: 'ie7' })
+    }, { level: 1, compatibility: 'ie7' })
   )
   .addBatch(
     optimizerContext('important', {
@@ -529,7 +529,7 @@ vows.describe('simple optimizations')
         'a{color:red! important}',
         'a{color:red!important}'
       ]
-    }, { advanced: false })
+    }, { level: 1 })
   )
   .addBatch(
     optimizerContext('outline', {
@@ -545,7 +545,7 @@ vows.describe('simple optimizations')
         'a{outline:none solid 1px}',
         'a{outline:none solid 1px}'
       ]
-    }, { advanced: false })
+    }, { level: 1 })
   )
   .addBatch(
     optimizerContext('rounding', {
@@ -561,7 +561,7 @@ vows.describe('simple optimizations')
         'a{left:1.1231em}',
         'a{left:1.123em}'
       ]
-    }, { advanced: false, roundingPrecision: 3 })
+    }, { level: { 1: { roundingPrecision: 3 } } })
   )
   .addBatch(
     optimizerContext('rounding disabled', {
@@ -577,7 +577,7 @@ vows.describe('simple optimizations')
         'a{left:1.1231em}',
         'a{left:1.1231em}'
       ]
-    }, { advanced: false, roundingPrecision: 'off' })
+    }, { level: { 1: { roundingPrecision: 'off' } } })
   )
   .addBatch(
     optimizerContext('rounding disabled when option value not castable to int', {
@@ -593,7 +593,7 @@ vows.describe('simple optimizations')
         'a{left:1.1231em}',
         'a{left:1.1231em}'
       ]
-    }, { advanced: false, roundingPrecision: '\'-1\'' })
+    }, { level: { 1: { roundingPrecision: '\'-1\'' } } })
   )
   .addBatch(
     optimizerContext('fine-grained rounding', {
@@ -609,7 +609,7 @@ vows.describe('simple optimizations')
         'a{left:1.1231em}',
         'a{left:1.12em}'
       ]
-    }, { advanced: false, roundingPrecision: '*:2,%:1,px:0' })
+    }, { level: { 1: { roundingPrecision: '*=2,%=1,px=0' } } })
   )
   .addBatch(
     optimizerContext('units', {
@@ -689,7 +689,7 @@ vows.describe('simple optimizations')
         'a{-webkit-flex-basis:0px}',
         'a{-webkit-flex-basis:0px}'
       ]
-    }, { advanced: false })
+    }, { level: 1 })
   )
   .addBatch(
     optimizerContext('units in compatibility mode', {
@@ -709,7 +709,7 @@ vows.describe('simple optimizations')
         'a{padding:10ch 0vm 30vmin 0vw}',
         'a{padding:10ch 0vm 30vmin 0vw}'
       ]
-    }, { advanced: false, compatibility: 'ie8' })
+    }, { level: 1, compatibility: 'ie8' })
   )
   .addBatch(
     optimizerContext('zeros', {
@@ -797,7 +797,7 @@ vows.describe('simple optimizations')
         'a{max-height:0%}',
         'a{max-height:0%}'
       ]
-    }, { advanced: false })
+    }, { level: 1 })
   )
   .addBatch(
     optimizerContext('zeros - rounding', {
@@ -805,7 +805,7 @@ vows.describe('simple optimizations')
         'a{margin:10.0010px}',
         'a{margin:10px}'
       ]
-    }, { advanced: false, roundingPrecision: 2 })
+    }, { level: { 1: { roundingPrecision: 2 } } })
   )
   .addBatch(
     optimizerContext('zeros with disabled zeroUnits', {
@@ -833,7 +833,7 @@ vows.describe('simple optimizations')
         'a{width:10%}',
         'a{width:10%}'
       ]
-    }, { advanced: false, compatibility: { properties: { zeroUnits: false } } })
+    }, { level: 1, compatibility: { properties: { zeroUnits: false } } })
   )
   .addBatch(
     optimizerContext('comments', {
@@ -841,7 +841,7 @@ vows.describe('simple optimizations')
         'a{/*! comment 1 */color:red/*! comment 2 */}',
         'a{/*! comment 1 */color:red/*! comment 2 */}'
       ]
-    }, { advanced: false })
+    }, { level: 1 })
   )
   .addBatch(
     optimizerContext('whitespace', {
@@ -881,7 +881,7 @@ vows.describe('simple optimizations')
         'a{\ncolor:red;\n/*!*/\n\n\n\n\n\n\n/*!*/\n}',
         'a{color:red/*!*//*!*/}'
       ]
-    }, { advanced: false })
+    }, { level: 1 })
   )
   .addBatch(
     optimizerContext('time units', {
@@ -913,7 +913,7 @@ vows.describe('simple optimizations')
         'div{transition-duration:1.2s}',
         'div{transition-duration:1.2s}'
       ]
-    }, { advanced: false })
+    }, { level: 1 })
   )
   .addBatch(
     optimizerContext('length units', {
@@ -929,7 +929,7 @@ vows.describe('simple optimizations')
         'div{left:120px}',
         'div{left:120px}'
       ]
-    }, { advanced: false })
+    }, { level: 1 })
   )
   .addBatch(
     optimizerContext('length units in compatibility mode', {
@@ -945,7 +945,7 @@ vows.describe('simple optimizations')
         'div{left:120px}',
         'div{left:120px}'
       ]
-    }, { advanced: false, compatibility: 'ie8' })
+    }, { level: 1, compatibility: 'ie8' })
   )
   .addBatch(
     optimizerContext('length units when turned on', {
@@ -981,7 +981,7 @@ vows.describe('simple optimizations')
         'div{transform:translateY(32px)}',
         'div{transform:translateY(2pc)}'
       ]
-    }, { advanced: false, compatibility: { properties: { shorterLengthUnits: true } } })
+    }, { level: 1, compatibility: { properties: { shorterLengthUnits: true } } })
   )
   .addBatch(
     optimizerContext('length units when turned on selectively', {
@@ -997,7 +997,7 @@ vows.describe('simple optimizations')
         'div{left:120px}',
         'div{left:120px}'
       ]
-    }, { advanced: false, compatibility: { properties: { shorterLengthUnits: true }, units: { in: false, pt: false } } })
+    }, { level: 1, compatibility: { properties: { shorterLengthUnits: true }, units: { in: false, pt: false } } })
   )
   .addBatch(
     optimizerContext('property name validation', {
@@ -1017,6 +1017,6 @@ vows.describe('simple optimizations')
         'a{-custom-color:red}',
         'a{-custom-color:red}'
       ]
-    }, { advanced: false })
+    }, { level: 1 })
   )
   .export(module);

@@ -3,7 +3,7 @@ var optimizerContext = require('../test-helper').optimizerContext;
 
 vows.describe('merge non djacent by selector')
   .addBatch(
-    optimizerContext('advanced on', {
+    optimizerContext('level 2 on', {
       'up': [
         '.one{color:red}.two{color:#fff}.one{font-weight:400}',
         '.one{color:red;font-weight:400}.two{color:#fff}'
@@ -19,7 +19,7 @@ vows.describe('merge non djacent by selector')
     })
   )
   .addBatch(
-    optimizerContext('advanced off', {
+    optimizerContext('level 2 off', {
       'up': [
         '.one{color:red}.two{color:#fff}.one{font-weight:400}',
         '.one{color:red}.two{color:#fff}.one{font-weight:400}'
@@ -28,6 +28,6 @@ vows.describe('merge non djacent by selector')
         '.one{color:red}.two{font-weight:700}.one{font-weight:400}',
         '.one{color:red}.two{font-weight:700}.one{font-weight:400}'
       ]
-    }, { advanced: false })
+    }, { level: 1 })
   )
   .export(module);

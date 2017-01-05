@@ -306,7 +306,7 @@ vows.describe('integration tests')
         '/*! some comment */' + lineBreak + lineBreak + '@charset \'utf-8\';' + lineBreak + lineBreak + 'a{display:block}',
         '@charset \'utf-8\';' + lineBreak + 'a{display:block}'
       ]
-    }, { keepBreaks: true, keepSpecialComments: 0 })
+    }, { keepBreaks: true, level: { 1: { specialComments: 0 } } })
   )
   .addBatch(
     optimizerContext('selectors', {
@@ -470,7 +470,7 @@ vows.describe('integration tests')
         '/*! important comment */a{color:red}/* some comment *//*! important comment */',
         '/*! important comment */a{color:red}'
       ]
-    }, { keepSpecialComments: 1 })
+    }, { level: { 1: { specialComments: 1 } } })
   )
   .addBatch(
     optimizerContext('important comments - none', {
@@ -482,15 +482,15 @@ vows.describe('integration tests')
         '/*! some comment */' + lineBreak + lineBreak + '@charset \'utf-8\';' + lineBreak + lineBreak + 'a{display:block}',
         '@charset \'utf-8\';a{display:block}'
       ]
-    }, { keepSpecialComments: 0 })
+    }, { level: { 1: { specialComments: 0 } } })
   )
   .addBatch(
-    optimizerContext('important comments - keepSpecialComments when a string', {
+    optimizerContext('important comments - specialComments when a string', {
       'strip all': [
         '/*! important comment */a{color:red}/* some comment *//*! important comment */',
         'a{color:red}'
       ]
-    }, { keepSpecialComments: '0' })
+    }, { level: { 1: { specialComments: '0' } } })
   )
   .addBatch(
     optimizerContext('expressions', {
@@ -526,7 +526,7 @@ vows.describe('integration tests')
         'a{width:expression(this.parentNode.innerText == }',
         'a{width:expression(this.parentNode.innerText ==}'
       ],
-      'function call & advanced': [
+      'function call & level 2': [
         'a{zoom:expression(function (el){el.style.zoom="1"}(this))}',
         'a{zoom:expression(function (el){el.style.zoom="1"}(this))}'
       ]
@@ -894,7 +894,7 @@ vows.describe('integration tests')
         'div{transform:translateY(-418.505123px)}',
         'div{transform:translateY(-418.5051px)}'
       ]
-    }, { roundingPrecision: 4 })
+    }, { level: { 1: { roundingPrecision: 4 } } })
   )
   .addBatch(
     optimizerContext('floats - rounding to 2', {
@@ -910,7 +910,7 @@ vows.describe('integration tests')
         'a{stroke-width:9.995px}',
         'a{stroke-width:9.99px}'
       ]
-    }, { roundingPrecision: 2 })
+    }, { level: { 1: { roundingPrecision: 2 } } })
   )
   .addBatch(
     optimizerContext('floats - rounding disabled via -1', {
@@ -918,7 +918,7 @@ vows.describe('integration tests')
         'div{transform:translateY(-418.505123px)}',
         'div{transform:translateY(-418.505123px)}'
       ]
-    }, { roundingPrecision: -1 })
+    }, { level: { 1: { roundingPrecision: -1 } } })
   )
   .addBatch(
     optimizerContext('floats - rounding disabled', {
@@ -926,7 +926,7 @@ vows.describe('integration tests')
         'div{transform:translateY(-418.505123px)}',
         'div{transform:translateY(-418.505123px)}'
       ]
-    }, { roundingPrecision: 'off' })
+    }, { level: { 1: { roundingPrecision: 'off' } } })
   )
   .addBatch(
     optimizerContext('colors', {
@@ -2108,7 +2108,7 @@ vows.describe('integration tests')
     }, { inline: 'none' })
   )
   .addBatch(
-    optimizerContext('@import with no import and no advanced', {
+    optimizerContext('@import with no import and no level 2', {
       'empty body': [
         '@import url(//fonts.googleapis.com/css?family=Domine:700);body{/* comment */}body h1{font-family:Domine}',
         '@import url(//fonts.googleapis.com/css?family=Domine:700);body h1{font-family:Domine}'
@@ -2117,7 +2117,7 @@ vows.describe('integration tests')
         '@import url(//fonts.googleapis.com/css?family=Domine:700);body{color:red}body h1{font-family:Domine}',
         '@import url(//fonts.googleapis.com/css?family=Domine:700);body{color:red}body h1{font-family:Domine}'
       ]
-    }, { inline: 'none', advanced: false })
+    }, { inline: 'none', level: 1 })
   )
   .addBatch(
     optimizerContext('@import with no url', {
@@ -2152,20 +2152,20 @@ vows.describe('integration tests')
     })
   )
   .addBatch(
-    optimizerContext('duplicate selectors with disabled advanced processing', {
+    optimizerContext('duplicate selectors with disabled level 2 processing', {
       'of a duplicate selector': [
         'a,a{color:red}',
         'a{color:red}'
       ]
-    }, { advanced: false })
+    }, { level: 1 })
   )
   .addBatch(
-    optimizerContext('line breaks with disabled advanced processing', {
+    optimizerContext('line breaks with disabled level 2 processing', {
       'should be applied': [
         'a{color:red}p{display:block}',
         'a{color:red}' + lineBreak + 'p{display:block}'
       ]
-    }, { advanced: false, keepBreaks: true })
+    }, { level: 1, keepBreaks: true })
   )
   .addBatch(
     optimizerContext('invalid data tokenization', {
@@ -2384,7 +2384,7 @@ vows.describe('integration tests')
     })
   )
   .addBatch(
-    optimizerContext('grouping with advanced optimizations', {
+    optimizerContext('grouping with level 2 optimizations', {
       '@-moz-document': [
         '@-moz-document domain(mozilla.org){a{color:red}}',
         '@-moz-document domain(mozilla.org){a{color:red}}'
@@ -2480,7 +2480,7 @@ vows.describe('integration tests')
     })
   )
   .addBatch(
-    optimizerContext('misc advanced', {
+    optimizerContext('misc level 2', {
       'outline auto': [
         'a{outline:5px auto -webkit-focus-ring-color}',
         'a{outline:-webkit-focus-ring-color auto 5px}'
@@ -2524,7 +2524,7 @@ vows.describe('integration tests')
     })
   )
   .addBatch(
-    optimizerContext('advanced in ie8 mode', {
+    optimizerContext('level 2 in ie8 mode', {
       'plain component to complex shorthand': [
         'a{background:linear-gradient(to bottom,#000,#fff 4em) #000;background-color:#fff}',
         'a{background:linear-gradient(to bottom,#000,#fff 4em) #000;background-color:#fff}'

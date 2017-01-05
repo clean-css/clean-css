@@ -116,15 +116,15 @@ vows.describe('merge media queries')
         '@media (max-width:1px){.block{margin:1px}}.block__element{margin:2px}@media (max-width:1px){.block--modifier{margin:3px}}',
         '.block__element{margin:2px}@media (max-width:1px){.block{margin:1px}.block--modifier{margin:3px}}'
       ]
-    }, { semanticMerging: true })
+    }, { level: { 2: { semanticMerging: true } } })
   )
   .addBatch(
-    optimizerContext('advanced off', {
+    optimizerContext('with level 2 off', {
       'keeps content same': [
         '@media screen{a{color:red}}@media screen{a{display:block}}',
         '@media screen{a{color:red}}@media screen{a{display:block}}'
       ]
-    }, { advanced: false })
+    }, { level: 1 })
   )
   .addBatch(
     optimizerContext('media merging off', {
@@ -132,6 +132,6 @@ vows.describe('merge media queries')
         '@media screen{a{color:red}}@media screen{a{display:block}}',
         '@media screen{a{color:red}}@media screen{a{display:block}}'
       ]
-    }, { mediaMerging: false })
+    }, { level: { 2: { mediaMerging: false } } })
   )
   .export(module);

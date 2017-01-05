@@ -3,7 +3,7 @@ var optimizerContext = require('../test-helper').optimizerContext;
 
 vows.describe('merge non djacent by body')
   .addBatch(
-    optimizerContext('advanced on', {
+    optimizerContext('with level 2 on', {
       'of two non-adjacent selectors': [
         '.one{color:red}.two{color:#00f}.three{color:red}',
         '.one{color:red}.two{color:#00f}.three{color:red}'
@@ -35,7 +35,7 @@ vows.describe('merge non djacent by body')
     })
   )
   .addBatch(
-    optimizerContext('advanced off', {
+    optimizerContext('with level 2 off', {
       'with repeated selectors': [
         '#zero>p,.one,.two{color:red}#zero>p,.three,.two{color:red}',
         '#zero>p,.one,.two{color:red}#zero>p,.three,.two{color:red}'
@@ -48,7 +48,7 @@ vows.describe('merge non djacent by body')
         '@media screen{p{color:red}a{color:#000}div{color:red}}',
         '@media screen{p{color:red}a{color:#000}div{color:red}}'
       ]
-    }, { advanced: false })
+    }, { level: 1 })
   )
   .addBatch(
     optimizerContext('selectors - semantic merging mode', {
@@ -85,7 +85,7 @@ vows.describe('merge non djacent by body')
         '.block1__element{color:#000}.block1__element--modifier{color:red}.block2{color:#000;display:block;width:100%}'
         // '.block1__element,.block2{color:#000}.block1__element--modifier{color:red}.block2{display:block;width:100%}' - pending #588
       ]
-    }, { advanced: true, semanticMerging: true })
+    }, { level: { 2: { semanticMerging: true } } })
   )
   .addBatch(
     optimizerContext('IE8 compatibility', {

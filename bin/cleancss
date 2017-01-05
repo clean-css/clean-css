@@ -12,24 +12,19 @@ var buildVersion = JSON.parse(packageConfig).version;
 // Specify commander options to parse command line params correctly
 commands
   .version(buildVersion, '-v, --version')
-  .usage('[options] source-file, [source-file, ...]')
+  .usage('[options] <source-file ...>')
   .option('-b, --keep-line-breaks', 'Keep line breaks')
   .option('-c, --compatibility [ie7|ie8]', 'Force compatibility mode (see Readme for advanced examples)')
   .option('-d, --debug', 'Shows debug information (minification time & compression efficiency)')
   .option('-o, --output [output-file]', 'Use [output-file] as output instead of STDOUT')
+  .option('--O0', 'Turn on level 0 optimizations')
+  .option('--O1 [optimizations]', 'Turn on level 1 optimizations, see examples below')
+  .option('--O2 [optimizations]', 'Turn on level 2 optimizations (default), see examples below')
   .option('--beautify', 'Formats output CSS by using indentation and one rule or property per line')
   .option('--inline [rules]', 'Enables inlining for listed sources (defaults to `local`)')
   .option('--inline-timeout [seconds]', 'Per connection timeout when fetching remote stylesheets (defaults to 5 seconds)', parseFloat)
-  .option('--rounding-precision [n]', 'Rounds pixel values to `N` decimal places. -1 disables rounding (defaults to -1)')
-  .option('--s0', 'Remove all special comments, i.e. /*! comment */')
-  .option('--s1', 'Remove all special comments but the first one')
-  .option('--semantic-merging', 'Enables unsafe mode by assuming BEM-like semantic stylesheets (warning, this may break your styling!)')
-  .option('--skip-advanced', 'Disable advanced optimizations - ruleset reordering & merging')
   .option('--skip-aggressive-merging', 'Disable properties merging based on their order')
-  .option('--skip-media-merging', 'Disable @media merging')
   .option('--skip-rebase', 'Disable URLs rebasing')
-  .option('--skip-restructuring', 'Disable restructuring optimizations')
-  .option('--skip-shorthand-compacting', 'Disable shorthand compacting')
   .option('--source-map', 'Enables building input\'s source map')
   .option('--source-map-inline-sources', 'Enables inlining sources inside source maps');
 
@@ -40,10 +35,39 @@ commands.on('--help', function () {
   console.log('    %> cleancss -o merged-and-minified.css one.css two.css three.css');
   console.log('    %> cleancss one.css two.css three.css | gzip -9 -c > merged-minified-and-gzipped.css.gz');
   console.log('');
+  console.log('  Level 0 optimizations:');
+  console.log('    %> cleancss --O0 one.css');
+  console.log('');
+  console.log('  Level 1 optimizations:');
+  console.log('    %> cleancss --O1 one.css');
+  console.log('    %> cleancss --O1 roundingPrecision:4;specialComments:1 one.css');
+  console.log('    %> # `roundingPrecision` rounds pixel values to `N` decimal places; `off` disables rounding; defaults to `off`');
+  console.log('    %> # `specialComments` denotes a number of /*! ... */ comments preserved; defaults to `all`');
+  console.log('');
+  console.log('  Level 2 optimizations:');
+  console.log('    %> cleancss --O2 one.css');
+  console.log('    %> cleancss --O2 mediaMerging:false;restructuring:false;semanticMerging:true;shorthandCompacting:false one.css');
+  console.log('    %> # `mediaMerging` controls `@media` merging behavior; defaults to true');
+  console.log('    %> # `restructuring` controls content restructuring behavior; defaults to true');
+  console.log('    %> # `semanticMerging` controls semantic merging behavior; defaults to false');
+  console.log('    %> # `shorthandCompacting` controls shorthand compacting behavior; defaults to true');
+
   process.exit();
 });
 
 commands.parse(process.argv);
+
+// Fixes commander issue in the following case `cleancss --O1 source.css` where `source.css` is taken as `O1` value
+if (commands.O1 && (fs.existsSync(commands.O1) || isRemote(commands.O1))) {
+  commands.args.unshift(commands.O1);
+  commands.O1 = true;
+}
+
+// Fixes commander issue in the following case `cleancss --O2 source.css` where `source.css` is taken as `O2` value
+if (commands.O2 && (fs.existsSync(commands.O2) || isRemote(commands.O2))) {
+  commands.args.unshift(commands.O2);
+  commands.O2 = true;
+}
 
 // If no sensible data passed in just print help and exit
 var fromStdin = !process.env.__DIRECT__ && !process.stdin.isTTY;
@@ -55,22 +79,18 @@ if (!fromStdin && commands.args.length === 0) {
 // Now coerce commands into CleanCSS configuration...
 var debugMode = commands.debug;
 var options = {
-  advanced: commands.skipAdvanced ? false : true,
   aggressiveMerging: commands.skipAggressiveMerging ? false : true,
   beautify: commands.beautify,
   compatibility: commands.compatibility,
   inline: commands.inline || 'local',
   inlineTimeout: commands.inlineTimeout * 1000,
   keepBreaks: !!commands.keepLineBreaks,
-  keepSpecialComments: commands.s0 ? 0 : (commands.s1 ? 1 : '*'),
-  mediaMerging: commands.skipMediaMerging ? false : true,
+  level: commands.O0 || commands.O1 || commands.O2 ?
+    { '0': commands.O0, '1': commands.O1, '2': commands.O2 } :
+    undefined,
   output: commands.output,
   rebase: commands.skipRebase ? false : true,
   rebaseTo: ('output' in commands) && commands.output.length > 0 ? path.dirname(path.resolve(commands.output)) : process.cwd(),
-  restructuring: commands.skipRestructuring ? false : true,
-  roundingPrecision: commands.roundingPrecision,
-  semanticMerging: commands.semanticMerging ? true : false,
-  shorthandCompacting: commands.skipShorthandCompacting ? false : true,
   sourceMap: commands.sourceMap,
   sourceMapInlineSources: commands.sourceMapInlineSources
 };
@@ -93,6 +113,10 @@ if (commands.args.length > 0) {
   stdin.on('end', function () {
     minify(data);
   });
+}
+
+function isRemote(uri) {
+  return /^(\w+:\/\/|\/\/)/.test(uri);
 }
 
 function minify(data) {

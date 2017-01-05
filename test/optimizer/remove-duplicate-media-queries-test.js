@@ -3,7 +3,7 @@ var optimizerContext = require('../test-helper').optimizerContext;
 
 vows.describe('remove duplicate media queries')
   .addBatch(
-    optimizerContext('advanced on', {
+    optimizerContext('level 2 on', {
       'adjacent': [
         '@media screen{a{color:red}}@media screen{a{color:red}}',
         '@media screen{a{color:red}}'
@@ -23,12 +23,12 @@ vows.describe('remove duplicate media queries')
     })
   )
   .addBatch(
-    optimizerContext('advanced off', {
+    optimizerContext('level 2 off', {
       'keeps content same': [
         '@media screen{a{color:red}}@media screen{a{color:red}}',
         '@media screen{a{color:red}}@media screen{a{color:red}}'
       ]
-    }, { advanced: false })
+    }, { level: 1 })
   )
   .addBatch(
     optimizerContext('media merging off', {
@@ -36,6 +36,6 @@ vows.describe('remove duplicate media queries')
         '@media screen{a{color:red}}@media screen{a{color:red}}',
         '@media screen{a{color:red}}@media screen{a{color:red}}'
       ]
-    }, { mediaMerging: false })
+    }, { level: { 2: { mediaMerging: false } } })
   )
   .export(module);

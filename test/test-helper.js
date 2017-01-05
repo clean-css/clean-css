@@ -5,8 +5,6 @@ var CleanCSS = require('../lib/clean');
 function optimizerContext(group, specs, options) {
   var context = {};
   options = options || {};
-  options.shorthandCompacting = true;
-  options.restructuring = true;
 
   function optimized(target) {
     return function (source) {

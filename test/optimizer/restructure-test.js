@@ -3,7 +3,7 @@ var optimizerContext = require('../test-helper').optimizerContext;
 
 vows.describe('restructure')
   .addBatch(
-    optimizerContext('advanced on', {
+    optimizerContext('level 2 on', {
       'up until changed #1': [
         'a{color:#000}div{color:red}.one{display:block}.two{display:inline;color:red}',
         'a{color:#000}.two,div{color:red}.one{display:block}.two{display:inline}'
@@ -167,11 +167,11 @@ vows.describe('restructure')
     })
   )
   .addBatch(
-    optimizerContext('advanced off', {
+    optimizerContext('level 2 off', {
       'up until changed': [
         'a{color:#000}div{color:red}.one{display:block}.two{display:inline;color:red}',
         'a{color:#000}div{color:red}.one{display:block}.two{display:inline;color:red}'
       ]
-    }, { advanced: false })
+    }, { level: 1 })
   )
   .export(module);

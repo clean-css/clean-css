@@ -16,8 +16,20 @@ function _optimize(source) {
   });
 
   var compat = compatibility();
+  var options = {
+    aggressiveMerging: true,
+    compatibility: compat,
+    level: {
+      2: {
+        mediaMerging: true,
+        restructuring: true,
+        semanticMerging: false,
+        shorthandCompacting: true
+      }
+    }
+  };
   var validator = new Validator(compat);
-  optimize(tokens[0][1], tokens[0][2], false, true, { options: { compatibility: compat, aggressiveMerging: true, shorthandCompacting: true }, validator: validator });
+  optimize(tokens[0][1], tokens[0][2], false, true, { options: options, validator: validator });
 
   return tokens[0][2];
 }

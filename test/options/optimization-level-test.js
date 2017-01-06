@@ -3,13 +3,13 @@ var assert = require('assert');
 var vows = require('vows');
 
 var roundingPrecisionFrom = require('../../lib/utils/rounding-precision').roundingPrecisionFrom;
-var optimizationLevelOptionsFrom = require('../../lib/options/optimization-level').optimizationLevelOptionsFrom;
+var optimizationLevelFrom = require('../../lib/options/optimization-level').optimizationLevelFrom;
 
-vows.describe(optimizationLevelOptionsFrom)
+vows.describe(optimizationLevelFrom)
   .addBatch({
     'undefined': {
       'topic': function () {
-        return optimizationLevelOptionsFrom(undefined);
+        return optimizationLevelFrom(undefined);
       },
       'has all options': function (levelOptions) {
         assert.deepEqual(Object.keys(levelOptions), ['0', '1', '2']);
@@ -34,7 +34,7 @@ vows.describe(optimizationLevelOptionsFrom)
     },
     'number - level 0': {
       'topic': function () {
-        return optimizationLevelOptionsFrom(0);
+        return optimizationLevelFrom(0);
       },
       'has all options': function (levelOptions) {
         assert.deepEqual(Object.keys(levelOptions), ['0']);
@@ -45,7 +45,7 @@ vows.describe(optimizationLevelOptionsFrom)
     },
     'number - level 1': {
       'topic': function () {
-        return optimizationLevelOptionsFrom(1);
+        return optimizationLevelFrom(1);
       },
       'has all options': function (levelOptions) {
         assert.deepEqual(Object.keys(levelOptions), ['0', '1']);
@@ -62,7 +62,7 @@ vows.describe(optimizationLevelOptionsFrom)
     },
     'number - level 2': {
       'topic': function () {
-        return optimizationLevelOptionsFrom(2);
+        return optimizationLevelFrom(2);
       },
       'has all options': function (levelOptions) {
         assert.deepEqual(Object.keys(levelOptions), ['0', '1', '2']);
@@ -87,7 +87,7 @@ vows.describe(optimizationLevelOptionsFrom)
     },
     'string with value': {
       'topic': function () {
-        return optimizationLevelOptionsFrom('0');
+        return optimizationLevelFrom('0');
       },
       'has all options': function (levelOptions) {
         assert.deepEqual(Object.keys(levelOptions), ['0']);
@@ -98,7 +98,7 @@ vows.describe(optimizationLevelOptionsFrom)
     },
     'a hash': {
       'topic': function () {
-        return optimizationLevelOptionsFrom({ 1: { specialComments: 0 }, 2: true });
+        return optimizationLevelFrom({ 1: { specialComments: 0 }, 2: true });
       },
       'has all options': function (levelOptions) {
         assert.deepEqual(Object.keys(levelOptions), ['0', '1', '2']);
@@ -123,7 +123,7 @@ vows.describe(optimizationLevelOptionsFrom)
     },
     'a hash with all keyword': {
       'topic': function () {
-        return optimizationLevelOptionsFrom({ 1: { specialComments: 0 }, 2: { all: false, mediaMerging: true } });
+        return optimizationLevelFrom({ 1: { specialComments: 0 }, 2: { all: false, mediaMerging: true } });
       },
       'has all options': function (levelOptions) {
         assert.deepEqual(Object.keys(levelOptions), ['0', '1', '2']);
@@ -148,7 +148,7 @@ vows.describe(optimizationLevelOptionsFrom)
     },
     'a hash with * keyword': {
       'topic': function () {
-        return optimizationLevelOptionsFrom({ 1: { specialComments: 0 }, 2: { '*': false, mediaMerging: true } });
+        return optimizationLevelFrom({ 1: { specialComments: 0 }, 2: { '*': false, mediaMerging: true } });
       },
       'has all options': function (levelOptions) {
         assert.deepEqual(Object.keys(levelOptions), ['0', '1', '2']);
@@ -173,7 +173,7 @@ vows.describe(optimizationLevelOptionsFrom)
     },
     'a hash with options as strings': {
       'topic': function () {
-        return optimizationLevelOptionsFrom({ 1: 'roundingPrecision:3;specialComments:0' });
+        return optimizationLevelFrom({ 1: 'roundingPrecision:3;specialComments:0' });
       },
       'has all options': function (levelOptions) {
         assert.deepEqual(Object.keys(levelOptions), ['0', '1']);
@@ -190,7 +190,7 @@ vows.describe(optimizationLevelOptionsFrom)
     },
     'a hash with options as strings with boolean values': {
       'topic': function () {
-        return optimizationLevelOptionsFrom({ 2: 'mediaMerging:false;semanticMerging:true' });
+        return optimizationLevelFrom({ 2: 'mediaMerging:false;semanticMerging:true' });
       },
       'has all options': function (levelOptions) {
         assert.deepEqual(Object.keys(levelOptions), ['0', '1', '2']);
@@ -215,7 +215,7 @@ vows.describe(optimizationLevelOptionsFrom)
     },
     'a hash with options as strings with all keyword': {
       'topic': function () {
-        return optimizationLevelOptionsFrom({ 2: 'all:false;mediaMerging:true;semanticMerging:true' });
+        return optimizationLevelFrom({ 2: 'all:false;mediaMerging:true;semanticMerging:true' });
       },
       'has all options': function (levelOptions) {
         assert.deepEqual(Object.keys(levelOptions), ['0', '1', '2']);
@@ -240,7 +240,7 @@ vows.describe(optimizationLevelOptionsFrom)
     },
     'a hash with options as strings with * keyword': {
       'topic': function () {
-        return optimizationLevelOptionsFrom({ 2: '*:false;mediaMerging:true;semanticMerging:true' });
+        return optimizationLevelFrom({ 2: '*:false;mediaMerging:true;semanticMerging:true' });
       },
       'has all options': function (levelOptions) {
         assert.deepEqual(Object.keys(levelOptions), ['0', '1', '2']);
@@ -265,7 +265,7 @@ vows.describe(optimizationLevelOptionsFrom)
     },
     'a hash with options as undefined/boolean': {
       'topic': function () {
-        return optimizationLevelOptionsFrom({ 0: undefined, 1: true, 2: undefined });
+        return optimizationLevelFrom({ 0: undefined, 1: true, 2: undefined });
       },
       'has all options': function (levelOptions) {
         assert.deepEqual(Object.keys(levelOptions), ['0', '1']);
@@ -282,7 +282,7 @@ vows.describe(optimizationLevelOptionsFrom)
     },
     'a hash with roundingPrecision as number': {
       'topic': function () {
-        return optimizationLevelOptionsFrom({ 1: { roundingPrecision: 4 } });
+        return optimizationLevelFrom({ 1: { roundingPrecision: 4 } });
       },
       'has all options': function (levelOptions) {
         assert.deepEqual(Object.keys(levelOptions), ['0', '1']);
@@ -316,7 +316,7 @@ vows.describe(optimizationLevelOptionsFrom)
     },
     'a hash with complex roundingPrecision': {
       'topic': function () {
-        return optimizationLevelOptionsFrom({ 1: 'roundingPrecision:all=5,rem=off,%=1' });
+        return optimizationLevelFrom({ 1: 'roundingPrecision:all=5,rem=off,%=1' });
       },
       'has all options': function (levelOptions) {
         assert.deepEqual(Object.keys(levelOptions), ['0', '1']);

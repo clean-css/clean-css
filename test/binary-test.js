@@ -162,7 +162,7 @@ vows.describe('./bin/cleancss')
     })
   })
   .addBatch({
-    'skip restructuring optimizations': pipedContext('div{margin-top:0}.one{margin:0}.two{display:block;margin-top:0}', '--O2 restructuring:false', {
+    'skip restructuring optimizations': pipedContext('div{margin-top:0}.one{margin:0}.two{display:block;margin-top:0}', '--O2 restructuring:off', {
       'should do basic optimizations only': function (error, stdout) {
         assert.equal(stdout, 'div{margin-top:0}.one{margin:0}.two{display:block;margin-top:0}');
       }
@@ -453,7 +453,7 @@ vows.describe('./bin/cleancss')
     }
   })
   .addBatch({
-    '@media merging': pipedContext('@media screen{a{color:red}}@media screen{a{display:block}}', '--O2 mediaMerging:false', {
+    '@media merging': pipedContext('@media screen{a{color:red}}@media screen{a{display:block}}', '--O2 mediaMerging:off', {
       'gets right result': function (error, stdout) {
         assert.equal(stdout, '@media screen{a{color:red}}@media screen{a{display:block}}');
       }
@@ -461,7 +461,7 @@ vows.describe('./bin/cleancss')
   })
   .addBatch({
     'shorthand compacting': {
-      'of (yet) unmergeable properties': pipedContext('a{background:url(image.png);background-color:red}', '--O2 shorthandCompacting:false', {
+      'of (yet) unmergeable properties': pipedContext('a{background:url(image.png);background-color:red}', '--O2 shorthandCompacting:off', {
         'gets right result': function (error, stdout) {
           assert.equal(stdout, 'a{background:url(image.png);background-color:red}');
         }
@@ -615,7 +615,7 @@ vows.describe('./bin/cleancss')
           assert.equal(stdout, '.a{margin:0}.b{margin:10px;padding:0}.c{margin:0}');
         }
       }),
-      'enabled': pipedContext('.a{margin:0}.b{margin:10px;padding:0}.c{margin:0}', '--O2 semanticMerging:true', {
+      'enabled': pipedContext('.a{margin:0}.b{margin:10px;padding:0}.c{margin:0}', '--O2 semanticMerging:on', {
         'should output right data': function (error, stdout) {
           assert.equal(stdout, '.a,.c{margin:0}.b{margin:10px;padding:0}');
         }

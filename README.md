@@ -129,11 +129,11 @@ Level 2 optimizations:
 
 ```bash
 cleancss --O2 one.css
-cleancss --O2 mediaMerging:false;restructuring:false;semanticMerging:true;shorthandCompacting:false one.css
-# `mediaMerging` controls `@media` merging behavior; defaults to true
-# `restructuring` controls content restructuring behavior; defaults to true
-# `semanticMerging` controls semantic merging behavior; defaults to false
-# `shorthandCompacting` controls shorthand compacting behavior; defaults to true
+cleancss --O2 mediaMerging:off;restructuring:off;semanticMerging:on;shorthandCompacting:off one.css
+# `mediaMerging` controls `@media` merging behavior; defaults to `on` (alias to `true`)
+# `restructuring` controls content restructuring behavior; defaults `on` (alias to `true`)
+# `semanticMerging` controls semantic merging behavior; defaults to `off` (alias to `false`)
+# `shorthandCompacting` controls shorthand compacting behavior; defaults to `on` (alias to `true`)
 ```
 
 ### How to use clean-css API?

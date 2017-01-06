@@ -121,6 +121,56 @@ vows.describe(optimizationLevelOptionsFrom)
         });
       }
     },
+    'a hash with all keyword': {
+      'topic': function () {
+        return optimizationLevelOptionsFrom({ 1: { specialComments: 0 }, 2: { all: false, mediaMerging: true } });
+      },
+      'has all options': function (levelOptions) {
+        assert.deepEqual(Object.keys(levelOptions), ['0', '1', '2']);
+      },
+      'has level 0 options': function (levelOptions) {
+        assert.deepEqual(levelOptions['0'], {});
+      },
+      'has level 1 options': function (levelOptions) {
+        assert.deepEqual(levelOptions['1'], {
+          roundingPrecision: roundingPrecisionFrom(undefined),
+          specialComments: 0
+        });
+      },
+      'has level 2 options': function (levelOptions) {
+        assert.deepEqual(levelOptions['2'], {
+          mediaMerging: true,
+          restructuring: false,
+          semanticMerging: false,
+          shorthandCompacting: false
+        });
+      }
+    },
+    'a hash with * keyword': {
+      'topic': function () {
+        return optimizationLevelOptionsFrom({ 1: { specialComments: 0 }, 2: { '*': false, mediaMerging: true } });
+      },
+      'has all options': function (levelOptions) {
+        assert.deepEqual(Object.keys(levelOptions), ['0', '1', '2']);
+      },
+      'has level 0 options': function (levelOptions) {
+        assert.deepEqual(levelOptions['0'], {});
+      },
+      'has level 1 options': function (levelOptions) {
+        assert.deepEqual(levelOptions['1'], {
+          roundingPrecision: roundingPrecisionFrom(undefined),
+          specialComments: 0
+        });
+      },
+      'has level 2 options': function (levelOptions) {
+        assert.deepEqual(levelOptions['2'], {
+          mediaMerging: true,
+          restructuring: false,
+          semanticMerging: false,
+          shorthandCompacting: false
+        });
+      }
+    },
     'a hash with options as strings': {
       'topic': function () {
         return optimizationLevelOptionsFrom({ 1: 'roundingPrecision:3;specialComments:0' });
@@ -160,6 +210,56 @@ vows.describe(optimizationLevelOptionsFrom)
           restructuring: true,
           semanticMerging: true,
           shorthandCompacting: true
+        });
+      }
+    },
+    'a hash with options as strings with all keyword': {
+      'topic': function () {
+        return optimizationLevelOptionsFrom({ 2: 'all:false;mediaMerging:true;semanticMerging:true' });
+      },
+      'has all options': function (levelOptions) {
+        assert.deepEqual(Object.keys(levelOptions), ['0', '1', '2']);
+      },
+      'has level 0 options': function (levelOptions) {
+        assert.deepEqual(levelOptions['0'], {});
+      },
+      'has level 1 options': function (levelOptions) {
+        assert.deepEqual(levelOptions['1'], {
+          roundingPrecision: roundingPrecisionFrom(undefined),
+          specialComments: 'all'
+        });
+      },
+      'has level 2 options': function (levelOptions) {
+        assert.deepEqual(levelOptions['2'], {
+          mediaMerging: true,
+          restructuring: false,
+          semanticMerging: true,
+          shorthandCompacting: false
+        });
+      }
+    },
+    'a hash with options as strings with * keyword': {
+      'topic': function () {
+        return optimizationLevelOptionsFrom({ 2: '*:false;mediaMerging:true;semanticMerging:true' });
+      },
+      'has all options': function (levelOptions) {
+        assert.deepEqual(Object.keys(levelOptions), ['0', '1', '2']);
+      },
+      'has level 0 options': function (levelOptions) {
+        assert.deepEqual(levelOptions['0'], {});
+      },
+      'has level 1 options': function (levelOptions) {
+        assert.deepEqual(levelOptions['1'], {
+          roundingPrecision: roundingPrecisionFrom(undefined),
+          specialComments: 'all'
+        });
+      },
+      'has level 2 options': function (levelOptions) {
+        assert.deepEqual(levelOptions['2'], {
+          mediaMerging: true,
+          restructuring: false,
+          semanticMerging: true,
+          shorthandCompacting: false
         });
       }
     },

@@ -88,7 +88,7 @@ vows.describe('remove duplicates')
         '.one{color:#FFF}.two{color:#fff}',
         '.one,.two{color:#fff}'
       ]
-    })
+    }, { level: 2 })
   )
   .addBatch(
     optimizerContext('with level 2 off', {

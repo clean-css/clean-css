@@ -76,7 +76,7 @@ vows.describe('level 2 optimizer')
         '@media screen { @media print { @media (min-width:980px) { a{color:red} } } }',
         '@media screen{@media print{@media (min-width:980px){a{color:red}}}}'
       ]
-    })
+    }, { level: 2 })
   )
   .addBatch(
     optimizerContext('@font-face', {
@@ -84,7 +84,7 @@ vows.describe('level 2 optimizer')
         '@font-face{font-family:PublicVintage;src:url(/PublicVintage.otf) format(\'opentype\')}',
         '@font-face{font-family:PublicVintage;src:url(/PublicVintage.otf) format(\'opentype\')}'
       ]
-    })
+    }, { level: 2 })
   )
   .addBatch(
     optimizerContext('unit compacting', {
@@ -100,7 +100,7 @@ vows.describe('level 2 optimizer')
         'div{width:1rem;width:16px}',
         'div{width:16px}'
       ]
-    })
+    }, { level: 2 })
   )
   .addBatch(
     optimizerContext('variables', {
@@ -116,6 +116,6 @@ vows.describe('level 2 optimizer')
         '.one{border:red solid var(--width)}',
         '.one{border:red solid var(--width)}'
       ]
-    })
+    }, { level: 2 })
   )
   .export(module);

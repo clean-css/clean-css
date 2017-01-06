@@ -178,7 +178,7 @@ vows.describe('./bin/cleancss')
     })
   })
   .addBatch({
-    'from source': binaryContext('./test/fixtures/reset.css', {
+    'from source': binaryContext('--O2 ./test/fixtures/reset.css', {
       'should minimize': function (error, stdout) {
         var minimized = fs.readFileSync('./test/fixtures/reset-min.css', 'utf-8').replace(lineBreakRegExp, '');
         assert.equal(stdout, minimized);
@@ -193,7 +193,7 @@ vows.describe('./bin/cleancss')
     })
   })
   .addBatch({
-    'to file': binaryContext('-o ./reset1-min.css ./test/fixtures/reset.css', {
+    'to file': binaryContext('--O2 -o ./reset1-min.css ./test/fixtures/reset.css', {
       'should give no output': function (error, stdout) {
         assert.isEmpty(stdout);
       },
@@ -240,13 +240,13 @@ vows.describe('./bin/cleancss')
     'relative image paths': {
       'no output': binaryContext('./test/fixtures/partials-relative/base.css', {
         'should leave paths': function (error, stdout) {
-          assert.equal(stdout, 'a{background:url(test/fixtures/partials/extra/down.gif) no-repeat}');
+          assert.equal(stdout, 'a{background:url(test/fixtures/partials/extra/down.gif) 0 0 no-repeat}');
         }
       }),
       'output': binaryContext('-o ./base1-min.css ./test/fixtures/partials-relative/base.css', {
         'should rewrite path relative to current path': function () {
           var minimized = readFile('./base1-min.css');
-          assert.equal(minimized, 'a{background:url(test/fixtures/partials/extra/down.gif) no-repeat}');
+          assert.equal(minimized, 'a{background:url(test/fixtures/partials/extra/down.gif) 0 0 no-repeat}');
         },
         teardown: function () {
           deleteFile('./base1-min.css');
@@ -440,12 +440,12 @@ vows.describe('./bin/cleancss')
   })
   .addBatch({
     'neighbour merging': {
-      'of (yet) unmergeable properties': pipedContext('a{display:inline-block;color:red;display:-moz-block}', '--skip-aggressive-merging', {
+      'of (yet) unmergeable properties': pipedContext('a{display:inline-block;color:red;display:-moz-block}', '--O2 --skip-aggressive-merging', {
         'gets right result': function (error, stdout) {
           assert.equal(stdout, 'a{display:inline-block;color:red;display:-moz-block}');
         }
       }),
-      'of mergeable properties': pipedContext('a{background:red;display:block;background:white}', '--skip-aggressive-merging', {
+      'of mergeable properties': pipedContext('a{background:red;display:block;background:white}', '--O2 --skip-aggressive-merging', {
         'gets right result': function (error, stdout) {
           assert.equal(stdout, 'a{background:#fff;display:block}');
         }

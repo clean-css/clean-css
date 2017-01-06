@@ -40,7 +40,7 @@ vows.describe('remove duplicates')
         '@media (min-width:75px){a{color:red}}@media screen{a{color:red}p{width:75px}a{color:red}}',
         '@media (min-width:75px){a{color:red}}@media screen{p{width:75px}a{color:red}}'
       ]
-    })
+    }, { level: 2 })
   )
   .addBatch(
     optimizerContext('level 2 off', {

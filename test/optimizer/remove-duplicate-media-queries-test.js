@@ -20,7 +20,7 @@ vows.describe('remove duplicate media queries')
         '@media print{a{color:#fff}}@media screen{a{color:red}}.one{color:#000}@media screen{a{color:red}}@media print{a{display:block}}@media print{a{color:#fff}}',
         '.one{color:#000}@media screen{a{color:red}}@media print{a{display:block;color:#fff}}'
       ]
-    })
+    }, { level: 2 })
   )
   .addBatch(
     optimizerContext('level 2 off', {

@@ -21,7 +21,7 @@ vows.describe('source-map')
   .addBatch({
     'vendor prefix with comments': {
       'topic': function () {
-        return new CleanCSS({ sourceMap: true }).minify('html{font-family:sans-serif;/* 1 */-ms-text-size-adjust:100%;/* 2 */-webkit-text-size-adjust:100%/* 3 */}');
+        return new CleanCSS({ level: 2, sourceMap: true }).minify('html{font-family:sans-serif;/* 1 */-ms-text-size-adjust:100%;/* 2 */-webkit-text-size-adjust:100%/* 3 */}');
       },
       'gets right output': function (minified) {
         assert.equal(minified.styles, 'html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}');
@@ -29,7 +29,7 @@ vows.describe('source-map')
     },
     'background gradient': {
       'topic': function () {
-        return new CleanCSS({ sourceMap: true }).minify('a{background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0, rgba(0, 0, 0, 0.1))}');
+        return new CleanCSS({ level: 2, sourceMap: true }).minify('a{background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0, rgba(0, 0, 0, 0.1))}');
       },
       'gets right output': function (minified) {
         assert.equal(minified.styles, 'a{background:linear-gradient(to bottom,rgba(0,0,0,.1) 0,rgba(0,0,0,.1))}');
@@ -37,7 +37,7 @@ vows.describe('source-map')
     },
     'background shorthand defaults': {
       'topic': function () {
-        return new CleanCSS({ sourceMap: true }).minify('a{background: #ffffff none repeat scroll 0 0}');
+        return new CleanCSS({ level: 2, sourceMap: true }).minify('a{background: #ffffff none repeat scroll 0 0}');
       },
       'gets right output': function (minified) {
         assert.equal(minified.styles, 'a{background:#fff}');
@@ -45,7 +45,7 @@ vows.describe('source-map')
     },
     'background position and size': {
       'topic': function () {
-        return new CleanCSS({ sourceMap: true }).minify('a{background:url(image.png) 0 0 / 100% no-repeat}');
+        return new CleanCSS({ level: 2, sourceMap: true }).minify('a{background:url(image.png) 0 0 / 100% no-repeat}');
       },
       'gets right output': function (minified) {
         assert.equal(minified.styles, 'a{background:url(image.png) 0 0/100% no-repeat}');
@@ -53,7 +53,7 @@ vows.describe('source-map')
     },
     'background position and size without image': {
       'topic': function () {
-        return new CleanCSS({ sourceMap: true }).minify('a{background: 50% 50% / 100% auto no-repeat currentColor}');
+        return new CleanCSS({ level: 2, sourceMap: true }).minify('a{background: 50% 50% / 100% auto no-repeat currentColor}');
       },
       'gets right output': function (minified) {
         assert.equal(minified.styles, 'a{background:50% 50%/100% auto no-repeat currentColor}');
@@ -61,7 +61,7 @@ vows.describe('source-map')
     },
     'important': {
       'topic': function () {
-        return new CleanCSS({ sourceMap: true }).minify('@font-face{font-family:si}a{font-family:si!important}');
+        return new CleanCSS({ level: 2, sourceMap: true }).minify('@font-face{font-family:si}a{font-family:si!important}');
       },
       'gets right output': function (minified) {
         assert.equal(minified.styles, '@font-face{font-family:si}a{font-family:si!important}');
@@ -69,7 +69,7 @@ vows.describe('source-map')
     },
     'variables': {
       'topic': function () {
-        return new CleanCSS({ sourceMap: true }).minify(':root{--color:red}');
+        return new CleanCSS({ level: 2, sourceMap: true }).minify(':root{--color:red}');
       },
       'gets right output': function (minified) {
         assert.equal(minified.styles, ':root{--color:red}');
@@ -77,7 +77,7 @@ vows.describe('source-map')
     },
     'variables reused': {
       'topic': function () {
-        return new CleanCSS({ sourceMap: true }).minify(':root{--color:var(--otherColor)}');
+        return new CleanCSS({ level: 2, sourceMap: true }).minify(':root{--color:var(--otherColor)}');
       },
       'gets right output': function (minified) {
         assert.equal(minified.styles, ':root{--color:var(--otherColor)}');
@@ -85,7 +85,7 @@ vows.describe('source-map')
     },
     'empty rules and comments': {
       'topic': function () {
-        return new CleanCSS({ sourceMap: true }).minify('p{/* comment */}');
+        return new CleanCSS({ level: 2, sourceMap: true }).minify('p{/* comment */}');
       },
       'gets right output': function (minified) {
         assert.equal(minified.styles, '');
@@ -95,7 +95,7 @@ vows.describe('source-map')
   .addBatch({
     'module #1': {
       'topic': function () {
-        return new CleanCSS({ sourceMap: true }).minify('/*! a */div[data-id=" abc "] { color:red; }');
+        return new CleanCSS({ level: 2, sourceMap: true }).minify('/*! a */div[data-id=" abc "] { color:red; }');
       },
       'has 3 mappings': function (minified) {
         assert.lengthOf(minified.sourceMap._mappings._array, 4);
@@ -147,7 +147,7 @@ vows.describe('source-map')
     },
     'module #2': {
       'topic': function () {
-        return new CleanCSS({ sourceMap: true }).minify('@media screen {\n@font-face \n{ \nfont-family: test; } }');
+        return new CleanCSS({ level: 2, sourceMap: true }).minify('@media screen {\n@font-face \n{ \nfont-family: test; } }');
       },
       'has 4 mappings': function (minified) {
         assert.lengthOf(minified.sourceMap._mappings._array, 4);
@@ -199,7 +199,7 @@ vows.describe('source-map')
     },
     'with keepBreaks': {
       'topic': function () {
-        return new CleanCSS({ sourceMap: true, keepBreaks: true }).minify('@media screen { a{color:red} p {color:blue} }div{color:pink}');
+        return new CleanCSS({ level: 2, sourceMap: true, keepBreaks: true }).minify('@media screen { a{color:red} p {color:blue} }div{color:pink}');
       },
       'has 10 mappings': function (minified) {
         assert.lengthOf(minified.sourceMap._mappings._array, 10);
@@ -317,7 +317,7 @@ vows.describe('source-map')
     },
     'keyframes': {
       'topic': function () {
-        return new CleanCSS({ sourceMap: true }).minify('@-webkit-keyframes frames {\n  0% {\n    border: 1px;\n  }\n  100% {\n    border: 3px;\n  }\n}');
+        return new CleanCSS({ level: 2, sourceMap: true }).minify('@-webkit-keyframes frames {\n  0% {\n    border: 1px;\n  }\n  100% {\n    border: 3px;\n  }\n}');
       },
       'has 7 mappings': function (minified) {
         assert.lengthOf(minified.sourceMap._mappings._array, 7);
@@ -402,7 +402,7 @@ vows.describe('source-map')
     },
     'double comments': {
       'topic': function () {
-        return new CleanCSS({ sourceMap: true }).minify('/* COMMENT 1 */\n/* COMMENT 2 */\ndiv{color:red}');
+        return new CleanCSS({ level: 2, sourceMap: true }).minify('/* COMMENT 1 */\n/* COMMENT 2 */\ndiv{color:red}');
       },
       'has 3 mappings': function (minified) {
         assert.lengthOf(minified.sourceMap._mappings._array, 3);
@@ -527,7 +527,7 @@ vows.describe('source-map')
     },
     'input map from source': {
       'topic': function () {
-        return new CleanCSS({ sourceMap: true }).minify('div > a {\n  color: red;\n}/*# sourceMappingURL=' + inputMapPath + ' */');
+        return new CleanCSS({ level: 2, sourceMap: true }).minify('div > a {\n  color: red;\n}/*# sourceMappingURL=' + inputMapPath + ' */');
       },
       'has 3 mappings': function (minified) {
         assert.lengthOf(minified.sourceMap._mappings._array, 3);
@@ -568,7 +568,7 @@ vows.describe('source-map')
     },
     'input map from source with rebaseTo': {
       'topic': function () {
-        return new CleanCSS({ sourceMap: true, rebaseTo: './test/fixtures' }).minify('div > a {\n  color: red;\n}/*# sourceMappingURL=' + inputMapPath + ' */');
+        return new CleanCSS({ level: 2, sourceMap: true, rebaseTo: './test/fixtures' }).minify('div > a {\n  color: red;\n}/*# sourceMappingURL=' + inputMapPath + ' */');
       },
       'has 3 mappings': function (minified) {
         assert.lengthOf(minified.sourceMap._mappings._array, 3);
@@ -616,7 +616,7 @@ vows.describe('source-map')
     'input map as inlined data URI with explicit charset us-ascii, not base64': inlineDataUriContext('data:application/json;charset=us-ascii,' + escape(inputMap)),
     'complex input map': {
       'topic': function () {
-        return new CleanCSS({ sourceMap: true }).minify('@import url(' + path.dirname(inputMapPath) + '/import.css);');
+        return new CleanCSS({ level: 2, sourceMap: true }).minify('@import url(' + path.dirname(inputMapPath) + '/import.css);');
       },
       'has 6 mappings': function (minified) {
         assert.lengthOf(minified.sourceMap._mappings._array, 6);
@@ -690,7 +690,7 @@ vows.describe('source-map')
     },
     'complex but partial input map referenced by path': {
       'topic': function () {
-        return new CleanCSS({ sourceMap: true }).minify('@import url(test/fixtures/source-maps/no-map-import.css);');
+        return new CleanCSS({ level: 2, sourceMap: true }).minify('@import url(test/fixtures/source-maps/no-map-import.css);');
       },
       'has 6 mappings': function (minified) {
         assert.lengthOf(minified.sourceMap._mappings._array, 6);
@@ -710,7 +710,7 @@ vows.describe('source-map')
     },
     'complex input map with an existing file as rebaseTo': {
       'topic': function () {
-        return new CleanCSS({ sourceMap: true, rebaseTo: path.join('test', 'fixtures', 'source-maps') }).minify('@import url(test/fixtures/source-maps/styles.css);');
+        return new CleanCSS({ level: 2, sourceMap: true, rebaseTo: path.join('test', 'fixtures', 'source-maps') }).minify('@import url(test/fixtures/source-maps/styles.css);');
       },
       'has 3 mappings': function (minified) {
         assert.lengthOf(minified.sourceMap._mappings._array, 3);
@@ -724,7 +724,7 @@ vows.describe('source-map')
     },
     'nested once': {
       'topic': function () {
-        return new CleanCSS({ sourceMap: true }).minify('@import url(test/fixtures/source-maps/nested/once.css);');
+        return new CleanCSS({ level: 2, sourceMap: true }).minify('@import url(test/fixtures/source-maps/nested/once.css);');
       },
       'has 3 mappings': function (minified) {
         assert.lengthOf(minified.sourceMap._mappings._array, 3);
@@ -765,7 +765,7 @@ vows.describe('source-map')
     },
     'nested twice': {
       'topic': function () {
-        return new CleanCSS({ sourceMap: true }).minify('@import url(test/fixtures/source-maps/nested/twice.css);');
+        return new CleanCSS({ level: 2, sourceMap: true }).minify('@import url(test/fixtures/source-maps/nested/twice.css);');
       },
       'has 3 mappings': function (minified) {
         assert.lengthOf(minified.sourceMap._mappings._array, 3);
@@ -1085,7 +1085,7 @@ vows.describe('source-map')
   .addBatch({
     'important comment after a property': {
       'topic': function () {
-        return new CleanCSS({ sourceMap: true }).minify('div { color: #f00 !important; /*!comment*/ }');
+        return new CleanCSS({ level: 2, sourceMap: true }).minify('div { color: #f00 !important; /*!comment*/ }');
       },
       'has right output': function (errors, minified) {
         assert.equal(minified.styles, 'div{color:red!important/*!comment*/}');
@@ -1093,7 +1093,7 @@ vows.describe('source-map')
     },
     'important comment between properties': {
       'topic': function () {
-        return new CleanCSS({ sourceMap: true }).minify('div { color: #f00 !important; /*!comment*/; display: block }');
+        return new CleanCSS({ level: 2, sourceMap: true }).minify('div { color: #f00 !important; /*!comment*/; display: block }');
       },
       'has right output': function (errors, minified) {
         assert.equal(minified.styles, 'div{color:red!important;/*!comment*/display:block}');
@@ -1101,7 +1101,7 @@ vows.describe('source-map')
     },
     'important comments after a property': {
       'topic': function () {
-        return new CleanCSS({ sourceMap: true }).minify('div { color: #f00 !important; /*!1*//*!2*/ }');
+        return new CleanCSS({ level: 2, sourceMap: true }).minify('div { color: #f00 !important; /*!1*//*!2*/ }');
       },
       'has right output': function (errors, minified) {
         assert.equal(minified.styles, 'div{color:red!important/*!1*//*!2*/}');
@@ -1109,7 +1109,7 @@ vows.describe('source-map')
     },
     'important comments after a property with remove comments': {
       'topic': function () {
-        return new CleanCSS({ sourceMap: true, level: { 1: { specialComments: 1 } } }).minify('div { color: #f00 !important; /*!1*/} /*!2*/ a{/*!3*/}');
+        return new CleanCSS({ level: { 1: { specialComments: 1 } }, sourceMap: true }).minify('div { color: #f00 !important; /*!1*/} /*!2*/ a{/*!3*/}');
       },
       'has right output': function (errors, minified) {
         assert.equal(minified.styles, 'div{color:red!important/*!1*/}');
@@ -1120,7 +1120,7 @@ vows.describe('source-map')
     'multiple source maps': {
       'relative to local': {
         'topic': function () {
-          return new CleanCSS({ sourceMap: true }).minify({
+          return new CleanCSS({ level: 2, sourceMap: true }).minify({
             'test/fixtures/source-maps/some.css': {
               styles: 'div {\n  color: red;\n}',
               sourceMap: '{"version":3,"sources":["some.less"],"names":[],"mappings":"AAAA;EACE,UAAA","file":"some.css"}'
@@ -1223,7 +1223,7 @@ vows.describe('source-map')
     'relative to path': {
       'complex but partial input map referenced by path': {
         'topic': function () {
-          return new CleanCSS({ sourceMap: true, rebaseTo: './test' }).minify({
+          return new CleanCSS({ level: 2, sourceMap: true, rebaseTo: './test' }).minify({
             'test/fixtures/source-maps/some.css': {
               styles: 'div {\n  color: red;\n}',
               sourceMap: '{"version":3,"sources":["some.less"],"names":[],"mappings":"AAAA;EACE,UAAA","file":"some.css"}'
@@ -1261,7 +1261,7 @@ vows.describe('source-map')
     'inlined sources': {
       'from string - off': {
         'topic': function () {
-          return new CleanCSS({ sourceMap: true }).minify('div > a {\n  color: red;\n}');
+          return new CleanCSS({ level: 2, sourceMap: true }).minify('div > a {\n  color: red;\n}');
         },
         'has 3 mappings': function (minified) {
           assert.lengthOf(minified.sourceMap._mappings._array, 3);
@@ -1308,7 +1308,7 @@ vows.describe('source-map')
       },
       'from string - on': {
         'topic': function () {
-          return new CleanCSS({ sourceMap: true, sourceMapInlineSources: true }).minify('div > a {\n  color: red;\n}');
+          return new CleanCSS({ level: 2, sourceMap: true, sourceMapInlineSources: true }).minify('div > a {\n  color: red;\n}');
         },
         'has 3 mappings': function (minified) {
           assert.lengthOf(minified.sourceMap._mappings._array, 3);
@@ -1322,7 +1322,7 @@ vows.describe('source-map')
       },
       'from array - off': {
         'topic': function () {
-          return new CleanCSS({ sourceMap: true }).minify([
+          return new CleanCSS({ level: 2, sourceMap: true }).minify([
             path.join('test', 'fixtures', 'partials', 'one.css'),
             path.join('test', 'fixtures', 'partials', 'three.css')
           ]);
@@ -1342,7 +1342,7 @@ vows.describe('source-map')
       },
       'from array - on': {
         'topic': function () {
-          return new CleanCSS({ sourceMap: true, sourceMapInlineSources: true }).minify([
+          return new CleanCSS({ level: 2, sourceMap: true, sourceMapInlineSources: true }).minify([
             path.join('test', 'fixtures', 'partials', 'one.css'),
             path.join('test', 'fixtures', 'partials', 'three.css')
           ]);
@@ -1393,7 +1393,7 @@ vows.describe('source-map')
       },
       'from hash - off': {
         'topic': function () {
-          return new CleanCSS({ sourceMap: true }).minify({
+          return new CleanCSS({ level: 2, sourceMap: true }).minify({
             'test/fixtures/source-maps/some.css': {
               styles: 'div {\n  color: red;\n}'
             },
@@ -1421,7 +1421,7 @@ vows.describe('source-map')
       },
       'from hash - on': {
         'topic': function () {
-          return new CleanCSS({ sourceMap: true, sourceMapInlineSources: true }).minify({
+          return new CleanCSS({ level: 2, sourceMap: true, sourceMapInlineSources: true }).minify({
             'test/fixtures/source-maps/some.css': {
               styles: 'div {\n  color: red;\n}'
             },
@@ -1507,7 +1507,7 @@ vows.describe('source-map')
       },
       'multiple': {
         'topic': function () {
-          return new CleanCSS({ sourceMap: true, sourceMapInlineSources: true }).minify({
+          return new CleanCSS({ level: 2, sourceMap: true, sourceMapInlineSources: true }).minify({
             'test/fixtures/source-maps/some.css': {
               styles: 'div {\n  color: red;\n}',
               sourceMap: '{"version":3,"sources":["some.less"],"names":[],"mappings":"AAAA;EACE,UAAA","file":"some.css","sourcesContent":["div {\\n  color: red;\\n}\\n"]}'
@@ -1542,7 +1542,7 @@ vows.describe('source-map')
       },
       'multiple with map passed as source map object': {
         'topic': function () {
-          return new CleanCSS({ sourceMap: true, sourceMapInlineSources: true }).minify({
+          return new CleanCSS({ level: 2, sourceMap: true, sourceMapInlineSources: true }).minify({
             'test/fixtures/source-maps/some.css': {
               styles: 'div {\n  color: red;\n}',
               sourceMap: { version:3, sources: ['some.less'], names: [], mappings: 'AAAA;EACE,UAAA', file: 'some.css', sourcesContent: ['div {\n  color: red;\n}\n'] }
@@ -1577,7 +1577,7 @@ vows.describe('source-map')
       },
       'multiple relative to rebaseTo path': {
         'topic': function () {
-          return new CleanCSS({ sourceMap: true, sourceMapInlineSources: true, rebaseTo: './test' }).minify({
+          return new CleanCSS({ level: 2, sourceMap: true, sourceMapInlineSources: true, rebaseTo: './test' }).minify({
             'test/fixtures/source-maps/some.css': {
               styles: 'div {\n  color: red;\n}',
               sourceMap: '{"version":3,"sources":["some.less"],"names":[],"mappings":"AAAA;EACE,UAAA","file":"some.css","sourcesContent":["div {\\n  color: red;\\n}\\n"]}'
@@ -1612,7 +1612,7 @@ vows.describe('source-map')
       },
       'mixed': {
         'topic': function () {
-          return new CleanCSS({ sourceMap: true, sourceMapInlineSources: true }).minify({
+          return new CleanCSS({ level: 2, sourceMap: true, sourceMapInlineSources: true }).minify({
             'test/fixtures/source-maps/some.css': {
               styles: 'div {\n  color: red;\n}',
               sourceMap: '{"version":3,"sources":["some.less"],"names":[],"mappings":"AAAA;EACE,UAAA","file":"some.css","sourcesContent":["div {\\n  color: red;\\n}\\n"]}'
@@ -1647,7 +1647,7 @@ vows.describe('source-map')
       },
       'mixed without inline sources switch': {
         'topic': function () {
-          return new CleanCSS({ sourceMap: true }).minify({
+          return new CleanCSS({ level: 2, sourceMap: true }).minify({
             'test/fixtures/source-maps/some.css': {
               styles: 'div {\n  color: red;\n}',
               sourceMap: '{"version":3,"sources":["some.less"],"names":[],"mappings":"AAAA;EACE,UAAA","file":"some.css","sourcesContent":["div {\\n  color: red;\\n}\\n"]}'
@@ -1684,7 +1684,7 @@ vows.describe('source-map')
             .get('/styles.less')
             .reply(200, 'div > a {\n  color: blue;\n}\n');
 
-          new CleanCSS({ inline: 'all', sourceMap: true, sourceMapInlineSources: true }).minify({
+          new CleanCSS({ inline: 'all', level: 2, sourceMap: true, sourceMapInlineSources: true }).minify({
             'http://127.0.0.1/some.css': {
               styles: 'div {\n  color: red;\n}',
               sourceMap: '{"version":3,"sources":["some.less"],"names":[],"mappings":"AAAA;EACE,UAAA","file":"some.css"}'
@@ -1729,7 +1729,7 @@ vows.describe('source-map')
             .get('/styles.less')
             .reply(200, 'div > a {\n  color: blue;\n}\n');
 
-          new CleanCSS({ inline: 'all', sourceMap: true, sourceMapInlineSources: true }).minify({
+          new CleanCSS({ inline: 'all', level: 2, sourceMap: true, sourceMapInlineSources: true }).minify({
             'http://127.0.0.1/some.css': {
               styles: 'div {\n  color: red;\n}',
               sourceMap: '{"version":3,"sources":["some.less"],"names":[],"mappings":"AAAA;EACE,UAAA","file":"some.css"}'
@@ -1771,7 +1771,7 @@ vows.describe('source-map')
       },
       'mixed remote and no callback': {
         'topic': function () {
-           return new CleanCSS({ inline: 'all', sourceMap: true, sourceMapInlineSources: true }).minify({
+           return new CleanCSS({ inline: 'all', level: 2, sourceMap: true, sourceMapInlineSources: true }).minify({
             'http://127.0.0.1/some.css': {
               styles: 'div {\n  color: red;\n}',
               sourceMap: '{"version":3,"sources":["some.less"],"names":[],"mappings":"AAAA;EACE,UAAA","file":"some.css"}'
@@ -1816,7 +1816,7 @@ vows.describe('source-map')
     'level 2 optimizations': {
       'new property in restructuring': {
         'topic': function () {
-          return new CleanCSS({ sourceMap: true }).minify('a{color:#000}div{color:red}.one{display:block}.two{display:inline;color:red}');
+          return new CleanCSS({ level: 2, sourceMap: true }).minify('a{color:#000}div{color:red}.one{display:block}.two{display:inline;color:red}');
         },
         'has right output': function (minified) {
           assert.equal(minified.styles, 'a{color:#000}.two,div{color:red}.one{display:block}.two{display:inline}');
@@ -1871,7 +1871,7 @@ vows.describe('source-map')
       },
       'overriding': {
         'topic': function () {
-          return new CleanCSS({ sourceMap: true }).minify('a{background:url(image.png);background-color:#eee;background-repeat:repeat-x}');
+          return new CleanCSS({ level: 2, sourceMap: true }).minify('a{background:url(image.png);background-color:#eee;background-repeat:repeat-x}');
         },
         'has right output': function (minified) {
           assert.equal(minified.styles, 'a{background:url(image.png) repeat-x #eee}');
@@ -1926,7 +1926,7 @@ vows.describe('source-map')
       },
       'compacting': {
         'topic': function () {
-          return new CleanCSS({ sourceMap: true }).minify('a{margin-top:10px;\nmargin-bottom:4px;\nmargin-left:5px;\nmargin-right:5px}');
+          return new CleanCSS({ level: 2, sourceMap: true }).minify('a{margin-top:10px;\nmargin-bottom:4px;\nmargin-left:5px;\nmargin-right:5px}');
         },
         'has right output': function (minified) {
           assert.equal(minified.styles, 'a{margin:10px 5px 4px}');

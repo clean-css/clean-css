@@ -108,7 +108,7 @@ vows.describe('remove duplicates')
         '.two{background-color:#000}.one,.two{background-color:#fff;background-image:url(x),-moz-linear-gradient(top,#aaa,#aaa);background-image:url(x),linear-gradient(to bottom,#aaa,#aaa)}.two{background-image:url(x),-moz-linear-gradient(top,#bbb,#bbb);background-image:url(x),linear-gradient(to bottom,#bbb,#bbb)}.one,.two{display:block}',
         '.one,.two{background-color:#fff;background-image:url(x),-moz-linear-gradient(top,#aaa,#aaa);background-image:url(x),linear-gradient(to bottom,#aaa,#aaa);display:block}.two{background-image:url(x),-moz-linear-gradient(top,#bbb,#bbb);background-image:url(x),linear-gradient(to bottom,#bbb,#bbb)}'
       ]
-    })
+    }, { level: 2 })
   )
   .addBatch(
     optimizerContext('level 2 on and aggressive merging off', {
@@ -116,7 +116,7 @@ vows.describe('remove duplicates')
         'a{padding:10px;margin:0;color:red}.one{color:red}a,p{color:red;padding:0}',
         '.one,a,p{color:red}a{padding:10px;margin:0}a,p{padding:0}'
       ]
-    }, { aggressiveMerging: false })
+    }, { aggressiveMerging: false, level: 2 })
   )
   .addBatch(
     optimizerContext('level 2 off', {

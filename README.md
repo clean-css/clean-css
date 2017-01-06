@@ -39,6 +39,7 @@ There will be some breaking changes:
 * renames `keepSpecialComments` to `specialComments`;
 * moves `roundingPrecision` and `specialComments` to level 1 optimizations options, see examples below;
 * moves `mediaMerging`, `restructuring`, `semanticMerging`, and `shorthandCompacting` to level 2 optimizations options, see examples below;
+* level 1 optimizations are the new default, up to 3.x it was level 2;
 
 Please note this list is not final. You are more than welcome to comment these changes in [4.0 release discussion](https://github.com/jakubpawlowicz/clean-css/issues/842) thread.
 
@@ -71,8 +72,8 @@ Options:
   -d, --debug                    Shows debug information (minification time & compression efficiency)
   -o, --output [output-file]     Use [output-file] as output instead of STDOUT
   --O0                           Turn on level 0 optimizations
-  --O1 [optimizations]           Turn on level 1 optimizations, see examples below
-  --O2 [optimizations]           Turn on level 2 optimizations (default), see examples below
+  --O1 [optimizations]           Turn on level 1 optimizations (default), see examples below
+  --O2 [optimizations]           Turn on level 2 optimizations, see examples below
   --beautify                     Formats output CSS by using indentation and one rule or property per line
   --inline [rules]               Enables inlining for listed sources (defaults to `local`)
   --inline-timeout [seconds]     Per connection timeout when fetching remote stylesheets (defaults to 5 seconds)
@@ -153,7 +154,7 @@ CleanCSS constructor accepts a hash as a parameter, i.e.,
 * `inline` - whether to inline `@import` rules, can be `['all']`, `['local']` (default), `['remote']`, or a blacklisted domain/path e.g. `['!fonts.googleapis.com']`
 * `inlineRequest` - an object with [HTTP(S) request options](https://nodejs.org/api/http.html#http_http_request_options_callback) for inlining remote `@import` rules
 * `inlineTimeout` - an integer denoting a number of milliseconds after which inlining a remote `@import` fails (defaults to 5000 ms)
-* `level` - an integer denoting optimization level applied or a hash with a fine-grained configuration; see examples below; defaults to `2`
+* `level` - an integer denoting optimization level applied or a hash with a fine-grained configuration; see examples below; defaults to `1`
 * `keepBreaks` - whether to keep line breaks (default is false)
 * `rebase` - set to false to skip URL rebasing
 * `rebaseTo` - a directory to which all URLs are rebased (most likely the directory under which the output file will live), defaults to the current directory
@@ -176,7 +177,7 @@ The output of `minify` method (or the 2nd argument to passed callback) is a hash
 
 #### How to specify optimization levels
 
-The `level` option can be either `0`, `1`, or `2` (default), or a fine-grained configuration given via a hash:
+The `level` option can be either `0`, `1` (default), or `2`, or a fine-grained configuration given via a hash:
 
 ```js
 // level 1 optimizations

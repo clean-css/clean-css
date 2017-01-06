@@ -206,7 +206,7 @@ vows.describe('integration tests')
         'li:not(.foo)#id{color:red}',
         'li:not(.foo)#id{color:red}'
       ]
-    })
+    }, { level: 2 })
   )
   .addBatch(
     optimizerContext('whitespace with spaceAfterClosingBrace', {
@@ -462,7 +462,7 @@ vows.describe('integration tests')
         'a{content:"\\\t"}',
         'a{content:"\\\t"}'
       ]
-    })
+    }, { level: 2 })
   )
   .addBatch(
     optimizerContext('important comments - one', {
@@ -698,7 +698,7 @@ vows.describe('integration tests')
         'body{margin:0.0em}',
         'body{margin:0}'
       ]
-    })
+    }, { level: 2 })
   )
   .addBatch(
     optimizerContext('zero values in ie8 compatibility mode', {
@@ -822,7 +822,7 @@ vows.describe('integration tests')
         'div{padding:010.0em .05rem}',
         'div{padding:10em .05rem}'
       ]
-    })
+    }, { level: 2 })
   )
   .addBatch(
     optimizerContext('units', {
@@ -835,7 +835,7 @@ vows.describe('integration tests')
         'div{padding-left:2px;padding-right:5px;padding-bottom:0}'
       ],
       'negative padding in calculations': [
-        'div{padding:calc(100% - 5px) 0 0 0}',
+        'div{padding:calc(100% - 5px) 0 0}',
         'div{padding:calc(100% - 5px) 0 0}'
       ]
     })
@@ -1205,10 +1205,6 @@ vows.describe('integration tests')
       'border radius side H+V same values': [
         'a{border-top-left-radius:1em / 1em}',
         'a{border-top-left-radius:1em}'
-      ],
-      'border radius H+V same expanded values': [
-        'a{border-radius:5px 5px 5px 5px / 5px 5px}',
-        'a{border-radius:5px}'
       ]
     })
   )
@@ -1427,20 +1423,20 @@ vows.describe('integration tests')
   .addBatch(
     optimizerContext('urls rewriting - rebaseTo', {
       'no @import': [
-        'a{background:url(test/fixtures/partials/extra/down.gif) no-repeat}',
-        'a{background:url(partials/extra/down.gif) no-repeat}'
+        'a{background:url(test/fixtures/partials/extra/down.gif) 0 0 no-repeat}',
+        'a{background:url(partials/extra/down.gif) 0 0 no-repeat}'
       ],
       'relative @import': [
         '@import url(test/fixtures/partials-relative/base.css);',
-        'a{background:url(partials/extra/down.gif) no-repeat}'
+        'a{background:url(partials/extra/down.gif) 0 0 no-repeat}'
       ],
       'relative @import twice': [
         '@import url(test/fixtures/partials-relative/extra/included.css);',
-        'a{background:url(partials/extra/down.gif) no-repeat}'
+        'a{background:url(partials/extra/down.gif) 0 0 no-repeat}'
       ],
       'absolute @import': [
         '@import url(/test/fixtures/partials-relative/base.css);',
-        'a{background:url(partials/extra/down.gif) no-repeat}'
+        'a{background:url(partials/extra/down.gif) 0 0 no-repeat}'
       ],
       'document-local reference': [
         'svg{marker-end:url(#arrow)}',
@@ -1460,11 +1456,11 @@ vows.describe('integration tests')
       ],
       'relative @import': [
         '@import url(test/fixtures/partials-relative/base.css);',
-        'a{background:url(../fixtures/partials/extra/down.gif) no-repeat}'
+        'a{background:url(../fixtures/partials/extra/down.gif) 0 0 no-repeat}'
       ],
       'absolute @import': [
         '@import url(/test/fixtures/partials-relative/base.css);',
-        'a{background:url(../fixtures/partials/extra/down.gif) no-repeat}'
+        'a{background:url(../fixtures/partials/extra/down.gif) 0 0 no-repeat}'
       ]
     }, { rebaseTo: path.join('test', 'fixtures2') })
   )
@@ -1472,7 +1468,7 @@ vows.describe('integration tests')
     optimizerContext('urls rewriting - rebase off', {
       'keeps urls the same': [
         '@import url(test/fixtures/partials-relative/base.css);',
-        'a{background:url(../partials/extra/down.gif) no-repeat}'
+        'a{background:url(../partials/extra/down.gif) 0 0 no-repeat}'
       ]
     }, {
       rebase: false
@@ -1588,7 +1584,7 @@ vows.describe('integration tests')
         'a{color:hsla(120,100%,50%,0)}',
         'a{color:hsla(120,100%,50%,0)}'
       ]
-    }, { compatibility: 'ie8' })
+    }, { compatibility: 'ie8', level: 2 })
   )
   .addBatch(
     optimizerContext('IE 7 hacks', {
@@ -1959,7 +1955,7 @@ vows.describe('integration tests')
       ],
       'after a comment': [
         '/* @import url(test/fixtures/partials/one.css); */@import url(test/fixtures/partials/one.css);a { color: red; }',
-        '.one,a{color:red}'
+        '.one{color:red}a{color:red}'
       ],
       'used arbitrarily in comment': [
         '/* @import foo */a { color: red; }',
@@ -1987,7 +1983,7 @@ vows.describe('integration tests')
       ],
       'with content between': [
         '@import url(test/fixtures/partials/one.css);@import url(test/fixtures/partials/extra/three.css);@import url(test/fixtures/partials/extra/four.css);.two { color:#fff; }@import url(test/fixtures/partials/extra/sub.css);.base { margin:0px }',
-        '.one{color:red}.three{color:#0f0}.four{color:#00f}.two{color:#fff}.base{margin:0}'
+        '.one{color:red}.three{color:#0f0}.two{color:#fff}.four{color:#00f}.two{color:#fff}.base{margin:0}'
       ],
       'after quoted content': [
         '/*a{display:block}*/@import url(test/fixtures/partials/one.css);',
@@ -2217,7 +2213,7 @@ vows.describe('integration tests')
         'a{background:red;display:block;background:white}',
         'a{background:#fff;display:block}'
       ]
-    }, { aggressiveMerging: false })
+    }, { aggressiveMerging: false, level: 2 })
   )
   .addBatch(
     optimizerContext('rerun optimizers', {
@@ -2225,7 +2221,7 @@ vows.describe('integration tests')
         '.one{color:red;margin:0}.two{color:red}.one{margin:0}',
         '.one,.two{color:red}.one{margin:0}'
       ]
-    })
+    }, { level: 2 })
   )
   .addBatch(
     optimizerContext('units - IE8 compatibility', {
@@ -2309,7 +2305,7 @@ vows.describe('integration tests')
         'li{list-style-type:disc;list-style:inside}',
         'li{list-style:inside}'
       ]
-    })
+    }, { level: 2 })
   )
   .addBatch(
     optimizerContext('merging of rules', {
@@ -2381,7 +2377,7 @@ vows.describe('integration tests')
         '.wrapper ::shadow a{color:red}b{color:red}',
         '.wrapper ::shadow a{color:red}b{color:red}'
       ]
-    })
+    }, { level: 2 })
   )
   .addBatch(
     optimizerContext('grouping with level 2 optimizations', {
@@ -2417,7 +2413,7 @@ vows.describe('integration tests')
         '@counter-style triangle{system:cyclic;symbols:‣;suffix:" "}',
         '@counter-style triangle{system:cyclic;symbols:‣;suffix:" "}'
       ]
-    })
+    }, { level: 2 })
   )
   .addBatch(
     optimizerContext('background size', {
@@ -2441,7 +2437,7 @@ vows.describe('integration tests')
         'a{background:none;background-image:url(1.png);background-size:28px 28px}',
         'a{background:url(1.png) 0 0/28px 28px}'
       ]
-    })
+    }, { level: 2 })
   )
   .addBatch(
     optimizerContext('background position', {
@@ -2449,7 +2445,7 @@ vows.describe('integration tests')
         '*{background:white calc(100% - 10px) center no-repeat;background-image:url(test.png)}',
         '*{background:calc(100% - 10px) center no-repeat #fff;background-image:url(test.png)}'
       ]
-    })
+    }, { level: 2 })
   )
   .addBatch(
     optimizerContext('background-clip', {
@@ -2457,7 +2453,7 @@ vows.describe('integration tests')
         'div{background:content-box #000}',
         'div{background:content-box #000}'
       ]
-    })
+    }, { level: 2 })
   )
   .addBatch(
     optimizerContext('background size with +properties.backgroundSizeMerging', {
@@ -2469,7 +2465,7 @@ vows.describe('integration tests')
         'a{background:url(a.jpg) !important; background-color:#fff !important; background-size:10px 10px !important}',
         'a{background:url(a.jpg) 0 0/10px 10px #fff!important}'
       ]
-    }, { compatibility: '+properties.backgroundSizeMerging' })
+    }, { level: 2, compatibility: '+properties.backgroundSizeMerging' })
   )
   .addBatch(
     optimizerContext('multiple backgrounds', {
@@ -2477,7 +2473,7 @@ vows.describe('integration tests')
         'p{background:no-repeat;background-position:100% 0,0 100%,100% 100%,50% 50%}',
         'p{background:no-repeat;background-position:100% 0,0 100%,100% 100%,50% 50%}'
       ]
-    })
+    }, { level: 2 })
   )
   .addBatch(
     optimizerContext('misc level 2', {
@@ -2521,7 +2517,7 @@ vows.describe('integration tests')
         'a{padding:;border-radius: ;background:red}',
         'a{background:red}'
       ]
-    })
+    }, { level: 2 })
   )
   .addBatch(
     optimizerContext('level 2 in ie8 mode', {
@@ -2537,7 +2533,7 @@ vows.describe('integration tests')
         'div{background-color:red;background:rgba(1,2,3,.5)}',
         'div{background-color:red;background:rgba(1,2,3,.5)}'
       ]
-    }, { compatibility: 'ie8' })
+    }, { compatibility: 'ie8', level: 2 })
   )
   .addBatch(
     optimizerContext('viewport units', {
@@ -2573,7 +2569,7 @@ vows.describe('integration tests')
         '.spinner{-webkit-animation:container-rotate var(--paper-spinner-container-rotation-duration) linear infinite}',
         '.spinner{-webkit-animation:container-rotate var(--paper-spinner-container-rotation-duration) linear infinite}'
       ]
-    })
+    }, { level: 2 })
   )
   .addBatch(
     optimizerContext('beautify formatting', {

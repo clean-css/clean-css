@@ -32,7 +32,7 @@ vows.describe('merge non djacent by body')
         'h1{color:#000}div{color:red},h2{color:#000}',
         'h1{color:#000}div{color:red},h2{color:#000}'
       ]
-    })
+    }, { level: 2 })
   )
   .addBatch(
     optimizerContext('with level 2 off', {
@@ -101,7 +101,7 @@ vows.describe('merge non djacent by body')
         '.one:nth-child(5){color:red}.two:last-child{color:red}',
         '.one:nth-child(5){color:red}.two:last-child{color:red}'
       ]
-    }, { compatibility: 'ie8' })
+    }, { compatibility: 'ie8', level: 2 })
   )
   .addBatch(
     optimizerContext('IE7 compatibility', {
@@ -117,7 +117,7 @@ vows.describe('merge non djacent by body')
         '.one:before{color:red}.two:last-child{color:red}',
         '.one:before{color:red}.two:last-child{color:red}'
       ]
-    }, { compatibility: 'ie7' })
+    }, { compatibility: 'ie7', level: 2 })
   )
   .addBatch(
     optimizerContext('+adjacentSpace', {
@@ -125,6 +125,6 @@ vows.describe('merge non djacent by body')
         '.one{color:red}.two + nav{color:red}',
         '.one,.two+ nav{color:red}'
       ]
-    }, { compatibility: { selectors: { adjacentSpace: true } } })
+    }, { compatibility: { selectors: { adjacentSpace: true } }, level: 2 })
   )
   .export(module);

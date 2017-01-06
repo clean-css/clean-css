@@ -16,7 +16,7 @@ vows.describe('remove duplicate @font-face at-rules')
         '@font-face{font-family:test;src:url(fonts/test.woff2)}.one{color:#000}@font-face{font-family:test2;src:url(fonts/test.woff2)}',
         '@font-face{font-family:test;src:url(fonts/test.woff2)}.one{color:#000}@font-face{font-family:test2;src:url(fonts/test.woff2)}'
       ]
-    })
+    }, { level: 2 })
   )
   .addBatch(
     optimizerContext('level 2 off', {

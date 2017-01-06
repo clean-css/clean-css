@@ -48,7 +48,7 @@ function batchContexts() {
           new CleanCSS({
             compatibility: isIE7Mode ? 'ie7' : '*',
             keepBreaks: true,
-            sourceMap: true
+            level: 2
           }).minify(data.input, this.callback.bind(null, data));
         },
         'outputs right content': function (data, error, output) {
@@ -60,6 +60,7 @@ function batchContexts() {
           new CleanCSS({
             compatibility: isIE7Mode ? 'ie7' : '*',
             keepBreaks: true,
+            level: 2,
             sourceMap: true
           }).minify(data.input, this.callback.bind(null, data));
         },
@@ -70,7 +71,7 @@ function batchContexts() {
       'minifying via CLI': {
         'topic': function (data) {
           exec(
-            '__DIRECT__=1 ./bin/cleancss -b ' + (isIE7Mode ? '-c ie7 ' : '') + path.join(dir, filename),
+            '__DIRECT__=1 ./bin/cleancss -b --O2 ' + (isIE7Mode ? '-c ie7 ' : '') + path.join(dir, filename),
             { maxBuffer: 500 * 1024 },
             this.callback.bind(null, data)
           );

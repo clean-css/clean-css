@@ -12,7 +12,7 @@ vows.describe(optimizationLevelFrom)
         return optimizationLevelFrom(undefined);
       },
       'has all options': function (levelOptions) {
-        assert.deepEqual(Object.keys(levelOptions), ['0', '1', '2']);
+        assert.deepEqual(Object.keys(levelOptions), ['0', '1']);
       },
       'has level 0 options': function (levelOptions) {
         assert.deepEqual(levelOptions['0'], {});
@@ -21,14 +21,6 @@ vows.describe(optimizationLevelFrom)
         assert.deepEqual(levelOptions['1'], {
           roundingPrecision: roundingPrecisionFrom(undefined),
           specialComments: 'all'
-        });
-      },
-      'has level 2 options': function (levelOptions) {
-        assert.deepEqual(levelOptions['2'], {
-          mediaMerging: true,
-          restructuring: true,
-          semanticMerging: false,
-          shorthandCompacting: true
         });
       }
     },

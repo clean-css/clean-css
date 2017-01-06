@@ -16,7 +16,7 @@ vows.describe('merge media queries')
         '@media screen{a{color:red}div{}}',
         '@media screen{a{color:red}}'
       ]
-    })
+    }, { level: 2 })
   )
   .addBatch(
     optimizerContext('adjacent', {
@@ -88,7 +88,7 @@ vows.describe('merge media queries')
         '@media screen{.one{margin-left:-16px}}.two{margin-left:0}.three{width:50%!important}.four{width:25%!important}@media screen{.three\\\@m{width:50%!important}.four\\\@m{width:25%!important}}',
         '@media screen{.one{margin-left:-16px}}.two{margin-left:0}.three{width:50%!important}.four{width:25%!important}@media screen{.three\\\@m{width:50%!important}.four\\\@m{width:25%!important}}'
       ]
-    })
+    }, { level: 2 })
   )
   .addBatch(
     optimizerContext('semantic merging mode', {

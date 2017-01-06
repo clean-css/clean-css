@@ -16,7 +16,7 @@ vows.describe('merge non djacent by selector')
       //   '.one{color:red;with:100%}.two{display:inline-block;width:10px}.one{font-weight:400;display:block}',
       //   '.one{color:red;with:100%}.two{display:inline-block;width:10px}.one{font-weight:400;display:block}'
       // ]
-    })
+    }, { level: 2 })
   )
   .addBatch(
     optimizerContext('level 2 off', {

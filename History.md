@@ -33,6 +33,7 @@
 * Fixed issue [#828](https://github.com/jakubpawlowicz/clean-css/issues/828) - `-chrome-` hack support.
 * Fixed issue [#829](https://github.com/jakubpawlowicz/clean-css/issues/829) - adds more strict selector merging rules.
 * Fixed issue [#834](https://github.com/jakubpawlowicz/clean-css/issues/834) - adds extra line break in nested blocks.
+* Fixed issue [#836](https://github.com/jakubpawlowicz/clean-css/issues/836) - enables level `0` optimizations.
 * Fixed issue [#839](https://github.com/jakubpawlowicz/clean-css/issues/839) - allows URIs in import inlining rules.
 * Fixed issue [#840](https://github.com/jakubpawlowicz/clean-css/issues/840) - allows input source map as map object.
 * Fixed issue [#843](https://github.com/jakubpawlowicz/clean-css/issues/843) - regression in selector handling.

@@ -66,7 +66,7 @@ vows.describe('remove duplicates')
       ],
       'two same bodies over a block': [
         '.one{color:red}@media print{.two{display:block}}.three{color:red}',
-        '.one,.three{color:red}@media print{.two{display:block}}'
+        '.one{color:red}@media print{.two{display:block}}.three{color:red}'
       ],
       'two rules with latter with suffix properties': [
         'a{display:none}a{display:none;visibility:hidden}',
@@ -89,6 +89,14 @@ vows.describe('remove duplicates')
         '.one,.two{color:#fff}'
       ]
     }, { level: 2 })
+  )
+  .addBatch(
+    optimizerContext('with level 2 on - and restructuring on', {
+      'two same bodies over a block': [
+        '.one{color:red}@media print{.two{display:block}}.three{color:red}',
+        '.one,.three{color:red}@media print{.two{display:block}}'
+      ],
+    }, { level: { 2: { restructuring: true } } })
   )
   .addBatch(
     optimizerContext('with level 2 off', {

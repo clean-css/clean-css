@@ -2,6 +2,7 @@
 ==================
 
 * Adds more detailed error & warning messages on top of the new tokenizer.
+* Disables restructuring optimizations by default until optimized in #533.
 * Fixes a bug ignoring incorrect properties in complex restructuring.
 * Requires Node.js 4.0+ to run.
 * Removes `benchmark` API option as total time is always reported under `stats` property.

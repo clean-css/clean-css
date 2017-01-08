@@ -164,7 +164,7 @@ vows.describe('restructure')
         '.one{border-color:#000;border-bottom-color:rgb(0,0,0,.2)}.two{border-color:#fff;border-bottom-color:rgb(0,0,0,.2)}',
         '.one{border-color:#000;border-bottom-color:rgb(0,0,0,.2)}.two{border-color:#fff;border-bottom-color:rgb(0,0,0,.2)}'
       ]
-    }, { level: 2 })
+    }, { level: { 2: { restructuring: true } } })
   )
   .addBatch(
     optimizerContext('level 2 off', {

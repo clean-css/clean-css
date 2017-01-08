@@ -71,7 +71,7 @@ vows.describe(optimizationLevelFrom)
       'has level 2 options': function (levelOptions) {
         assert.deepEqual(levelOptions['2'], {
           mediaMerging: true,
-          restructuring: true,
+          restructuring: false,
           semanticMerging: false,
           shorthandCompacting: true
         });
@@ -107,7 +107,7 @@ vows.describe(optimizationLevelFrom)
       'has level 2 options': function (levelOptions) {
         assert.deepEqual(levelOptions['2'], {
           mediaMerging: true,
-          restructuring: true,
+          restructuring: false,
           semanticMerging: false,
           shorthandCompacting: true
         });
@@ -199,7 +199,7 @@ vows.describe(optimizationLevelFrom)
       'has level 2 options': function (levelOptions) {
         assert.deepEqual(levelOptions['2'], {
           mediaMerging: false,
-          restructuring: true,
+          restructuring: false,
           semanticMerging: true,
           shorthandCompacting: true
         });
@@ -224,7 +224,7 @@ vows.describe(optimizationLevelFrom)
       'has level 2 options': function (levelOptions) {
         assert.deepEqual(levelOptions['2'], {
           mediaMerging: false,
-          restructuring: true,
+          restructuring: false,
           semanticMerging: true,
           shorthandCompacting: true
         });

@@ -162,9 +162,9 @@ vows.describe('./bin/cleancss')
     })
   })
   .addBatch({
-    'skip restructuring optimizations': pipedContext('div{margin-top:0}.one{margin:0}.two{display:block;margin-top:0}', '-O2 restructuring:off', {
+    'enable restructuring optimizations': pipedContext('div{margin-top:0}.one{margin:0}.two{display:block;margin-top:0}', '-O2 restructuring:on', {
       'should do basic optimizations only': function (error, stdout) {
-        assert.equal(stdout, 'div{margin-top:0}.one{margin:0}.two{display:block;margin-top:0}');
+        assert.equal(stdout, '.two,div{margin-top:0}.one{margin:0}.two{display:block}');
       }
     })
   })

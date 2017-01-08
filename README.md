@@ -130,7 +130,7 @@ Level 2 optimizations:
 cleancss -O2 one.css
 cleancss -O2 mediaMerging:off;restructuring:off;semanticMerging:on;shorthandCompacting:off one.css
 # `mediaMerging` controls `@media` merging behavior; defaults to `on` (alias to `true`)
-# `restructuring` controls content restructuring behavior; defaults `on` (alias to `true`)
+# `restructuring` controls content restructuring behavior; defaults `off` (alias to `false`)
 # `semanticMerging` controls semantic merging behavior; defaults to `off` (alias to `false`)
 # `shorthandCompacting` controls shorthand compacting behavior; defaults to `on` (alias to `true`)
 ```
@@ -195,7 +195,7 @@ new CleanCSS({
   level: {
     2: {
       mediaMerging: true, // controls `@media` merging behavior; defaults to true
-      restructuring: false, // controls content restructuring behavior; defaults to true
+      restructuring: false, // controls content restructuring behavior; defaults to false
       semanticMerging: false, // controls semantic merging behavior; defaults to false
       shorthandCompacting: true // controls shorthand compacting behavior; defaults to true
     }

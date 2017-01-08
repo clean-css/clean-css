@@ -10,7 +10,7 @@ vows.describe('remove duplicates')
       ],
       'multiple selectors': [
         'a{padding:10px;margin:0;color:red}.one{color:red}a,p{color:red;padding:0}',
-        '.one,a,p{color:red}a{margin:0}a,p{padding:0}'
+        'a{margin:0;color:red}.one{color:red}a,p{color:red;padding:0}'
       ],
       'with one redefined property': [
         'a{color:red;display:block}.one{color:red}a{color:#fff;margin:2px}',
@@ -36,11 +36,7 @@ vows.describe('remove duplicates')
         'a{padding:10px}.one{color:red}a{}',
         'a{padding:10px}.one{color:red}'
       ],
-      'when overriden by a complex selector': [
-        'a{padding:10px;margin:0;color:red}.one{color:red}a,p{color:red;padding:0}',
-        '.one,a,p{color:red}a{margin:0}a,p{padding:0}'
-      ],
-      'when overriden by complex selectors': [
+      'when overriden by a complex selectors': [
         'a{padding:10px;margin:0;color:red}.one{color:red}a,p{color:red;padding:0}.one,a{color:#fff}',
         'a{margin:0}a,p{color:red;padding:0}.one,a{color:#fff}'
       ],
@@ -111,12 +107,24 @@ vows.describe('remove duplicates')
     }, { level: 2 })
   )
   .addBatch(
+    optimizerContext('level 2 on and restructuring on', {
+      'multiple selectors': [
+        'a{padding:10px;margin:0;color:red}.one{color:red}a,p{color:red;padding:0}',
+        '.one,a,p{color:red}a{margin:0}a,p{padding:0}'
+      ],
+      'when overriden by a complex selectors': [
+        'a{padding:10px;margin:0;color:red}.one{color:red}a,p{color:red;padding:0}.one,a{color:#fff}',
+        'a{margin:0}a,p{color:red;padding:0}.one,a{color:#fff}'
+      ]
+    }, { level: { 2: { restructuring: true } } })
+  )
+  .addBatch(
     optimizerContext('level 2 on and aggressive merging off', {
       'non-adjacent with multi selectors': [
         'a{padding:10px;margin:0;color:red}.one{color:red}a,p{color:red;padding:0}',
         '.one,a,p{color:red}a{padding:10px;margin:0}a,p{padding:0}'
       ]
-    }, { aggressiveMerging: false, level: 2 })
+    }, { aggressiveMerging: false, level: { 2: { restructuring: true } } })
   )
   .addBatch(
     optimizerContext('level 2 off', {

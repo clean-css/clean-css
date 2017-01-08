@@ -85,7 +85,7 @@ vows.describe('merge non djacent by body')
         '.block1__element{color:#000}.block1__element--modifier{color:red}.block2{color:#000;display:block;width:100%}'
         // '.block1__element,.block2{color:#000}.block1__element--modifier{color:red}.block2{display:block;width:100%}' - pending #588
       ]
-    }, { level: { 2: { semanticMerging: true } } })
+    }, { level: { 2: { restructuring: true, semanticMerging: true } } })
   )
   .addBatch(
     optimizerContext('IE8 compatibility', {

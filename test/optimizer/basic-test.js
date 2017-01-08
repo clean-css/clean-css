@@ -121,6 +121,10 @@ vows.describe('simple optimizations')
         'body;{body}',
         ''
       ],
+      'html comments': [
+        '<!-- a{color:red} --> p{color:red} <!--div{color:red}--> ',
+        'a{color:red}p{color:red}div{color:red}'
+      ],
       'missing semicolon and brace in the middle': [
         'body{color:red a{color:blue;}',
         ''

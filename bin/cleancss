@@ -17,9 +17,7 @@ commands
   .option('-c, --compatibility [ie7|ie8]', 'Force compatibility mode (see Readme for advanced examples)')
   .option('-d, --debug', 'Shows debug information (minification time & compression efficiency)')
   .option('-o, --output [output-file]', 'Use [output-file] as output instead of STDOUT')
-  .option('--O0', 'Turn on level 0 optimizations')
-  .option('--O1 [optimizations]', 'Turn on level 1 optimizations (default), see examples below')
-  .option('--O2 [optimizations]', 'Turn on level 2 optimizations, see examples below')
+  .option('-O <n> [optimizations]', 'Turn on level <n> optimizations; optionally accepts a list of fine-grained options, defaults to `1`, see examples below', function (val) { return Math.abs(parseInt(val)); })
   .option('--beautify', 'Formats output CSS by using indentation and one rule or property per line')
   .option('--inline [rules]', 'Enables inlining for listed sources (defaults to `local`)')
   .option('--inline-timeout [seconds]', 'Per connection timeout when fetching remote stylesheets (defaults to 5 seconds)', parseFloat)
@@ -36,17 +34,17 @@ commands.on('--help', function () {
   console.log('    %> cleancss one.css two.css three.css | gzip -9 -c > merged-minified-and-gzipped.css.gz');
   console.log('');
   console.log('  Level 0 optimizations:');
-  console.log('    %> cleancss --O0 one.css');
+  console.log('    %> cleancss -O0 one.css');
   console.log('');
   console.log('  Level 1 optimizations:');
-  console.log('    %> cleancss --O1 one.css');
-  console.log('    %> cleancss --O1 roundingPrecision:4;specialComments:1 one.css');
+  console.log('    %> cleancss -O1 one.css');
+  console.log('    %> cleancss -O1 roundingPrecision:4;specialComments:1 one.css');
   console.log('    %> # `roundingPrecision` rounds pixel values to `N` decimal places; `off` disables rounding; defaults to `off`');
   console.log('    %> # `specialComments` denotes a number of /*! ... */ comments preserved; defaults to `all`');
   console.log('');
   console.log('  Level 2 optimizations:');
-  console.log('    %> cleancss --O2 one.css');
-  console.log('    %> cleancss --O2 mediaMerging:off;restructuring:off;semanticMerging:on;shorthandCompacting:off one.css');
+  console.log('    %> cleancss -O2 one.css');
+  console.log('    %> cleancss -O2 mediaMerging:off;restructuring:off;semanticMerging:on;shorthandCompacting:off one.css');
   console.log('    %> # `mediaMerging` controls `@media` merging behavior; defaults to `on` (alias to `true`)');
   console.log('    %> # `restructuring` controls content restructuring behavior; defaults to `on` (alias to `true`)');
   console.log('    %> # `semanticMerging` controls semantic merging behavior; defaults to `off` (alias to `false`)');
@@ -57,16 +55,26 @@ commands.on('--help', function () {
 
 commands.parse(process.argv);
 
-// Fixes commander issue in the following case `cleancss --O1 source.css` where `source.css` is taken as `O1` value
-if (commands.O1 && (fs.existsSync(commands.O1) || isRemote(commands.O1))) {
-  commands.args.unshift(commands.O1);
+if (commands.O === 0) {
+  commands.O0 = true;
+}
+
+if (commands.O === 1) {
   commands.O1 = true;
 }
 
-// Fixes commander issue in the following case `cleancss --O2 source.css` where `source.css` is taken as `O2` value
-if (commands.O2 && (fs.existsSync(commands.O2) || isRemote(commands.O2))) {
-  commands.args.unshift(commands.O2);
+if (commands.O === 2) {
   commands.O2 = true;
+}
+
+// Fixes commander issue in the following case `cleancss -O1 [configuration]` where `[configuration]` is taken as input stylesheet
+if (commands.O1 && commands.args.length > 0 && !fs.existsSync(commands.args[0]) && !isRemote(commands.args[0])) {
+  commands.O1 = commands.args.shift();
+}
+
+// Fixes commander issue in the following case `cleancss -O2 [configuration]` where `[configuration]` is taken as input stylesheet
+if (commands.O2 && commands.args.length > 0 && !fs.existsSync(commands.args[0]) && !isRemote(commands.args[0])) {
+  commands.O2 = commands.args.shift();
 }
 
 // If no sensible data passed in just print help and exit

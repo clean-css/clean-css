@@ -71,7 +71,7 @@ function batchContexts() {
       'minifying via CLI': {
         'topic': function (data) {
           exec(
-            '__DIRECT__=1 ./bin/cleancss -b --O2 ' + (isIE7Mode ? '-c ie7 ' : '') + path.join(dir, filename),
+            '__DIRECT__=1 ./bin/cleancss -b -O2 ' + (isIE7Mode ? '-c ie7 ' : '') + path.join(dir, filename),
             { maxBuffer: 500 * 1024 },
             this.callback.bind(null, data)
           );

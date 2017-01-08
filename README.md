@@ -71,9 +71,7 @@ Options:
   -c, --compatibility [ie7|ie8]  Force compatibility mode (see Readme for advanced examples)
   -d, --debug                    Shows debug information (minification time & compression efficiency)
   -o, --output [output-file]     Use [output-file] as output instead of STDOUT
-  --O0                           Turn on level 0 optimizations
-  --O1 [optimizations]           Turn on level 1 optimizations (default), see examples below
-  --O2 [optimizations]           Turn on level 2 optimizations, see examples below
+  -O <n> [optimizations]         Turn on level <n> optimizations; optionally accepts a list of fine-grained options, defaults to `1`, see examples below
   --beautify                     Formats output CSS by using indentation and one rule or property per line
   --inline [rules]               Enables inlining for listed sources (defaults to `local`)
   --inline-timeout [seconds]     Per connection timeout when fetching remote stylesheets (defaults to 5 seconds)
@@ -114,14 +112,14 @@ Please note there is a difference between passing in a concatenated string and l
 Level 0 optimizations:
 
 ```bash
-cleancss --O0 one.css
+cleancss -O0 one.css
 ```
 
 Level 1 optimizations:
 
 ```bash
-cleancss --O1 one.css
-cleancss --O1 roundingPrecision:4;specialComments:1 one.css
+cleancss -O1 one.css
+cleancss -O1 roundingPrecision:4;specialComments:1 one.css
 # `roundingPrecision` rounds pixel values to `N` decimal places; `off` disables rounding; defaults to `off`
 # `specialComments` denotes a number of /*! ... */ comments preserved; defaults to `all`
 ```
@@ -129,8 +127,8 @@ cleancss --O1 roundingPrecision:4;specialComments:1 one.css
 Level 2 optimizations:
 
 ```bash
-cleancss --O2 one.css
-cleancss --O2 mediaMerging:off;restructuring:off;semanticMerging:on;shorthandCompacting:off one.css
+cleancss -O2 one.css
+cleancss -O2 mediaMerging:off;restructuring:off;semanticMerging:on;shorthandCompacting:off one.css
 # `mediaMerging` controls `@media` merging behavior; defaults to `on` (alias to `true`)
 # `restructuring` controls content restructuring behavior; defaults `on` (alias to `true`)
 # `semanticMerging` controls semantic merging behavior; defaults to `off` (alias to `false`)
@@ -283,7 +281,7 @@ Source maps are generated using [source-map](https://github.com/mozilla/source-m
 The level 1 `roundingPrecision` optimization option accept a string with per-unit rounding precision settings, e.g.
 
 ```
-clean-css --O1 roundingPrecision:all=3,px=5
+clean-css -O1 roundingPrecision:all=3,px=5
 ```
 
 or

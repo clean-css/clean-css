@@ -94,14 +94,14 @@ vows.describe('./bin/cleancss')
     })
   })
   .addBatch({
-    'strip all but first comment': pipedContext('/*!1st*//*! 2nd */a{display:block}', '--O1 specialComments:1', {
+    'strip all but first comment': pipedContext('/*!1st*//*! 2nd */a{display:block}', '-O1 specialComments:1', {
       'should keep the 2nd comment': function (error, stdout) {
         assert.equal(stdout, '/*!1st*/a{display:block}');
       }
     })
   })
   .addBatch({
-    'strip all comments': pipedContext('/*!1st*//*! 2nd */a{display:block}', '--O1 specialComments:0', {
+    'strip all comments': pipedContext('/*!1st*//*! 2nd */a{display:block}', '-O1 specialComments:0', {
       'should keep the 2nd comment': function (error, stdout) {
         assert.equal(stdout, 'a{display:block}');
       }
@@ -155,14 +155,14 @@ vows.describe('./bin/cleancss')
     })
   })
   .addBatch({
-    'skip level 2 optimizations': pipedContext('a{color:red}p{color:red}', '--O1', {
+    'skip level 2 optimizations': pipedContext('a{color:red}p{color:red}', '-O1', {
       'should do basic optimizations only': function (error, stdout) {
         assert.equal(stdout, 'a{color:red}p{color:red}');
       }
     })
   })
   .addBatch({
-    'skip restructuring optimizations': pipedContext('div{margin-top:0}.one{margin:0}.two{display:block;margin-top:0}', '--O2 restructuring:off', {
+    'skip restructuring optimizations': pipedContext('div{margin-top:0}.one{margin:0}.two{display:block;margin-top:0}', '-O2 restructuring:off', {
       'should do basic optimizations only': function (error, stdout) {
         assert.equal(stdout, 'div{margin-top:0}.one{margin:0}.two{display:block;margin-top:0}');
       }
@@ -178,7 +178,7 @@ vows.describe('./bin/cleancss')
     })
   })
   .addBatch({
-    'from source': binaryContext('--O2 ./test/fixtures/reset.css', {
+    'from source': binaryContext('-O2 ./test/fixtures/reset.css', {
       'should minimize': function (error, stdout) {
         var minimized = fs.readFileSync('./test/fixtures/reset-min.css', 'utf-8').replace(lineBreakRegExp, '');
         assert.equal(stdout, minimized);
@@ -193,7 +193,7 @@ vows.describe('./bin/cleancss')
     })
   })
   .addBatch({
-    'to file': binaryContext('--O2 -o ./reset1-min.css ./test/fixtures/reset.css', {
+    'to file': binaryContext('-O2 -o ./reset1-min.css ./test/fixtures/reset.css', {
       'should give no output': function (error, stdout) {
         assert.isEmpty(stdout);
       },
@@ -411,27 +411,27 @@ vows.describe('./bin/cleancss')
           assert.equal(stdout, 'div{width:.10051px}');
         }
       }),
-      'custom': pipedContext('div{width:0.00051px}', '--O1 roundingPrecision:4', {
+      'custom': pipedContext('div{width:0.00051px}', '-O1 roundingPrecision:4', {
         'should keep 4 decimal places': function (error, stdout) {
           assert.equal(stdout, 'div{width:.0005px}');
         }
       }),
-      'zero': pipedContext('div{width:1.5051px}', '--O1 roundingPrecision:0', {
+      'zero': pipedContext('div{width:1.5051px}', '-O1 roundingPrecision:0', {
         'should keep 0 decimal places': function (error, stdout) {
           assert.equal(stdout, 'div{width:2px}');
         }
       }),
-      'disabled': pipedContext('div{width:0.12345px}', '--O1 roundingPrecision:off', {
+      'disabled': pipedContext('div{width:0.12345px}', '-O1 roundingPrecision:off', {
         'should keep all decimal places': function (error, stdout) {
           assert.equal(stdout, 'div{width:.12345px}');
         }
       }),
-      'disabled via -1': pipedContext('div{width:0.12345px}', '--O1 roundingPrecision:\\\\-1', {
+      'disabled via -1': pipedContext('div{width:0.12345px}', '-O1 roundingPrecision:\\\\-1', {
         'should keep all decimal places': function (error, stdout) {
           assert.equal(stdout, 'div{width:.12345px}');
         }
       }),
-      'fine-grained': pipedContext('div{height:10.515rem;width:12.12345px}', '--O1 roundingPrecision:rem=2,px=1', {
+      'fine-grained': pipedContext('div{height:10.515rem;width:12.12345px}', '-O1 roundingPrecision:rem=2,px=1', {
         'should keep all decimal places': function (error, stdout) {
           assert.equal(stdout, 'div{height:10.52rem;width:12.1px}');
         }
@@ -440,12 +440,12 @@ vows.describe('./bin/cleancss')
   })
   .addBatch({
     'neighbour merging': {
-      'of (yet) unmergeable properties': pipedContext('a{display:inline-block;color:red;display:-moz-block}', '--O2 --skip-aggressive-merging', {
+      'of (yet) unmergeable properties': pipedContext('a{display:inline-block;color:red;display:-moz-block}', '-O2 --skip-aggressive-merging', {
         'gets right result': function (error, stdout) {
           assert.equal(stdout, 'a{display:inline-block;color:red;display:-moz-block}');
         }
       }),
-      'of mergeable properties': pipedContext('a{background:red;display:block;background:white}', '--O2 --skip-aggressive-merging', {
+      'of mergeable properties': pipedContext('a{background:red;display:block;background:white}', '-O2 --skip-aggressive-merging', {
         'gets right result': function (error, stdout) {
           assert.equal(stdout, 'a{background:#fff;display:block}');
         }
@@ -453,7 +453,7 @@ vows.describe('./bin/cleancss')
     }
   })
   .addBatch({
-    '@media merging': pipedContext('@media screen{a{color:red}}@media screen{a{display:block}}', '--O2 mediaMerging:off', {
+    '@media merging': pipedContext('@media screen{a{color:red}}@media screen{a{display:block}}', '-O2 mediaMerging:off', {
       'gets right result': function (error, stdout) {
         assert.equal(stdout, '@media screen{a{color:red}}@media screen{a{display:block}}');
       }
@@ -461,7 +461,7 @@ vows.describe('./bin/cleancss')
   })
   .addBatch({
     'shorthand compacting': {
-      'of (yet) unmergeable properties': pipedContext('a{background:url(image.png);background-color:red}', '--O2 shorthandCompacting:off', {
+      'of (yet) unmergeable properties': pipedContext('a{background:url(image.png);background-color:red}', '-O2 shorthandCompacting:off', {
         'gets right result': function (error, stdout) {
           assert.equal(stdout, 'a{background:url(image.png);background-color:red}');
         }
@@ -615,7 +615,7 @@ vows.describe('./bin/cleancss')
           assert.equal(stdout, '.a{margin:0}.b{margin:10px;padding:0}.c{margin:0}');
         }
       }),
-      'enabled': pipedContext('.a{margin:0}.b{margin:10px;padding:0}.c{margin:0}', '--O2 semanticMerging:on', {
+      'enabled': pipedContext('.a{margin:0}.b{margin:10px;padding:0}.c{margin:0}', '-O2 semanticMerging:on', {
         'should output right data': function (error, stdout) {
           assert.equal(stdout, '.a,.c{margin:0}.b{margin:10px;padding:0}');
         }

@@ -1410,9 +1410,9 @@ vows.describe('source-map')
         },
         'has embedded sources': function (minified) {
           assert.deepEqual(JSON.parse(minified.sourceMap.toString()).sources, [
-            'test/fixtures/source-maps/some.css',
-            'test/fixtures/source-maps/nested/once.css',
-            'test/fixtures/source-maps/styles.css'
+            path.join('test', 'fixtures', 'source-maps', 'some.css'),
+            path.join('test', 'fixtures', 'source-maps', 'nested', 'once.css'),
+            path.join('test', 'fixtures', 'source-maps', 'styles.css')
           ]);
         },
         'has embedded sources content': function (minified) {
@@ -1438,9 +1438,9 @@ vows.describe('source-map')
         },
         'has embedded sources': function (minified) {
           assert.deepEqual(JSON.parse(minified.sourceMap.toString()).sources, [
-            'test/fixtures/source-maps/some.css',
-            'test/fixtures/source-maps/nested/once.css',
-            'test/fixtures/source-maps/styles.css'
+            path.join('test', 'fixtures', 'source-maps', 'some.css'),
+            path.join('test', 'fixtures', 'source-maps', 'nested', 'once.css'),
+            path.join('test', 'fixtures', 'source-maps', 'styles.css')
           ]);
         },
         'has embedded sources content': function (minified) {

@@ -664,6 +664,24 @@ vows.describe('module tests').addBatch({
         assert.equal(minified.styles, '.one{background-color:red}.test{color:#000}');
       }
     },
+    'with mixed-style paths': {
+      'topic': function () {
+        new CleanCSS({ level: 1, inline: 'all' }).minify({
+          'main.css': {
+            styles: '@import url(test/fixtures/partials/one.css);\n@import url(http://127.0.0.1/test.css);'
+          },
+          'test\\fixtures\\partials\\one.css': {
+            styles: '.one { background-color:#f00; }'
+          },
+          'http://127.0.0.1/test.css': {
+            styles: '.test { color: #000 }'
+          }
+        }, this.callback);
+      },
+      'gives right output without reading resources': function (minified) {
+        assert.equal(minified.styles, '.one{background-color:red}.test{color:#000}');
+      }
+    },
     'with @import and rules after': {
       'topic': function () {
         return new CleanCSS().minify(sourcesAsHash(['./test/fixtures/partials/two.css', './test/fixtures/partials-absolute/base.css']));

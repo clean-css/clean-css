@@ -2,7 +2,7 @@ var vows = require('vows');
 
 var optimizerContext = require('../../test-helper').optimizerContext;
 
-vows.describe('simple optimizations')
+vows.describe('level 1 optimizations')
   .addBatch(
     optimizerContext('selectors', {
       'optimized': [

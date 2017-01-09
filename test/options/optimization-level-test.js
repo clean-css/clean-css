@@ -70,7 +70,13 @@ vows.describe(optimizationLevelFrom)
       },
       'has level 2 options': function (levelOptions) {
         assert.deepEqual(levelOptions['2'], {
+          adjacentRulesMerging: true,
+          duplicateFontRulesRemoving: true,
+          duplicateMediaRemoving: true,
+          duplicateRulesRemoving: true,
           mediaMerging: true,
+          nonAdjacentRulesMerging: true,
+          nonAdjacentRulesReducing: true,
           restructuring: false,
           semanticMerging: false,
           shorthandCompacting: true
@@ -106,7 +112,13 @@ vows.describe(optimizationLevelFrom)
       },
       'has level 2 options': function (levelOptions) {
         assert.deepEqual(levelOptions['2'], {
+          adjacentRulesMerging: true,
+          duplicateFontRulesRemoving: true,
+          duplicateMediaRemoving: true,
+          duplicateRulesRemoving: true,
           mediaMerging: true,
+          nonAdjacentRulesMerging: true,
+          nonAdjacentRulesReducing: true,
           restructuring: false,
           semanticMerging: false,
           shorthandCompacting: true
@@ -131,7 +143,13 @@ vows.describe(optimizationLevelFrom)
       },
       'has level 2 options': function (levelOptions) {
         assert.deepEqual(levelOptions['2'], {
+          adjacentRulesMerging: false,
+          duplicateFontRulesRemoving: false,
+          duplicateMediaRemoving: false,
+          duplicateRulesRemoving: false,
           mediaMerging: true,
+          nonAdjacentRulesMerging: false,
+          nonAdjacentRulesReducing: false,
           restructuring: false,
           semanticMerging: false,
           shorthandCompacting: false
@@ -156,7 +174,13 @@ vows.describe(optimizationLevelFrom)
       },
       'has level 2 options': function (levelOptions) {
         assert.deepEqual(levelOptions['2'], {
+          adjacentRulesMerging: false,
+          duplicateFontRulesRemoving: false,
+          duplicateMediaRemoving: false,
+          duplicateRulesRemoving: false,
           mediaMerging: true,
+          nonAdjacentRulesMerging: false,
+          nonAdjacentRulesReducing: false,
           restructuring: false,
           semanticMerging: false,
           shorthandCompacting: false
@@ -198,7 +222,13 @@ vows.describe(optimizationLevelFrom)
       },
       'has level 2 options': function (levelOptions) {
         assert.deepEqual(levelOptions['2'], {
+          adjacentRulesMerging: true,
+          duplicateFontRulesRemoving: true,
+          duplicateMediaRemoving: true,
+          duplicateRulesRemoving: true,
           mediaMerging: false,
+          nonAdjacentRulesMerging: true,
+          nonAdjacentRulesReducing: true,
           restructuring: false,
           semanticMerging: true,
           shorthandCompacting: true
@@ -223,7 +253,13 @@ vows.describe(optimizationLevelFrom)
       },
       'has level 2 options': function (levelOptions) {
         assert.deepEqual(levelOptions['2'], {
+          adjacentRulesMerging: true,
+          duplicateFontRulesRemoving: true,
+          duplicateMediaRemoving: true,
+          duplicateRulesRemoving: true,
           mediaMerging: false,
+          nonAdjacentRulesMerging: true,
+          nonAdjacentRulesReducing: true,
           restructuring: false,
           semanticMerging: true,
           shorthandCompacting: true
@@ -248,7 +284,13 @@ vows.describe(optimizationLevelFrom)
       },
       'has level 2 options': function (levelOptions) {
         assert.deepEqual(levelOptions['2'], {
+          adjacentRulesMerging: false,
+          duplicateFontRulesRemoving: false,
+          duplicateMediaRemoving: false,
+          duplicateRulesRemoving: false,
           mediaMerging: true,
+          nonAdjacentRulesMerging: false,
+          nonAdjacentRulesReducing: false,
           restructuring: false,
           semanticMerging: true,
           shorthandCompacting: false
@@ -273,7 +315,13 @@ vows.describe(optimizationLevelFrom)
       },
       'has level 2 options': function (levelOptions) {
         assert.deepEqual(levelOptions['2'], {
+          adjacentRulesMerging: false,
+          duplicateFontRulesRemoving: false,
+          duplicateMediaRemoving: false,
+          duplicateRulesRemoving: false,
           mediaMerging: true,
+          nonAdjacentRulesMerging: false,
+          nonAdjacentRulesReducing: false,
           restructuring: false,
           semanticMerging: true,
           shorthandCompacting: false

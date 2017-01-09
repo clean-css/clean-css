@@ -19,6 +19,22 @@ vows.describe('merge non djacent by selector')
     }, { level: 2 })
   )
   .addBatch(
+    optimizerContext('with level 2 off but nonAdjacentRulesMerging on', {
+      'of element selectors': [
+        '.one{color:red}.two{color:#fff}.one{font-weight:400}',
+        '.one{color:red;font-weight:400}.two{color:#fff}'
+      ]
+    }, { level: { 2: { all: false, nonAdjacentRulesMerging: true } } })
+  )
+  .addBatch(
+    optimizerContext('with level 2 off but nonAdjacentRulesMerging set to body', {
+      'of element selectors': [
+        '.one{color:red}.two{color:#fff}.one{font-weight:400}',
+        '.one{color:red}.two{color:#fff}.one{font-weight:400}'
+      ]
+    }, { level: { 2: { all: false, nonAdjacentRulesMerging: 'body' } } })
+  )
+  .addBatch(
     optimizerContext('level 2 off', {
       'up': [
         '.one{color:red}.two{color:#fff}.one{font-weight:400}',

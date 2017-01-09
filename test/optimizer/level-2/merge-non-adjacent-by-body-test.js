@@ -35,6 +35,22 @@ vows.describe('merge non djacent by body')
     }, { level: 2 })
   )
   .addBatch(
+    optimizerContext('with level 2 off but nonAdjacentRulesMerging on', {
+      'of element selectors': [
+        'p{color:red}div{display:block}span{color:red}',
+        'p,span{color:red}div{display:block}'
+      ]
+    }, { level: { 2: { all: false, nonAdjacentRulesMerging: true } } })
+  )
+  .addBatch(
+    optimizerContext('with level 2 off but nonAdjacentRulesMerging set to selector', {
+      'of element selectors': [
+        'p{color:red}div{display:block}span{color:red}',
+        'p{color:red}div{display:block}span{color:red}'
+      ]
+    }, { level: { 2: { all: false, nonAdjacentRulesMerging: 'selector' } } })
+  )
+  .addBatch(
     optimizerContext('with level 2 off', {
       'with repeated selectors': [
         '#zero>p,.one,.two{color:red}#zero>p,.three,.two{color:red}',

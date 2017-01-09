@@ -129,10 +129,16 @@ Level 2 optimizations:
 ```bash
 cleancss -O2 one.css
 cleancss -O2 mediaMerging:off;restructuring:off;semanticMerging:on;shorthandCompacting:off one.css
-# `mediaMerging` controls `@media` merging behavior; defaults to `on` (alias to `true`)
-# `restructuring` controls content restructuring behavior; defaults `off` (alias to `false`)
-# `semanticMerging` controls semantic merging behavior; defaults to `off` (alias to `false`)
-# `shorthandCompacting` controls shorthand compacting behavior; defaults to `on` (alias to `true`)
+# `adjacentRulesMerging` controls adjacent rules merging; defaults to `on`
+# `duplicateFontRulesRemoving` controls duplicate `@font-face` removing; defaults to `on`
+# `duplicateMediaRemoving` controls duplicate `@media` removing; defaults to `on`
+# `duplicateRulesRemoving` controls duplicate rules removing; defaults to `on`
+# `mediaMerging` controls `@media` merging; defaults to `on`
+# `nonAdjacentRulesMerging` controls non-adjacent rule merging; defaults to `on`
+# `nonAdjacentRulesReducing` controls non-adjacent rule reducing; defaults to `on`
+# `restructuring` controls content restructuring; defaults to `off`
+# `semanticMerging` controls semantic merging; defaults to `off`
+# `shorthandCompacting` controls shorthand compacting; defaults to `on`
 ```
 
 ### How to use clean-css API?
@@ -194,10 +200,16 @@ new CleanCSS({
 new CleanCSS({
   level: {
     2: {
-      mediaMerging: true, // controls `@media` merging behavior; defaults to true
-      restructuring: false, // controls content restructuring behavior; defaults to false
-      semanticMerging: false, // controls semantic merging behavior; defaults to false
-      shorthandCompacting: true // controls shorthand compacting behavior; defaults to true
+      adjacentRulesMerging: true, // controls adjacent rules merging; defaults to true
+      duplicateFontRulesRemoving: true, // controls duplicate `@font-face` removing; defaults to true
+      duplicateMediaRemoving: true, // controls duplicate `@media` removing; defaults to true
+      duplicateRulesRemoving: true, // controls duplicate rules removing; defaults to true
+      mediaMerging: true, // controls `@media` merging; defaults to true
+      nonAdjacentRulesMerging: true, // controls non-adjacent rule merging; defaults to true
+      nonAdjacentRulesReducing: true, // controls non-adjacent rule reducing; defaults to true
+      restructuring: false, // controls content restructuring; defaults to false
+      semanticMerging: false, // controls semantic merging; defaults to false
+      shorthandCompacting: true, // controls shorthand compacting; defaults to true
     }
   }
 });

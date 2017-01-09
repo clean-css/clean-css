@@ -19,6 +19,7 @@
 * Fixed issue [#685](https://github.com/jakubpawlowicz/clean-css/issues/685) - adds lowercasing hex colors optimization.
 * Fixed issue [#686](https://github.com/jakubpawlowicz/clean-css/issues/686) - adds rounding precision for all units.
 * Fixed issue [#703](https://github.com/jakubpawlowicz/clean-css/issues/703) - changes default IE compatibility to 10+.
+* Fixed issue [#731](https://github.com/jakubpawlowicz/clean-css/issues/731) - adds granular control over level 2 optimizations.
 * Fixed issue [#739](https://github.com/jakubpawlowicz/clean-css/issues/739) - error when a closing brace is missing.
 * Fixed issue [#750](https://github.com/jakubpawlowicz/clean-css/issues/750) - allows `width` overriding.
 * Fixed issue [#756](https://github.com/jakubpawlowicz/clean-css/issues/756) - adds disabling font-weight optimizations.

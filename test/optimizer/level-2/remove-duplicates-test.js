@@ -43,6 +43,14 @@ vows.describe('remove duplicates')
     }, { level: 2 })
   )
   .addBatch(
+    optimizerContext('level 2 off but removing duplicates on', {
+      'same context': [
+        'a{color:red}div{color:blue}a{color:red}',
+        'div{color:#00f}a{color:red}'
+      ]
+    }, { level: { 2: { all: false, duplicateRulesRemoving: true } } })
+  )
+  .addBatch(
     optimizerContext('level 2 off', {
       'same context': [
         'a{color:red}div{color:blue}a{color:red}',

@@ -23,6 +23,14 @@ vows.describe('remove duplicate media queries')
     }, { level: 2 })
   )
   .addBatch(
+    optimizerContext('level 2 off but duplicateMediaRemoving on', {
+      'non-adjacent': [
+        '@media screen{a{color:red}}@media print{a{color:#fff}}@media screen{a{color:red}}',
+        '@media print{a{color:#fff}}@media screen{a{color:red}}'
+      ]
+    }, { level: { 2: { all: false, duplicateMediaRemoving: true } } })
+  )
+  .addBatch(
     optimizerContext('level 2 off', {
       'keeps content same': [
         '@media screen{a{color:red}}@media screen{a{color:red}}',
@@ -33,8 +41,8 @@ vows.describe('remove duplicate media queries')
   .addBatch(
     optimizerContext('media merging off', {
       'keeps content same': [
-        '@media screen{a{color:red}}@media screen{a{color:red}}',
-        '@media screen{a{color:red}}@media screen{a{color:red}}'
+        '@media screen{a{color:red}}@media screen{div{color:red}}',
+        '@media screen{a{color:red}}@media screen{div{color:red}}'
       ]
     }, { level: { 2: { mediaMerging: false } } })
   )

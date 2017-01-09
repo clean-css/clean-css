@@ -127,6 +127,14 @@ vows.describe('remove duplicates')
     }, { aggressiveMerging: false, level: { 2: { restructuring: true } } })
   )
   .addBatch(
+    optimizerContext('level 2 off but nonAdjacentRulesReducing on', {
+      'non-adjacent with multi selectors': [
+        'a{padding:10px;margin:0;color:red}.one{color:red}a,p{color:red;padding:0}',
+        'a{margin:0;color:red}.one{color:red}a,p{color:red;padding:0}'
+      ]
+    }, { level: { 2: { all: false, nonAdjacentRulesReducing: true } } })
+  )
+  .addBatch(
     optimizerContext('level 2 off', {
       'non-adjacent': [
         'a{color:red;display:block}.one{font-size:13px}a{color:#fff;margin:2px}',

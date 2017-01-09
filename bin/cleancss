@@ -45,10 +45,16 @@ commands.on('--help', function () {
   console.log('  Level 2 optimizations:');
   console.log('    %> cleancss -O2 one.css');
   console.log('    %> cleancss -O2 mediaMerging:off;restructuring:off;semanticMerging:on;shorthandCompacting:off one.css');
-  console.log('    %> # `mediaMerging` controls `@media` merging behavior; defaults to `on` (alias to `true`)');
-  console.log('    %> # `restructuring` controls content restructuring behavior; defaults to `off` (alias to `false`)');
-  console.log('    %> # `semanticMerging` controls semantic merging behavior; defaults to `off` (alias to `false`)');
-  console.log('    %> # `shorthandCompacting` controls shorthand compacting behavior; defaults to `on` (alias to `true`)');
+  console.log('    %> # `adjacentRulesMerging` controls adjacent rules merging; defaults to `on`');
+  console.log('    %> # `duplicateFontRulesRemoving` controls duplicate `@font-face` removing; defaults to `on`');
+  console.log('    %> # `duplicateMediaRemoving` controls duplicate `@media` removing; defaults to `on`');
+  console.log('    %> # `duplicateRulesRemoving` controls duplicate rules removing; defaults to `on`');
+  console.log('    %> # `mediaMerging` controls `@media` merging; defaults to `on`');
+  console.log('    %> # `nonAdjacentRulesMerging` controls non-adjacent rule merging; defaults to `on`');
+  console.log('    %> # `nonAdjacentRulesReducing` controls non-adjacent rule reducing; defaults to `on`');
+  console.log('    %> # `restructuring` controls content restructuring; defaults to `off`');
+  console.log('    %> # `semanticMerging` controls semantic merging; defaults to `off`');
+  console.log('    %> # `shorthandCompacting` controls shorthand compacting; defaults to `on`');
 
   process.exit();
 });

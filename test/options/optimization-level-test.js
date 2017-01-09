@@ -19,8 +19,25 @@ vows.describe(optimizationLevelFrom)
       },
       'has level 1 options': function (levelOptions) {
         assert.deepEqual(levelOptions['1'], {
+          cleanupCharsets: true,
+          keepNegativePaddings: false,
+          keepQuotes: false,
+          keepWhitespace: false,
+          normalizeUrls: true,
+          optimizeBackground: true,
+          optimizeBorderRadius: true,
+          optimizeFilter: true,
+          optimizeFont: true,
+          optimizeFontWeight: true,
+          optimizeOutline: true,
+          replaceMultipleZeros: true,
+          replaceTimeUnits: true,
+          replaceZeroUnits: true,
           roundingPrecision: roundingPrecisionFrom(undefined),
-          specialComments: 'all'
+          specialComments: 'all',
+          tidyAtRules: true,
+          tidyBlockScopes: true,
+          tidySelectors: true
         });
       }
     },
@@ -47,8 +64,25 @@ vows.describe(optimizationLevelFrom)
       },
       'has level 1 options': function (levelOptions) {
         assert.deepEqual(levelOptions['1'], {
+          cleanupCharsets: true,
+          keepNegativePaddings: false,
+          keepQuotes: false,
+          keepWhitespace: false,
+          normalizeUrls: true,
+          optimizeBackground: true,
+          optimizeBorderRadius: true,
+          optimizeFilter: true,
+          optimizeFont: true,
+          optimizeFontWeight: true,
+          optimizeOutline: true,
+          replaceMultipleZeros: true,
+          replaceTimeUnits: true,
+          replaceZeroUnits: true,
           roundingPrecision: roundingPrecisionFrom(undefined),
-          specialComments: 'all'
+          specialComments: 'all',
+          tidyAtRules: true,
+          tidyBlockScopes: true,
+          tidySelectors: true
         });
       }
     },
@@ -64,8 +98,25 @@ vows.describe(optimizationLevelFrom)
       },
       'has level 1 options': function (levelOptions) {
         assert.deepEqual(levelOptions['1'], {
+          cleanupCharsets: true,
+          keepNegativePaddings: false,
+          keepQuotes: false,
+          keepWhitespace: false,
+          normalizeUrls: true,
+          optimizeBackground: true,
+          optimizeBorderRadius: true,
+          optimizeFilter: true,
+          optimizeFont: true,
+          optimizeFontWeight: true,
+          optimizeOutline: true,
+          replaceMultipleZeros: true,
+          replaceTimeUnits: true,
+          replaceZeroUnits: true,
           roundingPrecision: roundingPrecisionFrom(undefined),
-          specialComments: 'all'
+          specialComments: 'all',
+          tidyAtRules: true,
+          tidyBlockScopes: true,
+          tidySelectors: true
         });
       },
       'has level 2 options': function (levelOptions) {
@@ -106,8 +157,25 @@ vows.describe(optimizationLevelFrom)
       },
       'has level 1 options': function (levelOptions) {
         assert.deepEqual(levelOptions['1'], {
+          cleanupCharsets: true,
+          keepNegativePaddings: false,
+          keepQuotes: false,
+          keepWhitespace: false,
+          normalizeUrls: true,
+          optimizeBackground: true,
+          optimizeBorderRadius: true,
+          optimizeFilter: true,
+          optimizeFont: true,
+          optimizeFontWeight: true,
+          optimizeOutline: true,
+          replaceMultipleZeros: true,
+          replaceTimeUnits: true,
+          replaceZeroUnits: true,
           roundingPrecision: roundingPrecisionFrom(undefined),
-          specialComments: 0
+          specialComments: 0,
+          tidyAtRules: true,
+          tidyBlockScopes: true,
+          tidySelectors: true
         });
       },
       'has level 2 options': function (levelOptions) {
@@ -137,8 +205,25 @@ vows.describe(optimizationLevelFrom)
       },
       'has level 1 options': function (levelOptions) {
         assert.deepEqual(levelOptions['1'], {
+          cleanupCharsets: true,
+          keepNegativePaddings: false,
+          keepQuotes: false,
+          keepWhitespace: false,
+          normalizeUrls: true,
+          optimizeBackground: true,
+          optimizeBorderRadius: true,
+          optimizeFilter: true,
+          optimizeFont: true,
+          optimizeFontWeight: true,
+          optimizeOutline: true,
+          replaceMultipleZeros: true,
+          replaceTimeUnits: true,
+          replaceZeroUnits: true,
           roundingPrecision: roundingPrecisionFrom(undefined),
-          specialComments: 0
+          specialComments: 0,
+          tidyAtRules: true,
+          tidyBlockScopes: true,
+          tidySelectors: true
         });
       },
       'has level 2 options': function (levelOptions) {
@@ -168,8 +253,25 @@ vows.describe(optimizationLevelFrom)
       },
       'has level 1 options': function (levelOptions) {
         assert.deepEqual(levelOptions['1'], {
+          cleanupCharsets: true,
+          keepNegativePaddings: false,
+          keepQuotes: false,
+          keepWhitespace: false,
+          normalizeUrls: true,
+          optimizeBackground: true,
+          optimizeBorderRadius: true,
+          optimizeFilter: true,
+          optimizeFont: true,
+          optimizeFontWeight: true,
+          optimizeOutline: true,
+          replaceMultipleZeros: true,
+          replaceTimeUnits: true,
+          replaceZeroUnits: true,
           roundingPrecision: roundingPrecisionFrom(undefined),
-          specialComments: 0
+          specialComments: 0,
+          tidyAtRules: true,
+          tidyBlockScopes: true,
+          tidySelectors: true
         });
       },
       'has level 2 options': function (levelOptions) {
@@ -199,8 +301,25 @@ vows.describe(optimizationLevelFrom)
       },
       'has level 1 options': function (levelOptions) {
         assert.deepEqual(levelOptions['1'], {
+          cleanupCharsets: true,
+          keepNegativePaddings: false,
+          keepQuotes: false,
+          keepWhitespace: false,
+          normalizeUrls: true,
+          optimizeBackground: true,
+          optimizeBorderRadius: true,
+          optimizeFilter: true,
+          optimizeFont: true,
+          optimizeFontWeight: true,
+          optimizeOutline: true,
+          replaceMultipleZeros: true,
+          replaceTimeUnits: true,
+          replaceZeroUnits: true,
           roundingPrecision: roundingPrecisionFrom(3),
-          specialComments: 0
+          specialComments: 0,
+          tidyAtRules: true,
+          tidyBlockScopes: true,
+          tidySelectors: true
         });
       }
     },
@@ -216,8 +335,25 @@ vows.describe(optimizationLevelFrom)
       },
       'has level 1 options': function (levelOptions) {
         assert.deepEqual(levelOptions['1'], {
+          cleanupCharsets: true,
+          keepNegativePaddings: false,
+          keepQuotes: false,
+          keepWhitespace: false,
+          normalizeUrls: true,
+          optimizeBackground: true,
+          optimizeBorderRadius: true,
+          optimizeFilter: true,
+          optimizeFont: true,
+          optimizeFontWeight: true,
+          optimizeOutline: true,
+          replaceMultipleZeros: true,
+          replaceTimeUnits: true,
+          replaceZeroUnits: true,
           roundingPrecision: roundingPrecisionFrom(undefined),
-          specialComments: 'all'
+          specialComments: 'all',
+          tidyAtRules: true,
+          tidyBlockScopes: true,
+          tidySelectors: true
         });
       },
       'has level 2 options': function (levelOptions) {
@@ -247,8 +383,25 @@ vows.describe(optimizationLevelFrom)
       },
       'has level 1 options': function (levelOptions) {
         assert.deepEqual(levelOptions['1'], {
+          cleanupCharsets: true,
+          keepNegativePaddings: false,
+          keepQuotes: false,
+          keepWhitespace: false,
+          normalizeUrls: true,
+          optimizeBackground: true,
+          optimizeBorderRadius: true,
+          optimizeFilter: true,
+          optimizeFont: true,
+          optimizeFontWeight: true,
+          optimizeOutline: true,
+          replaceMultipleZeros: true,
+          replaceTimeUnits: true,
+          replaceZeroUnits: true,
           roundingPrecision: roundingPrecisionFrom(undefined),
-          specialComments: 'all'
+          specialComments: 'all',
+          tidyAtRules: true,
+          tidyBlockScopes: true,
+          tidySelectors: true
         });
       },
       'has level 2 options': function (levelOptions) {
@@ -278,8 +431,25 @@ vows.describe(optimizationLevelFrom)
       },
       'has level 1 options': function (levelOptions) {
         assert.deepEqual(levelOptions['1'], {
+          cleanupCharsets: true,
+          keepNegativePaddings: false,
+          keepQuotes: false,
+          keepWhitespace: false,
+          normalizeUrls: true,
+          optimizeBackground: true,
+          optimizeBorderRadius: true,
+          optimizeFilter: true,
+          optimizeFont: true,
+          optimizeFontWeight: true,
+          optimizeOutline: true,
+          replaceMultipleZeros: true,
+          replaceTimeUnits: true,
+          replaceZeroUnits: true,
           roundingPrecision: roundingPrecisionFrom(undefined),
-          specialComments: 'all'
+          specialComments: 'all',
+          tidyAtRules: true,
+          tidyBlockScopes: true,
+          tidySelectors: true
         });
       },
       'has level 2 options': function (levelOptions) {
@@ -309,8 +479,25 @@ vows.describe(optimizationLevelFrom)
       },
       'has level 1 options': function (levelOptions) {
         assert.deepEqual(levelOptions['1'], {
+          cleanupCharsets: true,
+          keepNegativePaddings: false,
+          keepQuotes: false,
+          keepWhitespace: false,
+          normalizeUrls: true,
+          optimizeBackground: true,
+          optimizeBorderRadius: true,
+          optimizeFilter: true,
+          optimizeFont: true,
+          optimizeFontWeight: true,
+          optimizeOutline: true,
+          replaceMultipleZeros: true,
+          replaceTimeUnits: true,
+          replaceZeroUnits: true,
           roundingPrecision: roundingPrecisionFrom(undefined),
-          specialComments: 'all'
+          specialComments: 'all',
+          tidyAtRules: true,
+          tidyBlockScopes: true,
+          tidySelectors: true
         });
       },
       'has level 2 options': function (levelOptions) {
@@ -340,8 +527,25 @@ vows.describe(optimizationLevelFrom)
       },
       'has level 1 options': function (levelOptions) {
         assert.deepEqual(levelOptions['1'], {
+          cleanupCharsets: true,
+          keepNegativePaddings: false,
+          keepQuotes: false,
+          keepWhitespace: false,
+          normalizeUrls: true,
+          optimizeBackground: true,
+          optimizeBorderRadius: true,
+          optimizeFilter: true,
+          optimizeFont: true,
+          optimizeFontWeight: true,
+          optimizeOutline: true,
+          replaceMultipleZeros: true,
+          replaceTimeUnits: true,
+          replaceZeroUnits: true,
           roundingPrecision: roundingPrecisionFrom(undefined),
-          specialComments: 'all'
+          specialComments: 'all',
+          tidyAtRules: true,
+          tidyBlockScopes: true,
+          tidySelectors: true
         });
       }
     },
@@ -357,6 +561,20 @@ vows.describe(optimizationLevelFrom)
       },
       'has level 1 options': function (levelOptions) {
         assert.deepEqual(levelOptions['1'], {
+          cleanupCharsets: true,
+          keepNegativePaddings: false,
+          keepQuotes: false,
+          keepWhitespace: false,
+          normalizeUrls: true,
+          optimizeBackground: true,
+          optimizeBorderRadius: true,
+          optimizeFilter: true,
+          optimizeFont: true,
+          optimizeFontWeight: true,
+          optimizeOutline: true,
+          replaceMultipleZeros: true,
+          replaceTimeUnits: true,
+          replaceZeroUnits: true,
           roundingPrecision: {
             'ch': 4,
             'cm': 4,
@@ -375,7 +593,10 @@ vows.describe(optimizationLevelFrom)
             'vw': 4,
             '%': 4
           },
-          specialComments: 'all'
+          specialComments: 'all',
+          tidyAtRules: true,
+          tidyBlockScopes: true,
+          tidySelectors: true
         });
       }
     },
@@ -391,6 +612,20 @@ vows.describe(optimizationLevelFrom)
       },
       'has level 1 options': function (levelOptions) {
         assert.deepEqual(levelOptions['1'], {
+          cleanupCharsets: true,
+          keepNegativePaddings: false,
+          keepQuotes: false,
+          keepWhitespace: false,
+          normalizeUrls: true,
+          optimizeBackground: true,
+          optimizeBorderRadius: true,
+          optimizeFilter: true,
+          optimizeFont: true,
+          optimizeFontWeight: true,
+          optimizeOutline: true,
+          replaceMultipleZeros: true,
+          replaceTimeUnits: true,
+          replaceZeroUnits: true,
           roundingPrecision: {
             'ch': 5,
             'cm': 5,
@@ -409,7 +644,10 @@ vows.describe(optimizationLevelFrom)
             'vw': 5,
             '%': 1
           },
-          specialComments: 'all'
+          specialComments: 'all',
+          tidyAtRules: true,
+          tidyBlockScopes: true,
+          tidySelectors: true
         });
       }
     }

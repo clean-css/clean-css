@@ -433,7 +433,7 @@ vows.describe('level 1 optimizations')
         'a{font:bold .9em sans-serif}',
         'a{font:bold .9em sans-serif}'
       ]
-    }, { level: 1, compatibility: { properties: { fontWeight: false } } })
+    }, { level: { 1: { optimizeFontWeight: false } } })
   )
   .addBatch(
     optimizerContext('ie hacks', {
@@ -1022,5 +1022,145 @@ vows.describe('level 1 optimizations')
         'a{-custom-color:red}'
       ]
     }, { level: 1 })
+  )
+  .addBatch(
+    optimizerContext('@charset cleanup off', {
+      'stays where it is': [
+        '.block{color:#f10}@charset \'utf-8\';b{font-weight:bolder}',
+        '.block{color:#f10}@charset \'utf-8\';b{font-weight:bolder}'
+      ]
+    }, { level: { 1: { cleanupCharsets: false } } })
+  )
+  .addBatch(
+    optimizerContext('negative padding optimizations off', {
+      'stays as it is': [
+        '.block{padding:-2px}',
+        '.block{padding:-2px}'
+      ]
+    }, { level: { 1: { keepNegativePaddings: true } } })
+  )
+  .addBatch(
+    optimizerContext('quotes optimizations off', {
+      'stays as it is': [
+        '.block{font:"Arial"}',
+        '.block{font:"Arial"}'
+      ]
+    }, { level: { 1: { keepQuotes: true } } })
+  )
+  .addBatch(
+    optimizerContext('whitespace optimizations off', {
+      'stays as it is': [
+        '.block{clip:rect(0, 0, 0, 0)}',
+        '.block{clip:rect(0, 0, 0, 0)}'
+      ]
+    }, { level: { 1: { keepWhitespace: true } } })
+  )
+  .addBatch(
+    optimizerContext('URL normalization off', {
+      'stays as it is': [
+        '.block{background:URL(image.png)}',
+        '.block{background:URL(image.png)}'
+      ]
+    }, { rebase: false, level: { 1: { normalizeUrls: false } } })
+  )
+  .addBatch(
+    optimizerContext('background optimizations off', {
+      'stays as it is': [
+        '.block{background:transparent}',
+        '.block{background:transparent}'
+      ]
+    }, { level: { 1: { optimizeBackground: false } } })
+  )
+  .addBatch(
+    optimizerContext('border-radius optimizations off', {
+      'stays as it is': [
+        '.block{border-radius:2px 3px/2px 3px}',
+        '.block{border-radius:2px 3px/2px 3px}'
+      ]
+    }, { level: { 1: { optimizeBorderRadius: false } } })
+  )
+  .addBatch(
+    optimizerContext('filter optimizations off', {
+      'stays as it is': [
+        '.block{filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=80)}',
+        '.block{filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=80)}'
+      ]
+    }, { level: { 1: { optimizeFilter: false } } })
+  )
+  .addBatch(
+    optimizerContext('font optimizations off', {
+      'stays as it is': [
+        '.block{font:normal Arial,sans-serif}',
+        '.block{font:normal Arial,sans-serif}'
+      ]
+    }, { level: { 1: { optimizeFont: false } } })
+  )
+  .addBatch(
+    optimizerContext('font-weight optimizations off', {
+      'stays as it is': [
+        '.block{font-weight:bold}',
+        '.block{font-weight:bold}'
+      ],
+      'stays as it is in font': [
+        '.block{font:normal Arial,sans-serif}',
+        '.block{font:normal Arial,sans-serif}'
+      ]
+    }, { level: { 1: { optimizeFontWeight: false } } })
+  )
+  .addBatch(
+    optimizerContext('outline optimizations off', {
+      'stays as it is': [
+        '.block{outline:none}',
+        '.block{outline:none}'
+      ]
+    }, { level: { 1: { optimizeOutline: false } } })
+  )
+  .addBatch(
+    optimizerContext('replace multiple zeros optimization off', {
+      'stays as it is': [
+        '.block{margin:0 0 0 0}',
+        '.block{margin:0 0 0 0}'
+      ]
+    }, { level: { 1: { replaceMultipleZeros: false } } })
+  )
+  .addBatch(
+    optimizerContext('replace time units optimizations off', {
+      'stays as it is': [
+          '.block{animation-duration:500ms}',
+          '.block{animation-duration:500ms}'
+      ]
+    }, { level: { 1: { replaceTimeUnits: false } } })
+  )
+  .addBatch(
+    optimizerContext('replace zero units optimizations off', {
+      'stays as it is': [
+          '.block{margin:010px}',
+          '.block{margin:010px}'
+      ]
+    }, { level: { 1: { replaceZeroUnits: false } } })
+  )
+  .addBatch(
+    optimizerContext('tidy at-rules optimizations off', {
+      'stays as it is': [
+          '@charset   "utf-8";',
+          '@charset   "utf-8";'
+      ]
+    }, { level: { 1: { tidyAtRules: false } } })
+  )
+  .addBatch(
+    optimizerContext('tidy block scopes optimizations off', {
+      'stays as it is': [
+          '@media ( min-width: 50px ){.block{color:red}}',
+          '@media ( min-width: 50px ){.block{color:red}}'
+      ]
+    }, { level: { 1: { tidyBlockScopes: false } } })
+  )
+  .addBatch(
+    optimizerContext('tidy block scopes optimizations off', {
+      'stays as it is': [
+          '.block > .another-block{color:red}',
+          '.block > .another-block{color:red}'
+      ]
+    }, { level: { 1: { tidySelectors: false } } })
   )
   .export(module);

@@ -14,7 +14,6 @@ vows.describe(compatibility)
         assert.isTrue(compat.properties.backgroundClipMerging);
         assert.isTrue(compat.properties.backgroundOriginMerging);
         assert.isTrue(compat.properties.backgroundSizeMerging);
-        assert.isTrue(compat.properties.fontWeight);
         assert.isFalse(compat.properties.ieBangHack);
         assert.isFalse(compat.properties.iePrefixHack);
         assert.isFalse(compat.properties.ieSuffixHack);
@@ -88,7 +87,6 @@ vows.describe(compatibility)
         assert.isTrue(compat.properties.backgroundOriginMerging);
         assert.isTrue(compat.properties.backgroundSizeMerging);
         assert.isTrue(compat.properties.colors);
-        assert.isTrue(compat.properties.fontWeight);
         assert.isFalse(compat.properties.ieBangHack);
         assert.isFalse(compat.properties.iePrefixHack);
         assert.isTrue(compat.properties.ieSuffixHack);
@@ -121,7 +119,6 @@ vows.describe(compatibility)
         assert.isFalse(compat.properties.backgroundOriginMerging);
         assert.isFalse(compat.properties.backgroundSizeMerging);
         assert.isTrue(compat.properties.colors);
-        assert.isTrue(compat.properties.fontWeight);
         assert.isFalse(compat.properties.ieBangHack);
         assert.isTrue(compat.properties.iePrefixHack);
         assert.isTrue(compat.properties.ieSuffixHack);
@@ -154,7 +151,6 @@ vows.describe(compatibility)
         assert.isFalse(compat.properties.backgroundOriginMerging);
         assert.isFalse(compat.properties.backgroundSizeMerging);
         assert.isTrue(compat.properties.colors);
-        assert.isTrue(compat.properties.fontWeight);
         assert.isTrue(compat.properties.ieBangHack);
         assert.isTrue(compat.properties.iePrefixHack);
         assert.isTrue(compat.properties.ieSuffixHack);

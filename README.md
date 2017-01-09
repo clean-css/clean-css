@@ -115,13 +115,30 @@ Level 0 optimizations:
 cleancss -O0 one.css
 ```
 
-Level 1 optimizations:
+Level 1 optimizations (default):
 
 ```bash
 cleancss -O1 one.css
-cleancss -O1 roundingPrecision:4;specialComments:1 one.css
+cleancss -O1 keepQuotes:on;roundingPrecision:4;specialComments:1 one.css
+# `cleanupCharsets` controls `@charset` moving to the front of a stylesheet; defaults to `on`
+# `keepNegativePaddings` controls negative paddings removal; defaults to `off`
+# `keepQuotes` controls keeping quotes when unnecessary; defaults to `off`
+# `keepWhitespace` controls keeping unused whitespace; defaults to `off`
+# `normalizeUrls` controls URL normalzation; default to `on`
+# `optimizeBackground` controls `background` property optimizatons; defaults to `on`
+# `optimizeBorderRadius` controls `border-radius` property optimizatons; defaults to `on`
+# `optimizeFilter` controls `filter` property optimizatons; defaults to `on`
+# `optimizeFont controls `font` property optimizatons; defaults to `on`
+# `optimizeFontWeight` controls `font-weight` property optimizatons; defaults to `on`
+# `optimizeOutline` controls `outline` property optimizatons; defaults to `on`
+# `replaceMultipleZeros` contols removing redundant zeros; defaults to `on`
+# `replaceTimeUnits` controls replacing time units with shorter values; defaults to `on
+# `replaceZeroUnits` controls replacing zero values with units; defaults to `on`
 # `roundingPrecision` rounds pixel values to `N` decimal places; `off` disables rounding; defaults to `off`
 # `specialComments` denotes a number of /*! ... */ comments preserved; defaults to `all`
+# `tidyAtRules` controls at-rules (e.g. `@charset`, `@import`) optimizing; defaults to `on`
+# `tidyBlockScopes` controls block scopes (e.g. `@media`) optimizing; defaults to `on`
+# `tidySelectors` controls selectors optimizing; defaults to `on`
 ```
 
 Level 2 optimizations:
@@ -184,12 +201,29 @@ The output of `minify` method (or the 2nd argument to passed callback) is a hash
 The `level` option can be either `0`, `1` (default), or `2`, or a fine-grained configuration given via a hash:
 
 ```js
-// level 1 optimizations
+// level 1 optimizations (default)
 new CleanCSS({
   level: {
     1: {
-      roundingPrecision: 3, // rounds pixel values to `N` decimal places; `off` disables rounding; defaults to `off`
-      specialComments: 0 // denotes a number of /*! ... */ comments preserved; defaults to `all`
+      cleanupCharsets: true, // controls `@charset` moving to the front of a stylesheet; defaults to `true`
+      keepNegativePaddings: false, // controls negative paddings removal; defaults to `false`
+      keepQuotes: false, // controls keeping quotes when unnecessary; defaults to `false`
+      keepWhitespace: false, // controls keeping unused whitespace; defaults to `false`
+      normalizeUrls: true, // controls URL normalzation; default to `true`
+      optimizeBackground: true, // controls `background` property optimizatons; defaults to `true`
+      optimizeBorderRadius: true, // controls `border-radius` property optimizatons; defaults to `true`
+      optimizeFilter: true, // controls `filter` property optimizatons; defaults to `true`
+      optimizeFont: true, // ontrols `font` property optimizatons; defaults to `true`
+      optimizeFontWeight: true, // controls `font-weight` property optimizatons; defaults to `true`
+      optimizeOutline: true, // controls `outline` property optimizatons; defaults to `true`
+      replaceMultipleZeros: true, // contols removing redundant zeros; defaults to `true`
+      replaceTimeUnits: true, // controls replacing time units with shorter values; defaults to `true`
+      replaceZeroUnits: true, // controls replacing zero values with units; defaults to `true`
+      roundingPrecision: false, // rounds pixel values to `N` decimal places; `false` disables rounding; defaults to `false`
+      specialComments: 'all', // denotes a number of /*! ... */ comments preserved; defaults to `all`
+      tidyAtRules: true, // controls at-rules (e.g. `@charset`, `@import`) optimizing; defaults to `true`
+      tidyBlockScopes: true, // controls block scopes (e.g. `@media`) optimizing; defaults to `true`
+      tidySelectors: true // controls selectors optimizing; defaults to `true`
     }
   }
 });
@@ -397,7 +431,6 @@ with the following options available:
 * `'[+-]properties.backgroundOriginMerging'` - turn on / off background-origin merging into shorthand
 * `'[+-]properties.backgroundSizeMerging'` - turn on / off background-size merging into shorthand
 * `'[+-]properties.colors'` - turn on / off any color optimizations
-* `'[+-]properties.fontWeight'` - turn on / off any `font-weight` optimizations
 * `'[+-]properties.ieBangHack'` - turn on / off IE bang hack removal
 * `'[+-]properties.iePrefixHack'` - turn on / off IE prefix hack removal
 * `'[+-]properties.ieSuffixHack'` - turn on / off IE suffix hack removal

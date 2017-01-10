@@ -162,6 +162,13 @@ vows.describe('./bin/cleancss')
     })
   })
   .addBatch({
+    'level 1 and 2 optimizations': pipedContext('a{font:"Arial"}a{color:red}', '-O1 all:false,removeQuotes:true -O2 all:false', {
+      'should do basic optimizations only': function (error, stdout) {
+        assert.equal(stdout, 'a{font:Arial}a{color:red}');
+      }
+    })
+  })
+  .addBatch({
     'enable restructuring optimizations': pipedContext('div{margin-top:0}.one{margin:0}.two{display:block;margin-top:0}', '-O2 restructuring:on', {
       'should do basic optimizations only': function (error, stdout) {
         assert.equal(stdout, '.two,div{margin-top:0}.one{margin:0}.two{display:block}');

@@ -80,26 +80,16 @@ commands.on('--help', function () {
 
 commands.parse(process.argv);
 
-if (commands.O === 0) {
+if (commands.rawArgs.indexOf('-O0') > -1) {
   commands.O0 = true;
 }
 
-if (commands.O === 1) {
-  commands.O1 = true;
+if (commands.rawArgs.indexOf('-O1') > -1) {
+  commands.O1 = findArgumentTo('-O1', commands.rawArgs, commands.args);
 }
 
-if (commands.O === 2) {
-  commands.O2 = true;
-}
-
-// Fixes commander issue in the following case `cleancss -O1 [configuration]` where `[configuration]` is taken as input stylesheet
-if (commands.O1 && commands.args.length > 0 && !fs.existsSync(commands.args[0]) && !isRemote(commands.args[0])) {
-  commands.O1 = commands.args.shift();
-}
-
-// Fixes commander issue in the following case `cleancss -O2 [configuration]` where `[configuration]` is taken as input stylesheet
-if (commands.O2 && commands.args.length > 0 && !fs.existsSync(commands.args[0]) && !isRemote(commands.args[0])) {
-  commands.O2 = commands.args.shift();
+if (commands.rawArgs.indexOf('-O2') > -1) {
+  commands.O2 = findArgumentTo('-O2', commands.rawArgs, commands.args);
 }
 
 // If no sensible data passed in just print help and exit
@@ -148,8 +138,32 @@ if (commands.args.length > 0) {
   });
 }
 
-function isRemote(uri) {
-  return /^(\w+:\/\/|\/\/)/.test(uri);
+function findArgumentTo(option, rawArgs, args) {
+  var value = true;
+  var optionAt = rawArgs.indexOf(option);
+  var nextOption = rawArgs[optionAt + 1];
+  var looksLikePath;
+  var asArgumentAt;
+
+  if (!nextOption) {
+    return value;
+  }
+
+  looksLikePath = nextOption.indexOf('.css') > -1 ||
+    /\//.test(nextOption) ||
+    /\\[^\-]/.test(nextOption) ||
+    /^https?:\/\//.test(nextOption);
+  asArgumentAt = args.indexOf(nextOption);
+
+  if (!looksLikePath) {
+    value = nextOption;
+  }
+
+  if (!looksLikePath && asArgumentAt > -1) {
+    args.splice(asArgumentAt, 1);
+  }
+
+  return value;
 }
 
 function minify(data) {

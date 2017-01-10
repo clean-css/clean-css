@@ -1032,30 +1032,6 @@ vows.describe('level 1 optimizations')
     }, { level: { 1: { cleanupCharsets: false } } })
   )
   .addBatch(
-    optimizerContext('negative padding optimizations off', {
-      'stays as it is': [
-        '.block{padding:-2px}',
-        '.block{padding:-2px}'
-      ]
-    }, { level: { 1: { keepNegativePaddings: true } } })
-  )
-  .addBatch(
-    optimizerContext('quotes optimizations off', {
-      'stays as it is': [
-        '.block{font:"Arial"}',
-        '.block{font:"Arial"}'
-      ]
-    }, { level: { 1: { keepQuotes: true } } })
-  )
-  .addBatch(
-    optimizerContext('whitespace optimizations off', {
-      'stays as it is': [
-        '.block{clip:rect(0, 0, 0, 0)}',
-        '.block{clip:rect(0, 0, 0, 0)}'
-      ]
-    }, { level: { 1: { keepWhitespace: true } } })
-  )
-  .addBatch(
     optimizerContext('URL normalization off', {
       'stays as it is': [
         '.block{background:URL(image.png)}',
@@ -1114,6 +1090,30 @@ vows.describe('level 1 optimizations')
         '.block{outline:none}'
       ]
     }, { level: { 1: { optimizeOutline: false } } })
+  )
+  .addBatch(
+    optimizerContext('negative padding optimizations off', {
+      'stays as it is': [
+        '.block{padding:-2px}',
+        '.block{padding:-2px}'
+      ]
+    }, { level: { 1: { removeNegativePaddings: false } } })
+  )
+  .addBatch(
+    optimizerContext('quotes optimizations off', {
+      'stays as it is': [
+        '.block{font:"Arial"}',
+        '.block{font:"Arial"}'
+      ]
+    }, { level: { 1: { removeQuotes: false } } })
+  )
+  .addBatch(
+    optimizerContext('whitespace optimizations off', {
+      'stays as it is': [
+        '.block{clip:rect(0, 0, 0, 0)}',
+        '.block{clip:rect(0, 0, 0, 0)}'
+      ]
+    }, { level: { 1: { removeWhitespace: false } } })
   )
   .addBatch(
     optimizerContext('replace multiple zeros optimization off', {

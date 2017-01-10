@@ -20,9 +20,6 @@ vows.describe(optimizationLevelFrom)
       'has level 1 options': function (levelOptions) {
         assert.deepEqual(levelOptions['1'], {
           cleanupCharsets: true,
-          keepNegativePaddings: false,
-          keepQuotes: false,
-          keepWhitespace: false,
           normalizeUrls: true,
           optimizeBackground: true,
           optimizeBorderRadius: true,
@@ -30,6 +27,9 @@ vows.describe(optimizationLevelFrom)
           optimizeFont: true,
           optimizeFontWeight: true,
           optimizeOutline: true,
+          removeNegativePaddings: true,
+          removeQuotes: true,
+          removeWhitespace: true,
           replaceMultipleZeros: true,
           replaceTimeUnits: true,
           replaceZeroUnits: true,
@@ -65,9 +65,6 @@ vows.describe(optimizationLevelFrom)
       'has level 1 options': function (levelOptions) {
         assert.deepEqual(levelOptions['1'], {
           cleanupCharsets: true,
-          keepNegativePaddings: false,
-          keepQuotes: false,
-          keepWhitespace: false,
           normalizeUrls: true,
           optimizeBackground: true,
           optimizeBorderRadius: true,
@@ -75,6 +72,9 @@ vows.describe(optimizationLevelFrom)
           optimizeFont: true,
           optimizeFontWeight: true,
           optimizeOutline: true,
+          removeNegativePaddings: true,
+          removeQuotes: true,
+          removeWhitespace: true,
           replaceMultipleZeros: true,
           replaceTimeUnits: true,
           replaceZeroUnits: true,
@@ -99,9 +99,6 @@ vows.describe(optimizationLevelFrom)
       'has level 1 options': function (levelOptions) {
         assert.deepEqual(levelOptions['1'], {
           cleanupCharsets: true,
-          keepNegativePaddings: false,
-          keepQuotes: false,
-          keepWhitespace: false,
           normalizeUrls: true,
           optimizeBackground: true,
           optimizeBorderRadius: true,
@@ -109,6 +106,9 @@ vows.describe(optimizationLevelFrom)
           optimizeFont: true,
           optimizeFontWeight: true,
           optimizeOutline: true,
+          removeNegativePaddings: true,
+          removeQuotes: true,
+          removeWhitespace: true,
           replaceMultipleZeros: true,
           replaceTimeUnits: true,
           replaceZeroUnits: true,
@@ -158,9 +158,6 @@ vows.describe(optimizationLevelFrom)
       'has level 1 options': function (levelOptions) {
         assert.deepEqual(levelOptions['1'], {
           cleanupCharsets: true,
-          keepNegativePaddings: false,
-          keepQuotes: false,
-          keepWhitespace: false,
           normalizeUrls: true,
           optimizeBackground: true,
           optimizeBorderRadius: true,
@@ -168,6 +165,9 @@ vows.describe(optimizationLevelFrom)
           optimizeFont: true,
           optimizeFontWeight: true,
           optimizeOutline: true,
+          removeNegativePaddings: true,
+          removeQuotes: true,
+          removeWhitespace: true,
           replaceMultipleZeros: true,
           replaceTimeUnits: true,
           replaceZeroUnits: true,
@@ -206,9 +206,6 @@ vows.describe(optimizationLevelFrom)
       'has level 1 options': function (levelOptions) {
         assert.deepEqual(levelOptions['1'], {
           cleanupCharsets: true,
-          keepNegativePaddings: false,
-          keepQuotes: false,
-          keepWhitespace: false,
           normalizeUrls: true,
           optimizeBackground: true,
           optimizeBorderRadius: true,
@@ -216,6 +213,9 @@ vows.describe(optimizationLevelFrom)
           optimizeFont: true,
           optimizeFontWeight: true,
           optimizeOutline: true,
+          removeNegativePaddings: true,
+          removeQuotes: true,
+          removeWhitespace: true,
           replaceMultipleZeros: true,
           replaceTimeUnits: true,
           replaceZeroUnits: true,
@@ -254,9 +254,6 @@ vows.describe(optimizationLevelFrom)
       'has level 1 options': function (levelOptions) {
         assert.deepEqual(levelOptions['1'], {
           cleanupCharsets: true,
-          keepNegativePaddings: false,
-          keepQuotes: false,
-          keepWhitespace: false,
           normalizeUrls: true,
           optimizeBackground: true,
           optimizeBorderRadius: true,
@@ -264,6 +261,9 @@ vows.describe(optimizationLevelFrom)
           optimizeFont: true,
           optimizeFontWeight: true,
           optimizeOutline: true,
+          removeNegativePaddings: true,
+          removeQuotes: true,
+          removeWhitespace: true,
           replaceMultipleZeros: true,
           replaceTimeUnits: true,
           replaceZeroUnits: true,
@@ -302,9 +302,6 @@ vows.describe(optimizationLevelFrom)
       'has level 1 options': function (levelOptions) {
         assert.deepEqual(levelOptions['1'], {
           cleanupCharsets: true,
-          keepNegativePaddings: false,
-          keepQuotes: false,
-          keepWhitespace: false,
           normalizeUrls: true,
           optimizeBackground: true,
           optimizeBorderRadius: true,
@@ -312,6 +309,9 @@ vows.describe(optimizationLevelFrom)
           optimizeFont: true,
           optimizeFontWeight: true,
           optimizeOutline: true,
+          removeNegativePaddings: true,
+          removeQuotes: true,
+          removeWhitespace: true,
           replaceMultipleZeros: true,
           replaceTimeUnits: true,
           replaceZeroUnits: true,
@@ -336,9 +336,6 @@ vows.describe(optimizationLevelFrom)
       'has level 1 options': function (levelOptions) {
         assert.deepEqual(levelOptions['1'], {
           cleanupCharsets: true,
-          keepNegativePaddings: false,
-          keepQuotes: false,
-          keepWhitespace: false,
           normalizeUrls: true,
           optimizeBackground: true,
           optimizeBorderRadius: true,
@@ -346,6 +343,9 @@ vows.describe(optimizationLevelFrom)
           optimizeFont: true,
           optimizeFontWeight: true,
           optimizeOutline: true,
+          removeNegativePaddings: true,
+          removeQuotes: true,
+          removeWhitespace: true,
           replaceMultipleZeros: true,
           replaceTimeUnits: true,
           replaceZeroUnits: true,
@@ -384,9 +384,6 @@ vows.describe(optimizationLevelFrom)
       'has level 1 options': function (levelOptions) {
         assert.deepEqual(levelOptions['1'], {
           cleanupCharsets: true,
-          keepNegativePaddings: false,
-          keepQuotes: false,
-          keepWhitespace: false,
           normalizeUrls: true,
           optimizeBackground: true,
           optimizeBorderRadius: true,
@@ -394,6 +391,9 @@ vows.describe(optimizationLevelFrom)
           optimizeFont: true,
           optimizeFontWeight: true,
           optimizeOutline: true,
+          removeNegativePaddings: true,
+          removeQuotes: true,
+          removeWhitespace: true,
           replaceMultipleZeros: true,
           replaceTimeUnits: true,
           replaceZeroUnits: true,
@@ -432,9 +432,6 @@ vows.describe(optimizationLevelFrom)
       'has level 1 options': function (levelOptions) {
         assert.deepEqual(levelOptions['1'], {
           cleanupCharsets: true,
-          keepNegativePaddings: false,
-          keepQuotes: false,
-          keepWhitespace: false,
           normalizeUrls: true,
           optimizeBackground: true,
           optimizeBorderRadius: true,
@@ -442,6 +439,9 @@ vows.describe(optimizationLevelFrom)
           optimizeFont: true,
           optimizeFontWeight: true,
           optimizeOutline: true,
+          removeNegativePaddings: true,
+          removeQuotes: true,
+          removeWhitespace: true,
           replaceMultipleZeros: true,
           replaceTimeUnits: true,
           replaceZeroUnits: true,
@@ -480,9 +480,6 @@ vows.describe(optimizationLevelFrom)
       'has level 1 options': function (levelOptions) {
         assert.deepEqual(levelOptions['1'], {
           cleanupCharsets: true,
-          keepNegativePaddings: false,
-          keepQuotes: false,
-          keepWhitespace: false,
           normalizeUrls: true,
           optimizeBackground: true,
           optimizeBorderRadius: true,
@@ -490,6 +487,9 @@ vows.describe(optimizationLevelFrom)
           optimizeFont: true,
           optimizeFontWeight: true,
           optimizeOutline: true,
+          removeNegativePaddings: true,
+          removeQuotes: true,
+          removeWhitespace: true,
           replaceMultipleZeros: true,
           replaceTimeUnits: true,
           replaceZeroUnits: true,
@@ -528,9 +528,6 @@ vows.describe(optimizationLevelFrom)
       'has level 1 options': function (levelOptions) {
         assert.deepEqual(levelOptions['1'], {
           cleanupCharsets: true,
-          keepNegativePaddings: false,
-          keepQuotes: false,
-          keepWhitespace: false,
           normalizeUrls: true,
           optimizeBackground: true,
           optimizeBorderRadius: true,
@@ -538,6 +535,9 @@ vows.describe(optimizationLevelFrom)
           optimizeFont: true,
           optimizeFontWeight: true,
           optimizeOutline: true,
+          removeNegativePaddings: true,
+          removeQuotes: true,
+          removeWhitespace: true,
           replaceMultipleZeros: true,
           replaceTimeUnits: true,
           replaceZeroUnits: true,
@@ -562,9 +562,6 @@ vows.describe(optimizationLevelFrom)
       'has level 1 options': function (levelOptions) {
         assert.deepEqual(levelOptions['1'], {
           cleanupCharsets: true,
-          keepNegativePaddings: false,
-          keepQuotes: false,
-          keepWhitespace: false,
           normalizeUrls: true,
           optimizeBackground: true,
           optimizeBorderRadius: true,
@@ -572,6 +569,9 @@ vows.describe(optimizationLevelFrom)
           optimizeFont: true,
           optimizeFontWeight: true,
           optimizeOutline: true,
+          removeNegativePaddings: true,
+          removeQuotes: true,
+          removeWhitespace: true,
           replaceMultipleZeros: true,
           replaceTimeUnits: true,
           replaceZeroUnits: true,
@@ -613,9 +613,6 @@ vows.describe(optimizationLevelFrom)
       'has level 1 options': function (levelOptions) {
         assert.deepEqual(levelOptions['1'], {
           cleanupCharsets: true,
-          keepNegativePaddings: false,
-          keepQuotes: false,
-          keepWhitespace: false,
           normalizeUrls: true,
           optimizeBackground: true,
           optimizeBorderRadius: true,
@@ -623,6 +620,9 @@ vows.describe(optimizationLevelFrom)
           optimizeFont: true,
           optimizeFontWeight: true,
           optimizeOutline: true,
+          removeNegativePaddings: true,
+          removeQuotes: true,
+          removeWhitespace: true,
           replaceMultipleZeros: true,
           replaceTimeUnits: true,
           replaceZeroUnits: true,

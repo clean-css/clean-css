@@ -119,11 +119,8 @@ Level 1 optimizations (default):
 
 ```bash
 cleancss -O1 one.css
-cleancss -O1 keepQuotes:on;roundingPrecision:4;specialComments:1 one.css
+cleancss -O1 removeQuotes:off;roundingPrecision:4;specialComments:1 one.css
 # `cleanupCharsets` controls `@charset` moving to the front of a stylesheet; defaults to `on`
-# `keepNegativePaddings` controls negative paddings removal; defaults to `off`
-# `keepQuotes` controls keeping quotes when unnecessary; defaults to `off`
-# `keepWhitespace` controls keeping unused whitespace; defaults to `off`
 # `normalizeUrls` controls URL normalzation; default to `on`
 # `optimizeBackground` controls `background` property optimizatons; defaults to `on`
 # `optimizeBorderRadius` controls `border-radius` property optimizatons; defaults to `on`
@@ -131,6 +128,9 @@ cleancss -O1 keepQuotes:on;roundingPrecision:4;specialComments:1 one.css
 # `optimizeFont controls `font` property optimizatons; defaults to `on`
 # `optimizeFontWeight` controls `font-weight` property optimizatons; defaults to `on`
 # `optimizeOutline` controls `outline` property optimizatons; defaults to `on`
+# `removeNegativePaddings` controls removing negative paddings; defaults to `on`
+# `removeQuotes` controls removing quotes when unnecessary; defaults to `on`
+# `removeWhitespace` controls removing unused whitespace; defaults to `on`
 # `replaceMultipleZeros` contols removing redundant zeros; defaults to `on`
 # `replaceTimeUnits` controls replacing time units with shorter values; defaults to `on
 # `replaceZeroUnits` controls replacing zero values with units; defaults to `on`
@@ -206,9 +206,6 @@ new CleanCSS({
   level: {
     1: {
       cleanupCharsets: true, // controls `@charset` moving to the front of a stylesheet; defaults to `true`
-      keepNegativePaddings: false, // controls negative paddings removal; defaults to `false`
-      keepQuotes: false, // controls keeping quotes when unnecessary; defaults to `false`
-      keepWhitespace: false, // controls keeping unused whitespace; defaults to `false`
       normalizeUrls: true, // controls URL normalzation; default to `true`
       optimizeBackground: true, // controls `background` property optimizatons; defaults to `true`
       optimizeBorderRadius: true, // controls `border-radius` property optimizatons; defaults to `true`
@@ -216,6 +213,9 @@ new CleanCSS({
       optimizeFont: true, // ontrols `font` property optimizatons; defaults to `true`
       optimizeFontWeight: true, // controls `font-weight` property optimizatons; defaults to `true`
       optimizeOutline: true, // controls `outline` property optimizatons; defaults to `true`
+      removeNegativePaddings: true, // controls removing negative paddings; defaults to `true`
+      removeQuotes: true, // controls removing quotes when unnecessary; defaults to `true`
+      removeWhitespace: true, // controls removing unused whitespace; defaults to `true`
       replaceMultipleZeros: true, // contols removing redundant zeros; defaults to `true`
       replaceTimeUnits: true, // controls replacing time units with shorter values; defaults to `true`
       replaceZeroUnits: true, // controls replacing zero values with units; defaults to `true`

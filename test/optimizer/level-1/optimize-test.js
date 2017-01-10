@@ -132,6 +132,34 @@ vows.describe('level 1 optimizations')
     }, { level: 1 })
   )
   .addBatch(
+    optimizerContext('selectors - sorting when tidySelectors is off', {
+      'no numbers': [
+        '.block,.another-block,.one-more-block{color:red}',
+        '.another-block,.block,.one-more-block{color:red}'
+      ]
+    }, { level: { 1: { tidySelectors: false } } })
+  )
+  .addBatch(
+    optimizerContext('selectors - natural order', {
+      'no numbers': [
+        '.block,.another-block,.one-more-block{color:red}',
+        '.another-block,.block,.one-more-block{color:red}'
+      ],
+      'some numbers': [
+        '.block-3,.block-11,.block{color:red}',
+        '.block,.block-3,.block-11{color:red}'
+      ],
+      'all numbers': [
+        '.block-3,.block-11,.block-1{color:red}',
+        '.block-1,.block-3,.block-11{color:red}'
+      ],
+      'complex numbers': [
+        '.block-1__element-11,.block-1__element-2,.block-12__element-1,.block-3__element-1{color:red}',
+        '.block-1__element-2,.block-1__element-11,.block-3__element-1,.block-12__element-1{color:red}'
+      ],
+    }, { level: { 1: { selectorsSortingMethod: 'natural' } } })
+  )
+  .addBatch(
     optimizerContext('selectors - ie8', {
       '+html': [
         '*+html .foo{color:red}',

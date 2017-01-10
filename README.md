@@ -136,6 +136,7 @@ cleancss -O1 all:off;specialComments:1 one.css
 # `replaceTimeUnits` controls replacing time units with shorter values; defaults to `on
 # `replaceZeroUnits` controls replacing zero values with units; defaults to `on`
 # `roundingPrecision` rounds pixel values to `N` decimal places; `off` disables rounding; defaults to `off`
+# `selectorsSortingMethod` denotes selector sorting method; can be `natural` or `standard`; defaults to `standard`
 # `specialComments` denotes a number of /*! ... */ comments preserved; defaults to `all`
 # `tidyAtRules` controls at-rules (e.g. `@charset`, `@import`) optimizing; defaults to `on`
 # `tidyBlockScopes` controls block scopes (e.g. `@media`) optimizing; defaults to `on`
@@ -222,6 +223,7 @@ new CleanCSS({
       replaceTimeUnits: true, // controls replacing time units with shorter values; defaults to `true`
       replaceZeroUnits: true, // controls replacing zero values with units; defaults to `true`
       roundingPrecision: false, // rounds pixel values to `N` decimal places; `false` disables rounding; defaults to `false`
+      selectorsSortingMethod: 'standard', // denotes selector sorting method; can be `natural` or `standard`; defaults to `standard`
       specialComments: 'all', // denotes a number of /*! ... */ comments preserved; defaults to `all`
       tidyAtRules: true, // controls at-rules (e.g. `@charset`, `@import`) optimizing; defaults to `true`
       tidyBlockScopes: true, // controls block scopes (e.g. `@media`) optimizing; defaults to `true`

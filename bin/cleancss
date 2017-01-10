@@ -55,6 +55,7 @@ commands.on('--help', function () {
   console.log('    %> # `replaceTimeUnits` controls replacing time units with shorter values; defaults to `on');
   console.log('    %> # `replaceZeroUnits` controls replacing zero values with units; defaults to `on`');
   console.log('    %> # `roundingPrecision` rounds pixel values to `N` decimal places; `off` disables rounding; defaults to `off`');
+  console.log('    %> # `selectorsSortingMethod` denotes selector sorting method; can be `natural` or `standard`; defaults to `standard`');
   console.log('    %> # `specialComments` denotes a number of /*! ... */ comments preserved; defaults to `all`');
   console.log('    %> # `tidyAtRules` controls at-rules (e.g. `@charset`, `@import`) optimizing; defaults to `on`');
   console.log('    %> # `tidyBlockScopes` controls block scopes (e.g. `@media`) optimizing; defaults to `on`');

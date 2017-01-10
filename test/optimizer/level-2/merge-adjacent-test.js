@@ -96,7 +96,7 @@ vows.describe('remove duplicates')
         '.one{color:red}@media print{.two{display:block}}.three{color:red}',
         '.one,.three{color:red}@media print{.two{display:block}}'
       ],
-    }, { level: { 2: { restructuring: true } } })
+    }, { level: { 2: { restructureRules: true } } })
   )
   .addBatch(
     optimizerContext('with level 2 off but only adjacentRuleMerging on', {
@@ -104,7 +104,7 @@ vows.describe('remove duplicates')
         'a{background:url(image.png)}a{display:block;width:75px;background-repeat:no-repeat}',
         'a{background:url(image.png);display:block;width:75px;background-repeat:no-repeat}',
       ],
-    }, { level: { 2: { all: false, adjacentRulesMerging: true } } })
+    }, { level: { 2: { all: false, mergeAdjacentRules: true } } })
   )
   .addBatch(
     optimizerContext('with level 2 off', {

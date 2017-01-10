@@ -35,20 +35,20 @@ vows.describe('merge non djacent by body')
     }, { level: 2 })
   )
   .addBatch(
-    optimizerContext('with level 2 off but nonAdjacentRulesMerging on', {
+    optimizerContext('with level 2 off but mergeNonAdjacentRules on', {
       'of element selectors': [
         'p{color:red}div{display:block}span{color:red}',
         'p,span{color:red}div{display:block}'
       ]
-    }, { level: { 2: { all: false, nonAdjacentRulesMerging: true } } })
+    }, { level: { 2: { all: false, mergeNonAdjacentRules: true } } })
   )
   .addBatch(
-    optimizerContext('with level 2 off but nonAdjacentRulesMerging set to selector', {
+    optimizerContext('with level 2 off but mergeNonAdjacentRules set to selector', {
       'of element selectors': [
         'p{color:red}div{display:block}span{color:red}',
         'p{color:red}div{display:block}span{color:red}'
       ]
-    }, { level: { 2: { all: false, nonAdjacentRulesMerging: 'selector' } } })
+    }, { level: { 2: { all: false, mergeNonAdjacentRules: 'selector' } } })
   )
   .addBatch(
     optimizerContext('with level 2 off', {
@@ -101,7 +101,7 @@ vows.describe('merge non djacent by body')
         '.block1__element{color:#000}.block1__element--modifier{color:red}.block2{color:#000;display:block;width:100%}'
         // '.block1__element,.block2{color:#000}.block1__element--modifier{color:red}.block2{display:block;width:100%}' - pending #588
       ]
-    }, { level: { 2: { restructuring: true, semanticMerging: true } } })
+    }, { level: { 2: { restructureRules: true, mergeSemantically: true } } })
   )
   .addBatch(
     optimizerContext('IE8 compatibility', {

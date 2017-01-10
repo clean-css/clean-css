@@ -116,7 +116,7 @@ vows.describe('merge media queries')
         '@media (max-width:1px){.block{margin:1px}}.block__element{margin:2px}@media (max-width:1px){.block--modifier{margin:3px}}',
         '.block__element{margin:2px}@media (max-width:1px){.block{margin:1px}.block--modifier{margin:3px}}'
       ]
-    }, { level: { 2: { semanticMerging: true } } })
+    }, { level: { 2: { mergeSemantically: true } } })
   )
   .addBatch(
     optimizerContext('with level 2 off', {
@@ -132,6 +132,6 @@ vows.describe('merge media queries')
         '@media screen{a{color:red}}@media screen{a{display:block}}',
         '@media screen{a{color:red}}@media screen{a{display:block}}'
       ]
-    }, { level: { 2: { mediaMerging: false } } })
+    }, { level: { 2: { mergeMedia: false } } })
   )
   .export(module);

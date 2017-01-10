@@ -1816,7 +1816,7 @@ vows.describe('source-map')
     'level 2 optimizations': {
       'new property in restructuring': {
         'topic': function () {
-          return new CleanCSS({ level: { 2: { restructuring: true } }, sourceMap: true }).minify('a{color:#000}div{color:red}.one{display:block}.two{display:inline;color:red}');
+          return new CleanCSS({ level: { 2: { restructureRules: true } }, sourceMap: true }).minify('a{color:#000}div{color:red}.one{display:block}.two{display:inline;color:red}');
         },
         'has right output': function (minified) {
           assert.equal(minified.styles, 'a{color:#000}.two,div{color:red}.one{display:block}.two{display:inline}');

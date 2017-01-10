@@ -146,18 +146,18 @@ Level 2 optimizations:
 
 ```bash
 cleancss -O2 one.css
-cleancss -O2 mediaMerging:off;restructuring:off;semanticMerging:on;shorthandCompacting:off one.css
-cleancss -O2 all:off;duplicateRulesRemoving:on one.css
-# `adjacentRulesMerging` controls adjacent rules merging; defaults to `on`
-# `duplicateFontRulesRemoving` controls duplicate `@font-face` removing; defaults to `on`
-# `duplicateMediaRemoving` controls duplicate `@media` removing; defaults to `on`
-# `duplicateRulesRemoving` controls duplicate rules removing; defaults to `on`
-# `mediaMerging` controls `@media` merging; defaults to `on`
-# `nonAdjacentRulesMerging` controls non-adjacent rule merging; defaults to `on`
-# `nonAdjacentRulesReducing` controls non-adjacent rule reducing; defaults to `on`
-# `restructuring` controls content restructuring; defaults to `off`
-# `semanticMerging` controls semantic merging; defaults to `off`
-# `shorthandCompacting` controls shorthand compacting; defaults to `on`
+cleancss -O2 mergeMedia:off;restructureRules:off;mergeSemantically:on;compactShorthands:off one.css
+cleancss -O2 all:off;removeDuplicateRules:on one.css
+# `compactShorthands` controls shorthand compacting; defaults to `on`
+# `mergeAdjacentRules` controls adjacent rules merging; defaults to `on`
+# `mergeMedia` controls `@media` merging; defaults to `on`
+# `mergeNonAdjacentRules` controls non-adjacent rule merging; defaults to `on`
+# `mergeSemantically` controls semantic merging; defaults to `off`
+# `reduceNonAdjacentRules` controls non-adjacent rule reducing; defaults to `on`
+# `removeDuplicateFontRules` controls duplicate `@font-face` removing; defaults to `on`
+# `removeDuplicateMediaBlocks` controls duplicate `@media` removing; defaults to `on`
+# `removeDuplicateRules` controls duplicate rules removing; defaults to `on`
+# `restructureRules` controls rule restructuring; defaults to `off`
 ```
 
 ### How to use clean-css API?
@@ -234,7 +234,7 @@ new CleanCSS({
 new CleanCSS({
   level: {
     1: {
-      all: false // sets all values to `false`
+      all: false, // sets all values to `false`
       tidySelectors: true // turns on optimizing selectors
     }
   }
@@ -246,16 +246,16 @@ new CleanCSS({
 new CleanCSS({
   level: {
     2: {
-      adjacentRulesMerging: true, // controls adjacent rules merging; defaults to true
-      duplicateFontRulesRemoving: true, // controls duplicate `@font-face` removing; defaults to true
-      duplicateMediaRemoving: true, // controls duplicate `@media` removing; defaults to true
-      duplicateRulesRemoving: true, // controls duplicate rules removing; defaults to true
-      mediaMerging: true, // controls `@media` merging; defaults to true
-      nonAdjacentRulesMerging: true, // controls non-adjacent rule merging; defaults to true
-      nonAdjacentRulesReducing: true, // controls non-adjacent rule reducing; defaults to true
-      restructuring: false, // controls content restructuring; defaults to false
-      semanticMerging: false, // controls semantic merging; defaults to false
-      shorthandCompacting: true, // controls shorthand compacting; defaults to true
+      compactShorthands: true, // controls shorthand compacting; defaults to true
+      mergeAdjacentRules: true, // controls adjacent rules merging; defaults to true
+      mergeMedia: true, // controls `@media` merging; defaults to true
+      mergeNonAdjacentRules: true, // controls non-adjacent rule merging; defaults to true
+      mergeSemantically: false, // controls semantic merging; defaults to false
+      reduceNonAdjacentRules: true, // controls non-adjacent rule reducing; defaults to true
+      removeDuplicateFontRules: true, // controls duplicate `@font-face` removing; defaults to true
+      removeDuplicateMediaBlocks: true, // controls duplicate `@media` removing; defaults to true
+      removeDuplicateRules: true, // controls duplicate rules removing; defaults to true
+      restructureRules: false // controls rule restructuring; defaults to false
     }
   }
 });
@@ -264,8 +264,8 @@ new CleanCSS({
 new CleanCSS({
   level: {
     1: {
-      all: false // sets all values to `false`
-      duplicateRulesRemoving: true // turns on removing duplicate rules
+      all: false, // sets all values to `false`
+      removeDuplicateRules: true // turns on removing duplicate rules
     }
   }
 });
@@ -485,7 +485,7 @@ In library mode you can also pass `compatibility` as a hash of options.
 All level 2 optimizations are dispatched [here](https://github.com/jakubpawlowicz/clean-css/blob/master/lib/selectors/advanced.js#L59), and this is what they do:
 
 * `recursivelyOptimizeBlocks` - does all the following operations on a block (think `@media` or `@keyframe` at-rules);
-* `recursivelyOptimizeProperties` - optimizes properties in rulesets and "flat at-rules" (like @font-face) by splitting them into components (e.g. `margin` into `margin-(*)`), optimizing, and rebuilding them back. You may want to use `shorthandCompacting` option to control whether you want to turn multiple (long-hand) properties into a shorthand ones;
+* `recursivelyOptimizeProperties` - optimizes properties in rulesets and "flat at-rules" (like @font-face) by splitting them into components (e.g. `margin` into `margin-(*)`), optimizing, and rebuilding them back. You may want to use `compactShorthands` option to control whether you want to turn multiple (long-hand) properties into a shorthand ones;
 * `removeDuplicates` - gets rid of duplicate rulesets with exactly the same set of properties (think of including the same Sass / Less partial twice for no good reason);
 * `mergeAdjacent` - merges adjacent rulesets with the same selector or rules;
 * `reduceNonAdjacent` - identifies which properties are overridden in same-selector non-adjacent rulesets, and removes them;

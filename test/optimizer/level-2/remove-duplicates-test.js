@@ -48,7 +48,7 @@ vows.describe('remove duplicates')
         'a{color:red}div{color:blue}a{color:red}',
         'div{color:#00f}a{color:red}'
       ]
-    }, { level: { 2: { all: false, duplicateRulesRemoving: true } } })
+    }, { level: { 2: { all: false, removeDuplicateRules: true } } })
   )
   .addBatch(
     optimizerContext('level 2 off', {

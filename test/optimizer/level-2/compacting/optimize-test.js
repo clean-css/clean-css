@@ -15,10 +15,10 @@ function _optimize(source, mergeAdjacent, aggressiveMerging, compatibilityOption
     compatibility: compat,
     level: {
       2: {
-        mediaMerging: false,
-        restructuring: false,
-        semanticMerging: false,
-        shorthandCompacting: false
+        mergeMedia: false,
+        restructureRules: false,
+        mergeSemantically: false,
+        compactShorthands: false
       }
     }
   };

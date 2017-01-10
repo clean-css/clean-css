@@ -19,12 +19,12 @@ vows.describe('remove duplicate @font-face at-rules')
     }, { level: 2 })
   )
   .addBatch(
-    optimizerContext('level 2 off but duplicateFontRulesRemoving on', {
+    optimizerContext('level 2 off but removeDuplicateFontRules on', {
       'non-adjacent': [
         '@font-face{font-family:test;src:url(fonts/test.woff2)}.one{color:red}@font-face{font-family:test;src:url(fonts/test.woff2)}',
         '@font-face{font-family:test;src:url(fonts/test.woff2)}.one{color:red}'
       ]
-    }, { level: { 2: { all: false, duplicateFontRulesRemoving: true } } })
+    }, { level: { 2: { all: false, removeDuplicateFontRules: true } } })
   )
   .addBatch(
     optimizerContext('level 2 off', {

@@ -341,7 +341,7 @@ vows.describe('module tests').addBatch({
     },
     'restructuring - on': {
       'topic': function () {
-        new CleanCSS({ level: { 2: { restructuring: true } } }).minify('div{margin-top:0}.one{margin:0}.two{display:block;margin-top:0}', this.callback);
+        new CleanCSS({ level: { 2: { restructureRules: true } } }).minify('div{margin-top:0}.one{margin:0}.two{display:block;margin-top:0}', this.callback);
       },
       'gets right output': function (minified) {
         assert.equal(minified.styles, '.two,div{margin-top:0}.one{margin:0}.two{display:block}');
@@ -349,7 +349,7 @@ vows.describe('module tests').addBatch({
     },
     'restructuring - off': {
       'topic': function () {
-        return new CleanCSS({ level: { 2: { restructuring: false } } }).minify('div{margin-top:0}.one{margin:0}.two{display:block;margin-top:0}');
+        return new CleanCSS({ level: { 2: { restructureRules: false } } }).minify('div{margin-top:0}.one{margin:0}.two{display:block;margin-top:0}');
       },
       'gets right output': function (minified) {
         assert.equal(minified.styles, 'div{margin-top:0}.one{margin:0}.two{display:block;margin-top:0}');
@@ -365,7 +365,7 @@ vows.describe('module tests').addBatch({
     },
     'semantic merging - on': {
       'topic': function () {
-        return new CleanCSS({ level: { 2: { semanticMerging: true } } }).minify('.a{margin:0}.b{margin:10px;padding:0}.c{margin:0}');
+        return new CleanCSS({ level: { 2: { mergeSemantically: true } } }).minify('.a{margin:0}.b{margin:10px;padding:0}.c{margin:0}');
       },
       'gets right output': function (minified) {
         assert.equal(minified.styles, '.a,.c{margin:0}.b{margin:10px;padding:0}');

@@ -23,12 +23,12 @@ vows.describe('remove duplicate media queries')
     }, { level: 2 })
   )
   .addBatch(
-    optimizerContext('level 2 off but duplicateMediaRemoving on', {
+    optimizerContext('level 2 off but removeDuplicateMediaBlocks on', {
       'non-adjacent': [
         '@media screen{a{color:red}}@media print{a{color:#fff}}@media screen{a{color:red}}',
         '@media print{a{color:#fff}}@media screen{a{color:red}}'
       ]
-    }, { level: { 2: { all: false, duplicateMediaRemoving: true } } })
+    }, { level: { 2: { all: false, removeDuplicateMediaBlocks: true } } })
   )
   .addBatch(
     optimizerContext('level 2 off', {
@@ -44,6 +44,6 @@ vows.describe('remove duplicate media queries')
         '@media screen{a{color:red}}@media screen{div{color:red}}',
         '@media screen{a{color:red}}@media screen{div{color:red}}'
       ]
-    }, { level: { 2: { mediaMerging: false } } })
+    }, { level: { 2: { mergeMedia: false } } })
   )
   .export(module);

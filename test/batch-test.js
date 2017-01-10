@@ -50,7 +50,7 @@ function batchContexts() {
             keepBreaks: true,
             level: {
               2: {
-                restructuring: true
+                restructureRules: true
               }
             }
           }).minify(data.input, this.callback.bind(null, data));
@@ -66,7 +66,7 @@ function batchContexts() {
             keepBreaks: true,
             level: {
               2: {
-                restructuring: true
+                restructureRules: true
               }
             },
             sourceMap: true
@@ -79,7 +79,7 @@ function batchContexts() {
       'minifying via CLI': {
         'topic': function (data) {
           exec(
-            '__DIRECT__=1 ./bin/cleancss -b -O2 restructuring:on ' + (isIE7Mode ? '-c ie7 ' : '') + path.join(dir, filename),
+            '__DIRECT__=1 ./bin/cleancss -b -O2 restructureRules:on ' + (isIE7Mode ? '-c ie7 ' : '') + path.join(dir, filename),
             { maxBuffer: 500 * 1024 },
             this.callback.bind(null, data)
           );

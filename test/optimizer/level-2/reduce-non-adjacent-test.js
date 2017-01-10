@@ -116,7 +116,7 @@ vows.describe('remove duplicates')
         'a{padding:10px;margin:0;color:red}.one{color:red}a,p{color:red;padding:0}.one,a{color:#fff}',
         'a{margin:0}a,p{color:red;padding:0}.one,a{color:#fff}'
       ]
-    }, { level: { 2: { restructuring: true } } })
+    }, { level: { 2: { restructureRules: true } } })
   )
   .addBatch(
     optimizerContext('level 2 on and aggressive merging off', {
@@ -124,15 +124,15 @@ vows.describe('remove duplicates')
         'a{padding:10px;margin:0;color:red}.one{color:red}a,p{color:red;padding:0}',
         '.one,a,p{color:red}a{padding:10px;margin:0}a,p{padding:0}'
       ]
-    }, { aggressiveMerging: false, level: { 2: { restructuring: true } } })
+    }, { aggressiveMerging: false, level: { 2: { restructureRules: true } } })
   )
   .addBatch(
-    optimizerContext('level 2 off but nonAdjacentRulesReducing on', {
+    optimizerContext('level 2 off but reduceNonAdjacentRules on', {
       'non-adjacent with multi selectors': [
         'a{padding:10px;margin:0;color:red}.one{color:red}a,p{color:red;padding:0}',
         'a{margin:0;color:red}.one{color:red}a,p{color:red;padding:0}'
       ]
-    }, { level: { 2: { all: false, nonAdjacentRulesReducing: true } } })
+    }, { level: { 2: { all: false, reduceNonAdjacentRules: true } } })
   )
   .addBatch(
     optimizerContext('level 2 off', {

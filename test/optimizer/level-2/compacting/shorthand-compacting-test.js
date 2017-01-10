@@ -22,7 +22,7 @@ function _optimize(source) {
     compatibility: compat,
     level: {
       2: {
-        shorthandCompacting: true
+        compactShorthands: true
       }
     }
   };

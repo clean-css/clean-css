@@ -2221,7 +2221,7 @@ vows.describe('integration tests')
         '.one{color:red;margin:0}.two{color:red}.one{margin:0}',
         '.one,.two{color:red}.one{margin:0}'
       ]
-    }, { level: { 2: { restructuring: true } } })
+    }, { level: { 2: { restructureRules: true } } })
   )
   .addBatch(
     optimizerContext('units - IE8 compatibility', {

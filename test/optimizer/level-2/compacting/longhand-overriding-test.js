@@ -21,10 +21,10 @@ function _optimize(source) {
     compatibility: compat,
     level: {
       2: {
-        mediaMerging: true,
-        restructuring: true,
-        semanticMerging: false,
-        shorthandCompacting: true
+        mergeMedia: true,
+        restructureRules: true,
+        mergeSemantically: false,
+        compactShorthands: true
       }
     }
   };

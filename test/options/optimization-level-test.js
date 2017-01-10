@@ -121,16 +121,16 @@ vows.describe(optimizationLevelFrom)
       },
       'has level 2 options': function (levelOptions) {
         assert.deepEqual(levelOptions['2'], {
-          adjacentRulesMerging: true,
-          duplicateFontRulesRemoving: true,
-          duplicateMediaRemoving: true,
-          duplicateRulesRemoving: true,
-          mediaMerging: true,
-          nonAdjacentRulesMerging: true,
-          nonAdjacentRulesReducing: true,
-          restructuring: false,
-          semanticMerging: false,
-          shorthandCompacting: true
+          compactShorthands: true,
+          mergeAdjacentRules: true,
+          mergeMedia: true,
+          mergeNonAdjacentRules: true,
+          mergeSemantically: false,
+          reduceNonAdjacentRules: true,
+          removeDuplicateFontRules: true,
+          removeDuplicateMediaBlocks: true,
+          removeDuplicateRules: true,
+          restructureRules: false
         });
       }
     },
@@ -180,16 +180,16 @@ vows.describe(optimizationLevelFrom)
       },
       'has level 2 options': function (levelOptions) {
         assert.deepEqual(levelOptions['2'], {
-          adjacentRulesMerging: true,
-          duplicateFontRulesRemoving: true,
-          duplicateMediaRemoving: true,
-          duplicateRulesRemoving: true,
-          mediaMerging: true,
-          nonAdjacentRulesMerging: true,
-          nonAdjacentRulesReducing: true,
-          restructuring: false,
-          semanticMerging: false,
-          shorthandCompacting: true
+          compactShorthands: true,
+          mergeAdjacentRules: true,
+          mergeMedia: true,
+          mergeNonAdjacentRules: true,
+          mergeSemantically: false,
+          reduceNonAdjacentRules: true,
+          removeDuplicateFontRules: true,
+          removeDuplicateMediaBlocks: true,
+          removeDuplicateRules: true,
+          restructureRules: false
         });
       }
     },
@@ -263,7 +263,7 @@ vows.describe(optimizationLevelFrom)
     },
     'a hash with all keyword for level 2': {
       'topic': function () {
-        return optimizationLevelFrom({ 1: { specialComments: 0 }, 2: { all: false, mediaMerging: true } });
+        return optimizationLevelFrom({ 1: { specialComments: 0 }, 2: { all: false, mergeMedia: true } });
       },
       'has all options': function (levelOptions) {
         assert.deepEqual(Object.keys(levelOptions), ['0', '1', '2']);
@@ -296,22 +296,22 @@ vows.describe(optimizationLevelFrom)
       },
       'has level 2 options': function (levelOptions) {
         assert.deepEqual(levelOptions['2'], {
-          adjacentRulesMerging: false,
-          duplicateFontRulesRemoving: false,
-          duplicateMediaRemoving: false,
-          duplicateRulesRemoving: false,
-          mediaMerging: true,
-          nonAdjacentRulesMerging: false,
-          nonAdjacentRulesReducing: false,
-          restructuring: false,
-          semanticMerging: false,
-          shorthandCompacting: false
+          compactShorthands: false,
+          mergeAdjacentRules: false,
+          mergeMedia: true,
+          mergeNonAdjacentRules: false,
+          mergeSemantically: false,
+          reduceNonAdjacentRules: false,
+          removeDuplicateFontRules: false,
+          removeDuplicateMediaBlocks: false,
+          removeDuplicateRules: false,
+          restructureRules: false
         });
       }
     },
     'a hash with * keyword for level 2': {
       'topic': function () {
-        return optimizationLevelFrom({ 1: { specialComments: 0 }, 2: { '*': false, mediaMerging: true } });
+        return optimizationLevelFrom({ 1: { specialComments: 0 }, 2: { '*': false, mergeMedia: true } });
       },
       'has all options': function (levelOptions) {
         assert.deepEqual(Object.keys(levelOptions), ['0', '1', '2']);
@@ -344,16 +344,16 @@ vows.describe(optimizationLevelFrom)
       },
       'has level 2 options': function (levelOptions) {
         assert.deepEqual(levelOptions['2'], {
-          adjacentRulesMerging: false,
-          duplicateFontRulesRemoving: false,
-          duplicateMediaRemoving: false,
-          duplicateRulesRemoving: false,
-          mediaMerging: true,
-          nonAdjacentRulesMerging: false,
-          nonAdjacentRulesReducing: false,
-          restructuring: false,
-          semanticMerging: false,
-          shorthandCompacting: false
+          compactShorthands: false,
+          mergeAdjacentRules: false,
+          mergeMedia: true,
+          mergeNonAdjacentRules: false,
+          mergeSemantically: false,
+          reduceNonAdjacentRules: false,
+          removeDuplicateFontRules: false,
+          removeDuplicateMediaBlocks: false,
+          removeDuplicateRules: false,
+          restructureRules: false
         });
       }
     },
@@ -393,7 +393,7 @@ vows.describe(optimizationLevelFrom)
     },
     'a hash with options as strings with boolean values': {
       'topic': function () {
-        return optimizationLevelFrom({ 2: 'mediaMerging:false;semanticMerging:true' });
+        return optimizationLevelFrom({ 2: 'mergeMedia:false;mergeSemantically:true' });
       },
       'has all options': function (levelOptions) {
         assert.deepEqual(Object.keys(levelOptions), ['0', '1', '2']);
@@ -426,22 +426,22 @@ vows.describe(optimizationLevelFrom)
       },
       'has level 2 options': function (levelOptions) {
         assert.deepEqual(levelOptions['2'], {
-          adjacentRulesMerging: true,
-          duplicateFontRulesRemoving: true,
-          duplicateMediaRemoving: true,
-          duplicateRulesRemoving: true,
-          mediaMerging: false,
-          nonAdjacentRulesMerging: true,
-          nonAdjacentRulesReducing: true,
-          restructuring: false,
-          semanticMerging: true,
-          shorthandCompacting: true
+          compactShorthands: true,
+          mergeAdjacentRules: true,
+          mergeMedia: false,
+          mergeNonAdjacentRules: true,
+          mergeSemantically: true,
+          reduceNonAdjacentRules: true,
+          removeDuplicateFontRules: true,
+          removeDuplicateMediaBlocks: true,
+          removeDuplicateRules: true,
+          restructureRules: false
         });
       }
     },
     'a hash with options as strings with boolean values as on/off': {
       'topic': function () {
-        return optimizationLevelFrom({ 2: 'mediaMerging:off;semanticMerging:on' });
+        return optimizationLevelFrom({ 2: 'mergeMedia:off;mergeSemantically:on' });
       },
       'has all options': function (levelOptions) {
         assert.deepEqual(Object.keys(levelOptions), ['0', '1', '2']);
@@ -474,22 +474,22 @@ vows.describe(optimizationLevelFrom)
       },
       'has level 2 options': function (levelOptions) {
         assert.deepEqual(levelOptions['2'], {
-          adjacentRulesMerging: true,
-          duplicateFontRulesRemoving: true,
-          duplicateMediaRemoving: true,
-          duplicateRulesRemoving: true,
-          mediaMerging: false,
-          nonAdjacentRulesMerging: true,
-          nonAdjacentRulesReducing: true,
-          restructuring: false,
-          semanticMerging: true,
-          shorthandCompacting: true
+          compactShorthands: true,
+          mergeAdjacentRules: true,
+          mergeMedia: false,
+          mergeNonAdjacentRules: true,
+          mergeSemantically: true,
+          reduceNonAdjacentRules: true,
+          removeDuplicateFontRules: true,
+          removeDuplicateMediaBlocks: true,
+          removeDuplicateRules: true,
+          restructureRules: false
         });
       }
     },
     'a hash with options as strings with all keyword': {
       'topic': function () {
-        return optimizationLevelFrom({ 2: 'all:false;mediaMerging:true;semanticMerging:true' });
+        return optimizationLevelFrom({ 2: 'all:false;mergeMedia:true;mergeSemantically:true' });
       },
       'has all options': function (levelOptions) {
         assert.deepEqual(Object.keys(levelOptions), ['0', '1', '2']);
@@ -522,22 +522,22 @@ vows.describe(optimizationLevelFrom)
       },
       'has level 2 options': function (levelOptions) {
         assert.deepEqual(levelOptions['2'], {
-          adjacentRulesMerging: false,
-          duplicateFontRulesRemoving: false,
-          duplicateMediaRemoving: false,
-          duplicateRulesRemoving: false,
-          mediaMerging: true,
-          nonAdjacentRulesMerging: false,
-          nonAdjacentRulesReducing: false,
-          restructuring: false,
-          semanticMerging: true,
-          shorthandCompacting: false
+          compactShorthands: false,
+          mergeAdjacentRules: false,
+          mergeMedia: true,
+          mergeNonAdjacentRules: false,
+          mergeSemantically: true,
+          reduceNonAdjacentRules: false,
+          removeDuplicateFontRules: false,
+          removeDuplicateMediaBlocks: false,
+          removeDuplicateRules: false,
+          restructureRules: false
         });
       }
     },
     'a hash with options as strings with * keyword': {
       'topic': function () {
-        return optimizationLevelFrom({ 2: '*:false;mediaMerging:true;semanticMerging:true' });
+        return optimizationLevelFrom({ 2: '*:false;mergeMedia:true;mergeSemantically:true' });
       },
       'has all options': function (levelOptions) {
         assert.deepEqual(Object.keys(levelOptions), ['0', '1', '2']);
@@ -570,16 +570,16 @@ vows.describe(optimizationLevelFrom)
       },
       'has level 2 options': function (levelOptions) {
         assert.deepEqual(levelOptions['2'], {
-          adjacentRulesMerging: false,
-          duplicateFontRulesRemoving: false,
-          duplicateMediaRemoving: false,
-          duplicateRulesRemoving: false,
-          mediaMerging: true,
-          nonAdjacentRulesMerging: false,
-          nonAdjacentRulesReducing: false,
-          restructuring: false,
-          semanticMerging: true,
-          shorthandCompacting: false
+          compactShorthands: false,
+          mergeAdjacentRules: false,
+          mergeMedia: true,
+          mergeNonAdjacentRules: false,
+          mergeSemantically: true,
+          reduceNonAdjacentRules: false,
+          removeDuplicateFontRules: false,
+          removeDuplicateMediaBlocks: false,
+          removeDuplicateRules: false,
+          restructureRules: false
         });
       }
     },

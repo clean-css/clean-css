@@ -169,7 +169,7 @@ vows.describe('./bin/cleancss')
     })
   })
   .addBatch({
-    'enable restructuring optimizations': pipedContext('div{margin-top:0}.one{margin:0}.two{display:block;margin-top:0}', '-O2 restructuring:on', {
+    'enable restructuring optimizations': pipedContext('div{margin-top:0}.one{margin:0}.two{display:block;margin-top:0}', '-O2 restructureRules:on', {
       'should do basic optimizations only': function (error, stdout) {
         assert.equal(stdout, '.two,div{margin-top:0}.one{margin:0}.two{display:block}');
       }
@@ -460,7 +460,7 @@ vows.describe('./bin/cleancss')
     }
   })
   .addBatch({
-    '@media merging': pipedContext('@media screen{a{color:red}}@media screen{a{display:block}}', '-O2 mediaMerging:off', {
+    '@media merging': pipedContext('@media screen{a{color:red}}@media screen{a{display:block}}', '-O2 mergeMedia:off', {
       'gets right result': function (error, stdout) {
         assert.equal(stdout, '@media screen{a{color:red}}@media screen{a{display:block}}');
       }
@@ -468,7 +468,7 @@ vows.describe('./bin/cleancss')
   })
   .addBatch({
     'shorthand compacting': {
-      'of (yet) unmergeable properties': pipedContext('a{background:url(image.png);background-color:red}', '-O2 shorthandCompacting:off', {
+      'of (yet) unmergeable properties': pipedContext('a{background:url(image.png);background-color:red}', '-O2 compactShorthands:off', {
         'gets right result': function (error, stdout) {
           assert.equal(stdout, 'a{background:url(image.png);background-color:red}');
         }
@@ -622,7 +622,7 @@ vows.describe('./bin/cleancss')
           assert.equal(stdout, '.a{margin:0}.b{margin:10px;padding:0}.c{margin:0}');
         }
       }),
-      'enabled': pipedContext('.a{margin:0}.b{margin:10px;padding:0}.c{margin:0}', '-O2 semanticMerging:on', {
+      'enabled': pipedContext('.a{margin:0}.b{margin:10px;padding:0}.c{margin:0}', '-O2 mergeSemantically:on', {
         'should output right data': function (error, stdout) {
           assert.equal(stdout, '.a,.c{margin:0}.b{margin:10px;padding:0}');
         }

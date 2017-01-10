@@ -39,6 +39,7 @@ commands.on('--help', function () {
   console.log('  Level 1 optimizations:');
   console.log('    %> cleancss -O1 one.css');
   console.log('    %> cleancss -O1 removeQuotes:off;roundingPrecision:4;specialComments:1 one.css');
+  console.log('    %> cleancss -O1 all:off;specialComments:1 one.css');
   console.log('    %> # `cleanupCharsets` controls `@charset` moving to the front of a stylesheet; defaults to `on`');
   console.log('    %> # `normalizeUrls` controls URL normalzation; default to `on`');
   console.log('    %> # `optimizeBackground` controls `background` property optimizatons; defaults to `on`');
@@ -62,6 +63,7 @@ commands.on('--help', function () {
   console.log('  Level 2 optimizations:');
   console.log('    %> cleancss -O2 one.css');
   console.log('    %> cleancss -O2 mediaMerging:off;restructuring:off;semanticMerging:on;shorthandCompacting:off one.css');
+  console.log('    %> cleancss -O2 all:off;duplicateRulesRemoving:on one.css');
   console.log('    %> # `adjacentRulesMerging` controls adjacent rules merging; defaults to `on`');
   console.log('    %> # `duplicateFontRulesRemoving` controls duplicate `@font-face` removing; defaults to `on`');
   console.log('    %> # `duplicateMediaRemoving` controls duplicate `@media` removing; defaults to `on`');

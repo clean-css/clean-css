@@ -120,6 +120,7 @@ Level 1 optimizations (default):
 ```bash
 cleancss -O1 one.css
 cleancss -O1 removeQuotes:off;roundingPrecision:4;specialComments:1 one.css
+cleancss -O1 all:off;specialComments:1 one.css
 # `cleanupCharsets` controls `@charset` moving to the front of a stylesheet; defaults to `on`
 # `normalizeUrls` controls URL normalzation; default to `on`
 # `optimizeBackground` controls `background` property optimizatons; defaults to `on`
@@ -146,6 +147,7 @@ Level 2 optimizations:
 ```bash
 cleancss -O2 one.css
 cleancss -O2 mediaMerging:off;restructuring:off;semanticMerging:on;shorthandCompacting:off one.css
+cleancss -O2 all:off;duplicateRulesRemoving:on one.css
 # `adjacentRulesMerging` controls adjacent rules merging; defaults to `on`
 # `duplicateFontRulesRemoving` controls duplicate `@font-face` removing; defaults to `on`
 # `duplicateMediaRemoving` controls duplicate `@media` removing; defaults to `on`
@@ -227,6 +229,16 @@ new CleanCSS({
     }
   }
 });
+
+// level 1 optimizations `all` keyword
+new CleanCSS({
+  level: {
+    1: {
+      all: false // sets all values to `false`
+      tidySelectors: true // turns on optimizing selectors
+    }
+  }
+});
 ```
 
 ```js
@@ -244,6 +256,16 @@ new CleanCSS({
       restructuring: false, // controls content restructuring; defaults to false
       semanticMerging: false, // controls semantic merging; defaults to false
       shorthandCompacting: true, // controls shorthand compacting; defaults to true
+    }
+  }
+});
+
+// level 2 optimizations `all` keyword
+new CleanCSS({
+  level: {
+    1: {
+      all: false // sets all values to `false`
+      duplicateRulesRemoving: true // turns on removing duplicate rules
     }
   }
 });

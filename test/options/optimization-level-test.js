@@ -193,7 +193,75 @@ vows.describe(optimizationLevelFrom)
         });
       }
     },
-    'a hash with all keyword': {
+    'a hash with all keyword for level 1': {
+      'topic': function () {
+        return optimizationLevelFrom({ 1: { all: false, cleanupCharsets: true } });
+      },
+      'has all options': function (levelOptions) {
+        assert.deepEqual(Object.keys(levelOptions), ['0', '1']);
+      },
+      'has level 0 options': function (levelOptions) {
+        assert.deepEqual(levelOptions['0'], {});
+      },
+      'has level 1 options': function (levelOptions) {
+        assert.deepEqual(levelOptions['1'], {
+          cleanupCharsets: true,
+          normalizeUrls: false,
+          optimizeBackground: false,
+          optimizeBorderRadius: false,
+          optimizeFilter: false,
+          optimizeFont: false,
+          optimizeFontWeight: false,
+          optimizeOutline: false,
+          removeNegativePaddings: false,
+          removeQuotes: false,
+          removeWhitespace: false,
+          replaceMultipleZeros: false,
+          replaceTimeUnits: false,
+          replaceZeroUnits: false,
+          roundingPrecision: roundingPrecisionFrom(undefined),
+          specialComments: 'all',
+          tidyAtRules: false,
+          tidyBlockScopes: false,
+          tidySelectors: false
+        });
+      }
+    },
+    'a hash with * keyword for level 1': {
+      'topic': function () {
+        return optimizationLevelFrom({ 1: { '*': false, cleanupCharsets: true } });
+      },
+      'has all options': function (levelOptions) {
+        assert.deepEqual(Object.keys(levelOptions), ['0', '1']);
+      },
+      'has level 0 options': function (levelOptions) {
+        assert.deepEqual(levelOptions['0'], {});
+      },
+      'has level 1 options': function (levelOptions) {
+        assert.deepEqual(levelOptions['1'], {
+          cleanupCharsets: true,
+          normalizeUrls: false,
+          optimizeBackground: false,
+          optimizeBorderRadius: false,
+          optimizeFilter: false,
+          optimizeFont: false,
+          optimizeFontWeight: false,
+          optimizeOutline: false,
+          removeNegativePaddings: false,
+          removeQuotes: false,
+          removeWhitespace: false,
+          replaceMultipleZeros: false,
+          replaceTimeUnits: false,
+          replaceZeroUnits: false,
+          roundingPrecision: roundingPrecisionFrom(undefined),
+          specialComments: 'all',
+          tidyAtRules: false,
+          tidyBlockScopes: false,
+          tidySelectors: false
+        });
+      }
+    },
+    'a hash with all keyword for level 2': {
       'topic': function () {
         return optimizationLevelFrom({ 1: { specialComments: 0 }, 2: { all: false, mediaMerging: true } });
       },
@@ -241,7 +309,7 @@ vows.describe(optimizationLevelFrom)
         });
       }
     },
-    'a hash with * keyword': {
+    'a hash with * keyword for level 2': {
       'topic': function () {
         return optimizationLevelFrom({ 1: { specialComments: 0 }, 2: { '*': false, mediaMerging: true } });
       },

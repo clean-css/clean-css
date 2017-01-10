@@ -1163,4 +1163,12 @@ vows.describe('level 1 optimizations')
       ]
     }, { level: { 1: { tidySelectors: false } } })
   )
+  .addBatch(
+    optimizerContext('all optimizations off via `all` keyword', {
+      'stays as it is': [
+          '.block > .another-block{animation-duration:500ms;font:"Arial";margin:010px}',
+          '.block > .another-block{animation-duration:500ms;font:"Arial";margin:010px}'
+      ]
+    }, { level: { 1: { all: false } } })
+  )
   .export(module);

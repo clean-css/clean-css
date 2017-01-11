@@ -43,4 +43,16 @@ vows.describe(naturalCompare)
       }
     }
   })
+  .addBatch({
+    'objects': {
+      'topic': [['a', 1], ['a0', 2], ['a0', 3], ['a1', 5], ['a0', 4], ['a0', 5], ['a0', 1]],
+      'are sorted': function (list) {
+        var sortedList = list.sort(function (o1, o2) {
+          return naturalCompare(o1[0], o2[0]);
+        });
+
+        assert.deepEqual(sortedList, [['a', 1], ['a0', 2], ['a0', 3], ['a0', 4], ['a0', 5], ['a0', 1], ['a1', 5]]);
+      }
+    }
+  })
   .export(module);

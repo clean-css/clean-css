@@ -1,31 +1,34 @@
 h1,h3{line-height:1}
-h1 img,h2 img,h3 img,h4 img,h5 img,h6 img,html{margin:0}
+h1 img,h2 img,h3 img,h4 img,h5 img,h6 img,html,li ol,li ul{margin:0}
 .pull-1,.pull-10,.pull-11,.pull-12,.pull-13,.pull-14,.pull-15,.pull-16,.pull-17,.pull-18,.pull-19,.pull-2,.pull-20,.pull-21,.pull-22,.pull-23,.pull-24,.pull-3,.pull-4,.pull-5,.pull-6,.pull-7,.pull-8,.pull-9,.push-1,.push-10,.push-11,.push-12,.push-13,.push-14,.push-15,.push-16,.push-17,.push-18,.push-19,.push-2,.push-20,.push-21,.push-22,.push-23,.push-24,.push-3,.push-4,.push-5,.push-6,.push-7,.push-8,.push-9{position:relative;float:left}
+hr,table{width:100%}
+body,hr.space{background:#fff}
 .clear,hr{clear:both}
 a,abbr,acronym,address,article,aside,blockquote,body,caption,code,dd,del,dfn,dialog,div,dl,dt,em,fieldset,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,iframe,img,label,legend,li,nav,object,ol,p,pre,q,section,span,table,tbody,td,tfoot,th,thead,tr,ul{margin:0;padding:0;border:0;font-weight:inherit;font-style:inherit;font-size:100%;font-family:inherit;vertical-align:baseline}
+address,dl,fieldset,p{margin:0 0 1.5em}
 address,blockquote,dfn,em{font-style:italic}
 article,aside,dialog,figure,footer,header,hgroup,nav,section{display:block}
-caption,td,th{text-align:left;font-weight:400;float:none!important}
+table{border-collapse:separate;border-spacing:0;margin-bottom:1.4em}
+caption,td,th{text-align:left;font-weight:400;float:none!important;padding:4px 10px 4px 5px}
 table,td,th{vertical-align:middle}
 blockquote:after,blockquote:before,q:after,q:before{content:''}
 blockquote,q{quotes:"" ""}
 a img{border:none}
 :focus{outline:0}
 html{padding:0;border:0;font-size:100.01%}
-body{line-height:1.5;font-size:75%;color:#222;background:#fff;font-family:"Helvetica Neue",Arial,Helvetica,sans-serif}
+body{line-height:1.5;font-size:75%;color:#222;font-family:"Helvetica Neue",Arial,Helvetica,sans-serif}
 h1,h2,h3,h4,h5,h6{font-weight:400;color:#111}
 h1{font-size:3em;margin-bottom:.5em}
 h2{font-size:2em;margin-bottom:.75em}
-h3{font-size:1.5em;margin-bottom:1em}
+h3,input.title{font-size:1.5em}
+h3{margin-bottom:1em}
 h4{font-size:1.2em;line-height:1.25;margin-bottom:1.25em}
 h5,h6{font-size:1em;font-weight:700}
 h5{margin-bottom:1.5em}
-p{margin:0 0 1.5em}
 .left{float:left!important}
 p .left{margin:1.5em 1.5em 1.5em 0;padding:0}
 .right{float:right!important}
 p .right{margin:1.5em 0 1.5em 1.5em;padding:0}
-address,dl{margin:0 0 1.5em}
 a:focus,a:hover{color:#09f}
 a{color:#06c;text-decoration:underline}
 .quiet,blockquote,del{color:#666}
@@ -36,14 +39,11 @@ abbr,acronym{border-bottom:1px dotted #666}
 pre{margin:1.5em 0;white-space:pre}
 code,pre,tt{font:1em 'andale mono','lucida console',monospace;line-height:1.5}
 label,legend{font-weight:700}
-li ol,li ul{margin:0}
 ol,ul{margin:0 1.5em 1.5em 0;padding-left:1.5em}
 ul{list-style-type:disc}
 ol{list-style-type:decimal}
 dd{margin-left:1.5em}
-table{border-collapse:separate;border-spacing:0;margin-bottom:1.4em;width:100%}
 thead th{background:#c3d9ff}
-caption,td,th{padding:4px 10px 4px 5px}
 tbody tr.even td,tbody tr:nth-child(even) td{background:#e5ecf9}
 tfoot{font-style:italic}
 caption{background:#eee}
@@ -55,11 +55,12 @@ caption{background:#eee}
 .highlight{background:#ff0}
 .added{background:#060;color:#fff}
 .removed{background:#900;color:#fff}
+.alert,.alert a,.error,.error a{color:#8a1f11}
 .first{margin-left:0;padding-left:0}
 .last{padding-right:0}
 .top{margin-top:0;padding-top:0}
 .bottom{margin-bottom:0;padding-bottom:0}
-fieldset{padding:0 1.4em 1.4em;margin:0 0 1.5em;border:1px solid #ccc}
+fieldset{padding:0 1.4em 1.4em;border:1px solid #ccc}
 #IE8#HACK,fieldset{padding-top:1.4em}
 #IE8#HACK,legend{margin-top:0;margin-bottom:0}
 input.text,input.title,input[type=password],input[type=text],textarea{background-color:#fff;border:1px solid #bbb}
@@ -67,16 +68,14 @@ input.text:focus,input.title:focus,input[type=password]:focus,input[type=text]:f
 select{background-color:#fff;border-width:1px;border-style:solid}
 input.text,input.title,input[type=password],input[type=text],select,textarea{margin:.5em 0}
 input.text,input.title{width:300px;padding:5px}
-input.title{font-size:1.5em}
 textarea{width:390px;height:250px;padding:5px}
 form.inline{line-height:3}
 form.inline p{margin-bottom:0}
 .alert,.error,.info,.notice,.success{padding:.8em;margin-bottom:1em;border:2px solid #ddd}
-.alert,.error{background:#fbe3e4;color:#8a1f11;border-color:#fbc2c4}
+.alert,.error{background:#fbe3e4;border-color:#fbc2c4}
 .notice{background:#fff6bf;color:#514721;border-color:#ffd324}
 .success{background:#e6efc2;color:#264409;border-color:#c6d880}
 .info{background:#d5edf8;color:#205791;border-color:#92cae4}
-.alert a,.error a{color:#8a1f11}
 .notice a{color:#514721}
 .success a{color:#264409}
 .info a{color:#205791}
@@ -233,7 +232,7 @@ input.span-24,textarea.span-24{width:938px}
 .append-bottom,.box,div.append-bottom{margin-bottom:1.5em}
 .prepend-top,div.prepend-top{margin-top:1.5em}
 .box{padding:1.5em;background:#e5ecf9}
-hr{background:#ddd;color:#ddd;float:none;width:100%;height:1px;margin:0 0 1.45em;border:none}
-hr.space{background:#fff;color:#fff;visibility:hidden}
+hr{background:#ddd;color:#ddd;float:none;height:1px;margin:0 0 1.45em;border:none}
+hr.space{color:#fff;visibility:hidden}
 .clearfix:after,.container:after{content:"\0020";display:block;height:0;clear:both;visibility:hidden;overflow:hidden}
 .clearfix,.container{display:block}

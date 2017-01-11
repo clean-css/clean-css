@@ -1557,16 +1557,16 @@ vows.describe('integration tests')
         'a{display:block;color:#fff\\9}'
       ],
       'overriding a star by a non-ajacent selector': [
-        'a{color:red}.one{color:#000}a{*color:#fff}',
-        'a{color:red}.one{color:#000}a{*color:#fff}'
+        '.block-1{color:red}.block-2{color:#000}.block-1{*color:#fff}',
+        '.block-1{color:red}.block-2{color:#000}.block-1{*color:#fff}'
       ],
       'overriding an underscore by a non-ajacent selector': [
-        'a{color:red}.one{color:#000}a{_color:#fff}',
-        'a{color:red}.one{color:#000}a{_color:#fff}'
+        '.block-1{color:red}.block-2{color:#000}.block-1{_color:#fff}',
+        '.block-1{color:red}.block-2{color:#000}.block-1{_color:#fff}'
       ],
       'overriding a backslash by a non-ajacent selector': [
-        'a{color:red}.one{color:#fff}a{color:#fff\\9}',
-        'a{color:red}.one{color:#fff}a{color:#fff\\9}'
+        '.block-1{color:red}.block-2{color:#fff}.block-1{color:#fff\\9}',
+        '.block-1{color:red}.block-2{color:#fff}.block-1{color:#fff\\9}'
       ],
       'preserving backslash in overriddable': [
         'a{border:1px solid #ccc\\9}',

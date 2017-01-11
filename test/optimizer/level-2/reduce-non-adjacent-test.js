@@ -5,32 +5,32 @@ vows.describe('remove duplicates')
   .addBatch(
     optimizerContext('level 2 on', {
       'single selectors': [
-        'a{color:red;display:block}.one{margin:13px}a{color:#fff;margin:2px}',
-        '.one{margin:13px}a{display:block;color:#fff;margin:2px}'
+        '.block-1{color:red;display:block}.block-2{margin:13px}.block-1{color:#fff;margin:2px}',
+        '.block-2{margin:13px}.block-1{display:block;color:#fff;margin:2px}'
       ],
       'multiple selectors': [
         'a{padding:10px;margin:0;color:red}.one{color:red}a,p{color:red;padding:0}',
         'a{margin:0;color:red}.one{color:red}a,p{color:red;padding:0}'
       ],
       'with one redefined property': [
-        'a{color:red;display:block}.one{color:red}a{color:#fff;margin:2px}',
-        '.one{color:red}a{display:block;color:#fff;margin:2px}'
+        '.block-1{color:red;display:block}.block-2{color:red}.block-1{color:#fff;margin:2px}',
+        '.block-2{color:red}.block-1{display:block;color:#fff;margin:2px}'
       ],
       'with intentionally redefined properties on joins': [
-        'a{display:inline-block;display:-moz-inline-box;color:red}.one{margin:13px}a{color:#fff;margin:2px}',
-        '.one{margin:13px}a{display:inline-block;display:-moz-inline-box;color:#fff;margin:2px}'
+        '.block-1{display:inline-block;display:-moz-inline-box;color:red}.block-2{margin:13px}.block-1{color:#fff;margin:2px}',
+        '.block-2{margin:13px}.block-1{display:inline-block;display:-moz-inline-box;color:#fff;margin:2px}'
       ],
       'with intentionally redefined properties on multiple joins': [
-        'a{color:red}.one{font-size:13px}a{color:#fff;margin:2px}.two{margin:10px}a{margin:0}',
-        '.one{font-size:13px}.two{margin:10px}a{color:#fff;margin:0}'
+        '.block-1{color:red}.block-2{font-size:13px}.block-1{color:#fff;margin:2px}.block-3{margin:10px}.block-1{margin:0}',
+        '.block-2{font-size:13px}.block-3{margin:10px}.block-1{color:#fff;margin:0}'
       ],
       'with all redefined properties': [
         'a{color:red;display:block}.one{font-size:13px}a{color:#fff;display:inline-block;margin:2px}',
         '.one{font-size:13px}a{color:#fff;display:inline-block;margin:2px}'
       ],
       'many with all redefined properties': [
-        'a{padding:10px}.zero{color:transparent}a{color:red;display:block}.one{font-size:13px}a{color:#fff;display:inline-block;margin:2px}',
-        '.zero{color:transparent}.one{font-size:13px}a{padding:10px;color:#fff;display:inline-block;margin:2px}'
+        '.block-1{padding:10px}.block-2{color:transparent}.block-1{color:red;display:block}.block-3{font-size:13px}.block-1{color:#fff;display:inline-block;margin:2px}',
+        '.block-2{color:transparent}.block-3{font-size:13px}.block-1{padding:10px;color:#fff;display:inline-block;margin:2px}'
       ],
       'when overriden by an empty selector': [
         'a{padding:10px}.one{color:red}a{}',
@@ -53,8 +53,8 @@ vows.describe('remove duplicates')
         '#zero,.one>.two,.three,.www{color:#fff;margin:0}a{color:red}.one>.two,.three{line-height:2rem;font-size:1.5rem}'
       ],
       'when undefined is used as a value': [
-        '.one{text-shadow:undefined}p{font-size:14px}.one{font-size:13px}',
-        'p{font-size:14px}.one{text-shadow:undefined;font-size:13px}'
+        '.block-1{text-shadow:undefined}.block-2{font-size:14px}.block-1{font-size:13px}',
+        '.block-2{font-size:14px}.block-1{text-shadow:undefined;font-size:13px}'
       ],
       'when undefined is used as a value with reduction': [
         '.one{text-shadow:undefined}p{color:red}.one{font-size:13px;text-shadow:none}',

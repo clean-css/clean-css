@@ -280,6 +280,14 @@ vows.describe(canReorderSingle)
       'topic': function () {
         return canReorderSingle(propertiesIn('.one{border:none}')[0], propertiesIn('div{border:1px solid #f00}')[0]);
       },
+      'must be true': function (result) {
+        assert.isTrue(result);
+      }
+    },
+    'different, non-overlapping complex selectors with same specificity': {
+      'topic': function () {
+        return canReorderSingle(propertiesIn('.one{border:none}')[0], propertiesIn('.two{border:1px solid #f00}')[0]);
+      },
       'must be false': function (result) {
         assert.isFalse(result);
       }
@@ -335,6 +343,62 @@ vows.describe(canReorderSingle)
     'same but right vendor prefixed': {
       'topic': function () {
         return canReorderSingle(propertiesIn('a{background:linear-gradient()}')[0], propertiesIn('a{background:-webkit-linear-gradient()}')[0]);
+      },
+      'must be false': function (result) {
+        assert.isFalse(result);
+      }
+    },
+    'specificity - same #1': {
+      'topic': function () {
+        return canReorderSingle(propertiesIn('a{background:red}')[0], propertiesIn('a{background-color:blue}')[0]);
+      },
+      'must be false': function (result) {
+        assert.isFalse(result);
+      }
+    },
+    'specificity - same #2': {
+      'topic': function () {
+        return canReorderSingle(propertiesIn('div a{background:red}')[0], propertiesIn('body > a{background-color:blue}')[0]);
+      },
+      'must be false': function (result) {
+        assert.isFalse(result);
+      }
+    },
+    'specificity - different #1': {
+      'topic': function () {
+        return canReorderSingle(propertiesIn('.block{background:red}')[0], propertiesIn('a{background-color:blue}')[0]);
+      },
+      'must be true': function (result) {
+        assert.isTrue(result);
+      }
+    },
+    'specificity - different #2': {
+      'topic': function () {
+        return canReorderSingle(propertiesIn('.block{background:red}')[0], propertiesIn('#id{background-color:blue}')[0]);
+      },
+      'must be true': function (result) {
+        assert.isTrue(result);
+      }
+    },
+    'specificity - different #3': {
+      'topic': function () {
+        return canReorderSingle(propertiesIn('.block{background:red}')[0], propertiesIn('#id{background-color:blue}')[0]);
+      },
+      'must be true': function (result) {
+        assert.isTrue(result);
+      }
+    },
+    'specificity - different #4': {
+      'topic': function () {
+        return canReorderSingle(propertiesIn('#id div.block-1{background:red}')[0], propertiesIn('#id > div.block-1.block-2{background-color:blue}')[0]);
+      },
+      'must be true': function (result) {
+        assert.isTrue(result);
+      }
+    },
+    'specificity - complex #1': {
+      'topic': function () {
+        return canReorderSingle(propertiesIn('div,.block{background:red}')[0], propertiesIn('.block,#id{background-color:blue}')[0]);
       },
       'must be false': function (result) {
         assert.isFalse(result);

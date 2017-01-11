@@ -11,6 +11,14 @@ vows.describe('merge non djacent by selector')
       'down': [
         '.one{color:red}.two{font-weight:700}.one{font-weight:400}',
         '.two{font-weight:700}.one{color:red;font-weight:400}'
+      ],
+      'specificity #1': [
+        '.block{color:red}div{color:#00f}.block{font-weight:400}',
+        '.block{color:red;font-weight:400}div{color:#00f}',
+      ],
+      'specificity #2': [
+        '#id{background:red}.block{background-color:#00f}#id{height:1rem}#id{background-color:#fff}',
+        '#id{background:#fff;height:1rem}.block{background-color:#00f}'
       ]
       // 'up - blocked': [
       //   '.one{color:red;with:100%}.two{display:inline-block;width:10px}.one{font-weight:400;display:block}',

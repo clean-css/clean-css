@@ -4,5 +4,6 @@ cache: npm
 node_js:
   - 4
   - 6
+  - 7
 matrix:
   fast_finish: true

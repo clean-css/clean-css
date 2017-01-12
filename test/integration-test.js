@@ -298,7 +298,7 @@ vows.describe('integration tests')
         '@chArSET \'utf-8\';h1{color:red}',
         'h1{color:red}'
       ]
-    }, { keepBreaks: true })
+    }, { beautify: 'keep-breaks' })
   )
   .addBatch(
     optimizerContext('line breaks and important comments', {
@@ -306,7 +306,7 @@ vows.describe('integration tests')
         '/*! some comment */' + lineBreak + lineBreak + '@charset \'utf-8\';' + lineBreak + lineBreak + 'a{display:block}',
         '@charset \'utf-8\';' + lineBreak + 'a{display:block}'
       ]
-    }, { keepBreaks: true, level: { 1: { specialComments: 0 } } })
+    }, { beautify: 'keep-breaks', level: { 1: { specialComments: 0 } } })
   )
   .addBatch(
     optimizerContext('selectors', {
@@ -2161,7 +2161,7 @@ vows.describe('integration tests')
         'a{color:red}p{display:block}',
         'a{color:red}' + lineBreak + 'p{display:block}'
       ]
-    }, { level: 1, keepBreaks: true })
+    }, { beautify: 'keep-breaks', level: 1 })
   )
   .addBatch(
     optimizerContext('invalid data tokenization', {
@@ -2616,15 +2616,19 @@ vows.describe('integration tests')
     }, { beautify: true })
   )
   .addBatch(
-    optimizerContext('beautify formatting and keep breaks', {
+    optimizerContext('custom formatting', {
       'rule': [
         'a{color:red}',
-        'a {' + lineBreak + '  color: red' + lineBreak + '}'
+        'a {' + lineBreak + '\tcolor: red' + lineBreak + '}'
+      ],
+      'at rule block': [
+        '@font-face{font-family:test;src:url(/fonts/test.woff)}',
+        '@font-face {' + lineBreak + '\tfont-family: test;' + lineBreak + '\tsrc: url(/fonts/test.woff)' + lineBreak + '}'
       ],
       'nested rule block rules': [
         '@media screen{a{color:red}div{color:#000}}',
-        '@media screen {' + lineBreak + '  a {' + lineBreak + '    color: red' + lineBreak + '  }' + lineBreak + '  div {' + lineBreak + '    color: #000' + lineBreak + '  }' + lineBreak + '}'
+        '@media screen {' + lineBreak + '\ta {' + lineBreak + '\t\tcolor: red' + lineBreak + '\t}\tdiv {' + lineBreak + '\t\tcolor: #000' + lineBreak + '\t}' + lineBreak + '}'
       ]
-    }, { beautify: true, keepBreaks: true })
+    }, { beautify: { breaks: { afterRuleEnds: false }, indentWith: 'tab', indentBy: 1 } })
   )
   .export(module);

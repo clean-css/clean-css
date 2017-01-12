@@ -13,12 +13,11 @@ var buildVersion = JSON.parse(packageConfig).version;
 commands
   .version(buildVersion, '-v, --version')
   .usage('[options] <source-file ...>')
-  .option('-b, --keep-line-breaks', 'Keep line breaks')
+  .option('-b, --beautify [options]', 'Controls output CSS formatting, see examples below')
   .option('-c, --compatibility [ie7|ie8]', 'Force compatibility mode (see Readme for advanced examples)')
   .option('-d, --debug', 'Shows debug information (minification time & compression efficiency)')
   .option('-o, --output [output-file]', 'Use [output-file] as output instead of STDOUT')
   .option('-O <n> [optimizations]', 'Turn on level <n> optimizations; optionally accepts a list of fine-grained options, defaults to `1`, see examples below', function (val) { return Math.abs(parseInt(val)); })
-  .option('--beautify', 'Formats output CSS by using indentation and one rule or property per line')
   .option('--inline [rules]', 'Enables inlining for listed sources (defaults to `local`)')
   .option('--inline-timeout [seconds]', 'Per connection timeout when fetching remote stylesheets (defaults to 5 seconds)', parseFloat)
   .option('--skip-aggressive-merging', 'Disable properties merging based on their order')
@@ -32,6 +31,27 @@ commands.on('--help', function () {
   console.log('    %> cleancss -o one-min.css one.css');
   console.log('    %> cleancss -o merged-and-minified.css one.css two.css three.css');
   console.log('    %> cleancss one.css two.css three.css | gzip -9 -c > merged-minified-and-gzipped.css.gz');
+  console.log('');
+  console.log('  Beautify options:');
+  console.log('    %> cleancss --beautify one.css');
+  console.log('    %> cleancss --beautify \'indentBy:1;indentWith:tab\' one.css');
+  console.log('    %> cleancss --beautify \'breaks:afterBlockBegins=off;spaces:aroundSelectorRelation=off\' one.css');
+  console.log('    %> # `breaks` controls where to insert breaks');
+  console.log('    %> #   `afterAtRule` controls if a line break comes after an at-rule; e.g. `@charset`; defaults to `on` (alias to `true`)');
+  console.log('    %> #   `afterBlockBegins` controls if a line break comes after a block begins; e.g. `@media`; defaults to `on`');
+  console.log('    %> #   `afterBlockEnds` controls if a line break comes after a block ends, defaults to `on`');
+  console.log('    %> #   `afterComment` controls if a line break comes after a comment; defaults to `on`');
+  console.log('    %> #   `afterProperty` controls if a line break comes after a property; defaults to `on`');
+  console.log('    %> #   `afterRuleBegins` controls if a line break comes after a rule begins; defaults to `on`');
+  console.log('    %> #   `afterRuleEnds` controls if a line break comes after a rule ends; defaults to `on`');
+  console.log('    %> #   `beforeBlockEnds` controls if a line break comes before a block ends; defaults to `on`');
+  console.log('    %> #   `betweenSelectors` controls if a line break comes between selectors; defaults to `on`');
+  console.log('    %> # `indentBy` controls number of characters to indent with; defaults to `2`');
+  console.log('    %> # `indentWith` controls a character to indent with, can be `space` or `tab`; defaults to `space`');
+  console.log('    %> # `spaces` controls where to insert spaces');
+  console.log('    %> #   `aroundSelectorRelation` controls if spaces come around selector relations; e.g. `div > a`; defaults to `on`');
+  console.log('    %> #   `beforeBlockBegins` controls if a space comes before a block begins; e.g. `.block {`; defaults to `on`');
+  console.log('    %> #   `beforeValue` controls if a space comes before a value; e.g. `width: 1rem`; defaults to `on`');
   console.log('');
   console.log('  Level 0 optimizations:');
   console.log('    %> cleancss -O0 one.css');
@@ -108,7 +128,6 @@ var options = {
   compatibility: commands.compatibility,
   inline: commands.inline || 'local',
   inlineTimeout: commands.inlineTimeout * 1000,
-  keepBreaks: !!commands.keepLineBreaks,
   level: commands.O0 || commands.O1 || commands.O2 ?
     { '0': commands.O0, '1': commands.O1, '2': commands.O2 } :
     undefined,

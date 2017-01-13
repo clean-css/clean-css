@@ -87,7 +87,7 @@ vows.describe('./bin/cleancss')
     })
   })
   .addBatch({
-    'format': pipedContext('a{color: #f00}', '--format', {
+    'format': pipedContext('a{color: #f00}', '--format beautify', {
       'outputs right styles': function (error, stdout) {
         assert.equal(stdout, 'a {\n  color: red\n}');
       }

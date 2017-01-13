@@ -2613,22 +2613,22 @@ vows.describe('integration tests')
         'a{display:block;@apply(--rule1);color:red}',
         'a {' + lineBreak + '  display: block;' + lineBreak + '  @apply(--rule1);' + lineBreak + '  color: red' + lineBreak + '}'
       ]
-    }, { format: true })
+    }, { format: 'beautify' })
   )
   .addBatch(
     optimizerContext('custom formatting', {
       'rule': [
         'a{color:red}',
-        'a {' + lineBreak + '\tcolor: red' + lineBreak + '}'
+        'a{' + lineBreak + '\tcolor:red' + lineBreak + '}'
       ],
       'at rule block': [
         '@font-face{font-family:test;src:url(/fonts/test.woff)}',
-        '@font-face {' + lineBreak + '\tfont-family: test;' + lineBreak + '\tsrc: url(/fonts/test.woff)' + lineBreak + '}'
+        '@font-face{' + lineBreak + '\tfont-family:test;' + lineBreak + '\tsrc:url(/fonts/test.woff)' + lineBreak + '}'
       ],
       'nested rule block rules': [
         '@media screen{a{color:red}div{color:#000}}',
-        '@media screen {' + lineBreak + '\ta {' + lineBreak + '\t\tcolor: red' + lineBreak + '\t}\tdiv {' + lineBreak + '\t\tcolor: #000' + lineBreak + '\t}' + lineBreak + '}'
+        '@media screen{' + lineBreak + '\ta{' + lineBreak + '\t\tcolor:red' + lineBreak + '\t}\tdiv{' + lineBreak + '\t\tcolor:#000' + lineBreak + '\t}' + lineBreak + '}'
       ]
-    }, { format: { breaks: { afterRuleEnds: false }, indentWith: 'tab', indentBy: 1 } })
+    }, { format: { breaks: { afterBlockBegins: true, afterProperty: true, afterRuleBegins: true }, indentWith: 'tab', indentBy: 1 } })
   )
   .export(module);

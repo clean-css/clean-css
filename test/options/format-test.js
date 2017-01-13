@@ -29,49 +29,49 @@ vows.describe(formatFrom)
       'is default': function (formatOptions) {
         assert.deepEqual(formatOptions, {
           breaks: {
-            afterAtRule: true,
-            afterBlockBegins: true,
-            afterBlockEnds: true,
-            afterComment: true,
-            afterProperty: true,
-            afterRuleBegins: true,
-            afterRuleEnds: true,
-            beforeBlockEnds: true,
-            betweenSelectors: true
+            afterAtRule: false,
+            afterBlockBegins: false,
+            afterBlockEnds: false,
+            afterComment: false,
+            afterProperty: false,
+            afterRuleBegins: false,
+            afterRuleEnds: false,
+            beforeBlockEnds: false,
+            betweenSelectors: false
           },
-          indentBy: 2,
+          indentBy: 0,
           indentWith: ' ',
           spaces: {
-            aroundSelectorRelation: true,
-            beforeBlockBegins: true,
-            beforeValue: true
+            aroundSelectorRelation: false,
+            beforeBlockBegins: false,
+            beforeValue: false
           }
         });
       }
     },
     'hash': {
       'topic': function () {
-        return formatFrom({ breaks: { afterProperty: false }, indentBy: 1 });
+        return formatFrom({ breaks: { afterProperty: true }, indentBy: 1 });
       },
       'is merged with default': function (formatOptions) {
         assert.deepEqual(formatOptions, {
           breaks: {
-            afterAtRule: true,
-            afterBlockBegins: true,
-            afterBlockEnds: true,
-            afterComment: true,
-            afterProperty: false,
-            afterRuleBegins: true,
-            afterRuleEnds: true,
-            beforeBlockEnds: true,
-            betweenSelectors: true
+            afterAtRule: false,
+            afterBlockBegins: false,
+            afterBlockEnds: false,
+            afterComment: false,
+            afterProperty: true,
+            afterRuleBegins: false,
+            afterRuleEnds: false,
+            beforeBlockEnds: false,
+            betweenSelectors: false
           },
           indentBy: 1,
           indentWith: ' ',
           spaces: {
-            aroundSelectorRelation: true,
-            beforeBlockBegins: true,
-            beforeValue: true
+            aroundSelectorRelation: false,
+            beforeBlockBegins: false,
+            beforeValue: false
           }
         });
       }
@@ -83,22 +83,22 @@ vows.describe(formatFrom)
       'is merged with default': function (formatOptions) {
         assert.deepEqual(formatOptions, {
           breaks: {
-            afterAtRule: true,
-            afterBlockBegins: true,
-            afterBlockEnds: true,
-            afterComment: true,
-            afterProperty: true,
-            afterRuleBegins: true,
-            afterRuleEnds: true,
-            beforeBlockEnds: true,
-            betweenSelectors: true
+            afterAtRule: false,
+            afterBlockBegins: false,
+            afterBlockEnds: false,
+            afterComment: false,
+            afterProperty: false,
+            afterRuleBegins: false,
+            afterRuleEnds: false,
+            beforeBlockEnds: false,
+            betweenSelectors: false
           },
           indentBy: 2,
           indentWith: ' ',
           spaces: {
-            aroundSelectorRelation: true,
-            beforeBlockBegins: true,
-            beforeValue: true
+            aroundSelectorRelation: false,
+            beforeBlockBegins: false,
+            beforeValue: false
           }
         });
       }
@@ -110,22 +110,22 @@ vows.describe(formatFrom)
       'is merged with default': function (formatOptions) {
         assert.deepEqual(formatOptions, {
           breaks: {
-            afterAtRule: true,
-            afterBlockBegins: true,
-            afterBlockEnds: true,
-            afterComment: true,
-            afterProperty: true,
-            afterRuleBegins: true,
-            afterRuleEnds: true,
-            beforeBlockEnds: true,
-            betweenSelectors: true
+            afterAtRule: false,
+            afterBlockBegins: false,
+            afterBlockEnds: false,
+            afterComment: false,
+            afterProperty: false,
+            afterRuleBegins: false,
+            afterRuleEnds: false,
+            beforeBlockEnds: false,
+            betweenSelectors: false
           },
-          indentBy: 2,
+          indentBy: 0,
           indentWith: '\t',
           spaces: {
-            aroundSelectorRelation: true,
-            beforeBlockBegins: true,
-            beforeValue: true
+            aroundSelectorRelation: false,
+            beforeBlockBegins: false,
+            beforeValue: false
           }
         });
       }
@@ -137,49 +137,49 @@ vows.describe(formatFrom)
       'is merged with default': function (formatOptions) {
         assert.deepEqual(formatOptions, {
           breaks: {
-            afterAtRule: true,
-            afterBlockBegins: true,
-            afterBlockEnds: true,
-            afterComment: true,
-            afterProperty: true,
-            afterRuleBegins: true,
-            afterRuleEnds: true,
-            beforeBlockEnds: true,
-            betweenSelectors: true
+            afterAtRule: false,
+            afterBlockBegins: false,
+            afterBlockEnds: false,
+            afterComment: false,
+            afterProperty: false,
+            afterRuleBegins: false,
+            afterRuleEnds: false,
+            beforeBlockEnds: false,
+            betweenSelectors: false
           },
-          indentBy: 2,
+          indentBy: 0,
           indentWith: '\t',
           spaces: {
-            aroundSelectorRelation: true,
-            beforeBlockBegins: true,
-            beforeValue: true
+            aroundSelectorRelation: false,
+            beforeBlockBegins: false,
+            beforeValue: false
           }
         });
       }
     },
     'string': {
       'topic': function () {
-        return formatFrom('breaks:afterProperty=off;indentBy:3');
+        return formatFrom('breaks:afterProperty=on;indentBy:3');
       },
       'is merged with default': function (formatOptions) {
         assert.deepEqual(formatOptions, {
           breaks: {
-            afterAtRule: true,
-            afterBlockBegins: true,
-            afterBlockEnds: true,
-            afterComment: true,
-            afterProperty: false,
-            afterRuleBegins: true,
-            afterRuleEnds: true,
-            beforeBlockEnds: true,
-            betweenSelectors: true
+            afterAtRule: false,
+            afterBlockBegins: false,
+            afterBlockEnds: false,
+            afterComment: false,
+            afterProperty: true,
+            afterRuleBegins: false,
+            afterRuleEnds: false,
+            beforeBlockEnds: false,
+            betweenSelectors: false
           },
           indentBy: 3,
           indentWith: ' ',
           spaces: {
-            aroundSelectorRelation: true,
-            beforeBlockBegins: true,
-            beforeValue: true
+            aroundSelectorRelation: false,
+            beforeBlockBegins: false,
+            beforeValue: false
           }
         });
       }
@@ -191,6 +191,33 @@ vows.describe(formatFrom)
       'is merged with default': function (formatOptions) {
         assert.deepEqual(formatOptions, {
           breaks: {
+            afterAtRule: false,
+            afterBlockBegins: false,
+            afterBlockEnds: false,
+            afterComment: false,
+            afterProperty: false,
+            afterRuleBegins: false,
+            afterRuleEnds: false,
+            beforeBlockEnds: false,
+            betweenSelectors: false
+          },
+          indentBy: 0,
+          indentWith: '\t',
+          spaces: {
+            aroundSelectorRelation: false,
+            beforeBlockBegins: false,
+            beforeValue: false
+          }
+        });
+      }
+    },
+    'beautify keyword': {
+      'topic': function () {
+        return formatFrom('beautify');
+      },
+      'resolves correctly': function (formatOptions) {
+        assert.deepEqual(formatOptions, {
+          breaks: {
             afterAtRule: true,
             afterBlockBegins: true,
             afterBlockEnds: true,
@@ -202,7 +229,7 @@ vows.describe(formatFrom)
             betweenSelectors: true
           },
           indentBy: 2,
-          indentWith: '\t',
+          indentWith: ' ',
           spaces: {
             aroundSelectorRelation: true,
             beforeBlockBegins: true,
@@ -211,7 +238,7 @@ vows.describe(formatFrom)
         });
       }
     },
-    'string keyword': {
+    'keep-breaks keyword': {
       'topic': function () {
         return formatFrom('keep-breaks');
       },

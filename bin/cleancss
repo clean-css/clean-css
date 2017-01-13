@@ -15,7 +15,7 @@ commands
   .usage('[options] <source-file ...>')
   .option('-c, --compatibility [ie7|ie8]', 'Force compatibility mode (see Readme for advanced examples)')
   .option('-d, --debug', 'Shows debug information (minification time & compression efficiency)')
-  .option('-f, --format [options]', 'Controls output formatting, see examples below')
+  .option('-f, --format <options>', 'Controls output formatting, see examples below')
   .option('-o, --output [output-file]', 'Use [output-file] as output instead of STDOUT')
   .option('-O <n> [optimizations]', 'Turn on level <n> optimizations; optionally accepts a list of fine-grained options, defaults to `1`, see examples below', function (val) { return Math.abs(parseInt(val)); })
   .option('--inline [rules]', 'Enables inlining for listed sources (defaults to `local`)')
@@ -33,25 +33,26 @@ commands.on('--help', function () {
   console.log('    %> cleancss one.css two.css three.css | gzip -9 -c > merged-minified-and-gzipped.css.gz');
   console.log('');
   console.log('  Formatting options:');
-  console.log('    %> cleancss --format one.css');
+  console.log('    %> cleancss --format beautify one.css');
+  console.log('    %> cleancss --format keep-breaks one.css');
   console.log('    %> cleancss --format \'indentBy:1;indentWith:tab\' one.css');
-  console.log('    %> cleancss --format \'breaks:afterBlockBegins=off;spaces:aroundSelectorRelation=off\' one.css');
+  console.log('    %> cleancss --format \'breaks:afterBlockBegins=on;spaces:aroundSelectorRelation=on\' one.css');
   console.log('    %> # `breaks` controls where to insert breaks');
-  console.log('    %> #   `afterAtRule` controls if a line break comes after an at-rule; e.g. `@charset`; defaults to `on` (alias to `true`)');
-  console.log('    %> #   `afterBlockBegins` controls if a line break comes after a block begins; e.g. `@media`; defaults to `on`');
-  console.log('    %> #   `afterBlockEnds` controls if a line break comes after a block ends, defaults to `on`');
-  console.log('    %> #   `afterComment` controls if a line break comes after a comment; defaults to `on`');
-  console.log('    %> #   `afterProperty` controls if a line break comes after a property; defaults to `on`');
-  console.log('    %> #   `afterRuleBegins` controls if a line break comes after a rule begins; defaults to `on`');
-  console.log('    %> #   `afterRuleEnds` controls if a line break comes after a rule ends; defaults to `on`');
-  console.log('    %> #   `beforeBlockEnds` controls if a line break comes before a block ends; defaults to `on`');
-  console.log('    %> #   `betweenSelectors` controls if a line break comes between selectors; defaults to `on`');
-  console.log('    %> # `indentBy` controls number of characters to indent with; defaults to `2`');
+  console.log('    %> #   `afterAtRule` controls if a line break comes after an at-rule; e.g. `@charset`; defaults to `off` (alias to `false`)');
+  console.log('    %> #   `afterBlockBegins` controls if a line break comes after a block begins; e.g. `@media`; defaults to `off`');
+  console.log('    %> #   `afterBlockEnds` controls if a line break comes after a block ends, defaults to `off`');
+  console.log('    %> #   `afterComment` controls if a line break comes after a comment; defaults to `off`');
+  console.log('    %> #   `afterProperty` controls if a line break comes after a property; defaults to `off`');
+  console.log('    %> #   `afterRuleBegins` controls if a line break comes after a rule begins; defaults to `off`');
+  console.log('    %> #   `afterRuleEnds` controls if a line break comes after a rule ends; defaults to `off`');
+  console.log('    %> #   `beforeBlockEnds` controls if a line break comes before a block ends; defaults to `off`');
+  console.log('    %> #   `betweenSelectors` controls if a line break comes between selectors; defaults to `off`');
+  console.log('    %> # `indentBy` controls number of characters to indent with; defaults to `0`');
   console.log('    %> # `indentWith` controls a character to indent with, can be `space` or `tab`; defaults to `space`');
   console.log('    %> # `spaces` controls where to insert spaces');
-  console.log('    %> #   `aroundSelectorRelation` controls if spaces come around selector relations; e.g. `div > a`; defaults to `on`');
-  console.log('    %> #   `beforeBlockBegins` controls if a space comes before a block begins; e.g. `.block {`; defaults to `on`');
-  console.log('    %> #   `beforeValue` controls if a space comes before a value; e.g. `width: 1rem`; defaults to `on`');
+  console.log('    %> #   `aroundSelectorRelation` controls if spaces come around selector relations; e.g. `div > a`; defaults to `off`');
+  console.log('    %> #   `beforeBlockBegins` controls if a space comes before a block begins; e.g. `.block {`; defaults to `off`');
+  console.log('    %> #   `beforeValue` controls if a space comes before a value; e.g. `width: 1rem`; defaults to `off`');
   console.log('');
   console.log('  Level 0 optimizations:');
   console.log('    %> cleancss -O0 one.css');

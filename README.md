@@ -70,7 +70,7 @@ Options:
   -v, --version                  output the version number
   -c, --compatibility [ie7|ie8]  Force compatibility mode (see Readme for advanced examples)
   -d, --debug                    Shows debug information (minification time & compression efficiency)
-  -f, --format [options]       Controls output formatting, see examples below
+  -f, --format <options>         Controls output formatting, see examples below
   -o, --output [output-file]     Use [output-file] as output instead of STDOUT
   -O <n> [optimizations]         Turn on level <n> optimizations; optionally accepts a list of fine-grained options, defaults to `1`, see examples below
   --inline [rules]               Enables inlining for listed sources (defaults to `local`)
@@ -112,25 +112,26 @@ Please note there is a difference between passing in a concatenated string and l
 Formatting options:
 
 ```bash
-cleancss --format one.css
+cleancss --format beautify one.css
+cleancss --format keep-breaks one.css
 cleancss --format 'indentBy:1;indentWith:tab' one.css
 cleancss --format 'breaks:afterBlockBegins=off;spaces:aroundSelectorRelation=off' one.css
 # `breaks` controls where to insert breaks
-#   `afterAtRule` controls if a line break comes after an at-rule; e.g. `@charset`; defaults to `on` (alias to `true`)
-#   `afterBlockBegins` controls if a line break comes after a block begins; e.g. `@media`; defaults to `on`
-#   `afterBlockEnds` controls if a line break comes after a block ends, defaults to `on`
-#   `afterComment` controls if a line break comes after a comment; defaults to `on`
-#   `afterProperty` controls if a line break comes after a property; defaults to `on`
-#   `afterRuleBegins` controls if a line break comes after a rule begins; defaults to `on`
-#   `afterRuleEnds` controls if a line break comes after a rule ends; defaults to `on`
-#   `beforeBlockEnds` controls if a line break comes before a block ends; defaults to `on`
-#   `betweenSelectors` controls if a line break comes between selectors; defaults to `on`
-# `indentBy` controls number of characters to indent with; defaults to `2`
+#   `afterAtRule` controls if a line break comes after an at-rule; e.g. `@charset`; defaults to `off` (alias to `false`)
+#   `afterBlockBegins` controls if a line break comes after a block begins; e.g. `@media`; defaults to `off`
+#   `afterBlockEnds` controls if a line break comes after a block ends, defaults to `off`
+#   `afterComment` controls if a line break comes after a comment; defaults to `off`
+#   `afterProperty` controls if a line break comes after a property; defaults to `off`
+#   `afterRuleBegins` controls if a line break comes after a rule begins; defaults to `off`
+#   `afterRuleEnds` controls if a line break comes after a rule ends; defaults to `off`
+#   `beforeBlockEnds` controls if a line break comes before a block ends; defaults to `off`
+#   `betweenSelectors` controls if a line break comes between selectors; defaults to `off`
+# `indentBy` controls number of characters to indent with; defaults to `0`
 # `indentWith` controls a character to indent with, can be `space` or `tab`; defaults to `space`
 # `spaces` controls where to insert spaces
-#   `aroundSelectorRelation` controls if spaces come around selector relations; e.g. `div > a`; defaults to `on`
-#   `beforeBlockBegins` controls if a space comes before a block begins; e.g. `.block {`; defaults to `on`
-#   `beforeValue` controls if a space comes before a value; e.g. `width: 1rem`; defaults to `on`
+#   `aroundSelectorRelatioff` controls if spaces come around selector relations; e.g. `div > a`; defaults to `off`
+#   `beforeBlockBegins` controls if a space comes before a block begins; e.g. `.block {`; defaults to `off`
+#   `beforeValue` controls if a space comes before a value; e.g. `width: 1rem`; defaults to `off`
 ```
 
 Level 0 optimizations:
@@ -230,22 +231,22 @@ The `format` option can accept the following options:
 new CleanCSS({
   format: {
     breaks: { // controls where to insert breaks
-      afterAtRule: true, // controls if a line break comes after an at-rule; e.g. `@charset`; defaults to `true`
-      afterBlockBegins: true, // controls if a line break comes after a block begins; e.g. `@media`; defaults to `true`
-      afterBlockEnds: true, // controls if a line break comes after a block ends, defaults to `true`
-      afterComment: true, // controls if a line break comes after a comment; defaults to `true`
-      afterProperty: true, // controls if a line break comes after a property; defaults to `true`
-      afterRuleBegins: true, // controls if a line break comes after a rule begins; defaults to `true`
-      afterRuleEnds: true, // controls if a line break comes after a rule ends; defaults to `true`
-      beforeBlockEnds: true, // controls if a line break comes before a block ends; defaults to `true`
-      betweenSelectors: true // controls if a line break comes between selectors; defaults to `true`
+      afterAtRule: false, // controls if a line break comes after an at-rule; e.g. `@charset`; defaults to `false`
+      afterBlockBegins: false, // controls if a line break comes after a block begins; e.g. `@media`; defaults to `false`
+      afterBlockEnds: false, // controls if a line break comes after a block ends, defaults to `false`
+      afterComment: false, // controls if a line break comes after a comment; defaults to `false`
+      afterProperty: false, // controls if a line break comes after a property; defaults to `false`
+      afterRuleBegins: false, // controls if a line break comes after a rule begins; defaults to `false`
+      afterRuleEnds: false, // controls if a line break comes after a rule ends; defaults to `false`
+      beforeBlockEnds: false, // controls if a line break comes before a block ends; defaults to `false`
+      betweenSelectors: false // controls if a line break comes between selectors; defaults to `false`
     },
-    indentBy: 2, // controls number of characters to indent with; defaults to `2`
+    indentBy: 0, // controls number of characters to indent with; defaults to `0`
     indentWith: 'space', // controls a character to indent with, can be `'space'` or `'tab'`; defaults to `'space'`
     spaces: { // controls where to insert spaces
-      aroundSelectorRelation: true, // controls if spaces come around selector relations; e.g. `div > a`; defaults to `true`
-      beforeBlockBegins: true, // controls if a space comes before a block begins; e.g. `.block {`; defaults to `true`
-      beforeValue: true // controls if a space comes before a value; e.g. `width: 1rem`; defaults to `true`
+      aroundSelectorRelation: false, // controls if spaces come around selector relations; e.g. `div > a`; defaults to `false`
+      beforeBlockBegins: false, // controls if a space comes before a block begins; e.g. `.block {`; defaults to `false`
+      beforeValue: false // controls if a space comes before a value; e.g. `width: 1rem`; defaults to `false`
     }
   }
 })

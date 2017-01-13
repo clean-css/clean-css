@@ -40,7 +40,7 @@ There will be some breaking changes:
 * moves `roundingPrecision` and `specialComments` to level 1 optimizations options, see examples below;
 * moves `mediaMerging`, `restructuring`, `semanticMerging`, and `shorthandCompacting` to level 2 optimizations options, see examples below;
 * level 1 optimizations are the new default, up to 3.x it was level 2;
-* `--keep-line-breaks` / `keepBreaks` option is replaced with `--beautify keep-breaks` / `{ beautify: 'keep-breaks' }` to ease transition.
+* `--keep-line-breaks` / `keepBreaks` option is replaced with `--format keep-breaks` / `{ format: 'keep-breaks' }` to ease transition.
 
 Please note this list is not final. You are more than welcome to comment these changes in [4.0 release discussion](https://github.com/jakubpawlowicz/clean-css/issues/842) thread.
 
@@ -68,9 +68,9 @@ Options:
 
   -h, --help                     output usage information
   -v, --version                  output the version number
-  -b, --beautify [options]       Controls output CSS formatting, see examples below
   -c, --compatibility [ie7|ie8]  Force compatibility mode (see Readme for advanced examples)
   -d, --debug                    Shows debug information (minification time & compression efficiency)
+  -f, --format [options]       Controls output formatting, see examples below
   -o, --output [output-file]     Use [output-file] as output instead of STDOUT
   -O <n> [optimizations]         Turn on level <n> optimizations; optionally accepts a list of fine-grained options, defaults to `1`, see examples below
   --inline [rules]               Enables inlining for listed sources (defaults to `local`)
@@ -109,12 +109,12 @@ cleancss one.css two.css three.css | gzip -9 -c > merged-minified-and-gzipped.cs
 
 Please note there is a difference between passing in a concatenated string and letting clean-css do the job. The former will discard `@import` statements appearing [not at the beginning](https://developer.mozilla.org/en-US/docs/Web/CSS/@import) of the string, while the latter will discard only those appearing not at the beginning of any of the files. Because of this behavior, the latter way (see examples above) is recommended.
 
-Beautify options:
+Formatting options:
 
 ```bash
-cleancss --beautify one.css
-cleancss --beautify 'indentBy:1;indentWith:tab' one.css
-cleancss --beautify 'breaks:afterBlockBegins=off;spaces:aroundSelectorRelation=off' one.css
+cleancss --format one.css
+cleancss --format 'indentBy:1;indentWith:tab' one.css
+cleancss --format 'breaks:afterBlockBegins=off;spaces:aroundSelectorRelation=off' one.css
 # `breaks` controls where to insert breaks
 #   `afterAtRule` controls if a line break comes after an at-rule; e.g. `@charset`; defaults to `on` (alias to `true`)
 #   `afterBlockBegins` controls if a line break comes after a block begins; e.g. `@media`; defaults to `on`
@@ -197,8 +197,8 @@ CleanCSS constructor accepts a hash as a parameter, i.e.,
 `new CleanCSS(options)` with the following options available:
 
 * `aggressiveMerging` - set to false to disable aggressive merging of properties.
-* `beautify` - formats output CSS by using indentation and one rule or property per line.
 * `compatibility` - enables compatibility mode, see [below for more examples](#how-to-set-a-compatibility-mode)
+* `format` - formats output CSS by using indentation and one rule or property per line.
 * `inline` - whether to inline `@import` rules, can be `['all']`, `['local']` (default), `['remote']`, or a blacklisted domain/path e.g. `['!fonts.googleapis.com']`
 * `inlineRequest` - an object with [HTTP(S) request options](https://nodejs.org/api/http.html#http_http_request_options_callback) for inlining remote `@import` rules
 * `inlineTimeout` - an integer denoting a number of milliseconds after which inlining a remote `@import` fails (defaults to 5000 ms)
@@ -222,13 +222,13 @@ The output of `minify` method (or the 2nd argument to passed callback) is a hash
   * `timeSpent` - time spent on optimizations
   * `efficiency` - a ratio of output size to input size (e.g. 25% if content was reduced from 100 bytes to 75 bytes)
 
-#### How to specify beautify formatting
+#### How to specify formatting
 
-The `beautify` option can also accept the following options
+The `format` option can accept the following options:
 
 ```js
 new CleanCSS({
-  beautify: {
+  format: {
     breaks: { // controls where to insert breaks
       afterAtRule: true, // controls if a line break comes after an at-rule; e.g. `@charset`; defaults to `true`
       afterBlockBegins: true, // controls if a line break comes after a block begins; e.g. `@media`; defaults to `true`

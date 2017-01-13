@@ -13,9 +13,9 @@ var buildVersion = JSON.parse(packageConfig).version;
 commands
   .version(buildVersion, '-v, --version')
   .usage('[options] <source-file ...>')
-  .option('-b, --beautify [options]', 'Controls output CSS formatting, see examples below')
   .option('-c, --compatibility [ie7|ie8]', 'Force compatibility mode (see Readme for advanced examples)')
   .option('-d, --debug', 'Shows debug information (minification time & compression efficiency)')
+  .option('-f, --format [options]', 'Controls output formatting, see examples below')
   .option('-o, --output [output-file]', 'Use [output-file] as output instead of STDOUT')
   .option('-O <n> [optimizations]', 'Turn on level <n> optimizations; optionally accepts a list of fine-grained options, defaults to `1`, see examples below', function (val) { return Math.abs(parseInt(val)); })
   .option('--inline [rules]', 'Enables inlining for listed sources (defaults to `local`)')
@@ -32,10 +32,10 @@ commands.on('--help', function () {
   console.log('    %> cleancss -o merged-and-minified.css one.css two.css three.css');
   console.log('    %> cleancss one.css two.css three.css | gzip -9 -c > merged-minified-and-gzipped.css.gz');
   console.log('');
-  console.log('  Beautify options:');
-  console.log('    %> cleancss --beautify one.css');
-  console.log('    %> cleancss --beautify \'indentBy:1;indentWith:tab\' one.css');
-  console.log('    %> cleancss --beautify \'breaks:afterBlockBegins=off;spaces:aroundSelectorRelation=off\' one.css');
+  console.log('  Formatting options:');
+  console.log('    %> cleancss --format one.css');
+  console.log('    %> cleancss --format \'indentBy:1;indentWith:tab\' one.css');
+  console.log('    %> cleancss --format \'breaks:afterBlockBegins=off;spaces:aroundSelectorRelation=off\' one.css');
   console.log('    %> # `breaks` controls where to insert breaks');
   console.log('    %> #   `afterAtRule` controls if a line break comes after an at-rule; e.g. `@charset`; defaults to `on` (alias to `true`)');
   console.log('    %> #   `afterBlockBegins` controls if a line break comes after a block begins; e.g. `@media`; defaults to `on`');
@@ -124,8 +124,8 @@ if (!fromStdin && commands.args.length === 0) {
 var debugMode = commands.debug;
 var options = {
   aggressiveMerging: commands.skipAggressiveMerging ? false : true,
-  beautify: commands.beautify,
   compatibility: commands.compatibility,
+  format: commands.format,
   inline: commands.inline || 'local',
   inlineTimeout: commands.inlineTimeout * 1000,
   level: commands.O0 || commands.O1 || commands.O2 ?

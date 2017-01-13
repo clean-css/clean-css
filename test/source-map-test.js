@@ -199,7 +199,7 @@ vows.describe('source-map')
     },
     'with formatting': {
       'topic': function () {
-        return new CleanCSS({ beautify: 'keep-breaks', level: 2, sourceMap: true }).minify('@media screen { a{color:red} p {color:blue} }div{color:pink}');
+        return new CleanCSS({ format: 'keep-breaks', level: 2, sourceMap: true }).minify('@media screen { a{color:red} p {color:blue} }div{color:pink}');
       },
       'has 10 mappings': function (minified) {
         assert.lengthOf(minified.sourceMap._mappings._array, 10);

@@ -298,7 +298,7 @@ vows.describe('integration tests')
         '@chArSET \'utf-8\';h1{color:red}',
         'h1{color:red}'
       ]
-    }, { beautify: 'keep-breaks' })
+    }, { format: 'keep-breaks' })
   )
   .addBatch(
     optimizerContext('line breaks and important comments', {
@@ -306,7 +306,7 @@ vows.describe('integration tests')
         '/*! some comment */' + lineBreak + lineBreak + '@charset \'utf-8\';' + lineBreak + lineBreak + 'a{display:block}',
         '@charset \'utf-8\';' + lineBreak + 'a{display:block}'
       ]
-    }, { beautify: 'keep-breaks', level: { 1: { specialComments: 0 } } })
+    }, { format: 'keep-breaks', level: { 1: { specialComments: 0 } } })
   )
   .addBatch(
     optimizerContext('selectors', {
@@ -2161,7 +2161,7 @@ vows.describe('integration tests')
         'a{color:red}p{display:block}',
         'a{color:red}' + lineBreak + 'p{display:block}'
       ]
-    }, { beautify: 'keep-breaks', level: 1 })
+    }, { format: 'keep-breaks', level: 1 })
   )
   .addBatch(
     optimizerContext('invalid data tokenization', {
@@ -2613,7 +2613,7 @@ vows.describe('integration tests')
         'a{display:block;@apply(--rule1);color:red}',
         'a {' + lineBreak + '  display: block;' + lineBreak + '  @apply(--rule1);' + lineBreak + '  color: red' + lineBreak + '}'
       ]
-    }, { beautify: true })
+    }, { format: true })
   )
   .addBatch(
     optimizerContext('custom formatting', {
@@ -2629,6 +2629,6 @@ vows.describe('integration tests')
         '@media screen{a{color:red}div{color:#000}}',
         '@media screen {' + lineBreak + '\ta {' + lineBreak + '\t\tcolor: red' + lineBreak + '\t}\tdiv {' + lineBreak + '\t\tcolor: #000' + lineBreak + '\t}' + lineBreak + '}'
       ]
-    }, { beautify: { breaks: { afterRuleEnds: false }, indentWith: 'tab', indentBy: 1 } })
+    }, { format: { breaks: { afterRuleEnds: false }, indentWith: 'tab', indentBy: 1 } })
   )
   .export(module);

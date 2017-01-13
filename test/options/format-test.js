@@ -2,32 +2,32 @@ var assert = require('assert');
 
 var vows = require('vows');
 
-var beautifyFrom = require('../../lib/options/beautify').beautifyFrom;
+var formatFrom = require('../../lib/options/format').formatFrom;
 
-vows.describe(beautifyFrom)
+vows.describe(formatFrom)
   .addBatch({
     'undefined': {
       'topic': function () {
-        return beautifyFrom(undefined);
+        return formatFrom(undefined);
       },
-      'is false': function (beautifyOptions) {
-        assert.deepEqual(beautifyOptions, false);
+      'is false': function (formatOptions) {
+        assert.deepEqual(formatOptions, false);
       }
     },
     'false': {
       'topic': function () {
-        return beautifyFrom(false);
+        return formatFrom(false);
       },
-      'is false': function (beautifyOptions) {
-        assert.deepEqual(beautifyOptions, false);
+      'is false': function (formatOptions) {
+        assert.deepEqual(formatOptions, false);
       }
     },
     'true': {
       'topic': function () {
-        return beautifyFrom(true);
+        return formatFrom(true);
       },
-      'is default': function (beautifyOptions) {
-        assert.deepEqual(beautifyOptions, {
+      'is default': function (formatOptions) {
+        assert.deepEqual(formatOptions, {
           breaks: {
             afterAtRule: true,
             afterBlockBegins: true,
@@ -51,10 +51,10 @@ vows.describe(beautifyFrom)
     },
     'hash': {
       'topic': function () {
-        return beautifyFrom({ breaks: { afterProperty: false }, indentBy: 1 });
+        return formatFrom({ breaks: { afterProperty: false }, indentBy: 1 });
       },
-      'is merged with default': function (beautifyOptions) {
-        assert.deepEqual(beautifyOptions, {
+      'is merged with default': function (formatOptions) {
+        assert.deepEqual(formatOptions, {
           breaks: {
             afterAtRule: true,
             afterBlockBegins: true,
@@ -78,10 +78,10 @@ vows.describe(beautifyFrom)
     },
     'hash with indentBy as string': {
       'topic': function () {
-        return beautifyFrom({ indentBy: '2' });
+        return formatFrom({ indentBy: '2' });
       },
-      'is merged with default': function (beautifyOptions) {
-        assert.deepEqual(beautifyOptions, {
+      'is merged with default': function (formatOptions) {
+        assert.deepEqual(formatOptions, {
           breaks: {
             afterAtRule: true,
             afterBlockBegins: true,
@@ -105,10 +105,10 @@ vows.describe(beautifyFrom)
     },
     'hash with explicit indentWith': {
       'topic': function () {
-        return beautifyFrom({ indentWith: '\t' });
+        return formatFrom({ indentWith: '\t' });
       },
-      'is merged with default': function (beautifyOptions) {
-        assert.deepEqual(beautifyOptions, {
+      'is merged with default': function (formatOptions) {
+        assert.deepEqual(formatOptions, {
           breaks: {
             afterAtRule: true,
             afterBlockBegins: true,
@@ -132,10 +132,10 @@ vows.describe(beautifyFrom)
     },
     'hash with implicit indentWith': {
       'topic': function () {
-        return beautifyFrom({ indentWith: 'tab' });
+        return formatFrom({ indentWith: 'tab' });
       },
-      'is merged with default': function (beautifyOptions) {
-        assert.deepEqual(beautifyOptions, {
+      'is merged with default': function (formatOptions) {
+        assert.deepEqual(formatOptions, {
           breaks: {
             afterAtRule: true,
             afterBlockBegins: true,
@@ -159,10 +159,10 @@ vows.describe(beautifyFrom)
     },
     'string': {
       'topic': function () {
-        return beautifyFrom('breaks:afterProperty=off;indentBy:3');
+        return formatFrom('breaks:afterProperty=off;indentBy:3');
       },
-      'is merged with default': function (beautifyOptions) {
-        assert.deepEqual(beautifyOptions, {
+      'is merged with default': function (formatOptions) {
+        assert.deepEqual(formatOptions, {
           breaks: {
             afterAtRule: true,
             afterBlockBegins: true,
@@ -186,10 +186,10 @@ vows.describe(beautifyFrom)
     },
     'string with indentWith': {
       'topic': function () {
-        return beautifyFrom('indentWith:tab');
+        return formatFrom('indentWith:tab');
       },
-      'is merged with default': function (beautifyOptions) {
-        assert.deepEqual(beautifyOptions, {
+      'is merged with default': function (formatOptions) {
+        assert.deepEqual(formatOptions, {
           breaks: {
             afterAtRule: true,
             afterBlockBegins: true,
@@ -213,10 +213,10 @@ vows.describe(beautifyFrom)
     },
     'string keyword': {
       'topic': function () {
-        return beautifyFrom('keep-breaks');
+        return formatFrom('keep-breaks');
       },
-      'resolves correctly': function (beautifyOptions) {
-        assert.deepEqual(beautifyOptions, {
+      'resolves correctly': function (formatOptions) {
+        assert.deepEqual(formatOptions, {
           breaks: {
             afterAtRule: true,
             afterBlockBegins: true,

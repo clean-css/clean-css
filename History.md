@@ -12,7 +12,7 @@
 * Re-enables `background-(clip|origin|size)` merging with `background` shorthand.
 * Simplifies URL rebasing with a single `rebaseTo` option in API or inferred from `--output` in CLI.
 * Splits `inliner` option into `inlineRequest` and `inlineTimeout`.
-* Fixed issue [#209](https://github.com/jakubpawlowicz/clean-css/issues/209) - adds output formatting via `beautify` flag.
+* Fixed issue [#209](https://github.com/jakubpawlowicz/clean-css/issues/209) - adds output formatting via `format` flag.
 * Fixed issue [#432](https://github.com/jakubpawlowicz/clean-css/issues/432) - adds URLs normalization.
 * Fixed issue [#460](https://github.com/jakubpawlowicz/clean-css/issues/460) - unescaped semicolon in selector.
 * Fixed issue [#657](https://github.com/jakubpawlowicz/clean-css/issues/657) - adds property name validation.

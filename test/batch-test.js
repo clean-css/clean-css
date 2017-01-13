@@ -47,7 +47,7 @@ function batchContexts() {
         topic: function (data) {
           new CleanCSS({
             compatibility: isIE7Mode ? 'ie7' : '*',
-            beautify: 'keep-breaks',
+            format: 'keep-breaks',
             level: {
               2: {
                 restructureRules: true
@@ -63,7 +63,7 @@ function batchContexts() {
         topic: function (data) {
           new CleanCSS({
             compatibility: isIE7Mode ? 'ie7' : '*',
-            beautify: 'keep-breaks',
+            format: 'keep-breaks',
             level: {
               2: {
                 restructureRules: true
@@ -79,7 +79,7 @@ function batchContexts() {
       'minifying via CLI': {
         'topic': function (data) {
           exec(
-            '__DIRECT__=1 ./bin/cleancss -b keep-breaks -O2 restructureRules:on ' + (isIE7Mode ? '-c ie7 ' : '') + path.join(dir, filename),
+            '__DIRECT__=1 ./bin/cleancss --format keep-breaks -O2 restructureRules:on ' + (isIE7Mode ? '-c ie7 ' : '') + path.join(dir, filename),
             { maxBuffer: 500 * 1024 },
             this.callback.bind(null, data)
           );

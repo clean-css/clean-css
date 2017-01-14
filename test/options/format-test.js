@@ -45,7 +45,8 @@ vows.describe(formatFrom)
             aroundSelectorRelation: false,
             beforeBlockBegins: false,
             beforeValue: false
-          }
+          },
+          wrapAt: false
         });
       }
     },
@@ -72,7 +73,8 @@ vows.describe(formatFrom)
             aroundSelectorRelation: false,
             beforeBlockBegins: false,
             beforeValue: false
-          }
+          },
+          wrapAt: false
         });
       }
     },
@@ -99,7 +101,8 @@ vows.describe(formatFrom)
             aroundSelectorRelation: false,
             beforeBlockBegins: false,
             beforeValue: false
-          }
+          },
+          wrapAt: false
         });
       }
     },
@@ -126,7 +129,8 @@ vows.describe(formatFrom)
             aroundSelectorRelation: false,
             beforeBlockBegins: false,
             beforeValue: false
-          }
+          },
+          wrapAt: false
         });
       }
     },
@@ -153,13 +157,14 @@ vows.describe(formatFrom)
             aroundSelectorRelation: false,
             beforeBlockBegins: false,
             beforeValue: false
-          }
+          },
+          wrapAt: false
         });
       }
     },
     'string': {
       'topic': function () {
-        return formatFrom('breaks:afterProperty=on;indentBy:3');
+        return formatFrom('breaks:afterProperty=on;indentBy:3;wrapAt:25');
       },
       'is merged with default': function (formatOptions) {
         assert.deepEqual(formatOptions, {
@@ -180,7 +185,8 @@ vows.describe(formatFrom)
             aroundSelectorRelation: false,
             beforeBlockBegins: false,
             beforeValue: false
-          }
+          },
+          wrapAt: 25
         });
       }
     },
@@ -207,7 +213,8 @@ vows.describe(formatFrom)
             aroundSelectorRelation: false,
             beforeBlockBegins: false,
             beforeValue: false
-          }
+          },
+          wrapAt: false
         });
       }
     },
@@ -234,7 +241,8 @@ vows.describe(formatFrom)
             aroundSelectorRelation: true,
             beforeBlockBegins: true,
             beforeValue: true
-          }
+          },
+          wrapAt: false
         });
       }
     },
@@ -261,7 +269,8 @@ vows.describe(formatFrom)
             aroundSelectorRelation: false,
             beforeBlockBegins: false,
             beforeValue: false
-          }
+          },
+          wrapAt: false
         });
       }
     }

@@ -53,6 +53,7 @@ commands.on('--help', function () {
   console.log('    %> #   `aroundSelectorRelation` controls if spaces come around selector relations; e.g. `div > a`; defaults to `off`');
   console.log('    %> #   `beforeBlockBegins` controls if a space comes before a block begins; e.g. `.block {`; defaults to `off`');
   console.log('    %> #   `beforeValue` controls if a space comes before a value; e.g. `width: 1rem`; defaults to `off`');
+  console.log('    %> # `wrapAt` controls maximum line length; defaults to `off`');
   console.log('');
   console.log('  Level 0 optimizations:');
   console.log('    %> cleancss -O0 one.css');

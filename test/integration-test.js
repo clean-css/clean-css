@@ -2631,4 +2631,28 @@ vows.describe('integration tests')
       ]
     }, { format: { breaks: { afterBlockBegins: true, afterProperty: true, afterRuleBegins: true }, indentWith: 'tab', indentBy: 1 } })
   )
+  .addBatch(
+    optimizerContext('max line length', {
+      'not too long': [
+        'a{color:red}',
+        'a{color:red}'
+      ],
+      'too long': [
+        '.spinner{-webkit-animation:container-rotate var(--paper-spinner-container-rotation-duration) linear infinite}div{background:url(/very/long/path/to/image.png) repeat}',
+        '.spinner{-webkit-animation:container-rotate ' + lineBreak + 'var(--paper-spinner-container-rotation-duration) linear infinite}div{background:' + lineBreak + 'url(/very/long/path/to/image.png) repeat}'
+      ]
+    }, { format: { wrapAt: 80 } })
+  )
+  .addBatch(
+    optimizerContext('max line length with source maps', {
+      'not too long': [
+        'a{color:red}',
+        'a{color:red}'
+      ],
+      'too long': [
+        '.spinner{-webkit-animation:container-rotate var(--paper-spinner-container-rotation-duration) linear infinite}div{background:url(/very/long/path/to/image.png) repeat}',
+        '.spinner{-webkit-animation:container-rotate ' + lineBreak + 'var(--paper-spinner-container-rotation-duration) linear infinite}div{background:' + lineBreak + 'url(/very/long/path/to/image.png) repeat}'
+      ]
+    }, { format: { wrapAt: 80 }, sourceMap: true })
+  )
   .export(module);

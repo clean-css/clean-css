@@ -132,6 +132,7 @@ cleancss --format 'breaks:afterBlockBegins=off;spaces:aroundSelectorRelation=off
 #   `aroundSelectorRelatioff` controls if spaces come around selector relations; e.g. `div > a`; defaults to `off`
 #   `beforeBlockBegins` controls if a space comes before a block begins; e.g. `.block {`; defaults to `off`
 #   `beforeValue` controls if a space comes before a value; e.g. `width: 1rem`; defaults to `off`
+# `wrapAt` controls maximum line length; defaults to `off`
 ```
 
 Level 0 optimizations:
@@ -247,7 +248,8 @@ new CleanCSS({
       aroundSelectorRelation: false, // controls if spaces come around selector relations; e.g. `div > a`; defaults to `false`
       beforeBlockBegins: false, // controls if a space comes before a block begins; e.g. `.block {`; defaults to `false`
       beforeValue: false // controls if a space comes before a value; e.g. `width: 1rem`; defaults to `false`
-    }
+    },
+    wrapAt: false // controls maximum line length; defaults to `false`
   }
 })
 ```

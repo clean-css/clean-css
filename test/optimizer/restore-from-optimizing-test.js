@@ -8,11 +8,9 @@ var shallowClone = require('../../lib/optimizer/level-2/clone').shallow;
 var restoreWithComponents = require('../../lib/optimizer/level-2/restore-with-components');
 
 var populateComponents = require('../../lib/optimizer/level-2/compacting/populate-components');
-var Validator = require('../../lib/optimizer/level-2/compacting/validator');
+var validator = require('../../lib/optimizer/validator');
 
 var compatibility = require('../../lib/utils/compatibility');
-
-var validator = new Validator(compatibility());
 
 vows.describe(restoreFromOptimizing)
   .addBatch({
@@ -80,7 +78,7 @@ vows.describe(restoreFromOptimizing)
           ]
         ];
         var wrapped = wrapForOptimizing(properties);
-        populateComponents(wrapped, validator);
+        populateComponents(wrapped, validator(compatibility()));
         restoreFromOptimizing(wrapped);
 
         return properties;
@@ -109,7 +107,7 @@ vows.describe(restoreFromOptimizing)
           ]
         ];
         var wrapped = wrapForOptimizing(properties);
-        populateComponents(wrapped, validator);
+        populateComponents(wrapped, validator(compatibility()));
 
         wrapped[0].dirty = true;
 
@@ -164,7 +162,7 @@ vows.describe(restoreFromOptimizing)
           ]
         ];
         var wrapped = wrapForOptimizing(properties);
-        populateComponents(wrapped, validator);
+        populateComponents(wrapped, validator(compatibility()));
 
         wrapped[0].value = [];
         wrapped[0].dirty = true;
@@ -192,7 +190,7 @@ vows.describe(restoreFromOptimizing)
           ]
         ];
         var wrapped = wrapForOptimizing(properties);
-        populateComponents(wrapped, validator);
+        populateComponents(wrapped, validator(compatibility()));
 
         var cloned = shallowClone(wrapped[0]);
         cloned.components = wrapped[0].components;

@@ -3,15 +3,14 @@ var vows = require('vows');
 
 var wrapForOptimizing = require('../../../lib/optimizer/wrap-for-optimizing').all;
 var populateComponents = require('../../../lib/optimizer/level-2/compacting/populate-components');
-var Validator = require('../../../lib/optimizer/level-2/compacting/validator');
+var validator = require('../../../lib/optimizer/validator');
 var compatibility = require('../../../lib/utils/compatibility');
 
 var breakUp = require('../../../lib/optimizer/level-2/break-up');
 
 function _breakUp(properties) {
-  var validator = new Validator(compatibility());
   var wrapped = wrapForOptimizing(properties);
-  populateComponents(wrapped, validator, []);
+  populateComponents(wrapped, validator(compatibility()), []);
 
   return wrapped[0].components;
 }

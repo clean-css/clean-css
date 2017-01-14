@@ -6,7 +6,7 @@ var optimize = require('../../../../lib/optimizer/level-2/compacting/optimize');
 var tokenize = require('../../../../lib/tokenizer/tokenize');
 var inputSourceMapTracker = require('../../../../lib/reader/input-source-map-tracker');
 var compatibility = require('../../../../lib/utils/compatibility');
-var Validator = require('../../../../lib/optimizer/level-2/compacting/validator');
+var validator = require('../../../../lib/optimizer/validator');
 
 function _optimize(source) {
   var tokens = tokenize(source, {
@@ -16,7 +16,6 @@ function _optimize(source) {
   });
 
   var compat = compatibility(compat);
-  var validator = new Validator(compat);
   var options = {
     aggressiveMerging: true,
     compatibility: compat,
@@ -26,7 +25,7 @@ function _optimize(source) {
       }
     }
   };
-  optimize(tokens[0][1], tokens[0][2], false, true, { options: options, validator: validator });
+  optimize(tokens[0][1], tokens[0][2], false, true, { options: options, validator: validator(compat) });
 
   return tokens[0][2];
 }

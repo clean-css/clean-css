@@ -41,6 +41,7 @@ There will be some breaking changes:
 * moves `mediaMerging`, `restructuring`, `semanticMerging`, and `shorthandCompacting` to level 2 optimizations options, see examples below;
 * level 1 optimizations are the new default, up to 3.x it was level 2;
 * `--keep-line-breaks` / `keepBreaks` option is replaced with `--format keep-breaks` / `{ format: 'keep-breaks' }` to ease transition.
+* `sourceMap` option is API has to be a boolean from now on. If you want to specify an input source map pass it a 2nd argument to `minify` method or via a hash instead;
 
 Please note this list is not final. You are more than welcome to comment these changes in [4.0 release discussion](https://github.com/jakubpawlowicz/clean-css/issues/842) thread.
 
@@ -207,8 +208,7 @@ CleanCSS constructor accepts a hash as a parameter, i.e.,
 * `level` - an integer denoting optimization level applied or a hash with a fine-grained configuration; see examples below; defaults to `1`
 * `rebase` - set to false to skip URL rebasing
 * `rebaseTo` - a directory to which all URLs are rebased (most likely the directory under which the output file will live), defaults to the current directory
-* `sourceMap` - exposes source map under `sourceMap` property, e.g. `new CleanCSS().minify(source).sourceMap` (default is false)
-  If input styles are a product of CSS preprocessor (Less, Sass) an input source map can be passed as a string.
+* `sourceMap` - set to true to build output source map; defaults to `false`
 * `sourceMapInlineSources` - set to true to inline sources inside a source map's `sourcesContent` field (defaults to false)
   It is also required to process inlined sources from input source maps.
 
@@ -440,11 +440,11 @@ new CleanCSS({ sourceMap: true, rebaseTo: pathToOutputDirectory })
 });
 ```
 
-Using API you can also pass an input source map directly:
+Using API you can also pass an input source map directly as a 2nd argument to `minify` method:
 
 ```js
-new CleanCSS({ sourceMap: inputSourceMapAsString, rebaseTo: pathToOutputDirectory })
-  .minify(source, function (error, minified) {
+new CleanCSS({ sourceMap: true, rebaseTo: pathToOutputDirectory })
+  .minify(source, inputSourceMap, function (error, minified) {
     // access minified.sourceMap to access SourceMapGenerator object
     // see https://github.com/mozilla/source-map/#sourcemapgenerator for more details
     // see https://github.com/jakubpawlowicz/clean-css/blob/master/bin/cleancss#L114 on how it's used in clean-css' CLI

@@ -445,7 +445,7 @@ vows.describe('source-map')
   .addBatch({
     'input map as string': {
       'topic': function () {
-        return new CleanCSS({ sourceMap: inputMap }).minify('div > a {\n  color: red;\n}');
+        return new CleanCSS({ sourceMap: true }).minify('div > a {\n  color: red;\n}', inputMap);
       },
       'has 3 mappings': function (minified) {
         assert.lengthOf(minified.sourceMap._mappings._array, 3);
@@ -486,7 +486,7 @@ vows.describe('source-map')
     },
     'input map as source map object': {
       'topic': function () {
-        return new CleanCSS({ sourceMap: JSON.parse(inputMap) }).minify('div > a {\n  color: red;\n}');
+        return new CleanCSS({ sourceMap: true }).minify('div > a {\n  color: red;\n}', JSON.parse(inputMap));
       },
       'has 3 mappings': function (minified) {
         assert.lengthOf(minified.sourceMap._mappings._array, 3);
@@ -514,6 +514,47 @@ vows.describe('source-map')
         assert.deepEqual(minified.sourceMap._mappings._array[1], mapping);
       },
       'has `red` mapping': function (minified) {
+        var mapping = {
+          generatedLine: 1,
+          generatedColumn: 12,
+          originalLine: 2,
+          originalColumn: 2,
+          source: 'styles.less',
+          name: null
+        };
+        assert.deepEqual(minified.sourceMap._mappings._array[2], mapping);
+      }
+    },
+    'input map and a callback': {
+      'topic': function () {
+        new CleanCSS({ sourceMap: true }).minify('div > a {\n  color: red;\n}', JSON.parse(inputMap), this.callback);
+      },
+      'has 3 mappings': function (error, minified) {
+        assert.lengthOf(minified.sourceMap._mappings._array, 3);
+      },
+      'has `div > a` mapping': function (error, minified) {
+        var mapping = {
+          generatedLine: 1,
+          generatedColumn: 0,
+          originalLine: 1,
+          originalColumn: 4,
+          source: 'styles.less',
+          name: null
+        };
+        assert.deepEqual(minified.sourceMap._mappings._array[0], mapping);
+      },
+      'has `color` mapping': function (error, minified) {
+        var mapping = {
+          generatedLine: 1,
+          generatedColumn: 6,
+          originalLine: 2,
+          originalColumn: 2,
+          source: 'styles.less',
+          name: null
+        };
+        assert.deepEqual(minified.sourceMap._mappings._array[1], mapping);
+      },
+      'has `red` mapping': function (error, minified) {
         var mapping = {
           generatedLine: 1,
           generatedColumn: 12,
@@ -806,7 +847,11 @@ vows.describe('source-map')
     },
     'input source map with missing mutliselector input': {
       'topic': function () {
-        return new CleanCSS({ sourceMap: '{"version":3,"sources":["source.css"],"names":[],"mappings":"AAAA;;;;IAII,YAAW;EACd"}' }).minify('a,\na:hover,\na:visited\n{\n    color: red;\n}');
+        return new CleanCSS({ sourceMap: true })
+          .minify(
+            'a,\na:hover,\na:visited\n{\n    color: red;\n}',
+            '{"version":3,"sources":["source.css"],"names":[],"mappings":"AAAA;;;;IAII,YAAW;EACd"}'
+          );
       },
       'has 5 mappings': function (minified) {
         assert.lengthOf(minified.sourceMap._mappings._array, 5);
@@ -869,7 +914,11 @@ vows.describe('source-map')
     },
     'input source map with missing mutliselector sortable input': {
       'topic': function () {
-        return new CleanCSS({ sourceMap: '{"version":3,"sources":["source.css"],"names":[],"mappings":"AAAA;;;;IAII,YAAW;EACd"}' }).minify('a.button:link,\na.button:visited,\na.button:hover\n{\n    color: red;\n}');
+        return new CleanCSS({ sourceMap: true })
+          .minify(
+            'a.button:link,\na.button:visited,\na.button:hover\n{\n    color: red;\n}',
+            '{"version":3,"sources":["source.css"],"names":[],"mappings":"AAAA;;;;IAII,YAAW;EACd"}'
+          );
       },
       'has 5 mappings': function (minified) {
         assert.lengthOf(minified.sourceMap._mappings._array, 5);
@@ -1458,9 +1507,12 @@ vows.describe('source-map')
       'single': {
         'topic': function () {
           return new CleanCSS({
-            sourceMap: '{"version":3,"sources":["styles.less"],"names":[],"mappings":"AAAA,GAAI;EACF,WAAA","file":"styles.css","sourcesContent":["div > a {\\n  color: blue;\\n}\\n"]}',
+            sourceMap: true,
             sourceMapInlineSources: true
-          }).minify('div > a {\n  color: red;\n}');
+          }).minify(
+            'div > a {\n  color: red;\n}',
+            '{"version":3,"sources":["styles.less"],"names":[],"mappings":"AAAA,GAAI;EACF,WAAA","file":"styles.css","sourcesContent":["div > a {\\n  color: blue;\\n}\\n"]}'
+          );
         },
         'has 3 mappings': function (minified) {
           assert.lengthOf(minified.sourceMap._mappings._array, 3);

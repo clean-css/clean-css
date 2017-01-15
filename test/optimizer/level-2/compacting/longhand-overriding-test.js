@@ -143,11 +143,7 @@ vows.describe(optimize)
       'padding-bottom': ['padding'],
       'padding-left': ['padding'],
       'padding-right': ['padding'],
-      'padding-top': ['padding'],
-      'transition-delay': ['transition'],
-      'transition-duration': ['transition'],
-      'transition-property': ['transition'],
-      'transition-timing-function': ['transition']
+      'padding-top': ['padding']
     })
   )
   .export(module);

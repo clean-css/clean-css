@@ -98,14 +98,6 @@ function overrideContext(longhands) {
 vows.describe(optimize)
   .addBatch(
     overrideContext({
-      'animation-delay': ['animation'],
-      'animation-direction': ['animation'],
-      'animation-duration': ['animation'],
-      'animation-fill-mode': ['animation'],
-      'animation-iteration-count': ['animation'],
-      'animation-name': ['animation'],
-      'animation-play-state': ['animation'],
-      'animation-timing-function': ['animation'],
       'background-attachment': ['background'],
       'background-clip': ['background'],
       'background-color': ['background'],

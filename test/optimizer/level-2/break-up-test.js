@@ -256,15 +256,30 @@ vows.describe(breakUp)
         },
         'has border-width': function (components) {
           assert.deepEqual(components[0].name, 'border-width');
-          assert.deepEqual(components[0].value, [['property-value', 'inherit']]);
+          assert.deepEqual(components[0].value, [
+            ['property-value', 'inherit'],
+            ['property-value', 'inherit'],
+            ['property-value', 'inherit'],
+            ['property-value', 'inherit']
+          ]);
         },
         'has border-style': function (components) {
           assert.deepEqual(components[1].name, 'border-style');
-          assert.deepEqual(components[1].value, [['property-value', 'inherit']]);
+          assert.deepEqual(components[1].value, [
+            ['property-value', 'inherit'],
+            ['property-value', 'inherit'],
+            ['property-value', 'inherit'],
+            ['property-value', 'inherit']
+          ]);
         },
         'has border-color': function (components) {
           assert.deepEqual(components[2].name, 'border-color');
-          assert.deepEqual(components[2].value, [['property-value', 'inherit']]);
+          assert.deepEqual(components[2].value, [
+            ['property-value', 'inherit'],
+            ['property-value', 'inherit'],
+            ['property-value', 'inherit'],
+            ['property-value', 'inherit']
+          ]);
         }
       },
       '3 inherits': {
@@ -284,15 +299,30 @@ vows.describe(breakUp)
         },
         'has border-width': function (components) {
           assert.deepEqual(components[0].name, 'border-width');
-          assert.deepEqual(components[0].value, [['property-value', 'inherit']]);
+          assert.deepEqual(components[0].value, [
+            ['property-value', 'inherit'],
+            ['property-value', 'inherit'],
+            ['property-value', 'inherit'],
+            ['property-value', 'inherit']
+          ]);
         },
         'has border-style': function (components) {
           assert.deepEqual(components[1].name, 'border-style');
-          assert.deepEqual(components[1].value, [['property-value', 'inherit']]);
+          assert.deepEqual(components[1].value, [
+            ['property-value', 'inherit'],
+            ['property-value', 'inherit'],
+            ['property-value', 'inherit'],
+            ['property-value', 'inherit']
+          ]);
         },
         'has border-color': function (components) {
           assert.deepEqual(components[2].name, 'border-color');
-          assert.deepEqual(components[2].value, [['property-value', 'inherit']]);
+          assert.deepEqual(components[2].value, [
+            ['property-value', 'inherit'],
+            ['property-value', 'inherit'],
+            ['property-value', 'inherit'],
+            ['property-value', 'inherit']
+          ]);
         }
       },
       'all values in correct order': {
@@ -312,15 +342,30 @@ vows.describe(breakUp)
         },
         'has border-width': function (components) {
           assert.deepEqual(components[0].name, 'border-width');
-          assert.deepEqual(components[0].value, [['property-value', '1px']]);
+          assert.deepEqual(components[0].value, [
+            ['property-value', '1px'],
+            ['property-value', '1px'],
+            ['property-value', '1px'],
+            ['property-value', '1px']
+          ]);
         },
         'has border-style': function (components) {
           assert.deepEqual(components[1].name, 'border-style');
-          assert.deepEqual(components[1].value, [['property-value', 'solid']]);
+          assert.deepEqual(components[1].value, [
+            ['property-value', 'solid'],
+            ['property-value', 'solid'],
+            ['property-value', 'solid'],
+            ['property-value', 'solid']
+          ]);
         },
         'has border-color': function (components) {
           assert.deepEqual(components[2].name, 'border-color');
-          assert.deepEqual(components[2].value, [['property-value', 'red']]);
+          assert.deepEqual(components[2].value, [
+            ['property-value', 'red'],
+            ['property-value', 'red'],
+            ['property-value', 'red'],
+            ['property-value', 'red']
+          ]);
         }
       },
       'all values in wrong order': {
@@ -340,15 +385,30 @@ vows.describe(breakUp)
         },
         'has border-width': function (components) {
           assert.deepEqual(components[0].name, 'border-width');
-          assert.deepEqual(components[0].value, [['property-value', '1px']]);
+          assert.deepEqual(components[0].value, [
+            ['property-value', '1px'],
+            ['property-value', '1px'],
+            ['property-value', '1px'],
+            ['property-value', '1px']
+          ]);
         },
         'has border-style': function (components) {
           assert.deepEqual(components[1].name, 'border-style');
-          assert.deepEqual(components[1].value, [['property-value', 'solid']]);
+          assert.deepEqual(components[1].value, [
+            ['property-value', 'solid'],
+            ['property-value', 'solid'],
+            ['property-value', 'solid'],
+            ['property-value', 'solid']
+          ]);
         },
         'has border-color': function (components) {
           assert.deepEqual(components[2].name, 'border-color');
-          assert.deepEqual(components[2].value, [['property-value', 'red']]);
+          assert.deepEqual(components[2].value, [
+            ['property-value', 'red'],
+            ['property-value', 'red'],
+            ['property-value', 'red'],
+            ['property-value', 'red']
+          ]);
         }
       },
       'missing values': {
@@ -366,15 +426,30 @@ vows.describe(breakUp)
         },
         'has border-width': function (components) {
           assert.deepEqual(components[0].name, 'border-width');
-          assert.deepEqual(components[0].value, [['property-value', 'medium']]);
+          assert.deepEqual(components[0].value, [
+            ['property-value', 'medium'],
+            ['property-value', 'medium'],
+            ['property-value', 'medium'],
+            ['property-value', 'medium']
+          ]);
         },
         'has border-style': function (components) {
           assert.deepEqual(components[1].name, 'border-style');
-          assert.deepEqual(components[1].value, [['property-value', 'none']]);
+          assert.deepEqual(components[1].value, [
+            ['property-value', 'none'],
+            ['property-value', 'none'],
+            ['property-value', 'none'],
+            ['property-value', 'none']
+          ]);
         },
         'has border-color': function (components) {
           assert.deepEqual(components[2].name, 'border-color');
-          assert.deepEqual(components[2].value, [['property-value', 'red']]);
+          assert.deepEqual(components[2].value, [
+            ['property-value', 'red'],
+            ['property-value', 'red'],
+            ['property-value', 'red'],
+            ['property-value', 'red']
+          ]);
         }
       },
       'missing width': {
@@ -393,15 +468,30 @@ vows.describe(breakUp)
         },
         'has border-width': function (components) {
           assert.deepEqual(components[0].name, 'border-width');
-          assert.deepEqual(components[0].value, [['property-value', 'medium']]);
+          assert.deepEqual(components[0].value, [
+            ['property-value', 'medium'],
+            ['property-value', 'medium'],
+            ['property-value', 'medium'],
+            ['property-value', 'medium']
+          ]);
         },
         'has border-style': function (components) {
           assert.deepEqual(components[1].name, 'border-style');
-          assert.deepEqual(components[1].value, [['property-value', 'solid']]);
+          assert.deepEqual(components[1].value, [
+            ['property-value', 'solid'],
+            ['property-value', 'solid'],
+            ['property-value', 'solid'],
+            ['property-value', 'solid']
+          ]);
         },
         'has border-color': function (components) {
           assert.deepEqual(components[2].name, 'border-color');
-          assert.deepEqual(components[2].value, [['property-value', 'rgba(0,0,0,0)']]);
+          assert.deepEqual(components[2].value, [
+            ['property-value', 'rgba(0,0,0,0)'],
+            ['property-value', 'rgba(0,0,0,0)'],
+            ['property-value', 'rgba(0,0,0,0)'],
+            ['property-value', 'rgba(0,0,0,0)']
+          ]);
         }
       }
     },

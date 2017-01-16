@@ -18,7 +18,7 @@ function _optimize(source, mergeAdjacent, aggressiveMerging, compatibilityOption
         mergeMedia: false,
         restructureRules: false,
         mergeSemantically: false,
-        compactShorthands: false
+        compactShorthands: true
       }
     }
   };
@@ -28,7 +28,14 @@ function _optimize(source, mergeAdjacent, aggressiveMerging, compatibilityOption
     warnings: []
   });
 
-  optimize(tokens[0][1], tokens[0][2], mergeAdjacent, true, { options: options, validator: validator(compat) });
+  optimize(
+    tokens[0][1],
+    tokens[0][2],
+    mergeAdjacent,
+    true,
+    { enabled: true, merging: true },
+    { options: options, validator: validator(compat) }
+  );
 
   return tokens[0][2];
 }
@@ -98,11 +105,6 @@ vows.describe(optimize)
       },
       'into': function (properties) {
         assert.deepEqual(properties, [
-          [
-            'property',
-            ['property-name', 'margin', [[1, 2, undefined]]],
-            ['property-value', '0', [[1, 9, undefined]]]
-          ],
           [
             'property',
             ['property-name', 'margin', [[1, 11, undefined]]],
@@ -332,7 +334,7 @@ vows.describe(optimize)
         ]);
       }
     },
-    'longhand then shorthand': {
+    'longhand then shorthand 123': {
       'topic': function () {
         return _optimize('p{border-left-style:solid;border:1px dotted red}', false, true);
       },
@@ -642,7 +644,7 @@ vows.describe(optimize)
         ]);
       }
     },
-    'understandable - 2 adjacent properties, both !important, 2nd more understandable': {
+    'understandable - 2 adjacent properties, both !important and understandable': {
       'topic': function () {
         return _optimize('a{background:rgba(0,255,0,.5)!important;background:red!important}', false, true);
       },
@@ -651,11 +653,6 @@ vows.describe(optimize)
           [
             'property',
             ['property-name', 'background', [[1, 2, undefined]]],
-            ['property-value', 'rgba(0,255,0,.5)!important', [[1, 13, undefined]]]
-          ],
-          [
-            'property',
-            ['property-name', 'background', [[1, 40, undefined]]],
             ['property-value', 'red!important', [[1, 51, undefined]]]
           ]
         ]);
@@ -776,13 +773,6 @@ vows.describe(optimize)
       },
       'into': function (properties) {
         assert.deepEqual(properties, [
-          [
-            'property',
-            ['property-name', 'border', [[1, 2, undefined]]],
-            ['property-value', '1px', [[1, 9, undefined]]],
-            ['property-value', 'solid', [[1, 13, undefined]]],
-            ['property-value', '#fff', [[1, 19, undefined]]]
-          ],
           [
             'property',
             ['property-name', 'border', [[1, 24, undefined]]],
@@ -919,6 +909,48 @@ vows.describe(optimize)
             'property',
             ['property-name', 'margin-top', [[1, 35, undefined]]],
             ['property-value', '10vmin', [[1, 46, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'understandable - 2 adjacent properties, both !important, 2nd more understandable in IE8 mode': {
+      'topic': function () {
+        return _optimize('a{background:rgba(0,255,0,.5)!important;background:red!important}', false, true, 'ie8');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'background', [[1, 2, undefined]]],
+            ['property-value', 'rgba(0,255,0,.5)!important', [[1, 13, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'background', [[1, 40, undefined]]],
+            ['property-value', 'red!important', [[1, 51, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'understandable - border(hex) with border(rgba !important) in IE8 mode': {
+      'topic': function () {
+        return _optimize('a{border:1px solid #fff!important;border:1px solid rgba(1,0,0,.5)!important}', false, true, 'ie8');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'border', [[1, 2, undefined]]],
+            ['property-value', '1px', [[1, 9, undefined]]],
+            ['property-value', 'solid', [[1, 13, undefined]]],
+            ['property-value', '#fff!important', [[1, 19, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'border', [[1, 34, undefined]]],
+            ['property-value', '1px', [[1, 41, undefined]]],
+            ['property-value', 'solid', [[1, 45, undefined]]],
+            ['property-value', 'rgba(1,0,0,.5)!important', [[1, 51, undefined]]]
           ]
         ]);
       }

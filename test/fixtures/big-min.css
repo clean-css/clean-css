@@ -362,7 +362,7 @@ button::-moz-focus-inner,input[type=submit]::-moz-focus-inner{padding:0;border:0
 .liste_carre_999.liste_une{overflow:hidden;margin:10px 0;padding:0 0 0 15px}
 .liste_carre_999.liste_une li{float:left;width:45%;margin:0 0 10px}
 article .liste_carre_999{margin-top:5px}
-.liste_horaire li:first-child{border-top:0 none}
+.liste_horaire li:first-child{border-top:0}
 .liste_horaire li{border-top:1px solid #eef1f5;overflow:hidden;padding:10px 15px}
 .liste_horaire .heure{color:#2e3942;float:left;font-size:11px;height:14px;line-height:15px;width:40px}
 .liste_horaire .texte{float:left;width:240px}
@@ -795,7 +795,7 @@ img[height="97"]+.ico29x29{bottom:6%;left:3.5%}
 .sociaux .obf,.sociaux .obf span,.sociaux .obf strong,.sociaux .obf:focus span,.sociaux .obf:focus strong,.sociaux .obf:hover span,.sociaux .obf:hover strong{color:#000;text-decoration:none}
 .sociaux .obf{color:#036}
 .sociaux .obf .obf:focus,.sociaux .obf:hover{color:#900}
-#header_utilisateur #header_twitter_contenu .txt15_140{margin:0 0 5px;padding:0 0 5px;color:#000;border-bottom:solid 1px #d2d6db}
+#header_utilisateur #header_twitter_contenu .txt15_140{margin:0 0 5px;padding:0 0 5px;color:#000;border-bottom:1px solid #d2d6db}
 #header_twitter_contenu .liste_img_lien{margin:9px 0 0;overflow:hidden;white-space:nowrap}
 #header_twitter_contenu .liste_img_lien .block{display:block;margin:0 0 5px}
 #header_twitter_contenu{padding:10px;border:1px solid #d2d6db}
@@ -1186,6 +1186,7 @@ label i{font-style:normal}
 .col_droite .boite_recherche .saisie{width:239px;float:right}
 .col_droite .boite_recherche .saisie:first-child{width:274px;float:none}
 .col_droite .bloc_abonnes{margin-bottom:25px;border:solid #eef1f5;border-width:0 1px 1px;background:#fafbfc}
+.previsu+.contenu,.titres_journal{border-top:1px solid #e6e7e8}
 .col_droite .plus{font-weight:700}
 .col_droite .bloc_abonnes .bt{text-align:center;margin:10px 0}
 .col_droite .plus span{color:#747b83;font-size:110%;line-height:1}
@@ -1203,7 +1204,6 @@ label i{font-style:normal}
 .previsu_contenu li{margin:0 0 3px}
 .previsu_contenu .date{text-transform:uppercase;font-size:10px;color:#666}
 .previsu .lire{font-size:16px;font-weight:700;margin:0 0 5px;display:inline-block}
-.previsu+.contenu{border-top:1px solid #e6e7e8}
 .bloc_je{margin-bottom:20px}
 .bloc_je .bt_push_abo{margin-top:15px}
 .bloc_je .liste_ensembles{font-size:15px}
@@ -1229,10 +1229,10 @@ label i{font-style:normal}
 .bloc_couvs.bloc_pls_couv .couv_petite{width:125px;height:86px;top:auto;left:auto;right:36px;bottom:42px}
 .bloc_couvs.bloc_pls_couv .couv_petite.petite_2{right:18px;bottom:21px}
 .bloc_couvs.bloc_pls_couv .couv_petite.petite_3{right:0;bottom:0}
-.nouveau_weekend{font-weight:700;border-bottom:solid 1px #e6e7e8}
+.nouveau_weekend{font-weight:700;border-bottom:1px solid #e6e7e8}
 .nouveau_weekend strong{display:block;margin:0 0 3px;text-transform:lowercase;font-variant:small-caps;font-family:georgia,serif;font-size:1.1em}
 .nouveau_weekend span{display:inline-block;margin:0 1px 0 0;padding:0 4px 1px;background:#bb0102;color:#fff;font-family:arial,sans-serif;font-size:.85em}
-.titres_journal{padding:10px;border-top:solid 1px #e6e7e8;text-align:left;background:#fff}
+.titres_journal{padding:10px;text-align:left;background:#fff}
 .titres_journal .bull_gris_petit li{margin-bottom:2px}
 .titres_journal .fle_abo{font-size:15px;margin-bottom:3px;font-weight:700;padding-left:14px}
 #bandeau_bas{z-index:2147483647;position:fixed;bottom:0;width:100%;height:25px;border-bottom:1px solid #000;background:#000b15;color:#fff}
@@ -1486,7 +1486,7 @@ label i{font-style:normal}
 .une_edito .grid_12 .boite_recherche>p{display:block;margin:5px 0 0}
 .boite_inline .btn.adroite,.une_edito .btn.adroite{margin-top:5px}
 .reception_alertes_resultats{border:1px solid #eef1f5}
-.reception_alertes_resultats h1{border-top:solid 3px #1f0d67}
+.reception_alertes_resultats h1{border-top:3px solid #1f0d67}
 .reception_alertes_resultats .conteneur_hors_grille{margin:16px 54px 54px}
 .reception_alertes_resultats .saisie{display:block;width:282px}
 .reception_alertes_resultats .saisie.iblock{display:inline-block}

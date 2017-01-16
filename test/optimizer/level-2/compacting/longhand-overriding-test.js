@@ -28,7 +28,14 @@ function _optimize(source) {
       }
     }
   };
-  optimize(tokens[0][1], tokens[0][2], false, true, { options: options, validator: validator(compat) });
+  optimize(
+    tokens[0][1],
+    tokens[0][2],
+    false,
+    true,
+    { enabled: true, merging: true },
+    { options: options, validator: validator(compat) }
+  );
 
   return tokens[0][2];
 }
@@ -73,7 +80,8 @@ function overrideContext(longhands) {
   var vendorPrefixesFor = ['animation', 'transition'];
   var defaultValues = {
     'list-style-image': 'none',
-    'background': '0 0'
+    'background': '0 0',
+    'border-color': 'red'
   };
 
   for (var longhand in longhands) {

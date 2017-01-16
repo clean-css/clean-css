@@ -103,6 +103,14 @@ vows.describe('remove duplicates')
       'multiple backgrounds': [
         '.two{background-color:#000}.one,.two{background-color:#fff;background-image:url(x),-moz-linear-gradient(top,#aaa,#aaa);background-image:url(x),linear-gradient(to bottom,#aaa,#aaa)}.two{background-image:url(x),-moz-linear-gradient(top,#bbb,#bbb);background-image:url(x),linear-gradient(to bottom,#bbb,#bbb)}.one,.two{display:block}',
         '.one,.two{background-color:#fff;background-image:url(x),-moz-linear-gradient(top,#aaa,#aaa);background-image:url(x),linear-gradient(to bottom,#aaa,#aaa);display:block}.two{background-image:url(x),-moz-linear-gradient(top,#bbb,#bbb);background-image:url(x),linear-gradient(to bottom,#bbb,#bbb)}'
+      ],
+      'border-top shorthand': [
+        '.block1{border-top-width:3px;border-top-style:solid}.block1,.block2{border-top:3px solid red}',
+        '.block1,.block2{border-top:3px solid red}'
+      ],
+      'non-reducible incomplete border shorthand': [
+        '.block1{border:3px solid}.block1,.block2{border-color:red}',
+        '.block1{border:3px solid}.block1,.block2{border-color:red}'
       ]
     }, { level: 2 })
   )

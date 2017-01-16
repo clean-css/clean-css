@@ -2,6 +2,8 @@ var assert = require('assert');
 var vows = require('vows');
 
 var wrapForOptimizing = require('../../../../lib/optimizer/wrap-for-optimizing').all;
+var compatibility = require('../../../../lib/utils/compatibility');
+var validator = require('../../../../lib/optimizer/validator');
 
 var populateComponents = require('../../../../lib/optimizer/level-2/compacting/populate-components');
 
@@ -20,7 +22,7 @@ vows.describe(populateComponents)
           ]
         ]);
 
-        populateComponents(wrapped);
+        populateComponents(wrapped, validator(compatibility({})), []);
         return wrapped;
       },
       'has one': function (wrapped) {
@@ -52,6 +54,85 @@ vows.describe(populateComponents)
         assert.deepEqual(wrapped[0].components[3].value, [['property-value', '3px']]);
       }
     },
+    'shorthand with shorthand components': {
+      'topic': function () {
+        var wrapped = wrapForOptimizing([
+          [
+            'property',
+            ['property-name', 'border'],
+            ['property-value', '1px'],
+            ['property-value', 'solid'],
+            ['property-value', 'red']
+          ]
+        ]);
+
+        populateComponents(wrapped, validator(compatibility({})), []);
+        return wrapped;
+      },
+      'has one': function (wrapped) {
+        assert.lengthOf(wrapped, 1);
+      },
+      'becomes shorthand': function (wrapped) {
+        assert.isTrue(wrapped[0].shorthand);
+      },
+      'is dirty': function (wrapped) {
+        assert.isTrue(wrapped[0].dirty);
+      },
+      'gets 3 components': function (wrapped) {
+        assert.lengthOf(wrapped[0].components, 3);
+      },
+      'gets a border-width with subcomponents': function (wrapped) {
+        assert.deepEqual(wrapped[0].components[0].name, 'border-width');
+        assert.deepEqual(wrapped[0].components[0].value, [
+          ['property-value', '1px'],
+          ['property-value', '1px'],
+          ['property-value', '1px'],
+          ['property-value', '1px']
+        ]);
+
+        assert.lengthOf(wrapped[0].components[0].components, 4);
+        assert.deepEqual(wrapped[0].components[0].components.map(function (c) { return c.name; }), [
+          'border-top-width',
+          'border-right-width',
+          'border-bottom-width',
+          'border-left-width'
+        ]);
+      },
+      'gets a border-style': function (wrapped) {
+        assert.deepEqual(wrapped[0].components[1].name, 'border-style');
+        assert.deepEqual(wrapped[0].components[1].value, [
+          ['property-value', 'solid'],
+          ['property-value', 'solid'],
+          ['property-value', 'solid'],
+          ['property-value', 'solid']
+        ]);
+
+        assert.lengthOf(wrapped[0].components[1].components, 4);
+        assert.deepEqual(wrapped[0].components[1].components.map(function (c) { return c.name; }), [
+          'border-top-style',
+          'border-right-style',
+          'border-bottom-style',
+          'border-left-style'
+        ]);
+      },
+      'gets a border-color': function (wrapped) {
+        assert.deepEqual(wrapped[0].components[2].name, 'border-color');
+        assert.deepEqual(wrapped[0].components[2].value, [
+          ['property-value', 'red'],
+          ['property-value', 'red'],
+          ['property-value', 'red'],
+          ['property-value', 'red']
+        ]);
+
+        assert.lengthOf(wrapped[0].components[2].components, 4);
+        assert.deepEqual(wrapped[0].components[2].components.map(function (c) { return c.name; }), [
+          'border-top-color',
+          'border-right-color',
+          'border-bottom-color',
+          'border-left-color'
+        ]);
+      }
+    },
     'longhand': {
       'topic': function () {
         var wrapped = wrapForOptimizing([
@@ -62,7 +143,7 @@ vows.describe(populateComponents)
           ]
         ]);
 
-        populateComponents(wrapped);
+        populateComponents(wrapped, validator(compatibility({})), []);
         return wrapped;
       },
       'has one': function (wrapped) {
@@ -81,7 +162,7 @@ vows.describe(populateComponents)
           ]
         ]);
 
-        populateComponents(wrapped);
+        populateComponents(wrapped, validator(compatibility({})), []);
         return wrapped;
       },
       'has one': function (wrapped) {

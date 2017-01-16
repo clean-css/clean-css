@@ -353,25 +353,25 @@ vows.describe(breakUp)
       },
       'vendor prefix asymmetrical horizontal vertical split': {
         'topic': function () {
-          return _breakUp([[['-webkit-border-radius'], ['0px'], ['1px'], ['2px'], ['/'], ['1px'], ['4px']]]);
+          return _breakUp([[['-moz-border-radius'], ['0px'], ['1px'], ['2px'], ['/'], ['1px'], ['4px']]]);
         },
         'has 4 components': function (components) {
           assert.lengthOf(components, 4);
         },
         'has border-top-left-radius': function (components) {
-          assert.equal(components[0].name, '-webkit-border-top-left-radius');
+          assert.equal(components[0].name, '-moz-border-top-left-radius');
           assert.deepEqual(components[0].value, [['0px'], ['1px']]);
         },
         'has border-top-right-radius': function (components) {
-          assert.equal(components[1].name, '-webkit-border-top-right-radius');
+          assert.equal(components[1].name, '-moz-border-top-right-radius');
           assert.deepEqual(components[1].value, [['1px'], ['4px']]);
         },
         'has border-bottom-right-radius': function (components) {
-          assert.equal(components[2].name, '-webkit-border-bottom-right-radius');
+          assert.equal(components[2].name, '-moz-border-bottom-right-radius');
           assert.deepEqual(components[2].value, [['2px'], ['1px']]);
         },
         'has border-bottom-left': function (components) {
-          assert.equal(components[3].name, '-webkit-border-bottom-left-radius');
+          assert.equal(components[3].name, '-moz-border-bottom-left-radius');
           assert.deepEqual(components[3].value, [['1px'], ['4px']]);
         }
       },

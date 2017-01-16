@@ -756,7 +756,7 @@ vows.describe('integration tests')
       ],
       'border-radius - same 4 values with vendor prefixes': [
         'div{-moz-border-radius:3px 3px 3px 3px;-o-border-radius:3px 3px 3px 3px;-webkit-border-radius:3px 3px 3px 3px;border-radius:3px 3px 3px 3px}',
-        'div{-moz-border-radius:3px;-o-border-radius:3px;-webkit-border-radius:3px;border-radius:3px}'
+        'div{-moz-border-radius:3px;-o-border-radius:3px;-webkit-border-radius:3px 3px 3px 3px;border-radius:3px}'
       ],
       'padding - same pairs': [
         'div{padding:15.5em 10.5em 15.5em 10.5em}',
@@ -780,7 +780,7 @@ vows.describe('integration tests')
       ],
       'border-radius - same 3 values with one vendor prefixe': [
         'div{-webkit-border-radius:3px 3px 3px;border-radius:3px 3px 3px}',
-        'div{-webkit-border-radius:3px;border-radius:3px}'
+        'div{-webkit-border-radius:3px 3px 3px;border-radius:3px}'
       ],
       'border-color - same 2nd and 4th value as rgb': [
         'div{border-color:rgb(0,0,0) rgb(34,0,0) rgb(255,0,0) rgb(34,0,0)}',

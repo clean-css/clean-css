@@ -572,7 +572,7 @@ vows.describe(breakUp)
           return _breakUp([
             [
               'property',
-              ['property-name', '-webkit-border-radius'],
+              ['property-name', '-moz-border-radius'],
               ['property-value', '0px'],
               ['property-value', '1px'],
               ['property-value', '2px'],
@@ -586,19 +586,19 @@ vows.describe(breakUp)
           assert.lengthOf(components, 4);
         },
         'has border-top-left-radius': function (components) {
-          assert.equal(components[0].name, '-webkit-border-top-left-radius');
+          assert.equal(components[0].name, '-moz-border-top-left-radius');
           assert.deepEqual(components[0].value, [['property-value', '0px'], ['property-value', '1px']]);
         },
         'has border-top-right-radius': function (components) {
-          assert.equal(components[1].name, '-webkit-border-top-right-radius');
+          assert.equal(components[1].name, '-moz-border-top-right-radius');
           assert.deepEqual(components[1].value, [['property-value', '1px'], ['property-value', '4px']]);
         },
         'has border-bottom-right-radius': function (components) {
-          assert.equal(components[2].name, '-webkit-border-bottom-right-radius');
+          assert.equal(components[2].name, '-moz-border-bottom-right-radius');
           assert.deepEqual(components[2].value, [['property-value', '2px'], ['property-value', '1px']]);
         },
         'has border-bottom-left': function (components) {
-          assert.equal(components[3].name, '-webkit-border-bottom-left-radius');
+          assert.equal(components[3].name, '-moz-border-bottom-left-radius');
           assert.deepEqual(components[3].value, [['property-value', '1px'], ['property-value', '4px']]);
         }
       },

@@ -257,6 +257,23 @@ vows.describe(optimizeProperties)
         ]);
       }
     },
+    'skipping -webkit-border-radius optimizations': {
+      'topic': function () {
+        return _optimize('p{-webkit-border-radius:7px 3px 7px 3px}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', '-webkit-border-radius', [[1, 2, undefined]]],
+            ['property-value', '7px', [[1, 24, undefined]]],
+            ['property-value', '3px', [[1, 28, undefined]]],
+            ['property-value', '7px', [[1, 32, undefined]]],
+            ['property-value', '3px', [[1, 36, undefined]]]
+          ]
+        ]);
+      }
+    },
     'shorthand multiple !important': {
       'topic': function () {
         return _optimize('a{border-color:#123 !important;border-top-color: #456 !important}');

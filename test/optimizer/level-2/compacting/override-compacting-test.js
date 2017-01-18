@@ -8,7 +8,7 @@ var inputSourceMapTracker = require('../../../../lib/reader/input-source-map-tra
 var compatibility = require('../../../../lib/utils/compatibility');
 var validator = require('../../../../lib/optimizer/validator');
 
-function _optimize(source, compat, aggressiveMerging) {
+function _optimize(source, compat) {
   var tokens = tokenize(source, {
     inputSourceMapTracker: inputSourceMapTracker(),
     options: {},
@@ -17,7 +17,6 @@ function _optimize(source, compat, aggressiveMerging) {
   compat = compatibility(compat);
 
   var options = {
-    aggressiveMerging: undefined === aggressiveMerging ? true : aggressiveMerging,
     compatibility: compat,
     level: {
       2: {
@@ -28,7 +27,6 @@ function _optimize(source, compat, aggressiveMerging) {
   optimize(
     tokens[0][1],
     tokens[0][2],
-    false,
     true,
     { enabled: true, merging: true },
     { options: options, validator: validator(compat) }
@@ -728,25 +726,6 @@ vows.describe(optimize)
         ]);
       }
     },
-    'with aggressive off': {
-      'topic': function () {
-        return _optimize('a{background:white;color:red;background:red}', undefined, false);
-      },
-      'into': function (properties) {
-        assert.deepEqual(properties, [
-          [
-            'property',
-            ['property-name', 'background', [[1, 2, undefined]]],
-            ['property-value', 'red', [[1, 40, undefined]]]
-          ],
-          [
-            'property',
-            ['property-name', 'color', [[1, 19, undefined]]],
-            ['property-value', 'red', [[1, 25, undefined]]]
-          ]
-        ]);
-      }
-    },
     'background-clip, -origin, and -size': {
       'topic': function () {
         return _optimize('a{background:url(/image.png);background-size:10px;background-origin:border-box;background-clip:padding-box}');
@@ -900,6 +879,22 @@ vows.describe(optimize)
             ['property-name', 'border', [[1, 2, undefined]]],
             ['property-value', '1px', [[1, 9, undefined]]],
             ['property-value', 'solid', [[1, 13, undefined]]],
+            ['property-value', 'rgba(255,0,0,.5)', [[1, 37, undefined]]],
+          ]
+        ]);
+      }
+    },
+    'border - hex and rgb colors - IE8 mode': {
+      'topic': function () {
+        return _optimize('a{border:1px solid #000;border-color:rgba(255,0,0,.5)}', 'ie8');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'border', [[1, 2, undefined]]],
+            ['property-value', '1px', [[1, 9, undefined]]],
+            ['property-value', 'solid', [[1, 13, undefined]]],
             ['property-value', '#000', [[1, 19, undefined]]]
           ],
           [
@@ -913,6 +908,20 @@ vows.describe(optimize)
     'border-color - hex then rgb': {
       'topic': function () {
         return _optimize('a{border-color:#000;border-color:rgba(255,0,0,.5)}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'border-color', [[1, 2, undefined]]],
+            ['property-value', 'rgba(255,0,0,.5)', [[1, 33, undefined]]],
+          ]
+        ]);
+      }
+    },
+    'border-color - hex then rgb - IE8 mode': {
+      'topic': function () {
+        return _optimize('a{border-color:#000;border-color:rgba(255,0,0,.5)}', 'ie8');
       },
       'into': function (properties) {
         assert.deepEqual(properties, [
@@ -946,6 +955,21 @@ vows.describe(optimize)
     'border-color - hex then rgb with multiple values': {
       'topic': function () {
         return _optimize('a{border-color:red;border-color:#000 rgba(255,0,0,.5)}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'border-color', [[1, 2, undefined]]],
+            ['property-value', '#000', [[1, 32, undefined]]],
+            ['property-value', 'rgba(255,0,0,.5)', [[1, 37, undefined]]],
+          ]
+        ]);
+      }
+    },
+    'border-color - hex then rgb with multiple values - IE8 mode': {
+      'topic': function () {
+        return _optimize('a{border-color:red;border-color:#000 rgba(255,0,0,.5)}', 'ie8');
       },
       'into': function (properties) {
         assert.deepEqual(properties, [
@@ -1064,6 +1088,29 @@ vows.describe(optimize)
         ]);
       }
     },
+    'outline with vendor prefixed color 1234': {
+      'topic': function () {
+        return _optimize('a{outline:red solid 1px;outline:-webkit-focus-ring-color auto 5px}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'outline', [[1, 2, undefined]]],
+            ['property-value', 'red', [[1, 10, undefined]]],
+            ['property-value', 'solid', [[1, 14, undefined]]],
+            ['property-value', '1px', [[1, 20, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'outline', [[1, 24, undefined]]],
+            ['property-value', '-webkit-focus-ring-color', [[1, 32, undefined]]],
+            ['property-value', 'auto', [[1, 57, undefined]]],
+            ['property-value', '5px', [[1, 62, undefined]]]
+          ]
+        ]);
+      }
+    },
     'padding': {
       'topic': function () {
         return _optimize('a{padding:10px;padding-right:20px;padding-left:20px}');
@@ -1098,6 +1145,20 @@ vows.describe(optimize)
     'colors with different understandability': {
       'topic': function () {
         return _optimize('a{color:red;color:#fff;color:blue;color:rgba(1,2,3,.4)}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'color', [[1, 34, undefined]]],
+            ['property-value', 'rgba(1,2,3,.4)', [[1, 40, undefined]]],
+          ]
+        ]);
+      }
+    },
+    'colors with different understandability - IE8 mode': {
+      'topic': function () {
+        return _optimize('a{color:red;color:#fff;color:blue;color:rgba(1,2,3,.4)}', 'ie8');
       },
       'into': function (properties) {
         assert.deepEqual(properties, [
@@ -1145,6 +1206,20 @@ vows.describe(optimize)
     'colors with different understandability and importance #2': {
       'topic': function () {
         return _optimize('a{color:#fff;color:rgba(1,2,3,.4)!important}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'color', [[1, 13, undefined]]],
+            ['property-value', 'rgba(1,2,3,.4)!important', [[1, 19, undefined]]],
+          ]
+        ]);
+      }
+    },
+    'colors with different understandability and importance #2 - IE8 mode': {
+      'topic': function () {
+        return _optimize('a{color:#fff;color:rgba(1,2,3,.4)!important}', 'ie8');
       },
       'into': function (properties) {
         assert.deepEqual(properties, [
@@ -1548,9 +1623,492 @@ vows.describe(optimize)
     }
   })
   .addBatch({
+    'bottom': {
+      'topic': function () {
+        return _optimize('.block{bottom:0;bottom:2rem}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'bottom', [[1, 16, undefined]]],
+            ['property-value', '2rem', [[1, 23, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'bottom - non overriddable': {
+      'topic': function () {
+        return _optimize('.block{bottom:2rem;bottom:calc(1vm + 1px)}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'bottom', [[1, 7, undefined]]],
+            ['property-value', '2rem', [[1, 14, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'bottom', [[1, 19, undefined]]],
+            ['property-value', 'calc(1vm + 1px)', [[1, 26, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'cursor': {
+      'topic': function () {
+        return _optimize('.block{cursor:auto;cursor:pointer}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'cursor', [[1, 19, undefined]]],
+            ['property-value', 'pointer', [[1, 26, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'cursor - non overriddable': {
+      'topic': function () {
+        return _optimize('.block{cursor:pointer;cursor:url(image.png)}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'cursor', [[1, 7, undefined]]],
+            ['property-value', 'pointer', [[1, 14, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'cursor', [[1, 22, undefined]]],
+            ['property-value', 'url(image.png)', [[1, 29, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'left': {
+      'topic': function () {
+        return _optimize('.block{left:0;left:2rem}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'left', [[1, 14, undefined]]],
+            ['property-value', '2rem', [[1, 19, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'left - non overriddable': {
+      'topic': function () {
+        return _optimize('.block{left:2rem;left:calc(1vm + 1px)}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'left', [[1, 7, undefined]]],
+            ['property-value', '2rem', [[1, 12, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'left', [[1, 17, undefined]]],
+            ['property-value', 'calc(1vm + 1px)', [[1, 22, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'position': {
+      'topic': function () {
+        return _optimize('.block{position:static;position:relative}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'position', [[1, 23, undefined]]],
+            ['property-value', 'relative', [[1, 32, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'position - non overriddable': {
+      'topic': function () {
+        return _optimize('.block{position:fixed;position:sticky}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'position', [[1, 7, undefined]]],
+            ['property-value', 'fixed', [[1, 16, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'position', [[1, 22, undefined]]],
+            ['property-value', 'sticky', [[1, 31, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'overflow': {
+      'topic': function () {
+        return _optimize('.block{overflow:hidden;overflow:visible}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'overflow', [[1, 23, undefined]]],
+            ['property-value', 'visible', [[1, 32, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'overflow - non overriddable': {
+      'topic': function () {
+        return _optimize('.block{overflow:hidden;overflow:-moz-scrollbars-none }');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'overflow', [[1, 7, undefined]]],
+            ['property-value', 'hidden', [[1, 16, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'overflow', [[1, 23, undefined]]],
+            ['property-value', '-moz-scrollbars-none', [[1, 32, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'right': {
+      'topic': function () {
+        return _optimize('.block{right:0;right:2rem}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'right', [[1, 15, undefined]]],
+            ['property-value', '2rem', [[1, 21, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'right - non overriddable': {
+      'topic': function () {
+        return _optimize('.block{right:2rem;right:calc(1vm + 1px)}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'right', [[1, 7, undefined]]],
+            ['property-value', '2rem', [[1, 13, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'right', [[1, 18, undefined]]],
+            ['property-value', 'calc(1vm + 1px)', [[1, 24, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'top': {
+      'topic': function () {
+        return _optimize('.block{top:0;top:2rem}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'top', [[1, 13, undefined]]],
+            ['property-value', '2rem', [[1, 17, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'top - non overriddable': {
+      'topic': function () {
+        return _optimize('.block{top:2rem;top:calc(1vm + 1px)}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'top', [[1, 7, undefined]]],
+            ['property-value', '2rem', [[1, 11, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'top', [[1, 16, undefined]]],
+            ['property-value', 'calc(1vm + 1px)', [[1, 20, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'text-align': {
+      'topic': function () {
+        return _optimize('.block{text-align:center;text-align:justify}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'text-align', [[1, 25, undefined]]],
+            ['property-value', 'justify', [[1, 36, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'text-align - non overriddable': {
+      'topic': function () {
+        return _optimize('.block{text-align:center;text-align:start}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'text-align', [[1, 7, undefined]]],
+            ['property-value', 'center', [[1, 18, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'text-align', [[1, 25, undefined]]],
+            ['property-value', 'start', [[1, 36, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'text-decoration': {
+      'topic': function () {
+        return _optimize('.block{text-decoration:none;text-decoration:underline}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'text-decoration', [[1, 28, undefined]]],
+            ['property-value', 'underline', [[1, 44, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'text-decoration - non overriddable': {
+      'topic': function () {
+        return _optimize('.block{text-decoration:none;text-decoration:blink}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'text-decoration', [[1, 7, undefined]]],
+            ['property-value', 'none', [[1, 23, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'text-decoration', [[1, 28, undefined]]],
+            ['property-value', 'blink', [[1, 44, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'text-overflow': {
+      'topic': function () {
+        return _optimize('.block{text-overflow:clip;text-overflow:ellipsis}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'text-overflow', [[1, 26, undefined]]],
+            ['property-value', 'ellipsis', [[1, 40, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'text-overflow - non overriddable': {
+      'topic': function () {
+        return _optimize('.block{text-overflow:clip;text-overflow:"..."}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'text-overflow', [[1, 7, undefined]]],
+            ['property-value', 'clip', [[1, 21, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'text-overflow', [[1, 26, undefined]]],
+            ['property-value', '"..."', [[1, 40, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'vertical-align': {
+      'topic': function () {
+        return _optimize('.block{vertical-align:sub;vertical-align:middle}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'vertical-align', [[1, 26, undefined]]],
+            ['property-value', 'middle', [[1, 41, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'vertical-align - non overriddable': {
+      'topic': function () {
+        return _optimize('.block{vertical-align:sub;vertical-align:-webkit-funky-align}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'vertical-align', [[1, 7, undefined]]],
+            ['property-value', 'sub', [[1, 22, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'vertical-align', [[1, 26, undefined]]],
+            ['property-value', '-webkit-funky-align', [[1, 41, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'visibility': {
+      'topic': function () {
+        return _optimize('.block{visibility:collapse;visibility:visible}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'visibility', [[1, 27, undefined]]],
+            ['property-value', 'visible', [[1, 38, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'visibility - non overriddable': {
+      'topic': function () {
+        return _optimize('.block{visibility:collapse;visibility:var(--visibility)}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'visibility', [[1, 7, undefined]]],
+            ['property-value', 'collapse', [[1, 18, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'visibility', [[1, 27, undefined]]],
+            ['property-value', 'var(--visibility)', [[1, 38, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'white-space': {
+      'topic': function () {
+        return _optimize('.block{white-space:normal;white-space:nowrap}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'white-space', [[1, 26, undefined]]],
+            ['property-value', 'nowrap', [[1, 38, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'white-space - non overriddable': {
+      'topic': function () {
+        return _optimize('.block{white-space:normal;white-space:var(--white-space)}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'white-space', [[1, 7, undefined]]],
+            ['property-value', 'normal', [[1, 19, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'white-space', [[1, 26, undefined]]],
+            ['property-value', 'var(--white-space)', [[1, 38, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'z-index': {
+      'topic': function () {
+        return _optimize('.block{z-index:auto;z-index:-1}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'z-index', [[1, 20, undefined]]],
+            ['property-value', '-1', [[1, 28, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'z-index - non overriddable': {
+      'topic': function () {
+        return _optimize('.block{z-index:auto;z-index:"15"}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'z-index', [[1, 7, undefined]]],
+            ['property-value', 'auto', [[1, 15, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'z-index', [[1, 20, undefined]]],
+            ['property-value', '"15"', [[1, 28, undefined]]]
+          ]
+        ]);
+      }
+    }
+  })
+  .addBatch({
     'overriding !important by a star hack': {
       'topic': function () {
         return _optimize('a{color:red!important;display:block;*color:#fff}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'color', [[1, 2, undefined]]],
+            ['property-value', 'red!important', [[1, 8, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'display', [[1, 22, undefined]]],
+            ['property-value', 'block', [[1, 30, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'overriding !important by an !important star hack': {
+      'topic': function () {
+        return _optimize('a{color:red!important;display:block;*color:#fff!important}');
       },
       'into': function (properties) {
         assert.deepEqual(properties, [
@@ -1567,7 +2125,7 @@ vows.describe(optimize)
           [
             'property',
             ['property-name', '*color', [[1, 36, undefined]]],
-            ['property-value', '#fff', [[1, 43, undefined]]]
+            ['property-value', '#fff!important', [[1, 43, undefined]]]
           ]
         ]);
       }
@@ -1587,11 +2145,30 @@ vows.describe(optimize)
             'property',
             ['property-name', 'display', [[1, 22, undefined]]],
             ['property-value', 'block', [[1, 30, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'overriding !important by an !important underscore hack': {
+      'topic': function () {
+        return _optimize('a{color:red!important;display:block;_color:#fff!important}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'color', [[1, 2, undefined]]],
+            ['property-value', 'red!important', [[1, 8, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'display', [[1, 22, undefined]]],
+            ['property-value', 'block', [[1, 30, undefined]]]
           ],
           [
             'property',
             ['property-name', '_color', [[1, 36, undefined]]],
-            ['property-value', '#fff', [[1, 43, undefined]]]
+            ['property-value', '#fff!important', [[1, 43, undefined]]]
           ]
         ]);
       }

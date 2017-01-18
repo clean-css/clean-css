@@ -2204,18 +2204,6 @@ vows.describe('integration tests')
     })
   )
   .addBatch(
-    optimizerContext('duplicate properties with aggressive merging disabled', {
-      'of (yet) unmergeable properties': [
-        'a{display:inline-block;color:red;display:-moz-block}',
-        'a{display:inline-block;color:red;display:-moz-block}'
-      ],
-      'of mergeable properties': [
-        'a{background:red;display:block;background:white}',
-        'a{background:#fff;display:block}'
-      ]
-    }, { aggressiveMerging: false, level: 2 })
-  )
-  .addBatch(
     optimizerContext('rerun optimizers', {
       'selectors reducible once': [
         '.one{color:red;margin:0}.two{color:red}.one{margin:0}',

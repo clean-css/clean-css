@@ -17,7 +17,6 @@ function _optimize(source) {
 
   var compat = compatibility(compat);
   var options = {
-    aggressiveMerging: true,
     compatibility: compat,
     level: {
       2: {
@@ -28,7 +27,6 @@ function _optimize(source) {
   optimize(
     tokens[0][1],
     tokens[0][2],
-    false,
     true,
     { enabled: true, merging: true },
     { options: options, validator: validator(compat) }
@@ -551,7 +549,7 @@ vows.describe(optimize)
     },
     'mixed understandability of units': {
       'topic': function () {
-        return _optimize('a{padding-top:10px;padding-left:5px;padding-bottom:3px;padding-right:calc(100% - 20px)}');
+        return _optimize('a{padding-top:10px;padding-left:5px;padding-bottom:3px;padding-right:-moz-calc(100% - 20px)}');
       },
       'into': function (properties) {
         assert.deepEqual(properties, [
@@ -573,7 +571,7 @@ vows.describe(optimize)
           [
             'property',
             ['property-name', 'padding-right', [[1, 55, undefined]]],
-            ['property-value', 'calc(100% - 20px)', [[1, 69, undefined]]]
+            ['property-value', '-moz-calc(100% - 20px)', [[1, 69, undefined]]]
           ]
         ]);
       }

@@ -8,10 +8,9 @@ var inputSourceMapTracker = require('../../../../lib/reader/input-source-map-tra
 var compatibility = require('../../../../lib/utils/compatibility');
 var validator = require('../../../../lib/optimizer/validator');
 
-function _optimize(source, mergeAdjacent, aggressiveMerging, compatibilityOptions) {
+function _optimize(source, compatibilityOptions) {
   var compat = compatibility(compatibilityOptions);
   var options = {
-    aggressiveMerging: aggressiveMerging,
     compatibility: compat,
     level: {
       2: {
@@ -31,7 +30,6 @@ function _optimize(source, mergeAdjacent, aggressiveMerging, compatibilityOption
   optimize(
     tokens[0][1],
     tokens[0][2],
-    mergeAdjacent,
     true,
     { enabled: true, merging: true },
     { options: options, validator: validator(compat) }
@@ -42,28 +40,9 @@ function _optimize(source, mergeAdjacent, aggressiveMerging, compatibilityOption
 
 vows.describe(optimize)
   .addBatch({
-    'of two adjacent properties': {
+    'of two properties': {
       'topic': function () {
-        return _optimize('a{display:-moz-inline-box;display:inline-block}', false, true);
-      },
-      'into': function (properties) {
-        assert.deepEqual(properties, [
-          [
-            'property',
-            ['property-name', 'display', [[1, 2, undefined]]],
-            ['property-value', '-moz-inline-box', [[1, 10, undefined]]]
-          ],
-          [
-            'property',
-            ['property-name', 'display', [[1, 26, undefined]]],
-            ['property-value', 'inline-block', [[1, 34, undefined]]]
-          ]
-        ]);
-      }
-    },
-    'of two properties ': {
-      'topic': function () {
-        return _optimize('a{display:inline-block;color:red;display:block}', false, true);
+        return _optimize('a{display:inline-block;color:red;display:block}');
       },
       'into': function (properties) {
         assert.deepEqual(properties, [
@@ -80,9 +59,23 @@ vows.describe(optimize)
         ]);
       }
     },
+    'of two adjacent properties': {
+      'topic': function () {
+        return _optimize('a{display:-moz-inline-box;display:inline-block}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'display', [[1, 26, undefined]]],
+            ['property-value', 'inline-block', [[1, 34, undefined]]]
+          ]
+        ]);
+      }
+    },
     'of two same properties with same value where latter is a hack': {
       'topic': function () {
-        return _optimize('a{margin:0;_margin:0}', false, true);
+        return _optimize('a{margin:0;_margin:0}');
       },
       'into': function (properties) {
         assert.deepEqual(properties, [
@@ -101,7 +94,7 @@ vows.describe(optimize)
     },
     'of two same properties with same value where latter is !important': {
       'topic': function () {
-        return _optimize('a{margin:0;margin:0 !important}', false, true);
+        return _optimize('a{margin:0;margin:0 !important}');
       },
       'into': function (properties) {
         assert.deepEqual(properties, [
@@ -115,7 +108,7 @@ vows.describe(optimize)
     },
     'of two properties where former is !important': {
       'topic': function () {
-        return _optimize('a{display:inline-block!important;color:red;display:block}', false, true);
+        return _optimize('a{display:inline-block!important;color:red;display:block}');
       },
       'into': function (properties) {
         assert.deepEqual(properties, [
@@ -132,9 +125,9 @@ vows.describe(optimize)
         ]);
       }
     },
-    'of two properties  where latter is !important': {
+    'of two properties where latter is !important': {
       'topic': function () {
-        return _optimize('a{display:inline-block;color:red;display:block!important}', false, true);
+        return _optimize('a{display:inline-block;color:red;display:block!important}');
       },
       'into': function (properties) {
         assert.deepEqual(properties, [
@@ -151,9 +144,9 @@ vows.describe(optimize)
         ]);
       }
     },
-    'of two properties  where both are !important': {
+    'of two properties where both are !important': {
       'topic': function () {
-        return _optimize('a{display:inline-block!important;color:red;display:block!important}', false, true);
+        return _optimize('a{display:inline-block!important;color:red;display:block!important}');
       },
       'into': function (properties) {
         assert.deepEqual(properties, [
@@ -172,15 +165,10 @@ vows.describe(optimize)
     },
     'of many properties': {
       'topic': function () {
-        return _optimize('a{display:inline-block;color:red;font-weight:bolder;font-weight:700;display:block!important;color:#fff}', false, true);
+        return _optimize('a{display:inline-block;color:red;font-weight:bolder;font-weight:700;display:block!important;color:#fff}');
       },
       'into': function (properties) {
         assert.deepEqual(properties, [
-          [
-            'property',
-            ['property-name', 'font-weight', [[1, 33, undefined]]],
-            ['property-value', 'bolder', [[1, 45, undefined]]]
-          ],
           [
             'property',
             ['property-name', 'font-weight', [[1, 52, undefined]]],
@@ -201,7 +189,7 @@ vows.describe(optimize)
     },
     'both redefined': {
       'topic': function () {
-        return _optimize('p{display:block;display:-moz-inline-box;color:red;display:table-cell}', false, true);
+        return _optimize('p{display:block;display:-moz-inline-box;color:red;display:table-cell}');
       },
       'into': function (properties) {
         assert.deepEqual(properties, [
@@ -220,7 +208,7 @@ vows.describe(optimize)
     },
     'filter treated as background': {
       'topic': function () {
-        return _optimize('p{background:-moz-linear-gradient();background:-webkit-linear-gradient();filter:"progid:DXImageTransform";background:linear-gradient()}', false, true);
+        return _optimize('p{background:-moz-linear-gradient();background:-webkit-linear-gradient();filter:"progid:DXImageTransform";background:linear-gradient()}');
       },
       'into': function (properties) {
         assert.deepEqual(properties, [
@@ -249,7 +237,7 @@ vows.describe(optimize)
     },
     'filter treated as background-image': {
       'topic': function () {
-        return _optimize('p{background-image:-moz-linear-gradient();background-image:-webkit-linear-gradient();filter:"progid:DXImageTransform";background-image:linear-gradient()}', false, true);
+        return _optimize('p{background-image:-moz-linear-gradient();background-image:-webkit-linear-gradient();filter:"progid:DXImageTransform";background-image:linear-gradient()}');
       },
       'into': function (properties) {
         assert.deepEqual(properties, [
@@ -278,7 +266,7 @@ vows.describe(optimize)
     },
     '-ms-filter treated as background': {
       'topic': function () {
-        return _optimize('p{background:-moz-linear-gradient();background:-webkit-linear-gradient();-ms-filter:"progid:DXImageTransform";background:linear-gradient()}', false, true);
+        return _optimize('p{background:-moz-linear-gradient();background:-webkit-linear-gradient();-ms-filter:"progid:DXImageTransform";background:linear-gradient()}');
       },
       'into': function (properties) {
         assert.deepEqual(properties, [
@@ -307,7 +295,7 @@ vows.describe(optimize)
     },
     '-ms-filter treated as background-image': {
       'topic': function () {
-        return _optimize('p{background-image:-moz-linear-gradient();background-image:-webkit-linear-gradient();-ms-filter:"progid:DXImageTransform";background-image:linear-gradient()}', false, true);
+        return _optimize('p{background-image:-moz-linear-gradient();background-image:-webkit-linear-gradient();-ms-filter:"progid:DXImageTransform";background-image:linear-gradient()}');
       },
       'into': function (properties) {
         assert.deepEqual(properties, [
@@ -336,7 +324,7 @@ vows.describe(optimize)
     },
     'longhand then shorthand 123': {
       'topic': function () {
-        return _optimize('p{border-left-style:solid;border:1px dotted red}', false, true);
+        return _optimize('p{border-left-style:solid;border:1px dotted red}');
       },
       'into': function (properties) {
         assert.deepEqual(properties, [
@@ -352,7 +340,7 @@ vows.describe(optimize)
     },
     'longhand then shorthand with important': {
       'topic': function () {
-        return _optimize('p{border-left-style:solid!important;border:1px dotted red}', false, true);
+        return _optimize('p{border-left-style:solid!important;border:1px dotted red}');
       },
       'into': function (properties) {
         assert.deepEqual(properties, [
@@ -373,7 +361,7 @@ vows.describe(optimize)
     },
     'shorthand then longhand': {
       'topic': function () {
-        return _optimize('p{background:url(image.png);background-image:#fff}', false, true);
+        return _optimize('p{background:url(image.png);background-image:#fff}');
       },
       'into': function (properties) {
         assert.deepEqual(properties, [
@@ -394,7 +382,7 @@ vows.describe(optimize)
   .addBatch({
     'list-style fuzzy matching': {
       'topic': function () {
-        return _optimize('p{list-style:inside none}', false, true);
+        return _optimize('p{list-style:inside none}');
       },
       'into': function (properties) {
         assert.deepEqual(properties, [
@@ -411,7 +399,7 @@ vows.describe(optimize)
   .addBatch({
     'ie hacks - normal before hack': {
       'topic': function () {
-        return _optimize('p{color:red;display:none;color:#fff\\9}', false, true);
+        return _optimize('p{color:red;display:none;color:#fff\\9}');
       },
       'into': function (properties) {
         assert.deepEqual(properties, [
@@ -435,7 +423,7 @@ vows.describe(optimize)
     },
     'ie hacks - normal after hack': {
       'topic': function () {
-        return _optimize('p{color:red\\9;display:none;color:#fff}', false, true);
+        return _optimize('p{color:red\\9;display:none;color:#fff}');
       },
       'into': function (properties) {
         assert.deepEqual(properties, [
@@ -459,7 +447,7 @@ vows.describe(optimize)
     },
     'ie hacks - hack after hack': {
       'topic': function () {
-        return _optimize('p{color:red\\9;display:none;color:#fff\\9}', false, true);
+        return _optimize('p{color:red\\9;display:none;color:#fff\\9}');
       },
       'into': function (properties) {
         assert.deepEqual(properties, [
@@ -475,90 +463,10 @@ vows.describe(optimize)
           ]
         ]);
       }
-    }
-  })
-  .addBatch({
-    'mergeAdjacent is true': {
-      'topic': function () {
-        return _optimize('p{display:block;display:inline-block}', true, true);
-      },
-      'into': function (properties) {
-        assert.deepEqual(properties, [
-          [
-            'property',
-            ['property-name', 'display', [[1, 16, undefined]]],
-            ['property-value', 'inline-block', [[1, 24, undefined]]]
-          ]
-        ]);
-      }
     },
-    'mergeAdjacent is false': {
+    'not overriddable': {
       'topic': function () {
-        return _optimize('p{display:block;display:inline-block}', false, true);
-      },
-      'into': function (properties) {
-        assert.deepEqual(properties, [
-          [
-            'property',
-            ['property-name', 'display', [[1, 2, undefined]]],
-            ['property-value', 'block', [[1, 10, undefined]]]
-          ],
-          [
-            'property',
-            ['property-name', 'display', [[1, 16, undefined]]],
-            ['property-value', 'inline-block', [[1, 24, undefined]]]
-          ]
-        ]);
-      }
-    },
-    'mergeAdjacent is an array with irrelevant join positions': {
-      'topic': function () {
-        return _optimize('p{display:block;display:inline-block;color:red}', [2], true);
-      },
-      'into': function (properties) {
-        assert.deepEqual(properties, [
-          [
-            'property',
-            ['property-name', 'display', [[1, 2, undefined]]],
-            ['property-value', 'block', [[1, 10, undefined]]]
-          ],
-          [
-            'property',
-            ['property-name', 'display', [[1, 16, undefined]]],
-            ['property-value', 'inline-block', [[1, 24, undefined]]]
-          ],
-          [
-            'property',
-            ['property-name', 'color', [[1, 37, undefined]]],
-            ['property-value', 'red', [[1, 43, undefined]]]
-          ]
-        ]);
-      }
-    },
-    'mergeAdjacent is an array with relevant join positions': {
-      'topic': function () {
-        return _optimize('p{display:block;display:inline-block;color:red}', [1], true);
-      },
-      'into': function (properties) {
-        assert.deepEqual(properties, [
-          [
-            'property',
-            ['property-name', 'display', [[1, 16, undefined]]],
-            ['property-value', 'inline-block', [[1, 24, undefined]]]
-          ],
-          [
-            'property',
-            ['property-name', 'color', [[1, 37, undefined]]],
-            ['property-value', 'red', [[1, 43, undefined]]]
-          ]
-        ]);
-      }
-    }
-  })
-  .addBatch({
-    'aggressive off - (yet) not overriddable': {
-      'topic': function () {
-        return _optimize('a{display:inline-block;color:red;display:-moz-block}', false);
+        return _optimize('a{display:inline-block;color:red;display:-moz-block}');
       },
       'into': function (properties) {
         assert.deepEqual(properties, [
@@ -584,7 +492,26 @@ vows.describe(optimize)
   .addBatch({
     'understandable - 2 properties, both !important, 2nd less understandable': {
       'topic': function () {
-        return _optimize('a{color:red!important;display:block;color:rgba(0,255,0,.5)!important}', false, true);
+        return _optimize('a{color:red!important;display:block;color:rgba(0,255,0,.5)!important}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'display', [[1, 22, undefined]]],
+            ['property-value', 'block', [[1, 30, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'color', [[1, 36, undefined]]],
+            ['property-value', 'rgba(0,255,0,.5)!important', [[1, 42, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'understandable - 2 properties, both !important, 2nd less understandable - IE8 mode': {
+      'topic': function () {
+        return _optimize('a{color:red!important;display:block;color:rgba(0,255,0,.5)!important}', 'ie8');
       },
       'into': function (properties) {
         assert.deepEqual(properties, [
@@ -608,7 +535,7 @@ vows.describe(optimize)
     },
     'understandable - 2 properties, both !important, 2nd more understandable': {
       'topic': function () {
-        return _optimize('a{color:rgba(0,255,0,.5)!important;display:block;color:red!important}', false, true);
+        return _optimize('a{color:rgba(0,255,0,.5)!important;display:block;color:red!important}');
       },
       'into': function (properties) {
         assert.deepEqual(properties, [
@@ -627,7 +554,21 @@ vows.describe(optimize)
     },
     'understandable - 2 adjacent properties, both !important, 2nd less understandable': {
       'topic': function () {
-        return _optimize('a{background:red!important;background:rgba(0,255,0,.5)!important}', false, true);
+        return _optimize('a{background:red!important;background:rgba(0,255,0,.5)!important}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'background', [[1, 2, undefined]]],
+            ['property-value', 'rgba(0,255,0,.5)!important', [[1, 38, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'understandable - 2 adjacent properties, both !important, 2nd less understandable - IE8 mode': {
+      'topic': function () {
+        return _optimize('a{background:red!important;background:rgba(0,255,0,.5)!important}', 'ie8');
       },
       'into': function (properties) {
         assert.deepEqual(properties, [
@@ -646,7 +587,7 @@ vows.describe(optimize)
     },
     'understandable - 2 adjacent properties, both !important and understandable': {
       'topic': function () {
-        return _optimize('a{background:rgba(0,255,0,.5)!important;background:red!important}', false, true);
+        return _optimize('a{background:rgba(0,255,0,.5)!important;background:red!important}');
       },
       'into': function (properties) {
         assert.deepEqual(properties, [
@@ -660,7 +601,7 @@ vows.describe(optimize)
     },
     'understandable - 2 adjacent -ms-transform with different values': {
       'topic': function () {
-        return _optimize('div{-ms-transform:translate(0,0);-ms-transform:translate3d(0,0,0)}', false, true);
+        return _optimize('div{-ms-transform:translate(0,0);-ms-transform:translate3d(0,0,0)}');
       },
       'into': function (properties) {
         assert.deepEqual(properties, [
@@ -679,7 +620,7 @@ vows.describe(optimize)
     },
     'understandable - 2 non-adjacent -ms-transform with different values': {
       'topic': function () {
-        return _optimize('div{-ms-transform:translate(0,0);-webkit-transform:translate3d(0,0,0);-ms-transform:translate3d(0,0,0)}', false, true);
+        return _optimize('div{-ms-transform:translate(0,0);-webkit-transform:translate3d(0,0,0);-ms-transform:translate3d(0,0,0)}');
       },
       'into': function (properties) {
         assert.deepEqual(properties, [
@@ -703,7 +644,7 @@ vows.describe(optimize)
     },
     'understandable - 2 adjacent transform with different values': {
       'topic': function () {
-        return _optimize('div{transform:translate(0,0);transform:translate3d(0,0,0)}', false, true);
+        return _optimize('div{transform:translate(0,0);transform:translate3d(0,0,0)}');
       },
       'into': function (properties) {
         assert.deepEqual(properties, [
@@ -722,7 +663,7 @@ vows.describe(optimize)
     },
     'understandable - 2 non-adjacent transform with different values': {
       'topic': function () {
-        return _optimize('div{transform:translate(0,0);-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}', false, true);
+        return _optimize('div{transform:translate(0,0);-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}');
       },
       'into': function (properties) {
         assert.deepEqual(properties, [
@@ -746,7 +687,23 @@ vows.describe(optimize)
     },
     'understandable - border(hex) with border(rgba)': {
       'topic': function () {
-        return _optimize('a{border:1px solid #fff;border:1px solid rgba(1,0,0,.5)}', false, true);
+        return _optimize('a{border:1px solid #fff;border:1px solid rgba(1,0,0,.5)}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'border', [[1, 2, undefined]]],
+            ['property-value', '1px', [[1, 31, undefined]]],
+            ['property-value', 'solid', [[1, 35, undefined]]],
+            ['property-value', 'rgba(1,0,0,.5)', [[1, 41, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'understandable - border(hex) with border(rgba) - IE8 mode': {
+      'topic': function () {
+        return _optimize('a{border:1px solid #fff;border:1px solid rgba(1,0,0,.5)}', 'ie8');
       },
       'into': function (properties) {
         assert.deepEqual(properties, [
@@ -769,7 +726,7 @@ vows.describe(optimize)
     },
     'understandable - border(hex) with border(rgba !important)': {
       'topic': function () {
-        return _optimize('a{border:1px solid #fff;border:1px solid rgba(1,0,0,.5)!important}', false, true);
+        return _optimize('a{border:1px solid #fff;border:1px solid rgba(1,0,0,.5)!important}');
       },
       'into': function (properties) {
         assert.deepEqual(properties, [
@@ -785,7 +742,7 @@ vows.describe(optimize)
     },
     'understandable - border(hex !important) with border(hex)': {
       'topic': function () {
-        return _optimize('a{border:1px solid #fff!important;display:block;border:1px solid #fff}', false, true);
+        return _optimize('a{border:1px solid #fff!important;display:block;border:1px solid #fff}');
       },
       'into': function (properties) {
         assert.deepEqual(properties, [
@@ -806,7 +763,7 @@ vows.describe(optimize)
     },
     'understandable - border(hex) with border(hex !important)': {
       'topic': function () {
-        return _optimize('a{border:1px solid #fff;display:block;border:1px solid #fff!important}', false, true);
+        return _optimize('a{border:1px solid #fff;display:block;border:1px solid #fff!important}');
       },
       'into': function (properties) {
         assert.deepEqual(properties, [
@@ -827,7 +784,7 @@ vows.describe(optimize)
     },
     'understandable - unit with function with unit without one': {
       'topic': function () {
-        return _optimize('a{border-top-width:calc(100%);display:block;border-top-width:1px}', false, true);
+        return _optimize('a{border-top-width:calc(100%);display:block;border-top-width:1px}');
       },
       'into': function (properties) {
         assert.deepEqual(properties, [
@@ -846,7 +803,7 @@ vows.describe(optimize)
     },
     'understandable - unit without function with unit with one': {
       'topic': function () {
-        return _optimize('a{border-top-width:1px;display:block;border-top-width:calc(100%)}', false, true);
+        return _optimize('a{border-top-width:1px;display:block;border-top-width:calc(100%)}');
       },
       'into': function (properties) {
         assert.deepEqual(properties, [
@@ -870,7 +827,7 @@ vows.describe(optimize)
     },
     'understandable - non adjacent units': {
       'topic': function () {
-        return _optimize('a{margin-top:80px;padding-top:30px;margin-top:10vmin}', false, true);
+        return _optimize('a{margin-top:80px;padding-top:30px;margin-top:10vmin}');
       },
       'into': function (properties) {
         assert.deepEqual(properties, [
@@ -891,7 +848,7 @@ vows.describe(optimize)
   .addBatch({
     'understandable - non adjacent units in IE8 mode': {
       'topic': function () {
-        return _optimize('a{margin-top:80px;padding-top:30px;margin-top:10vmin}', false, true, 'ie8');
+        return _optimize('a{margin-top:80px;padding-top:30px;margin-top:10vmin}', 'ie8');
       },
       'into': function (properties) {
         assert.deepEqual(properties, [
@@ -915,7 +872,7 @@ vows.describe(optimize)
     },
     'understandable - 2 adjacent properties, both !important, 2nd more understandable in IE8 mode': {
       'topic': function () {
-        return _optimize('a{background:rgba(0,255,0,.5)!important;background:red!important}', false, true, 'ie8');
+        return _optimize('a{background:rgba(0,255,0,.5)!important;background:red!important}', 'ie8');
       },
       'into': function (properties) {
         assert.deepEqual(properties, [
@@ -934,7 +891,7 @@ vows.describe(optimize)
     },
     'understandable - border(hex) with border(rgba !important) in IE8 mode': {
       'topic': function () {
-        return _optimize('a{border:1px solid #fff!important;border:1px solid rgba(1,0,0,.5)!important}', false, true, 'ie8');
+        return _optimize('a{border:1px solid #fff!important;border:1px solid rgba(1,0,0,.5)!important}', 'ie8');
       },
       'into': function (properties) {
         assert.deepEqual(properties, [

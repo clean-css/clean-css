@@ -447,12 +447,12 @@ vows.describe('./bin/cleancss')
   })
   .addBatch({
     'neighbour merging': {
-      'of (yet) unmergeable properties': pipedContext('a{display:inline-block;color:red;display:-moz-block}', '-O2 --skip-aggressive-merging', {
+      'of unmergeable properties': pipedContext('a{display:inline-block;color:red;display:-moz-block}', '-O2', {
         'gets right result': function (error, stdout) {
           assert.equal(stdout, 'a{display:inline-block;color:red;display:-moz-block}');
         }
       }),
-      'of mergeable properties': pipedContext('a{background:red;display:block;background:white}', '-O2 --skip-aggressive-merging', {
+      'of mergeable properties': pipedContext('a{background:red;display:block;background:white}', '-O2', {
         'gets right result': function (error, stdout) {
           assert.equal(stdout, 'a{background:#fff;display:block}');
         }

@@ -20,7 +20,6 @@ commands
   .option('-O <n> [optimizations]', 'Turn on level <n> optimizations; optionally accepts a list of fine-grained options, defaults to `1`, see examples below', function (val) { return Math.abs(parseInt(val)); })
   .option('--inline [rules]', 'Enables inlining for listed sources (defaults to `local`)')
   .option('--inline-timeout [seconds]', 'Per connection timeout when fetching remote stylesheets (defaults to 5 seconds)', parseFloat)
-  .option('--skip-aggressive-merging', 'Disable properties merging based on their order')
   .option('--skip-rebase', 'Disable URLs rebasing')
   .option('--source-map', 'Enables building input\'s source map')
   .option('--source-map-inline-sources', 'Enables inlining sources inside source maps');
@@ -125,7 +124,6 @@ if (!fromStdin && commands.args.length === 0) {
 // Now coerce commands into CleanCSS configuration...
 var debugMode = commands.debug;
 var options = {
-  aggressiveMerging: commands.skipAggressiveMerging ? false : true,
   compatibility: commands.compatibility,
   format: commands.format,
   inline: commands.inline || 'local',

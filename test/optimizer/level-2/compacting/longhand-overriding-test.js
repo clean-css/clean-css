@@ -17,7 +17,6 @@ function _optimize(source) {
 
   var compat = compatibility();
   var options = {
-    aggressiveMerging: true,
     compatibility: compat,
     level: {
       2: {
@@ -31,7 +30,6 @@ function _optimize(source) {
   optimize(
     tokens[0][1],
     tokens[0][2],
-    false,
     true,
     { enabled: true, merging: true },
     { options: options, validator: validator(compat) }
@@ -81,7 +79,9 @@ function overrideContext(longhands) {
   var defaultValues = {
     'list-style-image': 'none',
     'background': '0 0',
-    'border-color': 'red'
+    'border-color': 'red',
+    'border-style': 'none',
+    'list-style': 'none'
   };
 
   for (var longhand in longhands) {

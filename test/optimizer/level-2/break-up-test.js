@@ -844,7 +844,7 @@ vows.describe(breakUp)
         },
         'has border-top-style': function (components) {
           assert.equal(components[0].name, 'list-style-type');
-          assert.deepEqual(components[0].value, [['property-value', '__hack']]);
+          assert.deepEqual(components[0].value, [['property-value', 'decimal|disc']]);
         },
         'has border-right-style': function (components) {
           assert.equal(components[1].name, 'list-style-position');

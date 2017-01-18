@@ -42,6 +42,7 @@ There will be some breaking changes:
 * level 1 optimizations are the new default, up to 3.x it was level 2;
 * `--keep-line-breaks` / `keepBreaks` option is replaced with `--format keep-breaks` / `{ format: 'keep-breaks' }` to ease transition.
 * `sourceMap` option is API has to be a boolean from now on. If you want to specify an input source map pass it a 2nd argument to `minify` method or via a hash instead;
+* `--skip-aggressive-merging` / `aggressiveMerging` option is removed as aggressive merging is gone too, replaced by smarter override merging.
 
 Please note this list is not final. You are more than welcome to comment these changes in [4.0 release discussion](https://github.com/jakubpawlowicz/clean-css/issues/842) thread.
 
@@ -76,7 +77,6 @@ Options:
   -O <n> [optimizations]         Turn on level <n> optimizations; optionally accepts a list of fine-grained options, defaults to `1`, see examples below
   --inline [rules]               Enables inlining for listed sources (defaults to `local`)
   --inline-timeout [seconds]     Per connection timeout when fetching remote stylesheets (defaults to 5 seconds)
-  --skip-aggressive-merging      Disable properties merging based on their order
   --skip-rebase                  Disable URLs rebasing
   --source-map                   Enables building input's source map
   --source-map-inline-sources    Enables inlining sources inside source maps
@@ -199,7 +199,6 @@ var minified = new CleanCSS().minify(source).styles;
 CleanCSS constructor accepts a hash as a parameter, i.e.,
 `new CleanCSS(options)` with the following options available:
 
-* `aggressiveMerging` - set to false to disable aggressive merging of properties.
 * `compatibility` - enables compatibility mode, see [below for more examples](#how-to-set-a-compatibility-mode)
 * `format` - formats output CSS by using indentation and one rule or property per line.
 * `inline` - whether to inline `@import` rules, can be `['all']`, `['local']` (default), `['remote']`, or a blacklisted domain/path e.g. `['!fonts.googleapis.com']`

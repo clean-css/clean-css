@@ -315,14 +315,6 @@ vows.describe('module tests').addBatch({
         assert.equal(minified.styles, 'a{color:#fff}');
       }
     },
-    'aggressive merging': {
-      'topic': function () {
-        return new CleanCSS({ level: { 2: { aggressiveMerging: true } } }).minify('a{display:block;color:red;display:inline-block}');
-      },
-      'gets right output': function (minified) {
-        assert.equal(minified.styles, 'a{color:red;display:inline-block}');
-      }
-    },
     'process import': {
       'topic': function () {
         return new CleanCSS({ inline: 'all' }).minify('@import url(/test/fixtures/partials/one.css);');

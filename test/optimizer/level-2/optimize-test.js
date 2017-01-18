@@ -15,32 +15,16 @@ vows.describe('level 2 optimizer')
       'shorthands and no space after closing brace': [
         '.a{background:rgba(0,0,0,0)url(//example.com/a.jpg)}',
         '.a{background:url(//example.com/a.jpg) rgba(0,0,0,0)}'
-      ]
-    }, { level: 2 })
-  )
-  .addBatch(
-    optimizerContext('level 2 on & aggressive merging on', {
-      'repeated' : [
+      ],
+      'repeated': [
         'a{color:red;color:red}',
         'a{color:red}'
-      ]
-    }, { level: 2, aggressiveMerging: true })
-  )
-  .addBatch(
-    optimizerContext('level 2 on & aggressive merging on - IE8 mode', {
+      ],
       'units': [
         '.one{width:1px;width:1rem;display:block}.two{color:red}.one{width:2px;width:1.1rem}',
-        '.one{display:block;width:2px;width:1.1rem}.two{color:red}'
+        '.one{display:block;width:1.1rem}.two{color:red}'
       ]
-    }, { level: 2, aggressiveMerging: true, compatibility: 'ie8' })
-  )
-  .addBatch(
-    optimizerContext('level 2 on & aggressive merging off', {
-      'repeated' : [
-        'a{color:red;color:red}',
-        'a{color:red}'
-      ]
-    }, { level: 2, aggressiveMerging: false })
+    }, { level: 2 })
   )
   .addBatch(
     optimizerContext('level 2 off', {

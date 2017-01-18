@@ -468,7 +468,7 @@ vows.describe('./bin/cleancss')
   })
   .addBatch({
     'shorthand compacting': {
-      'of (yet) unmergeable properties': pipedContext('a{background:url(image.png);background-color:red}', '-O2 compactShorthands:off', {
+      'of (yet) unmergeable properties': pipedContext('a{background:url(image.png);background-color:red}', '-O2 mergeIntoShorthands:off', {
         'gets right result': function (error, stdout) {
           assert.equal(stdout, 'a{background:url(image.png);background-color:red}');
         }

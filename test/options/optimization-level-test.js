@@ -124,8 +124,8 @@ vows.describe(optimizationLevelFrom)
       },
       'has level 2 options': function (levelOptions) {
         assert.deepEqual(levelOptions['2'], {
-          compactShorthands: true,
           mergeAdjacentRules: true,
+          mergeIntoShorthands: true,
           mergeMedia: true,
           mergeNonAdjacentRules: true,
           mergeSemantically: false,
@@ -184,8 +184,8 @@ vows.describe(optimizationLevelFrom)
       },
       'has level 2 options': function (levelOptions) {
         assert.deepEqual(levelOptions['2'], {
-          compactShorthands: true,
           mergeAdjacentRules: true,
+          mergeIntoShorthands: true,
           mergeMedia: true,
           mergeNonAdjacentRules: true,
           mergeSemantically: false,
@@ -303,8 +303,8 @@ vows.describe(optimizationLevelFrom)
       },
       'has level 2 options': function (levelOptions) {
         assert.deepEqual(levelOptions['2'], {
-          compactShorthands: false,
           mergeAdjacentRules: false,
+          mergeIntoShorthands: false,
           mergeMedia: true,
           mergeNonAdjacentRules: false,
           mergeSemantically: false,
@@ -352,8 +352,8 @@ vows.describe(optimizationLevelFrom)
       },
       'has level 2 options': function (levelOptions) {
         assert.deepEqual(levelOptions['2'], {
-          compactShorthands: false,
           mergeAdjacentRules: false,
+          mergeIntoShorthands: false,
           mergeMedia: true,
           mergeNonAdjacentRules: false,
           mergeSemantically: false,
@@ -436,8 +436,8 @@ vows.describe(optimizationLevelFrom)
       },
       'has level 2 options': function (levelOptions) {
         assert.deepEqual(levelOptions['2'], {
-          compactShorthands: true,
           mergeAdjacentRules: true,
+          mergeIntoShorthands: true,
           mergeMedia: false,
           mergeNonAdjacentRules: true,
           mergeSemantically: true,
@@ -485,8 +485,8 @@ vows.describe(optimizationLevelFrom)
       },
       'has level 2 options': function (levelOptions) {
         assert.deepEqual(levelOptions['2'], {
-          compactShorthands: true,
           mergeAdjacentRules: true,
+          mergeIntoShorthands: true,
           mergeMedia: false,
           mergeNonAdjacentRules: true,
           mergeSemantically: true,
@@ -534,8 +534,8 @@ vows.describe(optimizationLevelFrom)
       },
       'has level 2 options': function (levelOptions) {
         assert.deepEqual(levelOptions['2'], {
-          compactShorthands: false,
           mergeAdjacentRules: false,
+          mergeIntoShorthands: false,
           mergeMedia: true,
           mergeNonAdjacentRules: false,
           mergeSemantically: true,
@@ -583,8 +583,8 @@ vows.describe(optimizationLevelFrom)
       },
       'has level 2 options': function (levelOptions) {
         assert.deepEqual(levelOptions['2'], {
-          compactShorthands: false,
           mergeAdjacentRules: false,
+          mergeIntoShorthands: false,
           mergeMedia: true,
           mergeNonAdjacentRules: false,
           mergeSemantically: true,

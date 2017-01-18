@@ -17,7 +17,7 @@ function _optimize(source, compatibilityOptions) {
         mergeMedia: false,
         restructureRules: false,
         mergeSemantically: false,
-        compactShorthands: true
+        mergeIntoShorthands: true
       }
     }
   };

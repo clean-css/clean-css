@@ -39,6 +39,7 @@ There will be some breaking changes:
 * renames `keepSpecialComments` to `specialComments`;
 * moves `roundingPrecision` and `specialComments` to level 1 optimizations options, see examples below;
 * moves `mediaMerging`, `restructuring`, `semanticMerging`, and `shorthandCompacting` to level 2 optimizations options, see examples below;
+* renames `shorthandCompacting` option to `mergeIntoShorthands`;
 * level 1 optimizations are the new default, up to 3.x it was level 2;
 * `--keep-line-breaks` / `keepBreaks` option is replaced with `--format keep-breaks` / `{ format: 'keep-breaks' }` to ease transition.
 * `sourceMap` option is API has to be a boolean from now on. If you want to specify an input source map pass it a 2nd argument to `minify` method or via a hash instead;
@@ -174,10 +175,10 @@ Level 2 optimizations:
 
 ```bash
 cleancss -O2 one.css
-cleancss -O2 mergeMedia:off;restructureRules:off;mergeSemantically:on;compactShorthands:off one.css
+cleancss -O2 mergeMedia:off;restructureRules:off;mergeSemantically:on;mergeIntoShorthands:off one.css
 cleancss -O2 all:off;removeDuplicateRules:on one.css
-# `compactShorthands` controls shorthand compacting; defaults to `on`
 # `mergeAdjacentRules` controls adjacent rules merging; defaults to `on`
+# `mergeIntoShorthands` controls merging properties into shorthands; defaults to `on`
 # `mergeMedia` controls `@media` merging; defaults to `on`
 # `mergeNonAdjacentRules` controls non-adjacent rule merging; defaults to `on`
 # `mergeSemantically` controls semantic merging; defaults to `off`
@@ -302,8 +303,8 @@ new CleanCSS({
 new CleanCSS({
   level: {
     2: {
-      compactShorthands: true, // controls shorthand compacting; defaults to true
       mergeAdjacentRules: true, // controls adjacent rules merging; defaults to true
+      mergeIntoShorthands: true, // controls merging properties into shorthands; defaults to true
       mergeMedia: true, // controls `@media` merging; defaults to true
       mergeNonAdjacentRules: true, // controls non-adjacent rule merging; defaults to true
       mergeSemantically: false, // controls semantic merging; defaults to false
@@ -542,7 +543,7 @@ In library mode you can also pass `compatibility` as a hash of options.
 All level 2 optimizations are dispatched [here](https://github.com/jakubpawlowicz/clean-css/blob/master/lib/selectors/advanced.js#L59), and this is what they do:
 
 * `recursivelyOptimizeBlocks` - does all the following operations on a block (think `@media` or `@keyframe` at-rules);
-* `recursivelyOptimizeProperties` - optimizes properties in rulesets and "flat at-rules" (like @font-face) by splitting them into components (e.g. `margin` into `margin-(*)`), optimizing, and rebuilding them back. You may want to use `compactShorthands` option to control whether you want to turn multiple (long-hand) properties into a shorthand ones;
+* `recursivelyOptimizeProperties` - optimizes properties in rulesets and "flat at-rules" (like @font-face) by splitting them into components (e.g. `margin` into `margin-(*)`), optimizing, and rebuilding them back. You may want to use `mergeIntoShorthands` option to control whether you want to turn multiple (long-hand) properties into a shorthand ones;
 * `removeDuplicates` - gets rid of duplicate rulesets with exactly the same set of properties (think of including the same Sass / Less partial twice for no good reason);
 * `mergeAdjacent` - merges adjacent rulesets with the same selector or rules;
 * `reduceNonAdjacent` - identifies which properties are overridden in same-selector non-adjacent rulesets, and removes them;

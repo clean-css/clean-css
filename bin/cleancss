@@ -84,10 +84,10 @@ commands.on('--help', function () {
   console.log('');
   console.log('  Level 2 optimizations:');
   console.log('    %> cleancss -O2 one.css');
-  console.log('    %> cleancss -O2 mergeMedia:off;restructureRules:off;mergeSemantically:on;compactShorthands:off one.css');
+  console.log('    %> cleancss -O2 mergeMedia:off;restructureRules:off;mergeSemantically:on;mergeIntoShorthands:off one.css');
   console.log('    %> cleancss -O2 all:off;removeDuplicateRules:on one.css');
-  console.log('    %> # `compactShorthands` controls shorthand compacting; defaults to `on`');
   console.log('    %> # `mergeAdjacentRules` controls adjacent rules merging; defaults to `on`');
+  console.log('    %> # `mergeIntoShorthands` controls merging properties into shorthands; defaults to `on`');
   console.log('    %> # `mergeMedia` controls `@media` merging; defaults to `on`');
   console.log('    %> # `mergeNonAdjacentRules` controls non-adjacent rule merging; defaults to `on`');
   console.log('    %> # `mergeSemantically` controls semantic merging; defaults to `off`');

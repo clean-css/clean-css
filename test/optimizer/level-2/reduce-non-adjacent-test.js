@@ -132,7 +132,7 @@ vows.describe('remove duplicates')
         'a{padding:10px;margin:0;color:red}.one{color:red}a,p{color:red;padding:0}',
         'a{margin:0}.one{color:red}a,p{color:red;padding:0}'
       ]
-    }, { level: { 2: { all: false, reduceNonAdjacentRules: true, compactShorthands: true } } })
+    }, { level: { 2: { all: false, reduceNonAdjacentRules: true, mergeIntoShorthands: true } } })
   )
   .addBatch(
     optimizerContext('level 2 off', {

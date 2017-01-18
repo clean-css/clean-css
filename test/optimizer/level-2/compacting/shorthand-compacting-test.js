@@ -20,7 +20,7 @@ function _optimize(source) {
     compatibility: compat,
     level: {
       2: {
-        compactShorthands: true
+        mergeIntoShorthands: true
       }
     }
   };

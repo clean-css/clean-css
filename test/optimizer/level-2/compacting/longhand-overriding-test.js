@@ -23,7 +23,7 @@ function _optimize(source) {
         mergeMedia: true,
         restructureRules: true,
         mergeSemantically: false,
-        compactShorthands: true
+        mergeIntoShorthands: true
       }
     }
   };

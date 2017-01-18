@@ -17,6 +17,7 @@ function _optimize(source, compatibilityOptions) {
         mergeIntoShorthands: true,
         mergeMedia: false,
         mergeSemantically: false,
+        overrideProperties: true,
         restructureRules: false
       }
     }

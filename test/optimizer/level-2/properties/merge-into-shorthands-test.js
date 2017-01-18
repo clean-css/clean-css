@@ -20,7 +20,8 @@ function _optimize(source) {
     compatibility: compat,
     level: {
       2: {
-        mergeIntoShorthands: true
+        mergeIntoShorthands: true,
+        overrideProperties: true
       }
     }
   };

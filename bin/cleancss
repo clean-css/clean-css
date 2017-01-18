@@ -91,6 +91,7 @@ commands.on('--help', function () {
   console.log('    %> # `mergeMedia` controls `@media` merging; defaults to `on`');
   console.log('    %> # `mergeNonAdjacentRules` controls non-adjacent rule merging; defaults to `on`');
   console.log('    %> # `mergeSemantically` controls semantic merging; defaults to `off`');
+  console.log('    %> # `overrideProperties` controls property overriding based on understandability; defaults to `on`');
   console.log('    %> # `reduceNonAdjacentRules` controls non-adjacent rule reducing; defaults to `on`');
   console.log('    %> # `removeDuplicateFontRules` controls duplicate `@font-face` removing; defaults to `on`');
   console.log('    %> # `removeDuplicateMediaBlocks` controls duplicate `@media` removing; defaults to `on`');

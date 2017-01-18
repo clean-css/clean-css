@@ -468,7 +468,7 @@ vows.describe('./bin/cleancss')
   })
   .addBatch({
     'shorthand merging': {
-      'of (yet) unmergeable properties': pipedContext('a{background:url(image.png);background-color:red}', '-O2 mergeIntoShorthands:off', {
+      'of mergeable properties with overriding off': pipedContext('a{background:url(image.png);background-color:red}', '-O2 overrideProperties:off', {
         'gets right result': function (error, stdout) {
           assert.equal(stdout, 'a{background:url(image.png);background-color:red}');
         }

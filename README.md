@@ -182,6 +182,7 @@ cleancss -O2 all:off;removeDuplicateRules:on one.css
 # `mergeMedia` controls `@media` merging; defaults to `on`
 # `mergeNonAdjacentRules` controls non-adjacent rule merging; defaults to `on`
 # `mergeSemantically` controls semantic merging; defaults to `off`
+# `overrideProperties` controls property overriding based on understandability; defaults to `on`
 # `reduceNonAdjacentRules` controls non-adjacent rule reducing; defaults to `on`
 # `removeDuplicateFontRules` controls duplicate `@font-face` removing; defaults to `on`
 # `removeDuplicateMediaBlocks` controls duplicate `@media` removing; defaults to `on`
@@ -308,6 +309,7 @@ new CleanCSS({
       mergeMedia: true, // controls `@media` merging; defaults to true
       mergeNonAdjacentRules: true, // controls non-adjacent rule merging; defaults to true
       mergeSemantically: false, // controls semantic merging; defaults to false
+      overrideProperties: true, // controls property overriding based on understandability; defaults to true
       reduceNonAdjacentRules: true, // controls non-adjacent rule reducing; defaults to true
       removeDuplicateFontRules: true, // controls duplicate `@font-face` removing; defaults to true
       removeDuplicateMediaBlocks: true, // controls duplicate `@media` removing; defaults to true

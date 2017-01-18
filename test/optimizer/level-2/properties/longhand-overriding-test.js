@@ -20,10 +20,11 @@ function _optimize(source) {
     compatibility: compat,
     level: {
       2: {
+        mergeIntoShorthands: true,
         mergeMedia: true,
-        restructureRules: true,
         mergeSemantically: false,
-        mergeIntoShorthands: true
+        overrideProperties: true,
+        restructureRules: true
       }
     }
   };

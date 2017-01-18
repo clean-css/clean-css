@@ -5,7 +5,7 @@ var wrapForOptimizing = require('../../../../lib/optimizer/wrap-for-optimizing')
 var compatibility = require('../../../../lib/utils/compatibility');
 var validator = require('../../../../lib/optimizer/validator');
 
-var populateComponents = require('../../../../lib/optimizer/level-2/compacting/populate-components');
+var populateComponents = require('../../../../lib/optimizer/level-2/properties/populate-components');
 
 vows.describe(populateComponents)
   .addBatch({

@@ -1976,7 +1976,7 @@ vows.describe('source-map')
           assert.deepEqual(minified.sourceMap._mappings._array[4], mapping);
         }
       },
-      'compacting': {
+      'shorthand merging': {
         'topic': function () {
           return new CleanCSS({ level: 2, sourceMap: true }).minify('a{margin-top:10px;\nmargin-bottom:4px;\nmargin-left:5px;\nmargin-right:5px}');
         },

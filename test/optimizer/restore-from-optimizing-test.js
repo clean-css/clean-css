@@ -7,7 +7,7 @@ var wrapForOptimizing = require('../../lib/optimizer/wrap-for-optimizing').all;
 var shallowClone = require('../../lib/optimizer/level-2/clone').shallow;
 var restoreWithComponents = require('../../lib/optimizer/level-2/restore-with-components');
 
-var populateComponents = require('../../lib/optimizer/level-2/compacting/populate-components');
+var populateComponents = require('../../lib/optimizer/level-2/properties/populate-components');
 var validator = require('../../lib/optimizer/validator');
 
 var compatibility = require('../../lib/utils/compatibility');

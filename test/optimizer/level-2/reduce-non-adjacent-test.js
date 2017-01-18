@@ -127,7 +127,7 @@ vows.describe('remove duplicates')
     }, { level: { 2: { restructureRules: true } } })
   )
   .addBatch(
-    optimizerContext('level 2 off but reduceNonAdjacentRules and compacting on', {
+    optimizerContext('level 2 off but reduceNonAdjacentRules and merging on', {
       'non-adjacent with multi selectors': [
         'a{padding:10px;margin:0;color:red}.one{color:red}a,p{color:red;padding:0}',
         'a{margin:0}.one{color:red}a,p{color:red;padding:0}'

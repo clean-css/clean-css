@@ -3,10 +3,10 @@ var vows = require('vows');
 
 var wrapForOptimizing = require('../../../../lib/optimizer/wrap-for-optimizing').all;
 var compatibility = require('../../../../lib/utils/compatibility');
-var populateComponents = require('../../../../lib/optimizer/level-2/compacting/populate-components');
+var populateComponents = require('../../../../lib/optimizer/level-2/properties/populate-components');
 var validator = require('../../../../lib/optimizer/validator');
 
-var overridesNonComponentShorthand = require('../../../../lib/optimizer/level-2/compacting/overrides-non-component-shorthand');
+var overridesNonComponentShorthand = require('../../../../lib/optimizer/level-2/properties/overrides-non-component-shorthand');
 
 vows.describe(overridesNonComponentShorthand)
   .addBatch({

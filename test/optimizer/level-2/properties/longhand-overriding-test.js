@@ -1,7 +1,7 @@
 var assert = require('assert');
 var vows = require('vows');
 
-var optimize = require('../../../../lib/optimizer/level-2/compacting/optimize');
+var optimizeProperties = require('../../../../lib/optimizer/level-2/properties/optimize');
 
 var tokenize = require('../../../../lib/tokenizer/tokenize');
 var inputSourceMapTracker = require('../../../../lib/reader/input-source-map-tracker');
@@ -27,11 +27,10 @@ function _optimize(source) {
       }
     }
   };
-  optimize(
-    tokens[0][1],
+  optimizeProperties(
     tokens[0][2],
     true,
-    { enabled: true, merging: true },
+    true,
     { options: options, validator: validator(compat) }
   );
 
@@ -103,7 +102,7 @@ function overrideContext(longhands) {
   return context;
 }
 
-vows.describe(optimize)
+vows.describe(optimizeProperties)
   .addBatch(
     overrideContext({
       'background-attachment': ['background'],

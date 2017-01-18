@@ -71,7 +71,7 @@ vows.describe('level 2 optimizer')
     }, { level: 2 })
   )
   .addBatch(
-    optimizerContext('unit compacting', {
+    optimizerContext('unit merging', {
       'font-size': [
         'div{font-size:1rem;font-size:16px}',
         'div{font-size:16px}'

@@ -4,7 +4,7 @@ var vows = require('vows');
 var compatibility = require('../../../../lib/utils/compatibility');
 var validator = require('../../../../lib/optimizer/validator');
 
-var understandable = require('../../../../lib/optimizer/level-2/compacting/understandable');
+var understandable = require('../../../../lib/optimizer/level-2/properties/understandable');
 
 vows.describe(understandable)
   .addBatch({

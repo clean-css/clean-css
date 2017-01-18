@@ -942,10 +942,6 @@ vows.describe('integration tests')
         'a{ background-color: #aa0000; color:rgb(0, 17, 255)}',
         'a{background-color:#a00;color:#01f}'
       ],
-      'skip shortening IE filter colors': [
-        'a{ filter: chroma(color = "#ff0000")}',
-        'a{filter:chroma(color="#ff0000")}'
-      ],
       'color names to hex values': [
         'a{color:white;border-color:black;background-color:fuchsia}p{background:yellow}',
         'a{color:#fff;border-color:#000;background-color:#f0f}p{background:#ff0}'
@@ -1021,18 +1017,6 @@ vows.describe('integration tests')
       'colors and parentheses': [
         'a{background-image:-webkit-gradient(linear,0 0,0 100%,from(#fff),to(#e6e6e6))}',
         'a{background-image:-webkit-gradient(linear,0 0,0 100%,from(#fff),to(#e6e6e6))}'
-      ],
-      'colors in ie filters': [
-        'a{filter:chroma(color=#ffffff)}',
-        'a{filter:chroma(color=#ffffff)}'
-      ],
-      'colors in ie filters 2': [
-        'a{filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=\'#cccccc\', endColorstr=\'#000000\')}',
-        'a{filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=\'#cccccc\', endColorstr=\'#000000\')}'
-      ],
-      'colors in ie filters 3': [
-        'a{filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=\'#DDDDDD\', endColorstr=\'#333333\')}',
-        'a{filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=\'#DDDDDD\', endColorstr=\'#333333\')}'
       ],
       'rgb percents': [
         'a{color:rgb(100%,0%,0%)}',
@@ -1760,8 +1744,24 @@ vows.describe('integration tests')
       'AlphaImageLoader': [
         'div{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=images/skyline.jpg)}',
         'div{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=images/skyline.jpg)}'
+      ],
+      'colors #1': [
+        'a{filter:chroma(color=#ffffff)}',
+        'a{filter:chroma(color=#ffffff)}'
+      ],
+      'colors #2': [
+        'a{filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=\'#cccccc\', endColorstr=\'#000000\')}',
+        'a{filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=\'#cccccc\', endColorstr=\'#000000\')}'
+      ],
+      'colors #3': [
+        'a{filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=\'#DDDDDD\', endColorstr=\'#333333\')}',
+        'a{filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=\'#DDDDDD\', endColorstr=\'#333333\')}'
+      ],
+      'whitespace': [
+        'a{ filter: chroma(color = "#ff0000")}',
+        'a{filter:chroma(color="#ff0000")}'
       ]
-    })
+    }, { compatibility: 'ie9' })
   )
   .addBatch(
     optimizerContext('charsets', {

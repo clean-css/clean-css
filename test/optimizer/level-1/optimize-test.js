@@ -365,6 +365,30 @@ vows.describe('level 1 optimizations')
   )
   .addBatch(
     optimizerContext('filter', {
+      'legacy standard': [
+        'a{filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=\'#cccccc\',endColorstr=\'#000000\', enabled=true)}',
+        ''
+      ],
+      'legacy alpha shorthand': [
+        'a{filter:alpha(Opacity=80)}',
+        ''
+      ],
+      'legacy chroma shorthand': [
+        'a{filter:chroma(color=#919191)}',
+        ''
+      ],
+      'legacy -ms-filter': [
+        'a{-ms-filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=\'#cccccc\',endColorstr=\'#000000\', enabled=true);-ms-filter:chroma(color=#000000)}',
+        ''
+      ],
+      'new filters': [
+        '.block{filter:sepia(60%)}',
+        '.block{filter:sepia(60%)}'
+      ]
+    }, { level: 1 })
+  )
+  .addBatch(
+    optimizerContext('filter when preserved', {
       'spaces after comma': [
         'a{filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=\'#cccccc\',endColorstr=\'#000000\', enabled=true)}',
         'a{filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=\'#cccccc\', endColorstr=\'#000000\', enabled=true)}'
@@ -381,7 +405,7 @@ vows.describe('level 1 optimizations')
         'a{filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=80) progid:DXImageTransform.Microsoft.Chroma(color=#919191)}',
         'a{filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=80) progid:DXImageTransform.Microsoft.Chroma(color=#919191)}'
       ]
-    }, { level: 1 })
+    }, { compatibility: 'ie9', level: 1 })
   )
   .addBatch(
     optimizerContext('font', {
@@ -1089,7 +1113,7 @@ vows.describe('level 1 optimizations')
         '.block{filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=80)}',
         '.block{filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=80)}'
       ]
-    }, { level: { 1: { optimizeFilter: false } } })
+    }, { compatibility: 'ie9', level: { 1: { optimizeFilter: false } } })
   )
   .addBatch(
     optimizerContext('font optimizations off', {

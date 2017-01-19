@@ -284,7 +284,8 @@ new CleanCSS({
       specialComments: 'all', // denotes a number of /*! ... */ comments preserved; defaults to `all`
       tidyAtRules: true, // controls at-rules (e.g. `@charset`, `@import`) optimizing; defaults to `true`
       tidyBlockScopes: true, // controls block scopes (e.g. `@media`) optimizing; defaults to `true`
-      tidySelectors: true // controls selectors optimizing; defaults to `true`
+      tidySelectors: true, // controls selectors optimizing; defaults to `true`,
+      transform: function () {} // defines a callback for fine-grained property optimization; defaults to no-op
     }
   }
 });
@@ -358,6 +359,30 @@ new CleanCSS({ returnPromise: true })
   .then(function (minified) { // console.log(minified); })
   .catch(function (error) { // deal with errors });
 ```
+
+#### How to apply arbitrary transformations to CSS properties
+
+If clean-css doesn't perform a specific property optimization, you can use `transform` callback to apply it:
+
+```js
+var CleanCSS = require('clean-css');
+var source = '.block{background-image:url(/path/to/image.png)}';
+var output = new CleanCSS({
+  level: {
+    1: {
+      transform: function (propertyName, propertyValue) {
+        if (propertyName == 'background-image' && propertyValue.indexOf('/path/to') > -1) {
+          return propertyValue.replace('/path/to', '../valid/path/to');
+        }
+      }
+    }
+  }
+}).minify(source);
+
+console.log(output.styles); # => .block{background-image:url(../valid/path/to/image.png)}
+```
+
+Note: returning `false` from `transform` callback will drop a property.
 
 ### How to use clean-css with build tools?
 

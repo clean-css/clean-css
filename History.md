@@ -45,6 +45,7 @@
 * Fixed issue [#847](https://github.com/jakubpawlowicz/clean-css/issues/847) - regression in handling invalid selectors.
 * Fixed issue [#849](https://github.com/jakubpawlowicz/clean-css/issues/849) - disables inlining protocol-less resources.
 * Fixed issue [#857](https://github.com/jakubpawlowicz/clean-css/issues/857) - normalizes CleanCSS API interface.
+* Fixed issue [#863](https://github.com/jakubpawlowicz/clean-css/issues/863) - adds `transform` callback for custom optimizations.
 
 [3.4.23 / 2016-12-17](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.22...v3.4.23)
 ==================

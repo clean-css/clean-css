@@ -18,6 +18,9 @@ vows.describe(optimizationLevelFrom)
         assert.deepEqual(levelOptions['0'], {});
       },
       'has level 1 options': function (levelOptions) {
+        assert.isTrue(typeof levelOptions['1'].transform == 'function');
+        delete levelOptions['1'].transform;
+
         assert.deepEqual(levelOptions['1'], {
           cleanupCharsets: true,
           normalizeUrls: true,
@@ -64,6 +67,9 @@ vows.describe(optimizationLevelFrom)
         assert.deepEqual(levelOptions['0'], {});
       },
       'has level 1 options': function (levelOptions) {
+        assert.isTrue(typeof levelOptions['1'].transform == 'function');
+        delete levelOptions['1'].transform;
+
         assert.deepEqual(levelOptions['1'], {
           cleanupCharsets: true,
           normalizeUrls: true,
@@ -99,6 +105,9 @@ vows.describe(optimizationLevelFrom)
         assert.deepEqual(levelOptions['0'], {});
       },
       'has level 1 options': function (levelOptions) {
+        assert.isTrue(typeof levelOptions['1'].transform == 'function');
+        delete levelOptions['1'].transform;
+
         assert.deepEqual(levelOptions['1'], {
           cleanupCharsets: true,
           normalizeUrls: true,
@@ -160,6 +169,9 @@ vows.describe(optimizationLevelFrom)
         assert.deepEqual(levelOptions['0'], {});
       },
       'has level 1 options': function (levelOptions) {
+        assert.isTrue(typeof levelOptions['1'].transform == 'function');
+        delete levelOptions['1'].transform;
+
         assert.deepEqual(levelOptions['1'], {
           cleanupCharsets: true,
           normalizeUrls: true,
@@ -210,6 +222,9 @@ vows.describe(optimizationLevelFrom)
         assert.deepEqual(levelOptions['0'], {});
       },
       'has level 1 options': function (levelOptions) {
+        assert.isTrue(typeof levelOptions['1'].transform == 'function');
+        delete levelOptions['1'].transform;
+
         assert.deepEqual(levelOptions['1'], {
           cleanupCharsets: true,
           normalizeUrls: false,
@@ -245,6 +260,9 @@ vows.describe(optimizationLevelFrom)
         assert.deepEqual(levelOptions['0'], {});
       },
       'has level 1 options': function (levelOptions) {
+        assert.isTrue(typeof levelOptions['1'].transform == 'function');
+        delete levelOptions['1'].transform;
+
         assert.deepEqual(levelOptions['1'], {
           cleanupCharsets: true,
           normalizeUrls: false,
@@ -280,6 +298,9 @@ vows.describe(optimizationLevelFrom)
         assert.deepEqual(levelOptions['0'], {});
       },
       'has level 1 options': function (levelOptions) {
+        assert.isTrue(typeof levelOptions['1'].transform == 'function');
+        delete levelOptions['1'].transform;
+
         assert.deepEqual(levelOptions['1'], {
           cleanupCharsets: true,
           normalizeUrls: true,
@@ -330,6 +351,9 @@ vows.describe(optimizationLevelFrom)
         assert.deepEqual(levelOptions['0'], {});
       },
       'has level 1 options': function (levelOptions) {
+        assert.isTrue(typeof levelOptions['1'].transform == 'function');
+        delete levelOptions['1'].transform;
+
         assert.deepEqual(levelOptions['1'], {
           cleanupCharsets: true,
           normalizeUrls: true,
@@ -380,6 +404,9 @@ vows.describe(optimizationLevelFrom)
         assert.deepEqual(levelOptions['0'], {});
       },
       'has level 1 options': function (levelOptions) {
+        assert.isTrue(typeof levelOptions['1'].transform == 'function');
+        delete levelOptions['1'].transform;
+
         assert.deepEqual(levelOptions['1'], {
           cleanupCharsets: true,
           normalizeUrls: true,
@@ -415,6 +442,9 @@ vows.describe(optimizationLevelFrom)
         assert.deepEqual(levelOptions['0'], {});
       },
       'has level 1 options': function (levelOptions) {
+        assert.isTrue(typeof levelOptions['1'].transform == 'function');
+        delete levelOptions['1'].transform;
+
         assert.deepEqual(levelOptions['1'], {
           cleanupCharsets: true,
           normalizeUrls: true,
@@ -465,6 +495,9 @@ vows.describe(optimizationLevelFrom)
         assert.deepEqual(levelOptions['0'], {});
       },
       'has level 1 options': function (levelOptions) {
+        assert.isTrue(typeof levelOptions['1'].transform == 'function');
+        delete levelOptions['1'].transform;
+
         assert.deepEqual(levelOptions['1'], {
           cleanupCharsets: true,
           normalizeUrls: true,
@@ -515,6 +548,9 @@ vows.describe(optimizationLevelFrom)
         assert.deepEqual(levelOptions['0'], {});
       },
       'has level 1 options': function (levelOptions) {
+        assert.isTrue(typeof levelOptions['1'].transform == 'function');
+        delete levelOptions['1'].transform;
+
         assert.deepEqual(levelOptions['1'], {
           cleanupCharsets: true,
           normalizeUrls: true,
@@ -565,6 +601,9 @@ vows.describe(optimizationLevelFrom)
         assert.deepEqual(levelOptions['0'], {});
       },
       'has level 1 options': function (levelOptions) {
+        assert.isTrue(typeof levelOptions['1'].transform == 'function');
+        delete levelOptions['1'].transform;
+
         assert.deepEqual(levelOptions['1'], {
           cleanupCharsets: true,
           normalizeUrls: true,
@@ -615,6 +654,9 @@ vows.describe(optimizationLevelFrom)
         assert.deepEqual(levelOptions['0'], {});
       },
       'has level 1 options': function (levelOptions) {
+        assert.isTrue(typeof levelOptions['1'].transform == 'function');
+        delete levelOptions['1'].transform;
+
         assert.deepEqual(levelOptions['1'], {
           cleanupCharsets: true,
           normalizeUrls: true,
@@ -650,6 +692,9 @@ vows.describe(optimizationLevelFrom)
         assert.deepEqual(levelOptions['0'], {});
       },
       'has level 1 options': function (levelOptions) {
+        assert.isTrue(typeof levelOptions['1'].transform == 'function');
+        delete levelOptions['1'].transform;
+
         assert.deepEqual(levelOptions['1'], {
           cleanupCharsets: true,
           normalizeUrls: true,
@@ -702,6 +747,9 @@ vows.describe(optimizationLevelFrom)
         assert.deepEqual(levelOptions['0'], {});
       },
       'has level 1 options': function (levelOptions) {
+        assert.isTrue(typeof levelOptions['1'].transform == 'function');
+        delete levelOptions['1'].transform;
+
         assert.deepEqual(levelOptions['1'], {
           cleanupCharsets: true,
           normalizeUrls: true,

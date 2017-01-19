@@ -75,6 +75,41 @@ vows.describe('module tests').addBatch({
       assert.equal(minified.styles, '@import url(https://fonts.googleapis.com/css?family=Open+Sans);');
     }
   },
+  'with promise returned and no callback': {
+    'topic': function () {
+      new CleanCSS({ returnPromise: true })
+        .minify('.block{color:#f00}')
+        .then(this.callback.bind(null, null));
+    },
+    'should yield output': function (errors, output) {
+      assert.equal(output.styles, '.block{color:red}');
+    }
+  },
+  'with promise returned and callback': {
+    'topic': function () {
+      new CleanCSS({ returnPromise: true })
+        .minify('.block{color:#f00}', function () { throw new Error('should not get here!'); })
+        .then(this.callback.bind(null, null));
+    },
+    'should yield output': function (errors, output) {
+      assert.equal(output.styles, '.block{color:red}');
+    }
+  },
+  'with promise and error': {
+    'topic': function () {
+      var vow = this;
+
+      new CleanCSS({ returnPromise: true })
+        .minify('@import "missing.css";')
+        .then(function (output) { vow.callback(null, output); })
+        .catch(function (errors) { vow.callback(errors, null); });
+    },
+    'should catch error': function (errors, result) {
+      /* jshint unused: false */
+      assert.lengthOf(errors, 1);
+      assert.equal(errors[0], 'Ignoring local @import of "missing.css" as resource is missing.');
+    }
+  },
   'debug info': {
     'topic': function () {
       return new CleanCSS().minify('a{ color: #f00 }');

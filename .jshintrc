@@ -6,6 +6,9 @@
   "indent": 2,
   "noarg": true,
   "node": true,
+  "predef": [
+    "Promise"
+  ],
   "plusplus": false,
   "quotmark": "single",
   "strict": false,

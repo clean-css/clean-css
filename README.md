@@ -209,6 +209,7 @@ CleanCSS constructor accepts a hash as a parameter, i.e.,
 * `level` - an integer denoting optimization level applied or a hash with a fine-grained configuration; see examples below; defaults to `1`
 * `rebase` - set to false to skip URL rebasing
 * `rebaseTo` - a directory to which all URLs are rebased (most likely the directory under which the output file will live), defaults to the current directory
+* `returnPromise` - set to true to make `minify` method return a Promise object (see example below); defaults to `false`
 * `sourceMap` - set to true to build output source map; defaults to `false`
 * `sourceMapInlineSources` - set to true to inline sources inside a source map's `sourcesContent` field (defaults to false)
   It is also required to process inlined sources from input source maps.
@@ -344,6 +345,19 @@ new CleanCSS().minify(source, function (error, minified) {
 
 This is due to a fact, that, while local files can be read synchronously, remote resources can only be processed asynchronously.
 If you don't provide a callback, then remote `@import`s will be left intact.
+
+#### How to work with clean-css Promise API
+
+If you prefer clean-css to return a Promise object then you need to explicitely ask for it:
+
+```js
+var CleanCSS = require('clean-css');
+var source = 'a{font-weight:bold;}';
+new CleanCSS({ returnPromise: true })
+  .minify(source)
+  .then(function (minified) { // console.log(minified); })
+  .catch(function (error) { // deal with errors });
+```
 
 ### How to use clean-css with build tools?
 

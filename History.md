@@ -44,6 +44,7 @@
 * Fixed issue [#845](https://github.com/jakubpawlowicz/clean-css/issues/845) - web compatibility of 4.0 branch.
 * Fixed issue [#847](https://github.com/jakubpawlowicz/clean-css/issues/847) - regression in handling invalid selectors.
 * Fixed issue [#849](https://github.com/jakubpawlowicz/clean-css/issues/849) - disables inlining protocol-less resources.
+* Fixed issue [#856](https://github.com/jakubpawlowicz/clean-css/issues/856) - allows `minify` to return a promise.
 * Fixed issue [#857](https://github.com/jakubpawlowicz/clean-css/issues/857) - normalizes CleanCSS API interface.
 * Fixed issue [#863](https://github.com/jakubpawlowicz/clean-css/issues/863) - adds `transform` callback for custom optimizations.
 

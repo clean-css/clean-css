@@ -493,7 +493,7 @@ vows.describe('level 1 optimizations')
         'a{_width:101px}',
         ''
       ],
-      'star': [
+      'asterisk': [
         'a{*width:101px}',
         ''
       ],
@@ -517,7 +517,7 @@ vows.describe('level 1 optimizations')
         'a{_width:101px}',
         ''
       ],
-      'star': [
+      'asterisk': [
         'a{*width:101px}',
         ''
       ],
@@ -537,7 +537,7 @@ vows.describe('level 1 optimizations')
         'a{_width:101px}',
         'a{_width:101px}'
       ],
-      'star': [
+      'asterisk': [
         'a{*width:101px}',
         'a{*width:101px}'
       ],
@@ -557,7 +557,7 @@ vows.describe('level 1 optimizations')
         'a{_width:101px}',
         'a{_width:101px}'
       ],
-      'star': [
+      'asterisk': [
         'a{*width:101px}',
         'a{*width:101px}'
       ],

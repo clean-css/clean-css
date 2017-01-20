@@ -1504,7 +1504,7 @@ vows.describe('integration tests')
   )
   .addBatch(
     optimizerContext('IE 8 hacks', {
-      'star': [
+      'asterisk': [
         'a{*color:#fff}',
         'a{*color:#fff}'
       ],
@@ -1516,23 +1516,23 @@ vows.describe('integration tests')
         'a{color:#fff\\9}',
         'a{color:#fff\\9}'
       ],
-      'overriding by a star': [
+      'overriding by an asterisk': [
         'a{color:red;display:block;*color:#fff}',
         'a{color:red;display:block;*color:#fff}'
       ],
-      'overriding by a unserscore': [
+      'overriding by an underscore': [
         'a{color:red;display:block;_color:#fff}',
         'a{color:red;display:block;_color:#fff}'
       ],
-      'overriding by a backslash': [
+      'overriding by an backslash': [
         'a{color:red;display:block;color:#fff\\9}',
         'a{color:red;display:block;color:#fff\\9}'
       ],
-      'overriding a star': [
+      'overriding an asterisk': [
         'a{*color:red;display:block;*color:#fff}',
         'a{display:block;*color:#fff}'
       ],
-      'overriding a unserscore': [
+      'overriding an underscore': [
         'a{_color:red;display:block;_color:#fff}',
         'a{display:block;_color:#fff}'
       ],

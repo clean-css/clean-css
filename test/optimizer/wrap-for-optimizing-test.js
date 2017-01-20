@@ -366,7 +366,7 @@ vows.describe(wrapForOptimizing)
         assert.deepEqual(wrapped[0].name, 'color');
       },
       'is a hack': function (wrapped) {
-        assert.equal(wrapped[0].hack, 'star');
+        assert.equal(wrapped[0].hack, 'asterisk');
       }
     },
     'backslash hack': {

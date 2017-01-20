@@ -1,12 +1,12 @@
 var vows = require('vows');
 var assert = require('assert');
-var compatibility = require('../../lib/utils/compatibility');
+var compatibilityFrom = require('../../lib/options/compatibility');
 
-vows.describe(compatibility)
+vows.describe(compatibilityFrom)
   .addBatch({
     'as an empty hash': {
       'topic': function () {
-        return compatibility({});
+        return compatibilityFrom({});
       },
       'gets default compatibility': function (compat) {
         assert.isTrue(compat.colors.opacity);
@@ -39,15 +39,15 @@ vows.describe(compatibility)
     },
     'not given': {
       'topic': function () {
-        return compatibility();
+        return compatibilityFrom();
       },
       'gets default compatibility': function (compat) {
-        assert.deepEqual(compat, compatibility({}));
+        assert.deepEqual(compat, compatibilityFrom({}));
       }
     },
     'as a populated hash': {
       'topic': function () {
-        return compatibility({ units: { rem: false, vmax: false }, properties: { prefix: true } });
+        return compatibilityFrom({ units: { rem: false, vmax: false }, properties: { prefix: true } });
       },
       'gets merged compatibility': function (compat) {
         assert.isTrue(compat.colors.opacity);
@@ -81,7 +81,7 @@ vows.describe(compatibility)
   .addBatch({
     'as an ie9 template': {
       'topic': function () {
-        return compatibility('ie9');
+        return compatibilityFrom('ie9');
       },
       'gets template compatibility': function (compat) {
         assert.isTrue(compat.colors.opacity);
@@ -114,7 +114,7 @@ vows.describe(compatibility)
     },
     'as an ie8 template': {
       'topic': function () {
-        return compatibility('ie8');
+        return compatibilityFrom('ie8');
       },
       'gets template compatibility': function (compat) {
         assert.isFalse(compat.colors.opacity);
@@ -147,7 +147,7 @@ vows.describe(compatibility)
     },
     'as an ie7 template': {
       'topic': function () {
-        return compatibility('ie7');
+        return compatibilityFrom('ie7');
       },
       'gets template compatibility': function (compat) {
         assert.isFalse(compat.colors.opacity);
@@ -180,17 +180,17 @@ vows.describe(compatibility)
     },
     'as an unknown template': {
       'topic': function () {
-        return compatibility('');
+        return compatibilityFrom('');
       },
       'gets default compatibility': function (compat) {
-        assert.deepEqual(compat, compatibility({}));
+        assert.deepEqual(compat, compatibilityFrom({}));
       }
     }
   })
   .addBatch({
     'as a complex string value with group': {
       'topic': function () {
-        return compatibility('ie8,-properties.iePrefixHack,+colors.opacity');
+        return compatibilityFrom('ie8,-properties.iePrefixHack,+colors.opacity');
       },
       'gets calculated compatibility': function (compat) {
         assert.isTrue(compat.colors.opacity);
@@ -223,7 +223,7 @@ vows.describe(compatibility)
     },
     'as a single string value without group': {
       'topic': function () {
-        return compatibility('+properties.iePrefixHack');
+        return compatibilityFrom('+properties.iePrefixHack');
       },
       'gets calculated compatibility': function (compat) {
         assert.isTrue(compat.colors.opacity);
@@ -256,7 +256,7 @@ vows.describe(compatibility)
     },
     'as a complex string value without group': {
       'topic': function () {
-        return compatibility('+properties.iePrefixHack,-units.rem');
+        return compatibilityFrom('+properties.iePrefixHack,-units.rem');
       },
       'gets calculated compatibility': function (compat) {
         assert.isTrue(compat.colors.opacity);

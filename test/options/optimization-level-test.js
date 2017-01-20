@@ -2,8 +2,8 @@ var assert = require('assert');
 
 var vows = require('vows');
 
-var roundingPrecisionFrom = require('../../lib/utils/rounding-precision').roundingPrecisionFrom;
 var optimizationLevelFrom = require('../../lib/options/optimization-level').optimizationLevelFrom;
+var roundingPrecisionFrom = require('../../lib/options/rounding-precision').roundingPrecisionFrom;
 
 vows.describe(optimizationLevelFrom)
   .addBatch({

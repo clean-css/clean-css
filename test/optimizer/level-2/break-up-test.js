@@ -4,13 +4,13 @@ var vows = require('vows');
 var wrapForOptimizing = require('../../../lib/optimizer/wrap-for-optimizing').all;
 var populateComponents = require('../../../lib/optimizer/level-2/properties/populate-components');
 var validator = require('../../../lib/optimizer/validator');
-var compatibility = require('../../../lib/utils/compatibility');
+var compatibilityFrom = require('../../../lib/options/compatibility');
 
 var breakUp = require('../../../lib/optimizer/level-2/break-up');
 
 function _breakUp(properties) {
   var wrapped = wrapForOptimizing(properties);
-  populateComponents(wrapped, validator(compatibility()), []);
+  populateComponents(wrapped, validator(compatibilityFrom()), []);
 
   return wrapped[0].components;
 }

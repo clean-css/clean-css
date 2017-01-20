@@ -5,11 +5,11 @@ var optimizeProperties = require('../../../../lib/optimizer/level-2/properties/o
 
 var tokenize = require('../../../../lib/tokenizer/tokenize');
 var inputSourceMapTracker = require('../../../../lib/reader/input-source-map-tracker');
-var compatibility = require('../../../../lib/utils/compatibility');
+var compatibilityFrom = require('../../../../lib/options/compatibility');
 var validator = require('../../../../lib/optimizer/validator');
 
 function _optimize(source, compatibilityOptions) {
-  var compat = compatibility(compatibilityOptions);
+  var compat = compatibilityFrom(compatibilityOptions);
   var options = {
     compatibility: compat,
     level: {

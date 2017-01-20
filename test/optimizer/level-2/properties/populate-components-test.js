@@ -2,7 +2,7 @@ var assert = require('assert');
 var vows = require('vows');
 
 var wrapForOptimizing = require('../../../../lib/optimizer/wrap-for-optimizing').all;
-var compatibility = require('../../../../lib/utils/compatibility');
+var compatibilityFrom = require('../../../../lib/options/compatibility');
 var validator = require('../../../../lib/optimizer/validator');
 
 var populateComponents = require('../../../../lib/optimizer/level-2/properties/populate-components');
@@ -22,7 +22,7 @@ vows.describe(populateComponents)
           ]
         ]);
 
-        populateComponents(wrapped, validator(compatibility({})), []);
+        populateComponents(wrapped, validator(compatibilityFrom({})), []);
         return wrapped;
       },
       'has one': function (wrapped) {
@@ -66,7 +66,7 @@ vows.describe(populateComponents)
           ]
         ]);
 
-        populateComponents(wrapped, validator(compatibility({})), []);
+        populateComponents(wrapped, validator(compatibilityFrom({})), []);
         return wrapped;
       },
       'has one': function (wrapped) {
@@ -143,7 +143,7 @@ vows.describe(populateComponents)
           ]
         ]);
 
-        populateComponents(wrapped, validator(compatibility({})), []);
+        populateComponents(wrapped, validator(compatibilityFrom({})), []);
         return wrapped;
       },
       'has one': function (wrapped) {
@@ -162,7 +162,7 @@ vows.describe(populateComponents)
           ]
         ]);
 
-        populateComponents(wrapped, validator(compatibility({})), []);
+        populateComponents(wrapped, validator(compatibilityFrom({})), []);
         return wrapped;
       },
       'has one': function (wrapped) {

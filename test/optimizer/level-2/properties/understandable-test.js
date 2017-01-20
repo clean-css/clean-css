@@ -1,7 +1,7 @@
 var assert = require('assert');
 var vows = require('vows');
 
-var compatibility = require('../../../../lib/utils/compatibility');
+var compatibilityFrom = require('../../../../lib/options/compatibility');
 var validator = require('../../../../lib/optimizer/validator');
 
 var understandable = require('../../../../lib/optimizer/level-2/properties/understandable');
@@ -10,7 +10,7 @@ vows.describe(understandable)
   .addBatch({
     'same vendor prefixes': {
       'topic': function () {
-        return [validator(compatibility({})), '-moz-calc(100% / 2)', '-moz-calc(50% / 2)', 0, true];
+        return [validator(compatibilityFrom({})), '-moz-calc(100% / 2)', '-moz-calc(50% / 2)', 0, true];
       },
       'is understandable': function (topic) {
         assert.isTrue(understandable.apply(null, topic));
@@ -18,7 +18,7 @@ vows.describe(understandable)
     },
     'different vendor prefixes': {
       'topic': function () {
-        return [validator(compatibility({})), '-moz-calc(100% / 2)', 'calc(50% / 2)', 0, true];
+        return [validator(compatibilityFrom({})), '-moz-calc(100% / 2)', 'calc(50% / 2)', 0, true];
       },
       'is not understandable': function (topic) {
         assert.isFalse(understandable.apply(null, topic));
@@ -26,7 +26,7 @@ vows.describe(understandable)
     },
     'different vendor prefixes when comparing non-pair values': {
       'topic': function () {
-        return [validator(compatibility({})), '-moz-calc(100% / 2)', 'calc(50% / 2)', 0, false];
+        return [validator(compatibilityFrom({})), '-moz-calc(100% / 2)', 'calc(50% / 2)', 0, false];
       },
       'is not understandable': function (topic) {
         assert.isFalse(understandable.apply(null, topic));
@@ -34,7 +34,7 @@ vows.describe(understandable)
     },
     'variables': {
       'topic': function () {
-        return [validator(compatibility({})), 'var(--x)', 'var(--y)', 0, true];
+        return [validator(compatibilityFrom({})), 'var(--x)', 'var(--y)', 0, true];
       },
       'is understandable': function (topic) {
         assert.isTrue(understandable.apply(null, topic));
@@ -42,7 +42,7 @@ vows.describe(understandable)
     },
     'variable and value': {
       'topic': function () {
-        return [validator(compatibility({})), 'var(--x)', 'block', 0, true];
+        return [validator(compatibilityFrom({})), 'var(--x)', 'block', 0, true];
       },
       'is not understandable': function (topic) {
         assert.isFalse(understandable.apply(null, topic));
@@ -50,7 +50,7 @@ vows.describe(understandable)
     },
     'variable and value when comparing non-pair values': {
       'topic': function () {
-        return [validator(compatibility({})), 'var(--x)', 'block', 0, false];
+        return [validator(compatibilityFrom({})), 'var(--x)', 'block', 0, false];
       },
       'is understandable': function (topic) {
         assert.isTrue(understandable.apply(null, topic));

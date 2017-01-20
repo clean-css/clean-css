@@ -543,7 +543,7 @@ In both modes the following values are allowed:
 * `''` or `'*'` (default) - Internet Explorer 9+ compatibility mode
 
 Since clean-css 3 a fine grained control is available over
-[those settings](https://github.com/jakubpawlowicz/clean-css/blob/master/lib/utils/compatibility.js),
+[those settings](https://github.com/jakubpawlowicz/clean-css/blob/master/lib/options/compatibility.js),
 with the following options available:
 
 * `'[+-]colors.opacity'` - - turn on (+) / off (-) `rgba()` / `hsla()` declarations removal

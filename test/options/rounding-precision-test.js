@@ -2,7 +2,7 @@ var assert = require('assert');
 
 var vows = require('vows');
 
-var roundingPrecisionFrom = require('../../lib/utils/rounding-precision').roundingPrecisionFrom;
+var roundingPrecisionFrom = require('../../lib/options/rounding-precision').roundingPrecisionFrom;
 
 vows.describe(roundingPrecisionFrom)
   .addBatch({

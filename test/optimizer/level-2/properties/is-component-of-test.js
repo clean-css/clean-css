@@ -2,7 +2,7 @@ var assert = require('assert');
 var vows = require('vows');
 
 var wrapForOptimizing = require('../../../../lib/optimizer/wrap-for-optimizing').all;
-var compatibility = require('../../../../lib/utils/compatibility');
+var compatibilityFrom = require('../../../../lib/options/compatibility');
 var populateComponents = require('../../../../lib/optimizer/level-2/properties/populate-components');
 var validator = require('../../../../lib/optimizer/validator');
 
@@ -27,7 +27,7 @@ vows.describe(isComponentOf)
           ]
         ])[0];
 
-        populateComponents([shorthand], validator(compatibility({})), []);
+        populateComponents([shorthand], validator(compatibilityFrom({})), []);
 
         return [shorthand, longhand];
       },
@@ -55,7 +55,7 @@ vows.describe(isComponentOf)
           ]
         ])[0];
 
-        populateComponents([shorthand], validator(compatibility({})), []);
+        populateComponents([shorthand], validator(compatibilityFrom({})), []);
 
         return [shorthand, longhand];
       },
@@ -85,7 +85,7 @@ vows.describe(isComponentOf)
           ]
         ])[0];
 
-        populateComponents([shorthand], validator(compatibility({})), []);
+        populateComponents([shorthand], validator(compatibilityFrom({})), []);
 
         return [shorthand, longhand];
       },
@@ -115,7 +115,7 @@ vows.describe(isComponentOf)
           ]
         ])[0];
 
-        populateComponents([shorthand], validator(compatibility({})), []);
+        populateComponents([shorthand], validator(compatibilityFrom({})), []);
 
         return [shorthand, longhand, true];
       },

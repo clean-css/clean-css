@@ -1635,10 +1635,10 @@ vows.describe(tokenize)
         '@media (min-width:980px){}',
         [
           [
-            'block',
+            'nested-block',
             [
               [
-                'block-scope',
+                'nested-block-scope',
                 '@media (min-width:980px)',
                 [
                   [1, 0, undefined]
@@ -1653,17 +1653,17 @@ vows.describe(tokenize)
         '@media print,(min-width:980px){a{color:red}}',
         [
           [
-            'block',
+            'nested-block',
             [
               [
-                'block-scope',
+                'nested-block-scope',
                 '@media print',
                 [
                   [1, 0, undefined]
                 ]
               ],
               [
-                'block-scope',
+                'nested-block-scope',
                 '(min-width:980px)',
                 [
                   [1, 13, undefined]
@@ -1741,10 +1741,10 @@ vows.describe(tokenize)
             ]
           ],
           [
-            'block',
+            'nested-block',
             [
               [
-                'block-scope',
+                'nested-block-scope',
                 '@media (min-width:980px)',
                 [
                   [1, 12, undefined]
@@ -1790,10 +1790,10 @@ vows.describe(tokenize)
         '@media (min-width:980px){a{color:red}}',
         [
           [
-            'block',
+            'nested-block',
             [
               [
-                'block-scope',
+                'nested-block-scope',
                 '@media (min-width:980px)',
                 [
                   [1, 0, undefined]
@@ -1840,10 +1840,10 @@ vows.describe(tokenize)
         '@media only screen and (max-width:1319px){\n@media print {\na{color:#000}\n}\na{color:red}}',
         [
           [
-            'block',
+            'nested-block',
             [
               [
-                'block-scope',
+                'nested-block-scope',
                 '@media only screen and (max-width:1319px)',
                 [
                   [1, 0, undefined]
@@ -1852,10 +1852,10 @@ vows.describe(tokenize)
             ],
             [
               [
-                'block',
+                'nested-block',
                 [
                   [
-                    'block-scope',
+                    'nested-block-scope',
                     '@media print',
                     [
                       [2, 0, undefined]
@@ -1935,10 +1935,10 @@ vows.describe(tokenize)
         '@media ( min-width:980px ){ }p{color:red}',
         [
           [
-            'block',
+            'nested-block',
             [
               [
-                'block-scope',
+                'nested-block-scope',
                 '@media ( min-width:980px )',
                 [
                   [1, 0, undefined]
@@ -1984,10 +1984,10 @@ vows.describe(tokenize)
         '@media (min-width:980px){}/*! comment */@media screen{}',
         [
           [
-            'block',
+            'nested-block',
             [
               [
-                'block-scope',
+                'nested-block-scope',
                 '@media (min-width:980px)',
                 [
                   [1, 0, undefined]
@@ -2004,10 +2004,10 @@ vows.describe(tokenize)
             ]
           ],
           [
-            'block',
+            'nested-block',
             [
               [
-                'block-scope',
+                'nested-block-scope',
                 '@media screen',
                 [
                   [1, 40, undefined]
@@ -2029,10 +2029,10 @@ vows.describe(tokenize)
             ]
           ],
           [
-            'block',
+            'nested-block',
             [
               [
-                'block-scope',
+                'nested-block-scope',
                 '@media (min-width:980px)',
                 [
                   [1, 0, undefined]
@@ -2263,10 +2263,10 @@ vows.describe(tokenize)
         '@keyframes "test"{0%{color:red}}',
         [
           [
-            'block',
+            'nested-block',
             [
               [
-                'block-scope',
+                'nested-block-scope',
                 '@keyframes "test"',
                 [
                   [1, 0, undefined]

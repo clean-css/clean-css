@@ -27,6 +27,7 @@ According to [tests](http://goalsmashers.github.io/css-minification-benchmark/) 
 
 There will be some breaking changes:
 
+* API and CLI interfaces are split, so API stays in this repository while CLI moves to [clean-css-cli](https://github.com/jakubpawlowicz/clean-css-cli);
 * `root`, `relativeTo`, and `target` options are replaced by a single `rebaseTo` option - this means that rebasing URLs and import inlining is much simpler but may not be (YMMV) as powerful as in 3.x.
 * `debug` API option is gone as stats are always provided in output object under `stats` property
 * `roundingPrecision` is disabled by default
@@ -59,138 +60,7 @@ Node.js 4.0+ (tested on CentOS, Ubuntu, OS X, and Windows)
 npm install clean-css
 ```
 
-### How to use clean-css CLI?
-
-Clean-css accepts the following command line arguments (please make sure
-you use `<source-file>` as the very last argument to avoid potential issues):
-
-```
-Usage: cleancss [options] <source-file ...>
-
-Options:
-
-  -h, --help                     output usage information
-  -v, --version                  output the version number
-  -c, --compatibility [ie7|ie8]  Force compatibility mode (see Readme for advanced examples)
-  -d, --debug                    Shows debug information (minification time & compression efficiency)
-  -f, --format <options>         Controls output formatting, see examples below
-  -o, --output [output-file]     Use [output-file] as output instead of STDOUT
-  -O <n> [optimizations]         Turn on level <n> optimizations; optionally accepts a list of fine-grained options, defaults to `1`, see examples below
-  --inline [rules]               Enables inlining for listed sources (defaults to `local`)
-  --inline-timeout [seconds]     Per connection timeout when fetching remote stylesheets (defaults to 5 seconds)
-  --skip-rebase                  Disable URLs rebasing
-  --source-map                   Enables building input's source map
-  --source-map-inline-sources    Enables inlining sources inside source maps
-```
-
-#### Examples:
-
-To minify a **one.css** file into **one-min.css** do:
-
-```
-cleancss -o one-min.css one.css
-```
-
-To minify the same **one.css** into the standard output skip the `-o` parameter:
-
-```
-cleancss one.css
-```
-
-If you would like to minify a couple of files together, pass more paths in:
-
-```bash
-cleancss -o merged-and-minified.css one.css two.css three.css
-```
-
-You can also pipe results to other commands, e.g. gzip:
-
-```bash
-cleancss one.css two.css three.css | gzip -9 -c > merged-minified-and-gzipped.css.gz
-```
-
-Please note there is a difference between passing in a concatenated string and letting clean-css do the job. The former will discard `@import` statements appearing [not at the beginning](https://developer.mozilla.org/en-US/docs/Web/CSS/@import) of the string, while the latter will discard only those appearing not at the beginning of any of the files. Because of this behavior, the latter way (see examples above) is recommended.
-
-Formatting options:
-
-```bash
-cleancss --format beautify one.css
-cleancss --format keep-breaks one.css
-cleancss --format 'indentBy:1;indentWith:tab' one.css
-cleancss --format 'breaks:afterBlockBegins=off;spaces:aroundSelectorRelation=off' one.css
-# `breaks` controls where to insert breaks
-#   `afterAtRule` controls if a line break comes after an at-rule; e.g. `@charset`; defaults to `off` (alias to `false`)
-#   `afterBlockBegins` controls if a line break comes after a block begins; e.g. `@media`; defaults to `off`
-#   `afterBlockEnds` controls if a line break comes after a block ends, defaults to `off`
-#   `afterComment` controls if a line break comes after a comment; defaults to `off`
-#   `afterProperty` controls if a line break comes after a property; defaults to `off`
-#   `afterRuleBegins` controls if a line break comes after a rule begins; defaults to `off`
-#   `afterRuleEnds` controls if a line break comes after a rule ends; defaults to `off`
-#   `beforeBlockEnds` controls if a line break comes before a block ends; defaults to `off`
-#   `betweenSelectors` controls if a line break comes between selectors; defaults to `off`
-# `indentBy` controls number of characters to indent with; defaults to `0`
-# `indentWith` controls a character to indent with, can be `space` or `tab`; defaults to `space`
-# `spaces` controls where to insert spaces
-#   `aroundSelectorRelatioff` controls if spaces come around selector relations; e.g. `div > a`; defaults to `off`
-#   `beforeBlockBegins` controls if a space comes before a block begins; e.g. `.block {`; defaults to `off`
-#   `beforeValue` controls if a space comes before a value; e.g. `width: 1rem`; defaults to `off`
-# `wrapAt` controls maximum line length; defaults to `off`
-```
-
-Level 0 optimizations:
-
-```bash
-cleancss -O0 one.css
-```
-
-Level 1 optimizations (default):
-
-```bash
-cleancss -O1 one.css
-cleancss -O1 removeQuotes:off;roundingPrecision:4;specialComments:1 one.css
-cleancss -O1 all:off;specialComments:1 one.css
-# `cleanupCharsets` controls `@charset` moving to the front of a stylesheet; defaults to `on`
-# `normalizeUrls` controls URL normalzation; default to `on`
-# `optimizeBackground` controls `background` property optimizatons; defaults to `on`
-# `optimizeBorderRadius` controls `border-radius` property optimizatons; defaults to `on`
-# `optimizeFilter` controls `filter` property optimizatons; defaults to `on`
-# `optimizeFont controls `font` property optimizatons; defaults to `on`
-# `optimizeFontWeight` controls `font-weight` property optimizatons; defaults to `on`
-# `optimizeOutline` controls `outline` property optimizatons; defaults to `on`
-# `removeNegativePaddings` controls removing negative paddings; defaults to `on`
-# `removeQuotes` controls removing quotes when unnecessary; defaults to `on`
-# `removeWhitespace` controls removing unused whitespace; defaults to `on`
-# `replaceMultipleZeros` contols removing redundant zeros; defaults to `on`
-# `replaceTimeUnits` controls replacing time units with shorter values; defaults to `on
-# `replaceZeroUnits` controls replacing zero values with units; defaults to `on`
-# `roundingPrecision` rounds pixel values to `N` decimal places; `off` disables rounding; defaults to `off`
-# `selectorsSortingMethod` denotes selector sorting method; can be `natural` or `standard`; defaults to `standard`
-# `specialComments` denotes a number of /*! ... */ comments preserved; defaults to `all`
-# `tidyAtRules` controls at-rules (e.g. `@charset`, `@import`) optimizing; defaults to `on`
-# `tidyBlockScopes` controls block scopes (e.g. `@media`) optimizing; defaults to `on`
-# `tidySelectors` controls selectors optimizing; defaults to `on`
-```
-
-Level 2 optimizations:
-
-```bash
-cleancss -O2 one.css
-cleancss -O2 mergeMedia:off;restructureRules:off;mergeSemantically:on;mergeIntoShorthands:off one.css
-cleancss -O2 all:off;removeDuplicateRules:on one.css
-# `mergeAdjacentRules` controls adjacent rules merging; defaults to `on`
-# `mergeIntoShorthands` controls merging properties into shorthands; defaults to `on`
-# `mergeMedia` controls `@media` merging; defaults to `on`
-# `mergeNonAdjacentRules` controls non-adjacent rule merging; defaults to `on`
-# `mergeSemantically` controls semantic merging; defaults to `off`
-# `overrideProperties` controls property overriding based on understandability; defaults to `on`
-# `reduceNonAdjacentRules` controls non-adjacent rule reducing; defaults to `on`
-# `removeDuplicateFontRules` controls duplicate `@font-face` removing; defaults to `on`
-# `removeDuplicateMediaBlocks` controls duplicate `@media` removing; defaults to `on`
-# `removeDuplicateRules` controls duplicate rules removing; defaults to `on`
-# `restructureRules` controls rule restructuring; defaults to `off`
-```
-
-### How to use clean-css API?
+### How to use clean-css?
 
 ```js
 var CleanCSS = require('clean-css');
@@ -431,8 +301,9 @@ Use the `/*!` notation instead of the standard one `/*`:
 
 Clean-css will handle it automatically for you in the following cases:
 
-* When using the CLI specify output path via `-o`/`--output` to rebase URLs as relative to the output file
-* When using the API use `rebaseTo` to rebase URLs to the given path (same as with CLI)
+* when full paths to input files are passed in;
+* when pre-read content is passed in via a hash;
+* when `rebaseTo` is used with any of above two.
 
 ### How to generate source maps?
 
@@ -458,17 +329,7 @@ new CleanCSS({ level: { 1: { roundingPrecision: 'all=3,px=5' } } }).minify(...)
 
 which sets all units rounding precision to 3 digits except `px` unit precision of 5 digits.
 
-#### Using CLI
-
-To generate a source map, use `--source-map` switch, e.g.:
-
-```
-cleancss --source-map --output styles.min.css styles.css
-```
-
-Name of the output file is required, so a map file, named by adding `.map` suffix to output file name, can be created (styles.min.css.map in this case).
-
-#### Using API
+#### How to work with source maps?
 
 To generate a source map, use `sourceMap: true` option, e.g.:
 
@@ -477,7 +338,6 @@ new CleanCSS({ sourceMap: true, rebaseTo: pathToOutputDirectory })
   .minify(source, function (error, minified) {
     // access minified.sourceMap for SourceMapGenerator object
     // see https://github.com/mozilla/source-map/#sourcemapgenerator for more details
-    // see https://github.com/jakubpawlowicz/clean-css/blob/master/bin/cleancss#L114 on how it's used in clean-css' CLI
 });
 ```
 
@@ -488,7 +348,6 @@ new CleanCSS({ sourceMap: true, rebaseTo: pathToOutputDirectory })
   .minify(source, inputSourceMap, function (error, minified) {
     // access minified.sourceMap to access SourceMapGenerator object
     // see https://github.com/mozilla/source-map/#sourcemapgenerator for more details
-    // see https://github.com/jakubpawlowicz/clean-css/blob/master/bin/cleancss#L114 on how it's used in clean-css' CLI
 });
 ```
 
@@ -509,7 +368,7 @@ new CleanCSS({ sourceMap: true, rebaseTo: pathToOutputDirectory }).minify({
 });
 ```
 
-### How to minify multiple files with API?
+### How to minify multiple files?
 
 #### Passing an array
 
@@ -534,9 +393,7 @@ Important note - any `@import` rules already present in the hash will be automat
 
 ### How to set a compatibility mode?
 
-Compatibility settings are controlled by `--compatibility` switch (CLI) and `compatibility` option (library mode).
-
-In both modes the following values are allowed:
+Compatibility settings are controlled by `compatibility` option, where the following values are allowed:
 
 * `'ie7'` - Internet Explorer 7 compatibility mode
 * `'ie8'` - Internet Explorer 8 compatibility mode
@@ -573,11 +430,19 @@ with the following options available:
 * `'[+-]units.vmax'` - turn on / off treating `vmax` as a proper unit
 * `'[+-]units.vmin'` - turn on / off treating `vmin` as a proper unit
 
-For example, using `--compatibility 'ie8,+units.rem'` will ensure IE8 compatibility while enabling `rem` units so the following style `margin:0px 0rem` can be shortened to `margin:0`, while in pure IE8 mode it can't be.
+For example, using `{ compatibility: 'ie8,+units.rem' }` will ensure IE8 compatibility while enabling `rem` units so the following style `margin:0px 0rem` can be shortened to `margin:0`, while in pure IE8 mode it can't be.
 
-To pass a single off (-) switch in CLI please use the following syntax `--compatibility *,-units.rem`.
+You can also pass `compatibility` as a hash of options as follows:
 
-In library mode you can also pass `compatibility` as a hash of options.
+```js
+new CleanCSS({
+  compatibility: {
+    units: {
+      rem: false
+    }
+  }
+});
+```
 
 ### What level 2 optimizations are applied?
 

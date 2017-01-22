@@ -16,12 +16,8 @@
   "bugs": {
     "url": "https://github.com/jakubpawlowicz/clean-css/issues"
   },
-  "bin": {
-    "cleancss": "./bin/cleancss"
-  },
   "main": "index.js",
   "files": [
-    "bin",
     "lib",
     "History.md",
     "index.js",
@@ -30,12 +26,11 @@
   "scripts": {
     "browserify": "browserify --standalone CleanCSS index.js | uglifyjs --compress --mangle -o cleancss-browser.js",
     "bench": "node ./test/bench.js",
-    "check": "jshint ./bin/cleancss .",
+    "check": "jshint .",
     "prepublish": "npm run check",
     "test": "vows"
   },
   "dependencies": {
-    "commander": "2.9.x",
     "source-map": "0.5.x"
   },
   "devDependencies": {

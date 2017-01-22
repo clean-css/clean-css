@@ -1,5 +1,4 @@
 var assert = require('assert');
-var exec = require('child_process').exec;
 var fs = require('fs');
 var path = require('path');
 
@@ -74,18 +73,6 @@ function batchContexts() {
         },
         'outputs right content': function (data, error, output) {
           assertEqualLineByLine(data.preoptimized, output.styles);
-        }
-      },
-      'minifying via CLI': {
-        'topic': function (data) {
-          exec(
-            '__DIRECT__=1 ./bin/cleancss --format keep-breaks -O2 restructureRules:on ' + (isIE7Mode ? '-c ie7 ' : '') + path.join(dir, filename),
-            { maxBuffer: 500 * 1024 },
-            this.callback.bind(null, data)
-          );
-        },
-        'outputs right content': function (data, error, stdout) {
-          assertEqualLineByLine(data.preoptimized, stdout);
         }
       }
     };

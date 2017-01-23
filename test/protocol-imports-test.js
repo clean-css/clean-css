@@ -11,9 +11,6 @@ var CleanCSS = require('../index');
 
 var port = 24682;
 
-if (process.platform == 'win32')
-  return;
-
 vows.describe('protocol imports').addBatch({
   'of a missing file': {
     topic: function () {

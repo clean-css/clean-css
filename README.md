@@ -12,93 +12,167 @@
 [![NPM Downloads](https://img.shields.io/npm/dm/clean-css.svg)](https://www.npmjs.com/package/clean-css)
 [![Twitter](https://img.shields.io/badge/Twitter-@cleancss-blue.svg)](https://twitter.com/cleancss)
 
-## What is clean-css?
-
-Clean-css is a fast and efficient CSS optimizer for [Node.js](http://nodejs.org/) platform and [any modern browser](https://jakubpawlowicz.github.io/clean-css).
+clean-css is a fast and efficient CSS optimizer for [Node.js](http://nodejs.org/) platform and [any modern browser](https://jakubpawlowicz.github.io/clean-css).
 
 According to [tests](http://goalsmashers.github.io/css-minification-benchmark/) it is one of the best available.
 
+**This documentation refers to a pre-release version of clean-css 4.0. See [3.4 branch](https://github.com/jakubpawlowicz/clean-css/tree/3.4) for the current release docs.**
 
-## Usage
+**Table of Contents**
 
-### This documentation refers to a pre-release version of clean-css 4.0. See [3.4 branch](https://github.com/jakubpawlowicz/clean-css/tree/3.4) for the current release docs.
+- [Node.js version support](#nodejs-version-support)
+- [Install](#install)
+- [Use](#use)
+  * [Important: 4.0 breaking changes](#important-40-breaking-changes)
+  * [Constructor options](#constructor-options)
+  * [Compatibility modes](#compatibility-modes)
+  * [Formatting options](#formatting-options)
+  * [Inlining options](#inlining-options)
+  * [Optimization levels](#optimization-levels)
+    + [Level 0 optimizations](#level-0-optimizations)
+    + [Level 1 optimizations](#level-1-optimizations)
+    + [Level 2 optimizations](#level-2-optimizations)
+  * [Minify method](#minify-method)
+  * [Promise interface](#promise-interface)
+- [FAQ](#faq)
+  * [How to optimize multiple files?](#how-to-optimize-multiple-files)
+  * [How to process remote `@import`s correctly?](#how-to-process-remote-imports-correctly)
+  * [How to apply arbitrary transformations to CSS properties?](#how-to-apply-arbitrary-transformations-to-css-properties)
+  * [How to specify a custom rounding precision?](#how-to-specify-a-custom-rounding-precision)
+  * [How to preserve a comment block?](#how-to-preserve-a-comment-block)
+  * [How to rebase relative image URLs?](#how-to-rebase-relative-image-urls)
+  * [How to work with source maps?](#how-to-work-with-source-maps)
+  * [What level 2 optimizations do?](#what-level-2-optimizations-do)
+  * [How to use clean-css with build tools?](#how-to-use-clean-css-with-build-tools)
+  * [How to use clean-css from web browser?](#how-to-use-clean-css-from-web-browser)
+- [Contributing](#contributing)
+  * [How to get started?](#how-to-get-started)
+- [Acknowledgments](#acknowledgments)
+- [License](#license)
 
-### What will change in clean-css 4?
+# Node.js version support
 
-There will be some breaking changes:
+clean-css requires Node.js 4.0+ (tested on Linux, OS X, and Windows)
 
-* API and CLI interfaces are split, so API stays in this repository while CLI moves to [clean-css-cli](https://github.com/jakubpawlowicz/clean-css-cli);
-* `root`, `relativeTo`, and `target` options are replaced by a single `rebaseTo` option - this means that rebasing URLs and import inlining is much simpler but may not be (YMMV) as powerful as in 3.x.
-* `debug` API option is gone as stats are always provided in output object under `stats` property
-* `roundingPrecision` is disabled by default
-* `roundingPrecision` applies to **all** units now, not only `px` as in 3.x;
-* `processImport` and `processImportFrom` are merged into `inline` option which defaults to `local`. Remote `@import` rules are **NOT** inlined by default anymore.
-* renames CLI `--timeout` option to `--inline-timeout`;
-* splits API `inliner: { request: ..., timeout: ... }` option into `inlineRequest` and `inlineTimeout` options;
-* remote resources without a protocol, e.g. //fonts.googleapis.com/css?family=Domine:700, are not inlined anymore;
-* changes default Internet Explorer compatibility from 9+ to 10+, to revert the old default use `--compatibility ie9` flag;
-* renames `keepSpecialComments` to `specialComments`;
-* moves `roundingPrecision` and `specialComments` to level 1 optimizations options, see examples below;
-* moves `mediaMerging`, `restructuring`, `semanticMerging`, and `shorthandCompacting` to level 2 optimizations options, see examples below;
-* renames `shorthandCompacting` option to `mergeIntoShorthands`;
-* level 1 optimizations are the new default, up to 3.x it was level 2;
-* `--keep-line-breaks` / `keepBreaks` option is replaced with `--format keep-breaks` / `{ format: 'keep-breaks' }` to ease transition.
-* `sourceMap` option is API has to be a boolean from now on. If you want to specify an input source map pass it a 2nd argument to `minify` method or via a hash instead;
-* `--skip-aggressive-merging` / `aggressiveMerging` option is removed as aggressive merging is gone too, replaced by smarter override merging.
-
-Please note this list is not final. You are more than welcome to comment these changes in [4.0 release discussion](https://github.com/jakubpawlowicz/clean-css/issues/842) thread.
-
-### What are the requirements?
-
-```
-Node.js 4.0+ (tested on CentOS, Ubuntu, OS X, and Windows)
-```
-
-### How to install clean-css?
+# Install
 
 ```
 npm install clean-css
 ```
 
-### How to use clean-css?
+# Use
 
 ```js
 var CleanCSS = require('clean-css');
-var source = 'a{font-weight:bold;}';
-var minified = new CleanCSS().minify(source).styles;
+var input = 'a{font-weight:bold;}';
+var options = { /* options */ };
+var output = new CleanCSS(options).minify(source);
 ```
 
-CleanCSS constructor accepts a hash as a parameter, i.e.,
-`new CleanCSS(options)` with the following options available:
+## Important: 4.0 breaking changes
 
-* `compatibility` - enables compatibility mode, see [below for more examples](#how-to-set-a-compatibility-mode)
-* `format` - formats output CSS by using indentation and one rule or property per line.
-* `inline` - whether to inline `@import` rules, can be `['all']`, `['local']` (default), `['remote']`, or a blacklisted domain/path e.g. `['!fonts.googleapis.com']`
-* `inlineRequest` - an object with [HTTP(S) request options](https://nodejs.org/api/http.html#http_http_request_options_callback) for inlining remote `@import` rules
-* `inlineTimeout` - an integer denoting a number of milliseconds after which inlining a remote `@import` fails (defaults to 5000 ms)
-* `level` - an integer denoting optimization level applied or a hash with a fine-grained configuration; see examples below; defaults to `1`
-* `rebase` - set to false to skip URL rebasing
-* `rebaseTo` - a directory to which all URLs are rebased (most likely the directory under which the output file will live), defaults to the current directory
-* `returnPromise` - set to true to make `minify` method return a Promise object (see example below); defaults to `false`
-* `sourceMap` - set to true to build output source map; defaults to `false`
-* `sourceMapInlineSources` - set to true to inline sources inside a source map's `sourcesContent` field (defaults to false)
-  It is also required to process inlined sources from input source maps.
+clean-css 4.0 will introduce some breaking changes:
 
-The output of `minify` method (or the 2nd argument to passed callback) is a hash containing the following fields:
+* API and CLI interfaces are split, so API stays in this repository while CLI moves to [clean-css-cli](https://github.com/jakubpawlowicz/clean-css-cli);
+* `root`, `relativeTo`, and `target` options are replaced by a single `rebaseTo` option - this means that rebasing URLs and import inlining is much simpler but may not be (YMMV) as powerful as in 3.x;
+* `debug` option is gone as stats are always provided in output object under `stats` property;
+* `roundingPrecision` is disabled by default;
+* `roundingPrecision` applies to **all** units now, not only `px` as in 3.x;
+* `processImport` and `processImportFrom` are merged into `inline` option which defaults to `local`. Remote `@import` rules are **NOT** inlined by default anymore;
+* splits `inliner: { request: ..., timeout: ... }` option into `inlineRequest` and `inlineTimeout` options;
+* remote resources without a protocol, e.g. `//fonts.googleapis.com/css?family=Domine:700`, are not inlined anymore;
+* changes default Internet Explorer compatibility from 9+ to 10+, to revert the old default use `{ compatibility: 'ie9' }` flag;
+* renames `keepSpecialComments` to `specialComments`;
+* moves `roundingPrecision` and `specialComments` to level 1 optimizations options, see examples;
+* moves `mediaMerging`, `restructuring`, `semanticMerging`, and `shorthandCompacting` to level 2 optimizations options, see examples below;
+* renames `shorthandCompacting` option to `mergeIntoShorthands`;
+* level 1 optimizations are the new default, up to 3.x it was level 2;
+* `keepBreaks` option is replaced with `{ format: 'keep-breaks' }` to ease transition;
+* `sourceMap` option has to be a boolean from now on - to specify an input source map pass it a 2nd argument to `minify` method or via a hash instead;
+* `aggressiveMerging` option is removed as aggressive merging is replaced by smarter override merging.
 
-* `styles` - optimized output CSS as a string
-* `sourceMap` - output source map (if requested with `sourceMap` option)
-* `errors` - a list of errors raised
-* `warnings` - a list of warnings raised
-* `stats` - a hash of statistic information:
-  * `originalSize` - original content size (after import inlining)
-  * `minifiedSize` - optimized content size
-  * `timeSpent` - time spent on optimizations
-  * `efficiency` - a ratio of output size to input size (e.g. 25% if content was reduced from 100 bytes to 75 bytes)
+Please note this list is not final. You are more than welcome to comment these changes in [4.0 release discussion](https://github.com/jakubpawlowicz/clean-css/issues/842) thread.
 
-#### How to specify formatting
+## Constructor options
 
-The `format` option can accept the following options:
+clean-css constructor accepts a hash as a parameter with the following options available:
+
+* `compatibility` - controls compatibility mode used; defaults to `ie10+`; see [compatibility modes](#compatibility-modes) for examples;
+* `format` - controls output CSS formatting; defaults to `false`; see [formatting options](#formatting-options) for examples;
+* `inline` - controls `@import` inlining rules; defaults to `'local'`; see [inlining options](#inlining-options) for examples;
+* `inlineRequest` - controls extra options for inlining remote `@import` rules, can be any of [HTTP(S) request options](https://nodejs.org/api/http.html#http_http_request_options_callback);
+* `inlineTimeout` - controls number of milliseconds after which inlining a remote `@import` fails; defaults to 5000;
+* `level` - controls optimization level used; defaults to `1`; see [optimization levels](#optimization-levels) for examples;
+* `rebase` - controls URL rebasing; defaults to `true`;
+* `rebaseTo` - controls a directory to which all URLs are rebased, most likely the directory under which the output file will live; defaults to the current directory;
+* `returnPromise` - controls whether `minify` method returns a Promise object or not; defaults to `false`; see [promise interface](#promise-interface) for examples;
+* `sourceMap` - controls whether an output source map is built; defaults to `false`;
+* `sourceMapInlineSources` - controls embedding sources inside a source map's `sourcesContent` field; defaults to false.
+
+## Compatibility modes
+
+There is a certain number of compatibility mode shortcuts, namely:
+
+* `new CleanCSS({ compatibility: '*' })` (default) - Internet Explorer 10+ compatibility mode
+* `new CleanCSS({ compatibility: 'ie9' })` - Internet Explorer 9+ compatibility mode
+* `new CleanCSS({ compatibility: 'ie8' })` - Internet Explorer 8+ compatibility mode
+* `new CleanCSS({ compatibility: 'ie7' })` - Internet Explorer 7+ compatibility mode
+
+Each of these modes is an alias to a [fine grained configuration](https://github.com/jakubpawlowicz/clean-css/blob/master/lib/options/compatibility.js), with the following options available:
+
+```js
+new CleanCSS({
+  compatibility: {
+    colors: {
+      opacity: true // controls `rgba()` / `hsla()` color support
+    },
+    properties: {
+      backgroundClipMerging: true, // controls background-clip merging into shorthand
+      backgroundOriginMerging: true, // controls background-origin merging into shorthand
+      backgroundSizeMerging: true, // controls background-size merging into shorthand
+      colors: true, // controls color optimizations
+      ieBangHack: false, // controls keeping IE bang hack
+      ieFilters: false, // controls keeping IE `filter` / `-ms-filter`
+      iePrefixHack: false, // controls keeping IE prefix hack
+      ieSuffixHack: false, // controls keeping IE suffix hack
+      merging: true, // controls property merging based on understandability
+      shorterLengthUnits: false, // controls shortening pixel units into `pc`, `pt`, or `in` units
+      spaceAfterClosingBrace: true, // controls keeping space after closing brace - `url() no-repeat` into `url()no-repeat`
+      urlQuotes: false, // controls keeping quoting inside `url()`
+      zeroUnits: true // controls removal of units `0` value
+    },
+    selectors: {
+      adjacentSpace: false, // controls extra space before `nav` element
+      ie7Hack: true, // controls removal of IE7 selector hacks, e.g. `*+html...`
+      mergeablePseudoClasses: [':active', ...], // controls a whitelist of mergeable pseudo classes
+      mergeablePseudoElements: ['::after', ...] // controls a whitelist of mergeable pseudo elements
+    },
+    units: {
+      ch: true, // controls treating `ch` as a supported unit
+      in: true, // controls treating `in` as a supported unit
+      pc: true, // controls treating `pc` as a supported unit
+      pt: true, // controls treating `pt` as a supported unit
+      rem: true, // controls treating `rem` as a supported unit
+      vh: true, // controls treating `vh` as a supported unit
+      vm: true, // controls treating `vm` as a supported unit
+      vmax: true, // controls treating `vmax` as a supported unit
+      vmin: true // controls treating `vmin` as a supported unit
+    }
+  }
+})
+```
+
+You can also use a string when setting a compatibility mode, e.g.
+
+```js
+new CleanCSS({
+  compatibility: 'ie9,-properties.merging' // sets compatibility to IE9 mode with disabled property merging
+})
+```
+
+## Formatting options
+
+The `format` option accept the following options:
 
 ```js
 new CleanCSS({
@@ -126,17 +200,64 @@ new CleanCSS({
 })
 ```
 
-#### How to specify optimization levels
+## Inlining options
 
-The `level` option can be either `0`, `1` (default), or `2`, or a fine-grained configuration given via a hash:
+`inline` option whitelists which `@import` rules will be processed, e.g.
 
 ```js
-// level 1 optimizations (default)
+new CleanCSS({
+  inline: ['local'] // default
+})
+```
+
+```js
+new CleanCSS({
+  inline: ['all'] // same as ['local', 'remote']
+})
+```
+
+```js
+new CleanCSS({
+  inline: ['local', 'mydomain.example.com']
+})
+```
+
+```js
+new CleanCSS({
+  inline: ['local', 'remote', '!fonts.googleapis.com']
+})
+```
+
+## Optimization levels
+
+The `level` option can be either `0`, `1` (default), or `2`, e.g.
+
+```js
+new CleanCSS({
+  level: 2
+})
+```
+
+or a fine-grained configuration given via a hash.
+
+Please note that level 1 optimization options are generally safe while level 2 optimizations should be safe for most users.
+
+### Level 0 optimizations
+
+Level 0 optimizations simply means "no optimizations". Use it when you'd like to inline imports and / or rebase URLs but skip everything else.
+
+### Level 1 optimizations
+
+Level 1 optimizations (default) operate on single properties only, e.g. can remove units when not required, turn rgb colors to a shorter hex representation, remove comments, etc
+
+Here is a full list of available options:
+
+```js
 new CleanCSS({
   level: {
     1: {
       cleanupCharsets: true, // controls `@charset` moving to the front of a stylesheet; defaults to `true`
-      normalizeUrls: true, // controls URL normalzation; default to `true`
+      normalizeUrls: true, // controls URL normalization; defaults to `true`
       optimizeBackground: true, // controls `background` property optimizatons; defaults to `true`
       optimizeBorderRadius: true, // controls `border-radius` property optimizatons; defaults to `true`
       optimizeFilter: true, // controls `filter` property optimizatons; defaults to `true`
@@ -159,20 +280,28 @@ new CleanCSS({
     }
   }
 });
+```
 
-// level 1 optimizations `all` keyword
+There is an `all` shortcut for toggling all options at the same time, e.g.
+
+```js
 new CleanCSS({
   level: {
     1: {
-      all: false, // sets all values to `false`
+      all: false, // set all values to `false`
       tidySelectors: true // turns on optimizing selectors
     }
   }
 });
 ```
 
+### Level 2 optimizations
+
+Level 2 optimizations operate at rules or multiple properties level, e.g. can remove duplicate rules, remove properties redefined further down a stylesheet, or restructure rules by moving them around.
+
+Here is a full list of available options:
+
 ```js
-// level 2 optimizations
 new CleanCSS({
   level: {
     2: {
@@ -190,8 +319,11 @@ new CleanCSS({
     }
   }
 });
+```
 
-// level 2 optimizations `all` keyword
+There is an `all` shortcut for toggling all options at the same time, e.g.
+
+```js
 new CleanCSS({
   level: {
     1: {
@@ -202,40 +334,93 @@ new CleanCSS({
 });
 ```
 
-#### How to make sure remote `@import`s are processed correctly?
+## Minify method
 
-In order to inline remote `@import` statements you need to provide a callback to minify method, e.g.:
+Once configured clean-css provides a `minify` method to optimize a given CSS, e.g.
 
 ```js
-var CleanCSS = require('clean-css');
-var source = '@import url(http://path/to/remote/styles);';
-new CleanCSS().minify(source, function (error, minified) {
-  // minified.styles
+var output = new CleanCSS(options).minify(source);
+```
+
+The output of the `minify` method is a hash with following fields:
+
+```js
+console.log(output.styles); // optimized output CSS as a string
+console.log(output.sourceMap); // output source map if requested with `sourceMap` option
+console.log(output.errors); // a list of errors raised
+console.log(output.warnings); // a list of warnings raised
+console.log(output.stats.originalSize); // original content size after import inlining
+console.log(output.stats.minifiedSize); // optimized content size
+console.log(output.stats.timeSpent); // time spent on optimizations in milliseconds
+console.log(output.stats.efficiency); // a ratio of output size to input size (e.g. 25% if content was reduced from 100 bytes to 75 bytes)
+```
+
+The `minify` method also accepts an input source map, e.g.
+
+```js
+var output = new CleanCSS(options).minify(source, inputSourceMap);
+```
+
+or a callback invoked when optimizations are finished, e.g.
+
+```js
+new CleanCSS(options).minify(source, function (error, output) {
+  // `output` is the same as in the synchronous call above
 });
 ```
 
-This is due to a fact, that, while local files can be read synchronously, remote resources can only be processed asynchronously.
-If you don't provide a callback, then remote `@import`s will be left intact.
+## Promise interface
 
-#### How to work with clean-css Promise API
-
-If you prefer clean-css to return a Promise object then you need to explicitely ask for it:
+If you prefer clean-css to return a Promise object then you need to explicitely ask for it, e.g.
 
 ```js
-var CleanCSS = require('clean-css');
-var source = 'a{font-weight:bold;}';
 new CleanCSS({ returnPromise: true })
   .minify(source)
-  .then(function (minified) { // console.log(minified); })
+  .then(function (output) { console.log(output.styles); })
   .catch(function (error) { // deal with errors });
 ```
 
-#### How to apply arbitrary transformations to CSS properties
+# FAQ
 
-If clean-css doesn't perform a specific property optimization, you can use `transform` callback to apply it:
+## How to optimize multiple files?
+
+It can be done either by passing an array of paths, or, when sources are already available, a hash:
 
 ```js
-var CleanCSS = require('clean-css');
+new CleanCSS().minify(['path/to/file/one', 'path/to/file/two']);
+```
+
+```js
+new CleanCSS().minify({
+  'path/to/file/one': {
+    styles: 'contents of file one'
+  },
+  'path/to/file/two': {
+    styles: 'contents of file two'
+  }
+});
+```
+
+Important note - any `@import` rules already present in the hash will be resolved in memory.
+
+## How to process remote `@import`s correctly?
+
+In order to inline remote `@import` statements you need to provide a callback to minify method as fetching remote assets is an asynchronous operation, e.g.:
+
+```js
+var source = '@import url(http://example.com/path/to/remote/styles);';
+new CleanCSS({ inline: ['remote'] }).minify(source, function (error, output) {
+  // output.styles
+});
+```
+
+If you don't provide a callback, then remote `@import`s will be left as is.
+
+## How to apply arbitrary transformations to CSS properties?
+
+If clean-css doesn't perform a particular property optimization, you can use `transform` callback to apply it:
+
+```js
 var source = '.block{background-image:url(/path/to/image.png)}';
 var output = new CleanCSS({
   level: {
@@ -254,104 +439,63 @@ console.log(output.styles); # => .block{background-image:url(../valid/path/to/im
 
 Note: returning `false` from `transform` callback will drop a property.
 
-### How to use clean-css with build tools?
+## How to specify a custom rounding precision?
 
-* [Broccoli](https://github.com/broccolijs/broccoli#broccoli): [broccoli-clean-css](https://github.com/shinnn/broccoli-clean-css)
-* [Brunch](http://brunch.io/): [clean-css-brunch](https://github.com/brunch/clean-css-brunch)
-* [Grunt](http://gruntjs.com): [grunt-contrib-cssmin](https://github.com/gruntjs/grunt-contrib-cssmin)
-* [Gulp](http://gulpjs.com/): [gulp-clean-css](https://github.com/scniro/gulp-clean-css)
-* [Gulp](http://gulpjs.com/): [using vinyl-map as a wrapper - courtesy of @sogko](https://github.com/jakubpawlowicz/clean-css/issues/342)
-* [component-builder2](https://github.com/component/builder2.js): [builder-clean-css](https://github.com/poying/builder-clean-css)
-* [Metalsmith](http://metalsmith.io): [metalsmith-clean-css](https://github.com/aymericbeaumet/metalsmith-clean-css)
-* [Lasso](https://github.com/lasso-js/lasso): [lasso-clean-css](https://github.com/yomed/lasso-clean-css)
-* [Start](https://github.com/start-runner/start): [start-clean-css](https://github.com/start-runner/clean-css)
+The level 1 `roundingPrecision` optimization option accept a string with per-unit rounding precision settings, e.g.
 
-### How to use clean-css from a web browser?
+```js
+new CleanCSS({
+  level: {
+    1: {
+      roundingPrecision: 'all=3,px=5'
+    }
+  }
+}).minify(source)
+```
 
-* https://jakubpawlowicz.github.io/clean-css/ (official web interface)
-* http://refresh-sf.com/
-* http://adamburgess.github.io/clean-css-online/
+which sets all units rounding precision to 3 digits except `px` unit precision of 5 digits.
 
-### What are the clean-css' dev commands?
-
-First clone the source, then run:
-
-* `npm run bench` for clean-css benchmarks (see [test/bench.js](https://github.com/jakubpawlowicz/clean-css/blob/master/test/bench.js) for details)
-* `npm run browserify` to create the browser-ready clean-css version
-* `npm run check` to check JS sources with [JSHint](https://github.com/jshint/jshint/)
-* `npm test` for the test suite
-
-## How to contribute to clean-css?
-
-See [CONTRIBUTING.md](https://github.com/jakubpawlowicz/clean-css/blob/master/CONTRIBUTING.md).
-
-## Tips & Tricks
-
-### How to preserve a comment block?
+## How to preserve a comment block?
 
 Use the `/*!` notation instead of the standard one `/*`:
 
 ```css
 /*!
-  Important comments included in minified output.
+  Important comments included in optimized output.
 */
 ```
 
-### How to rebase relative image URLs?
+## How to rebase relative image URLs?
 
-Clean-css will handle it automatically for you in the following cases:
+clean-css will handle it automatically for you in the following cases:
 
-* when full paths to input files are passed in;
-* when pre-read content is passed in via a hash;
+* when full paths to input files are passed in as options;
+* when correct paths are passed in via a hash;
 * when `rebaseTo` is used with any of above two.
 
-### How to generate source maps?
-
-Source maps are supported since version 3.0.
-
-Additionally to mapping original CSS files, clean-css also supports input source maps, so minified styles can be mapped into their [Less](http://lesscss.org/) or [Sass](http://sass-lang.com/) sources directly.
-
-Source maps are generated using [source-map](https://github.com/mozilla/source-map/) module from Mozilla.
-
-### How to specify custom rounding precision?
-
-The level 1 `roundingPrecision` optimization option accept a string with per-unit rounding precision settings, e.g.
-
-```
-clean-css -O1 roundingPrecision:all=3,px=5
-```
-
-or
-
-```js
-new CleanCSS({ level: { 1: { roundingPrecision: 'all=3,px=5' } } }).minify(...)
-```
-
-which sets all units rounding precision to 3 digits except `px` unit precision of 5 digits.
-
-#### How to work with source maps?
+## How to work with source maps?
 
 To generate a source map, use `sourceMap: true` option, e.g.:
 
 ```js
 new CleanCSS({ sourceMap: true, rebaseTo: pathToOutputDirectory })
-  .minify(source, function (error, minified) {
-    // access minified.sourceMap for SourceMapGenerator object
+  .minify(source, function (error, output) {
+    // access output.sourceMap for SourceMapGenerator object
     // see https://github.com/mozilla/source-map/#sourcemapgenerator for more details
 });
 ```
 
-Using API you can also pass an input source map directly as a 2nd argument to `minify` method:
+You can also pass an input source map directly as a 2nd argument to `minify` method:
 
 ```js
 new CleanCSS({ sourceMap: true, rebaseTo: pathToOutputDirectory })
-  .minify(source, inputSourceMap, function (error, minified) {
-    // access minified.sourceMap to access SourceMapGenerator object
+  .minify(source, inputSourceMap, function (error, output) {
+    // access output.sourceMap to access SourceMapGenerator object
     // see https://github.com/mozilla/source-map/#sourcemapgenerator for more details
 });
 ```
 
-Or even multiple input source maps at once (available since version 3.1):
+or even multiple input source maps at once:
 
 ```js
 new CleanCSS({ sourceMap: true, rebaseTo: pathToOutputDirectory }).minify({
@@ -363,124 +507,90 @@ new CleanCSS({ sourceMap: true, rebaseTo: pathToOutputDirectory }).minify({
     styles: '...styles...',
     sourceMap: '...source-map...'
   }
-}, function (error, minified) {
-  // access minified.sourceMap as above
+}, function (error, output) {
+  // access output.sourceMap as above
 });
 ```
 
-### How to minify multiple files?
+## What level 2 optimizations do?
 
-#### Passing an array
+All level 2 optimizations are dispatched [here](https://github.com/jakubpawlowicz/clean-css/blob/master/lib/optimizer/level-2/optimize.js#L67), and this is what they do:
 
-```js
-new CleanCSS().minify(['path/to/file/one', 'path/to/file/two']);
-```
-
-#### Passing a hash
-
-```js
-new CleanCSS().minify({
-  'path/to/file/one': {
-    styles: 'contents of file one'
-  },
-  'path/to/file/two': {
-    styles: 'contents of file two'
-  }
-});
-```
-
-Important note - any `@import` rules already present in the hash will be automatically resolved in memory.
-
-### How to set a compatibility mode?
-
-Compatibility settings are controlled by `compatibility` option, where the following values are allowed:
-
-* `'ie7'` - Internet Explorer 7 compatibility mode
-* `'ie8'` - Internet Explorer 8 compatibility mode
-* `''` or `'*'` (default) - Internet Explorer 9+ compatibility mode
-
-Since clean-css 3 a fine grained control is available over
-[those settings](https://github.com/jakubpawlowicz/clean-css/blob/master/lib/options/compatibility.js),
-with the following options available:
-
-* `'[+-]colors.opacity'` - - turn on (+) / off (-) `rgba()` / `hsla()` declarations removal
-* `'[+-]properties.backgroundClipMerging'` - turn on / off background-clip merging into shorthand
-* `'[+-]properties.backgroundOriginMerging'` - turn on / off background-origin merging into shorthand
-* `'[+-]properties.backgroundSizeMerging'` - turn on / off background-size merging into shorthand
-* `'[+-]properties.colors'` - turn on / off any color optimizations
-* `'[+-]properties.ieBangHack'` - turn on / off IE bang hack removal
-* `'[+-]properties.ieFilters'` - turn on / off IE `filter` / `-ms-filter` removal
-* `'[+-]properties.iePrefixHack'` - turn on / off IE prefix hack removal
-* `'[+-]properties.ieSuffixHack'` - turn on / off IE suffix hack removal
-* `'[+-]properties.merging'` - turn on / off property merging based on understandability
-* `'[+-]properties.shorterLengthUnits'` - turn on / off shortening pixel units into `pc`, `pt`, or `in` units
-* `'[+-]properties.spaceAfterClosingBrace'` - turn on / off removing space after closing brace - `url() no-repeat` into `url()no-repeat`
-* `'[+-]properties.urlQuotes'` - turn on / off `url()` quoting
-* `'[+-]properties.zeroUnits'` - turn on / off units removal after a `0` value
-* `'[+-]selectors.adjacentSpace'` - turn on / off extra space before `nav` element
-* `'[+-]selectors.ie7Hack'` - turn on / off IE7 selector hack removal (`*+html...`)
-* `'[+-]selectors.special'` - a regular expression with all special, unmergeable selectors (leave it empty unless you know what you are doing)
-* `'[+-]units.ch'` - turn on / off treating `ch` as a proper unit
-* `'[+-]units.in'` - turn on / off treating `in` as a proper unit
-* `'[+-]units.pc'` - turn on / off treating `pc` as a proper unit
-* `'[+-]units.pt'` - turn on / off treating `pt` as a proper unit
-* `'[+-]units.rem'` - turn on / off treating `rem` as a proper unit
-* `'[+-]units.vh'` - turn on / off treating `vh` as a proper unit
-* `'[+-]units.vm'` - turn on / off treating `vm` as a proper unit
-* `'[+-]units.vmax'` - turn on / off treating `vmax` as a proper unit
-* `'[+-]units.vmin'` - turn on / off treating `vmin` as a proper unit
-
-For example, using `{ compatibility: 'ie8,+units.rem' }` will ensure IE8 compatibility while enabling `rem` units so the following style `margin:0px 0rem` can be shortened to `margin:0`, while in pure IE8 mode it can't be.
-
-You can also pass `compatibility` as a hash of options as follows:
-
-```js
-new CleanCSS({
-  compatibility: {
-    units: {
-      rem: false
-    }
-  }
-});
-```
-
-### What level 2 optimizations are applied?
-
-All level 2 optimizations are dispatched [here](https://github.com/jakubpawlowicz/clean-css/blob/master/lib/selectors/advanced.js#L59), and this is what they do:
-
-* `recursivelyOptimizeBlocks` - does all the following operations on a block (think `@media` or `@keyframe` at-rules);
-* `recursivelyOptimizeProperties` - optimizes properties in rulesets and "flat at-rules" (like @font-face) by splitting them into components (e.g. `margin` into `margin-(*)`), optimizing, and rebuilding them back. You may want to use `mergeIntoShorthands` option to control whether you want to turn multiple (long-hand) properties into a shorthand ones;
-* `removeDuplicates` - gets rid of duplicate rulesets with exactly the same set of properties (think of including the same Sass / Less partial twice for no good reason);
+* `recursivelyOptimizeBlocks` - does all the following operations on a nested block, like `@media` or `@keyframe`;
+* `recursivelyOptimizeProperties` - optimizes properties in rulesets and flat at-rules, like @font-face, by splitting them into components (e.g. `margin` into `margin-(bottom|left|right|top)`), optimizing, and restoring them back. You may want to use `mergeIntoShorthands` option to control whether you want to turn multiple components into shorthands;
+* `removeDuplicates` - gets rid of duplicate rulesets with exactly the same set of properties, e.g. when including a Sass / Less partial twice for no good reason;
 * `mergeAdjacent` - merges adjacent rulesets with the same selector or rules;
 * `reduceNonAdjacent` - identifies which properties are overridden in same-selector non-adjacent rulesets, and removes them;
-* `mergeNonAdjacentBySelector` - identifies same-selector non-adjacent rulesets which can be moved (!) to be merged, requires all intermediate rulesets to not redefine the moved properties, or if redefined to be either more coarse grained (e.g. `margin` vs `margin-top`) or have the same value;
-* `mergeNonAdjacentByBody` - same as the one above but for same-rules non-adjacent rulesets;
+* `mergeNonAdjacentBySelector` - identifies same-selector non-adjacent rulesets which can be moved (!) to be merged, requires all intermediate rulesets to not redefine the moved properties, or if redefined to have the same value;
+* `mergeNonAdjacentByBody` - same as the one above but for same-selector non-adjacent rulesets;
 * `restructure` - tries to reorganize different-selector different-rules rulesets so they take less space, e.g. `.one{padding:0}.two{margin:0}.one{margin-bottom:3px}` into `.two{margin:0}.one{padding:0;margin-bottom:3px}`;
-* `removeDuplicateMediaQueries` - removes duplicated `@media` at-rules;
-* `mergeMediaQueries` - merges non-adjacent `@media` at-rules by same rules as `mergeNonAdjacentBy*` above;
+* `removeDuplicateFontAtRules` - removes duplicated `@font-face` rules;
+* `removeDuplicateMediaQueries` - removes duplicated `@media` nested blocks;
+* `mergeMediaQueries` - merges non-adjacent `@media` at-rules by the same rules as `mergeNonAdjacentBy*` above;
 
-## Acknowledgments (sorted alphabetically)
+## How to use clean-css with build tools?
 
-* Anthony Barre ([@abarre](https://github.com/abarre)) for improvements to
-  `@import` processing.
-* Simon Altschuler ([@altschuler](https://github.com/altschuler)) for fixing
-  `@import` processing inside comments.
-* Isaac ([@facelessuser](https://github.com/facelessuser)) for pointing out
-  a flaw in clean-css' stateless mode.
-* Jan Michael Alonzo ([@jmalonzo](https://github.com/jmalonzo)) for a patch
-  removing node.js' old `sys` package.
-* Luke Page ([@lukeapage](https://github.com/lukeapage)) for suggestions and testing the source maps feature.
-  Plus everyone else involved in [#125](https://github.com/jakubpawlowicz/clean-css/issues/125) for pushing it forward.
-* Peter Wagenet ([@wagenet](https://github.com/wagenet)) for suggesting improvements to `@import` inlining behavior.
-* Timur Kristóf ([@Venemo](https://github.com/Venemo)) for an outstanding
-  contribution of advanced property optimizer for 2.2 release.
-* Vincent Voyer ([@vvo](https://github.com/vvo)) for a patch with better
-  empty element regex and for inspiring us to do many performance improvements
-  in 0.4 release.
-* [@XhmikosR](https://github.com/XhmikosR) for suggesting new features
-  (option to remove special comments and strip out URLs quotation) and
-  pointing out numerous improvements (JSHint, media queries).
+There is a number of 3rd party plugins to popular build tools:
 
-## License
+* [Broccoli](https://github.com/broccolijs/broccoli#broccoli): [broccoli-clean-css](https://github.com/shinnn/broccoli-clean-css)
+* [Brunch](http://brunch.io/): [clean-css-brunch](https://github.com/brunch/clean-css-brunch)
+* [Grunt](http://gruntjs.com): [grunt-contrib-cssmin](https://github.com/gruntjs/grunt-contrib-cssmin)
+* [Gulp](http://gulpjs.com/): [gulp-clean-css](https://github.com/scniro/gulp-clean-css)
+* [Gulp](http://gulpjs.com/): [using vinyl-map as a wrapper - courtesy of @sogko](https://github.com/jakubpawlowicz/clean-css/issues/342)
+* [component-builder2](https://github.com/component/builder2.js): [builder-clean-css](https://github.com/poying/builder-clean-css)
+* [Metalsmith](http://metalsmith.io): [metalsmith-clean-css](https://github.com/aymericbeaumet/metalsmith-clean-css)
+* [Lasso](https://github.com/lasso-js/lasso): [lasso-clean-css](https://github.com/yomed/lasso-clean-css)
+* [Start](https://github.com/start-runner/start): [start-clean-css](https://github.com/start-runner/clean-css)
 
-Clean-css is released under the [MIT License](https://github.com/jakubpawlowicz/clean-css/blob/master/LICENSE).
+## How to use clean-css from web browser?
+
+* https://jakubpawlowicz.github.io/clean-css/ (official web interface)
+* http://refresh-sf.com/
+* http://adamburgess.github.io/clean-css-online/
+
+# Contributing
+
+See [CONTRIBUTING.md](https://github.com/jakubpawlowicz/clean-css/blob/master/CONTRIBUTING.md).
+
+## How to get started?
+
+First clone the sources:
+
+```bash
+git clone git@github.com:jakubpawlowicz/clean-css.git
+```
+
+then install dependencies:
+
+```bash
+cd clean-css
+npm install
+```
+
+then use any of the following commands to verify your copy:
+
+```bash
+npm run bench # for clean-css benchmarks (see [test/bench.js](https://github.com/jakubpawlowicz/clean-css/blob/master/test/bench.js) for details)
+npm run browserify # to create the browser-ready clean-css version
+npm run check # to lint JS sources with [JSHint](https://github.com/jshint/jshint/)
+npm test # to run all tests
+```
+
+# Acknowledgments
+
+Sorted alphabetically by GitHub handle:
+
+* [@abarre](https://github.com/abarre) (Anthony Barre) for improvements to `@import` processing;
+* [@altschuler](https://github.com/altschuler) (Simon Altschuler) for fixing `@import` processing inside comments;
+* [@facelessuser](https://github.com/facelessuser) (Isaac) for pointing out a flaw in clean-css' stateless mode;
+* [@jmalonzo](https://github.com/jmalonzo) (Jan Michael Alonzo) for a patch removing node.js' old `sys` package;
+* [@lukeapage](https://github.com/lukeapage) (Luke Page) for suggestions and testing the source maps feature;
+  Plus everyone else involved in [#125](https://github.com/jakubpawlowicz/clean-css/issues/125) for pushing it forward;
+* [@wagenet](https://github.com/wagenet) (Peter Wagenet) for suggesting improvements to `@import` inlining behavior;
+* [@venemo](https://github.com/venemo) (Timur Kristóf) for an outstanding contribution of advanced property optimizer for 2.2 release;
+* [@vvo](https://github.com/vvo) (Vincent Voyer) for a patch with better empty element regex and for inspiring us to do many performance improvements in 0.4 release;
+* [@xhmikosr](https://github.com/xhmikosr) for suggesting new features, like option to remove special comments and strip out URLs quotation, and pointing out numerous improvements like JSHint, media queries, etc.
+
+# License
+
+clean-css is released under the [MIT License](https://github.com/jakubpawlowicz/clean-css/blob/master/LICENSE).

@@ -604,11 +604,15 @@ npm test # to run all tests
 Sorted alphabetically by GitHub handle:
 
 * [@abarre](https://github.com/abarre) (Anthony Barre) for improvements to `@import` processing;
+* [@alexlamsl](https://github.com/alexlamsl) (Alex Lam S.L.) for testing early clean-css 4 versions, reporting bugs, and suggesting numerous improvements.
 * [@altschuler](https://github.com/altschuler) (Simon Altschuler) for fixing `@import` processing inside comments;
+* [@ben-eb](https://github.com/ben-eb) (Ben Briggs) for sharing ideas about CSS optimizations;
 * [@facelessuser](https://github.com/facelessuser) (Isaac) for pointing out a flaw in clean-css' stateless mode;
 * [@jmalonzo](https://github.com/jmalonzo) (Jan Michael Alonzo) for a patch removing node.js' old `sys` package;
 * [@lukeapage](https://github.com/lukeapage) (Luke Page) for suggestions and testing the source maps feature;
   Plus everyone else involved in [#125](https://github.com/jakubpawlowicz/clean-css/issues/125) for pushing it forward;
+* [@madwizard-thomas](https://github.com/madwizard-thomas) for sharing ideas about `@import` inlining and URL rebasing.
+* [@ngyikp](https://github.com/ngyikp) (Ng Yik Phang) for testing early clean-css 4 versions, reporting bugs, and suggesting numerous improvements.
 * [@wagenet](https://github.com/wagenet) (Peter Wagenet) for suggesting improvements to `@import` inlining behavior;
 * [@venemo](https://github.com/venemo) (Timur Kristóf) for an outstanding contribution of advanced property optimizer for 2.2 release;
 * [@vvo](https://github.com/vvo) (Vincent Voyer) for a patch with better empty element regex and for inspiring us to do many performance improvements in 0.4 release;

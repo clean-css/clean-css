@@ -16,8 +16,6 @@ clean-css is a fast and efficient CSS optimizer for [Node.js](http://nodejs.org/
 
 According to [tests](http://goalsmashers.github.io/css-minification-benchmark/) it is one of the best available.
 
-**This documentation refers to a pre-release version of clean-css 4.0. See [3.4 branch](https://github.com/jakubpawlowicz/clean-css/tree/3.4) for the current release docs.**
-
 **Table of Contents**
 
 - [Node.js version support](#nodejs-version-support)
@@ -72,7 +70,7 @@ var output = new CleanCSS(options).minify(source);
 
 ## Important: 4.0 breaking changes
 
-clean-css 4.0 will introduce some breaking changes:
+clean-css 4.0 introduces some breaking changes:
 
 * API and CLI interfaces are split, so API stays in this repository while CLI moves to [clean-css-cli](https://github.com/jakubpawlowicz/clean-css-cli);
 * `root`, `relativeTo`, and `target` options are replaced by a single `rebaseTo` option - this means that rebasing URLs and import inlining is much simpler but may not be (YMMV) as powerful as in 3.x;
@@ -91,8 +89,6 @@ clean-css 4.0 will introduce some breaking changes:
 * `keepBreaks` option is replaced with `{ format: 'keep-breaks' }` to ease transition;
 * `sourceMap` option has to be a boolean from now on - to specify an input source map pass it a 2nd argument to `minify` method or via a hash instead;
 * `aggressiveMerging` option is removed as aggressive merging is replaced by smarter override merging.
-
-Please note this list is not final. You are more than welcome to comment these changes in [4.0 release discussion](https://github.com/jakubpawlowicz/clean-css/issues/842) thread.
 
 ## Constructor options
 

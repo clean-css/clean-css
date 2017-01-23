@@ -169,16 +169,27 @@ noscript {
   color: hsl(0, 0%, 40%);
 }
 
-.settings__option--precision {
+.fine-grained-options {
+  border-left: 0.25rem solid hsl(198, 16%, 52%);
+  display: block;
+  list-style: none;
+  padding-left: 0.75rem;
+}
+
+.fine-grained-options--hidden {
+  display: none;
+}
+
+.fine-grained-options__option {
+  margin-bottom: 0.125rem;
+}
+
+.settings__option--number {
   text-align: center;
   width: 2.5rem;
 }
 
-.settings__option--compatibility {
-  width: 100%;
-}
-
-.settings__option--keep-special-comments {
+.settings__option--select {
   width: 100%;
 }
 

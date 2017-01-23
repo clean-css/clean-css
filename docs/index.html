@@ -19,60 +19,238 @@
   <article class="content">
     <section class="drag-target">
       <ol class="dropped-files" title="Drop your files here to optimize them"></ol>
-      <form class="settings settings--collapsed">
+      <form class="settings settings--collapsed js-settings">
         <fieldset class="settings__group">
           <select class="settings__option settings__option--version" name="version">
-            <option value="v3.4.24" selected>3.4.24 (latest)</option>
+            <option value="v4.0.0" selected>4.0.0 (latest)</option>
           </select>
         </fieldset>
         <fieldset class="settings__group settings__group--advanced">
           <div class="settings__group__wrapper">
-            <input class="settings__option settings__option--checkbox settings__option--advanced" type="checkbox" id="advanced" name="advanced" />
-            <label class="settings__label" for="advanced">advanced optimizations</label>
+            <input class="settings__option settings__option--checkbox js-settings-option" type="checkbox" id="level_0" name="level_0" checked disabled />
+            <label class="settings__label" for="level_0">level 0 optimizations</label>
           </div>
           <div class="settings__group__wrapper">
-            <input class="settings__option settings__option--checkbox" type="checkbox" id="aggressive_merging" name="aggressive-merging" disabled />
-            <label class="settings__label" for="aggressive_merging">aggressive merging</label>
+            <input class="settings__option settings__option--checkbox js-settings-level-1 js-settings-option" type="checkbox" id="level_1" name="level_1" checked />
+            <label class="settings__label" for="level_1">level 1 optimizations</label>
           </div>
+          <ul class="fine-grained-options js-settings-level-1-options" data-visibility-class="fine-grained-options--hidden">
+            <li class="fine-grained-options__option">
+              <input class="settings__option settings__option--checkbox js-settings-option" type="checkbox" id="level_1_cleanup_charsets" name="level_1[cleanupCharsets]" checked />
+              <label class="settings__label" for="level_1_cleanup_charsets">cleanup @charset at-rules</label>
+            </li>
+            <li class="fine-grained-options__option">
+              <input class="settings__option settings__option--checkbox js-settings-option" type="checkbox" id="level_1_normalize_urls" name="level_1[normalizeUrls]" checked />
+              <label class="settings__label" for="level_1_normalize_urls">normalize URLs</label>
+            </li>
+            <li class="fine-grained-options__option">
+              <input class="settings__option settings__option--checkbox js-settings-option" type="checkbox" id="level_1_optimize_background" name="level_1[optimizeBackground]" checked />
+              <label class="settings__label" for="level_1_optimize_background">optimize <em>background</em> properties</label>
+            </li>
+            <li class="fine-grained-options__option">
+              <input class="settings__option settings__option--checkbox js-settings-option" type="checkbox" id="level_1_optimize_border_radius" name="level_1[optimizeBorderRadius]" checked />
+              <label class="settings__label" for="level_1_optimize_border_radius">optimize <em>border-radius</em> properties</label>
+            </li>
+            <li class="fine-grained-options__option">
+              <input class="settings__option settings__option--checkbox js-settings-option" type="checkbox" id="level_1_optimize_filter" name="level_1[optimizeFilter]" checked />
+              <label class="settings__label" for="level_1_optimize_filter">optimize <em>filter</em> / <em>-ms-filter</em> properties</label>
+            </li>
+            <li class="fine-grained-options__option">
+              <input class="settings__option settings__option--checkbox js-settings-option" type="checkbox" id="level_1_optimize_font" name="level_1[optimizeFont]" checked />
+              <label class="settings__label" for="level_1_optimize_font">optimize <em>font</em> properties</label>
+            </li>
+            <li class="fine-grained-options__option">
+              <input class="settings__option settings__option--checkbox js-settings-option" type="checkbox" id="level_1_optimize_font_weight" name="level_1[optimizeFontWeight]" checked />
+              <label class="settings__label" for="level_1_optimize_font_weight">optimize <em>font-weight</em> properties</label>
+            </li>
+            <li class="fine-grained-options__option">
+              <input class="settings__option settings__option--checkbox js-settings-option" type="checkbox" id="level_1_optimize_outline" name="level_1[optimizeOutline]" checked />
+              <label class="settings__label" for="level_1_optimize_outline">optimize <em>outline</em> properties</label>
+            </li>
+            <li class="fine-grained-options__option">
+              <input class="settings__option settings__option--checkbox js-settings-option" type="checkbox" id="level_1_remove_negative_paddings" name="level_1[removeNegativePaddings]" checked />
+              <label class="settings__label" for="level_1_remove_negative_paddings">remove negative <em>padding</em>s</label>
+            </li>
+            <li class="fine-grained-options__option">
+              <input class="settings__option settings__option--checkbox js-settings-option" type="checkbox" id="level_1_remove_quotes" name="level_1[removeQuotes]" checked />
+              <label class="settings__label" for="level_1_remove_quotes">remove quotes</label>
+            </li>
+            <li class="fine-grained-options__option">
+              <input class="settings__option settings__option--checkbox js-settings-option" type="checkbox" id="level_1_remove_whitespace" name="level_1[removeWhitespace]" checked />
+              <label class="settings__label" for="level_1_remove_whitespace">remove whitespace</label>
+            </li>
+            <li class="fine-grained-options__option">
+              <input class="settings__option settings__option--checkbox js-settings-option" type="checkbox" id="level_1_replace_multiple_zeros" name="level_1[replaceMultipleZeros]" checked />
+              <label class="settings__label" for="level_1_replace_multiple_zeros">replace multiple zeros</label>
+            </li>
+            <li class="fine-grained-options__option">
+              <input class="settings__option settings__option--checkbox js-settings-option" type="checkbox" id="level_1_replace_time_units" name="level_1[replaceTimeUnits]" checked />
+              <label class="settings__label" for="level_1_replace_time_units">replace time units</label>
+            </li>
+            <li class="fine-grained-options__option">
+              <input class="settings__option settings__option--checkbox js-settings-option" type="checkbox" id="level_1_replace_zero_units" name="level_1[replaceZeroUnits]" checked />
+              <label class="settings__label" for="level_1_replace_zero_units">replace <em>0</em> units</label>
+            </li>
+            <li class="fine-grained-options__option">
+              <label class="settings__label" for="level_1_rounding_precision">unit rounding precision</label>
+              <input class="settings__option js-settings-option" type="text" id="level_1_rounding_precision" name="level_1[roundingPrecision]" value="" placeholder="e.g 5 or *=off,px=4" />
+            </li>
+            <li class="fine-grained-options__option">
+              <select class="settings__option settings__option--select js-settings-option" id="level_1_selectors_sorting_method" name="level_1[selectorsSortingMethod]">
+                <option value="natural">Selectors sorting method: natural</option>
+                <option value="standard" selected>Selectors sorting method: standard</option>
+              </select>
+            </li>
+            <li class="fine-grained-options__option">
+              <select class="settings__option settings__option--select" id="level_1_keep_special_comments" name="level_1[keepSpecialComments]">
+                <option value="*" selected>Special comments: keep all</option>
+                <option value="1">Special comments: remove all but the first one</option>
+                <option value="0">Special comments: remove all</option>
+              </select>
+            </li>
+            <li class="fine-grained-options__option">
+              <input class="settings__option settings__option--checkbox js-settings-option" type="checkbox" id="level_1_tidy_at_rules" name="level_1[tidyAtRules]" checked />
+              <label class="settings__label" for="level_1_tidy_at_rules">tidy at-rules</label>
+            </li>
+            <li class="fine-grained-options__option">
+              <input class="settings__option settings__option--checkbox js-settings-option" type="checkbox" id="level_1_tidy_block_scopes" name="level_1[tidyBlockScopes]" checked />
+              <label class="settings__label" for="level_1_tidy_block_scopes">tidy block scopes</label>
+            </li>
+            <li class="fine-grained-options__option">
+              <input class="settings__option settings__option--checkbox js-settings-option" type="checkbox" id="level_1_tidy_selectors" name="level_1[tidySelectors]" checked />
+              <label class="settings__label" for="level_1_tidy_selectors">tidy selectors</label>
+            </li>
+          </ul>
           <div class="settings__group__wrapper">
-            <input class="settings__option settings__option--checkbox" type="checkbox" id="media_merging" name="media-merging" disabled />
-            <label class="settings__label" for="media_merging">@media merging</label>
+            <input class="settings__option settings__option--checkbox js-settings-option js-settings-level-2" type="checkbox" id="level_2" name="level_2" />
+            <label class="settings__label" for="level_2">level 2 optimizations</label>
           </div>
-          <div class="settings__group__wrapper">
-            <input class="settings__option settings__option--checkbox" type="checkbox" id="restructuring" name="restructuring" disabled />
-            <label class="settings__label" for="restructuring">restructuring</label>
-          </div>
-          <div class="settings__group__wrapper">
-            <input class="settings__option settings__option--checkbox" type="checkbox" id="shorthand_compacting" name="shorthand-compacting" disabled />
-            <label class="settings__label" for="shorthand_compacting">shorthand compacting</label>
-          </div>
+          <ul class="fine-grained-options fine-grained-options--hidden js-settings-level-2-options" data-visibility-class="fine-grained-options--hidden">
+            <li class="fine-grained-options__option">
+              <input class="settings__option settings__option--checkbox js-settings-option" type="checkbox" id="level_2_merge_adjacent_rules" name="level_2[mergeAdjacentRules]" checked />
+              <label class="settings__label" for="level_2_merge_adjacent_rules">merge adjacent rules</label>
+            </li>
+            <li class="fine-grained-options__option">
+              <input class="settings__option settings__option--checkbox js-settings-option" type="checkbox" id="level_2_merge_into_shorthands" name="level_2[mergeIntoShorthands]" checked />
+              <label class="settings__label" for="level_2_merge_into_shorthands">merge components into shorthand properties</label>
+            </li>
+            <li class="fine-grained-options__option">
+              <input class="settings__option settings__option--checkbox js-settings-option" type="checkbox" id="level_2_merge_media" name="level_2[mergeMedia]" checked />
+              <label class="settings__label" for="level_2_merge_media">merge <em>@media</em> nested blocks</label>
+            </li>
+            <li class="fine-grained-options__option">
+              <input class="settings__option settings__option--checkbox js-settings-option" type="checkbox" id="level_2_merge_non_adjacent_rules" name="level_2[mergeNonAdjacentRules]" checked />
+              <label class="settings__label" for="level_2_merge_non_adjacent_rules">merge non-adjacent rules</label>
+            </li>
+            <li class="fine-grained-options__option">
+              <input class="settings__option settings__option--checkbox js-settings-option" type="checkbox" id="level_2_merge_semantically" name="level_2[mergeSemantically]" />
+              <label class="settings__label" for="level_2_merge_semantically">merge semantically</label>
+            </li>
+            <li class="fine-grained-options__option">
+              <input class="settings__option settings__option--checkbox js-settings-option" type="checkbox" id="level_2_override_properties" name="level_2[overrideProperties]" checked />
+              <label class="settings__label" for="level_2_override_properties">override properties based on understandability</label>
+            </li>
+            <li class="fine-grained-options__option">
+              <input class="settings__option settings__option--checkbox js-settings-option" type="checkbox" id="level_2_reduce_non_adjacent_rules" name="level_2[reduceNonAdjacentRules]" checked />
+              <label class="settings__label" for="level_2_reduce_non_adjacent_rules">reduce non-adjacent rules</label>
+            </li>
+            <li class="fine-grained-options__option">
+              <input class="settings__option settings__option--checkbox js-settings-option" type="checkbox" id="level_2_remove_duplicate_font_rules" name="level_2[removeDuplicateFontRules]" checked />
+              <label class="settings__label" for="level_2_remove_duplicate_font_rules">remove duplicate <em>@font-face</em> rules</label>
+            </li>
+            <li class="fine-grained-options__option">
+              <input class="settings__option settings__option--checkbox js-settings-option" type="checkbox" id="level_2_remove_duplicate_media_blocks" name="level_2[removeDuplicateMediaBlocks]" checked />
+              <label class="settings__label" for="level_2_remove_duplicate_media_blocks">remove duplicate <em>@media</em> nested blocks</label>
+            </li>
+            <li class="fine-grained-options__option">
+              <input class="settings__option settings__option--checkbox js-settings-option" type="checkbox" id="level_2_remove_duplicate_rules" name="level_2[removeDuplicateRules]" checked />
+              <label class="settings__label" for="level_2_remove_duplicate_rules">remove duplicate rules</label>
+            </li>
+            <li class="fine-grained-options__option">
+              <input class="settings__option settings__option--checkbox js-settings-option" type="checkbox" id="level_2_restructure_rules" name="level_2[restructureRules]" />
+              <label class="settings__label" for="level_2_restructure_rules">restructure rules</label>
+            </li>
+          </ul>
         </fieldset>
         <fieldset class="settings__group">
           <div class="settings__group__wrapper">
-            <input class="settings__option" type="checkbox" id="keep_breaks" name="keep-breaks" />
-            <label class="settings__label" for="keep_breaks">keep line breaks</label>
-          </div>
-          <div class="settings__group__wrapper">
-            <input class="settings__option settings__option--precision" type="number" min="-1" max="999999" id="rounding_precision" name="rounding-precision" value="2" />
-            <label class="settings__label" for="rounding_precision">rounding precision</label>
-          </div>
-          <div class="settings__group__wrapper">
-            <select class="settings__option settings__option--compatibility" id="compatibility" name="compatibility">
-              <option value="" selected>Modern browsers compatibility</option>
-              <option value="ie8">Modern browsers &amp; Internet Explorer 8 compatibility</option>
-              <option value="ie7">Modern browsers &amp; Internet Explorer 7/8 compatibility</option>
+            <select class="settings__option settings__option--select js-settings-compatibility js-settings-option" id="compatibility" name="compatibility">
+              <option value="" selected>Modern browsers compatibility (Internet Explorer 10+)</option>
+              <option value="ie9">Modern browsers &amp; Internet Explorer 9+ compatibility</option>
+              <option value="ie8">Modern browsers &amp; Internet Explorer 8+ compatibility</option>
+              <option value="ie7">Modern browsers &amp; Internet Explorer 7+ compatibility</option>
             </select>
           </div>
           <div class="settings__group__wrapper">
-            <select class="settings__option settings__option--keep-special-comments" id="keep_special_comments" name="keep-special-comments">
-              <option value="*" selected>Keep all special comments</option>
-              <option value="1">Remove all special but one special comment</option>
-              <option value="0">Remove all special comments</option>
-            </select>
+            <input class="settings__option settings__option--checkbox js-settings-format" type="checkbox" id="format" name="format" />
+            <label class="settings__label" for="format">output formatting</label>
           </div>
+          <ul class="fine-grained-options fine-grained-options--hidden js-settings-format-options" data-visibility-class="fine-grained-options--hidden">
+            <li class="fine-grained-options__option">
+              <input class="settings__option settings__option--checkbox js-settings-option" type="checkbox" id="format_breaks_after_at_rule" name="format_breaks[afterAtRule]" checked />
+              <label class="settings__label" for="format_breaks_after_at_rule">insert line break after at-rules</label>
+            </li>
+            <li class="fine-grained-options__option">
+              <input class="settings__option settings__option--checkbox js-settings-option" type="checkbox" id="format_breaks_after_block_begins" name="format_breaks[afterBlockBegins]" checked />
+              <label class="settings__label" for="format_breaks_after_block_begins">insert line break after block begins</label>
+            </li>
+            <li class="fine-grained-options__option">
+              <input class="settings__option settings__option--checkbox js-settings-option" type="checkbox" id="format_breaks_after_block_ends" name="format_breaks[afterBlockEnds]" checked />
+              <label class="settings__label" for="format_breaks_after_block_ends">insert line break after block ends</label>
+            </li>
+            <li class="fine-grained-options__option">
+              <input class="settings__option settings__option--checkbox js-settings-option" type="checkbox" id="format_breaks_after_comment" name="format_breaks[afterComment]" checked />
+              <label class="settings__label" for="format_breaks_after_comment">insert line break after comments</label>
+            </li>
+            <li class="fine-grained-options__option">
+              <input class="settings__option settings__option--checkbox js-settings-option" type="checkbox" id="format_breaks_after_property" name="format_breaks[afterProperty]" checked />
+              <label class="settings__label" for="format_breaks_after_property">insert line break after properties</label>
+            </li>
+            <li class="fine-grained-options__option">
+              <input class="settings__option settings__option--checkbox js-settings-option" type="checkbox" id="format_breaks_after_rule_begins" name="format_breaks[afterRuleBegins]" checked />
+              <label class="settings__label" for="format_breaks_after_rule_begins">insert line break after rule begins</label>
+            </li>
+            <li class="fine-grained-options__option">
+              <input class="settings__option settings__option--checkbox js-settings-option" type="checkbox" id="format_breaks_after_rule_ends" name="format_breaks[afterRuleEnds]" checked />
+              <label class="settings__label" for="format_breaks_after_rule_ends">insert line break after rule ends</label>
+            </li>
+            <li class="fine-grained-options__option">
+              <input class="settings__option settings__option--checkbox js-settings-option" type="checkbox" id="format_breaks_before_block_ends" name="format_breaks[beforeBlockEnds]" checked />
+              <label class="settings__label" for="format_breaks_before_block_ends">insert line break before block ends</label>
+            </li>
+            <li class="fine-grained-options__option">
+              <input class="settings__option settings__option--checkbox js-settings-option" type="checkbox" id="format_breaks_between_selectors" name="format_breaks[betweenSelectors]" checked />
+              <label class="settings__label" for="format_breaks_between_selectors">insert line break between selectors</label>
+            </li>
+            <li class="fine-grained-options__option">
+              <label class="settings__label" for="format_indent_by">indent with</label>
+              <input class="settings__option settings__option--number js-settings-option" type="number" min="0" max="16" id="format_indent_by" name="format[indentBy]" value="2" />
+              <select class="settings__option settings__option--inline-select js-settings-option" id="format_indent_with" name="format[indentWith]">
+                <option value="space" selected>space(s)</option>
+                <option value="tab">tab(s)</option>
+              </select>
+            </li>
+            <li class="fine-grained-options__option">
+              <input class="settings__option settings__option--checkbox js-settings-option" type="checkbox" id="format_spaces_around_selector_relation" name="format_spaces[aroundSelectorRelation]" checked />
+              <label class="settings__label" for="format_spaces_around_selector_relation">insert space between selector relation</label>
+            </li>
+            <li class="fine-grained-options__option">
+              <input class="settings__option settings__option--checkbox js-settings-option" type="checkbox" id="format_spaces_before_block_begins" name="format_spaces[beforeBlockBegins]" checked />
+              <label class="settings__label" for="format_spaces_before_block_begins">insert space before block begins</label>
+            </li>
+            <li class="fine-grained-options__option">
+              <input class="settings__option settings__option--checkbox js-settings-option" type="checkbox" id="format_spaces_before_value" name="format_spaces[beforeValue]" checked />
+              <label class="settings__label" for="format_spaces_before_value">insert space before property value</label>
+            </li>
+            <li class="fine-grained-options__option">
+              <label class="settings__label" for="format_wrap_at">wrap lines when longer than</label>
+              <input class="settings__option settings__option--number js-settings-option" type="number" min="0" id="format_wrap_at" name="format[wrapAt]" value="" />
+              <label class="settings__label" for="format_wrap_at">characters</label>
+            </li>
+          </ul>
         </fieldset>
         <fieldset class="settings__group">
-          <input class="settings__option settings__option--apply" type="button" name="" value="Apply"/>
+          <input class="settings__option settings__option--apply js-settings-apply" type="button" name="" value="Apply"/>
         </fieldset>
       </form>
     </section>

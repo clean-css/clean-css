@@ -42,6 +42,7 @@ According to [tests](http://goalsmashers.github.io/css-minification-benchmark/) 
   * [How to preserve a comment block?](#how-to-preserve-a-comment-block)
   * [How to rebase relative image URLs?](#how-to-rebase-relative-image-urls)
   * [How to work with source maps?](#how-to-work-with-source-maps)
+  * [How to apply level 1 & 2 optimizations at the same time?](#how-to-apply-level-1--2-optimizations-at-the-same-time)
   * [What level 2 optimizations do?](#what-level-2-optimizations-do)
   * [How to use clean-css with build tools?](#how-to-use-clean-css-with-build-tools)
   * [How to use clean-css from web browser?](#how-to-use-clean-css-from-web-browser)
@@ -299,6 +300,8 @@ new CleanCSS({
 
 Level 2 optimizations operate at rules or multiple properties level, e.g. can remove duplicate rules, remove properties redefined further down a stylesheet, or restructure rules by moving them around.
 
+Please note that if level 2 optimizations are turned on then, unless explicitely disabled, level 1 optimizations are applied as well.
+
 Here is a full list of available options:
 
 ```js
@@ -326,7 +329,7 @@ There is an `all` shortcut for toggling all options at the same time, e.g.
 ```js
 new CleanCSS({
   level: {
-    1: {
+    2: {
       all: false, // sets all values to `false`
       removeDuplicateRules: true // turns on removing duplicate rules
     }
@@ -511,6 +514,26 @@ new CleanCSS({ sourceMap: true, rebaseTo: pathToOutputDirectory }).minify({
   // access output.sourceMap as above
 });
 ```
+
+## How to apply level 1 & 2 optimizations at the same time?
+
+Using the hash configuration specifying both optimization levels, e.g.
+
+```js
+new CleanCSS({
+  level: {
+    1: {
+      all: true,
+      normalizeUrls: false
+    },
+    2: {
+      restructureRules: true
+    }
+  }
+})
+```
+
+will apply level 1 optimizations, except url normalization, and default level 2 optimizations with rule restructuring.
 
 ## What level 2 optimizations do?
 

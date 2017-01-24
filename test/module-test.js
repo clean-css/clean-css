@@ -654,6 +654,21 @@ vows.describe('module tests').addBatch({
         'should give right output': function (minified) {
           assert.equal(minified.styles, '.one{color:red}.three{background-image:url(extra/down.gif)}');
         }
+      },
+      'without reading from disk': {
+        'topic': function () {
+          var inputHash = {};
+          var currentPath = path.resolve('.');
+
+          // intentionally different from real files to figure out if files are read off disk
+          inputHash[currentPath + '/test/fixtures/partials/one.css'] = { styles: '.block{color:#f00}' };
+          inputHash[currentPath + '/test/fixtures/partials/three.css'] = { styles: '@import url(one.css);' };
+
+          return new CleanCSS().minify(inputHash);
+        },
+        'gives right output': function (output) {
+          assert.equal(output.styles, '.block{color:red}');
+        }
       }
     },
     'with other imports': {

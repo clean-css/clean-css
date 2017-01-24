@@ -882,7 +882,7 @@ vows.describe('protocol imports').addBatch({
       this.reqMocks = nock('http://assets.127.0.0.1')
         .get('/remote.css')
         .reply(200, 'p{width:100%}');
-      new CleanCSS({ inline: ['!http://127.0.0.1/', 'test/fixtures/partials'] }).minify(source, this.callback);
+      new CleanCSS({ inline: ['remote', '!http://127.0.0.1/', 'test/fixtures/partials'] }).minify(source, this.callback);
     },
     'should not raise errors': function (error, minified) {
       assert.isEmpty(minified.errors);

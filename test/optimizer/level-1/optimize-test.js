@@ -1076,6 +1076,18 @@ vows.describe('level 1 optimizations')
     }, { level: 1 })
   )
   .addBatch(
+    optimizerContext('quotes', {
+      'font-family': [
+        '.block{font-family:"Arial"}',
+        '.block{font-family:Arial}'
+      ],
+      'variable': [
+        '.block{--font-family:"Arial"}',
+        '.block{--font-family:"Arial"}'
+      ]
+    }, { level: 1 })
+  )
+  .addBatch(
     optimizerContext('@charset cleanup off', {
       'stays where it is': [
         '.block{color:#f10}@charset \'utf-8\';b{font-weight:bolder}',

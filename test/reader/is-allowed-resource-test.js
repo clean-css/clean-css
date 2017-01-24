@@ -6,6 +6,20 @@ var isAllowedResource = require('../../lib/reader/is-allowed-resource');
 
 vows.describe(isAllowedResource)
   .addBatch({
+    'local and remote': {
+      'topic': 'http://127.0.0.1/remote.css',
+      'is allowed': function (topic) {
+        assert.isTrue(isAllowedResource(topic, true, ['local', 'remote']));
+      }
+    },
+    'remote and local': {
+      'topic': 'http://127.0.0.1/remote.css',
+      'is allowed': function (topic) {
+        assert.isTrue(isAllowedResource(topic, true, ['remote', 'local']));
+      }
+    }
+  })
+  .addBatch({
     'local URI': {
       'topic': 'test/fixtures/partials/one.css',
       'is allowed': function (topic) {

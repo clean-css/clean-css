@@ -3,6 +3,7 @@
 
 * Fixed issue [#866](https://github.com/jakubpawlowicz/clean-css/issues/866) - edge case in `inline` option.
 * Fixed issue [#867](https://github.com/jakubpawlowicz/clean-css/issues/867) - skip optimizing variable values.
+* Fixed issue [#868](https://github.com/jakubpawlowicz/clean-css/issues/868) - accept absolute paths in input hash.
 
 [4.0.0 / 2017-01-23](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.24...v4.0.0)
 ==================

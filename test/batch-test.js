@@ -7,14 +7,11 @@ var vows = require('vows');
 
 var lineBreak = require('os').EOL;
 
-if (process.platform == 'win32') {
-  return;
-}
-
 function assertEqualLineByLine(expected, actual) {
   var expectedLines = expected.split(lineBreak);
   var actualLines = actual.split(lineBreak);
 
+  assert.equal(expectedLines.length, actualLines.length);
   expectedLines.forEach(function (line, i) {
     assert.equal(line, actualLines[i]);
   });

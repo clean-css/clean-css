@@ -1,4 +1,4 @@
-[4.0.1 / 20xx-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v4.0.0...4.0)
+[4.0.1 / 2017-01-25](https://github.com/jakubpawlowicz/clean-css/compare/v4.0.0...v4.0.1)
 ==================
 
 * Fixed issue [#866](https://github.com/jakubpawlowicz/clean-css/issues/866) - edge case in `inline` option.

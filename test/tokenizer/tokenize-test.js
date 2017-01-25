@@ -1631,6 +1631,63 @@ vows.describe(tokenize)
           ]
         ]
       ],
+      '@apply in a new rule after variable is last in previous one 1234': [
+        '.block-1{fill:var(--test1)}.block-2{@apply(--test2)}',
+        [
+          [
+            'rule',
+            [
+              [
+                'rule-scope',
+                '.block-1',
+                [
+                  [1, 0, undefined]
+                ]
+              ]
+            ],
+            [
+              [
+                'property',
+                [
+                  'property-name',
+                  'fill',
+                  [
+                    [1, 9, undefined]
+                  ]
+                ],
+                [
+                  'property-value',
+                  'var(--test1)',
+                  [
+                    [1, 14, undefined]
+                  ]
+                ]
+              ]
+            ]
+          ],
+          [
+            'rule',
+            [
+              [
+                'rule-scope',
+                '.block-2',
+                [
+                  [1, 27, undefined]
+                ]
+              ]
+            ],
+            [
+              [
+                'at-rule',
+                '@apply(--test2)',
+                [
+                  [1, 36, undefined]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ],
       'media query': [
         '@media (min-width:980px){}',
         [

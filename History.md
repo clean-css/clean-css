@@ -1,4 +1,4 @@
-[4.0.2 / 2017-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v4.0.1...4.0)
+[4.0.2 / 2017-01-26](https://github.com/jakubpawlowicz/clean-css/compare/v4.0.1...v4.0.2)
 ==================
 
 * Fixed issue [#874](https://github.com/jakubpawlowicz/clean-css/issues/874) - regression in at-rule tokenization.

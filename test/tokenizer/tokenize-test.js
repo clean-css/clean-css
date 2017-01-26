@@ -1688,6 +1688,49 @@ vows.describe(tokenize)
           ]
         ]
       ],
+      '@apply after a function': [
+        '.block{color:rgb(0,0,0);@apply(--test)}',
+        [
+          [
+            'rule',
+            [
+              [
+                'rule-scope',
+                '.block',
+                [
+                  [1, 0, undefined]
+                ]
+              ]
+            ],
+            [
+              [
+                'property',
+                [
+                  'property-name',
+                  'color',
+                  [
+                    [1, 7, undefined]
+                  ]
+                ],
+                [
+                  'property-value',
+                  'rgb(0,0,0)',
+                  [
+                    [1, 13, undefined]
+                  ]
+                ]
+              ],
+              [
+                'at-rule',
+                '@apply(--test)',
+                [
+                  [1, 24, undefined]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ],
       'media query': [
         '@media (min-width:980px){}',
         [

@@ -115,6 +115,10 @@ vows.describe('merge media queries')
       'moves over non-blocking BEM rules': [
         '@media (max-width:1px){.block{margin:1px}}.block__element{margin:2px}@media (max-width:1px){.block--modifier{margin:3px}}',
         '.block__element{margin:2px}@media (max-width:1px){.block{margin:1px}.block--modifier{margin:3px}}'
+      ],
+      'moves multiple rules over fewer rules': [
+        '@media (max-width:1px){.block{margin:1px;padding:1px}}.block__element{margin:2px}@media (max-width:1px){.block--modifier{margin:3px}}',
+        '.block__element{margin:2px}@media (max-width:1px){.block{margin:1px;padding:1px}.block--modifier{margin:3px}}'
       ]
     }, { level: { 2: { mergeSemantically: true } } })
   )

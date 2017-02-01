@@ -1,7 +1,7 @@
 [4.0.3 / 2017-01-30](https://github.com/jakubpawlowicz/clean-css/compare/v4.0.2...v4.0.3)
 ==================
 
-* Fixed issue [#875](https://github.com/jakubpawlowicz/clean-css/issues/875) - invalid traversing in semanting merging.
+* Fixed issue [#875](https://github.com/jakubpawlowicz/clean-css/issues/875) - invalid traversing in semantic merging.
 
 [4.0.2 / 2017-01-26](https://github.com/jakubpawlowicz/clean-css/compare/v4.0.1...v4.0.2)
 ==================

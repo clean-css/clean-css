@@ -258,7 +258,7 @@ new CleanCSS({
       optimizeBackground: true, // controls `background` property optimizatons; defaults to `true`
       optimizeBorderRadius: true, // controls `border-radius` property optimizatons; defaults to `true`
       optimizeFilter: true, // controls `filter` property optimizatons; defaults to `true`
-      optimizeFont: true, // ontrols `font` property optimizatons; defaults to `true`
+      optimizeFont: true, // controls `font` property optimizatons; defaults to `true`
       optimizeFontWeight: true, // controls `font-weight` property optimizatons; defaults to `true`
       optimizeOutline: true, // controls `outline` property optimizatons; defaults to `true`
       removeNegativePaddings: true, // controls removing negative paddings; defaults to `true`

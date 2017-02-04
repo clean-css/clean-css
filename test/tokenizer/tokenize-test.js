@@ -697,6 +697,42 @@ vows.describe(tokenize)
           ]
         ]
       ],
+      'a rule with escaped backslash in content 12345': [
+        '.block{content:"\\\\";}',
+        [
+          [
+            'rule',
+            [
+              [
+                'rule-scope',
+                '.block',
+                [
+                  [1, 0, undefined]
+                ]
+              ]
+            ],
+            [
+              [
+                'property',
+                [
+                  'property-name',
+                  'content',
+                  [
+                    [1, 7, undefined]
+                  ]
+                ],
+                [
+                  'property-value',
+                  '"\\\\"',
+                  [
+                    [1, 15, undefined]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ],
       'a rule with quoted comment': [
         'a{background:url(\'/* this is silly */\')}',
         [

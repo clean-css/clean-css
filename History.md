@@ -1,6 +1,7 @@
 [4.0.4 / 2017-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v4.0.3...4.0)
 ==================
 
+* Fixed issue [#879](https://github.com/jakubpawlowicz/clean-css/issues/879) - incorrect handling of spaces in paths.
 * Fixed issue [#878](https://github.com/jakubpawlowicz/clean-css/issues/878) - invalid double backslash tokenization.
 
 [4.0.3 / 2017-01-30](https://github.com/jakubpawlowicz/clean-css/compare/v4.0.2...v4.0.3)

@@ -571,6 +571,14 @@ vows.describe('module tests').addBatch({
           assert.equal(minified.styles, '.one{color:red}.three{color:#0f0}.four{color:#00f}.two{color:#fff}.base2{border-width:0}.sub{padding:0}.base{margin:0}');
         }
       }
+    },
+    'with spaces in filename': {
+      'topic': function () {
+        return new CleanCSS().minify(['./test/fixtures/partials/with spaces in filename.css']);
+      },
+      'gives right output': function (minified) {
+        assert.equal(minified.styles, '.block{color:red}');
+      }
     }
   },
   'accepts a list of source files as hash': {

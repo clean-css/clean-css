@@ -1,4 +1,4 @@
-[4.0.4 / 2017-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v4.0.3...4.0)
+[4.0.4 / 2017-02-04](https://github.com/jakubpawlowicz/clean-css/compare/v4.0.3...v4.0.4)
 ==================
 
 * Fixed issue [#879](https://github.com/jakubpawlowicz/clean-css/issues/879) - incorrect handling of spaces in paths.

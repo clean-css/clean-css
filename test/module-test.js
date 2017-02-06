@@ -579,6 +579,16 @@ vows.describe('module tests').addBatch({
       'gives right output': function (minified) {
         assert.equal(minified.styles, '.block{color:red}');
       }
+    },
+    'absolute of missing resource': {
+      'topic': function () {
+        return new CleanCSS().minify(['z:\\missing.css']);
+      },
+      'gives right error': function (minified) {
+        if (process.platform == 'win32') {
+          assert.deepEqual(minified.errors, ['Ignoring local @import of "z:/missing.css" as resource is missing.']);
+        }
+      }
     }
   },
   'accepts a list of source files as hash': {
@@ -795,6 +805,20 @@ vows.describe('module tests').addBatch({
       },
       'should give right output': function (minified) {
         assert.equal(minified.styles, '.one{color:red}.three{color:#0f0}.four{color:#00f}.two{color:#fff}.base2{border-width:0}.sub{padding:0}.base{margin:0}');
+      }
+    },
+    'with source map and absolute paths on Windows': {
+      'topic': function () {
+        return new CleanCSS({ sourceMap: true }).minify({
+          'z:\\missing.css': {
+            styles: '.block{color:red}'
+          }
+        });
+      },
+      'gives right sources': function (minified) {
+        if (process.platform == 'win32') {
+          assert.deepEqual(minified.sourceMap._sources._array, ['z:\\missing.css']);
+        }
       }
     }
   }

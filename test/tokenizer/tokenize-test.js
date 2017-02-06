@@ -1785,6 +1785,56 @@ vows.describe(tokenize)
           ]
         ]
       ],
+      'media query without space abc': [
+        '@media(min-width:980px){.block{color:red}}',
+        [
+          [
+            'nested-block',
+            [
+              [
+                'nested-block-scope',
+                '@media(min-width:980px)',
+                [
+                  [1, 0, undefined]
+                ]
+              ]
+            ],
+            [
+              [
+                'rule',
+                [
+                  [
+                    'rule-scope',
+                    '.block',
+                    [
+                      [1, 24, undefined]
+                    ]
+                  ]
+                ],
+                [
+                  [
+                    'property',
+                    [
+                      'property-name',
+                      'color',
+                      [
+                        [1, 31, undefined]
+                      ]
+                    ],
+                    [
+                      'property-value',
+                      'red',
+                      [
+                        [1, 37, undefined]
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ],
       'multiple media query': [
         '@media print,(min-width:980px){a{color:red}}',
         [

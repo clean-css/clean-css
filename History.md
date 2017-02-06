@@ -1,3 +1,8 @@
+[4.0.5 / 2017-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v4.0.4...4.0)
+==================
+
+* Fixed issue [#881](https://github.com/jakubpawlowicz/clean-css/issues/881) - incorrect `require` arity.
+
 [4.0.4 / 2017-02-04](https://github.com/jakubpawlowicz/clean-css/compare/v4.0.3...v4.0.4)
 ==================
 

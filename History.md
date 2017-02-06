@@ -2,6 +2,7 @@
 ==================
 
 * Fixed issue [#881](https://github.com/jakubpawlowicz/clean-css/issues/881) - incorrect `require` arity.
+* Fixed issue [#880](https://github.com/jakubpawlowicz/clean-css/issues/880) - incorrect token type identification.
 
 [4.0.4 / 2017-02-04](https://github.com/jakubpawlowicz/clean-css/compare/v4.0.3...v4.0.4)
 ==================

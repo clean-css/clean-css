@@ -1,4 +1,4 @@
-[4.0.5 / 2017-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v4.0.4...4.0)
+[4.0.5 / 2017-02-07](https://github.com/jakubpawlowicz/clean-css/compare/v4.0.4...v4.0.5)
 ==================
 
 * Fixed issue [#884](https://github.com/jakubpawlowicz/clean-css/issues/884) - handling absolute paths on Windows.

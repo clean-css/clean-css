@@ -1,3 +1,8 @@
+[4.0.6 / 2017-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v4.0.5...4.0)
+==================
+
+* Fixed issue [#885](https://github.com/jakubpawlowicz/clean-css/issues/885) - unquoting `font-feature-settings`.
+
 [4.0.5 / 2017-02-07](https://github.com/jakubpawlowicz/clean-css/compare/v4.0.4...v4.0.5)
 ==================
 

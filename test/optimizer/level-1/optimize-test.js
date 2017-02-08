@@ -1084,6 +1084,14 @@ vows.describe('level 1 optimizations')
       'variable': [
         '.block{--font-family:"Arial"}',
         '.block{--font-family:"Arial"}'
+      ],
+      'font-feature-settings': [
+        '.block{font-feature-settings:"scmp" on}',
+        '.block{font-feature-settings:"scmp" on}'
+      ],
+      '-webkit-font-feature-settings': [
+        '.block{-webkit-font-feature-settings:"scmp","swsh" 2}',
+        '.block{-webkit-font-feature-settings:"scmp","swsh" 2}'
       ]
     }, { level: 1 })
   )

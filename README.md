@@ -203,25 +203,31 @@ new CleanCSS({
 
 ```js
 new CleanCSS({
-  inline: ['local'] // default
+  inline: ['local'] // default; enables local inlining only
 })
 ```
 
 ```js
 new CleanCSS({
-  inline: ['all'] // same as ['local', 'remote']
+  inline: ['none'] // disables all inlining
 })
 ```
 
 ```js
 new CleanCSS({
-  inline: ['local', 'mydomain.example.com']
+  inline: ['all'] // enables all inlining, same as ['local', 'remote']
 })
 ```
 
 ```js
 new CleanCSS({
-  inline: ['local', 'remote', '!fonts.googleapis.com']
+  inline: ['local', 'mydomain.example.com'] // enables local inlining plus given remote source
+})
+```
+
+```js
+new CleanCSS({
+  inline: ['local', 'remote', '!fonts.googleapis.com'] // enables all inlining but from given remote source
 })
 ```
 

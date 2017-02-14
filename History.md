@@ -1,3 +1,8 @@
+[4.0.7 / 2017-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v4.0.6...4.0)
+==================
+
+* Fixed issue [#891](https://github.com/jakubpawlowicz/clean-css/issues/891) - merging vendor-prefixed pseudo-classes.
+
 [4.0.6 / 2017-02-10](https://github.com/jakubpawlowicz/clean-css/compare/v4.0.5...v4.0.6)
 ==================
 

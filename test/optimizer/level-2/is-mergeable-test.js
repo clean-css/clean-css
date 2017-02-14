@@ -45,6 +45,18 @@ vows.describe(isMergeable)
         assert.isFalse(isMergeable(selector, mergeablePseudoClasses, mergeablePseudoElements));
       }
     },
+    'vendor-prefixed pseudo-class as descendant of attribute rule 123': {
+      'topic': '[data-x="y"] :-moz-placeholder',
+      'is not mergeable': function (selector) {
+        assert.isFalse(isMergeable(selector, mergeablePseudoClasses, mergeablePseudoElements));
+      }
+    },
+    'vendor-prefixed pseudo-element as descendant of attribute rule': {
+      'topic': '[data-x="y"] ::-moz-placeholder',
+      'is not mergeable': function (selector) {
+        assert.isFalse(isMergeable(selector, mergeablePseudoClasses, mergeablePseudoElements));
+      }
+    },
     'unsupported pseudo-class': {
       'topic': ':first-child',
       'is not mergeable': function (selector) {

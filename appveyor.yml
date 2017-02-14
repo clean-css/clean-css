@@ -1,11 +1,6 @@
-# http://www.appveyor.com/docs/appveyor-yml
-
 version: "{build}"
 
 clone_depth: 10
-
-init:
-  - git config --global core.autocrlf true
 
 environment:
   matrix:
@@ -27,4 +22,4 @@ matrix:
   fast_finish: true
 
 cache:
-  - node_modules -> package.json    # local npm modules
+  - node_modules -> appveyor.yml,package.json    # local npm modules

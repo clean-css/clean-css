@@ -1,3 +1,8 @@
+[4.1.0-pre / 20xx-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/4.0...HEAD)
+==================
+
+* Fixed issue [#893](https://github.com/jakubpawlowicz/clean-css/issues/893) - `inline: false` as alias to `inline: 'none'`.
+
 [4.0.7 / 2017-02-14](https://github.com/jakubpawlowicz/clean-css/compare/v4.0.6...v4.0.7)
 ==================
 

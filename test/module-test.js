@@ -547,6 +547,14 @@ vows.describe('module tests').addBatch({
           assert.equal(minified.styles, '@import url(test/fixtures/partials/one.css);@import url(test/fixtures/partials/extra/three.css);@import url(test/fixtures/partials/extra/four.css);.two{color:#fff}');
         }
       },
+      'off - with false alias': {
+        'topic': function () {
+          return new CleanCSS({ inline: false }).minify(['./test/fixtures/partials/two.css']);
+        },
+        'should give right output': function (minified) {
+          assert.equal(minified.styles, '@import url(test/fixtures/partials/one.css);@import url(test/fixtures/partials/extra/three.css);@import url(test/fixtures/partials/extra/four.css);.two{color:#fff}');
+        }
+      },
       'off - many files': {
         'topic': function () {
           return new CleanCSS({ inline: 'none' }).minify(['./test/fixtures/partials/remote.css', './test/fixtures/partials-absolute/base.css']);

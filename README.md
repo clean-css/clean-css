@@ -215,6 +215,12 @@ new CleanCSS({
 
 ```js
 new CleanCSS({
+  inline: false // disables all inlining (alias to `['none']`)
+})
+```
+
+```js
+new CleanCSS({
   inline: ['all'] // enables all inlining, same as ['local', 'remote']
 })
 ```

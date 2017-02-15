@@ -2,6 +2,7 @@
 ==================
 
 * Fixed issue [#893](https://github.com/jakubpawlowicz/clean-css/issues/893) - `inline: false` as alias to `inline: 'none'`.
+* Fixed issue [#890](https://github.com/jakubpawlowicz/clean-css/issues/890) - adds toggle to disable empty tokens removal.
 
 [4.0.7 / 2017-02-14](https://github.com/jakubpawlowicz/clean-css/compare/v4.0.6...v4.0.7)
 ==================

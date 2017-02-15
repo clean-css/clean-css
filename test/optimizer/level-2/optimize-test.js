@@ -102,4 +102,28 @@ vows.describe('level 2 optimizer')
       ]
     }, { level: 2 })
   )
+  .addBatch(
+    optimizerContext('disabled removal of empty elements', {
+      'no body': [
+        'a{}',
+        'a{}'
+      ],
+      'body with whitespace': [
+        'a{\n}',
+        'a{}'
+      ],
+      'body with comment': [
+        'a{/* a comment */}',
+        'a{}'
+      ],
+      '@media query': [
+        '@media screen{}',
+        '@media screen{}'
+      ],
+      'optimization result': [
+        'a{color:red}div{color:red}',
+        'a,div{color:red}div{}'
+      ]
+    }, { level: { 1: { removeEmpty: false }, 2: { removeEmpty: false } } })
+  )
   .export(module);

@@ -30,7 +30,7 @@ vows.describe('merge non djacent by selector')
     optimizerContext('with level 2 off but mergeNonAdjacentRules on', {
       'of element selectors': [
         '.one{color:red}.two{color:#fff}.one{font-weight:400}',
-        '.one{color:red;font-weight:400}.two{color:#fff}'
+        '.one{color:red;font-weight:400}.two{color:#fff}.one{}'
       ]
     }, { level: { 2: { all: false, mergeNonAdjacentRules: true } } })
   )

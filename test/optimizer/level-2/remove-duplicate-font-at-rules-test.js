@@ -22,7 +22,7 @@ vows.describe('remove duplicate @font-face at-rules')
     optimizerContext('level 2 off but removeDuplicateFontRules on', {
       'non-adjacent': [
         '@font-face{font-family:test;src:url(fonts/test.woff2)}.one{color:red}@font-face{font-family:test;src:url(fonts/test.woff2)}',
-        '@font-face{font-family:test;src:url(fonts/test.woff2)}.one{color:red}'
+        '@font-face{font-family:test;src:url(fonts/test.woff2)}.one{color:red}@font-face{}'
       ]
     }, { level: { 2: { all: false, removeDuplicateFontRules: true } } })
   )

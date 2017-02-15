@@ -200,6 +200,26 @@ vows.describe('level 1 optimizations')
     }, { level: 1, compatibility: { selectors: { adjacentSpace: true } } })
   )
   .addBatch(
+    optimizerContext('selectors - disabled empty removal', {
+      'no body': [
+        'a{}',
+        'a{}'
+      ],
+      'body with whitespace': [
+        'a{\n}',
+        'a{}'
+      ],
+      'body with comment': [
+        'a{/* a comment */}',
+        'a{}'
+      ],
+      '@media query': [
+        '@media screen{}',
+        '@media screen{}'
+      ]
+    }, { level: { 1: { removeEmpty: false } } })
+  )
+  .addBatch(
     optimizerContext('background', {
       'none to 0 0': [
         'a{background:none}',

@@ -26,7 +26,7 @@ vows.describe('remove duplicate media queries')
     optimizerContext('level 2 off but removeDuplicateMediaBlocks on', {
       'non-adjacent': [
         '@media screen{a{color:red}}@media print{a{color:#fff}}@media screen{a{color:red}}',
-        '@media print{a{color:#fff}}@media screen{a{color:red}}'
+        '@media screen{}@media print{a{color:#fff}}@media screen{a{color:red}}'
       ]
     }, { level: { 2: { all: false, removeDuplicateMediaBlocks: true } } })
   )

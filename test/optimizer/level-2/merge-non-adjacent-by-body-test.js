@@ -38,7 +38,7 @@ vows.describe('merge non djacent by body')
     optimizerContext('with level 2 off but mergeNonAdjacentRules on', {
       'of element selectors': [
         'p{color:red}div{display:block}span{color:red}',
-        'p,span{color:red}div{display:block}'
+        'p,span{color:red}div{display:block}span{}'
       ]
     }, { level: { 2: { all: false, mergeNonAdjacentRules: true } } })
   )

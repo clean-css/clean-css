@@ -95,7 +95,9 @@ clean-css 4.0 introduces some breaking changes:
 
 Once released clean-css 4.1 will introduce the following changes / features:
 
-* `inline: false` as an alias to `inline: ['none']`
+* `inline: false` as an alias to `inline: ['none']`;
+* `removeEmpty` flag in level 1 optimizations controlling removal of rules and nested blocks;
+* `removeEmpty` flag in level 2 optimizations controlling removal of rules and nested blocks;
 
 ## Constructor options
 
@@ -282,6 +284,7 @@ new CleanCSS({
       optimizeFont: true, // controls `font` property optimizatons; defaults to `true`
       optimizeFontWeight: true, // controls `font-weight` property optimizatons; defaults to `true`
       optimizeOutline: true, // controls `outline` property optimizatons; defaults to `true`
+      removeEmpty: true, // controls removing empty rules and nested blocks; defaults to `true`
       removeNegativePaddings: true, // controls removing negative paddings; defaults to `true`
       removeQuotes: true, // controls removing quotes when unnecessary; defaults to `true`
       removeWhitespace: true, // controls removing unused whitespace; defaults to `true`
@@ -331,6 +334,7 @@ new CleanCSS({
       mergeNonAdjacentRules: true, // controls non-adjacent rule merging; defaults to true
       mergeSemantically: false, // controls semantic merging; defaults to false
       overrideProperties: true, // controls property overriding based on understandability; defaults to true
+      removeEmpty: true, // controls removing empty rules and nested blocks; defaults to `true`
       reduceNonAdjacentRules: true, // controls non-adjacent rule reducing; defaults to true
       removeDuplicateFontRules: true, // controls duplicate `@font-face` removing; defaults to true
       removeDuplicateMediaBlocks: true, // controls duplicate `@media` removing; defaults to true

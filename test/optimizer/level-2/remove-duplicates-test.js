@@ -46,7 +46,7 @@ vows.describe('remove duplicates')
     optimizerContext('level 2 off but removing duplicates on', {
       'same context': [
         'a{color:red}div{color:blue}a{color:red}',
-        'div{color:#00f}a{color:red}'
+        'a{}div{color:#00f}a{color:red}'
       ]
     }, { level: { 2: { all: false, removeDuplicateRules: true } } })
   )

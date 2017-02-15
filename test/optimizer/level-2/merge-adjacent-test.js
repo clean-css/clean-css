@@ -102,7 +102,7 @@ vows.describe('remove duplicates')
     optimizerContext('with level 2 off but only adjacentRuleMerging on', {
       'same context': [
         'a{background:url(image.png)}a{display:block;width:75px;background-repeat:no-repeat}',
-        'a{background:url(image.png);display:block;width:75px;background-repeat:no-repeat}',
+        'a{background:url(image.png);display:block;width:75px;background-repeat:no-repeat}a{}',
       ],
     }, { level: { 2: { all: false, mergeAdjacentRules: true } } })
   )

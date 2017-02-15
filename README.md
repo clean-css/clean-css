@@ -22,6 +22,7 @@ According to [tests](http://goalsmashers.github.io/css-minification-benchmark/) 
 - [Install](#install)
 - [Use](#use)
   * [Important: 4.0 breaking changes](#important-40-breaking-changes)
+  * [What's coming in version 4.1](#whats-coming-in-version-41)
   * [Constructor options](#constructor-options)
   * [Compatibility modes](#compatibility-modes)
   * [Formatting options](#formatting-options)
@@ -89,6 +90,12 @@ clean-css 4.0 introduces some breaking changes:
 * `keepBreaks` option is replaced with `{ format: 'keep-breaks' }` to ease transition;
 * `sourceMap` option has to be a boolean from now on - to specify an input source map pass it a 2nd argument to `minify` method or via a hash instead;
 * `aggressiveMerging` option is removed as aggressive merging is replaced by smarter override merging.
+
+## What's coming in version 4.1
+
+Once released clean-css 4.1 will introduce the following changes / features:
+
+* `inline: false` as an alias to `inline: ['none']`
 
 ## Constructor options
 
@@ -214,6 +221,8 @@ new CleanCSS({
 ```
 
 ```js
+// introduced in clean-css 4.1.0-pre
+
 new CleanCSS({
   inline: false // disables all inlining (alias to `['none']`)
 })

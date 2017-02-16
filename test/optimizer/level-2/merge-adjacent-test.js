@@ -114,4 +114,16 @@ vows.describe('remove duplicates')
       ],
     }, { level: 1 })
   )
+  .addBatch(
+    optimizerContext('with multiplePseudoMerging: false', {
+      'single pseudo classes': [
+        ':hover{color:red}:first-child{color:red}',
+        ':first-child,:hover{color:red}'
+      ],
+      'multiple pseudo classes': [
+        ':hover:before{color:red}.block{color:red}',
+        ':hover:before{color:red}.block{color:red}'
+      ]
+    }, { compatibility: { selectors: { multiplePseudoMerging: false } }, level: 2 })
+  )
   .export(module);

@@ -25,6 +25,7 @@ vows.describe(compatibilityFrom)
         assert.isTrue(compat.properties.zeroUnits);
         assert.isFalse(compat.selectors.adjacentSpace);
         assert.isFalse(compat.selectors.ie7Hack);
+        assert.isTrue(compat.selectors.multiplePseudoMerging);
         assert.isTrue(compat.units.ch);
         assert.isTrue(compat.units.in);
         assert.isTrue(compat.units.pc);
@@ -65,6 +66,7 @@ vows.describe(compatibilityFrom)
         assert.isTrue(compat.properties.zeroUnits);
         assert.isFalse(compat.selectors.adjacentSpace);
         assert.isFalse(compat.selectors.ie7Hack);
+        assert.isTrue(compat.selectors.multiplePseudoMerging);
         assert.isTrue(compat.units.ch);
         assert.isTrue(compat.units.in);
         assert.isTrue(compat.units.pc);
@@ -100,6 +102,7 @@ vows.describe(compatibilityFrom)
         assert.isTrue(compat.properties.zeroUnits);
         assert.isFalse(compat.selectors.adjacentSpace);
         assert.isFalse(compat.selectors.ie7Hack);
+        assert.isTrue(compat.selectors.multiplePseudoMerging);
         assert.isTrue(compat.units.ch);
         assert.isTrue(compat.units.in);
         assert.isTrue(compat.units.pc);
@@ -133,6 +136,7 @@ vows.describe(compatibilityFrom)
         assert.isTrue(compat.properties.zeroUnits);
         assert.isFalse(compat.selectors.adjacentSpace);
         assert.isFalse(compat.selectors.ie7Hack);
+        assert.isTrue(compat.selectors.multiplePseudoMerging);
         assert.isFalse(compat.units.ch);
         assert.isTrue(compat.units.in);
         assert.isTrue(compat.units.pc);
@@ -209,6 +213,7 @@ vows.describe(compatibilityFrom)
         assert.isTrue(compat.properties.zeroUnits);
         assert.isFalse(compat.selectors.adjacentSpace);
         assert.isFalse(compat.selectors.ie7Hack);
+        assert.isTrue(compat.selectors.multiplePseudoMerging);
         assert.isFalse(compat.units.ch);
         assert.isTrue(compat.units.in);
         assert.isTrue(compat.units.pc);
@@ -242,6 +247,7 @@ vows.describe(compatibilityFrom)
         assert.isTrue(compat.properties.zeroUnits);
         assert.isFalse(compat.selectors.adjacentSpace);
         assert.isFalse(compat.selectors.ie7Hack);
+        assert.isTrue(compat.selectors.multiplePseudoMerging);
         assert.isTrue(compat.units.ch);
         assert.isTrue(compat.units.in);
         assert.isTrue(compat.units.pc);
@@ -275,6 +281,7 @@ vows.describe(compatibilityFrom)
         assert.isTrue(compat.properties.zeroUnits);
         assert.isFalse(compat.selectors.adjacentSpace);
         assert.isFalse(compat.selectors.ie7Hack);
+        assert.isTrue(compat.selectors.multiplePseudoMerging);
         assert.isTrue(compat.units.ch);
         assert.isTrue(compat.units.in);
         assert.isTrue(compat.units.pc);

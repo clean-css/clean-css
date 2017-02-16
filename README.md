@@ -96,6 +96,7 @@ clean-css 4.0 introduces some breaking changes:
 Once released clean-css 4.1 will introduce the following changes / features:
 
 * `inline: false` as an alias to `inline: ['none']`;
+* `multiplePseudoMerging` compatibility flag controlling merging of rules with multiple pseudo classes / elements;
 * `removeEmpty` flag in level 1 optimizations controlling removal of rules and nested blocks;
 * `removeEmpty` flag in level 2 optimizations controlling removal of rules and nested blocks;
 
@@ -151,7 +152,8 @@ new CleanCSS({
       adjacentSpace: false, // controls extra space before `nav` element
       ie7Hack: true, // controls removal of IE7 selector hacks, e.g. `*+html...`
       mergeablePseudoClasses: [':active', ...], // controls a whitelist of mergeable pseudo classes
-      mergeablePseudoElements: ['::after', ...] // controls a whitelist of mergeable pseudo elements
+      mergeablePseudoElements: ['::after', ...], // controls a whitelist of mergeable pseudo elements
+      multiplePseudoMerging: true // controls merging of rules with multiple pseudo classes / elements (since 4.1.0-pre)
     },
     units: {
       ch: true, // controls treating `ch` as a supported unit

@@ -1,3 +1,8 @@
+[4.0.8 / 2017-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v4.0.7...4.0)
+==================
+
+* Fixes edge case in remote stylesheet fetching.
+
 [4.0.7 / 2017-02-14](https://github.com/jakubpawlowicz/clean-css/compare/v4.0.6...v4.0.7)
 ==================
 

@@ -103,6 +103,24 @@ vows.describe(tokenize)
           ['selector', [['a']], [[['color'], ['red']]]]
         ]
       ],
+      'a selector attribute with escaped curly braces': [
+        'a[\\\{data-kind\\\}]{color:red}',
+        [
+          ['selector', [['a[\\\{data-kind\\\}]']], [[['color'], ['red']]]]
+        ]
+      ],
+      'a selector attribute with escaped backslash': [
+        'a\\\\{color:red}',
+        [
+          ['selector', [['a\\\\']], [[['color'], ['red']]]]
+        ]
+      ],
+      'a selector attribute with backslash and escaped curly braces': [
+        'a\\\\\{color:red}',
+        [
+          ['selector', [['a\\\\']], [[['color'], ['red']]]]
+        ]
+      ],
       'a selector with quoted attribute': [
         'a[data-kind=__ESCAPED_FREE_TEXT_CLEAN_CSS0__]{color:red}',
         [

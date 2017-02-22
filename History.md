@@ -1,3 +1,8 @@
+[3.4.25 / 2017-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.24...3.4)
+==================
+
+* Fixed issue [#897](https://github.com/jakubpawlowicz/clean-css/issues/897) - tokenization with escaped markers.
+
 [3.4.24 / 2017-01-20](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.23...v3.4.24)
 ==================
 

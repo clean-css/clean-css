@@ -77,6 +77,10 @@ vows.describe('level 1 optimizations')
         ' label   ~  \n*  +  span , div>*.class, section\n\n{color:red}',
         'div>.class,label~*+span,section{color:red}'
       ],
+      'nth arguments': [
+        '.block:nth-child(n + 2){color:red}',
+        '.block:nth-child(n+2){color:red}'
+      ],
       'escaped joining character #1': [
         '.class\\~ div{color:red}',
         '.class\\~ div{color:red}'

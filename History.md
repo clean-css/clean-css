@@ -9,6 +9,7 @@
 ==================
 
 * Fixes edge case in remote stylesheet fetching.
+* Fixed issue [#899](https://github.com/jakubpawlowicz/clean-css/issues/899) - regression in optimizing pseudo class arguments.
 
 [4.0.7 / 2017-02-14](https://github.com/jakubpawlowicz/clean-css/compare/v4.0.6...v4.0.7)
 ==================

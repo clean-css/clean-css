@@ -65,7 +65,7 @@ npm install clean-css
 var CleanCSS = require('clean-css');
 var input = 'a{font-weight:bold;}';
 var options = { /* options */ };
-var output = new CleanCSS(options).minify(source);
+var output = new CleanCSS(options).minify(input);
 ```
 
 ## Important: 4.0 breaking changes

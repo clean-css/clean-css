@@ -33,6 +33,7 @@ According to [tests](http://goalsmashers.github.io/css-minification-benchmark/) 
     + [Level 2 optimizations](#level-2-optimizations)
   * [Minify method](#minify-method)
   * [Promise interface](#promise-interface)
+  * [CLI utility](#cli-utility)
 - [FAQ](#faq)
   * [How to optimize multiple files?](#how-to-optimize-multiple-files)
   * [How to process remote `@import`s correctly?](#how-to-process-remote-imports-correctly)
@@ -405,6 +406,10 @@ new CleanCSS({ returnPromise: true })
   .then(function (output) { console.log(output.styles); })
   .catch(function (error) { // deal with errors });
 ```
+
+## CLI utility
+
+Clean-css has an associated command line utility that can be installed separately using `npm install clean-css-cli`. For more detailed information, please visit https://github.com/jakubpawlowicz/clean-css-cli.
 
 # FAQ
 

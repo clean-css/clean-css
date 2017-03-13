@@ -672,15 +672,15 @@ vows.describe('integration tests')
       ],
       'missing #1': [
         'body{margin:2.em}',
-        'body{margin:2em}'
+        'body{margin:2.em}'
       ],
       'missing #2': [
         'p{opacity:1.}',
-        'p{opacity:1}'
+        'p{opacity:1.}'
       ],
       'missing #3': [
         'p{opacity:11.px}',
-        'p{opacity:11px}'
+        'p{opacity:11.px}'
       ],
       'minus zero as value to zero': [
         'body{margin:-0}',

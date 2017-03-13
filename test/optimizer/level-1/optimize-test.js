@@ -620,6 +620,10 @@ vows.describe('level 1 optimizations')
       'ems': [
         'a{left:1.1231em}',
         'a{left:1.123em}'
+      ],
+      'inside strings': [
+        '.block{background-image:image-set(url("//s1.server.com/img.png") 1x)}',
+        '.block{background-image:image-set(url("//s1.server.com/img.png") 1x)}'
       ]
     }, { level: { 1: { roundingPrecision: 3 } } })
   )
@@ -636,6 +640,10 @@ vows.describe('level 1 optimizations')
       'ems': [
         'a{left:1.1231em}',
         'a{left:1.1231em}'
+      ],
+      'inside strings': [
+        '.block{background-image:image-set(url("//s1.server.com/img.png") 1x)}',
+        '.block{background-image:image-set(url("//s1.server.com/img.png") 1x)}'
       ]
     }, { level: { 1: { roundingPrecision: 'off' } } })
   )
@@ -787,7 +795,7 @@ vows.describe('level 1 optimizations')
       ],
       'missing': [
         'a{opacity:1.}',
-        'a{opacity:1}'
+        'a{opacity:1.}'
       ],
       'multiple': [
         'a{margin:-0 -0 -0 -0}',

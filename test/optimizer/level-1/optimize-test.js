@@ -105,6 +105,18 @@ vows.describe('level 1 optimizations')
         '.b[data-json=\'"aaaa":"bbbb"\']{color:red}',
         '.b[data-json=\'"aaaa":"bbbb"\']{color:red}'
       ],
+      'single word case insensitive attribute with quotes': [
+        '.block[data-value="test" i]{color:red}',
+        '.block[data-value=test i]{color:red}'
+      ],
+      'multiword case insensitive attribute with quotes': [
+        '.block[data-value="test me" i]{color:red}',
+        '.block[data-value="test me"i]{color:red}'
+      ],
+      'single word case insensitive attribute without quotes': [
+        '.block[data-value=test i]{color:red}',
+        '.block[data-value=test i]{color:red}'
+      ],
       'no rule scope': [
         '{overflow:hidden}',
         ''

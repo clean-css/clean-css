@@ -1240,6 +1240,18 @@ vows.describe('level 1 optimizations')
     }, { level: { 1: { tidyBlockScopes: false } } })
   )
   .addBatch(
+    optimizerContext('tidy block space after closing brace', {
+      'removes space in @media': [
+        '@media (min-width:50px) and print{.block{color:red}}',
+        '@media (min-width:50px)and print{.block{color:red}}'
+      ],
+      'keeps space in @supports': [
+        '@supports (filter:blur(1px)) or (-webkit-filter:blur(1px)){.block{color:red}}',
+        '@supports (filter:blur(1px)) or (-webkit-filter:blur(1px)){.block{color:red}}'
+      ]
+    }, { compatibility: { properties: { spaceAfterClosingBrace: false } }, level: 1 })
+  )
+  .addBatch(
     optimizerContext('tidy block scopes optimizations off', {
       'stays as it is': [
           '.block > .another-block{color:red}',

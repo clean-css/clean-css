@@ -1,6 +1,7 @@
 [4.0.9 / 2017-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v4.0.8...4.0)
 ==================
 
+* Fixed issue [#907](https://github.com/jakubpawlowicz/clean-css/issues/907) - space after closing brace in `@supports`.
 * Fixed issue [#910](https://github.com/jakubpawlowicz/clean-css/issues/910) - too aggressive precision optimizations.
 
 [4.0.8 / 2017-02-22](https://github.com/jakubpawlowicz/clean-css/compare/v4.0.7...v4.0.8)

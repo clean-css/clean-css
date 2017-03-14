@@ -5,7 +5,7 @@
 * Fixed issue [#890](https://github.com/jakubpawlowicz/clean-css/issues/890) - adds toggle to disable empty tokens removal.
 * Fixed issue [#886](https://github.com/jakubpawlowicz/clean-css/issues/886) - better multi pseudo class / element merging.
 
-[4.0.9 / 2017-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v4.0.8...4.0)
+[4.0.9 / 2017-03-15](https://github.com/jakubpawlowicz/clean-css/compare/v4.0.8...v4.0.9)
 ==================
 
 * Fixed issue [#902](https://github.com/jakubpawlowicz/clean-css/issues/902) - case insensitive attribute matchers.

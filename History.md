@@ -2,6 +2,7 @@
 ==================
 
 * Fixed issue [#902](https://github.com/jakubpawlowicz/clean-css/issues/902) - case insensitive attribute matchers.
+* Fixed issue [#903](https://github.com/jakubpawlowicz/clean-css/issues/903) - web UI and source maps.
 * Fixed issue [#907](https://github.com/jakubpawlowicz/clean-css/issues/907) - space after closing brace in `@supports`.
 * Fixed issue [#910](https://github.com/jakubpawlowicz/clean-css/issues/910) - too aggressive precision optimizations.
 

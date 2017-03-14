@@ -51,7 +51,8 @@
           2: levelEnabled(settingsForm, 2) ?
             mapOptionsIn(level2OptionsContainer) :
             false
-        }
+        },
+        sourceMap: false
       }
     }
   }

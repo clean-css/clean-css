@@ -1108,6 +1108,22 @@ vows.describe('source-map')
         nock.cleanAll();
       }
     },
+    'missing source map from external host when source maps are disabled': {
+      topic: function () {
+        this.reqMocks = nock('http://127.0.0.1')
+          .get('/remote.css')
+          .reply(200, 'div>a{color:blue}/*# sourceMappingURL=missing.css.map */');
+
+        new CleanCSS({ inline: 'all', sourceMap: false }).minify('@import url(http://127.0.0.1/remote.css);', this.callback);
+      },
+      'has no warnings': function (errors, minified) {
+        assert.lengthOf(minified.warnings, 0);
+      },
+      teardown: function () {
+        assert.isTrue(this.reqMocks.isDone());
+        nock.cleanAll();
+      }
+    },
     'available via POST only': {
       topic: function () {
         this.reqMocks = nock('http://127.0.0.1')

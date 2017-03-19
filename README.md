@@ -415,7 +415,7 @@ Clean-css has an associated command line utility that can be installed separatel
 
 ## How to optimize multiple files?
 
-It can be done either by passing an array of paths, or, when sources are already available, a hash:
+It can be done either by passing an array of paths, or, when sources are already available, a hash or an array of hashes:
 
 ```js
 new CleanCSS().minify(['path/to/file/one', 'path/to/file/two']);
@@ -431,6 +431,15 @@ new CleanCSS().minify({
   }
 });
 ```
+
+```js
+new CleanCSS().minify([
+  {'path/to/file/one': {styles: 'contents of file one'}},
+  {'path/to/file/two': {styles: 'contents of file two'}}
+]);
+```
+
+Passing an array of hashes allows you to explicitly specify the order in which the input files are concatenated. Whereas when you use a single hash the order is determined by the [traversal order of object properties](http://2ality.com/2015/10/property-traversal-order-es6.html).
 
 Important note - any `@import` rules already present in the hash will be resolved in memory.
 

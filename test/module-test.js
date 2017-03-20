@@ -829,5 +829,16 @@ vows.describe('module tests').addBatch({
         }
       }
     }
+  },
+  'accepts a list of source files as array of hashes': {
+    'topic': function () {
+      return new CleanCSS().minify([
+        sourcesAsHash(['test/fixtures/partials/one.css']),
+        sourcesAsHash(['test/fixtures/partials/three.css'])
+      ]);
+    },
+    'should give right output': function (minified) {
+      assert.equal(minified.styles, '.one{color:red}.three{background-image:url(test/fixtures/partials/extra/down.gif)}');
+    }
   }
 }).export(module);

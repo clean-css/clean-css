@@ -23,6 +23,10 @@ vows.describe('level 2 optimizer')
       'units': [
         '.one{width:1px;width:1rem;display:block}.two{color:red}.one{width:2px;width:1.1rem}',
         '.one{display:block;width:1.1rem}.two{color:red}'
+      ],
+      'backslash hacks': [
+        '.block{color:red\\9;color:#0f0\\0}',
+        ''
       ]
     }, { level: 2 })
   )
@@ -49,6 +53,14 @@ vows.describe('level 2 optimizer')
         '.block--1{color:red}.other-block--1{width:0}.block--2,.block--3,.block--4{color:red}.other-block--2{height:0}.other-block--3{opacity:0}'
       ]
     }, { compatibility: { selectors: { mergeLimit: 3 } }, level: { 2: { all: true } } })
+  )
+  .addBatch(
+    optimizerContext('in ie8 compatibility mode', {
+      'backslash hacks': [
+        '.block{color:red\\9;color:#0f0\\0}',
+        '.block{color:red\\9;color:#0f0\\0}'
+      ]
+    }, { compatibility: 'ie8', level: 2 })
   )
   .addBatch(
     optimizerContext('level 2 off', {

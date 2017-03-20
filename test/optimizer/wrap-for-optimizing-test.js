@@ -346,7 +346,7 @@ vows.describe(wrapForOptimizing)
         assert.deepEqual(wrapped[0].name, 'color');
       },
       'is a hack': function (wrapped) {
-        assert.equal(wrapped[0].hack, 'underscore');
+        assert.deepEqual(wrapped[0].hack, ['underscore']);
       }
     },
     'star hack': {
@@ -366,7 +366,7 @@ vows.describe(wrapForOptimizing)
         assert.deepEqual(wrapped[0].name, 'color');
       },
       'is a hack': function (wrapped) {
-        assert.equal(wrapped[0].hack, 'asterisk');
+        assert.deepEqual(wrapped[0].hack, ['asterisk']);
       }
     },
     'backslash hack': {
@@ -386,7 +386,7 @@ vows.describe(wrapForOptimizing)
         assert.deepEqual(wrapped[0].value, [['property-value', '0']]);
       },
       'is a hack': function (wrapped) {
-        assert.equal(wrapped[0].hack, 'backslash');
+        assert.deepEqual(wrapped[0].hack, ['backslash', '9']);
       }
     },
     'backslash hack - single value': {
@@ -427,7 +427,7 @@ vows.describe(wrapForOptimizing)
         assert.deepEqual(wrapped[0].value, [['property-value', '0']]);
       },
       'is a hack': function (wrapped) {
-        assert.equal(wrapped[0].hack, 'backslash');
+        assert.deepEqual(wrapped[0].hack, ['backslash', '9']);
       }
     },
     'bang hack': {
@@ -447,7 +447,7 @@ vows.describe(wrapForOptimizing)
         assert.deepEqual(wrapped[0].value, [['property-value', '0']]);
       },
       'is a hack': function (wrapped) {
-        assert.equal(wrapped[0].hack, 'bang');
+        assert.deepEqual(wrapped[0].hack, ['bang']);
       },
       'is not important': function (wrapped) {
         assert.isFalse(wrapped[0].important);
@@ -470,7 +470,7 @@ vows.describe(wrapForOptimizing)
         assert.deepEqual(wrapped[0].value, [['property-value', '0']]);
       },
       'is a hack': function (wrapped) {
-        assert.equal(wrapped[0].hack, 'bang');
+        assert.deepEqual(wrapped[0].hack, ['bang']);
       },
       'is not important': function (wrapped) {
         assert.isFalse(wrapped[0].important);
@@ -494,7 +494,7 @@ vows.describe(wrapForOptimizing)
         assert.deepEqual(wrapped[0].value, [['property-value', '0']]);
       },
       'is a hack': function (wrapped) {
-        assert.equal(wrapped[0].hack, 'bang');
+        assert.deepEqual(wrapped[0].hack, ['bang']);
       },
       'is not important': function (wrapped) {
         assert.isFalse(wrapped[0].important);
@@ -520,7 +520,7 @@ vows.describe(wrapForOptimizing)
         assert.isTrue(wrapped[0].important);
       },
       'is a hack': function (wrapped) {
-        assert.equal(wrapped[0].hack, 'backslash');
+        assert.deepEqual(wrapped[0].hack, ['backslash', '9']);
       }
     },
     'source map': {

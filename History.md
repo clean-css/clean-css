@@ -2,6 +2,7 @@
 ==================
 
 * Fixed issue [#917](https://github.com/jakubpawlowicz/clean-css/issues/917) - prevents grid area unquoting.
+* Refixed issue [#556](https://github.com/jakubpawlowicz/clean-css/issues/917) - IE backslash hacks.
 
 [4.0.9 / 2017-03-15](https://github.com/jakubpawlowicz/clean-css/compare/v4.0.8...v4.0.9)
 ==================

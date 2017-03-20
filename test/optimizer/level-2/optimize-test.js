@@ -23,8 +23,20 @@ vows.describe('level 2 optimizer')
       'units': [
         '.one{width:1px;width:1rem;display:block}.two{color:red}.one{width:2px;width:1.1rem}',
         '.one{display:block;width:1.1rem}.two{color:red}'
+      ],
+      'backslash hacks': [
+        '.block{color:red\\9;color:#0f0\\0}',
+        ''
       ]
     }, { level: 2 })
+  )
+  .addBatch(
+    optimizerContext('in ie8 compatibility mode', {
+      'backslash hacks': [
+        '.block{color:red\\9;color:#0f0\\0}',
+        '.block{color:red\\9;color:#0f0\\0}'
+      ]
+    }, { compatibility: 'ie8', level: 2 })
   )
   .addBatch(
     optimizerContext('level 2 off', {

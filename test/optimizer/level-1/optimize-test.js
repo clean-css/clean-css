@@ -513,7 +513,11 @@ vows.describe('level 1 optimizations')
         'a{*width:101px}',
         ''
       ],
-      'backslash': [
+      '\\0 backslash': [
+        'a{width:101px\\0}',
+        ''
+      ],
+      '\\9 backslash': [
         'a{width:101px\\9}',
         ''
       ],
@@ -537,7 +541,11 @@ vows.describe('level 1 optimizations')
         'a{*width:101px}',
         ''
       ],
-      'backslash': [
+      '\\0 backslash': [
+        'a{width:101px\\0}',
+        'a{width:101px\\0}'
+      ],
+      '\\9 backslash': [
         'a{width:101px\\9}',
         'a{width:101px\\9}'
       ],
@@ -557,7 +565,11 @@ vows.describe('level 1 optimizations')
         'a{*width:101px}',
         'a{*width:101px}'
       ],
-      'backslash': [
+      '\\0 backslash': [
+        'a{width:101px\\0}',
+        'a{width:101px\\0}'
+      ],
+      '\\9 backslash': [
         'a{width:101px\\9}',
         'a{width:101px\\9}'
       ],
@@ -577,7 +589,11 @@ vows.describe('level 1 optimizations')
         'a{*width:101px}',
         'a{*width:101px}'
       ],
-      'backslash': [
+      '\\0 backslash': [
+        'a{width:101px\\0}',
+        'a{width:101px\\0}'
+      ],
+      '\\9 backslash': [
         'a{width:101px\\9}',
         'a{width:101px\\9}'
       ],

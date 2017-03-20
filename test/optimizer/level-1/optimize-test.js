@@ -1136,6 +1136,22 @@ vows.describe('level 1 optimizations')
       '-webkit-font-feature-settings': [
         '.block{-webkit-font-feature-settings:"scmp","swsh" 2}',
         '.block{-webkit-font-feature-settings:"scmp","swsh" 2}'
+      ],
+      'grid-template': [
+        '.block{grid-template:"header" 20% "nav" auto}',
+        '.block{grid-template:"header" 20% "nav" auto}'
+      ],
+      'grid-template-areas - single word': [
+        '.block{grid-template-areas:"header" "nav" "body"}',
+        '.block{grid-template-areas:"header" "nav" "body"}'
+      ],
+      'grid-template-areas - multiple words': [
+        '.block{grid-template-areas:"header header" "nav" "body"}',
+        '.block{grid-template-areas:"header header" "nav" "body"}'
+      ],
+      'vendor prefixed grid-template': [
+        '.block{-ms-grid-template:"header" 20% "nav" auto}',
+        '.block{-ms-grid-template:"header" 20% "nav" auto}'
       ]
     }, { level: 1 })
   )

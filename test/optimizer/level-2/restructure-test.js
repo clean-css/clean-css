@@ -167,6 +167,14 @@ vows.describe('restructure')
     }, { level: { 2: { restructureRules: true } } })
   )
   .addBatch(
+    optimizerContext('only rule restructuring', {
+      'best fit sorting': [
+        '.block--0{color:red}.block--1{color:red}.block--2{color:red}.block--3{color:red}.block--4{color:red}.block--5{color:red}.block--6{color:red}.block--7{color:red}.block--8{color:red}.block--9{color:red}',
+        '.block--0,.block--1,.block--2,.block--3,.block--4,.block--5,.block--6,.block--7,.block--8,.block--9{color:red}'
+      ]
+    }, { level: { 2: { all: false, restructureRules: true, removeEmpty: true } } })
+  )
+  .addBatch(
     optimizerContext('level 2 off', {
       'up until changed': [
         'a{color:#000}div{color:red}.one{display:block}.two{display:inline;color:red}',

@@ -1,4 +1,4 @@
-[4.0.10 / 2017-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v4.0.9...4.0)
+[4.0.10 / 2017-03-22](https://github.com/jakubpawlowicz/clean-css/compare/v4.0.9...v4.0.10)
 ==================
 
 * Fixed issue [#917](https://github.com/jakubpawlowicz/clean-css/issues/917) - prevents grid area unquoting.

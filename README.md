@@ -101,6 +101,7 @@ Once released clean-css 4.1 will introduce the following changes / features:
 * `removeEmpty` flag in level 1 optimizations controlling removal of rules and nested blocks;
 * `removeEmpty` flag in level 2 optimizations controlling removal of rules and nested blocks;
 * `compatibility: { selectors: { mergeLimit: <number> } }` flag in compatibility settings controlling maximum number of selectors in a single rule;
+* `minify` method improved signature accepting a list of hashes for a predictable traversal;
 
 ## Constructor options
 
@@ -647,6 +648,7 @@ Sorted alphabetically by GitHub handle:
 * [@altschuler](https://github.com/altschuler) (Simon Altschuler) for fixing `@import` processing inside comments;
 * [@ben-eb](https://github.com/ben-eb) (Ben Briggs) for sharing ideas about CSS optimizations;
 * [@facelessuser](https://github.com/facelessuser) (Isaac) for pointing out a flaw in clean-css' stateless mode;
+* [@grandrath](https://github.com/grandrath) (Martin Grandrath) for improving `minify` method source traversal in ES6;
 * [@jmalonzo](https://github.com/jmalonzo) (Jan Michael Alonzo) for a patch removing node.js' old `sys` package;
 * [@lukeapage](https://github.com/lukeapage) (Luke Page) for suggestions and testing the source maps feature;
   Plus everyone else involved in [#125](https://github.com/jakubpawlowicz/clean-css/issues/125) for pushing it forward;

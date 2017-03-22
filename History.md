@@ -11,6 +11,7 @@
 ==================
 
 * Fixed issue [#917](https://github.com/jakubpawlowicz/clean-css/issues/917) - prevents grid area unquoting.
+* Backported [#916](https://github.com/jakubpawlowicz/clean-css/issues/916) - maximum number of merged selectors.
 * Refixed issue [#556](https://github.com/jakubpawlowicz/clean-css/issues/917) - IE backslash hacks.
 
 [4.0.9 / 2017-03-15](https://github.com/jakubpawlowicz/clean-css/compare/v4.0.8...v4.0.9)

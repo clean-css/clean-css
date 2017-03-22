@@ -100,6 +100,7 @@ Once released clean-css 4.1 will introduce the following changes / features:
 * `multiplePseudoMerging` compatibility flag controlling merging of rules with multiple pseudo classes / elements;
 * `removeEmpty` flag in level 1 optimizations controlling removal of rules and nested blocks;
 * `removeEmpty` flag in level 2 optimizations controlling removal of rules and nested blocks;
+* `compatibility: { selectors: { mergeLimit: <number> } }` flag in compatibility settings controlling maximum number of selectors in a single rule;
 
 ## Constructor options
 
@@ -154,6 +155,7 @@ new CleanCSS({
       ie7Hack: true, // controls removal of IE7 selector hacks, e.g. `*+html...`
       mergeablePseudoClasses: [':active', ...], // controls a whitelist of mergeable pseudo classes
       mergeablePseudoElements: ['::after', ...], // controls a whitelist of mergeable pseudo elements
+      mergeLimit: 8191, // controls maximum number of selectors in a single rule
       multiplePseudoMerging: true // controls merging of rules with multiple pseudo classes / elements (since 4.1.0-pre)
     },
     units: {

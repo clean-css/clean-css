@@ -1,6 +1,7 @@
 [4.1.0-pre / 20xx-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/4.0...HEAD)
 ==================
 
+* Fixed issue [#916](https://github.com/jakubpawlowicz/clean-css/issues/916) - maximum number of merged selectors.
 * Fixed issue [#893](https://github.com/jakubpawlowicz/clean-css/issues/893) - `inline: false` as alias to `inline: 'none'`.
 * Fixed issue [#890](https://github.com/jakubpawlowicz/clean-css/issues/890) - adds toggle to disable empty tokens removal.
 * Fixed issue [#886](https://github.com/jakubpawlowicz/clean-css/issues/886) - better multi pseudo class / element merging.

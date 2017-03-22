@@ -175,6 +175,30 @@ vows.describe('restructure')
     }, { level: { 2: { all: false, restructureRules: true, removeEmpty: true } } })
   )
   .addBatch(
+    optimizerContext('only rule restructuring with rule merging limit', {
+      'adjacent with as many rules as limit': [
+        '.block--1{color:red}.block--2{color:red}.block--3{color:red}',
+        '.block--1,.block--2,.block--3{color:red}'
+      ],
+      'adjacent with extra rule': [
+        '.block--1{color:red}.block--2{color:red}.block--3{color:red}.block--4{color:red}',
+        '.block--1{color:red}.block--2,.block--3,.block--4{color:red}'
+      ],
+      'adjacent with extra two rules 123': [
+        '.block--1{color:red}.block--2{color:red}.block--3{color:red}.block--4{color:red}.block--5{color:red}',
+        '.block--1,.block--2{color:red}.block--3,.block--4,.block--5{color:red}'
+      ],
+      'adjacent with extra three rules': [
+        '.block--1{color:red}.block--2{color:red}.block--3{color:red}.block--4{color:red}.block--5{color:red}.block--6{color:red}',
+        '.block--1,.block--2,.block--3{color:red}.block--4,.block--5,.block--6{color:red}'
+      ],
+      'non-adjacent': [
+        '.block--1{color:red}.other-block--1{width:0}.block--2{color:red}.other-block--2{height:0}.block--3{color:red}.other-block--3{opacity:0}.block--4{color:red}',
+        '.block--1{color:red}.other-block--1{width:0}.block--2,.block--3,.block--4{color:red}.other-block--2{height:0}.other-block--3{opacity:0}'
+      ]
+    }, { compatibility: { selectors: { mergeLimit: 3 } }, level: { 2: { all: false, restructureRules: true, removeEmpty: true } } })
+  )
+  .addBatch(
     optimizerContext('level 2 off', {
       'up until changed': [
         'a{color:#000}div{color:red}.one{display:block}.two{display:inline;color:red}',

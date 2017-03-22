@@ -156,7 +156,7 @@ new CleanCSS({
       ie7Hack: true, // controls removal of IE7 selector hacks, e.g. `*+html...`
       mergeablePseudoClasses: [':active', ...], // controls a whitelist of mergeable pseudo classes
       mergeablePseudoElements: ['::after', ...], // controls a whitelist of mergeable pseudo elements
-      mergeLimit: 8191, // controls maximum number of selectors in a single rule
+      mergeLimit: 8191, // controls maximum number of selectors in a single rule (since 4.1.0-pre)
       multiplePseudoMerging: true // controls merging of rules with multiple pseudo classes / elements (since 4.1.0-pre)
     },
     units: {
@@ -442,7 +442,7 @@ new CleanCSS().minify([
 ]);
 ```
 
-Passing an array of hashes allows you to explicitly specify the order in which the input files are concatenated. Whereas when you use a single hash the order is determined by the [traversal order of object properties](http://2ality.com/2015/10/property-traversal-order-es6.html).
+Passing an array of hashes allows you to explicitly specify the order in which the input files are concatenated. Whereas when you use a single hash the order is determined by the [traversal order of object properties](http://2ality.com/2015/10/property-traversal-order-es6.html) - available since 4.1.0-pre.
 
 Important note - any `@import` rules already present in the hash will be resolved in memory.
 

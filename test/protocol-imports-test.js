@@ -898,4 +898,69 @@ vows.describe('protocol imports').addBatch({
       nock.cleanAll();
     }
   }
+}).addBatch({
+  'custom fetch callback with no request': {
+    topic: function () {
+      new CleanCSS({
+        fetch: function (uri, inlineRequest, inlineTimeout, callback) {
+          if (uri == 'http://localhost:12345/custom.css') {
+            callback(null, 'a{color:red}');
+          }
+        },
+        inline: 'all'
+      }).minify('@import url(http://localhost:12345/custom.css);', this.callback);
+    },
+    'should process @import': function (errors, minified) {
+      assert.equal(minified.styles, 'a{color:red}');
+    }
+  },
+  'custom fetch callback with real request': {
+    topic: function () {
+      var self = this;
+      nock.enableNetConnect();
+
+      this.server = http.createServer(function (req, res) {
+        res.writeHead(200, {'Content-Type': 'text/css'});
+        res.end('a{color:red}');
+      });
+      this.server.listen(port, function () {
+        new CleanCSS({
+          fetch: function (uri, inlineRequest, inlineTimeout, callback) {
+            if (uri == 'http://localhost:' + port + '/custom.css') {
+              http.get(uri, function (res) {
+                var rawData = [];
+
+                res.on('data', function (chunk) { rawData.push(chunk); });
+                res.on('end', function () {
+                  callback(null, rawData.join(''));
+                });
+              });
+            }
+          },
+          inline: 'all'
+        }).minify('@import url(http://localhost:' + port + '/custom.css);', self.callback);
+      });
+
+      enableDestroy(this.server);
+    },
+    'gets right output': function (errors, minified) {
+      assert.equal(minified.styles, 'a{color:red}');
+    },
+    teardown: function () {
+      this.server.destroy();
+    }
+  },
+  'custom fetch callback with error': {
+    topic: function () {
+      new CleanCSS({
+        fetch: function (uri, inlineRequest, inlineTimeout, callback) {
+          callback('some error', null);
+        },
+        inline: 'all'
+      }).minify('@import url(http://localhost:12345/custom.css);', this.callback);
+    },
+    'should raise error': function (errors, minified) {
+      assert.deepEqual(errors, ['Broken @import declaration of "http://localhost:12345/custom.css" - some error']);
+    }
+  }
 }).export(module);

@@ -25,6 +25,7 @@ According to [tests](http://goalsmashers.github.io/css-minification-benchmark/) 
   * [What's coming in version 4.1](#whats-coming-in-version-41)
   * [Constructor options](#constructor-options)
   * [Compatibility modes](#compatibility-modes)
+  * [Fetch option](#fetch-option)
   * [Formatting options](#formatting-options)
   * [Inlining options](#inlining-options)
   * [Optimization levels](#optimization-levels)
@@ -103,12 +104,14 @@ Once released clean-css 4.1 will introduce the following changes / features:
 * `compatibility: { selectors: { mergeLimit: <number> } }` flag in compatibility settings controlling maximum number of selectors in a single rule;
 * `minify` method improved signature accepting a list of hashes for a predictable traversal;
 * `selectorsSortingMethod` level 1 optimization allows `false` or `'none'` for disabling selector sorting;
+* `fetch` option controlling a function for handling remote requests;
 
 ## Constructor options
 
 clean-css constructor accepts a hash as a parameter with the following options available:
 
 * `compatibility` - controls compatibility mode used; defaults to `ie10+`; see [compatibility modes](#compatibility-modes) for examples;
+* `fetch` - controls a function for handling remote requests; see [fetch option](#fetch-option) for examples (since 4.1.0-pre);
 * `format` - controls output CSS formatting; defaults to `false`; see [formatting options](#formatting-options) for examples;
 * `inline` - controls `@import` inlining rules; defaults to `'local'`; see [inlining options](#inlining-options) for examples;
 * `inlineRequest` - controls extra options for inlining remote `@import` rules, can be any of [HTTP(S) request options](https://nodejs.org/api/http.html#http_http_request_options_callback);
@@ -182,6 +185,32 @@ new CleanCSS({
   compatibility: 'ie9,-properties.merging' // sets compatibility to IE9 mode with disabled property merging
 })
 ```
+
+## Fetch option
+
+The `fetch` option accepts a function which handles remote resource fetching, e.g.
+
+```js
+var request = require('request');
+var source = '@import url(http://example.com/path/to/stylesheet.css);';
+new CleanCSS({
+  fetch: function (uri, inlineRequest, inlineTimeout, callback) {
+    request(uri, function (error, response, body) {
+      if (error) {
+        callback(error, null);
+      } else if (response && response.statusCode != 200) {
+        callback(response.statusCode, null);
+      } else {
+        callback(null, body);
+      }
+    });
+  }
+}).minify(source);
+```
+
+This option provides a convenient way of overriding the default fetching logic if it doesn't support a particular feature, say CONNECT proxies.
+
+Unless given, the default [loadRemoteResource](https://github.com/jakubpawlowicz/clean-css/blob/master/lib/reader/load-remote-resource.js) logic is used.
 
 ## Formatting options
 

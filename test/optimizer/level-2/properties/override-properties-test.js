@@ -1607,6 +1607,118 @@ vows.describe(optimizeProperties)
     }
   })
   .addBatch({
+    'font shorthand and longhand': {
+      'topic': function () {
+        return _optimize('.block{font:12px sans-serif;font-weight:bold}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'font', [[1, 7, undefined]]],
+            ['property-value', 'bold', [[1, 40, undefined]]],
+            ['property-value', '12px', [[1, 12, undefined]]],
+            ['property-value', 'sans-serif', [[1, 17, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'font shorthand and line-height': {
+      'topic': function () {
+        return _optimize('.block{font:12px sans-serif;line-height:16px}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'font', [[1, 7, undefined]]],
+            ['property-value', '12px', [[1, 12, undefined]]],
+            ['property-value', '/'],
+            ['property-value', '16px', [[1, 40, undefined]]],
+            ['property-value', 'sans-serif', [[1, 17, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'font longhand and shorthand': {
+      'topic': function () {
+        return _optimize('.block{font-stretch:extra-condensed;font:12px sans-serif}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'font', [[1, 36, undefined]]],
+            ['property-value', '12px', [[1, 41, undefined]]],
+            ['property-value', 'sans-serif', [[1, 46, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'font shorthand with overriddable shorthand': {
+      'topic': function () {
+        return _optimize('.block{font:bold 14px serif;font:12px sans-serif}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'font', [[1, 7, undefined]]],
+            ['property-value', '12px', [[1, 33, undefined]]],
+            ['property-value', 'sans-serif', [[1, 38, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'font shorthand with non-overriddable shorthand': {
+      'topic': function () {
+        return _optimize('.block{font:bold 14px serif;font:16px -moz-sans-serif}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'font', [[1, 7, undefined]]],
+            ['property-value', 'bold', [[1, 12, undefined]]],
+            ['property-value', '14px', [[1, 17, undefined]]],
+            ['property-value', 'serif', [[1, 22, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'font', [[1, 28, undefined]]],
+            ['property-value', '16px', [[1, 33, undefined]]],
+            ['property-value', '-moz-sans-serif', [[1, 38, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'font shorthand after non-component longhands': {
+      'topic': function () {
+        return _optimize('.block{font-kerning:none;font-synthesis:none;font:14px serif}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'font-kerning', [[1, 7, undefined]]],
+            ['property-value', 'none', [[1, 20, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'font-synthesis', [[1, 25, undefined]]],
+            ['property-value', 'none', [[1, 40, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'font', [[1, 45, undefined]]],
+            ['property-value', '14px', [[1, 50, undefined]]],
+            ['property-value', 'serif', [[1, 55, undefined]]]
+          ]
+        ]);
+      }
+    }
+  })
+  .addBatch({
     'padding !important then not !important': {
       'topic': function () {
         return _optimize('a{padding:0!important;padding-left:3px}');

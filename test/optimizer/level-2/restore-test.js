@@ -688,6 +688,124 @@ vows.describe(restore)
           ]);
         }
       },
+      'font with all non-default values': {
+        'topic': function () {
+          return _restore(
+            _breakUp([
+              'property',
+              ['property-name', 'font'],
+              ['property-value', 'italic'],
+              ['property-value', 'small-caps'],
+              ['property-value', 'bold'],
+              ['property-value', 'ultra-condensed'],
+              ['property-value', '12px'],
+              ['property-value', '/'],
+              ['property-value', '16px'],
+              ['property-value', 'sans-serif']
+            ])
+          );
+        },
+        'gives right value back': function (restoredValue) {
+          assert.deepEqual(restoredValue, [
+            ['property-value', 'italic'],
+            ['property-value', 'small-caps'],
+            ['property-value', 'bold'],
+            ['property-value', 'ultra-condensed'],
+            ['property-value', '12px'],
+            ['property-value', '/'],
+            ['property-value', '16px'],
+            ['property-value', 'sans-serif']
+          ]);
+        }
+      },
+      'font with some default values': {
+        'topic': function () {
+          return _restore(
+            _breakUp([
+              'property',
+              ['property-name', 'font'],
+              ['property-value', 'normal'],
+              ['property-value', 'small-caps'],
+              ['property-value', 'normal'],
+              ['property-value', 'ultra-condensed'],
+              ['property-value', '12px'],
+              ['property-value', '/'],
+              ['property-value', '16px'],
+              ['property-value', 'sans-serif']
+            ])
+          );
+        },
+        'gives right value back': function (restoredValue) {
+          assert.deepEqual(restoredValue, [
+            ['property-value', 'small-caps'],
+            ['property-value', 'ultra-condensed'],
+            ['property-value', '12px'],
+            ['property-value', '/'],
+            ['property-value', '16px'],
+            ['property-value', 'sans-serif']
+          ]);
+        }
+      },
+      'font without line height': {
+        'topic': function () {
+          return _restore(
+            _breakUp([
+              'property',
+              ['property-name', 'font'],
+              ['property-value', '12px'],
+              ['property-value', 'sans-serif']
+            ])
+          );
+        },
+        'gives right value back': function (restoredValue) {
+          assert.deepEqual(restoredValue, [
+            ['property-value', '12px'],
+            ['property-value', 'sans-serif']
+          ]);
+        }
+      },
+      'font with multiple font family values': {
+        'topic': function () {
+          return _restore(
+            _breakUp([
+              'property',
+              ['property-name', 'font'],
+              ['property-value', '12px'],
+              ['property-value', '"Helvetica Neue"'],
+              ['property-value', ','],
+              ['property-value', 'Helvetica'],
+              ['property-value', ','],
+              ['property-value', 'sans-serif']
+            ])
+          );
+        },
+        'gives right value back': function (restoredValue) {
+          assert.deepEqual(restoredValue, [
+            ['property-value', '12px'],
+            ['property-value', '"Helvetica Neue"'],
+            ['property-value', ','],
+            ['property-value', 'Helvetica'],
+            ['property-value', ','],
+            ['property-value', 'sans-serif']
+          ]);
+        }
+      },
+      'font with inherit': {
+        'topic': function () {
+          return _restore(
+            _breakUp([
+              'property',
+              ['property-name', 'font'],
+              ['property-value', 'inherit']
+            ])
+          );
+        },
+        'gives right value back': function (restoredValue) {
+          assert.deepEqual(restoredValue, [
+            ['property-value', 'inherit']
+          ]);
+        }
+      },
       'list with some values': {
         'topic': function () {
           return _restore(

@@ -633,6 +633,446 @@ vows.describe(breakUp)
         }
       }
     },
+    'font': {
+      'all values': {
+        'topic': function () {
+          return _breakUp([
+            [
+              'property',
+              ['property-name', 'font'],
+              ['property-value', 'italic'],
+              ['property-value', 'small-caps'],
+              ['property-value', 'bold'],
+              ['property-value', 'normal'],
+              ['property-value', '18px'],
+              ['property-value', '/'],
+              ['property-value', '16px'],
+              ['property-value', 'sans-serif']
+            ]
+          ]);
+        },
+        'has 7 components': function (components) {
+          assert.lengthOf(components, 7);
+        },
+        'has font-style': function (components) {
+          assert.equal(components[0].name, 'font-style');
+          assert.deepEqual(components[0].value, [['property-value', 'italic']]);
+        },
+        'has font-variant': function (components) {
+          assert.equal(components[1].name, 'font-variant');
+          assert.deepEqual(components[1].value, [['property-value', 'small-caps']]);
+        },
+        'has font-weight': function (components) {
+          assert.equal(components[2].name, 'font-weight');
+          assert.deepEqual(components[2].value, [['property-value', 'bold']]);
+        },
+        'has font-stretch': function (components) {
+          assert.equal(components[3].name, 'font-stretch');
+          assert.deepEqual(components[3].value, [['property-value', 'normal']]);
+        },
+        'has font-size': function (components) {
+          assert.equal(components[4].name, 'font-size');
+          assert.deepEqual(components[4].value, [['property-value', '18px']]);
+        },
+        'has line-height': function (components) {
+          assert.equal(components[5].name, 'line-height');
+          assert.deepEqual(components[5].value, [['property-value', '16px']]);
+        },
+        'has font-family': function (components) {
+          assert.equal(components[6].name, 'font-family');
+          assert.deepEqual(components[6].value, [['property-value', 'sans-serif']]);
+        }
+      },
+      'multiple font-family': {
+        'topic': function () {
+          return _breakUp([
+            [
+              'property',
+              ['property-name', 'font'],
+              ['property-value', 'italic'],
+              ['property-value', 'small-caps'],
+              ['property-value', 'bold'],
+              ['property-value', 'normal'],
+              ['property-value', '18px'],
+              ['property-value', '/'],
+              ['property-value', '16px'],
+              ['property-value', 'Helvetica'],
+              ['property-value', ','],
+              ['property-value', 'Arial'],
+              ['property-value', ','],
+              ['property-value', 'sans-serif']
+            ]
+          ]);
+        },
+        'has all font-family': function (components) {
+          assert.equal(components[6].name, 'font-family');
+          assert.deepEqual(components[6].value, [['property-value', 'Helvetica'], ['property-value', 'Arial'], ['property-value', 'sans-serif']]);
+        }
+      },
+      'no line-height': {
+        'topic': function () {
+          return _breakUp([
+            [
+              'property',
+              ['property-name', 'font'],
+              ['property-value', 'italic'],
+              ['property-value', 'small-caps'],
+              ['property-value', 'bold'],
+              ['property-value', 'normal'],
+              ['property-value', '18px'],
+              ['property-value', 'sans-serif']
+            ]
+          ]);
+        },
+        'has 7 components': function (components) {
+          assert.lengthOf(components, 7);
+        },
+        'has font-size': function (components) {
+          assert.equal(components[4].name, 'font-size');
+          assert.deepEqual(components[4].value, [['property-value', '18px']]);
+        },
+        'has line-height': function (components) {
+          assert.equal(components[5].name, 'line-height');
+          assert.deepEqual(components[5].value, [['property-value', 'normal']]);
+        },
+        'has font-family': function (components) {
+          assert.equal(components[6].name, 'font-family');
+          assert.deepEqual(components[6].value, [['property-value', 'sans-serif']]);
+        }
+      },
+      'no line-height or fuzzy matched properties': {
+        'topic': function () {
+          return _breakUp([
+            [
+              'property',
+              ['property-name', 'font'],
+              ['property-value', '18px'],
+              ['property-value', 'sans-serif']
+            ]
+          ]);
+        },
+        'has 7 components': function (components) {
+          assert.lengthOf(components, 7);
+        },
+        'has font-style': function (components) {
+          assert.equal(components[0].name, 'font-style');
+          assert.deepEqual(components[0].value, [['property-value', 'normal']]);
+        },
+        'has font-variant': function (components) {
+          assert.equal(components[1].name, 'font-variant');
+          assert.deepEqual(components[1].value, [['property-value', 'normal']]);
+        },
+        'has font-weight': function (components) {
+          assert.equal(components[2].name, 'font-weight');
+          assert.deepEqual(components[2].value, [['property-value', 'normal']]);
+        },
+        'has font-stretch': function (components) {
+          assert.equal(components[3].name, 'font-stretch');
+          assert.deepEqual(components[3].value, [['property-value', 'normal']]);
+        },
+        'has font-size': function (components) {
+          assert.equal(components[4].name, 'font-size');
+          assert.deepEqual(components[4].value, [['property-value', '18px']]);
+        },
+        'has line-height': function (components) {
+          assert.equal(components[5].name, 'line-height');
+          assert.deepEqual(components[5].value, [['property-value', 'normal']]);
+        },
+        'has font-family': function (components) {
+          assert.equal(components[6].name, 'font-family');
+          assert.deepEqual(components[6].value, [['property-value', 'sans-serif']]);
+        }
+      },
+      'some fuzzy matched properties #1': {
+        'topic': function () {
+          return _breakUp([
+            [
+              'property',
+              ['property-name', 'font'],
+              ['property-value', 'bold'],
+              ['property-value', 'small-caps'],
+              ['property-value', '18px'],
+              ['property-value', 'sans-serif']
+            ]
+          ]);
+        },
+        'has 7 components': function (components) {
+          assert.lengthOf(components, 7);
+        },
+        'has font-style': function (components) {
+          assert.equal(components[0].name, 'font-style');
+          assert.deepEqual(components[0].value, [['property-value', 'normal']]);
+        },
+        'has font-variant': function (components) {
+          assert.equal(components[1].name, 'font-variant');
+          assert.deepEqual(components[1].value, [['property-value', 'small-caps']]);
+        },
+        'has font-weight': function (components) {
+          assert.equal(components[2].name, 'font-weight');
+          assert.deepEqual(components[2].value, [['property-value', 'bold']]);
+        },
+        'has font-stretch': function (components) {
+          assert.equal(components[3].name, 'font-stretch');
+          assert.deepEqual(components[3].value, [['property-value', 'normal']]);
+        }
+      },
+      'some fuzzy matched properties #2': {
+        'topic': function () {
+          return _breakUp([
+            [
+              'property',
+              ['property-name', 'font'],
+              ['property-value', 'ultra-condensed'],
+              ['property-value', 'italic'],
+              ['property-value', '18px'],
+              ['property-value', 'sans-serif']
+            ]
+          ]);
+        },
+        'has 7 components': function (components) {
+          assert.lengthOf(components, 7);
+        },
+        'has font-style': function (components) {
+          assert.equal(components[0].name, 'font-style');
+          assert.deepEqual(components[0].value, [['property-value', 'italic']]);
+        },
+        'has font-variant': function (components) {
+          assert.equal(components[1].name, 'font-variant');
+          assert.deepEqual(components[1].value, [['property-value', 'normal']]);
+        },
+        'has font-weight': function (components) {
+          assert.equal(components[2].name, 'font-weight');
+          assert.deepEqual(components[2].value, [['property-value', 'normal']]);
+        },
+        'has font-stretch': function (components) {
+          assert.equal(components[3].name, 'font-stretch');
+          assert.deepEqual(components[3].value, [['property-value', 'ultra-condensed']]);
+        }
+      },
+      'repeated fuzzy matched value': {
+        'topic': function () {
+          return _breakUp([
+            [
+              'property',
+              ['property-name', 'font'],
+              ['property-value', 'italic', [[0, 13, undefined]]],
+              ['property-value', 'italic'],
+              ['property-value', '18px'],
+              ['property-value', 'sans-serif']
+            ]
+          ]);
+        },
+        'has 0 components': function (components) {
+          assert.lengthOf(components, 0);
+        }
+      },
+      'line-height and font-size as functions': {
+        'topic': function () {
+          return _breakUp([
+            [
+              'property',
+              ['property-name', 'font'],
+              ['property-value', 'calc(27px / 2)', [[0, 13, undefined]]],
+              ['property-value', '/'],
+              ['property-value', 'calc(31px / 2)'],
+              ['property-value', 'sans-serif']
+            ]
+          ]);
+        },
+        'has 0 components': function (components) {
+          assert.lengthOf(components, 0);
+        }
+      },
+      'missing font size value': {
+        'topic': function () {
+          return _breakUp([
+            [
+              'property',
+              ['property-name', 'font'],
+              ['property-value', 'italic', [[0, 13, undefined]]],
+              ['property-value', 'sans-serif']
+            ]
+          ]);
+        },
+        'has 0 components': function (components) {
+          assert.lengthOf(components, 0);
+        }
+      },
+      'missing font family value': {
+        'topic': function () {
+          return _breakUp([
+            [
+              'property',
+              ['property-name', 'font'],
+              ['property-value', 'italic', [[0, 13, undefined]]],
+              ['property-value', '12px']
+            ]
+          ]);
+        },
+        'has 0 components': function (components) {
+          assert.lengthOf(components, 0);
+        }
+      },
+      'missing font family value after line height': {
+        'topic': function () {
+          return _breakUp([
+            [
+              'property',
+              ['property-name', 'font'],
+              ['property-value', 'italic', [[0, 13, undefined]]],
+              ['property-value', '12px'],
+              ['property-value', '/'],
+              ['property-value', '12px']
+            ]
+          ]);
+        },
+        'has 0 components': function (components) {
+          assert.lengthOf(components, 0);
+        }
+      },
+      'missing font family when only commas given': {
+        'topic': function () {
+          return _breakUp([
+            [
+              'property',
+              ['property-name', 'font'],
+              ['property-value', 'italic', [[0, 13, undefined]]],
+              ['property-value', '12px'],
+              ['property-value', ','],
+              ['property-value', ',']
+            ]
+          ]);
+        },
+        'has 0 components': function (components) {
+          assert.lengthOf(components, 0);
+        }
+      },
+      'missing all values': {
+        'topic': function () {
+          return _breakUp([
+            [
+              'property',
+              ['property-name', 'font', [[0, 13, undefined]]]
+            ]
+          ]);
+        },
+        'has 0 components': function (components) {
+          assert.lengthOf(components, 0);
+        }
+      },
+      'values after font family': {
+        'topic': function () {
+          return _breakUp([
+            [
+              'property',
+              ['property-name', 'font'],
+              ['property-value', '12px'],
+              ['property-value', 'Helvetica'],
+              ['property-value', ','],
+              ['property-value', 'sans-serif'],
+              ['property-value', 'italic']
+            ]
+          ]);
+        },
+        'has 7 components': function (components) {
+          assert.lengthOf(components, 7);
+        },
+        'has font-family': function (components) {
+          assert.equal(components[6].name, 'font-family');
+          assert.deepEqual(components[6].value, [['property-value', 'Helvetica'], ['property-value', 'sans-serif italic']]);
+        }
+      },
+      'single inherit': {
+        'topic': function () {
+          return _breakUp([
+            [
+              'property',
+              ['property-name', 'font'],
+              ['property-value', 'inherit']
+            ]
+          ]);
+        },
+        'has 7 components': function (components) {
+          assert.lengthOf(components, 7);
+        },
+        'has font-style': function (components) {
+          assert.equal(components[0].name, 'font-style');
+          assert.deepEqual(components[0].value, [['property-value', 'inherit']]);
+        },
+        'has font-variant': function (components) {
+          assert.equal(components[1].name, 'font-variant');
+          assert.deepEqual(components[1].value, [['property-value', 'inherit']]);
+        },
+        'has font-weight': function (components) {
+          assert.equal(components[2].name, 'font-weight');
+          assert.deepEqual(components[2].value, [['property-value', 'inherit']]);
+        },
+        'has font-stretch': function (components) {
+          assert.equal(components[3].name, 'font-stretch');
+          assert.deepEqual(components[3].value, [['property-value', 'inherit']]);
+        },
+        'has font-size': function (components) {
+          assert.equal(components[4].name, 'font-size');
+          assert.deepEqual(components[4].value, [['property-value', 'inherit']]);
+        },
+        'has line-height': function (components) {
+          assert.equal(components[5].name, 'line-height');
+          assert.deepEqual(components[5].value, [['property-value', 'inherit']]);
+        },
+        'has font-family': function (components) {
+          assert.equal(components[6].name, 'font-family');
+          assert.deepEqual(components[6].value, [['property-value', 'inherit']]);
+        }
+      },
+      'multiple inherit': {
+        'topic': function () {
+          return _breakUp([
+            [
+              'property',
+              ['property-name', 'font'],
+              ['property-value', 'inherit', [[0, 13, undefined]]],
+              ['property-value', 'inherit']
+            ]
+          ]);
+        },
+        'has 0 components': function (components) {
+          assert.lengthOf(components, 0);
+        }
+      },
+      'mixed inherit #1': {
+        'topic': function () {
+          return _breakUp([
+            [
+              'property',
+              ['property-name', 'font'],
+              ['property-value', 'inherit', [[0, 13, undefined]]],
+              ['property-value', '12px'],
+              ['property-value', 'sans-serif']
+            ]
+          ]);
+        },
+        'has 0 components': function (components) {
+          assert.lengthOf(components, 0);
+        }
+      },
+      'mixed inherit #2': {
+        'topic': function () {
+          return _breakUp([
+            [
+              'property',
+              ['property-name', 'font'],
+              ['property-value', 'bold', [[0, 13, undefined]]],
+              ['property-value', 'inherit'],
+              ['property-value', '12px'],
+              ['property-value', 'sans-serif']
+            ]
+          ]);
+        },
+        'has 0 components': function (components) {
+          assert.lengthOf(components, 0);
+        }
+      }
+    },
     'four values': {
       'four given': {
         'topic': function () {

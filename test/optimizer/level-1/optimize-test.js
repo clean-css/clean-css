@@ -475,11 +475,11 @@ vows.describe('level 1 optimizations')
     optimizerContext('font', {
       'in shorthand': [
         'a{font:normal 13px/20px sans-serif}',
-        'a{font:400 13px/20px sans-serif}'
+        'a{font:normal 13px/20px sans-serif}'
       ],
       'in shorthand with fractions': [
         'a{font:bold .9em sans-serif}',
-        'a{font:700 .9em sans-serif}'
+        'a{font:bold .9em sans-serif}'
       ],
       'with font wariant and style': [
         'a{font:normal normal normal 13px/20px sans-serif}',
@@ -499,15 +499,11 @@ vows.describe('level 1 optimizations')
       ],
       'with mixed bold weight and variant #1': [
         'a{font:normal bold 17px sans-serif}',
-        'a{font:normal 700 17px sans-serif}'
+        'a{font:normal bold 17px sans-serif}'
       ],
       'with mixed bold weight and variant #2': [
         'a{font:bold normal 17px sans-serif}',
-        'a{font:700 normal 17px sans-serif}'
-      ],
-      'with mixed bold weight and variant #3': [
-        'a{font:bold normal normal 17px sans-serif}',
-        'a{font:bold normal normal 17px sans-serif}' // pending #254
+        'a{font:bold normal 17px sans-serif}'
       ]
     }, { level: 1 })
   )

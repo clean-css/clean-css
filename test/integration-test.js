@@ -1194,25 +1194,9 @@ vows.describe('integration tests')
   )
   .addBatch(
     optimizerContext('font weights', {
-      'font-weight:normal to 400': [
-        'p{font-weight:normal}',
-        'p{font-weight:400}'
-      ],
-      'font-weight:bold to 700': [
-        'p{font-weight:bold}',
-        'p{font-weight:700}'
-      ],
       'font weight in font declarations': [
         'body{font:normal 13px/20px "Helvetica Neue",Helvetica,Arial,sans-serif}',
-        'body{font:400 13px/20px "Helvetica Neue",Helvetica,Arial,sans-serif}'
-      ],
-      'font weight in font declarations with fraction units': [
-        'p{font:bold .9rem Helvetica}',
-        'p{font:700 .9rem Helvetica}'
-      ],
-      'multiple changes': [
-        'p{font-weight:bold!important;width:100%;font:normal 13px Helvetica}',
-        'p{font-weight:700!important;width:100%;font:400 13px Helvetica}'
+        'body{font:normal 13px/20px "Helvetica Neue",Helvetica,Arial,sans-serif}'
       ],
       'font weight in extended font declarations': [
         'a{font:normal normal normal 13px/20px Helvetica}',

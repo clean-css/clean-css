@@ -106,6 +106,7 @@ Once released clean-css 4.1 will introduce the following changes / features:
 * `selectorsSortingMethod` level 1 optimization allows `false` or `'none'` for disabling selector sorting;
 * `fetch` option controlling a function for handling remote requests;
 * new `font` shorthand and `font-*` longhand optimizers;
+* removal of `optimizeFont` flag in level 1 optimizations due to new `font` shorthand optimizer;
 
 ## Constructor options
 

@@ -144,6 +144,7 @@ vows.describe(optimizationLevelFrom)
           removeDuplicateFontRules: true,
           removeDuplicateMediaBlocks: true,
           removeDuplicateRules: true,
+          removeUnusedAtRules: false,
           restructureRules: false,
           skipProperties: []
         });
@@ -210,6 +211,7 @@ vows.describe(optimizationLevelFrom)
           removeDuplicateFontRules: true,
           removeDuplicateMediaBlocks: true,
           removeDuplicateRules: true,
+          removeUnusedAtRules: false,
           restructureRules: false,
           skipProperties: []
         });
@@ -341,6 +343,7 @@ vows.describe(optimizationLevelFrom)
           removeDuplicateFontRules: false,
           removeDuplicateMediaBlocks: false,
           removeDuplicateRules: false,
+          removeUnusedAtRules: false,
           restructureRules: false,
           skipProperties: []
         });
@@ -396,6 +399,7 @@ vows.describe(optimizationLevelFrom)
           removeDuplicateFontRules: false,
           removeDuplicateMediaBlocks: false,
           removeDuplicateRules: false,
+          removeUnusedAtRules: false,
           restructureRules: false,
           skipProperties: []
         });
@@ -489,6 +493,7 @@ vows.describe(optimizationLevelFrom)
           removeDuplicateFontRules: true,
           removeDuplicateMediaBlocks: true,
           removeDuplicateRules: true,
+          removeUnusedAtRules: false,
           restructureRules: false,
           skipProperties: []
         });
@@ -544,6 +549,7 @@ vows.describe(optimizationLevelFrom)
           removeDuplicateFontRules: true,
           removeDuplicateMediaBlocks: true,
           removeDuplicateRules: true,
+          removeUnusedAtRules: false,
           restructureRules: false,
           skipProperties: []
         });
@@ -599,6 +605,7 @@ vows.describe(optimizationLevelFrom)
           removeDuplicateFontRules: false,
           removeDuplicateMediaBlocks: false,
           removeDuplicateRules: false,
+          removeUnusedAtRules: false,
           restructureRules: false,
           skipProperties: []
         });
@@ -654,6 +661,7 @@ vows.describe(optimizationLevelFrom)
           removeDuplicateFontRules: false,
           removeDuplicateMediaBlocks: false,
           removeDuplicateRules: false,
+          removeUnusedAtRules: false,
           restructureRules: false,
           skipProperties: []
         });

@@ -9,6 +9,7 @@
 * Fixed issue [#893](https://github.com/jakubpawlowicz/clean-css/issues/893) - `inline: false` as alias to `inline: 'none'`.
 * Fixed issue [#890](https://github.com/jakubpawlowicz/clean-css/issues/890) - adds toggle to disable empty tokens removal.
 * Fixed issue [#886](https://github.com/jakubpawlowicz/clean-css/issues/886) - better multi pseudo class / element merging.
+* Fixed issue [#862](https://github.com/jakubpawlowicz/clean-css/issues/862) - allows removing unused at rules.
 * Fixed issue [#860](https://github.com/jakubpawlowicz/clean-css/issues/860) - adds `animation` property optimizer.
 * Fixed issue [#755](https://github.com/jakubpawlowicz/clean-css/issues/755) - adds custom handling of remote requests.
 * Fixed issue [#254](https://github.com/jakubpawlowicz/clean-css/issues/254) - adds `font` property optimizer.

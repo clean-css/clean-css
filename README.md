@@ -109,6 +109,7 @@ Once released clean-css 4.1 will introduce the following changes / features:
 * removal of `optimizeFont` flag in level 1 optimizations due to new `font` shorthand optimizer;
 * `skipProperties` flag in level 2 optimizations controlling which properties won't be optimized;
 * new `animation` shorthand and `animation-*` longhand optimizers;
+* `removeUnusedAtRules` level 2 optimization controlling removal of unused `@counter-style`, `@font-face`, `@keyframes`, and `@namespace` at rules;
 
 ## Constructor options
 
@@ -379,7 +380,8 @@ new CleanCSS({
       removeDuplicateFontRules: true, // controls duplicate `@font-face` removing; defaults to true
       removeDuplicateMediaBlocks: true, // controls duplicate `@media` removing; defaults to true
       removeDuplicateRules: true, // controls duplicate rules removing; defaults to true
-      restructureRules: false, // controls rule restructuring; defaults to false`
+      removeUnusedAtRules: false, // controls unused at rule removing; defaults to false (available since 4.1.0-pre)
+      restructureRules: false, // controls rule restructuring; defaults to false
       skipProperties: [] // controls which properties won't be optimized, defaults to `[]` which means all will be optimized (since 4.1.0-pre)
     }
   }

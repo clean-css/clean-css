@@ -176,6 +176,30 @@ vows.describe('level 1 optimizations')
     }, { level: { 1: { selectorsSortingMethod: 'natural' } } })
   )
   .addBatch(
+    optimizerContext('selectors - no sorting', {
+      'no numbers': [
+        '.block,.another-block,.one-more-block{color:red}',
+        '.block,.another-block,.one-more-block{color:red}'
+      ],
+      'complex numbers': [
+        '.block-1__element-11,.block-1__element-2,.block-12__element-1,.block-3__element-1{color:red}',
+        '.block-1__element-11,.block-1__element-2,.block-12__element-1,.block-3__element-1{color:red}'
+      ],
+    }, { level: { 1: { selectorsSortingMethod: 'none' } } })
+  )
+  .addBatch(
+    optimizerContext('selectors - no sorting aliased as `false`', {
+      'no numbers': [
+        '.block,.another-block,.one-more-block{color:red}',
+        '.block,.another-block,.one-more-block{color:red}'
+      ],
+      'complex numbers': [
+        '.block-1__element-11,.block-1__element-2,.block-12__element-1,.block-3__element-1{color:red}',
+        '.block-1__element-11,.block-1__element-2,.block-12__element-1,.block-3__element-1{color:red}'
+      ],
+    }, { level: { 1: { selectorsSortingMethod: false } } })
+  )
+  .addBatch(
     optimizerContext('selectors - ie8', {
       '+html': [
         '*+html .foo{color:red}',

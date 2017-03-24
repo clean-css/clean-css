@@ -102,6 +102,7 @@ Once released clean-css 4.1 will introduce the following changes / features:
 * `removeEmpty` flag in level 2 optimizations controlling removal of rules and nested blocks;
 * `compatibility: { selectors: { mergeLimit: <number> } }` flag in compatibility settings controlling maximum number of selectors in a single rule;
 * `minify` method improved signature accepting a list of hashes for a predictable traversal;
+* `selectorsSortingMethod` level 1 optimization allows `false` or `'none'` for disabling selector sorting;
 
 ## Constructor options
 
@@ -298,7 +299,7 @@ new CleanCSS({
       replaceTimeUnits: true, // controls replacing time units with shorter values; defaults to `true`
       replaceZeroUnits: true, // controls replacing zero values with units; defaults to `true`
       roundingPrecision: false, // rounds pixel values to `N` decimal places; `false` disables rounding; defaults to `false`
-      selectorsSortingMethod: 'standard', // denotes selector sorting method; can be `natural` or `standard`; defaults to `standard`
+      selectorsSortingMethod: 'standard', // denotes selector sorting method; can be `'natural'` or `'standard'`, `'none'`, or false (the last two since 4.1.0-pre); defaults to `'standard'`
       specialComments: 'all', // denotes a number of /*! ... */ comments preserved; defaults to `all`
       tidyAtRules: true, // controls at-rules (e.g. `@charset`, `@import`) optimizing; defaults to `true`
       tidyBlockScopes: true, // controls block scopes (e.g. `@media`) optimizing; defaults to `true`

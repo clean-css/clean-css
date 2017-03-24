@@ -3,6 +3,7 @@
 
 * Fixed issue [#916](https://github.com/jakubpawlowicz/clean-css/issues/916) - maximum number of merged selectors.
 * Fixed issue [#908](https://github.com/jakubpawlowicz/clean-css/issues/908) - improved `minify` method signature.
+* Fixed issue [#905](https://github.com/jakubpawlowicz/clean-css/issues/905) - allows disabling selector sorting.
 * Fixed issue [#893](https://github.com/jakubpawlowicz/clean-css/issues/893) - `inline: false` as alias to `inline: 'none'`.
 * Fixed issue [#890](https://github.com/jakubpawlowicz/clean-css/issues/890) - adds toggle to disable empty tokens removal.
 * Fixed issue [#886](https://github.com/jakubpawlowicz/clean-css/issues/886) - better multi pseudo class / element merging.

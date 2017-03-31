@@ -26,8 +26,10 @@ vows.describe('protocol imports').addBatch({
     'should ignore @import': function (errors, minified) {
       assert.equal(minified.styles, '@import url(http://127.0.0.1/missing.css);a{color:red}');
     },
-    teardown: function () {
+    'hits the endpoint': function (_errors, _minified) {
       assert.isTrue(this.reqMocks.isDone());
+    },
+    teardown: function () {
       nock.cleanAll();
     }
   },
@@ -45,8 +47,10 @@ vows.describe('protocol imports').addBatch({
     'should process @import': function (errors, minified) {
       assert.equal(minified.styles, 'p{font-size:13px}a{color:red}');
     },
-    teardown: function () {
+    'hits the endpoint': function () {
       assert.isTrue(this.reqMocks.isDone());
+    },
+    teardown: function () {
       nock.cleanAll();
     }
   },
@@ -64,8 +68,10 @@ vows.describe('protocol imports').addBatch({
     'should process @import': function (errors, minified) {
       assert.equal(minified.styles, 'p{font-size:13px}');
     },
-    teardown: function () {
+    'hits the endpoint': function () {
       assert.isTrue(this.reqMocks.isDone());
+    },
+    teardown: function () {
       nock.cleanAll();
     }
   },
@@ -83,8 +89,10 @@ vows.describe('protocol imports').addBatch({
     'should process @import': function (errors, minified) {
       assert.equal(minified.styles, 'p{font-size:13px}a{color:red}');
     },
-    teardown: function () {
+    'hits the endpoint': function () {
       assert.isTrue(this.reqMocks.isDone());
+    },
+    teardown: function () {
       nock.cleanAll();
     }
   },
@@ -102,8 +110,10 @@ vows.describe('protocol imports').addBatch({
     'should process @import': function (errors, minified) {
       assert.equal(minified.styles, '@media screen{p{font-size:13px}}a{color:red}');
     },
-    teardown: function () {
+    'hits the endpoint': function () {
       assert.isTrue(this.reqMocks.isDone());
+    },
+    teardown: function () {
       nock.cleanAll();
     }
   },
@@ -126,9 +136,11 @@ vows.describe('protocol imports').addBatch({
     'should process @import': function (errors, minified) {
       assert.equal(minified.styles, 'body{margin:0}div{padding:0}p{font-size:13px}a{color:red}');
     },
-    teardown: function () {
+    'hits endpoints': function () {
       assert.isTrue(this.reqMocks1.isDone());
       assert.isTrue(this.reqMocks2.isDone());
+    },
+    teardown: function () {
       nock.cleanAll();
     }
   },
@@ -148,8 +160,10 @@ vows.describe('protocol imports').addBatch({
     'should process @import': function (errors, minified) {
       assert.equal(minified.styles, 'body{margin:0}p{font-size:13px}a{color:red}');
     },
-    teardown: function () {
+    'hits the endpoint': function () {
       assert.isTrue(this.reqMocks.isDone());
+    },
+    teardown: function () {
       nock.cleanAll();
     }
   },
@@ -170,8 +184,10 @@ vows.describe('protocol imports').addBatch({
     'should process @import': function (errors, minified) {
       assert.equal(minified.styles, '@import url(http://127.0.0.1/missing.css);p{font-size:13px}a{color:red}');
     },
-    teardown: function () {
+    'hits the endpoint': function (_errors, _minified) {
       assert.isTrue(this.reqMocks.isDone());
+    },
+    teardown: function () {
       nock.cleanAll();
     }
   },
@@ -189,8 +205,10 @@ vows.describe('protocol imports').addBatch({
     'should process @import': function (errors, minified) {
       assert.equal(minified.styles, 'a{background:url(http://127.0.0.1/test.png)}');
     },
-    teardown: function () {
+    'hits the endpoint': function () {
       assert.isTrue(this.reqMocks.isDone());
+    },
+    teardown: function () {
       nock.cleanAll();
     }
   },
@@ -210,8 +228,10 @@ vows.describe('protocol imports').addBatch({
     'should process @import': function (errors, minified) {
       assert.equal(minified.styles, 'a{background:url(http://127.0.0.1/deeply/images/test.png)}');
     },
-    teardown: function () {
+    'hits the endpoint': function () {
       assert.isTrue(this.reqMocks.isDone());
+    },
+    teardown: function () {
       nock.cleanAll();
     }
   },
@@ -231,8 +251,10 @@ vows.describe('protocol imports').addBatch({
     'should process @import': function (errors, minified) {
       assert.equal(minified.styles, 'a{background:url(../images/test.png)}');
     },
-    teardown: function () {
+    'hits the endpoint': function () {
       assert.isTrue(this.reqMocks.isDone());
+    },
+    teardown: function () {
       nock.cleanAll();
     }
   },
@@ -250,8 +272,10 @@ vows.describe('protocol imports').addBatch({
     'should process @import': function (errors, minified) {
       assert.equal(minified.styles, 'a{background:url(http://example.com/deeply/images/test.png)}');
     },
-    teardown: function () {
+    'hits the endpoint': function () {
       assert.isTrue(this.reqMocks.isDone());
+    },
+    teardown: function () {
       nock.cleanAll();
     }
   },
@@ -283,8 +307,10 @@ vows.describe('protocol imports').addBatch({
     'should process @import': function (errors, minified) {
       assert.equal(minified.styles, 'body{margin:0}a{color:red}');
     },
-    teardown: function () {
+    'hits the endpoint': function () {
       assert.isTrue(this.reqMocks.isDone());
+    },
+    teardown: function () {
       nock.cleanAll();
     }
   },
@@ -304,8 +330,10 @@ vows.describe('protocol imports').addBatch({
     'should process @import': function (errors, minified) {
       assert.equal(minified.styles, 'body{margin:0}a{color:red}');
     },
-    teardown: function () {
+    'hits the endpoint': function () {
       assert.isTrue(this.reqMocks.isDone());
+    },
+    teardown: function () {
       nock.cleanAll();
     }
   },
@@ -325,8 +353,10 @@ vows.describe('protocol imports').addBatch({
     'should process @import': function (errors, minified) {
       assert.equal(minified.styles, 'body{margin:0}div{padding:0}a{color:red}');
     },
-    teardown: function () {
+    'hits the endpoint': function () {
       assert.isTrue(this.reqMocks.isDone());
+    },
+    teardown: function () {
       nock.cleanAll();
     }
   },
@@ -366,8 +396,10 @@ vows.describe('protocol imports').addBatch({
     'should process @import': function (errors, minified) {
       assert.equal(minified.styles, 'a{background:url(//127.0.0.1/image.png)}');
     },
-    teardown: function () {
+    'hits the endpoint': function () {
       assert.isTrue(this.reqMocks.isDone());
+    },
+    teardown: function () {
       nock.cleanAll();
     }
   },
@@ -385,8 +417,10 @@ vows.describe('protocol imports').addBatch({
     'should process @import': function (errors, minified) {
       assert.equal(minified.styles, 'a{background:url(//127.0.0.2/image.png)}');
     },
-    teardown: function () {
+    'hits the endpoint': function () {
       assert.isTrue(this.reqMocks.isDone());
+    },
+    teardown: function () {
       nock.cleanAll();
     }
   },
@@ -409,8 +443,10 @@ vows.describe('protocol imports').addBatch({
     'should process @import': function (errors, minified) {
       assert.equal(minified.styles, 'div{padding:0}a{color:red}');
     },
-    teardown: function () {
+    'hits the endpoint': function () {
       assert.isTrue(this.reqMocks.isDone());
+    },
+    teardown: function () {
       nock.cleanAll();
     }
   },
@@ -429,8 +465,10 @@ vows.describe('protocol imports').addBatch({
     'should process @import': function (errors, minified) {
       assert.equal(minified.styles, 'div{padding:0}.one{color:red}');
     },
-    teardown: function () {
+    'hits the endpoint': function () {
       assert.isTrue(this.reqMocks.isDone());
+    },
+    teardown: function () {
       nock.cleanAll();
     }
   },
@@ -453,8 +491,10 @@ vows.describe('protocol imports').addBatch({
     'should process @import': function (error, minified) {
       assert.equal(minified.styles, '.one{color:red}');
     },
-    teardown: function () {
+    'does not hit the endpoint': function () {
       assert.isFalse(this.reqMocks.isDone());
+    },
+    teardown: function () {
       nock.cleanAll();
     }
   },
@@ -477,8 +517,10 @@ vows.describe('protocol imports').addBatch({
     'should process @import': function (error, minified) {
       assert.equal(minified.styles, '.one{color:red}');
     },
-    teardown: function () {
+    'does not hit the endpoint': function () {
       assert.isFalse(this.reqMocks.isDone());
+    },
+    teardown: function () {
       nock.cleanAll();
     }
   },
@@ -517,8 +559,10 @@ vows.describe('protocol imports').addBatch({
     'should process @import': function (error, minified) {
       assert.equal(minified.styles, 'div{padding:0}a{color:red}');
     },
-    teardown: function () {
+    'hits the endpoint': function () {
       assert.isTrue(this.reqMocks.isDone());
+    },
+    teardown: function () {
       nock.cleanAll();
     }
   }
@@ -588,8 +632,10 @@ vows.describe('protocol imports').addBatch({
     'gets right output': function (errors, minified) {
       assert.equal(minified.styles, 'a{color:red}');
     },
-    teardown: function () {
+    'hits the endpoint': function () {
       assert.isTrue(this.reqMocks.isDone());
+    },
+    teardown: function () {
       nock.cleanAll();
       this.proxyServer.destroy();
     }
@@ -634,8 +680,10 @@ vows.describe('protocol imports').addBatch({
     'gets right output': function (errors, minified) {
       assert.equal(minified.styles, 'a{color:red}');
     },
-    teardown: function () {
+    'hits the endpoint': function () {
       assert.isTrue(this.reqMocks.isDone());
+    },
+    teardown: function () {
       nock.cleanAll();
       this.proxyServer.destroy();
     }
@@ -668,8 +716,10 @@ vows.describe('protocol imports').addBatch({
     'gets right output': function (errors, minified) {
       assert.equal(minified.styles, 'a{color:red}');
     },
-    teardown: function () {
+    'hits the endpoint': function () {
       assert.isTrue(this.reqMocks.isDone());
+    },
+    teardown: function () {
       nock.cleanAll();
       this.proxyServer.destroy();
       delete process.env.http_proxy;
@@ -711,8 +761,10 @@ vows.describe('protocol imports').addBatch({
     'gets right output': function (errors, minified) {
       assert.equal(minified.styles, 'a{color:red}');
     },
-    teardown: function () {
+    'hits the endpoint': function () {
       assert.isTrue(this.reqMocks.isDone());
+    },
+    teardown: function () {
       nock.cleanAll();
       this.proxyServer.destroy();
       delete process.env.http_proxy;
@@ -788,9 +840,11 @@ vows.describe('protocol imports').addBatch({
     'should process imports': function (error, minified) {
       assert.equal(minified.styles, 'div{border:0}p{width:100%}');
     },
-    teardown: function () {
+    'hits endpoints': function () {
       assert.isTrue(this.reqMocks1.isDone());
       assert.isTrue(this.reqMocks2.isDone());
+    },
+    teardown: function () {
       nock.cleanAll();
     }
   },
@@ -814,9 +868,11 @@ vows.describe('protocol imports').addBatch({
     'should process imports': function (error, minified) {
       assert.equal(minified.styles, 'div{border:0}p{width:100%}.one{color:red}');
     },
-    teardown: function () {
+    'hits endpoints': function () {
       assert.isTrue(this.reqMocks1.isDone());
       assert.isTrue(this.reqMocks2.isDone());
+    },
+    teardown: function () {
       nock.cleanAll();
     }
   },
@@ -871,8 +927,10 @@ vows.describe('protocol imports').addBatch({
     'should process imports': function (error, minified) {
       assert.equal(minified.styles, '@import url(http://127.0.0.1/remote.css);p{width:100%}.one{color:red}');
     },
-    teardown: function () {
+    'hits the endpoint': function () {
       assert.isTrue(this.reqMocks.isDone());
+    },
+    teardown: function () {
       nock.cleanAll();
     }
   },
@@ -893,8 +951,10 @@ vows.describe('protocol imports').addBatch({
     'should process imports': function (error, minified) {
       assert.equal(minified.styles, '@import url(http://127.0.0.1/remote.css);p{width:100%}.one{color:red}');
     },
-    teardown: function () {
+    'hits the endpoint': function () {
       assert.isTrue(this.reqMocks.isDone());
+    },
+    teardown: function () {
       nock.cleanAll();
     }
   }

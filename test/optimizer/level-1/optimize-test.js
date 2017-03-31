@@ -376,6 +376,10 @@ vows.describe('level 1 optimizations')
       'name into hex': [
         'a{color:white}',
         'a{color:white}'
+      ],
+      'hsl zeros': [
+        'a{color:hsl(0,0%,100%)}',
+        'a{color:hsl(0,0%,100%)}'
       ]
     }, { level: 1, compatibility: { properties: { colors: false } } })
   )

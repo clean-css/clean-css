@@ -1,3 +1,8 @@
+[4.0.11 / 2017-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v4.0.10...v4.0.11)
+==================
+
+* Fixed issue [#924](https://github.com/jakubpawlowicz/clean-css/issues/924) - `hsl` zero percent eager optimization.
+
 [4.0.10 / 2017-03-22](https://github.com/jakubpawlowicz/clean-css/compare/v4.0.9...v4.0.10)
 ==================
 

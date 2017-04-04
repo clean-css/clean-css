@@ -9,7 +9,7 @@
 * Fixed issue [#886](https://github.com/jakubpawlowicz/clean-css/issues/886) - better multi pseudo class / element merging.
 * Fixed issue [#755](https://github.com/jakubpawlowicz/clean-css/issues/755) - adds custom handling of remote requests.
 
-[4.0.11 / 2017-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v4.0.10...v4.0.11)
+[4.0.11 / 2017-04-04](https://github.com/jakubpawlowicz/clean-css/compare/v4.0.10...v4.0.11)
 ==================
 
 * Fixed issue [#924](https://github.com/jakubpawlowicz/clean-css/issues/924) - `hsl` zero percent eager optimization.

@@ -1716,6 +1716,53 @@ vows.describe(optimizeProperties)
           ]
         ]);
       }
+    },
+    'system font shorthand before longhand': {
+      'topic': function () {
+        return _optimize('.block{font:icon;font-weight:bold}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'font', [[1, 7, undefined]]],
+            ['property-value', 'icon', [[1, 12, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'font-weight', [[1, 17, undefined]]],
+            ['property-value', 'bold', [[1, 29, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'system font shorthand after longhand': {
+      'topic': function () {
+        return _optimize('.block{font-weight:bold;font:icon}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'font', [[1, 24, undefined]]],
+            ['property-value', 'icon', [[1, 29, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'two system font shorthands': {
+      'topic': function () {
+        return _optimize('.block{font:status-bar;font:icon}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'font', [[1, 23, undefined]]],
+            ['property-value', 'icon', [[1, 28, undefined]]]
+          ]
+        ]);
+      }
     }
   })
   .addBatch({

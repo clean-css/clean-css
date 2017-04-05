@@ -806,6 +806,38 @@ vows.describe(restore)
           ]);
         }
       },
+      'system font with standard value': {
+        'topic': function () {
+          return _restore(
+            _breakUp([
+              'property',
+              ['property-name', 'font'],
+              ['property-value', 'icon']
+            ])
+          );
+        },
+        'gives right value back': function (restoredValue) {
+          assert.deepEqual(restoredValue, [
+            ['property-value', 'icon']
+          ]);
+        }
+      },
+      'system font with vendor-prefixed value': {
+        'topic': function () {
+          return _restore(
+            _breakUp([
+              'property',
+              ['property-name', 'font'],
+              ['property-value', '-moz-status']
+            ])
+          );
+        },
+        'gives right value back': function (restoredValue) {
+          assert.deepEqual(restoredValue, [
+            ['property-value', '-moz-status']
+          ]);
+        }
+      },
       'list with some values': {
         'topic': function () {
           return _restore(

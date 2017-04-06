@@ -162,4 +162,24 @@ vows.describe('level 2 optimizer')
       ]
     }, { level: { 1: { removeEmpty: false }, 2: { removeEmpty: false } } })
   )
+  .addBatch(
+    optimizerContext('skipping properties', {
+      'merging': [
+        '.block{background:url(test.png);background-repeat:repeat-y;font:16px serif;font-weight:700;margin:10px;margin-top:12px}',
+        '.block{background:url(test.png);background-repeat:repeat-y;font:16px serif;font-weight:700;margin:12px 10px 10px}'
+      ],
+      'overriding': [
+        '.block{background-repeat:repeat-y;background:url(test.png);font-weight:700;font:16px serif;margin-top:12px;margin:10px}',
+        '.block{background-repeat:repeat-y;background:url(test.png);font-weight:700;font:16px serif;margin:10px}'
+      ],
+      'rule restructuring': [
+        '.block-1{background:url(test.png)}.block-2{background-repeat:repeat-y;background:url(test.png)}',
+        '.block-1{background:url(test.png)}.block-2{background-repeat:repeat-y;background:url(test.png)}'
+      ],
+      'rule merging': [
+        '.block-1{background:url(test.png)}.block-2{background:url(test.png)}',
+        '.block-1,.block-2{background:url(test.png)}'
+      ]
+    }, { level: { 2: { restructureRules: true, skipProperties: ['background', 'font'] } } })
+  )
   .export(module);

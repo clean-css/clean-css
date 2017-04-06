@@ -144,7 +144,8 @@ vows.describe(optimizationLevelFrom)
           removeDuplicateFontRules: true,
           removeDuplicateMediaBlocks: true,
           removeDuplicateRules: true,
-          restructureRules: false
+          restructureRules: false,
+          skipProperties: []
         });
       }
     },
@@ -209,7 +210,8 @@ vows.describe(optimizationLevelFrom)
           removeDuplicateFontRules: true,
           removeDuplicateMediaBlocks: true,
           removeDuplicateRules: true,
-          restructureRules: false
+          restructureRules: false,
+          skipProperties: []
         });
       }
     },
@@ -339,7 +341,8 @@ vows.describe(optimizationLevelFrom)
           removeDuplicateFontRules: false,
           removeDuplicateMediaBlocks: false,
           removeDuplicateRules: false,
-          restructureRules: false
+          restructureRules: false,
+          skipProperties: []
         });
       }
     },
@@ -393,7 +396,8 @@ vows.describe(optimizationLevelFrom)
           removeDuplicateFontRules: false,
           removeDuplicateMediaBlocks: false,
           removeDuplicateRules: false,
-          restructureRules: false
+          restructureRules: false,
+          skipProperties: []
         });
       }
     },
@@ -485,7 +489,8 @@ vows.describe(optimizationLevelFrom)
           removeDuplicateFontRules: true,
           removeDuplicateMediaBlocks: true,
           removeDuplicateRules: true,
-          restructureRules: false
+          restructureRules: false,
+          skipProperties: []
         });
       }
     },
@@ -539,7 +544,8 @@ vows.describe(optimizationLevelFrom)
           removeDuplicateFontRules: true,
           removeDuplicateMediaBlocks: true,
           removeDuplicateRules: true,
-          restructureRules: false
+          restructureRules: false,
+          skipProperties: []
         });
       }
     },
@@ -593,7 +599,8 @@ vows.describe(optimizationLevelFrom)
           removeDuplicateFontRules: false,
           removeDuplicateMediaBlocks: false,
           removeDuplicateRules: false,
-          restructureRules: false
+          restructureRules: false,
+          skipProperties: []
         });
       }
     },
@@ -647,7 +654,8 @@ vows.describe(optimizationLevelFrom)
           removeDuplicateFontRules: false,
           removeDuplicateMediaBlocks: false,
           removeDuplicateRules: false,
-          restructureRules: false
+          restructureRules: false,
+          skipProperties: []
         });
       }
     },
@@ -797,6 +805,14 @@ vows.describe(optimizationLevelFrom)
           tidyBlockScopes: true,
           tidySelectors: true
         });
+      }
+    },
+    'a hash with skipProperties as a string': {
+      'topic': function () {
+        return optimizationLevelFrom({ 2: 'skipProperties:background,font,transform' });
+      },
+      'has correct skipProperties level 2 option': function (levelOptions) {
+        assert.deepEqual(levelOptions['2'].skipProperties, ['background', 'font', 'transform']);
       }
     }
   })

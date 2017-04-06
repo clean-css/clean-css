@@ -107,6 +107,7 @@ Once released clean-css 4.1 will introduce the following changes / features:
 * `fetch` option controlling a function for handling remote requests;
 * new `font` shorthand and `font-*` longhand optimizers;
 * removal of `optimizeFont` flag in level 1 optimizations due to new `font` shorthand optimizer;
+* `skipProperties` flag in level 2 optimizations controlling which properties won't be optimized;
 
 ## Constructor options
 
@@ -377,7 +378,8 @@ new CleanCSS({
       removeDuplicateFontRules: true, // controls duplicate `@font-face` removing; defaults to true
       removeDuplicateMediaBlocks: true, // controls duplicate `@media` removing; defaults to true
       removeDuplicateRules: true, // controls duplicate rules removing; defaults to true
-      restructureRules: false // controls rule restructuring; defaults to false
+      restructureRules: false, // controls rule restructuring; defaults to false`
+      skipProperties: [] // controls which properties won't be optimized, defaults to `[]` which means all will be optimized (since 4.1.0-pre)
     }
   }
 });

@@ -539,6 +539,20 @@ vows.describe(wrapForOptimizing)
       'has right value': function (wrapped) {
         assert.deepEqual(wrapped[0].value, [['property-value', 'red', [[1, 2, undefined]]]]);
       }
+    },
+    'skipping properties': {
+      'topic': function () {
+        return wrapForOptimizing([
+          [
+            'property',
+            ['property-name', 'background', [[1, 2, undefined]]],
+            ['property-value', 'red', [[1, 12, undefined]]]
+          ]
+        ], true, ['background']);
+      },
+      'has no wrap': function (wrapped) {
+        assert.lengthOf(wrapped, 0);
+      }
     }
   })
   .export(module);

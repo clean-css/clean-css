@@ -1,6 +1,7 @@
 [4.1.0-pre / 20xx-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/4.0...HEAD)
 ==================
 
+* Fixed issue [#920](https://github.com/jakubpawlowicz/clean-css/issues/920) - allows skipping certain properties in level 2 optimizations.
 * Fixed issue [#916](https://github.com/jakubpawlowicz/clean-css/issues/916) - maximum number of merged selectors.
 * Fixed issue [#908](https://github.com/jakubpawlowicz/clean-css/issues/908) - improved `minify` method signature.
 * Fixed issue [#905](https://github.com/jakubpawlowicz/clean-css/issues/905) - allows disabling selector sorting.

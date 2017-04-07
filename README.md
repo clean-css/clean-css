@@ -317,12 +317,12 @@ new CleanCSS({
     1: {
       cleanupCharsets: true, // controls `@charset` moving to the front of a stylesheet; defaults to `true`
       normalizeUrls: true, // controls URL normalization; defaults to `true`
-      optimizeBackground: true, // controls `background` property optimizatons; defaults to `true`
-      optimizeBorderRadius: true, // controls `border-radius` property optimizatons; defaults to `true`
-      optimizeFilter: true, // controls `filter` property optimizatons; defaults to `true`
-      optimizeFont: true, // controls `font` property optimizatons; defaults to `true`
-      optimizeFontWeight: true, // controls `font-weight` property optimizatons; defaults to `true`
-      optimizeOutline: true, // controls `outline` property optimizatons; defaults to `true`
+      optimizeBackground: true, // controls `background` property optimizations; defaults to `true`
+      optimizeBorderRadius: true, // controls `border-radius` property optimizations; defaults to `true`
+      optimizeFilter: true, // controls `filter` property optimizations; defaults to `true`
+      optimizeFont: true, // controls `font` property optimizations; defaults to `true`
+      optimizeFontWeight: true, // controls `font-weight` property optimizations; defaults to `true`
+      optimizeOutline: true, // controls `outline` property optimizations; defaults to `true`
       removeEmpty: true, // controls removing empty rules and nested blocks; defaults to `true`
       removeNegativePaddings: true, // controls removing negative paddings; defaults to `true`
       removeQuotes: true, // controls removing quotes when unnecessary; defaults to `true`

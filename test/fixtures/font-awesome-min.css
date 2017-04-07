@@ -51,7 +51,7 @@ ul.icons li [class*=" icon-"],ul.icons li [class^=icon-]{width:.75em}
 .btn.btn-large [class*=" icon-"].pull-left.icon-2x,.btn.btn-large [class*=" icon-"].pull-right.icon-2x,.btn.btn-large [class^=icon-].pull-left.icon-2x,.btn.btn-large [class^=icon-].pull-right.icon-2x{margin-top:.05em}
 .btn.btn-large [class*=" icon-"].pull-left.icon-2x,.btn.btn-large [class^=icon-].pull-left.icon-2x{margin-right:.2em}
 .btn.btn-large [class*=" icon-"].pull-right.icon-2x,.btn.btn-large [class^=icon-].pull-right.icon-2x{margin-left:.2em}
-.icon-spin{-moz-animation:spin 2s infinite linear;-o-animation:spin 2s infinite linear;-webkit-animation:spin 2s infinite linear;animation:spin 2s infinite linear}
+.icon-spin{-moz-animation:2s linear infinite spin;-o-animation:2s linear infinite spin;-webkit-animation:2s linear infinite spin;animation:2s linear infinite spin}
 @-moz-keyframes spin{
 0%{-moz-transform:rotate(0)}
 100%{-moz-transform:rotate(359deg)}

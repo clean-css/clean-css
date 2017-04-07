@@ -36,6 +36,137 @@ function _optimize(source, compat) {
 }
 
 vows.describe(optimizeProperties)
+    .addBatch({
+    'animation shorthand and longhand': {
+      'topic': function () {
+        return _optimize('.block{animation:1s ease-in;animation-name:slidein}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'animation', [[1, 7, undefined]]],
+            ['property-value', '1s', [[1, 17, undefined]]],
+            ['property-value', 'ease-in', [[1, 20, undefined]]],
+            ['property-value', 'slidein', [[1, 43, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'animation longhand and shorthand': {
+      'topic': function () {
+        return _optimize('.block{animation-fill-mode:both;animation:ease-in}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'animation', [[1, 32, undefined]]],
+            ['property-value', 'ease-in', [[1, 42, undefined]]],
+          ]
+        ]);
+      }
+    },
+    'animation shorthand with overriddable shorthand': {
+      'topic': function () {
+        return _optimize('.block{animation:1s infinite slidein;animation:ease-in 2}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'animation', [[1, 7, undefined]]],
+            ['property-value', 'ease-in', [[1, 47, undefined]]],
+            ['property-value', '2', [[1, 55, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'animation shorthand and multiplex longhand': {
+      'topic': function () {
+        return _optimize('.block{animation:1s infinite slidein;animation-timing-function:ease-in,ease-out}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'animation', [[1, 7, undefined]]],
+            ['property-value', '1s', [[1, 17, undefined]]],
+            ['property-value', 'ease-in', [[1, 63, undefined]]],
+            ['property-value', 'infinite', [[1, 20, undefined]]],
+            ['property-value', 'slidein', [[1, 29, undefined]]],
+            ['property-value', ','],
+            ['property-value', '1s', [[1, 17, undefined]]],
+            ['property-value', 'ease-out', [[1, 71, undefined]]],
+            ['property-value', 'infinite', [[1, 20, undefined]]],
+            ['property-value', 'slidein', [[1, 29, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'animation multiplex shorthand and longhand': {
+      'topic': function () {
+        return _optimize('.block{animation:ease-in,ease-out;animation-duration:1s}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'animation', [[1, 7, undefined]]],
+            ['property-value', '1s', [[1, 53, undefined]]],
+            ['property-value', 'ease-in', [[1, 17, undefined]]],
+            ['property-value', ','],
+            ['property-value', '1s', [[1, 53, undefined]]],
+            ['property-value', 'ease-out', [[1, 25, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'animation shorthand and multiplex longhand - too long to merge': {
+      'topic': function () {
+        return _optimize('.block{animation:ease-in;animation-name:longname1,longname2,longname3}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'animation', [[1, 7, undefined]]],
+            ['property-value', 'ease-in', [[1, 17, undefined]]],
+          ],
+          [
+            'property',
+            ['property-name', 'animation-name', [[1, 25, undefined]]],
+            ['property-value', 'longname1', [[1, 40, undefined]]],
+            ['property-value', ',', [[1, 49, undefined]]],
+            ['property-value', 'longname2', [[1, 50, undefined]]],
+            ['property-value', ',', [[1, 59, undefined]]],
+            ['property-value', 'longname3', [[1, 60, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'animation shorthand and inherit longhand': {
+      'topic': function () {
+        return _optimize('.block{animation:1s infinite slidein;animation-timing-function:inherit}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'animation', [[1, 7, undefined]]],
+            ['property-value', '1s', [[1, 17, undefined]]],
+            ['property-value', 'infinite', [[1, 20, undefined]]],
+            ['property-value', 'slidein', [[1, 29, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'animation-timing-function', [[1, 37, undefined]]],
+            ['property-value', 'inherit', [[1, 63, undefined]]]
+          ]
+        ]);
+      }
+    }
+  })
   .addBatch({
     'longhand then longhand - background colors as functions': {
       'topic': function () {

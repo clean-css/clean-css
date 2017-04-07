@@ -108,6 +108,7 @@ Once released clean-css 4.1 will introduce the following changes / features:
 * new `font` shorthand and `font-*` longhand optimizers;
 * removal of `optimizeFont` flag in level 1 optimizations due to new `font` shorthand optimizer;
 * `skipProperties` flag in level 2 optimizations controlling which properties won't be optimized;
+* new `animation` shorthand and `animation-*` longhand optimizers;
 
 ## Constructor options
 

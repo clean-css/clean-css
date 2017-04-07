@@ -17,6 +17,367 @@ function _breakUp(properties) {
 
 vows.describe(breakUp)
   .addBatch({
+    'animation': {
+      'all': {
+        'topic': function () {
+          return _breakUp([
+            [
+              'property',
+              ['property-name', 'animation'],
+              ['property-value', '3s'],
+              ['property-value', 'ease-in'],
+              ['property-value', '1s'],
+              ['property-value', '2'],
+              ['property-value', 'reverse'],
+              ['property-value', 'both'],
+              ['property-value', 'paused'],
+              ['property-value', 'slidein']
+            ]
+          ]);
+        },
+        'has 8 components': function (components) {
+          assert.lengthOf(components, 8);
+        },
+        'has animation-duration': function (components) {
+          assert.deepEqual(components[0].name, 'animation-duration');
+          assert.deepEqual(components[0].value, [['property-value', '3s']]);
+        },
+        'has animation-timing-function': function (components) {
+          assert.deepEqual(components[1].name, 'animation-timing-function');
+          assert.deepEqual(components[1].value, [['property-value', 'ease-in']]);
+        },
+        'has animation-delay': function (components) {
+          assert.deepEqual(components[2].name, 'animation-delay');
+          assert.deepEqual(components[2].value, [['property-value', '1s']]);
+        },
+        'has animation-iteration-count': function (components) {
+          assert.deepEqual(components[3].name, 'animation-iteration-count');
+          assert.deepEqual(components[3].value, [['property-value', '2']]);
+        },
+        'has animation-direction': function (components) {
+          assert.deepEqual(components[4].name, 'animation-direction');
+          assert.deepEqual(components[4].value, [['property-value', 'reverse']]);
+        },
+        'has animation-fill-mode': function (components) {
+          assert.deepEqual(components[5].name, 'animation-fill-mode');
+          assert.deepEqual(components[5].value, [['property-value', 'both']]);
+        },
+        'has animation-play-state': function (components) {
+          assert.deepEqual(components[6].name, 'animation-play-state');
+          assert.deepEqual(components[6].value, [['property-value', 'paused']]);
+        },
+        'has animation-name': function (components) {
+          assert.deepEqual(components[7].name, 'animation-name');
+          assert.deepEqual(components[7].value, [['property-value', 'slidein']]);
+        }
+      },
+      'all with inverted order': {
+        'topic': function () {
+          return _breakUp([
+            [
+              'property',
+              ['property-name', 'animation'],
+              ['property-value', 'slidein'],
+              ['property-value', 'paused'],
+              ['property-value', 'both'],
+              ['property-value', 'reverse'],
+              ['property-value', '2'],
+              ['property-value', '1s'],
+              ['property-value', 'ease-in'],
+              ['property-value', '3s']
+            ]
+          ]);
+        },
+        'has 8 components': function (components) {
+          assert.lengthOf(components, 8);
+        },
+        'has animation-duration': function (components) {
+          assert.deepEqual(components[0].name, 'animation-duration');
+          assert.deepEqual(components[0].value, [['property-value', '1s']]);
+        },
+        'has animation-timing-function': function (components) {
+          assert.deepEqual(components[1].name, 'animation-timing-function');
+          assert.deepEqual(components[1].value, [['property-value', 'ease-in']]);
+        },
+        'has animation-delay': function (components) {
+          assert.deepEqual(components[2].name, 'animation-delay');
+          assert.deepEqual(components[2].value, [['property-value', '3s']]);
+        },
+        'has animation-iteration-count': function (components) {
+          assert.deepEqual(components[3].name, 'animation-iteration-count');
+          assert.deepEqual(components[3].value, [['property-value', '2']]);
+        },
+        'has animation-direction': function (components) {
+          assert.deepEqual(components[4].name, 'animation-direction');
+          assert.deepEqual(components[4].value, [['property-value', 'reverse']]);
+        },
+        'has animation-fill-mode': function (components) {
+          assert.deepEqual(components[5].name, 'animation-fill-mode');
+          assert.deepEqual(components[5].value, [['property-value', 'both']]);
+        },
+        'has animation-play-state': function (components) {
+          assert.deepEqual(components[6].name, 'animation-play-state');
+          assert.deepEqual(components[6].value, [['property-value', 'paused']]);
+        },
+        'has animation-name': function (components) {
+          assert.deepEqual(components[7].name, 'animation-name');
+          assert.deepEqual(components[7].value, [['property-value', 'slidein']]);
+        }
+      },
+      'some': {
+        'topic': function () {
+          return _breakUp([
+            [
+              'property',
+              ['property-name', 'animation'],
+              ['property-value', '3s'],
+              ['property-value', 'reverse'],
+              ['property-value', 'ease-in']
+            ]
+          ]);
+        },
+        'has 8 components': function (components) {
+          assert.lengthOf(components, 8);
+        },
+        'has animation-duration': function (components) {
+          assert.deepEqual(components[0].name, 'animation-duration');
+          assert.deepEqual(components[0].value, [['property-value', '3s']]);
+        },
+        'has animation-timing-function': function (components) {
+          assert.deepEqual(components[1].name, 'animation-timing-function');
+          assert.deepEqual(components[1].value, [['property-value', 'ease-in']]);
+        },
+        'has animation-delay': function (components) {
+          assert.deepEqual(components[2].name, 'animation-delay');
+          assert.deepEqual(components[2].value, [['property-value', '0s']]);
+        },
+        'has animation-iteration-count': function (components) {
+          assert.deepEqual(components[3].name, 'animation-iteration-count');
+          assert.deepEqual(components[3].value, [['property-value', '1']]);
+        },
+        'has animation-direction': function (components) {
+          assert.deepEqual(components[4].name, 'animation-direction');
+          assert.deepEqual(components[4].value, [['property-value', 'reverse']]);
+        },
+        'has animation-fill-mode': function (components) {
+          assert.deepEqual(components[5].name, 'animation-fill-mode');
+          assert.deepEqual(components[5].value, [['property-value', 'none']]);
+        },
+        'has animation-play-state': function (components) {
+          assert.deepEqual(components[6].name, 'animation-play-state');
+          assert.deepEqual(components[6].value, [['property-value', 'running']]);
+        },
+        'has animation-name': function (components) {
+          assert.deepEqual(components[7].name, 'animation-name');
+          assert.deepEqual(components[7].value, [['property-value', 'none']]);
+        }
+      },
+      'custom timing function': {
+        'topic': function () {
+          return _breakUp([
+            [
+              'property',
+              ['property-name', 'animation'],
+              ['property-value', 'cubic-bezier(0.1, 0.7, 1.0, 0.1)']
+            ]
+          ]);
+        },
+        'has 8 components': function (components) {
+          assert.lengthOf(components, 8);
+        },
+        'has animation-timing-function': function (components) {
+          assert.deepEqual(components[1].name, 'animation-timing-function');
+          assert.deepEqual(components[1].value, [['property-value', 'cubic-bezier(0.1, 0.7, 1.0, 0.1)']]);
+        }
+      },
+      'invalid timing function': {
+        'topic': function () {
+          return _breakUp([
+            [
+              'property',
+              ['property-name', 'animation'],
+              ['property-value', 'custom-bezier(0.1, 0.7, 1.0, 0.1)', [[1, 12, undefined]]]
+            ]
+          ]);
+        },
+        'has no components': function (components) {
+          assert.lengthOf(components, 0);
+        }
+      },
+      'custom animation name': {
+        'topic': function () {
+          return _breakUp([
+            [
+              'property',
+              ['property-name', 'animation'],
+              ['property-value', 'custom-animation']
+            ]
+          ]);
+        },
+        'has 8 components': function (components) {
+          assert.lengthOf(components, 8);
+        },
+        'has animation-name': function (components) {
+          assert.deepEqual(components[7].name, 'animation-name');
+          assert.deepEqual(components[7].value, [['property-value', 'custom-animation']]);
+        }
+      },
+      'three time units': {
+        'topic': function () {
+          return _breakUp([
+            [
+              'property',
+              ['property-name', 'animation'],
+              ['property-value', '1s'],
+              ['property-value', 'ease-in'],
+              ['property-value', '2s'],
+              ['property-value', '3s', [[1, 20, undefined]]]
+            ]
+          ]);
+        },
+        'has no components': function (components) {
+          assert.lengthOf(components, 0);
+        }
+      },
+      'repeated values': {
+        'topic': function () {
+          return _breakUp([
+            [
+              'property',
+              ['property-name', 'animation'],
+              ['property-value', '1s'],
+              ['property-value', 'reverse'],
+              ['property-value', 'reverse']
+            ]
+          ]);
+        },
+        'has 8 components': function (components) {
+          assert.lengthOf(components, 8);
+        },
+        'has animation-name': function (components) {
+          assert.deepEqual(components[7].name, 'animation-name');
+          assert.deepEqual(components[7].value, [['property-value', 'reverse']]);
+        }
+      },
+      'inherit': {
+        'topic': function () {
+          return _breakUp([
+            [
+              'property',
+              ['property-name', 'animation'],
+              ['property-value', 'inherit']
+            ]
+          ]);
+        },
+        'has 8 components': function (components) {
+          assert.lengthOf(components, 8);
+        },
+        'has animation-duration': function (components) {
+          assert.deepEqual(components[0].name, 'animation-duration');
+          assert.deepEqual(components[0].value, [['property-value', 'inherit']]);
+        },
+        'has animation-timing-function': function (components) {
+          assert.deepEqual(components[1].name, 'animation-timing-function');
+          assert.deepEqual(components[1].value, [['property-value', 'inherit']]);
+        },
+        'has animation-delay': function (components) {
+          assert.deepEqual(components[2].name, 'animation-delay');
+          assert.deepEqual(components[2].value, [['property-value', 'inherit']]);
+        },
+        'has animation-iteration-count': function (components) {
+          assert.deepEqual(components[3].name, 'animation-iteration-count');
+          assert.deepEqual(components[3].value, [['property-value', 'inherit']]);
+        },
+        'has animation-direction': function (components) {
+          assert.deepEqual(components[4].name, 'animation-direction');
+          assert.deepEqual(components[4].value, [['property-value', 'inherit']]);
+        },
+        'has animation-fill-mode': function (components) {
+          assert.deepEqual(components[5].name, 'animation-fill-mode');
+          assert.deepEqual(components[5].value, [['property-value', 'inherit']]);
+        },
+        'has animation-play-state': function (components) {
+          assert.deepEqual(components[6].name, 'animation-play-state');
+          assert.deepEqual(components[6].value, [['property-value', 'inherit']]);
+        },
+        'has animation-name': function (components) {
+          assert.deepEqual(components[7].name, 'animation-name');
+          assert.deepEqual(components[7].value, [['property-value', 'inherit']]);
+        }
+      },
+      'inherit mixed in': {
+        'topic': function () {
+          return _breakUp([
+            [
+              'property',
+              ['property-name', 'animation'],
+              ['property-value', '1s', [[1, 12, undefined]]],
+              ['property-value', 'inherit']
+            ]
+          ]);
+        },
+        'has no components': function (components) {
+          assert.lengthOf(components, 0);
+        }
+      },
+      'multiplex': {
+        'topic': function () {
+          return _breakUp([
+            [
+              'property',
+              ['property-name', 'animation'],
+              ['property-value', '3s'],
+              ['property-value', 'ease-in'],
+              ['property-value', '1s'],
+              ['property-value', '2'],
+              ['property-value', 'reverse'],
+              ['property-value', 'both'],
+              ['property-value', 'paused'],
+              ['property-value', 'slidein'],
+              ['property-value', ','],
+              ['property-value', '2s'],
+              ['property-value', 'ease-out'],
+              ['property-value', 'slideout']
+            ]
+          ]);
+        },
+        'has 8 components': function (components) {
+          assert.lengthOf(components, 8);
+        },
+        'has animation-duration': function (components) {
+          assert.deepEqual(components[0].name, 'animation-duration');
+          assert.deepEqual(components[0].value, [['property-value', '3s'], ['property-value', ','], ['property-value', '2s']]);
+        },
+        'has animation-timing-function': function (components) {
+          assert.deepEqual(components[1].name, 'animation-timing-function');
+          assert.deepEqual(components[1].value, [['property-value', 'ease-in'], ['property-value', ','], ['property-value', 'ease-out']]);
+        },
+        'has animation-delay': function (components) {
+          assert.deepEqual(components[2].name, 'animation-delay');
+          assert.deepEqual(components[2].value, [['property-value', '1s'], ['property-value', ','], ['property-value', '0s']]);
+        },
+        'has animation-iteration-count': function (components) {
+          assert.deepEqual(components[3].name, 'animation-iteration-count');
+          assert.deepEqual(components[3].value, [['property-value', '2'], ['property-value', ','], ['property-value', '1']]);
+        },
+        'has animation-direction': function (components) {
+          assert.deepEqual(components[4].name, 'animation-direction');
+          assert.deepEqual(components[4].value, [['property-value', 'reverse'], ['property-value', ','], ['property-value', 'normal']]);
+        },
+        'has animation-fill-mode': function (components) {
+          assert.deepEqual(components[5].name, 'animation-fill-mode');
+          assert.deepEqual(components[5].value, [['property-value', 'both'], ['property-value', ','], ['property-value', 'none']]);
+        },
+        'has animation-play-state': function (components) {
+          assert.deepEqual(components[6].name, 'animation-play-state');
+          assert.deepEqual(components[6].value, [['property-value', 'paused'], ['property-value', ','], ['property-value', 'running']]);
+        },
+        'has animation-name': function (components) {
+          assert.deepEqual(components[7].name, 'animation-name');
+          assert.deepEqual(components[7].value, [['property-value', 'slidein'], ['property-value', ','], ['property-value', 'slideout']]);
+        }
+      },
+    },
     'background': {
       'inherit': {
         'topic': function () {

@@ -144,6 +144,14 @@ vows.describe('level 1 optimizations')
       'missing semicolon and brace in the middle': [
         'body{color:red a{color:blue;}',
         ''
+      ],
+      'null as a selector name': [
+        '.null{color:red}',
+        '.null{color:red}'
+      ],
+      'null inside selector name': [
+        '.block--null{color:red}',
+        '.block--null{color:red}'
       ]
     }, { level: 1 })
   )

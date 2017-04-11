@@ -1,3 +1,8 @@
+[4.0.12 / 2017-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v4.0.11...4.0)
+==================
+
+* Fixed issue [#930](https://github.com/jakubpawlowicz/clean-css/issues/930) - regression in tidying selectors.
+
 [4.0.11 / 2017-04-04](https://github.com/jakubpawlowicz/clean-css/compare/v4.0.10...v4.0.11)
 ==================
 

@@ -1283,7 +1283,24 @@ vows.describe(optimizeProperties)
         ]);
       }
     },
-    'shorthand multiplex then longhand': {
+    'shorthand then longhand multiplex - background-image': {
+      'topic': function () {
+        return _optimize('p{background:url(one.png);background-repeat:no-repeat,repeat-x}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'background', [[1, 2, undefined]]],
+            ['property-value', 'url(one.png)', [[1, 13, undefined]]],
+            ['property-value', 'no-repeat', [[1, 44, undefined]]],
+            ['property-value', ','],
+            ['property-value', 'repeat-x', [[1, 54, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'shorthand multiplex then longhand repeat': {
       'topic': function () {
         return _optimize('p{background:url(image.png),url(image.jpg);background-repeat:no-repeat}');
       },
@@ -1297,6 +1314,23 @@ vows.describe(optimizeProperties)
             ['property-value', ','],
             ['property-value', 'url(image.jpg)', [[1, 28, undefined]]],
             ['property-value', 'no-repeat', [[1, 61, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'shorthand multiplex then longhand image': {
+      'topic': function () {
+        return _optimize('p{background:no-repeat,no-repeat;background-image:url(image.png)}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'background', [[1, 2, undefined]]],
+            ['property-value', 'url(image.png)', [[1, 50, undefined]]],
+            ['property-value', 'no-repeat', [[1, 13, undefined]]],
+            ['property-value', ','],
+            ['property-value', 'no-repeat', [[1, 23, undefined]]]
           ]
         ]);
       }
@@ -1445,13 +1479,11 @@ vows.describe(optimizeProperties)
             ['property-name', 'background', [[1, 2, undefined]]],
             ['property-value', 'url(image.png)', [[1, 77, undefined]]],
             ['property-value', 'top', [[1, 13, undefined]]],
-            ['property-value', 'left', [[1, 17, undefined]]]
-          ],
-          [
-            'property',
-            ['property-name', 'background-repeat', [[1, 22, undefined]]],
+            ['property-value', 'left', [[1, 17, undefined]]],
             ['property-value', 'no-repeat', [[1, 40, undefined]]],
-            ['property-value', ',', [[1, 49, undefined]]],
+            ['property-value', ','],
+            ['property-value', 'top', [[1, 13, undefined]]],
+            ['property-value', 'left', [[1, 17, undefined]]],
             ['property-value', 'no-repeat', [[1, 50, undefined]]]
           ]
         ]);
@@ -1459,21 +1491,25 @@ vows.describe(optimizeProperties)
     },
     'too long into multiplex #1': {
       'topic': function () {
-        return _optimize('p{background:url(/long/image/path.png);background-repeat:no-repeat,no-repeat}');
+        return _optimize('p{background:top left / 100px 20px;background-repeat:no-repeat,no-repeat}');
       },
       'into': function (properties) {
         assert.deepEqual(properties, [
           [
             'property',
             ['property-name', 'background', [[1, 2, undefined]]],
-            ['property-value', 'url(/long/image/path.png)', [[1, 13, undefined]]]
+            ['property-value', 'top', [[1, 13, undefined]]],
+            ['property-value', 'left', [[1, 17, undefined]]],
+            ['property-value', '/'],
+            ['property-value', '100px', [[1, 24, undefined]]],
+            ['property-value', '20px', [[1, 30, undefined]]]
           ],
           [
             'property',
-            ['property-name', 'background-repeat', [[1, 39, undefined]]],
-            ['property-value', 'no-repeat', [[1, 57, undefined]]],
-            ['property-value', ',', [[1, 66, undefined]]],
-            ['property-value', 'no-repeat', [[1, 67, undefined]]]
+            ['property-name', 'background-repeat', [[1, 35, undefined]]],
+            ['property-value', 'no-repeat', [[1, 53, undefined]]],
+            ['property-value', ',', [[1, 62, undefined]]],
+            ['property-value', 'no-repeat', [[1, 63, undefined]]]
           ]
         ]);
       }

@@ -1,18 +1,18 @@
 [4.1.0-pre / 20xx-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/4.0...HEAD)
 ==================
 
-* Fixed issue [#934](https://github.com/jakubpawlowicz/clean-css/issues/934) - smarter longhand into shorthand merging.
-* Fixed issue [#920](https://github.com/jakubpawlowicz/clean-css/issues/920) - allows skipping certain properties in level 2 optimizations.
-* Fixed issue [#916](https://github.com/jakubpawlowicz/clean-css/issues/916) - maximum number of merged selectors.
-* Fixed issue [#908](https://github.com/jakubpawlowicz/clean-css/issues/908) - improved `minify` method signature.
-* Fixed issue [#905](https://github.com/jakubpawlowicz/clean-css/issues/905) - allows disabling selector sorting.
-* Fixed issue [#893](https://github.com/jakubpawlowicz/clean-css/issues/893) - `inline: false` as alias to `inline: 'none'`.
-* Fixed issue [#890](https://github.com/jakubpawlowicz/clean-css/issues/890) - adds toggle to disable empty tokens removal.
-* Fixed issue [#886](https://github.com/jakubpawlowicz/clean-css/issues/886) - better multi pseudo class / element merging.
-* Fixed issue [#862](https://github.com/jakubpawlowicz/clean-css/issues/862) - allows removing unused at rules.
-* Fixed issue [#860](https://github.com/jakubpawlowicz/clean-css/issues/860) - adds `animation` property optimizer.
-* Fixed issue [#755](https://github.com/jakubpawlowicz/clean-css/issues/755) - adds custom handling of remote requests.
 * Fixed issue [#254](https://github.com/jakubpawlowicz/clean-css/issues/254) - adds `font` property optimizer.
+* Fixed issue [#755](https://github.com/jakubpawlowicz/clean-css/issues/755) - adds custom handling of remote requests.
+* Fixed issue [#860](https://github.com/jakubpawlowicz/clean-css/issues/860) - adds `animation` property optimizer.
+* Fixed issue [#862](https://github.com/jakubpawlowicz/clean-css/issues/862) - allows removing unused at rules.
+* Fixed issue [#886](https://github.com/jakubpawlowicz/clean-css/issues/886) - better multi pseudo class / element merging.
+* Fixed issue [#890](https://github.com/jakubpawlowicz/clean-css/issues/890) - adds toggle to disable empty tokens removal.
+* Fixed issue [#893](https://github.com/jakubpawlowicz/clean-css/issues/893) - `inline: false` as alias to `inline: 'none'`.
+* Fixed issue [#905](https://github.com/jakubpawlowicz/clean-css/issues/905) - allows disabling selector sorting.
+* Fixed issue [#908](https://github.com/jakubpawlowicz/clean-css/issues/908) - improved `minify` method signature.
+* Fixed issue [#916](https://github.com/jakubpawlowicz/clean-css/issues/916) - maximum number of merged selectors.
+* Fixed issue [#920](https://github.com/jakubpawlowicz/clean-css/issues/920) - allows skipping certain properties in level 2 optimizations.
+* Fixed issue [#934](https://github.com/jakubpawlowicz/clean-css/issues/934) - smarter longhand into shorthand merging.
 
 [4.0.12 / 2017-04-12](https://github.com/jakubpawlowicz/clean-css/compare/v4.0.11...v4.0.12)
 ==================

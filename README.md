@@ -116,7 +116,7 @@ Once released clean-css 4.1 will introduce the following changes / features:
 clean-css constructor accepts a hash as a parameter with the following options available:
 
 * `compatibility` - controls compatibility mode used; defaults to `ie10+`; see [compatibility modes](#compatibility-modes) for examples;
-* `fetch` - controls a function for handling remote requests; see [fetch option](#fetch-option) for examples (since 4.1.0-pre);
+* `fetch` - controls a function for handling remote requests; see [fetch option](#fetch-option) for examples (since 4.1.0);
 * `format` - controls output CSS formatting; defaults to `false`; see [formatting options](#formatting-options) for examples;
 * `inline` - controls `@import` inlining rules; defaults to `'local'`; see [inlining options](#inlining-options) for examples;
 * `inlineRequest` - controls extra options for inlining remote `@import` rules, can be any of [HTTP(S) request options](https://nodejs.org/api/http.html#http_http_request_options_callback);
@@ -165,8 +165,8 @@ new CleanCSS({
       ie7Hack: true, // controls removal of IE7 selector hacks, e.g. `*+html...`
       mergeablePseudoClasses: [':active', ...], // controls a whitelist of mergeable pseudo classes
       mergeablePseudoElements: ['::after', ...], // controls a whitelist of mergeable pseudo elements
-      mergeLimit: 8191, // controls maximum number of selectors in a single rule (since 4.1.0-pre)
-      multiplePseudoMerging: true // controls merging of rules with multiple pseudo classes / elements (since 4.1.0-pre)
+      mergeLimit: 8191, // controls maximum number of selectors in a single rule (since 4.1.0)
+      multiplePseudoMerging: true // controls merging of rules with multiple pseudo classes / elements (since 4.1.0)
     },
     units: {
       ch: true, // controls treating `ch` as a supported unit
@@ -264,7 +264,7 @@ new CleanCSS({
 ```
 
 ```js
-// introduced in clean-css 4.1.0-pre
+// introduced in clean-css 4.1.0
 
 new CleanCSS({
   inline: false // disables all inlining (alias to `['none']`)
@@ -333,7 +333,7 @@ new CleanCSS({
       replaceTimeUnits: true, // controls replacing time units with shorter values; defaults to `true`
       replaceZeroUnits: true, // controls replacing zero values with units; defaults to `true`
       roundingPrecision: false, // rounds pixel values to `N` decimal places; `false` disables rounding; defaults to `false`
-      selectorsSortingMethod: 'standard', // denotes selector sorting method; can be `'natural'` or `'standard'`, `'none'`, or false (the last two since 4.1.0-pre); defaults to `'standard'`
+      selectorsSortingMethod: 'standard', // denotes selector sorting method; can be `'natural'` or `'standard'`, `'none'`, or false (the last two since 4.1.0); defaults to `'standard'`
       specialComments: 'all', // denotes a number of /*! ... */ comments preserved; defaults to `all`
       tidyAtRules: true, // controls at-rules (e.g. `@charset`, `@import`) optimizing; defaults to `true`
       tidyBlockScopes: true, // controls block scopes (e.g. `@media`) optimizing; defaults to `true`
@@ -380,9 +380,9 @@ new CleanCSS({
       removeDuplicateFontRules: true, // controls duplicate `@font-face` removing; defaults to true
       removeDuplicateMediaBlocks: true, // controls duplicate `@media` removing; defaults to true
       removeDuplicateRules: true, // controls duplicate rules removing; defaults to true
-      removeUnusedAtRules: false, // controls unused at rule removing; defaults to false (available since 4.1.0-pre)
+      removeUnusedAtRules: false, // controls unused at rule removing; defaults to false (available since 4.1.0)
       restructureRules: false, // controls rule restructuring; defaults to false
-      skipProperties: [] // controls which properties won't be optimized, defaults to `[]` which means all will be optimized (since 4.1.0-pre)
+      skipProperties: [] // controls which properties won't be optimized, defaults to `[]` which means all will be optimized (since 4.1.0)
     }
   }
 });
@@ -479,7 +479,7 @@ new CleanCSS().minify([
 ]);
 ```
 
-Passing an array of hashes allows you to explicitly specify the order in which the input files are concatenated. Whereas when you use a single hash the order is determined by the [traversal order of object properties](http://2ality.com/2015/10/property-traversal-order-es6.html) - available since 4.1.0-pre.
+Passing an array of hashes allows you to explicitly specify the order in which the input files are concatenated. Whereas when you use a single hash the order is determined by the [traversal order of object properties](http://2ality.com/2015/10/property-traversal-order-es6.html) - available since 4.1.0.
 
 Important note - any `@import` rules already present in the hash will be resolved in memory.
 

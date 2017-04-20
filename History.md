@@ -2,6 +2,7 @@
 ==================
 
 * Fixed issue [#254](https://github.com/jakubpawlowicz/clean-css/issues/254) - adds `font` property optimizer.
+* Fixed issue [#525](https://github.com/jakubpawlowicz/clean-css/issues/525) - restores `inherit`-based merging.
 * Fixed issue [#755](https://github.com/jakubpawlowicz/clean-css/issues/755) - adds custom handling of remote requests.
 * Fixed issue [#860](https://github.com/jakubpawlowicz/clean-css/issues/860) - adds `animation` property optimizer.
 * Fixed issue [#862](https://github.com/jakubpawlowicz/clean-css/issues/862) - allows removing unused at rules.

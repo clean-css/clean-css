@@ -506,12 +506,38 @@ vows.describe(optimizeProperties)
         ]);
       }
     },
-    'with inherit - pending #525': {
+    'with inherit - one': {
       'topic': function () {
         return _optimize('a{padding-top:10px;padding-left:5px;padding-bottom:3px;padding-right:inherit}');
       },
       'into': function (properties) {
         assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'padding', [[1, 2, undefined], [1, 19, undefined], [1, 36, undefined]]],
+            ['property-value', '10px', [[1, 14, undefined]]],
+            ['property-value', '5px', [[1, 32, undefined]]],
+            ['property-value', '3px', [[1, 51, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'padding-right', [[1, 55, undefined]]],
+            ['property-value', 'inherit', [[1, 69, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'with inherit - two': {
+      'topic': function () {
+        return _optimize('a{padding-top:10px;padding-left:5px;padding-bottom:inherit;padding-right:inherit}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'padding', [[1, 36, undefined], [1, 59, undefined]]],
+            ['property-value', 'inherit', [[1, 51, undefined], [1, 73, undefined]]]
+          ],
           [
             'property',
             ['property-name', 'padding-top', [[1, 2, undefined]]],
@@ -521,16 +547,59 @@ vows.describe(optimizeProperties)
             'property',
             ['property-name', 'padding-left', [[1, 19, undefined]]],
             ['property-value', '5px', [[1, 32, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'with inherit - three': {
+      'topic': function () {
+        return _optimize('a{padding-top:inherit;padding-left:5px;padding-bottom:inherit;padding-right:inherit}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'padding', [[1, 2, undefined], [1, 39, undefined], [1, 62, undefined]]],
+            ['property-value', 'inherit', [[1, 14, undefined], [1, 54, undefined], [1, 76, undefined]]]
           ],
           [
             'property',
-            ['property-name', 'padding-bottom', [[1, 36, undefined]]],
-            ['property-value', '3px', [[1, 51, undefined]]]
+            ['property-name', 'padding-left', [[1, 22, undefined]]],
+            ['property-value', '5px', [[1, 35, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'with inherit - four': {
+      'topic': function () {
+        return _optimize('a{padding-top:inherit;padding-left:inherit;padding-bottom:inherit;padding-right:inherit}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'padding', [[1, 2, undefined], [1, 22, undefined], [1, 43, undefined], [1, 66, undefined]]],
+            ['property-value', 'inherit', [[1, 14, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'with inherit - outline': {
+      'topic': function () {
+        return _optimize('.block{outline-width:inherit;outline-style:solid;outline-color:red}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'outline', [[1, 29, undefined], [1, 49, undefined]]],
+            ['property-value', 'red', [[1, 63, undefined]]],
+            ['property-value', 'solid', [[1, 43, undefined]]]
           ],
           [
             'property',
-            ['property-name', 'padding-right', [[1, 55, undefined]]],
-            ['property-value', 'inherit', [[1, 69, undefined]]]
+            ['property-name', 'outline-width', [[1, 7, undefined]]],
+            ['property-value', 'inherit', [[1, 21, undefined]]],
           ]
         ]);
       }

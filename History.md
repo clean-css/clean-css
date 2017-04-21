@@ -1,6 +1,7 @@
 [4.1.0-pre / 20xx-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/4.0...HEAD)
 ==================
 
+* Improves longhand-into-shorthand merging mechanism in complex cases as with `border-*` shorthands.
 * Fixed issue [#254](https://github.com/jakubpawlowicz/clean-css/issues/254) - adds `font` property optimizer.
 * Fixed issue [#525](https://github.com/jakubpawlowicz/clean-css/issues/525) - restores `inherit`-based merging.
 * Fixed issue [#755](https://github.com/jakubpawlowicz/clean-css/issues/755) - adds custom handling of remote requests.

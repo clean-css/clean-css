@@ -110,6 +110,82 @@ vows.describe(optimizeProperties)
         ]);
       }
     },
+    'shorthand border': {
+      'topic': function () {
+        return _optimize('.block{border-width:1px;border-color:red;border-style:dotted}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'border', [
+              [1, 7, undefined],
+              [1, 24, undefined],
+              [1, 41, undefined]
+            ]],
+            ['property-value', '1px', [[1, 20, undefined]]],
+            ['property-value', 'dotted', [[1, 54, undefined]]],
+            ['property-value', 'red', [[1, 37, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'shorthand border - mixed shorthands': {
+      'topic': function () {
+        return _optimize('.block{border-width:1px;border-color:red;border-bottom:2px solid;border-style:dotted}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'border-width', [[1, 7, undefined]]],
+            ['property-value', '1px', [[1, 20, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'border-color', [[1, 24, undefined]]],
+            ['property-value', 'red', [[1, 37, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'border-bottom', [[1, 41, undefined]]],
+            ['property-value', '2px', [[1, 55, undefined]]],
+            ['property-value', 'solid', [[1, 59, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'border-style', [[1, 65, undefined]]],
+            ['property-value', 'dotted', [[1, 78, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'shorthand border - mixed shorthand and longhands': {
+      'topic': function () {
+        return _optimize('.block{border-width:1px;border-bottom-width:2px;border-color:red;border-style:dotted}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'border-width', [[1, 7, undefined]]],
+            ['property-value', '1px', [[1, 20, undefined]]],
+            ['property-value', '1px', [[1, 20, undefined]]],
+            ['property-value', '2px', [[1, 44, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'border-color', [[1, 48, undefined]]],
+            ['property-value', 'red', [[1, 61, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'border-style', [[1, 65, undefined]]],
+            ['property-value', 'dotted', [[1, 78, undefined]]]
+          ]
+        ]);
+      }
+    },
     'shorthand border-width': {
       'topic': function () {
         return _optimize('p{border-top-width:7px;border-bottom-width:7px;border-left-width:4px;border-right-width:4px}');
@@ -126,6 +202,33 @@ vows.describe(optimizeProperties)
             ]],
             ['property-value', '7px', [[1, 19, undefined]]],
             ['property-value', '4px', [[1, 88, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'shorthand border-width - multi-valued': {
+      'topic': function () {
+        return _optimize('.block{border-width:0 0 0 1px;border-color:red;border-style:dotted}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'border-width', [[1, 7, undefined]]],
+            ['property-value', '0', [[1, 20, undefined]]],
+            ['property-value', '0', [[1, 22, undefined]]],
+            ['property-value', '0', [[1, 24, undefined]]],
+            ['property-value', '1px', [[1, 26, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'border-color', [[1, 30, undefined]]],
+            ['property-value', 'red', [[1, 43, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'border-style', [[1, 47, undefined]]],
+            ['property-value', 'dotted', [[1, 60, undefined]]]
           ]
         ]);
       }

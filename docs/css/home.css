@@ -193,13 +193,6 @@ noscript {
   width: 100%;
 }
 
-.settings__option--apply {
-  background: transparent;
-  border: 1px solid hsl(0, 0%, 80%);
-  float: right;
-  padding: 0.5rem 1rem;
-}
-
 .clipboard-copy {
   border: none;
   height: 2rem;

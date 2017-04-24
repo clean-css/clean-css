@@ -102,7 +102,7 @@
               </select>
             </li>
             <li class="fine-grained-options__option">
-              <select class="settings__option settings__option--select" id="level_1_keep_special_comments" name="level_1[keepSpecialComments]">
+              <select class="settings__option settings__option--select js-settings-option" id="level_1_keep_special_comments" name="level_1[keepSpecialComments]">
                 <option value="*" selected>Special comments: keep all</option>
                 <option value="1">Special comments: remove all but the first one</option>
                 <option value="0">Special comments: remove all</option>
@@ -182,7 +182,7 @@
             </select>
           </div>
           <div class="settings__group__wrapper">
-            <input class="settings__option settings__option--checkbox js-settings-format" type="checkbox" id="format" name="format" />
+            <input class="settings__option settings__option--checkbox js-settings-format js-settings-option" type="checkbox" id="format" name="format" />
             <label class="settings__label" for="format">output formatting</label>
           </div>
           <ul class="fine-grained-options fine-grained-options--hidden js-settings-format-options" data-visibility-class="fine-grained-options--hidden">
@@ -248,9 +248,6 @@
               <label class="settings__label" for="format_wrap_at">characters</label>
             </li>
           </ul>
-        </fieldset>
-        <fieldset class="settings__group">
-          <input class="settings__option settings__option--apply js-settings-apply" type="button" name="" value="Apply"/>
         </fieldset>
       </form>
     </section>

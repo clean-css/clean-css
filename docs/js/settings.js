@@ -1,8 +1,13 @@
 (function () {
   var OPTION_NAME_PATTERN = /^\S+\[(\w+)\]$/
+  var DELAY_RESET_SETTINGS_BY = 250
 
   function show(settingsForm) {
     return function (event) {
+      if (event.target.classList.contains('js-settings-reset')) {
+        return
+      }
+
       if (settingsForm.classList.contains('settings--collapsed')) {
         event.preventDefault()
         settingsForm.classList.remove('settings--collapsed')
@@ -112,6 +117,21 @@
     }
   }
 
+  function resetSettings(settingsForm) {
+    var formatOptionsContainer = settingsForm.querySelector('.js-settings-format-options')
+    var level1OptionsContainer = settingsForm.querySelector('.js-settings-level-1-options')
+    var level2OptionsContainer = settingsForm.querySelector('.js-settings-level-2-options')
+    var setOptions = setOptionsFrom(settingsForm)
+
+    return function () {
+      formatOptionsContainer.classList.add(formatOptionsContainer.dataset.visibilityClass)
+      level1OptionsContainer.classList.remove(level1OptionsContainer.dataset.visibilityClass)
+      level2OptionsContainer.classList.add(level2OptionsContainer.dataset.visibilityClass)
+
+      setTimeout(setOptions, DELAY_RESET_SETTINGS_BY)
+    }
+  }
+
   window.addEventListener('DOMContentLoaded', function () {
     var settingsForm = document.querySelector('.js-settings')
     var level1Checkbox = settingsForm.querySelector('.js-settings-level-1')
@@ -121,6 +141,7 @@
     settingsForm.addEventListener('click', show(settingsForm), false)
     settingsForm.addEventListener('click', setOptionsFrom(settingsForm), false)
     settingsForm.addEventListener('blur', setOptionsFrom(settingsForm), false)
+    settingsForm.addEventListener('reset', resetSettings(settingsForm), false)
     level1Checkbox.addEventListener('click', toggleOptions(level1Checkbox), false)
     level2Checkbox.addEventListener('click', toggleOptions(level2Checkbox), false)
     formattingCheckbox.addEventListener('click', toggleOptions(formattingCheckbox), false)

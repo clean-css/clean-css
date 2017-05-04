@@ -136,6 +136,7 @@
 
     settingsForm.addEventListener('click', show(settingsForm), false)
     settingsForm.addEventListener('click', setOptionsFrom(settingsForm), false)
+    settingsForm.addEventListener('change', setOptionsFrom(settingsForm), false)
     settingsForm.addEventListener('blur', setOptionsFrom(settingsForm), false)
     settingsForm.addEventListener('reset', resetSettings(settingsForm), false)
     level1Checkbox.addEventListener('click', toggleOptions(level1Checkbox), false)

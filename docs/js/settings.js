@@ -4,13 +4,9 @@
 
   function show(settingsForm) {
     return function (event) {
-      if (event.target.classList.contains('js-settings-reset')) {
-        return
-      }
-
-      if (settingsForm.classList.contains('settings--collapsed')) {
+      if (event.target.classList.contains('js-settings')) {
         event.preventDefault()
-        settingsForm.classList.remove('settings--collapsed')
+        settingsForm.classList.toggle('settings--collapsed')
       }
     }
   }

@@ -114,26 +114,39 @@ noscript {
   margin-left: 0.5rem;
 }
 
-.settings:not(.settings--collapsed) {
-  border-top: 3px solid hsl(0, 0%, 90%);
-  margin-top: 2rem;
-  padding: 1rem 0 0;
-}
-
-.settings--collapsed {
+.settings {
+  border-top: 3px solid transparent;
   cursor: pointer;
-  height: 1rem;
+  position: relative;
 }
 
-.settings--collapsed:before {
-  background: url(../img/gear.svg) center center no-repeat;
-  bottom: 1rem;
+.settings:not(.settings--collapsed) {
+  border-top-color: hsl(0, 0%, 90%);
+  margin-top: 2.5rem;
+  padding-top: 0.5rem;
+}
+
+.settings:before {
+  background: url(../img/gear-highlighted.svg) center center no-repeat;
   content: " ";
   display: block;
   height: 1.5rem;
-  right: 1rem;
+  right: 0;
   position: absolute;
+  top: -1rem;
   width: 1.5rem;
+}
+
+.settings:not(.settings--collapsed):before {
+  top: -2.5rem;
+}
+
+.settings--collapsed {
+  height: 0;
+}
+
+.settings--collapsed:before {
+  background-image: url(../img/gear.svg);
 }
 
 .settings--collapsed > .settings__group {

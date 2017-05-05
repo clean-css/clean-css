@@ -219,7 +219,24 @@ Unless given, the default [loadRemoteResource](https://github.com/jakubpawlowicz
 
 ## Formatting options
 
-The `format` option accept the following options:
+By default output CSS is formatted without any whitespace unless a `format` option is given.
+First of all there are two shorthands:
+
+```js
+new CleanCSS({
+  format: 'beautify' // formats output in a really nice way
+})
+```
+
+and
+
+```js
+new CleanCSS({
+  format: 'keep-breaks' // formats output the default way but adds line breaks for improved readability
+})
+```
+
+however `format` option also accept a fine-grained set of options:
 
 ```js
 new CleanCSS({

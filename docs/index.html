@@ -56,16 +56,16 @@
               <label class="settings__label" for="level_1_optimize_filter">optimize <em>filter</em> / <em>-ms-filter</em> properties</label>
             </li>
             <li class="fine-grained-options__option">
-              <input class="settings__option settings__option--checkbox js-settings-option" type="checkbox" id="level_1_optimize_font" name="level[1][optimizeFont]" checked />
-              <label class="settings__label" for="level_1_optimize_font">optimize <em>font</em> properties</label>
-            </li>
-            <li class="fine-grained-options__option">
               <input class="settings__option settings__option--checkbox js-settings-option" type="checkbox" id="level_1_optimize_font_weight" name="level[1][optimizeFontWeight]" checked />
               <label class="settings__label" for="level_1_optimize_font_weight">optimize <em>font-weight</em> properties</label>
             </li>
             <li class="fine-grained-options__option">
               <input class="settings__option settings__option--checkbox js-settings-option" type="checkbox" id="level_1_optimize_outline" name="level[1][optimizeOutline]" checked />
               <label class="settings__label" for="level_1_optimize_outline">optimize <em>outline</em> properties</label>
+            </li>
+            <li class="fine-grained-options__option">
+              <input class="settings__option settings__option--checkbox js-settings-option" type="checkbox" id="level_1_remove_empty" name="level[1][removeEmpty]" checked />
+              <label class="settings__label" for="level_1_remove_empty">remove empty rules and nested blocks (after level 1 optimizations)</label>
             </li>
             <li class="fine-grained-options__option">
               <input class="settings__option settings__option--checkbox js-settings-option" type="checkbox" id="level_1_remove_negative_paddings" name="level[1][removeNegativePaddings]" checked />
@@ -98,6 +98,7 @@
             <li class="fine-grained-options__option">
               <select class="settings__option settings__option--select js-settings-option" id="level_1_selectors_sorting_method" name="level[1][selectorsSortingMethod]">
                 <option value="natural">Selectors sorting method: natural</option>
+                <option value="none">Selectors sorting method: none</option>
                 <option value="standard" selected>Selectors sorting method: standard</option>
               </select>
             </li>
@@ -167,8 +168,20 @@
               <label class="settings__label" for="level_2_remove_duplicate_rules">remove duplicate rules</label>
             </li>
             <li class="fine-grained-options__option">
+              <input class="settings__option settings__option--checkbox js-settings-option" type="checkbox" id="level_2_remove_empty" name="level[2][removeEmpty]" checked />
+              <label class="settings__label" for="level_2_remove_empty">remove empty rules and nested blocks (after level 2 optimizations)</label>
+            </li>
+            <li class="fine-grained-options__option">
+              <input class="settings__option settings__option--checkbox js-settings-option" type="checkbox" id="level_2_remove_unused_at_rules" name="level[2][removeUnusedAtRules]" />
+              <label class="settings__label" for="level_2_remove_unused_at_rules">remove unused <em>@counter-style</em>, <em>@font-face</em>, <em>@keyframes</em>, and <em>@namespace</em> at rules</label>
+            </li>
+            <li class="fine-grained-options__option">
               <input class="settings__option settings__option--checkbox js-settings-option" type="checkbox" id="level_2_restructure_rules" name="level[2][restructureRules]" />
               <label class="settings__label" for="level_2_restructure_rules">restructure rules</label>
+            </li>
+            <li class="fine-grained-options__option">
+              <label class="settings__label" for="level_2_skip_properties">skip optimizing properties</label>
+              <input class="settings__option js-settings-option" type="text" id="level_2_skip_properties" name="level[2][skipProperties]" value="" placeholder="e.g background,font,margin" />
             </li>
           </ul>
         </fieldset>

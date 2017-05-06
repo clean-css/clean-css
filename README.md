@@ -110,6 +110,7 @@ Once released clean-css 4.1 will introduce the following changes / features:
 * `skipProperties` flag in level 2 optimizations controlling which properties won't be optimized;
 * new `animation` shorthand and `animation-*` longhand optimizers;
 * `removeUnusedAtRules` level 2 optimization controlling removal of unused `@counter-style`, `@font-face`, `@keyframes`, and `@namespace` at rules;
+* the [web interface](https://jakubpawlowicz.github.io/clean-css) gets an improved settings panel with "reset to defaults", instant option changes, and settings being persisted across sessions;
 
 ## Constructor options
 

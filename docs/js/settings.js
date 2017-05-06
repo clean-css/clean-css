@@ -2,6 +2,13 @@
   var OPTION_NAME_PATTERN = /^\S+\[(\w+)\]$/
   var DELAY_RESET_SETTINGS_BY = 250
 
+  var saveOptions = 'localStorage' in window && 'setItem' in window.localStorage ?
+    saveOptionsIntoLocalStorage :
+    Function.prototype /* noop */
+  var loadOptions = 'localStorage' in window ?
+    loadOptionsFromLocalStorage :
+    Function.prototype /* noop */
+
   function show(settingsForm) {
     return function (event) {
       if (event.target.classList.contains('js-settings')) {
@@ -51,6 +58,11 @@
         },
         sourceMap: false
       }
+
+      if (event) {
+        // not a manual trigger so let's persist options
+        saveOptions(Optimizer.options)
+      }
     }
   }
 
@@ -96,7 +108,7 @@
     return Array.prototype.slice.call(allOptionNodes, 0)
       .reduce(function (accumulator, optionNode) {
         var name = optionNode.name
-        var value = extractValue(optionNode)
+        var value = getValue(optionNode)
         var optionName = OPTION_NAME_PATTERN.exec(name)[1]
 
         accumulator[optionName] = value
@@ -105,7 +117,7 @@
       }, {})
   }
 
-  function extractValue(node) {
+  function getValue(node) {
     if (node.type == 'checkbox') {
       return node.checked
     } else {
@@ -113,18 +125,92 @@
     }
   }
 
-  function resetSettings(settingsForm) {
-    var formatOptionsContainer = settingsForm.querySelector('.js-settings-format-options')
+  function setValue(node, value) {
+    if (node.type == 'checkbox') {
+      node.checked = value
+    } else {
+      node.value = value
+    }
+  }
+
+  function saveOptionsIntoLocalStorage(options) {
+    window.localStorage.setItem('settings',
+      JSON.stringify({
+        version: 4,
+        options: options
+      })
+    )
+  }
+
+  function loadOptionsFromLocalStorage(settingsForm) {
+    var options
+
+    if (!('settings' in window.localStorage)) {
+      return
+    }
+
+    options = JSON.parse(window.localStorage.settings).options
+    loadOptionsRecursively(settingsForm, options, '')
+    setGroupOptionsVisibility(settingsForm)
+  }
+
+  function loadOptionsRecursively(settingsForm, options, scope) {
+    var option
+    var value
+    var castedValue
+    var name
+    var node
+
+    for (option in options) {
+      value = options[option]
+      castedValue = typeof value == 'object' ?
+        true :
+        value
+      name = scope.length > 0 ?
+        scope + '[' + option + ']' :
+        option
+      node = settingsForm.querySelector('[name=\'' + name + '\']')
+
+      if (node) {
+        setValue(node, castedValue)
+      }
+
+      if (typeof value == 'object') {
+        loadOptionsRecursively(settingsForm, value, name)
+      }
+    }
+  }
+
+  function setGroupOptionsVisibility(settingsForm) {
+    var level1Option = settingsForm.querySelector('.js-settings-level-1')
     var level1OptionsContainer = settingsForm.querySelector('.js-settings-level-1-options')
+    var level2Option = settingsForm.querySelector('.js-settings-level-2')
     var level2OptionsContainer = settingsForm.querySelector('.js-settings-level-2-options')
-    var setOptions = setOptionsFrom(settingsForm)
+    var formatOption = settingsForm.querySelector('.js-settings-format')
+    var formatOptionsContainer = settingsForm.querySelector('.js-settings-format-options')
+
+    toggleClass(level1OptionsContainer, level1OptionsContainer.dataset.visibilityClass, !level1Option.checked)
+    toggleClass(level2OptionsContainer, level2OptionsContainer.dataset.visibilityClass, !level2Option.checked)
+    toggleClass(formatOptionsContainer, formatOptionsContainer.dataset.visibilityClass, !formatOption.checked)
+  }
+
+  function toggleClass(node, className, force) {
+    if (force) {
+      node.classList.add(className)
+    } else {
+      node.classList.remove(className)
+    }
+  }
+
+  function resetSettings(settingsForm) {
+    function doResetSettings() {
+      setOptionsFrom(settingsForm)()
+      saveOptions(Optimizer.options)
+      setGroupOptionsVisibility(settingsForm)
+    }
 
     return function () {
-      formatOptionsContainer.classList.add(formatOptionsContainer.dataset.visibilityClass)
-      level1OptionsContainer.classList.remove(level1OptionsContainer.dataset.visibilityClass)
-      level2OptionsContainer.classList.add(level2OptionsContainer.dataset.visibilityClass)
-
-      setTimeout(setOptions, DELAY_RESET_SETTINGS_BY)
+      setTimeout(doResetSettings, DELAY_RESET_SETTINGS_BY)
     }
   }
 
@@ -143,6 +229,7 @@
     level2Checkbox.addEventListener('click', toggleOptions(level2Checkbox), false)
     formattingCheckbox.addEventListener('click', toggleOptions(formattingCheckbox), false)
 
+    loadOptions(settingsForm)
     setOptionsFrom(settingsForm)()
   })
 })()

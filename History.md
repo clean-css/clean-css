@@ -1,4 +1,4 @@
-[4.1.0-pre / 20xx-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/4.0...HEAD)
+[4.1.0 / 2017-05-07](https://github.com/jakubpawlowicz/clean-css/compare/4.0...v4.1.0)
 ==================
 
 * Improves longhand-into-shorthand merging mechanism in complex cases as with `border-*` shorthands.

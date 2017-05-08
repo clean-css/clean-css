@@ -1,4 +1,4 @@
-[4.1.1 / 2017-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v4.1.0...4.1)
+[4.1.1 / 2017-05-08](https://github.com/jakubpawlowicz/clean-css/compare/v4.1.0...v4.1.1)
 ==================
 
 * Fixed issue [#938](https://github.com/jakubpawlowicz/clean-css/issues/938) - removing unused at-rules with `!important`.

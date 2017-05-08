@@ -23,6 +23,10 @@ vows.describe('remove unused at rules')
       'one used declaration and one unused': [
         '@counter-style test{system:fixed;symbols:url(one.png) url(two.png);suffix:" "}@counter-style test2{system:fixed;symbols:url(one.png) url(two.png);suffix:" "}.block{list-style-type:test}',
         '@counter-style test{system:fixed;symbols:url(one.png) url(two.png);suffix:" "}.block{list-style-type:test}'
+      ],
+      'one used declaration with !important': [
+        '@counter-style test{system:fixed;symbols:url(one.png) url(two.png);suffix:" "}.block{list-style:test!important}',
+        '@counter-style test{system:fixed;symbols:url(one.png) url(two.png);suffix:" "}.block{list-style:test!important}'
       ]
     }, { level: { 2: { removeUnusedAtRules: true } } })
   )
@@ -63,6 +67,10 @@ vows.describe('remove unused at rules')
       'one used declaration and one unused': [
         '@font-face{font-family:test}@font-face{font-family:test2}.block{font:16px test}',
         '@font-face{font-family:test}.block{font:16px test}'
+      ],
+      'one used with !important': [
+        '@font-face{font-family:test}.block{font:16px test!important}',
+        '@font-face{font-family:test}.block{font:16px test!important}'
       ]
     }, { level: { 2: { removeUnusedAtRules: true } } })
   )
@@ -103,6 +111,10 @@ vows.describe('remove unused at rules')
       'one used declaration and one unused': [
         '@keyframes test{0%{opacity:0}100%{opacity:1}}@keyframes test2{0%{opacity:0}100%{opacity:1}}.block{animation-name:test}',
         '@keyframes test{0%{opacity:0}100%{opacity:1}}.block{animation-name:test}'
+      ],
+      'one used with !important': [
+        '@keyframes test{0%{opacity:0}100%{opacity:1}}.block{animation:1s ease-in test!important}',
+        '@keyframes test{0%{opacity:0}100%{opacity:1}}.block{animation:1s ease-in test!important}'
       ]
     }, { level: { 2: { removeUnusedAtRules: true } } })
   )

@@ -1,3 +1,8 @@
+[4.1.2 / 2017-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v4.1.1...4.1)
+==================
+
+* Fixed issue [#940](https://github.com/jakubpawlowicz/clean-css/issues/940) - handling more `font` keywords.
+
 [4.1.1 / 2017-05-08](https://github.com/jakubpawlowicz/clean-css/compare/v4.1.0...v4.1.1)
 ==================
 

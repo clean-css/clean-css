@@ -1475,6 +1475,48 @@ vows.describe(breakUp)
           assert.deepEqual(components[6].value, [['property-value', '-clean-css-icon']]);
         }
       },
+      'unset font': {
+        'topic': function () {
+          return _breakUp([
+            [
+              'property',
+              ['property-name', 'font'],
+              ['property-value', 'unset']
+            ]
+          ]);
+        },
+        'has 7 components': function (components) {
+          assert.lengthOf(components, 7);
+        },
+        'has font-style': function (components) {
+          assert.equal(components[0].name, 'font-style');
+          assert.deepEqual(components[0].value, [['property-value', '-clean-css-unset']]);
+        },
+        'has font-variant': function (components) {
+          assert.equal(components[1].name, 'font-variant');
+          assert.deepEqual(components[1].value, [['property-value', '-clean-css-unset']]);
+        },
+        'has font-weight': function (components) {
+          assert.equal(components[2].name, 'font-weight');
+          assert.deepEqual(components[2].value, [['property-value', '-clean-css-unset']]);
+        },
+        'has font-stretch': function (components) {
+          assert.equal(components[3].name, 'font-stretch');
+          assert.deepEqual(components[3].value, [['property-value', '-clean-css-unset']]);
+        },
+        'has font-size': function (components) {
+          assert.equal(components[4].name, 'font-size');
+          assert.deepEqual(components[4].value, [['property-value', '-clean-css-unset']]);
+        },
+        'has line-height': function (components) {
+          assert.equal(components[5].name, 'line-height');
+          assert.deepEqual(components[5].value, [['property-value', '-clean-css-unset']]);
+        },
+        'has font-family': function (components) {
+          assert.equal(components[6].name, 'font-family');
+          assert.deepEqual(components[6].value, [['property-value', '-clean-css-unset']]);
+        }
+      },
       'system font with vendor prefix': {
         'topic': function () {
           return _breakUp([

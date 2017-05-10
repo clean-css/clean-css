@@ -1,6 +1,7 @@
 [4.1.2 / 2017-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v4.1.1...4.1)
 ==================
 
+* Fixed issue [#939](https://github.com/jakubpawlowicz/clean-css/issues/939) - semicolon after `@apply` at rule.
 * Fixed issue [#940](https://github.com/jakubpawlowicz/clean-css/issues/940) - handling more `font` keywords.
 * Fixed issue [#941](https://github.com/jakubpawlowicz/clean-css/issues/941) - breaking up vendor prefixed `animation`.
 

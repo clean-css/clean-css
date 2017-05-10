@@ -1,4 +1,4 @@
-[4.0.13 / 2017-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v4.0.12...4.0)
+[4.0.13 / 2017-05-10](https://github.com/jakubpawlowicz/clean-css/compare/v4.0.12...v4.0.13)
 ==================
 
 * Backports [#939](https://github.com/jakubpawlowicz/clean-css/issues/939) - semicolon after `@apply` at rule.

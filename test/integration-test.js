@@ -2124,14 +2124,14 @@ vows.describe('integration tests')
     }, { inline: 'none' })
   )
   .addBatch(
-    optimizerContext('body at-rules', {
+    optimizerContext('@apply', {
       'single @apply': [
-        'a{@apply(--rule)}',
-        'a{@apply(--rule)}'
+        'a{@apply(--rule);}',
+        'a{@apply(--rule);}'
       ],
       'multiple @apply': [
-        'a{@apply(--rule1);@apply(--rule2)}',
-        'a{@apply(--rule1);@apply(--rule2)}'
+        'a{@apply(--rule1);@apply(--rule2);}',
+        'a{@apply(--rule1);@apply(--rule2);}'
       ],
       'multiple @apply with some styling': [
         'a{@apply(--rule1);@apply(--rule2);color:red;display:block}',
@@ -2142,8 +2142,8 @@ vows.describe('integration tests')
         'a{@apply(--rule1);@apply(--rule2);color:red;display:block}'
       ],
       '@apply another rule within :root context': [
-        ':root{--layout:{display:flex};--layout-horizontal:{@apply(--layout)};}',
-        ':root{--layout:{display:flex};--layout-horizontal:{@apply(--layout)};}'
+        ':root{--layout:{display:flex};--layout-horizontal:{@apply(--layout);};}',
+        ':root{--layout:{display:flex};--layout-horizontal:{@apply(--layout);};}'
       ]
     })
   )

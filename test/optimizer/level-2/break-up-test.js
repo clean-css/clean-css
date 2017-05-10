@@ -377,6 +377,59 @@ vows.describe(breakUp)
           assert.deepEqual(components[7].value, [['property-value', 'slidein'], ['property-value', ','], ['property-value', 'slideout']]);
         }
       },
+      'vendor prefixed': {
+        'topic': function () {
+          return _breakUp([
+            [
+              'property',
+              ['property-name', '-moz-animation'],
+              ['property-value', '3s'],
+              ['property-value', 'ease-in'],
+              ['property-value', '1s'],
+              ['property-value', '2'],
+              ['property-value', 'reverse'],
+              ['property-value', 'both'],
+              ['property-value', 'paused'],
+              ['property-value', 'slidein']
+            ]
+          ]);
+        },
+        'has 8 components': function (components) {
+          assert.lengthOf(components, 8);
+        },
+        'has animation-duration': function (components) {
+          assert.deepEqual(components[0].name, '-moz-animation-duration');
+          assert.deepEqual(components[0].value, [['property-value', '3s']]);
+        },
+        'has animation-timing-function': function (components) {
+          assert.deepEqual(components[1].name, '-moz-animation-timing-function');
+          assert.deepEqual(components[1].value, [['property-value', 'ease-in']]);
+        },
+        'has animation-delay': function (components) {
+          assert.deepEqual(components[2].name, '-moz-animation-delay');
+          assert.deepEqual(components[2].value, [['property-value', '1s']]);
+        },
+        'has animation-iteration-count': function (components) {
+          assert.deepEqual(components[3].name, '-moz-animation-iteration-count');
+          assert.deepEqual(components[3].value, [['property-value', '2']]);
+        },
+        'has animation-direction': function (components) {
+          assert.deepEqual(components[4].name, '-moz-animation-direction');
+          assert.deepEqual(components[4].value, [['property-value', 'reverse']]);
+        },
+        'has animation-fill-mode': function (components) {
+          assert.deepEqual(components[5].name, '-moz-animation-fill-mode');
+          assert.deepEqual(components[5].value, [['property-value', 'both']]);
+        },
+        'has animation-play-state': function (components) {
+          assert.deepEqual(components[6].name, '-moz-animation-play-state');
+          assert.deepEqual(components[6].value, [['property-value', 'paused']]);
+        },
+        'has animation-name': function (components) {
+          assert.deepEqual(components[7].name, '-moz-animation-name');
+          assert.deepEqual(components[7].value, [['property-value', 'slidein']]);
+        }
+      }
     },
     'background': {
       'inherit': {

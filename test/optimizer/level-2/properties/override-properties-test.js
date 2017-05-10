@@ -165,6 +165,23 @@ vows.describe(optimizeProperties)
           ]
         ]);
       }
+    },
+    'vendor prefixed animation shorthand and longhand': {
+      'topic': function () {
+        return _optimize('.block{-webkit-animation:1s infinite slidein;-webkit-animation-timing-function:ease-in}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', '-webkit-animation', [[1, 7, undefined]]],
+            ['property-value', '1s', [[1, 25, undefined]]],
+            ['property-value', 'ease-in', [[1, 79, undefined]]],
+            ['property-value', 'infinite', [[1, 28, undefined]]],
+            ['property-value', 'slidein', [[1, 37, undefined]]]
+          ]
+        ]);
+      }
     }
   })
   .addBatch({

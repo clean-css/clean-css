@@ -22,6 +22,11 @@
 * Fixed issue [#920](https://github.com/jakubpawlowicz/clean-css/issues/920) - allows skipping certain properties in level 2 optimizations.
 * Fixed issue [#934](https://github.com/jakubpawlowicz/clean-css/issues/934) - smarter longhand into shorthand merging.
 
+[4.0.13 / 2017-05-10](https://github.com/jakubpawlowicz/clean-css/compare/v4.0.12...v4.0.13)
+==================
+
+* Backports [#939](https://github.com/jakubpawlowicz/clean-css/issues/939) - semicolon after `@apply` at rule.
+
 [4.0.12 / 2017-04-12](https://github.com/jakubpawlowicz/clean-css/compare/v4.0.11...v4.0.12)
 ==================
 

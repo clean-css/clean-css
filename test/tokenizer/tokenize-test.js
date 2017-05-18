@@ -536,6 +536,42 @@ vows.describe(tokenize)
           ]
         ]
       ],
+      'a rule with grid repeat': [
+        '.block{-ms-grid-columns:( 1fr )[5]}',
+        [
+          [
+            'rule',
+            [
+              [
+                'rule-scope',
+                '.block',
+                [
+                  [1, 0, undefined]
+                ]
+              ]
+            ],
+            [
+              [
+                'property',
+                [
+                  'property-name',
+                  '-ms-grid-columns',
+                  [
+                    [1, 7, undefined]
+                  ]
+                ],
+                [
+                  'property-value',
+                  '( 1fr )[5]',
+                  [
+                    [1, 24, undefined]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ],
       'a rule with two properties where first ends with a round close bracket': [
         'a{width:calc(100% - 25px);width:50rem}',
         [

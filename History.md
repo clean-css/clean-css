@@ -1,3 +1,8 @@
+[4.1.3 / 2017-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v4.1.2...4.1)
+==================
+
+* Fixed issue [#946](https://github.com/jakubpawlowicz/clean-css/issues/946) - tokenizing `-ms-grid-columns` repeat syntax.
+
 [4.1.2 / 2017-05-10](https://github.com/jakubpawlowicz/clean-css/compare/v4.1.1...v4.1.2)
 ==================
 

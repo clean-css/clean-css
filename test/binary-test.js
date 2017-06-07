@@ -9,6 +9,7 @@ var url = require('url');
 var SourceMapConsumer = require('source-map').SourceMapConsumer;
 
 var isWindows = process.platform == 'win32';
+var lineBreak = require('os').EOL;
 var lineBreakRegExp = new RegExp(require('os').EOL, 'g');
 
 var binaryContext = function (options, context) {
@@ -495,7 +496,7 @@ vows.describe('./bin/cleancss')
   .addBatch({
     'source maps - output file': binaryContext('--source-map -o ./reset.min.css ./test/fixtures/reset.css', {
       'includes map in minified file': function () {
-        assert.include(readFile('./reset.min.css'), '/*# sourceMappingURL=reset.min.css.map */');
+        assert.include(fs.readFileSync('./reset.min.css', 'utf-8'), lineBreak + '/*# sourceMappingURL=reset.min.css.map */');
       },
       'creates a map file': function () {
         assert.isTrue(fs.existsSync('./reset.min.css.map'));
@@ -589,7 +590,7 @@ vows.describe('./bin/cleancss')
   .addBatch({
     'source maps - output file with root path': binaryContext('--source-map -o ./reset-root.min.css -r ./test ./test/fixtures/reset.css', {
       'includes map in minified file': function () {
-        assert.include(readFile('./reset-root.min.css'), '/*# sourceMappingURL=reset-root.min.css.map */');
+        assert.include(fs.readFileSync('./reset-root.min.css', 'utf-8'), lineBreak + '/*# sourceMappingURL=reset-root.min.css.map */');
       },
       'creates a map file': function () {
         assert.isTrue(fs.existsSync('./reset-root.min.css.map'));
@@ -615,7 +616,7 @@ vows.describe('./bin/cleancss')
   .addBatch({
     'source maps - with input source map': binaryContext('--source-map -o ./import.min.css ./test/fixtures/source-maps/import.css', {
       'includes map in minified file': function () {
-        assert.include(readFile('./import.min.css'), '/*# sourceMappingURL=import.min.css.map */');
+        assert.include(fs.readFileSync('./import.min.css', 'utf-8'), lineBreak + '/*# sourceMappingURL=import.min.css.map */');
       },
       'includes right content in map file': function () {
         var sourceMap = new SourceMapConsumer(readFile('./import.min.css.map'));
@@ -633,7 +634,7 @@ vows.describe('./bin/cleancss')
   .addBatch({
     'source maps - with input source map and source 1inlining': binaryContext('--source-map --source-map-inline-sources -o ./import-inline.min.css ./test/fixtures/source-maps/import.css', {
       'includes map in minified file': function () {
-        assert.include(readFile('./import-inline.min.css'), '/*# sourceMappingURL=import-inline.min.css.map */');
+        assert.include(fs.readFileSync('./import-inline.min.css', 'utf-8'), lineBreak + '/*# sourceMappingURL=import-inline.min.css.map */');
       },
       'includes embedded sources': function () {
         var sourceMap = new SourceMapConsumer(readFile('./import-inline.min.css.map'));

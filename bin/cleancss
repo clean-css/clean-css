@@ -10,6 +10,7 @@ var packageConfig = fs.readFileSync(path.join(path.dirname(fs.realpathSync(proce
 var buildVersion = JSON.parse(packageConfig).version;
 
 var isWindows = process.platform == 'win32';
+var lineBreak = require('os').EOL;
 
 // Specify commander options to parse command line params correctly
 commands
@@ -154,7 +155,7 @@ function minify(data) {
 
     if (minified.sourceMap) {
       var mapFilename = path.basename(options.target) + '.map';
-      output(minified.styles + '/*# sourceMappingURL=' + mapFilename + ' */');
+      output(minified.styles + lineBreak + '/*# sourceMappingURL=' + mapFilename + ' */');
       outputMap(minified.sourceMap, mapFilename);
     } else {
       output(minified.styles);

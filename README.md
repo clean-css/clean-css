@@ -117,7 +117,7 @@ clean-css 4.1 introduces the following changes / features:
 
 clean-css 4.2 will introduce the following changes / features:
 
-TBD
+* Adds `process` method for compatibility with optimize-css-assets-webpack-plugin;
 
 ## Constructor options
 

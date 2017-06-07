@@ -1,6 +1,8 @@
 [4.2.0-pre / 2017-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/4.1...HEAD)
 ==================
 
+* Adds `process` method for compatibility with optimize-css-assets-webpack-plugin.
+
 [4.1.3 / 2017-05-18](https://github.com/jakubpawlowicz/clean-css/compare/v4.1.2...v4.1.3)
 ==================
 

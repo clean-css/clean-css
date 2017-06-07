@@ -429,6 +429,22 @@ vows.describe('integration tests')
       'two comments, general selector right after first, and quotes': [
         '/*! comment */*{box-sizing:border-box}div:before{content:" "}/*! @comment */div{display:inline-block}',
         '/*! comment */*{box-sizing:border-box}div:before{content:" "}/*! @comment */div{display:inline-block}'
+      ],
+      'clean-css ignore comments on top level': [
+        '/* clean-css ignore:start */\n .block { color:transparent } \n/* clean-css ignore:end */',
+        '\n .block { color:transparent } \n'
+      ],
+      'clean-css ignore comments on nested block level': [
+        '@media print { /* clean-css ignore:start */\n .block { color:transparent } \n/* clean-css ignore:end */ }',
+        '@media print{\n .block { color:transparent } \n}'
+      ],
+      'clean-css ignore comments on rule level': [
+        '.block { /* clean-css ignore:start */ *!color:transparent /* clean-css ignore:end */ }',
+        '.block{ *!color:transparent }'
+      ],
+      'clean-css ignore comments with nested block': [
+        '/* clean-css ignore:start */ @media print { a { *!color:transparent } } /* clean-css ignore:end */',
+        ' @media print { a { *!color:transparent } } '
       ]
     })
   )

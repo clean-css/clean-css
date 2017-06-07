@@ -41,6 +41,7 @@ According to [tests](http://goalsmashers.github.io/css-minification-benchmark/) 
   * [How to process remote `@import`s correctly?](#how-to-process-remote-imports-correctly)
   * [How to apply arbitrary transformations to CSS properties?](#how-to-apply-arbitrary-transformations-to-css-properties)
   * [How to specify a custom rounding precision?](#how-to-specify-a-custom-rounding-precision)
+  * [How to keep a CSS fragment intact?](#how-to-keep-a-css-fragment-intact)
   * [How to preserve a comment block?](#how-to-preserve-a-comment-block)
   * [How to rebase relative image URLs?](#how-to-rebase-relative-image-urls)
   * [How to work with source maps?](#how-to-work-with-source-maps)
@@ -119,6 +120,7 @@ clean-css 4.2 will introduce the following changes / features:
 
 * Adds `process` method for compatibility with optimize-css-assets-webpack-plugin;
 * new `transition` property optimizer;
+* preserves any CSS content between `/* clean-css ignore:start */` and `/* clean-css ignore:end */` comments;
 
 ## Constructor options
 
@@ -560,6 +562,34 @@ new CleanCSS({
 ```
 
 which sets all units rounding precision to 3 digits except `px` unit precision of 5 digits.
+
+## How to keep a CSS fragment intact?
+
+Wrap the CSS fragment in special comments which instruct clean-css to preserve it, e.g.
+
+```css
+.block-1 {
+  color: red
+}
+/* clean-css ignore:start */
+.block-special {
+  color: transparent
+}
+/* clean-css ignore:end */
+.block-2 {
+  margin: 0
+}
+```
+
+Optimizing this CSS will result in the following output:
+
+```css
+.block-1{color:red}
+.block-special {
+  color: transparent
+}
+.block-2{margin:0}
+```
 
 ## How to preserve a comment block?
 

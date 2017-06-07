@@ -1065,6 +1065,94 @@ vows.describe(tokenize)
           ]
         ]
       ],
+      'rule wrapped between ignore comments': [
+        '.block-1 { color: red }\n/* clean-css ignore:start */\n .block-2 { color: transparent } \n/* clean-css ignore:end */\n.block-3 { color: red }',
+        [
+          [
+            'rule',
+            [
+              [
+                'rule-scope',
+                '.block-1',
+                [
+                  [1, 0, undefined]
+                ]
+              ]
+            ],
+            [
+              [
+                'property',
+                [
+                  'property-name',
+                  'color',
+                  [
+                    [1, 11, undefined]
+                  ]
+                ],
+                [
+                  'property-value',
+                  'red',
+                  [
+                    [1, 18, undefined]
+                  ]
+                ]
+              ]
+            ]
+          ],
+          [
+            'comment',
+            '/* clean-css ignore:start */',
+            [
+              [2, 0, undefined]
+            ]
+          ],
+          [
+            'raw',
+            '\n .block-2 { color: transparent } \n',
+            [
+              [2, 28, undefined]
+            ]
+          ],
+          [
+            'comment',
+            '/* clean-css ignore:end */',
+            [
+              [4, 0, undefined]
+            ]
+          ],
+          [
+            'rule',
+            [
+              [
+                'rule-scope',
+                '.block-3',
+                [
+                  [5, 0, undefined]
+                ]
+              ]
+            ],
+            [
+              [
+                'property',
+                [
+                  'property-name',
+                  'color',
+                  [
+                    [5, 11, undefined]
+                  ]
+                ],
+                [
+                  'property-value',
+                  'red',
+                  [
+                    [5, 18, undefined]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ],
       'two properties wrapped between comments': [
         'div{/* comment 1 */color:red/* comment 2 */}',
         [

@@ -23,6 +23,7 @@ According to [tests](http://goalsmashers.github.io/css-minification-benchmark/) 
 - [Use](#use)
   * [Important: 4.0 breaking changes](#important-40-breaking-changes)
   * [What's new in version 4.1](#whats-new-in-version-41)
+  * [What's new in version 4.2](#whats-new-in-version-42)
   * [Constructor options](#constructor-options)
   * [Compatibility modes](#compatibility-modes)
   * [Fetch option](#fetch-option)
@@ -111,6 +112,12 @@ clean-css 4.1 introduces the following changes / features:
 * new `animation` shorthand and `animation-*` longhand optimizers;
 * `removeUnusedAtRules` level 2 optimization controlling removal of unused `@counter-style`, `@font-face`, `@keyframes`, and `@namespace` at rules;
 * the [web interface](https://jakubpawlowicz.github.io/clean-css) gets an improved settings panel with "reset to defaults", instant option changes, and settings being persisted across sessions.
+
+## What's new in version 4.2
+
+clean-css 4.2 will introduce the following changes / features:
+
+TBD
 
 ## Constructor options
 

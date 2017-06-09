@@ -1,4 +1,4 @@
-[3.4.27 / 2017-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.26...3.4)
+[3.4.27 / 2017-06-09](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.26...v3.4.27)
 ==================
 
 * Fixes [#948](https://github.com/jakubpawlowicz/clean-css/issues/948) - enforces line break before source map comment.

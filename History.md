@@ -3,6 +3,11 @@
 
 * Adds `process` method for compatibility with optimize-css-assets-webpack-plugin.
 
+[4.1.4 / 2017-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v4.1.3...4.1)
+==================
+
+* Fixed issue [#950](https://github.com/jakubpawlowicz/clean-css/issues/950) - bug in removing unused `@font-face` rules.
+
 [4.1.3 / 2017-05-18](https://github.com/jakubpawlowicz/clean-css/compare/v4.1.2...v4.1.3)
 ==================
 

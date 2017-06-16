@@ -565,6 +565,8 @@ which sets all units rounding precision to 3 digits except `px` unit precision o
 
 ## How to keep a CSS fragment intact?
 
+Note: available in the current master, to be released in 4.2.0.
+
 Wrap the CSS fragment in special comments which instruct clean-css to preserve it, e.g.
 
 ```css

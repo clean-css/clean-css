@@ -2,6 +2,7 @@
 ==================
 
 * Adds `process` method for compatibility with optimize-css-assets-webpack-plugin.
+* Fixed issue [#861](https://github.com/jakubpawlowicz/clean-css/issues/861) - new `transition` property optimizer.
 
 [4.1.4 / 2017-06-14](https://github.com/jakubpawlowicz/clean-css/compare/v4.1.3...v4.1.4)
 ==================

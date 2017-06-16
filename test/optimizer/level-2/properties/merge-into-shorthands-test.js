@@ -814,6 +814,30 @@ vows.describe(optimizeProperties)
           ]
         ]);
       }
-  }
+    }
+  })
+  .addBatch({
+    'transition': {
+      'topic': function () {
+        return _optimize('.block{transition-property:width;transition-duration:5s;transition-timing-function:ease-in;transition-delay:2s}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'transition', [
+              [1, 7, undefined],
+              [1, 33, undefined],
+              [1, 56, undefined],
+              [1, 91, undefined]
+            ]],
+            ['property-value', 'width', [[1, 27, undefined]]],
+            ['property-value', '5s', [[1, 53, undefined]]],
+            ['property-value', 'ease-in', [[1, 83, undefined]]],
+            ['property-value', '2s', [[1, 108, undefined]]]
+          ]
+        ]);
+      }
+    }
   })
   .export(module);

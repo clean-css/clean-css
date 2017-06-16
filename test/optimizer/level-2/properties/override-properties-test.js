@@ -36,7 +36,7 @@ function _optimize(source, compat) {
 }
 
 vows.describe(optimizeProperties)
-    .addBatch({
+  .addBatch({
     'animation shorthand and longhand': {
       'topic': function () {
         return _optimize('.block{animation:1s ease-in;animation-name:slidein}');
@@ -2424,6 +2424,151 @@ vows.describe(optimizeProperties)
             'property',
             ['property-name', 'z-index', [[1, 20, undefined]]],
             ['property-value', '"15"', [[1, 28, undefined]]]
+          ]
+        ]);
+      }
+    }
+  })
+  .addBatch({
+    'transition shorthand and longhand': {
+      'topic': function () {
+        return _optimize('.block{transition:1s ease-in;transition-property:opacity}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'transition', [[1, 7, undefined]]],
+            ['property-value', 'opacity', [[1, 49, undefined]]],
+            ['property-value', '1s', [[1, 18, undefined]]],
+            ['property-value', 'ease-in', [[1, 21, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'transition longhand and shorthand': {
+      'topic': function () {
+        return _optimize('.block{transition-duration:2s;transition:ease-in}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'transition', [[1, 30, undefined]]],
+            ['property-value', 'ease-in', [[1, 41, undefined]]],
+          ]
+        ]);
+      }
+    },
+    'transition shorthand with overriddable shorthand': {
+      'topic': function () {
+        return _optimize('.block{transition:opacity 1s;transition:margin 1s ease-in}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'transition', [[1, 7, undefined]]],
+            ['property-value', 'margin', [[1, 40, undefined]]],
+            ['property-value', '1s', [[1, 47, undefined]]],
+            ['property-value', 'ease-in', [[1, 50, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'transition shorthand and multiplex longhand': {
+      'topic': function () {
+        return _optimize('.block{transition:margin 1s;transition-timing-function:ease-in,ease-out}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'transition', [[1, 7, undefined]]],
+            ['property-value', 'margin', [[1, 18, undefined]]],
+            ['property-value', '1s', [[1, 25, undefined]]],
+            ['property-value', 'ease-in', [[1, 55, undefined]]],
+            ['property-value', ','],
+            ['property-value', '_'],
+            ['property-value', '1s', [[1, 25, undefined]]],
+            ['property-value', 'ease-out', [[1, 63, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'transition multiplex shorthand and longhand': {
+      'topic': function () {
+        return _optimize('.block{transition:ease-in,ease-out;transition-duration:1s}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'transition', [[1, 7, undefined]]],
+            ['property-value', '1s', [[1, 55, undefined]]],
+            ['property-value', 'ease-in', [[1, 18, undefined]]],
+            ['property-value', ','],
+            ['property-value', '1s', [[1, 55, undefined]]],
+            ['property-value', 'ease-out', [[1, 26, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'transition shorthand and multiplex longhand - too long to merge': {
+      'topic': function () {
+        return _optimize('.block{transition:2s ease-in 1s;transition-property:margin,opacity,padding}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'transition', [[1, 7, undefined]]],
+            ['property-value', '2s', [[1, 18, undefined]]],
+            ['property-value', 'ease-in', [[1, 21, undefined]]],
+            ['property-value', '1s', [[1, 29, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'transition-property', [[1, 32, undefined]]],
+            ['property-value', 'margin', [[1, 52, undefined]]],
+            ['property-value', ',', [[1, 58, undefined]]],
+            ['property-value', 'opacity', [[1, 59, undefined]]],
+            ['property-value', ',', [[1, 66, undefined]]],
+            ['property-value', 'padding', [[1, 67, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'transition shorthand and inherit longhand': {
+      'topic': function () {
+        return _optimize('.block{transition:1s;transition-timing-function:inherit}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'transition', [[1, 7, undefined]]],
+            ['property-value', '1s', [[1, 18, undefined]]],
+          ],
+          [
+            'property',
+            ['property-name', 'transition-timing-function', [[1, 21, undefined]]],
+            ['property-value', 'inherit', [[1, 48, undefined]]]
+          ]
+        ]);
+      }
+    },
+    'vendor prefixed transition shorthand and longhand': {
+      'topic': function () {
+        return _optimize('.block{-webkit-transition:1s;-webkit-transition-timing-function:ease-in}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', '-webkit-transition', [[1, 7, undefined]]],
+            ['property-value', '1s', [[1, 26, undefined]]],
+            ['property-value', 'ease-in', [[1, 64, undefined]]]
           ]
         ]);
       }

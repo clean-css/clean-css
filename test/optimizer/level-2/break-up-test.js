@@ -71,7 +71,7 @@ vows.describe(breakUp)
           assert.deepEqual(components[7].value, [['property-value', 'slidein']]);
         }
       },
-      'all with inverted order': {
+      'all with reversed order': {
         'topic': function () {
           return _breakUp([
             [
@@ -2173,6 +2173,352 @@ vows.describe(breakUp)
         'has outline-width': function (components) {
           assert.deepEqual(components[2].name, 'outline-width');
           assert.deepEqual(components[2].value, [['property-value', 'medium']]);
+        }
+      }
+    }
+  })
+  .addBatch({
+    'transition': {
+      'all': {
+        'topic': function () {
+          return _breakUp([
+            [
+              'property',
+              ['property-name', 'transition'],
+              ['property-value', 'all'],
+              ['property-value', '1s'],
+              ['property-value', 'ease-in'],
+              ['property-value', '2s']
+            ]
+          ]);
+        },
+        'has 4 components': function (components) {
+          assert.lengthOf(components, 4);
+        },
+        'has transition-property': function (components) {
+          assert.deepEqual(components[0].name, 'transition-property');
+          assert.deepEqual(components[0].value, [['property-value', 'all']]);
+        },
+        'has transition-duration': function (components) {
+          assert.deepEqual(components[1].name, 'transition-duration');
+          assert.deepEqual(components[1].value, [['property-value', '1s']]);
+        },
+        'has transition-timing-function': function (components) {
+          assert.deepEqual(components[2].name, 'transition-timing-function');
+          assert.deepEqual(components[2].value, [['property-value', 'ease-in']]);
+        },
+        'has transition-delay': function (components) {
+          assert.deepEqual(components[3].name, 'transition-delay');
+          assert.deepEqual(components[3].value, [['property-value', '2s']]);
+        }
+      },
+      'all vendor prefixed': {
+        'topic': function () {
+          return _breakUp([
+            [
+              'property',
+              ['property-name', '-moz-transition'],
+              ['property-value', 'all'],
+              ['property-value', '1s'],
+              ['property-value', 'ease-in'],
+              ['property-value', '2s']
+            ]
+          ]);
+        },
+        'has 4 components': function (components) {
+          assert.lengthOf(components, 4);
+        },
+        'has -moz-transition-property': function (components) {
+          assert.deepEqual(components[0].name, '-moz-transition-property');
+          assert.deepEqual(components[0].value, [['property-value', 'all']]);
+        },
+        'has -moz-transition-duration': function (components) {
+          assert.deepEqual(components[1].name, '-moz-transition-duration');
+          assert.deepEqual(components[1].value, [['property-value', '1s']]);
+        },
+        'has -moz-transition-timing-function': function (components) {
+          assert.deepEqual(components[2].name, '-moz-transition-timing-function');
+          assert.deepEqual(components[2].value, [['property-value', 'ease-in']]);
+        },
+        'has -moz-transition-delay': function (components) {
+          assert.deepEqual(components[3].name, '-moz-transition-delay');
+          assert.deepEqual(components[3].value, [['property-value', '2s']]);
+        }
+      },
+      'all with reversed order': {
+        'topic': function () {
+          return _breakUp([
+            [
+              'property',
+              ['property-name', 'transition'],
+              ['property-value', '2s'],
+              ['property-value', 'ease-in'],
+              ['property-value', '1s'],
+              ['property-value', 'all']
+            ]
+          ]);
+        },
+        'has transition-property': function (components) {
+          assert.deepEqual(components[0].name, 'transition-property');
+          assert.deepEqual(components[0].value, [['property-value', 'all']]);
+        },
+        'has transition-duration': function (components) {
+          assert.deepEqual(components[1].name, 'transition-duration');
+          assert.deepEqual(components[1].value, [['property-value', '2s']]);
+        },
+        'has transition-timing-function': function (components) {
+          assert.deepEqual(components[2].name, 'transition-timing-function');
+          assert.deepEqual(components[2].value, [['property-value', 'ease-in']]);
+        },
+        'has transition-delay': function (components) {
+          assert.deepEqual(components[3].name, 'transition-delay');
+          assert.deepEqual(components[3].value, [['property-value', '1s']]);
+        }
+      },
+      'some': {
+        'topic': function () {
+          return _breakUp([
+            [
+              'property',
+              ['property-name', 'transition'],
+              ['property-value', 'margin'],
+              ['property-value', '1s']
+            ]
+          ]);
+        },
+        'has transition-property': function (components) {
+          assert.deepEqual(components[0].name, 'transition-property');
+          assert.deepEqual(components[0].value, [['property-value', 'margin']]);
+        },
+        'has transition-duration': function (components) {
+          assert.deepEqual(components[1].name, 'transition-duration');
+          assert.deepEqual(components[1].value, [['property-value', '1s']]);
+        },
+        'has transition-timing-function': function (components) {
+          assert.deepEqual(components[2].name, 'transition-timing-function');
+          assert.deepEqual(components[2].value, [['property-value', 'ease']]);
+        },
+        'has transition-delay': function (components) {
+          assert.deepEqual(components[3].name, 'transition-delay');
+          assert.deepEqual(components[3].value, [['property-value', '0s']]);
+        }
+      },
+      'only property': {
+        'topic': function () {
+          return _breakUp([
+            [
+              'property',
+              ['property-name', 'transition'],
+              ['property-value', 'margin']
+            ]
+          ]);
+        },
+        'has transition-property': function (components) {
+          assert.deepEqual(components[0].name, 'transition-property');
+          assert.deepEqual(components[0].value, [['property-value', 'margin']]);
+        },
+        'has transition-duration': function (components) {
+          assert.deepEqual(components[1].name, 'transition-duration');
+          assert.deepEqual(components[1].value, [['property-value', '0s']]);
+        },
+        'has transition-timing-function': function (components) {
+          assert.deepEqual(components[2].name, 'transition-timing-function');
+          assert.deepEqual(components[2].value, [['property-value', 'ease']]);
+        },
+        'has transition-delay': function (components) {
+          assert.deepEqual(components[3].name, 'transition-delay');
+          assert.deepEqual(components[3].value, [['property-value', '0s']]);
+        }
+      },
+      'only one `time`': {
+        'topic': function () {
+          return _breakUp([
+            [
+              'property',
+              ['property-name', 'transition'],
+              ['property-value', '1s']
+            ]
+          ]);
+        },
+        'has transition-property': function (components) {
+          assert.deepEqual(components[0].name, 'transition-property');
+          assert.deepEqual(components[0].value, [['property-value', 'all']]);
+        },
+        'has transition-duration': function (components) {
+          assert.deepEqual(components[1].name, 'transition-duration');
+          assert.deepEqual(components[1].value, [['property-value', '1s']]);
+        },
+        'has transition-timing-function': function (components) {
+          assert.deepEqual(components[2].name, 'transition-timing-function');
+          assert.deepEqual(components[2].value, [['property-value', 'ease']]);
+        },
+        'has transition-delay': function (components) {
+          assert.deepEqual(components[3].name, 'transition-delay');
+          assert.deepEqual(components[3].value, [['property-value', '0s']]);
+        }
+      },
+      'only two `time`s': {
+        'topic': function () {
+          return _breakUp([
+            [
+              'property',
+              ['property-name', 'transition'],
+              ['property-value', '1s'],
+              ['property-value', '2s']
+            ]
+          ]);
+        },
+        'has transition-property': function (components) {
+          assert.deepEqual(components[0].name, 'transition-property');
+          assert.deepEqual(components[0].value, [['property-value', 'all']]);
+        },
+        'has transition-duration': function (components) {
+          assert.deepEqual(components[1].name, 'transition-duration');
+          assert.deepEqual(components[1].value, [['property-value', '1s']]);
+        },
+        'has transition-timing-function': function (components) {
+          assert.deepEqual(components[2].name, 'transition-timing-function');
+          assert.deepEqual(components[2].value, [['property-value', 'ease']]);
+        },
+        'has transition-delay': function (components) {
+          assert.deepEqual(components[3].name, 'transition-delay');
+          assert.deepEqual(components[3].value, [['property-value', '2s']]);
+        }
+      },
+      'only timing function': {
+        'topic': function () {
+          return _breakUp([
+            [
+              'property',
+              ['property-name', 'transition'],
+              ['property-value', 'ease-out']
+            ]
+          ]);
+        },
+        'has transition-property': function (components) {
+          assert.deepEqual(components[0].name, 'transition-property');
+          assert.deepEqual(components[0].value, [['property-value', 'all']]);
+        },
+        'has transition-duration': function (components) {
+          assert.deepEqual(components[1].name, 'transition-duration');
+          assert.deepEqual(components[1].value, [['property-value', '0s']]);
+        },
+        'has transition-timing-function': function (components) {
+          assert.deepEqual(components[2].name, 'transition-timing-function');
+          assert.deepEqual(components[2].value, [['property-value', 'ease-out']]);
+        },
+        'has transition-delay': function (components) {
+          assert.deepEqual(components[3].name, 'transition-delay');
+          assert.deepEqual(components[3].value, [['property-value', '0s']]);
+        }
+      },
+      '`inherit`': {
+        'topic': function () {
+          return _breakUp([
+            [
+              'property',
+              ['property-name', 'transition'],
+              ['property-value', 'inherit']
+            ]
+          ]);
+        },
+        'has transition-property': function (components) {
+          assert.deepEqual(components[0].name, 'transition-property');
+          assert.deepEqual(components[0].value, [['property-value', 'inherit']]);
+        },
+        'has transition-duration': function (components) {
+          assert.deepEqual(components[1].name, 'transition-duration');
+          assert.deepEqual(components[1].value, [['property-value', 'inherit']]);
+        },
+        'has transition-timing-function': function (components) {
+          assert.deepEqual(components[2].name, 'transition-timing-function');
+          assert.deepEqual(components[2].value, [['property-value', 'inherit']]);
+        },
+        'has transition-delay': function (components) {
+          assert.deepEqual(components[3].name, 'transition-delay');
+          assert.deepEqual(components[3].value, [['property-value', 'inherit']]);
+        }
+      },
+      'multiplex': {
+        'topic': function () {
+          return _breakUp([
+            [
+              'property',
+              ['property-name', 'transition'],
+              ['property-value', 'background-color'],
+              ['property-value', '1s'],
+              ['property-value', 'ease-in'],
+              ['property-value', '1s'],
+              ['property-value', ','],
+              ['property-value', 'opacity'],
+              ['property-value', '2s']
+            ]
+          ]);
+        },
+        'has transition-property': function (components) {
+          assert.deepEqual(components[0].name, 'transition-property');
+          assert.deepEqual(components[0].value, [['property-value', 'background-color'], ['property-value', ','], ['property-value', 'opacity']]);
+        },
+        'has transition-duration': function (components) {
+          assert.deepEqual(components[1].name, 'transition-duration');
+          assert.deepEqual(components[1].value, [['property-value', '1s'], ['property-value', ','], ['property-value', '2s']]);
+        },
+        'has transition-timing-function': function (components) {
+          assert.deepEqual(components[2].name, 'transition-timing-function');
+          assert.deepEqual(components[2].value, [['property-value', 'ease-in'], ['property-value', ','], ['property-value', 'ease']]);
+        },
+        'has transition-delay': function (components) {
+          assert.deepEqual(components[3].name, 'transition-delay');
+          assert.deepEqual(components[3].value, [['property-value', '1s'], ['property-value', ','], ['property-value', '0s']]);
+        }
+      },
+      'three `time`s': {
+        'topic': function () {
+          return _breakUp([
+            [
+              'property',
+              ['property-name', 'transition'],
+              ['property-value', '1s'],
+              ['property-value', '2s'],
+              ['property-value', '3s', [[1, 30, undefined]]]
+            ]
+          ]);
+        },
+        'has no components': function (components) {
+          assert.lengthOf(components, 0);
+        }
+      },
+      'extra value': {
+        'topic': function () {
+          return _breakUp([
+            [
+              'property',
+              ['property-name', 'transition'],
+              ['property-value', 'all'],
+              ['property-value', '1s'],
+              ['property-value', 'ease-in'],
+              ['property-value', '3s'],
+              ['property-value', 'extra', [[1, 30, undefined]]]
+            ]
+          ]);
+        },
+        'has no components': function (components) {
+          assert.lengthOf(components, 0);
+        }
+      },
+      'mixed-in inherit': {
+        'topic': function () {
+          return _breakUp([
+            [
+              'property',
+              ['property-name', 'transition'],
+              ['property-value', 'all', [[1, 30, undefined]]],
+              ['property-value', 'inherit']
+            ]
+          ]);
+        },
+        'has no components': function (components) {
+          assert.lengthOf(components, 0);
         }
       }
     }

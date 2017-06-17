@@ -447,6 +447,24 @@ vows.describe('module tests').addBatch({
         assert.equal(output.styles, '.block{border-image:url(image.png)}');
       }
     },
+    'allows dropping properties based on selector': {
+      'topic': function () {
+        return new CleanCSS({
+          level: {
+            1: {
+              transform: function (propertyName, propertyValue, selector) {
+                if (propertyName.indexOf('-o-') === 0 && selector == '.block-2') {
+                  return false;
+                }
+              }
+            }
+          }
+        }).minify('.block-1{-o-border-radius:2px}.block-2{-o-border-radius:5px;width:1rem}');
+      },
+      'gives right output': function (error, output) {
+        assert.equal(output.styles, '.block-1{-o-border-radius:2px}.block-2{width:1rem}');
+      }
+    },
     'combined with level 2 optimization': {
       'topic': function () {
         return new CleanCSS({

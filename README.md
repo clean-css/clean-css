@@ -121,6 +121,7 @@ clean-css 4.2 will introduce the following changes / features:
 * Adds `process` method for compatibility with optimize-css-assets-webpack-plugin;
 * new `transition` property optimizer;
 * preserves any CSS content between `/* clean-css ignore:start */` and `/* clean-css ignore:end */` comments;
+* allows filtering based on selector in `transform` callback, see [example](#how-to-apply-arbitrary-transformations-to-css-properties);
 
 ## Constructor options
 
@@ -533,7 +534,7 @@ var source = '.block{background-image:url(/path/to/image.png)}';
 var output = new CleanCSS({
   level: {
     1: {
-      transform: function (propertyName, propertyValue) {
+      transform: function (propertyName, propertyValue, selector /* `selector` available since 4.2.0-pre */) {
         if (propertyName == 'background-image' && propertyValue.indexOf('/path/to') > -1) {
           return propertyValue.replace('/path/to', '../valid/path/to');
         }

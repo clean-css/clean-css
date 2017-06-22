@@ -1891,6 +1891,127 @@ vows.describe(tokenize)
           ]
         ]
       ],
+      '@page named rule': [
+        '@page one{margin:10px}',
+        [
+          [
+            'at-rule-block',
+            [
+              [
+                'at-rule-block-scope',
+                '@page one',
+                [
+                  [1, 0, undefined]
+                ]
+              ]
+            ],
+            [
+              [
+                'property',
+                [
+                  'property-name',
+                  'margin',
+                  [
+                    [1, 10, undefined]
+                  ]
+                ],
+                [
+                  'property-value',
+                  '10px',
+                  [
+                    [1, 17, undefined]
+                  ]
+                ]
+              ]
+
+            ]
+          ]
+        ]
+      ],
+      '@page named rule with page-margin box': [
+        '@page :first{margin:10px;@top-center{content:"Page One"}padding:5px}',
+        [
+          [
+            'at-rule-block',
+            [
+              [
+                'at-rule-block-scope',
+                '@page :first',
+                [
+                  [1, 0, undefined]
+                ]
+              ]
+            ],
+            [
+              [
+                'property',
+                [
+                  'property-name',
+                  'margin',
+                  [
+                    [1, 13, undefined]
+                  ]
+                ],
+                [
+                  'property-value',
+                  '10px',
+                  [
+                    [1, 20, undefined]
+                  ]
+                ]
+              ],
+              [
+                'at-rule-block',
+                [
+                  [
+                    'at-rule-block-scope',
+                    '@top-center',
+                    [
+                      [1, 25, undefined]
+                    ]
+                  ]
+                ],
+                [
+                  [
+                    'property',
+                    [
+                      'property-name',
+                      'content',
+                      [
+                        [1, 37, undefined]
+                      ]
+                    ],
+                    [
+                      'property-value',
+                      '"Page One"',
+                      [
+                        [1, 45, undefined]
+                      ]
+                    ]
+                  ]
+                ]
+              ],
+              [
+                'property',
+                [
+                  'property-name',
+                  'padding',
+                  [
+                    [1, 56, undefined]
+                  ]
+                ],
+                [
+                  'property-value',
+                  '5px',
+                  [
+                    [1, 64, undefined]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ],
       'media query': [
         '@media (min-width:980px){}',
         [

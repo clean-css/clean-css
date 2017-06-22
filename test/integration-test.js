@@ -2381,6 +2381,14 @@ vows.describe('integration tests')
         '@page{margin:.5em}',
         '@page{margin:.5em}'
       ],
+      '@page named': [
+        '@page :first{margin:.5em}',
+        '@page :first{margin:.5em}'
+      ],
+      '@page named with page-margin box': [
+        '@page :first{margin:10px;@top-center{content:"Page One"}padding:5px}',
+        '@page :first{margin:10px;@top-center{content:"Page One"}padding:5px}'
+      ],
       '@supports': [
         '@supports (display:flexbox){.flex{display:flexbox}}',
         '@supports (display:flexbox){.flex{display:flexbox}}'

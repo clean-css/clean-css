@@ -2,6 +2,7 @@
 ==================
 
 * Fixed issue [#945](https://github.com/jakubpawlowicz/clean-css/issues/945) - hex RGBA colors in IE filters.
+* Fixed issue [#952](https://github.com/jakubpawlowicz/clean-css/issues/952) - parsing `@page` according to CSS3 spec.
 
 [4.1.4 / 2017-06-14](https://github.com/jakubpawlowicz/clean-css/compare/v4.1.3...v4.1.4)
 ==================

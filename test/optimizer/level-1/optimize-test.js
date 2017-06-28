@@ -392,6 +392,14 @@ vows.describe('level 1 optimizations')
       'uppercase hex to lowercase hex': [
         'a{color:#FFF}',
         'a{color:#fff}'
+      ],
+      '4-value hex': [
+        '.block{color:#0f0a}',
+        '.block{color:#0f0a}'
+      ],
+      '8-value hex': [
+        '.block{color:#00ff0080}',
+        '.block{color:#00ff0080}'
       ]
     }, { level: 1 })
   )
@@ -414,6 +422,14 @@ vows.describe('level 1 optimizations')
         'a{color:rgba(240,0,0,0)}'
       ]
     }, { level: 1, compatibility: 'ie8' })
+  )
+  .addBatch(
+    optimizerContext('colors - ie7 compatibility', {
+      '8-value hex in gradient': [
+        '.block{filter:progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr= #66000000, endColorstr= #66000000)}',
+        '.block{filter:progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr=#66000000, endColorstr=#66000000)}'
+      ]
+    }, { level: 1, compatibility: 'ie7' })
   )
   .addBatch(
     optimizerContext('colors - no optimizations', {

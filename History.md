@@ -1,3 +1,8 @@
+[4.1.5 / 2017-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v4.1.4...4.1)
+==================
+
+* Fixed issue [#945](https://github.com/jakubpawlowicz/clean-css/issues/945) - hex RGBA colors in IE filters.
+
 [4.1.4 / 2017-06-14](https://github.com/jakubpawlowicz/clean-css/compare/v4.1.3...v4.1.4)
 ==================
 

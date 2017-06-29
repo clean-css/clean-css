@@ -6,7 +6,7 @@
 * Fixed issue [#895](https://github.com/jakubpawlowicz/clean-css/issues/895) - ignoring specific styles.
 * Fixed issue [#947](https://github.com/jakubpawlowicz/clean-css/issues/947) - selector based filtering.
 
-[4.1.5 / 2017-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v4.1.4...4.1)
+[4.1.5 / 2017-06-29](https://github.com/jakubpawlowicz/clean-css/compare/v4.1.4...v4.1.5)
 ==================
 
 * Fixed issue [#945](https://github.com/jakubpawlowicz/clean-css/issues/945) - hex RGBA colors in IE filters.

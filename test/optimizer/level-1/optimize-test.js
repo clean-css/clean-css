@@ -261,6 +261,14 @@ vows.describe('level 1 optimizations')
         'a{/* a comment */}',
         'a{}'
       ],
+      'body with comment and ignored value': [
+        '.block{/* a comment */_color: red}',
+        '.block{}'
+      ],
+      'top level comment': [
+        '/* comment */.block{}',
+        '.block{}'
+      ],
       '@media query': [
         '@media screen{}',
         '@media screen{}'

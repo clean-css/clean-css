@@ -1,4 +1,4 @@
-[4.1.6 / 2017-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v4.1.5...4.1)
+[4.1.6 / 2017-07-08](https://github.com/jakubpawlowicz/clean-css/compare/v4.1.5...v4.1.6)
 ==================
 
 * Fixed issue [#887](https://github.com/jakubpawlowicz/clean-css/issues/887) - edge case in serializing comments.

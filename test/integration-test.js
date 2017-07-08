@@ -2573,6 +2573,10 @@ vows.describe('integration tests')
         'a{color:red}',
         'a {' + lineBreak + '  color: red' + lineBreak + '}'
       ],
+      'rule with fancy selector': [
+        '.block[data-col~="5th"]{color:red}',
+        '.block[data-col~="5th"] {' + lineBreak + '  color: red' + lineBreak + '}'
+      ],
       'rules': [
         'a{color:red}p{color:#000;width:100%}',
         'a {' + lineBreak + '  color: red' + lineBreak + '}' + lineBreak + 'p {' + lineBreak + '  color: #000;' + lineBreak + '  width: 100%' + lineBreak + '}'

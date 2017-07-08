@@ -10,6 +10,7 @@
 ==================
 
 * Fixed issue [#887](https://github.com/jakubpawlowicz/clean-css/issues/887) - edge case in serializing comments.
+* Fixed issue [#953](https://github.com/jakubpawlowicz/clean-css/issues/953) - beautify breaks attribute selectors.
 
 [4.1.5 / 2017-06-29](https://github.com/jakubpawlowicz/clean-css/compare/v4.1.4...v4.1.5)
 ==================

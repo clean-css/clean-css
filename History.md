@@ -1,3 +1,8 @@
+[3.4.28 / 2017-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.27...3.4)
+==================
+
+* Backports [#957](https://github.com/jakubpawlowicz/clean-css/issues/957) - `0%` minification of `width` property.
+
 [3.4.27 / 2017-06-09](https://github.com/jakubpawlowicz/clean-css/compare/v3.4.26...v3.4.27)
 ==================
 

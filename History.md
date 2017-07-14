@@ -6,6 +6,11 @@
 * Fixed issue [#895](https://github.com/jakubpawlowicz/clean-css/issues/895) - ignoring specific styles.
 * Fixed issue [#947](https://github.com/jakubpawlowicz/clean-css/issues/947) - selector based filtering.
 
+[4.1.7 / 2017-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v4.1.6...4.1)
+==================
+
+* Fixed issue [#957](https://github.com/jakubpawlowicz/clean-css/issues/957) - `0%` minification of `width` property.
+
 [4.1.6 / 2017-07-08](https://github.com/jakubpawlowicz/clean-css/compare/v4.1.5...v4.1.6)
 ==================
 

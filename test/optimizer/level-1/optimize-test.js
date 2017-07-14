@@ -894,8 +894,8 @@ vows.describe('level 1 optimizations')
         'a{margin:0}'
       ],
       '-0% to 0': [
-        'a{width:-0%}',
-        'a{width:0}'
+        'a{min-width:-0%}',
+        'a{min-width:0}'
       ],
       'missing': [
         'a{opacity:1.}',
@@ -968,6 +968,18 @@ vows.describe('level 1 optimizations')
       'max-height': [
         'a{max-height:0%}',
         'a{max-height:0%}'
+      ],
+      'width': [
+        'a{width:0%}',
+        'a{width:0%}'
+      ],
+      'min-width': [
+        'a{min-width:0%}',
+        'a{min-width:0}'
+      ],
+      'max-width': [
+        'a{max-width:0%}',
+        'a{max-width:0%}'
       ]
     }, { level: 1 })
   )

@@ -1015,6 +1015,80 @@ vows.describe(tokenize)
           ]
         ]
       ],
+      'two comments one inside another and two rules': [
+        '.block-1{color:red;/* comment 1 /* comment 2 */ */}.block-2{color:blue}',
+        [
+          [
+            'rule',
+            [
+              [
+                'rule-scope',
+                '.block-1',
+                [
+                  [1, 0, undefined]
+                ]
+              ]
+            ],
+            [
+              [
+                'property',
+                [
+                  'property-name',
+                  'color',
+                  [
+                    [1, 9, undefined]
+                  ]
+                ],
+                [
+                  'property-value',
+                  'red',
+                  [
+                    [1, 15, undefined]
+                  ]
+                ]
+              ],
+              [
+                'comment',
+                '/* comment 1 /* comment 2 */',
+                [
+                  [1, 19, undefined]
+                ]
+              ]
+            ]
+          ],
+          [
+            'rule',
+            [
+              [
+                'rule-scope',
+                '.block-2',
+                [
+                  [1, 51, undefined]
+                ]
+              ]
+            ],
+            [
+              [
+                'property',
+                [
+                  'property-name',
+                  'color',
+                  [
+                    [1, 60, undefined]
+                  ]
+                ],
+                [
+                  'property-value',
+                  'blue',
+                  [
+                    [1, 66, undefined]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ],
       'rule wrapped between comments': [
         '/* comment 1 */div/* comment 2 */{color:red}',
         [

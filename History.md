@@ -6,6 +6,11 @@
 * Fixed issue [#895](https://github.com/jakubpawlowicz/clean-css/issues/895) - ignoring specific styles.
 * Fixed issue [#947](https://github.com/jakubpawlowicz/clean-css/issues/947) - selector based filtering.
 
+[4.1.8 / 2017-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v4.1.7...4.1)
+==================
+
+* Fixed issue [#960](https://github.com/jakubpawlowicz/clean-css/issues/960) - better explanation of `efficiency` stat.
+
 [4.1.7 / 2017-07-14](https://github.com/jakubpawlowicz/clean-css/compare/v4.1.6...v4.1.7)
 ==================
 

@@ -437,7 +437,7 @@ console.log(output.warnings); // a list of warnings raised
 console.log(output.stats.originalSize); // original content size after import inlining
 console.log(output.stats.minifiedSize); // optimized content size
 console.log(output.stats.timeSpent); // time spent on optimizations in milliseconds
-console.log(output.stats.efficiency); // a ratio of output size to input size (e.g. 25% if content was reduced from 100 bytes to 75 bytes)
+console.log(output.stats.efficiency); // `(originalSize - minifiedSize) / originalSize`, e.g. 0.25 if size is reduced from 100 bytes to 75 bytes
 ```
 
 The `minify` method also accepts an input source map, e.g.

@@ -12,6 +12,7 @@
 * Fixed issue [#959](https://github.com/jakubpawlowicz/clean-css/issues/959) - regression in shortening long hex values.
 * Fixed issue [#960](https://github.com/jakubpawlowicz/clean-css/issues/960) - better explanation of `efficiency` stat.
 * Fixed issue [#965](https://github.com/jakubpawlowicz/clean-css/issues/965) - edge case in parsing comment endings.
+* Fixed issue [#966](https://github.com/jakubpawlowicz/clean-css/issues/966) - remote `@import`s referenced from local ones.
 
 [4.1.7 / 2017-07-14](https://github.com/jakubpawlowicz/clean-css/compare/v4.1.6...v4.1.7)
 ==================

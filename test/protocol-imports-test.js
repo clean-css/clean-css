@@ -472,6 +472,27 @@ vows.describe('protocol imports').addBatch({
       nock.cleanAll();
     }
   },
+  'of a remote resource referenced from local one given via hash': {
+    topic: function () {
+      this.reqMocks = nock('http://127.0.0.1')
+        .get('/remote.css')
+        .reply(200, 'div{padding:0}');
+
+      new CleanCSS({ inline: 'all' }).minify({ 'local.css': { styles: '@import url(http://127.0.0.1/remote.css);' } }, this.callback);
+    },
+    'should not raise errors': function (errors, minified) {
+      assert.isNull(errors);
+    },
+    'should process @import': function (errors, minified) {
+      assert.equal(minified.styles, 'div{padding:0}');
+    },
+    'hits the endpoint': function () {
+      assert.isTrue(this.reqMocks.isDone());
+    },
+    teardown: function () {
+      nock.cleanAll();
+    }
+  },
   'of a remote resource after content and no callback': {
     topic: function () {
       var source = '.one{color:red}@import url(http://127.0.0.1/remote.css);';

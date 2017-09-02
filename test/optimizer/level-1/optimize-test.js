@@ -401,6 +401,10 @@ vows.describe('level 1 optimizations')
         'a{color:#FFF}',
         'a{color:#fff}'
       ],
+      'uppercase long hex to lowercase hex inside gradient 1234': [
+        '.block{background-image:linear-gradient(to top,#AABBCC,#FFFFFF)}',
+        '.block{background-image:linear-gradient(to top,#abc,#fff)}'
+      ],
       '4-value hex': [
         '.block{color:#0f0a}',
         '.block{color:#0f0a}'

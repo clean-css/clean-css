@@ -1,4 +1,4 @@
-[4.1.8 / 2017-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v4.1.7...4.1)
+[4.1.8 / 2017-09-02](https://github.com/jakubpawlowicz/clean-css/compare/v4.1.7...v4.1.8)
 ==================
 
 * Fixed issue [#959](https://github.com/jakubpawlowicz/clean-css/issues/959) - regression in shortening long hex values.

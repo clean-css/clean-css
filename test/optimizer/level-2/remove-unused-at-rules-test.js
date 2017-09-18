@@ -40,11 +40,15 @@ vows.describe('remove unused at rules')
         '@font-face{font-family:test}.block{font-family:test}',
         '@font-face{font-family:test}.block{font-family:test}'
       ],
+      'one used quoted declaration in font-family': [
+        '@font-face{font-family:"test test"}.block{font-family:"test test"}',
+        '@font-face{font-family:"test test"}.block{font-family:"test test"}'
+      ],
       'one used declaration in font-family with different case': [
         '@font-face{font-family:test}.block{font-family:Test}',
         '@font-face{font-family:test}.block{font-family:Test}'
       ],
-      'one used declaration in font-family with different quotes': [
+      'one used quoted declaration in font-family with different quotes': [
         '@font-face{font-family:"test test"}.block{font-family:\'test test\'}',
         '@font-face{font-family:"test test"}.block{font-family:\'test test\'}'
       ],

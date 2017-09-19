@@ -6,7 +6,7 @@
 * Fixed issue [#895](https://github.com/jakubpawlowicz/clean-css/issues/895) - ignoring specific styles.
 * Fixed issue [#947](https://github.com/jakubpawlowicz/clean-css/issues/947) - selector based filtering.
 
-[4.1.9 / 2017-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v4.1.8...4.1)
+[4.1.9 / 2017-09-19](https://github.com/jakubpawlowicz/clean-css/compare/v4.1.8...v4.1.9)
 ==================
 
 * Fixed issue [#971](https://github.com/jakubpawlowicz/clean-css/issues/971) - edge case in removing unused at rules.

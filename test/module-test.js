@@ -861,7 +861,7 @@ vows.describe('module tests').addBatch({
   },
   'keeps trailing semicolons if option is set': {
     'topic': function() {
-      return new CleanCSS({format: { addSemicolonAfterLastPropertyInPropertyBlock: true }}).minify('*{ font-size:12px; color:#ea7500; }');
+      return new CleanCSS({format: { semicolonAfterLastProperty: true }}).minify('*{ font-size:12px; color:#ea7500; }');
     },
     'should minify correctly': function (error, minified) {
       assert.equal(minified.styles, '*{font-size:12px;color:#ea7500;}');

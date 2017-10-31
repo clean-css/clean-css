@@ -47,7 +47,7 @@ vows.describe(formatFrom)
             beforeValue: false
           },
           wrapAt: false,
-          addSemicolonAfterLastPropertyInPropertyBlock: false
+          semicolonAfterLastProperty: false
         });
       }
     },
@@ -76,7 +76,7 @@ vows.describe(formatFrom)
             beforeValue: false
           },
           wrapAt: false,
-          addSemicolonAfterLastPropertyInPropertyBlock: false
+          semicolonAfterLastProperty: false
         });
       }
     },
@@ -105,7 +105,7 @@ vows.describe(formatFrom)
             beforeValue: false
           },
           wrapAt: false,
-          addSemicolonAfterLastPropertyInPropertyBlock: false
+          semicolonAfterLastProperty: false
         });
       }
     },
@@ -134,7 +134,7 @@ vows.describe(formatFrom)
             beforeValue: false
           },
           wrapAt: false,
-          addSemicolonAfterLastPropertyInPropertyBlock: false
+          semicolonAfterLastProperty: false
         });
       }
     },
@@ -163,7 +163,7 @@ vows.describe(formatFrom)
             beforeValue: false
           },
           wrapAt: false,
-          addSemicolonAfterLastPropertyInPropertyBlock: false
+          semicolonAfterLastProperty: false
         });
       }
     },
@@ -192,7 +192,7 @@ vows.describe(formatFrom)
             beforeValue: false
           },
           wrapAt: 25,
-          addSemicolonAfterLastPropertyInPropertyBlock: false
+          semicolonAfterLastProperty: false
         });
       }
     },
@@ -221,7 +221,7 @@ vows.describe(formatFrom)
             beforeValue: false
           },
           wrapAt: false,
-          addSemicolonAfterLastPropertyInPropertyBlock: false
+          semicolonAfterLastProperty: false
         });
       }
     },
@@ -250,7 +250,7 @@ vows.describe(formatFrom)
             beforeValue: true
           },
           wrapAt: false,
-          addSemicolonAfterLastPropertyInPropertyBlock: false
+          semicolonAfterLastProperty: false
         });
       }
     },
@@ -279,7 +279,7 @@ vows.describe(formatFrom)
             beforeValue: false
           },
           wrapAt: false,
-          addSemicolonAfterLastPropertyInPropertyBlock: false
+          semicolonAfterLastProperty: false
         });
       }
     }

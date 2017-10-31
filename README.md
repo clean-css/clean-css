@@ -61,7 +61,7 @@ clean-css requires Node.js 4.0+ (tested on Linux, OS X, and Windows)
 # Install
 
 ```
-npm install clean-css
+npm install --save-dev clean-css
 ```
 
 # Use

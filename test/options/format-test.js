@@ -46,7 +46,8 @@ vows.describe(formatFrom)
             beforeBlockBegins: false,
             beforeValue: false
           },
-          wrapAt: false
+          wrapAt: false,
+          semicolonAfterLastProperty: false
         });
       }
     },
@@ -74,7 +75,8 @@ vows.describe(formatFrom)
             beforeBlockBegins: false,
             beforeValue: false
           },
-          wrapAt: false
+          wrapAt: false,
+          semicolonAfterLastProperty: false
         });
       }
     },
@@ -102,7 +104,8 @@ vows.describe(formatFrom)
             beforeBlockBegins: false,
             beforeValue: false
           },
-          wrapAt: false
+          wrapAt: false,
+          semicolonAfterLastProperty: false
         });
       }
     },
@@ -130,7 +133,8 @@ vows.describe(formatFrom)
             beforeBlockBegins: false,
             beforeValue: false
           },
-          wrapAt: false
+          wrapAt: false,
+          semicolonAfterLastProperty: false
         });
       }
     },
@@ -158,7 +162,8 @@ vows.describe(formatFrom)
             beforeBlockBegins: false,
             beforeValue: false
           },
-          wrapAt: false
+          wrapAt: false,
+          semicolonAfterLastProperty: false
         });
       }
     },
@@ -186,7 +191,8 @@ vows.describe(formatFrom)
             beforeBlockBegins: false,
             beforeValue: false
           },
-          wrapAt: 25
+          wrapAt: 25,
+          semicolonAfterLastProperty: false
         });
       }
     },
@@ -214,7 +220,8 @@ vows.describe(formatFrom)
             beforeBlockBegins: false,
             beforeValue: false
           },
-          wrapAt: false
+          wrapAt: false,
+          semicolonAfterLastProperty: false
         });
       }
     },
@@ -242,7 +249,8 @@ vows.describe(formatFrom)
             beforeBlockBegins: true,
             beforeValue: true
           },
-          wrapAt: false
+          wrapAt: false,
+          semicolonAfterLastProperty: false
         });
       }
     },
@@ -270,7 +278,8 @@ vows.describe(formatFrom)
             beforeBlockBegins: false,
             beforeValue: false
           },
-          wrapAt: false
+          wrapAt: false,
+          semicolonAfterLastProperty: false
         });
       }
     }

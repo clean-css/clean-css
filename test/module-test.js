@@ -858,5 +858,16 @@ vows.describe('module tests').addBatch({
     'should give right output': function (minified) {
       assert.equal(minified.styles, '.one{color:red}.three{background-image:url(test/fixtures/partials/extra/down.gif)}');
     }
+  },
+  'keeps trailing semicolons if option is set': {
+    'topic': function() {
+      return new CleanCSS({format: { semicolonAfterLastProperty: true }}).minify('*{ font-size:12px; color:#ea7500; }');
+    },
+    'should minify correctly': function (error, minified) {
+      assert.equal(minified.styles, '*{font-size:12px;color:#ea7500;}');
+    },
+    'should raise no errors': function (error, minified) {
+      assert.isEmpty(minified.errors);
+    }
   }
 }).export(module);

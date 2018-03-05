@@ -1,4 +1,4 @@
-[4.1.10 / 2018-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v4.1.9...4.1)
+[4.1.10 / 2018-03-05](https://github.com/jakubpawlowicz/clean-css/compare/v4.1.9...v4.1.10)
 ==================
 
 * Fixed issue [#988](https://github.com/jakubpawlowicz/clean-css/issues/988) - edge case in dropping default animation-duration.

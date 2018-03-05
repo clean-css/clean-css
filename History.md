@@ -3,6 +3,7 @@
 
 * Fixed issue [#988](https://github.com/jakubpawlowicz/clean-css/issues/988) - edge case in dropping default animation-duration.
 * Fixed issue [#989](https://github.com/jakubpawlowicz/clean-css/issues/989) - edge case in removing unused at rules.
+* Fixed issue [#1001](https://github.com/jakubpawlowicz/clean-css/issues/1001) - corrupted tokenizer state.
 
 [4.1.9 / 2017-09-19](https://github.com/jakubpawlowicz/clean-css/compare/v4.1.8...v4.1.9)
 ==================

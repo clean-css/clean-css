@@ -6,6 +6,11 @@
 * Fixed issue [#895](https://github.com/jakubpawlowicz/clean-css/issues/895) - ignoring specific styles.
 * Fixed issue [#947](https://github.com/jakubpawlowicz/clean-css/issues/947) - selector based filtering.
 
+[4.1.10 / 2018-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v4.1.9...4.1)
+==================
+
+* Fixed issue [#988](https://github.com/jakubpawlowicz/clean-css/issues/988) - edge case in dropping default animation-duration.
+
 [4.1.9 / 2017-09-19](https://github.com/jakubpawlowicz/clean-css/compare/v4.1.8...v4.1.9)
 ==================
 

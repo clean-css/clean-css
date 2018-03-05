@@ -1302,8 +1302,8 @@ vows.describe(breakUp)
           return _breakUp([
             [
               'property',
-              ['property-name', 'font'],
-              ['property-value', 'italic', [[0, 13, undefined]]],
+              ['property-name', 'font', [[0, 13, undefined]]],
+              ['property-value', 'italic'],
               ['property-value', 'sans-serif']
             ]
           ]);
@@ -1526,6 +1526,35 @@ vows.describe(breakUp)
         'has font-family': function (components) {
           assert.equal(components[6].name, 'font-family');
           assert.deepEqual(components[6].value, [['property-value', '-clean-css-icon']]);
+        }
+      },
+      'normal as font': {
+        'topic': function () {
+          return _breakUp([
+            [
+              'property',
+              ['property-name', 'font', [[0, 6, undefined]]],
+              ['property-value', 'normal']
+            ]
+          ]);
+        },
+        'has 0 components': function (components) {
+          assert.lengthOf(components, 0);
+        }
+      },
+      'non-identifier as font family': {
+        'topic': function () {
+          return _breakUp([
+            [
+              'property',
+              ['property-name', 'font', [[0, 6, undefined]]],
+              ['property-value', '16px'],
+              ['property-value', '123']
+            ]
+          ]);
+        },
+        'has 0 components': function (components) {
+          assert.lengthOf(components, 0);
         }
       },
       'unset font': {

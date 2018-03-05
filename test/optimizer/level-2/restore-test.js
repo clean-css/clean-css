@@ -979,6 +979,78 @@ vows.describe(restore)
           ]);
         }
       }
+    },
+    'animation': {
+      'with two time units where both are default': {
+        'topic': function () {
+          return _restore(
+            _breakUp([
+              'property',
+              ['property-name', 'animation'],
+              ['property-value', '0s'],
+              ['property-value', 'ease-out'],
+              ['property-value', '0s'],
+              ['property-value', 'forwards'],
+              ['property-value', 'test-name']
+            ])
+          );
+        },
+        'gives right value back': function (restoredValue) {
+          assert.deepEqual(restoredValue, [
+            ['property-value', 'ease-out'],
+            ['property-value', 'forwards'],
+            ['property-value', 'test-name']
+          ]);
+        }
+      },
+      'with two time units where first is default': {
+        'topic': function () {
+          return _restore(
+            _breakUp([
+              'property',
+              ['property-name', 'animation'],
+              ['property-value', '0s'],
+              ['property-value', 'ease-out'],
+              ['property-value', '5s'],
+              ['property-value', 'forwards'],
+              ['property-value', 'test-name']
+            ])
+          );
+        },
+        'gives right value back': function (restoredValue) {
+          assert.deepEqual(restoredValue, [
+            ['property-value', '0s'],
+            ['property-value', 'ease-out'],
+            ['property-value', '5s'],
+            ['property-value', 'forwards'],
+            ['property-value', 'test-name']
+          ]);
+        }
+      },
+      'with two vendor-prefixed time units where first is default': {
+        'topic': function () {
+          return _restore(
+            _breakUp([
+              'property',
+              ['property-name', '-webkit-animation'],
+              ['property-value', '0s'],
+              ['property-value', 'ease-out'],
+              ['property-value', '5s'],
+              ['property-value', 'forwards'],
+              ['property-value', 'test-name']
+            ])
+          );
+        },
+        'gives right value back': function (restoredValue) {
+          assert.deepEqual(restoredValue, [
+            ['property-value', '0s'],
+            ['property-value', 'ease-out'],
+            ['property-value', '5s'],
+            ['property-value', 'forwards'],
+            ['property-value', 'test-name']
+          ]);
+        }
+      }
     }
   })
   .export(module);

@@ -80,6 +80,10 @@ vows.describe('remove unused at rules')
         '@font-face{font-family:test}.block{font:16px test!important}',
         '@font-face{font-family:test}.block{font:16px test!important}'
       ],
+      'one used as font-family with !important': [
+        '@font-face{font-family:test}.block{font-family:test!important}',
+        '@font-face{font-family:test}.block{font-family:test!important}'
+      ],
       'one used declaration in another @font-face': [
         '@font-face{font-family:test;font-weight:normal}@font-face{font-family:test;font-weight:bold}',
         ''

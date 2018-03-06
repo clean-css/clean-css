@@ -869,5 +869,27 @@ vows.describe('module tests').addBatch({
     'should raise no errors': function (error, minified) {
       assert.isEmpty(minified.errors);
     }
+  },
+  'vulnerabilities': {
+    'ReDOS in time units': {
+      'topic': function () {
+        var prefix = '-+.0';
+        var pump = [];
+        var suffix = '-0';
+        var input;
+        var i;
+
+        for (i = 0; i < 10000; i++) {
+          pump.push('0000000000');
+        }
+
+        input = '.block{animation:1s test;animation-duration:' + prefix + pump.join('') + suffix + 's}';
+
+        return new CleanCSS({ level: { 1: { replaceZeroUnits: false }, 2: true } }).minify(input);
+      },
+      'finishes in less than a second': function (error, minified) {
+        assert.isTrue(minified.stats.timeSpent < 1000);
+      }
+    }
   }
 }).export(module);

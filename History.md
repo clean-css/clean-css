@@ -1,3 +1,8 @@
+[4.1.11 / 2018-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v4.1.10...4.1)
+==================
+
+* Fixes ReDOS vulnerabilities in validator code.
+
 [4.1.10 / 2018-03-05](https://github.com/jakubpawlowicz/clean-css/compare/v4.1.9...v4.1.10)
 ==================
 

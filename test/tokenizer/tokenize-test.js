@@ -2688,6 +2688,18 @@ vows.describe(tokenize)
           ]
         ]
       ],
+      'charset after a carriage return': [
+        '\r@charset \n\'utf-8\';',
+        [
+          [
+            'at-rule',
+            '@charset \n\'utf-8\'',
+            [
+              [2, 0, undefined]
+            ]
+          ]
+        ]
+      ],
       '@import': [
         'a{}@import \n"test.css";\n\na{color:red}',
         [

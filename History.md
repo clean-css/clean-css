@@ -6,6 +6,7 @@
 * Fixed issue [#895](https://github.com/jakubpawlowicz/clean-css/issues/895) - ignoring specific styles.
 * Fixed issue [#947](https://github.com/jakubpawlowicz/clean-css/issues/947) - selector based filtering.
 * Fixed issue [#986](https://github.com/jakubpawlowicz/clean-css/issues/986) - level 2 optimizations and CSS 4 colors.
+* Fixed issue [#1000](https://github.com/jakubpawlowicz/clean-css/issues/1000) - carriage return handling in tokenizer.
 * Fixed issue [#1038](https://github.com/jakubpawlowicz/clean-css/issues/1038) - `font-variation-settings` quoting.
 * Fixes ReDOS vulnerabilities in validator code.
 

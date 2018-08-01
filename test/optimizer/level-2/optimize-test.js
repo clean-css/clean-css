@@ -107,6 +107,18 @@ vows.describe('level 2 optimizer')
     }, { level: 2 })
   )
   .addBatch(
+    optimizerContext('colors', {
+      'four value colors': [
+        '.block{border:1px solid #0001}',
+        '.block{border:1px solid #0001}'
+      ],
+      'eight value colors': [
+        '.block{border:1px solid #00000001}',
+        '.block{border:1px solid #00000001}'
+      ]
+    }, { level: 2 })
+  )
+  .addBatch(
     optimizerContext('unit merging', {
       'font-size': [
         'div{font-size:1rem;font-size:16px}',

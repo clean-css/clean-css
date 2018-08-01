@@ -5,6 +5,7 @@
 * Fixed issue [#861](https://github.com/jakubpawlowicz/clean-css/issues/861) - new `transition` property optimizer.
 * Fixed issue [#895](https://github.com/jakubpawlowicz/clean-css/issues/895) - ignoring specific styles.
 * Fixed issue [#947](https://github.com/jakubpawlowicz/clean-css/issues/947) - selector based filtering.
+* Fixed issue [#1038](https://github.com/jakubpawlowicz/clean-css/issues/1038) - `font-variation-settings` quoting.
 * Fixes ReDOS vulnerabilities in validator code.
 
 [4.1.11 / 2018-03-06](https://github.com/jakubpawlowicz/clean-css/compare/v4.1.10...v4.1.11)

@@ -367,6 +367,7 @@ new CleanCSS({
       tidyAtRules: true, // controls at-rules (e.g. `@charset`, `@import`) optimizing; defaults to `true`
       tidyBlockScopes: true, // controls block scopes (e.g. `@media`) optimizing; defaults to `true`
       tidySelectors: true, // controls selectors optimizing; defaults to `true`,
+      semicolonAfterLastProperty: false, // controls removing trailing semicolons in rule; defaults to `false` - means remove
       transform: function () {} // defines a callback for fine-grained property optimization; defaults to no-op
     }
   }

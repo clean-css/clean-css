@@ -116,13 +116,13 @@ clean-css 4.1 introduces the following changes / features:
 
 ## What's new in version 4.2
 
-clean-css 4.2 will introduce the following changes / features:
+clean-css 4.2 introduces the following changes / features:
 
 * Adds `process` method for compatibility with optimize-css-assets-webpack-plugin;
 * new `transition` property optimizer;
 * preserves any CSS content between `/* clean-css ignore:start */` and `/* clean-css ignore:end */` comments;
 * allows filtering based on selector in `transform` callback, see [example](#how-to-apply-arbitrary-transformations-to-css-properties);
-* adds configurable line breaks via `format: { breakWith: 'lf' }` option;
+* adds configurable line breaks via `format: { breakWith: 'lf' }` option.
 
 ## Constructor options
 

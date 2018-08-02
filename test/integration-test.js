@@ -309,6 +309,22 @@ vows.describe('integration tests')
     }, { format: 'keep-breaks', level: { 1: { specialComments: 0 } } })
   )
   .addBatch(
+    optimizerContext('CRLF line breaks', {
+      'uses specified one': [
+        '.block{color:red;display:block}',
+        '.block{color:red;\r\ndisplay:block\r\n}'
+      ]
+    }, { format: { breaks: { afterProperty: true }, breakWith: 'crlf' } })
+  )
+  .addBatch(
+    optimizerContext('LF line breaks', {
+      'uses specified one': [
+        '.block{color:red;display:block}',
+        '.block{color:red;\ndisplay:block\n}'
+      ]
+    }, { format: { breaks: { afterProperty: true }, breakWith: 'lf' } })
+  )
+  .addBatch(
     optimizerContext('selectors', {
       'not expand + in selectors mixed with calc methods': [
         'div{width:calc(50% + 3em)}div + div{width:100%}div:hover{width:calc(50% + 4em)}* > div {border:1px solid #f0f}',

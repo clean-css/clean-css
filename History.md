@@ -5,6 +5,7 @@
 * Fixed issue [#861](https://github.com/jakubpawlowicz/clean-css/issues/861) - new `transition` property optimizer.
 * Fixed issue [#895](https://github.com/jakubpawlowicz/clean-css/issues/895) - ignoring specific styles.
 * Fixed issue [#947](https://github.com/jakubpawlowicz/clean-css/issues/947) - selector based filtering.
+* Fixed issue [#964](https://github.com/jakubpawlowicz/clean-css/issues/964) - adds configurable line breaks.
 * Fixed issue [#986](https://github.com/jakubpawlowicz/clean-css/issues/986) - level 2 optimizations and CSS 4 colors.
 * Fixed issue [#1000](https://github.com/jakubpawlowicz/clean-css/issues/1000) - carriage return handling in tokenizer.
 * Fixed issue [#1038](https://github.com/jakubpawlowicz/clean-css/issues/1038) - `font-variation-settings` quoting.

@@ -1,4 +1,5 @@
 var assert = require('assert');
+var systemLineBreak = require('os').EOL;
 
 var vows = require('vows');
 
@@ -39,6 +40,7 @@ vows.describe(formatFrom)
             beforeBlockEnds: false,
             betweenSelectors: false
           },
+          breakWith: systemLineBreak,
           indentBy: 0,
           indentWith: ' ',
           spaces: {
@@ -53,7 +55,7 @@ vows.describe(formatFrom)
     },
     'hash': {
       'topic': function () {
-        return formatFrom({ breaks: { afterProperty: true }, indentBy: 1 });
+        return formatFrom({ breaks: { afterProperty: true }, breakWith: '\r\n', indentBy: 1 });
       },
       'is merged with default': function (formatOptions) {
         assert.deepEqual(formatOptions, {
@@ -68,6 +70,7 @@ vows.describe(formatFrom)
             beforeBlockEnds: false,
             betweenSelectors: false
           },
+          breakWith: '\r\n',
           indentBy: 1,
           indentWith: ' ',
           spaces: {
@@ -97,6 +100,7 @@ vows.describe(formatFrom)
             beforeBlockEnds: false,
             betweenSelectors: false
           },
+          breakWith: systemLineBreak,
           indentBy: 2,
           indentWith: ' ',
           spaces: {
@@ -126,6 +130,7 @@ vows.describe(formatFrom)
             beforeBlockEnds: false,
             betweenSelectors: false
           },
+          breakWith: systemLineBreak,
           indentBy: 0,
           indentWith: '\t',
           spaces: {
@@ -155,6 +160,7 @@ vows.describe(formatFrom)
             beforeBlockEnds: false,
             betweenSelectors: false
           },
+          breakWith: systemLineBreak,
           indentBy: 0,
           indentWith: '\t',
           spaces: {
@@ -184,6 +190,7 @@ vows.describe(formatFrom)
             beforeBlockEnds: false,
             betweenSelectors: false
           },
+          breakWith: systemLineBreak,
           indentBy: 3,
           indentWith: ' ',
           spaces: {
@@ -213,6 +220,7 @@ vows.describe(formatFrom)
             beforeBlockEnds: false,
             betweenSelectors: false
           },
+          breakWith: systemLineBreak,
           indentBy: 0,
           indentWith: '\t',
           spaces: {
@@ -242,6 +250,7 @@ vows.describe(formatFrom)
             beforeBlockEnds: true,
             betweenSelectors: true
           },
+          breakWith: systemLineBreak,
           indentBy: 2,
           indentWith: ' ',
           spaces: {
@@ -271,6 +280,7 @@ vows.describe(formatFrom)
             beforeBlockEnds: true,
             betweenSelectors: false
           },
+          breakWith: systemLineBreak,
           indentBy: 0,
           indentWith: ' ',
           spaces: {

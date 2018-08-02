@@ -122,6 +122,7 @@ clean-css 4.2 will introduce the following changes / features:
 * new `transition` property optimizer;
 * preserves any CSS content between `/* clean-css ignore:start */` and `/* clean-css ignore:end */` comments;
 * allows filtering based on selector in `transform` callback, see [example](#how-to-apply-arbitrary-transformations-to-css-properties);
+* adds configurable line breaks via `format: { breakWith: 'lf' }` option;
 
 ## Constructor options
 
@@ -264,6 +265,7 @@ new CleanCSS({
       beforeBlockEnds: false, // controls if a line break comes before a block ends; defaults to `false`
       betweenSelectors: false // controls if a line break comes between selectors; defaults to `false`
     },
+    breakWith: '\n', // controls the new line character, can be `'\r\n'` or `'\n'` (aliased as `'windows'` and `'unix'` or `'crlf'` and `'lf'`); defaults to system one, so former on Windows and latter on Unix
     indentBy: 0, // controls number of characters to indent with; defaults to `0`
     indentWith: 'space', // controls a character to indent with, can be `'space'` or `'tab'`; defaults to `'space'`
     spaces: { // controls where to insert spaces

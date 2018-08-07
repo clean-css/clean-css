@@ -317,6 +317,14 @@ vows.describe('integration tests')
     }, { format: { breaks: { afterProperty: true }, breakWith: 'crlf' } })
   )
   .addBatch(
+    optimizerContext('CRLF line with format as string', {
+      'uses specified one': [
+        '.block{color:red;display:block}',
+        '.block{color:red;\r\ndisplay:block\r\n}'
+      ]
+    }, { format: 'breaks:afterProperty=on;breakWith:crlf' })
+  )
+  .addBatch(
     optimizerContext('LF line breaks', {
       'uses specified one': [
         '.block{color:red;display:block}',

@@ -1,3 +1,8 @@
+[4.2.1 / 2018-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v4.2.0...HEAD)
+==================
+
+* Fixes giving `breakWith` option via a string.
+
 [4.2.0 / 2018-08-02](https://github.com/jakubpawlowicz/clean-css/compare/4.1...4.2.0)
 ==================
 

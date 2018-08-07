@@ -3,7 +3,7 @@
 
 * Fixes giving `breakWith` option via a string.
 
-[4.2.0 / 2018-08-02](https://github.com/jakubpawlowicz/clean-css/compare/4.1...4.2.0)
+[4.2.0 / 2018-08-02](https://github.com/jakubpawlowicz/clean-css/compare/4.1...v4.2.0)
 ==================
 
 * Adds `process` method for compatibility with optimize-css-assets-webpack-plugin.

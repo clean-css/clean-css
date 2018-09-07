@@ -76,5 +76,53 @@ vows.describe(isAllowedResource)
         assert.isFalse(isAllowedResource(topic, true, ['!127.0.0.1', '!assets.127.0.0.1', '!path/to/styles.css']));
       }
     }
-  })
-  .export(module);
+  }).addBatch({
+    'local and !file without path':{
+        'topic':'style.css',
+        'is not allowed': function (topic) {
+            assert.isFalse(isAllowedResource(topic, false, ['local', '!style.css']));
+        }
+    },
+    'local and !file including path':{
+      'topic':'../path/to/style.css',
+      'is not allowed': function (topic) {
+            assert.isFalse(isAllowedResource(topic, false, ['!style.css', 'local']));
+        }
+    },
+    'remote and !file':{
+        'topic':'http://example.com/path/to/styles.css',
+        'is not allowed': function (topic) {
+            assert.isFalse(isAllowedResource(topic, true, ['remote', 'local', '!http://example.com/path/to/styles.css']));
+        }
+    },
+    'remote and !file v2':{
+        'topic':'http://example.com/path/to/styles2.css',
+        'is not allowed': function (topic) {
+            assert.isTrue(isAllowedResource(topic, true, ['remote', 'local', '!http://example.com/path/to/styles.css']));
+        }
+    },
+    'blacklisted domain':{
+        'topic':'http://example.com/path/to/styles.css',
+            'is not allowed': function (topic) {
+            assert.isFalse(isAllowedResource(topic, true, ['remote', '!example.com']));
+        }
+    },
+    'blacklisted domain with protocol':{
+        'topic':'http://example.com/path/to/styles.css',
+        'is not allowed': function (topic) {
+            assert.isFalse(isAllowedResource(topic, true, ['remote', '!http://example.com']));
+        }
+    },
+    'blacklisted a different domain':{
+        'topic':'http://example.com/path/to/styles.css',
+        'is allowed': function (topic) {
+            assert.isTrue(isAllowedResource(topic, true, ['remote', '!http://example2.com']));
+        }
+    },
+    'blacklisted php file':{
+        'topic':'http://example.com/path/to/styles.php',
+        'is not allowed': function (topic) {
+            assert.isFalse(isAllowedResource(topic, true, ['remote', 'local', '!.php']));
+        }
+    }
+}).export(module);

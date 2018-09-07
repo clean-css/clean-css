@@ -113,10 +113,16 @@ vows.describe(isAllowedResource)
             assert.isFalse(isAllowedResource(topic, true, ['remote', '!http://example.com']));
         }
     },
-    'blacklisted domain3':{
+    'blacklisted a different domain':{
         'topic':'http://example.com/path/to/styles.css',
-        'is not allowed': function (topic) {
+        'is allowed': function (topic) {
             assert.isTrue(isAllowedResource(topic, true, ['remote', '!http://example2.com']));
+        }
+    },
+    'blacklisted php file':{
+        'topic':'http://example.com/path/to/styles.php',
+        'is not allowed': function (topic) {
+            assert.isFalse(isAllowedResource(topic, true, ['remote', 'local', '!.php']));
         }
     }
 }).export(module);

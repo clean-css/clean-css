@@ -11,4 +11,12 @@ vows.describe('level 0')
       ]
     }, { level: 0 })
   )
+  .addBatch(
+    optimizerContext('empty properties', {
+      'are written': [
+        'a{color:#f00;font-weight:;background:red}',
+        'a{color:#f00;font-weight:;background:red}'
+      ]
+    }, { level: 0 })
+  )
   .export(module);

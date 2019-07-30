@@ -158,9 +158,13 @@ vows.describe('integration tests')
         'a{text-shadow:rgb(255,0,1) 1px 1px}',
         'a{text-shadow:#ff0001 1px 1px}'
       ],
-      'after rgba': [
+      'after rgba #1': [
+        'a{text-shadow:rgba(255,0,0,.1) 0 1px}',
+        'a{text-shadow:rgba(255,0,0,.1) 0 1px}'
+      ],
+      'after rgba #2': [
         'a{text-shadow:rgba(255,0,0,1) 0 1px}',
-        'a{text-shadow:rgba(255,0,0,1) 0 1px}'
+        'a{text-shadow:red 0 1px}'
       ],
       'after hsl': [
         'a{text-shadow:hsl(240,100%,40%) -1px 1px}',
@@ -215,8 +219,8 @@ vows.describe('integration tests')
         'a{text-shadow:#ff0001 1px 1px}'
       ],
       'after rgba': [
-        'a{text-shadow:rgba(255,0,0,1) 0 1px}',
-        'a{text-shadow:rgba(255,0,0,1) 0 1px}'
+        'a{text-shadow:rgba(255,0,0,.1) 0 1px}',
+        'a{text-shadow:rgba(255,0,0,.1) 0 1px}'
       ],
       'after hsl': [
         'a{text-shadow:hsl(240,100%,40%) -1px 1px}',
@@ -695,8 +699,8 @@ vows.describe('integration tests')
         'a{-webkit-box-shadow:0 0;-moz-box-shadow:0 0}'
       ],
       'zero as .0 #1': [
-        'a{color:rgba(0,0,.0,1)}',
-        'a{color:rgba(0,0,0,1)}'
+        'a{color:rgba(0,0,.0,.1)}',
+        'a{color:rgba(0,0,0,.1)}'
       ],
       'zero as .0 #2': [
         'body{margin:.0}',

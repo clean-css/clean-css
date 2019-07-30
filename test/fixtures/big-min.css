@@ -189,7 +189,7 @@ body{font-size:13px;line-height:140%;color:#16212c;background:#e9edf0}
 .global{width:1000px;margin:0 auto;padding:20px 0 10px;background:#fff}
 .lmd-header{position:relative;z-index:15}
 .lmd-header #header{margin-bottom:16px}
-.deroule_edito,.deroule_fleuve,.ombre_section,.une_edito{-webkit-box-shadow:0 6px 6px -6px rgba(202,205,209,1);-moz-box-shadow:0 6px 6px -6px rgba(202,205,209,1);box-shadow:0 6px 6px -6px rgba(202,205,209,1);padding-top:0;margin-bottom:16px;margin-top:16px;overflow:hidden}
+.deroule_edito,.deroule_fleuve,.ombre_section,.une_edito{-webkit-box-shadow:0 6px 6px -6px #cacdd1;-moz-box-shadow:0 6px 6px -6px #cacdd1;box-shadow:0 6px 6px -6px #cacdd1;padding-top:0;margin-bottom:16px;margin-top:16px;overflow:hidden}
 a{color:#036;text-decoration:none;cursor:pointer}
 .bg_fonce a{opacity:.85}
 .obf{cursor:pointer;color:#036}

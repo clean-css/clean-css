@@ -1225,6 +1225,10 @@ vows.describe('level 1 optimizations')
         '.block{-webkit-font-feature-settings:"scmp","swsh" 2}',
         '.block{-webkit-font-feature-settings:"scmp","swsh" 2}'
       ],
+      'grid': [
+        '.block{grid:"header" 20% "nav" auto/auto}',
+        '.block{grid:"header" 20% "nav" auto/auto}'
+      ],
       'grid-template': [
         '.block{grid-template:"header" 20% "nav" auto}',
         '.block{grid-template:"header" 20% "nav" auto}'

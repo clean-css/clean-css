@@ -37,7 +37,7 @@
     "browserify": "^14.0.0",
     "http-proxy": "1.x",
     "jshint": "2.x",
-    "nock": "9.x",
+    "nock": "^11.3.4",
     "server-destroy": "1.x",
     "uglify-js": ">=2.6.1",
     "vows": "0.8.x"

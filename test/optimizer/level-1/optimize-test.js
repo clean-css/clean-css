@@ -540,6 +540,10 @@ vows.describe('level 1 optimizations')
       'with mixed bold weight and variant #2': [
         'a{font:bold normal 17px sans-serif}',
         'a{font:bold normal 17px sans-serif}'
+      ],
+      'with color in local font name': [
+        '@font-face{src:local("Sans Black Italic")}',
+        '@font-face{src:local("Sans Black Italic")}',
       ]
     }, { level: 1 })
   )

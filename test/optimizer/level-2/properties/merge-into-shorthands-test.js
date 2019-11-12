@@ -15,7 +15,7 @@ function _optimize(source) {
     warnings: []
   });
 
-  var compat = compatibilityFrom(compat);
+  var compat = compatibilityFrom(source);
   var options = {
     compatibility: compat,
     level: {

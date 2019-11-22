@@ -56,7 +56,7 @@ According to [tests](http://goalsmashers.github.io/css-minification-benchmark/) 
 
 # Node.js version support
 
-clean-css requires Node.js 4.0+ (tested on Linux, OS X, and Windows)
+clean-css requires Node.js 6.0+ (tested on Linux, OS X, and Windows)
 
 # Install
 

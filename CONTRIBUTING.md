@@ -18,7 +18,7 @@ We love pull requests! To contribute to clean-css first fork, then clone the rep
 git clone git@github.com:your-username/clean-css.git
 ```
 
-Make sure you have node 4.0+ installed so npm can download all dependencies for you:
+Make sure you have node 6.0+ installed so npm can download all dependencies for you:
 
 ```shell
 npm install

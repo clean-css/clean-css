@@ -1,4 +1,4 @@
-[4.2.2 / 2020-01-25](https://github.com/jakubpawlowicz/clean-css/compare/v4.2.1...4.2)
+[4.2.2 / 2020-01-25](https://github.com/jakubpawlowicz/clean-css/compare/v4.2.1...v4.2.2)
 ==================
 
 * Fixed error when property block has no value.

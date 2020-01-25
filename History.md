@@ -1,3 +1,11 @@
+[4.2.2 / 2020-01-25](https://github.com/jakubpawlowicz/clean-css/compare/v4.2.1...4.2)
+==================
+
+* Fixed error when property block has no value.
+* Fixed issue [#1077](https://github.com/jakubpawlowicz/clean-css/issues/1077) - local fonts with color in name.
+* Fixed issue [#1082](https://github.com/jakubpawlowicz/clean-css/issues/1082) - correctly convert colors if alpha >= 1.
+* Fixed issue [#1085](https://github.com/jakubpawlowicz/clean-css/issues/1085) - prevent unquoting of grid elements.
+
 [4.2.1 / 2018-08-07](https://github.com/jakubpawlowicz/clean-css/compare/v4.2.0...v4.2.1)
 ==================
 

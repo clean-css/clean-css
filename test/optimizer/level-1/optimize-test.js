@@ -412,6 +412,10 @@ vows.describe('level 1 optimizations')
       '8-value hex': [
         '.block{color:#00ff0080}',
         '.block{color:#00ff0080}'
+      ],
+      'rgba inside a function': [
+        '.block{background-image:linear-gradient(to right,rgba(255,255,255,0),rgba(255,255,255,1))}',
+        '.block{background-image:linear-gradient(to right,rgba(255,255,255,0),#fff)}'
       ]
     }, { level: 1 })
   )

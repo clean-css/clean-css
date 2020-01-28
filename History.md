@@ -1,4 +1,4 @@
-[4.2.3 / 2020-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v4.2.2...4.2)
+[4.2.3 / 2020-01-28](https://github.com/jakubpawlowicz/clean-css/compare/v4.2.2...v4.2.3)
 ==================
 
 * Fixed issue [#1106](https://github.com/jakubpawlowicz/clean-css/issues/1106) - regression in handling RGBA/HSLA colors.

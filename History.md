@@ -6,6 +6,11 @@
 * Fixed issue [#889](https://github.com/jakubpawlowicz/clean-css/issues/889) - whitelisted level 1 optimizations.
 * Reworks all level 1 optimizations to conform to plugin style.
 
+[4.2.3 / 2020-01-28](https://github.com/jakubpawlowicz/clean-css/compare/v4.2.2...v4.2.3)
+==================
+
+* Fixed issue [#1106](https://github.com/jakubpawlowicz/clean-css/issues/1106) - regression in handling RGBA/HSLA colors.
+
 [4.2.2 / 2020-01-25](https://github.com/jakubpawlowicz/clean-css/compare/v4.2.1...v4.2.2)
 ==================
 

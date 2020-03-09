@@ -124,6 +124,59 @@ vows.describe(breakUp)
           assert.deepEqual(components[7].value, [['property-value', 'slidein']]);
         }
       },
+      'all with custom identifier': {
+        'topic': function () {
+          return _breakUp([
+            [
+              'property',
+              ['property-name', 'animation'],
+              ['property-value', '3s'],
+              ['property-value', 'ease-in'],
+              ['property-value', '1s'],
+              ['property-value', '2'],
+              ['property-value', 'reverse'],
+              ['property-value', 'both'],
+              ['property-value', 'paused'],
+              ['property-value', '_custom-ident']
+            ]
+          ]);
+        },
+        'has 8 components': function (components) {
+          assert.lengthOf(components, 8);
+        },
+        'has animation-duration': function (components) {
+          assert.deepEqual(components[0].name, 'animation-duration');
+          assert.deepEqual(components[0].value, [['property-value', '3s']]);
+        },
+        'has animation-timing-function': function (components) {
+          assert.deepEqual(components[1].name, 'animation-timing-function');
+          assert.deepEqual(components[1].value, [['property-value', 'ease-in']]);
+        },
+        'has animation-delay': function (components) {
+          assert.deepEqual(components[2].name, 'animation-delay');
+          assert.deepEqual(components[2].value, [['property-value', '1s']]);
+        },
+        'has animation-iteration-count': function (components) {
+          assert.deepEqual(components[3].name, 'animation-iteration-count');
+          assert.deepEqual(components[3].value, [['property-value', '2']]);
+        },
+        'has animation-direction': function (components) {
+          assert.deepEqual(components[4].name, 'animation-direction');
+          assert.deepEqual(components[4].value, [['property-value', 'reverse']]);
+        },
+        'has animation-fill-mode': function (components) {
+          assert.deepEqual(components[5].name, 'animation-fill-mode');
+          assert.deepEqual(components[5].value, [['property-value', 'both']]);
+        },
+        'has animation-play-state': function (components) {
+          assert.deepEqual(components[6].name, 'animation-play-state');
+          assert.deepEqual(components[6].value, [['property-value', 'paused']]);
+        },
+        'has animation-name': function (components) {
+          assert.deepEqual(components[7].name, 'animation-name');
+          assert.deepEqual(components[7].value, [['property-value', '_custom-ident']]);
+        }
+      },
       'some': {
         'topic': function () {
           return _breakUp([

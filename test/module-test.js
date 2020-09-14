@@ -335,7 +335,7 @@ vows.describe('module tests').addBatch({
   },
   'buffer passed in': {
     'topic': function () {
-      return new CleanCSS().minify(new Buffer('@import url(test/fixtures/partials/one.css);'));
+      return new CleanCSS().minify(Buffer.from('@import url(test/fixtures/partials/one.css);'));
     },
     'should be processed correctly': function (minified) {
       assert.equal(minified.styles, '.one{color:red}');

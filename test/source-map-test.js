@@ -649,11 +649,11 @@ vows.describe('source-map')
       }
     },
     'input map as inlined data URI with implicit charset us-ascii, not base64, no content-type': inlineDataUriContext('data:,' + escape(inputMap)),
-    'input map as inlined data URI with implicit charset us-ascii, base64': inlineDataUriContext('data:application/json;base64,' + new Buffer(inputMap, 'ascii').toString('base64')),
+    'input map as inlined data URI with implicit charset us-ascii, base64': inlineDataUriContext('data:application/json;base64,' + Buffer.from(inputMap, 'ascii').toString('base64')),
     'input map as inlined data URI with implicit charset us-ascii, not base64': inlineDataUriContext('data:application/json,' + escape(inputMap)),
-    'input map as inlined data URI with charset utf-8, base64': inlineDataUriContext('data:application/json;charset=utf-8;base64,' + new Buffer(inputMap, 'utf8').toString('base64')),
-    'input map as inlined data URI with charset utf-8, not base64': inlineDataUriContext('data:application/json;charset=utf-8,' + escape(String.fromCharCode.apply(String, new Buffer(inputMap, 'utf8')))),
-    'input map as inlined data URI with explicit charset us-ascii, base64': inlineDataUriContext('data:application/json;charset=us-ascii;base64,' + new Buffer(inputMap, 'ascii').toString('base64')),
+    'input map as inlined data URI with charset utf-8, base64': inlineDataUriContext('data:application/json;charset=utf-8;base64,' + Buffer.from(inputMap, 'utf8').toString('base64')),
+    'input map as inlined data URI with charset utf-8, not base64': inlineDataUriContext('data:application/json;charset=utf-8,' + escape(String.fromCharCode.apply(String, Buffer.from(inputMap, 'utf8')))),
+    'input map as inlined data URI with explicit charset us-ascii, base64': inlineDataUriContext('data:application/json;charset=us-ascii;base64,' + Buffer.from(inputMap, 'ascii').toString('base64')),
     'input map as inlined data URI with explicit charset us-ascii, not base64': inlineDataUriContext('data:application/json;charset=us-ascii,' + escape(inputMap)),
     'complex input map': {
       'topic': function () {

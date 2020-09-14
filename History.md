@@ -1,3 +1,8 @@
+[5.0.0 / 2020-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/4.2...HEAD)
+==================
+
+* Drops support for Node.js 6 & 8 to support last 3 Node.js releases: 10, 12, and 14.
+
 [4.2.2 / 2020-01-25](https://github.com/jakubpawlowicz/clean-css/compare/v4.2.1...v4.2.2)
 ==================
 

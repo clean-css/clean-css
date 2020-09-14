@@ -21,6 +21,7 @@ According to [tests](http://goalsmashers.github.io/css-minification-benchmark/) 
 - [Node.js version support](#nodejs-version-support)
 - [Install](#install)
 - [Use](#use)
+  * [Important: 5.0 breaking changes](#important-50-breaking-changes)
   * [Important: 4.0 breaking changes](#important-40-breaking-changes)
   * [What's new in version 4.1](#whats-new-in-version-41)
   * [What's new in version 4.2](#whats-new-in-version-42)
@@ -72,6 +73,12 @@ var input = 'a{font-weight:bold;}';
 var options = { /* options */ };
 var output = new CleanCSS(options).minify(input);
 ```
+
+## Important: 5.0 breaking changes
+
+clean-css 5.0 will introduce some breaking changes:
+
+* Node.js 6.x and 8.x are officially no longer supported;
 
 ## Important: 4.0 breaking changes
 

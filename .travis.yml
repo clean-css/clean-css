@@ -4,9 +4,8 @@ arch:
 language: node_js
 cache: npm
 node_js:
-  - 6
-  - 8
   - 10
   - 12
+  - 14
 matrix:
   fast_finish: true

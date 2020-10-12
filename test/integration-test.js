@@ -1274,6 +1274,14 @@ vows.describe('integration tests')
         '.icon-logo{background-image:url("data:image/x-icon;base64,AAABAAEAEBA")}',
         '.icon-logo{background-image:url(data:image/x-icon;base64,AAABAAEAEBA)}'
       ],
+      'strip quotes from font data URI with mediatype': [
+        '@font-face{src:url("data:application/x-font-woff;base64,d09GRk9UVE8AAENAAA0AAAAA")}',
+        '@font-face{src:url(data:application/x-font-woff;base64,d09GRk9UVE8AAENAAA0AAAAA)}'
+      ],
+      'strip quotes from font data URI without mediatype': [
+        '@font-face{src:url("data:;base64,d09GRk9UVE8AAENAAA0AAAAA")}',
+        '@font-face{src:url(data:;base64,d09GRk9UVE8AAENAAA0AAAAA)}'
+      ],
       'cut off url content on selector level': [
         'a{background:url(image/}',
         ''

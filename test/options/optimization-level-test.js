@@ -146,7 +146,8 @@ vows.describe(optimizationLevelFrom)
           removeDuplicateRules: true,
           removeUnusedAtRules: false,
           restructureRules: false,
-          skipProperties: []
+          simplifyVariables: false,
+          skipProperties: [],
         });
       }
     },
@@ -213,6 +214,7 @@ vows.describe(optimizationLevelFrom)
           removeDuplicateRules: true,
           removeUnusedAtRules: false,
           restructureRules: false,
+          simplifyVariables: false,
           skipProperties: []
         });
       }
@@ -345,6 +347,7 @@ vows.describe(optimizationLevelFrom)
           removeDuplicateRules: false,
           removeUnusedAtRules: false,
           restructureRules: false,
+          simplifyVariables: false,
           skipProperties: []
         });
       }
@@ -401,6 +404,7 @@ vows.describe(optimizationLevelFrom)
           removeDuplicateRules: false,
           removeUnusedAtRules: false,
           restructureRules: false,
+          simplifyVariables: false,
           skipProperties: []
         });
       }
@@ -495,6 +499,7 @@ vows.describe(optimizationLevelFrom)
           removeDuplicateRules: true,
           removeUnusedAtRules: false,
           restructureRules: false,
+          simplifyVariables: false,
           skipProperties: []
         });
       }
@@ -551,6 +556,7 @@ vows.describe(optimizationLevelFrom)
           removeDuplicateRules: true,
           removeUnusedAtRules: false,
           restructureRules: false,
+          simplifyVariables: false,
           skipProperties: []
         });
       }
@@ -607,7 +613,8 @@ vows.describe(optimizationLevelFrom)
           removeDuplicateRules: false,
           removeUnusedAtRules: false,
           restructureRules: false,
-          skipProperties: []
+          simplifyVariables: false,
+          skipProperties: [],
         });
       }
     },
@@ -663,6 +670,7 @@ vows.describe(optimizationLevelFrom)
           removeDuplicateRules: false,
           removeUnusedAtRules: false,
           restructureRules: false,
+          simplifyVariables: false,
           skipProperties: []
         });
       }

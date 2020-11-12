@@ -2592,8 +2592,32 @@ vows.describe('integration tests')
       'Polymer mixins - inlined variables': [
         '.spinner{-webkit-animation:container-rotate var(--paper-spinner-container-rotation-duration) linear infinite}',
         '.spinner{-webkit-animation:container-rotate var(--paper-spinner-container-rotation-duration) linear infinite}'
-      ]
+      ],
     }, { level: 2 })
+  )
+  .addBatch(
+    optimizerContext('simplify variables', {
+      'keep necessary variables': [
+        'a{--reference: #111; --border: var(--reference)}',
+        'a{--reference:#111;--border:var(--reference)}'
+      ],
+      'remove unnecessary variables': [
+        'a{--border:#000; --reference: #111; --border: var(--reference)}',
+        'a{--reference:#111;--border:var(--reference)}'
+      ],
+      'remove unnecessary variables on separate rules': [
+        'a{--border:#000;--border:#100;} b{--border:#200;--border:#300;}',
+        'a{--border:#100}b{--border:#300}'
+      ],
+      'ignore non variable properties': [
+        'a{background: red}',
+        'a{background:red}'
+      ],
+    }, { level: {
+      2: {
+        simplifyVariables: true,
+      }
+    }})
   )
   .addBatch(
     optimizerContext('beautify formatting', {

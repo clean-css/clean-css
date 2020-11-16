@@ -1,3 +1,6 @@
+arch:
+ - amd64
+ - ppc64le
 language: node_js
 cache: npm
 node_js:

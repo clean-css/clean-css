@@ -4,7 +4,7 @@ var assert = require('assert');
 var restoreFromOptimizing = require('../../lib/optimizer/restore-from-optimizing');
 var wrapForOptimizing = require('../../lib/optimizer/wrap-for-optimizing').all;
 
-var shallowClone = require('../../lib/optimizer/level-2/clone').shallow;
+var shallowClone = require('../../lib/optimizer/clone').shallow;
 var restoreWithComponents = require('../../lib/optimizer/level-2/restore-with-components');
 
 var populateComponents = require('../../lib/optimizer/level-2/properties/populate-components');

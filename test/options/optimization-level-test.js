@@ -18,9 +18,6 @@ vows.describe(optimizationLevelFrom)
         assert.deepEqual(levelOptions['0'], {});
       },
       'has level 1 options': function (levelOptions) {
-        assert.isTrue(typeof levelOptions['1'].transform == 'function');
-        delete levelOptions['1'].transform;
-
         assert.deepEqual(levelOptions['1'], {
           cleanupCharsets: true,
           normalizeUrls: true,
@@ -41,7 +38,8 @@ vows.describe(optimizationLevelFrom)
           specialComments: 'all',
           tidyAtRules: true,
           tidyBlockScopes: true,
-          tidySelectors: true
+          tidySelectors: true,
+          transform: null
         });
       }
     },
@@ -67,9 +65,6 @@ vows.describe(optimizationLevelFrom)
         assert.deepEqual(levelOptions['0'], {});
       },
       'has level 1 options': function (levelOptions) {
-        assert.isTrue(typeof levelOptions['1'].transform == 'function');
-        delete levelOptions['1'].transform;
-
         assert.deepEqual(levelOptions['1'], {
           cleanupCharsets: true,
           normalizeUrls: true,
@@ -90,7 +85,8 @@ vows.describe(optimizationLevelFrom)
           specialComments: 'all',
           tidyAtRules: true,
           tidyBlockScopes: true,
-          tidySelectors: true
+          tidySelectors: true,
+          transform: null
         });
       }
     },
@@ -105,9 +101,6 @@ vows.describe(optimizationLevelFrom)
         assert.deepEqual(levelOptions['0'], {});
       },
       'has level 1 options': function (levelOptions) {
-        assert.isTrue(typeof levelOptions['1'].transform == 'function');
-        delete levelOptions['1'].transform;
-
         assert.deepEqual(levelOptions['1'], {
           cleanupCharsets: true,
           normalizeUrls: true,
@@ -128,7 +121,8 @@ vows.describe(optimizationLevelFrom)
           specialComments: 'all',
           tidyAtRules: true,
           tidyBlockScopes: true,
-          tidySelectors: true
+          tidySelectors: true,
+          transform: null
         });
       },
       'has level 2 options': function (levelOptions) {
@@ -172,9 +166,6 @@ vows.describe(optimizationLevelFrom)
         assert.deepEqual(levelOptions['0'], {});
       },
       'has level 1 options': function (levelOptions) {
-        assert.isTrue(typeof levelOptions['1'].transform == 'function');
-        delete levelOptions['1'].transform;
-
         assert.deepEqual(levelOptions['1'], {
           cleanupCharsets: true,
           normalizeUrls: true,
@@ -195,7 +186,8 @@ vows.describe(optimizationLevelFrom)
           specialComments: 0,
           tidyAtRules: true,
           tidyBlockScopes: true,
-          tidySelectors: true
+          tidySelectors: true,
+          transform: null
         });
       },
       'has level 2 options': function (levelOptions) {
@@ -228,9 +220,6 @@ vows.describe(optimizationLevelFrom)
         assert.deepEqual(levelOptions['0'], {});
       },
       'has level 1 options': function (levelOptions) {
-        assert.isTrue(typeof levelOptions['1'].transform == 'function');
-        delete levelOptions['1'].transform;
-
         assert.deepEqual(levelOptions['1'], {
           cleanupCharsets: true,
           normalizeUrls: false,
@@ -251,7 +240,8 @@ vows.describe(optimizationLevelFrom)
           specialComments: 'all',
           tidyAtRules: false,
           tidyBlockScopes: false,
-          tidySelectors: false
+          tidySelectors: false,
+          transform: null
         });
       }
     },
@@ -266,9 +256,6 @@ vows.describe(optimizationLevelFrom)
         assert.deepEqual(levelOptions['0'], {});
       },
       'has level 1 options': function (levelOptions) {
-        assert.isTrue(typeof levelOptions['1'].transform == 'function');
-        delete levelOptions['1'].transform;
-
         assert.deepEqual(levelOptions['1'], {
           cleanupCharsets: true,
           normalizeUrls: false,
@@ -289,7 +276,8 @@ vows.describe(optimizationLevelFrom)
           specialComments: 'all',
           tidyAtRules: false,
           tidyBlockScopes: false,
-          tidySelectors: false
+          tidySelectors: false,
+          transform: null
         });
       }
     },
@@ -304,9 +292,6 @@ vows.describe(optimizationLevelFrom)
         assert.deepEqual(levelOptions['0'], {});
       },
       'has level 1 options': function (levelOptions) {
-        assert.isTrue(typeof levelOptions['1'].transform == 'function');
-        delete levelOptions['1'].transform;
-
         assert.deepEqual(levelOptions['1'], {
           cleanupCharsets: true,
           normalizeUrls: true,
@@ -327,7 +312,8 @@ vows.describe(optimizationLevelFrom)
           specialComments: 0,
           tidyAtRules: true,
           tidyBlockScopes: true,
-          tidySelectors: true
+          tidySelectors: true,
+          transform: null
         });
       },
       'has level 2 options': function (levelOptions) {
@@ -360,9 +346,6 @@ vows.describe(optimizationLevelFrom)
         assert.deepEqual(levelOptions['0'], {});
       },
       'has level 1 options': function (levelOptions) {
-        assert.isTrue(typeof levelOptions['1'].transform == 'function');
-        delete levelOptions['1'].transform;
-
         assert.deepEqual(levelOptions['1'], {
           cleanupCharsets: true,
           normalizeUrls: true,
@@ -383,7 +366,8 @@ vows.describe(optimizationLevelFrom)
           specialComments: 0,
           tidyAtRules: true,
           tidyBlockScopes: true,
-          tidySelectors: true
+          tidySelectors: true,
+          transform: null
         });
       },
       'has level 2 options': function (levelOptions) {
@@ -416,9 +400,6 @@ vows.describe(optimizationLevelFrom)
         assert.deepEqual(levelOptions['0'], {});
       },
       'has level 1 options': function (levelOptions) {
-        assert.isTrue(typeof levelOptions['1'].transform == 'function');
-        delete levelOptions['1'].transform;
-
         assert.deepEqual(levelOptions['1'], {
           cleanupCharsets: true,
           normalizeUrls: true,
@@ -439,7 +420,8 @@ vows.describe(optimizationLevelFrom)
           specialComments: 0,
           tidyAtRules: true,
           tidyBlockScopes: true,
-          tidySelectors: true
+          tidySelectors: true,
+          transform: null
         });
       }
     },
@@ -454,9 +436,6 @@ vows.describe(optimizationLevelFrom)
         assert.deepEqual(levelOptions['0'], {});
       },
       'has level 1 options': function (levelOptions) {
-        assert.isTrue(typeof levelOptions['1'].transform == 'function');
-        delete levelOptions['1'].transform;
-
         assert.deepEqual(levelOptions['1'], {
           cleanupCharsets: true,
           normalizeUrls: true,
@@ -477,7 +456,8 @@ vows.describe(optimizationLevelFrom)
           specialComments: 'all',
           tidyAtRules: true,
           tidyBlockScopes: true,
-          tidySelectors: true
+          tidySelectors: true,
+          transform: null
         });
       },
       'has level 2 options': function (levelOptions) {
@@ -510,9 +490,6 @@ vows.describe(optimizationLevelFrom)
         assert.deepEqual(levelOptions['0'], {});
       },
       'has level 1 options': function (levelOptions) {
-        assert.isTrue(typeof levelOptions['1'].transform == 'function');
-        delete levelOptions['1'].transform;
-
         assert.deepEqual(levelOptions['1'], {
           cleanupCharsets: true,
           normalizeUrls: true,
@@ -533,7 +510,8 @@ vows.describe(optimizationLevelFrom)
           specialComments: 'all',
           tidyAtRules: true,
           tidyBlockScopes: true,
-          tidySelectors: true
+          tidySelectors: true,
+          transform: null
         });
       },
       'has level 2 options': function (levelOptions) {
@@ -566,9 +544,6 @@ vows.describe(optimizationLevelFrom)
         assert.deepEqual(levelOptions['0'], {});
       },
       'has level 1 options': function (levelOptions) {
-        assert.isTrue(typeof levelOptions['1'].transform == 'function');
-        delete levelOptions['1'].transform;
-
         assert.deepEqual(levelOptions['1'], {
           cleanupCharsets: true,
           normalizeUrls: true,
@@ -589,7 +564,8 @@ vows.describe(optimizationLevelFrom)
           specialComments: 'all',
           tidyAtRules: true,
           tidyBlockScopes: true,
-          tidySelectors: true
+          tidySelectors: true,
+          transform: null
         });
       },
       'has level 2 options': function (levelOptions) {
@@ -622,9 +598,6 @@ vows.describe(optimizationLevelFrom)
         assert.deepEqual(levelOptions['0'], {});
       },
       'has level 1 options': function (levelOptions) {
-        assert.isTrue(typeof levelOptions['1'].transform == 'function');
-        delete levelOptions['1'].transform;
-
         assert.deepEqual(levelOptions['1'], {
           cleanupCharsets: true,
           normalizeUrls: true,
@@ -645,7 +618,8 @@ vows.describe(optimizationLevelFrom)
           specialComments: 'all',
           tidyAtRules: true,
           tidyBlockScopes: true,
-          tidySelectors: true
+          tidySelectors: true,
+          transform: null
         });
       },
       'has level 2 options': function (levelOptions) {
@@ -678,9 +652,6 @@ vows.describe(optimizationLevelFrom)
         assert.deepEqual(levelOptions['0'], {});
       },
       'has level 1 options': function (levelOptions) {
-        assert.isTrue(typeof levelOptions['1'].transform == 'function');
-        delete levelOptions['1'].transform;
-
         assert.deepEqual(levelOptions['1'], {
           cleanupCharsets: true,
           normalizeUrls: true,
@@ -701,7 +672,8 @@ vows.describe(optimizationLevelFrom)
           specialComments: 'all',
           tidyAtRules: true,
           tidyBlockScopes: true,
-          tidySelectors: true
+          tidySelectors: true,
+          transform: null
         });
       }
     },
@@ -716,9 +688,6 @@ vows.describe(optimizationLevelFrom)
         assert.deepEqual(levelOptions['0'], {});
       },
       'has level 1 options': function (levelOptions) {
-        assert.isTrue(typeof levelOptions['1'].transform == 'function');
-        delete levelOptions['1'].transform;
-
         assert.deepEqual(levelOptions['1'], {
           cleanupCharsets: true,
           normalizeUrls: true,
@@ -756,7 +725,8 @@ vows.describe(optimizationLevelFrom)
           specialComments: 'all',
           tidyAtRules: true,
           tidyBlockScopes: true,
-          tidySelectors: true
+          tidySelectors: true,
+          transform: null
         });
       }
     },
@@ -771,9 +741,6 @@ vows.describe(optimizationLevelFrom)
         assert.deepEqual(levelOptions['0'], {});
       },
       'has level 1 options': function (levelOptions) {
-        assert.isTrue(typeof levelOptions['1'].transform == 'function');
-        delete levelOptions['1'].transform;
-
         assert.deepEqual(levelOptions['1'], {
           cleanupCharsets: true,
           normalizeUrls: true,
@@ -811,7 +778,8 @@ vows.describe(optimizationLevelFrom)
           specialComments: 'all',
           tidyAtRules: true,
           tidyBlockScopes: true,
-          tidySelectors: true
+          tidySelectors: true,
+          transform: null
         });
       }
     },

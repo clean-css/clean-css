@@ -2,23 +2,23 @@ var vows = require('vows');
 var assert = require('assert');
 
 var wrapForOptimizing = require('../../../lib/optimizer/wrap-for-optimizing').single;
-var compactable = require('../../../lib/optimizer/level-2/compactable');
+var configuration = require('../../../lib/optimizer/configuration');
 var compatibilityFrom = require('../../../lib/options/compatibility');
 var validator = require('../../../lib/optimizer/validator');
 
-var restore = require('../../../lib/optimizer/level-2/restore');
+var restore = require('../../../lib/optimizer/configuration/restore');
 
 function _breakUp(property) {
-  var descriptor = compactable[property[1][1]];
+  var descriptor = configuration[property[1][1]];
   var _property = wrapForOptimizing(property);
-  _property.components = descriptor.breakUp(_property, compactable, validator(compatibilityFrom()));
+  _property.components = descriptor.breakUp(_property, configuration, validator(compatibilityFrom()));
   _property.multiplex = _property.components[0].multiplex;
   return _property;
 }
 
 function _restore(_property) {
-  var descriptor = compactable[_property.name];
-  return descriptor.restore(_property, compactable);
+  var descriptor = configuration[_property.name];
+  return descriptor.restore(_property, configuration);
 }
 
 vows.describe(restore)

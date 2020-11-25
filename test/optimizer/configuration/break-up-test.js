@@ -6,7 +6,7 @@ var populateComponents = require('../../../lib/optimizer/level-2/properties/popu
 var validator = require('../../../lib/optimizer/validator');
 var compatibilityFrom = require('../../../lib/options/compatibility');
 
-var breakUp = require('../../../lib/optimizer/level-2/break-up');
+var breakUp = require('../../../lib/optimizer/configuration/break-up');
 
 function _breakUp(properties) {
   var wrapped = wrapForOptimizing(properties);

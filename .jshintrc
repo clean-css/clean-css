@@ -4,6 +4,7 @@
   "eqeqeq": false,
   "immed": true,
   "indent": 2,
+  "multistr": true,
   "noarg": true,
   "node": true,
   "predef": [

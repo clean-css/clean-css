@@ -1,6 +1,7 @@
 [5.0.0 / 2020-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/4.2...HEAD)
 ==================
 
+* Adds level 1 and level 2 optimization plugins.
 * Drops support for Node.js 6 & 8 to support last 3 Node.js releases: 10, 12, and 14.
 * Fixed issue [#889](https://github.com/jakubpawlowicz/clean-css/issues/889) - whitelisted level 1 optimizations.
 

@@ -34,6 +34,7 @@ According to [tests](http://goalsmashers.github.io/css-minification-benchmark/) 
     + [Level 0 optimizations](#level-0-optimizations)
     + [Level 1 optimizations](#level-1-optimizations)
     + [Level 2 optimizations](#level-2-optimizations)
+  * [Plugins](#plugins)
   * [Minify method](#minify-method)
   * [Promise interface](#promise-interface)
   * [CLI utility](#cli-utility)
@@ -439,6 +440,29 @@ new CleanCSS({
   }
 });
 ```
+
+## Plugins
+
+In clean-css version 5 and above you can define plugins which run alongside level 1 and level 2 optimizations, e.g.
+
+```js
+var myPlugin = {
+  level1: {
+    property: function removeRepeatedBackgroundRepeat() {
+      // So `background-repeat:no-repeat no-repeat` becomes `background-repeat:no-repeat`
+      if (property.name == 'background-repeat' && property.value.length == 2 && property.value[0][1] == property.value[1][1]) {
+        property.value.pop();
+        property.dirty = true;
+      }
+    }
+  }
+}
+
+new CleanCSS({plugins: [myPlugin]})
+
+```
+
+Search `test\module-test.js` for `plugins` for more examples.
 
 ## Minify method
 

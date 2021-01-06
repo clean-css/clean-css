@@ -891,5 +891,172 @@ vows.describe('module tests').addBatch({
         assert.isTrue(minified.stats.timeSpent < 1000);
       }
     }
+  },
+  'plugins': {
+    'level 1 - opacity range as value plugin': {
+      'topic': function () {
+        var opacityRangePlugin = {
+          level1: {
+            value: function (propertyName, propertyValue) {
+              if (propertyName == 'opacity' && parseFloat(propertyValue) < 0) {
+                return '0';
+              }
+
+              if (propertyName == 'opacity' && parseFloat(propertyValue) > 1) {
+                return '1';
+              }
+
+              return propertyValue;
+            }
+          }
+        };
+
+        return new CleanCSS({ plugins: [opacityRangePlugin]}).minify('.block-1{opacity:-1.5}.block-2{opacity:1.5}');
+      },
+      'normalizes opacity to standard boundaries': function (error, minified) {
+        assert.equal(minified.styles, '.block-1{opacity:0}.block-2{opacity:1}');
+      }
+    },
+    'level 1 - opacity range as property plugin': {
+      'topic': function () {
+        var opacityRangePlugin = {
+          level1: {
+            property: function (property) {
+              if (property.name == 'opacity' && parseFloat(property.value[0][1]) < 0) {
+                property.value[0][1] = '0';
+              }
+
+              if (property.name == 'opacity' && parseFloat(property.value[0][1]) > 1) {
+                property.value[0][1] = '1';
+              }
+            }
+          }
+        };
+
+        return new CleanCSS({ plugins: [opacityRangePlugin]}).minify('.block-1{opacity:-1.5}.block-2{opacity:1.5}');
+      },
+      'normalizes opacity to standard boundaries': function (error, minified) {
+        assert.equal(minified.styles, '.block-1{opacity:0}.block-2{opacity:1}');
+      }
+    },
+    'level 1 - background repeat plugin': {
+      'topic': function () {
+        var backgroundRepeatPlugin = {
+          level1: {
+            property: function(property) {
+              if (property.name == 'background-repeat' && property.value.length == 2 && property.value[0][1] == property.value[1][1]) {
+                property.value.pop();
+                property.dirty = true;
+              }
+            }
+          }
+        };
+
+        return new CleanCSS({ plugins: [backgroundRepeatPlugin]}).minify('.block-1{background-repeat:no-repeat}.block-2{background-repeat:repeat repeat}');
+      },
+      'normalizes opacity to standard boundaries': function (error, minified) {
+        assert.equal(minified.styles, '.block-1{background-repeat:no-repeat}.block-2{background-repeat:repeat}');
+      }
+    },
+    'level 1 - drop certain properties via a property plugin': {
+      'topic': function () {
+        // Let's say you bundle external CSS into yours and want to get rid of some properties programatically
+        // e.g. Bootstrap uses `-webkit-linear-gradient()`, `-o-linear-gradient()`, and `-webkit-gradient()` fallbacks and you want to get rid of them
+        var getRidOfBackgroundImageVendorFallbacks = {
+          level1: {
+            property: function (property) {
+              var value;
+
+              if (property.name == 'background-image') {
+                value = property.value[0][1];
+
+                if (value.indexOf('-webkit-linear-gradient') == 0 || value.indexOf('-o-linear-gradient') == 0 || value.indexOf('-webkit-gradient') == 0) {
+                  property.unused = true;
+                }
+              }
+            }
+          }
+        };
+
+        var input = '\
+          .block-1 {\
+            background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, .0001) 0%, rgba(0, 0, 0, .5) 100%);\
+            background-image:      -o-linear-gradient(left, rgba(0, 0, 0, .0001) 0%, rgba(0, 0, 0, .5) 100%);\
+            background-image: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, .0001)), to(rgba(0, 0, 0, .5)));\
+            background-image:         linear-gradient(to right, rgba(0, 0, 0, .0001) 0%, rgba(0, 0, 0, .5) 100%);\
+          } \
+        ';
+
+        return new CleanCSS({ plugins: [getRidOfBackgroundImageVendorFallbacks]}).minify(input);
+      },
+      'normalizes opacity to standard boundaries': function (error, minified) {
+        assert.equal(minified.styles, '.block-1{background-image:linear-gradient(to right,rgba(0,0,0,.0001) 0,rgba(0,0,0,.5) 100%)}');
+      }
+    },
+    'level 2 - drop certain rules via level 2 plugin': {
+      'topic': function () {
+        // Let's say you bundle external CSS into yours and want to get rid of some rules programatically
+        // e.g. Bootstrap uses `glyphicon` classes and you don't need them at all
+        var getRidOfGlyphiconsPlugin = {
+          level2: {
+            block: function (tokens) {
+              // at this point you get full access to serialized CSS, do `console.log(tokens)` to see what you get
+              var tokenType;
+              var tokenNames;
+              var tokenValues;
+              var i, l;
+
+              for (i = 0, l = tokens.length; i < l; i++) {
+                tokenType = tokens[i][0];
+                tokenNames = tokens[i][1];
+                tokenValues = tokens[i][2];
+
+                if (tokenType == 'rule' && tokenNames[0][1].indexOf('.glyphicon') == 0) {
+                  tokens[i][2] = [];
+                }
+
+                if (tokenType == 'at-rule-block' && tokenNames[0][1] == '@font-face' && tokenValues.length > 0 && tokenValues[0][1][1] == 'font-family' && tokenValues[0][2][1].indexOf('Glyphicons') > -1) {
+                  tokens[i][2] = [];
+                }
+              }
+            }
+          }
+        };
+
+        var input = '\
+          td,\
+          th {\
+            padding: 0;\
+          }\
+          @font-face {\
+            font-family: \'Glyphicons Halflings\';\
+            src: url(\'../fonts/glyphicons-halflings-regular.eot\');\
+            src: url(\'../fonts/glyphicons-halflings-regular.eot?#iefix\') format(\'embedded-opentype\'), url(\'../fonts/glyphicons-halflings-regular.woff2\') format(\'woff2\'), url(\'../fonts/glyphicons-halflings-regular.woff\') format(\'woff\'), url(\'../fonts/glyphicons-halflings-regular.ttf\') format(\'truetype\'), url(\'../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular\') format(\'svg\');\
+          }\
+          .glyphicon {\
+            position: relative;\
+            top: 1px;\
+            display: inline-block;\
+            font-family: \'Glyphicons Halflings\';\
+            font-style: normal;\
+            font-weight: normal;\
+            line-height: 1;\
+            -webkit-font-smoothing: antialiased;\
+            -moz-osx-font-smoothing: grayscale;\
+          }\
+          .glyphicon-asterisk:before {\
+            content: "\2a";\
+          }\
+          .glyphicon-plus:before {\
+            content: "\2b";\
+          }\
+        ';
+
+        return new CleanCSS({ level: 2, plugins: [getRidOfGlyphiconsPlugin]}).minify(input);
+      },
+      'normalizes opacity to standard boundaries': function (error, minified) {
+        assert.equal(minified.styles, 'td,th{padding:0}');
+      }
+    }
   }
 }).export(module);

@@ -462,7 +462,7 @@ new CleanCSS({plugins: [myPlugin]})
 
 ```
 
-Search `test\module-test.js` for `plugins` for more examples.
+Search `test\module-test.js` for `plugins` or check out `lib/optimizer/level-1/property-optimizers` and `lib/optimizer/level-1/value-optimizers` for more examples.
 
 ## Minify method
 

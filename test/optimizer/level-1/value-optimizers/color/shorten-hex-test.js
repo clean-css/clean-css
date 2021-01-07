@@ -2,7 +2,7 @@ var assert = require('assert');
 
 var vows = require('vows');
 
-var shortenHex = require('../../../lib/optimizer/level-1/shorten-hex');
+var shortenHex = require('../../../../../lib/optimizer/level-1/value-optimizers/color/shorten-hex');
 
 var COLORS = {
   aliceblue: '#f0f8ff',

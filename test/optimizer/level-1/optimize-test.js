@@ -412,6 +412,10 @@ vows.describe('level 1 optimizations')
       '8-value hex': [
         '.block{color:#00ff0080}',
         '.block{color:#00ff0080}'
+      ],
+      'hsla with variables': [
+        '.block{color: hsl(0, 0%, calc((var(--button_color_l) - 65) * -100%))}',
+        '.block{color:hsl(0,0%,calc((var(--button_color_l) - 65) * -100%))}'
       ]
     }, { level: 1 })
   )

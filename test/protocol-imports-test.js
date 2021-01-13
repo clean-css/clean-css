@@ -930,7 +930,8 @@ vows.describe('protocol imports').addBatch({
     'should process first imports': function (error, minified) {
       assert.equal(minified.styles, '@import url(//127.0.0.1/remote.css);.one{color:red}');
     }
-  },
+  }
+}).addBatch({
   'allowed imports - from specific URI': {
     topic: function () {
       var source = '@import url(http://127.0.0.1/remote.css);@import url(http://assets.127.0.0.1/remote.css);@import url(test/fixtures/partials/one.css);';

@@ -1,4 +1,4 @@
-[5.0.0 / 2020-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/4.2...HEAD)
+[5.0.0-pre / 2021-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/4.2...HEAD)
 ==================
 
 * Adds level 1 and level 2 optimization plugins.

@@ -2683,4 +2683,16 @@ vows.describe('integration tests')
       ]
     }, { format: { wrapAt: 80 }, sourceMap: true })
   )
+  .addBatch(
+    optimizerContext('SVG properties', {
+      'are kept #1': [
+        'node:hover circle{r:18;stroke:orange}',
+        'node:hover circle{r:18;stroke:orange}'
+      ],
+      'are kept #2': [
+        'node:hover circle{rx:18;stroke:orange}',
+        'node:hover circle{rx:18;stroke:orange}'
+      ]
+    })
+  )
   .export(module);

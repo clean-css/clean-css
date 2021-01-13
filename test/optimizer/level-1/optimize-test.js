@@ -416,7 +416,12 @@ vows.describe('level 1 optimizations')
       'hsla with variables': [
         '.block{color: hsl(0, 0%, calc((var(--button_color_l) - 65) * -100%))}',
         '.block{color:hsl(0,0%,calc((var(--button_color_l) - 65) * -100%))}'
+      ],
+      'rgba inside a function': [
+        '.block{background-image:linear-gradient(to right,rgba(255,255,255,0),rgba(255,255,255,1))}',
+        '.block{background-image:linear-gradient(to right,rgba(255,255,255,0),#fff)}'
       ]
+
     }, { level: 1 })
   )
   .addBatch(

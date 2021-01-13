@@ -80,6 +80,7 @@ var output = new CleanCSS(options).minify(input);
 clean-css 5.0 will introduce some breaking changes:
 
 * Node.js 6.x and 8.x are officially no longer supported;
+* `transform` callback in level-1 optimizations is removed in favor of new [plugins](#plugins) interface;
 
 ## Important: 4.0 breaking changes
 
@@ -377,8 +378,7 @@ new CleanCSS({
       specialComments: 'all', // denotes a number of /*! ... */ comments preserved; defaults to `all`
       tidyAtRules: true, // controls at-rules (e.g. `@charset`, `@import`) optimizing; defaults to `true`
       tidyBlockScopes: true, // controls block scopes (e.g. `@media`) optimizing; defaults to `true`
-      tidySelectors: true, // controls selectors optimizing; defaults to `true`,
-      transform: function () {} // defines a callback for fine-grained property optimization; defaults to no-op
+      tidySelectors: true, // controls selectors optimizing; defaults to `true`
     }
   }
 });
@@ -448,7 +448,7 @@ In clean-css version 5 and above you can define plugins which run alongside leve
 ```js
 var myPlugin = {
   level1: {
-    property: function removeRepeatedBackgroundRepeat() {
+    property: function removeRepeatedBackgroundRepeat(_rule, property, _options) {
       // So `background-repeat:no-repeat no-repeat` becomes `background-repeat:no-repeat`
       if (property.name == 'background-repeat' && property.value.length == 2 && property.value[0][1] == property.value[1][1]) {
         property.value.pop();
@@ -561,26 +561,7 @@ If you don't provide a callback, then remote `@import`s will be left as is.
 
 ## How to apply arbitrary transformations to CSS properties?
 
-If clean-css doesn't perform a particular property optimization, you can use `transform` callback to apply it:
-
-```js
-var source = '.block{background-image:url(/path/to/image.png)}';
-var output = new CleanCSS({
-  level: {
-    1: {
-      transform: function (propertyName, propertyValue, selector /* `selector` available since 4.2.0-pre */) {
-        if (propertyName == 'background-image' && propertyValue.indexOf('/path/to') > -1) {
-          return propertyValue.replace('/path/to', '../valid/path/to');
-        }
-      }
-    }
-  }
-}).minify(source);
-
-console.log(output.styles); # => .block{background-image:url(../valid/path/to/image.png)}
-```
-
-Note: returning `false` from `transform` callback will drop a property.
+Please see [plugins](#plugins).
 
 ## How to specify a custom rounding precision?
 

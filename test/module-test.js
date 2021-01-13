@@ -410,19 +410,23 @@ vows.describe('module tests').addBatch({
       assert.instanceOf(minified.sourceMap, SourceMapGenerator);
     }
   },
-  'arbitrary property transformations': {
+  'arbitrary property transformations now via plugins (since 5.0)': {
     'allows changing property value': {
       'topic': function () {
         return new CleanCSS({
-          level: {
-            1: {
-              transform: function (propertyName, propertyValue) {
-                if (propertyName == 'background-image' && propertyValue.indexOf('/path/to') > -1) {
-                  return propertyValue.replace('/path/to', '../valid/path/to');
+          plugins: [
+            {
+              level1: {
+                value: function (propertyName, propertyValue) {
+                  if (propertyName == 'background-image' && propertyValue.indexOf('/path/to') > -1) {
+                    return propertyValue.replace('/path/to', '../valid/path/to');
+                  } else {
+                    return propertyValue;
+                  }
                 }
               }
             }
-          }
+          ]
         }).minify('.block{background-image:url(/path/to/image.png);border-image:url(image.png)}');
       },
       'gives right output': function (error, output) {
@@ -432,15 +436,17 @@ vows.describe('module tests').addBatch({
     'allows dropping properties': {
       'topic': function () {
         return new CleanCSS({
-          level: {
-            1: {
-              transform: function (propertyName) {
-                if (propertyName.indexOf('-o-') === 0) {
-                  return false;
+          plugins: [
+            {
+              level1: {
+                property: function (_rule, property) {
+                  if (property.name.indexOf('-o-') === 0) {
+                    property.unused = true;
+                  }
                 }
               }
             }
-          }
+          ]
         }).minify('.block{-o-border-radius:2px;border-image:url(image.png)}');
       },
       'gives right output': function (error, output) {
@@ -450,15 +456,17 @@ vows.describe('module tests').addBatch({
     'allows dropping properties based on selector': {
       'topic': function () {
         return new CleanCSS({
-          level: {
-            1: {
-              transform: function (propertyName, propertyValue, selector) {
-                if (propertyName.indexOf('-o-') === 0 && selector == '.block-2') {
-                  return false;
+          plugins: [
+            {
+              level1: {
+                property: function (rule, property) {
+                  if (rule == '.block-2' && property.name.indexOf('-o-') === 0) {
+                    property.unused = true;
+                  }
                 }
               }
             }
-          }
+          ]
         }).minify('.block-1{-o-border-radius:2px}.block-2{-o-border-radius:5px;width:1rem}');
       },
       'gives right output': function (error, output) {
@@ -468,14 +476,18 @@ vows.describe('module tests').addBatch({
     'combined with level 2 optimization': {
       'topic': function () {
         return new CleanCSS({
-          level: {
-            1: {
-              transform: function (propertyName) {
-                if (propertyName == 'margin-bottom') {
-                  return false;
+          plugins: [
+            {
+              level1: {
+                property: function (_rule, property) {
+                if (property.name == 'margin-bottom') {
+                    property.unused = true;
+                  }
                 }
               }
-            },
+            }
+          ],
+          level: {
             2: true
           }
         }).minify('.block{-o-border-radius:2px;margin:0 12px;margin-bottom:5px}');
@@ -921,7 +933,7 @@ vows.describe('module tests').addBatch({
       'topic': function () {
         var opacityRangePlugin = {
           level1: {
-            property: function (property) {
+            property: function (_rule, property) {
               if (property.name == 'opacity' && parseFloat(property.value[0][1]) < 0) {
                 property.value[0][1] = '0';
               }
@@ -943,7 +955,7 @@ vows.describe('module tests').addBatch({
       'topic': function () {
         var backgroundRepeatPlugin = {
           level1: {
-            property: function(property) {
+            property: function(_rule, property) {
               if (property.name == 'background-repeat' && property.value.length == 2 && property.value[0][1] == property.value[1][1]) {
                 property.value.pop();
                 property.dirty = true;
@@ -964,7 +976,7 @@ vows.describe('module tests').addBatch({
         // e.g. Bootstrap uses `-webkit-linear-gradient()`, `-o-linear-gradient()`, and `-webkit-gradient()` fallbacks and you want to get rid of them
         var getRidOfBackgroundImageVendorFallbacks = {
           level1: {
-            property: function (property) {
+            property: function (_rule, property) {
               var value;
 
               if (property.name == 'background-image') {

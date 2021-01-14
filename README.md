@@ -465,6 +465,8 @@ new CleanCSS({plugins: [myPlugin]})
 
 Search `test\module-test.js` for `plugins` or check out `lib/optimizer/level-1/property-optimizers` and `lib/optimizer/level-1/value-optimizers` for more examples.
 
+__Important__: To rewrite your old `transform` as a plugin, check out [this commit](https://github.com/jakubpawlowicz/clean-css/commit/b6ddc523267fc42cf0f6bd1626a79cad97319e17#diff-a71ef45f934725cdb25860dc0b606bcd59e3acee9788cd6df4f9d05339e8a153).
+
 ## Minify method
 
 Once configured clean-css provides a `minify` method to optimize a given CSS, e.g.

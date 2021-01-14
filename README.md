@@ -6,7 +6,7 @@
 </h1>
 
 [![NPM version](https://img.shields.io/npm/v/clean-css.svg?style=flat)](https://www.npmjs.com/package/clean-css)
-[![Linux Build Status](https://github.com/jakubpawlowicz/clean-css/workflows/Linux%20build/badge.svg)](https://github.com/jakubpawlowicz/clean-css/actions?query=workflow%3A%22Linux+build%22)
+[![x86 Linux Build Status](https://github.com/jakubpawlowicz/clean-css/workflows/x86%20Linux%20build/badge.svg)](https://github.com/jakubpawlowicz/clean-css/actions?query=workflow%3A%22x86+Linux+build%22)
 [![Windows Build status](https://img.shields.io/appveyor/ci/jakubpawlowicz/clean-css/master.svg?style=flat&label=Windows%20build)](https://ci.appveyor.com/project/jakubpawlowicz/clean-css/branch/master)
 [![Dependency Status](https://img.shields.io/david/jakubpawlowicz/clean-css.svg?style=flat)](https://david-dm.org/jakubpawlowicz/clean-css)
 [![NPM Downloads](https://img.shields.io/npm/dm/clean-css.svg)](https://npmcharts.com/compare/clean-css?minimal=true)

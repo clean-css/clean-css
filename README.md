@@ -579,6 +579,22 @@ new CleanCSS({
 
 which sets all units rounding precision to 3 digits except `px` unit precision of 5 digits.
 
+## How to optimize a stylesheet with custom `rpx` units?
+
+Since `rpx` is a non standard unit (see [#1074](https://github.com/jakubpawlowicz/clean-css/issues/1074)), it will be dropped by default as an invalid value.
+
+However you can treat `rpx` units as regular ones:
+
+```js
+new CleanCSS({
+  compatibility: {
+    customUnits: {
+      rpx: true
+    }
+  }
+}).minify(source)
+```
+
 ## How to keep a CSS fragment intact?
 
 Note: available since 4.2.0.

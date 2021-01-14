@@ -901,6 +901,30 @@ vows.describe('level 1 optimizations')
     }, { level: 1, compatibility: 'ie8' })
   )
   .addBatch(
+    optimizerContext('rpx unit when disabled in level 1', {
+      'is kept': [
+        '.block{border:2rpx solid #ddd}',
+        '.block{border:2rpx solid #ddd}'
+      ]
+    }, { level: 1 })
+  )
+  .addBatch(
+    optimizerContext('rpx unit when disabled in level 2', {
+      'is removed': [
+        '.block{border:2rpx solid #ddd}',
+        '.block{border:solid #ddd}'
+      ]
+    }, { level: 2 })
+  )
+  .addBatch(
+    optimizerContext('rpx unit when enabled in level 2', {
+      'is removed': [
+        '.block{border:2rpx solid #ddd}',
+        '.block{border:2rpx solid #ddd}'
+      ]
+    }, { level: 2, compatibility: { customUnits: { rpx: true } } })
+  )
+  .addBatch(
     optimizerContext('zeros', {
       '-0 to 0': [
         'a{margin:-0}',

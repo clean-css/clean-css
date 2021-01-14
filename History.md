@@ -5,6 +5,7 @@
 * Drops support for Node.js 6 & 8 to support last 3 Node.js releases: 10, 12, and 14.
 * Fixed issue [#889](https://github.com/jakubpawlowicz/clean-css/issues/889) - whitelisted level 1 optimizations.
 * Fixed issue [#1021](https://github.com/jakubpawlowicz/clean-css/issues/1021) - allow one- and two-letter property names.
+* Fixed issue [#1073](https://github.com/jakubpawlowicz/clean-css/issues/1073) - adds support for non-standard `rpx` units.
 * Fixed issue [#1122](https://github.com/jakubpawlowicz/clean-css/issues/1122) - don't wrap data URI in single quotes.
 * Reworks all level 1 optimizations to conform to plugin style.
 

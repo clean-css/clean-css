@@ -625,6 +625,54 @@ vows.describe('level 1 optimizations')
     }, { level: 1 })
   )
   .addBatch(
+    optimizerContext('ie hacks in IE11 mode', {
+      'underscore': [
+        'a{_width:101px}',
+        ''
+      ],
+      'asterisk': [
+        'a{*width:101px}',
+        ''
+      ],
+      '\\0 backslash': [
+        'a{width:101px\\0}',
+        'a{width:101px\\0}'
+      ],
+      '\\9 backslash': [
+        'a{width:101px\\9}',
+        'a{width:101px\\9}'
+      ],
+      'bang': [
+        'a{color:red !ie}',
+        ''
+      ]
+    }, { level: 1, compatibility: 'ie11' })
+  )
+  .addBatch(
+    optimizerContext('ie hacks in IE10 mode', {
+      'underscore': [
+        'a{_width:101px}',
+        ''
+      ],
+      'asterisk': [
+        'a{*width:101px}',
+        ''
+      ],
+      '\\0 backslash': [
+        'a{width:101px\\0}',
+        'a{width:101px\\0}'
+      ],
+      '\\9 backslash': [
+        'a{width:101px\\9}',
+        'a{width:101px\\9}'
+      ],
+      'bang': [
+        'a{color:red !ie}',
+        ''
+      ]
+    }, { level: 1, compatibility: 'ie10' })
+  )
+  .addBatch(
     optimizerContext('ie hacks in IE9 mode', {
       'underscore': [
         'a{_width:101px}',

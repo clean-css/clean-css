@@ -81,6 +81,7 @@ clean-css 5.0 will introduce some breaking changes:
 
 * Node.js 6.x and 8.x are officially no longer supported;
 * `transform` callback in level-1 optimizations is removed in favor of new [plugins](#plugins) interface;
+* changes default Internet Explorer compatibility from 10+ to >11, to revert the old default use `{ compatibility: 'ie10' }` flag;
 
 ## Important: 4.0 breaking changes
 

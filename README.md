@@ -22,9 +22,9 @@ According to [tests](http://goalsmashers.github.io/css-minification-benchmark/) 
 - [Install](#install)
 - [Use](#use)
   * [Important: 5.0 breaking changes](#important-50-breaking-changes)
-  * [Important: 4.0 breaking changes](#important-40-breaking-changes)
-  * [What's new in version 4.1](#whats-new-in-version-41)
   * [What's new in version 4.2](#whats-new-in-version-42)
+  * [What's new in version 4.1](#whats-new-in-version-41)
+  * [Important: 4.0 breaking changes](#important-40-breaking-changes)
   * [Constructor options](#constructor-options)
   * [Compatibility modes](#compatibility-modes)
   * [Fetch option](#fetch-option)
@@ -83,6 +83,35 @@ clean-css 5.0 will introduce some breaking changes:
 * `transform` callback in level-1 optimizations is removed in favor of new [plugins](#plugins) interface;
 * changes default Internet Explorer compatibility from 10+ to >11, to revert the old default use `{ compatibility: 'ie10' }` flag;
 
+## What's new in version 4.2
+
+clean-css 4.2 introduces the following changes / features:
+
+* Adds `process` method for compatibility with optimize-css-assets-webpack-plugin;
+* new `transition` property optimizer;
+* preserves any CSS content between `/* clean-css ignore:start */` and `/* clean-css ignore:end */` comments;
+* allows filtering based on selector in `transform` callback, see [example](#how-to-apply-arbitrary-transformations-to-css-properties);
+* adds configurable line breaks via `format: { breakWith: 'lf' }` option.
+
+## What's new in version 4.1
+
+clean-css 4.1 introduces the following changes / features:
+
+* `inline: false` as an alias to `inline: ['none']`;
+* `multiplePseudoMerging` compatibility flag controlling merging of rules with multiple pseudo classes / elements;
+* `removeEmpty` flag in level 1 optimizations controlling removal of rules and nested blocks;
+* `removeEmpty` flag in level 2 optimizations controlling removal of rules and nested blocks;
+* `compatibility: { selectors: { mergeLimit: <number> } }` flag in compatibility settings controlling maximum number of selectors in a single rule;
+* `minify` method improved signature accepting a list of hashes for a predictable traversal;
+* `selectorsSortingMethod` level 1 optimization allows `false` or `'none'` for disabling selector sorting;
+* `fetch` option controlling a function for handling remote requests;
+* new `font` shorthand and `font-*` longhand optimizers;
+* removal of `optimizeFont` flag in level 1 optimizations due to new `font` shorthand optimizer;
+* `skipProperties` flag in level 2 optimizations controlling which properties won't be optimized;
+* new `animation` shorthand and `animation-*` longhand optimizers;
+* `removeUnusedAtRules` level 2 optimization controlling removal of unused `@counter-style`, `@font-face`, `@keyframes`, and `@namespace` at rules;
+* the [web interface](https://jakubpawlowicz.github.io/clean-css) gets an improved settings panel with "reset to defaults", instant option changes, and settings being persisted across sessions.
+
 ## Important: 4.0 breaking changes
 
 clean-css 4.0 introduces some breaking changes:
@@ -104,35 +133,6 @@ clean-css 4.0 introduces some breaking changes:
 * `keepBreaks` option is replaced with `{ format: 'keep-breaks' }` to ease transition;
 * `sourceMap` option has to be a boolean from now on - to specify an input source map pass it a 2nd argument to `minify` method or via a hash instead;
 * `aggressiveMerging` option is removed as aggressive merging is replaced by smarter override merging.
-
-## What's new in version 4.1
-
-clean-css 4.1 introduces the following changes / features:
-
-* `inline: false` as an alias to `inline: ['none']`;
-* `multiplePseudoMerging` compatibility flag controlling merging of rules with multiple pseudo classes / elements;
-* `removeEmpty` flag in level 1 optimizations controlling removal of rules and nested blocks;
-* `removeEmpty` flag in level 2 optimizations controlling removal of rules and nested blocks;
-* `compatibility: { selectors: { mergeLimit: <number> } }` flag in compatibility settings controlling maximum number of selectors in a single rule;
-* `minify` method improved signature accepting a list of hashes for a predictable traversal;
-* `selectorsSortingMethod` level 1 optimization allows `false` or `'none'` for disabling selector sorting;
-* `fetch` option controlling a function for handling remote requests;
-* new `font` shorthand and `font-*` longhand optimizers;
-* removal of `optimizeFont` flag in level 1 optimizations due to new `font` shorthand optimizer;
-* `skipProperties` flag in level 2 optimizations controlling which properties won't be optimized;
-* new `animation` shorthand and `animation-*` longhand optimizers;
-* `removeUnusedAtRules` level 2 optimization controlling removal of unused `@counter-style`, `@font-face`, `@keyframes`, and `@namespace` at rules;
-* the [web interface](https://jakubpawlowicz.github.io/clean-css) gets an improved settings panel with "reset to defaults", instant option changes, and settings being persisted across sessions.
-
-## What's new in version 4.2
-
-clean-css 4.2 introduces the following changes / features:
-
-* Adds `process` method for compatibility with optimize-css-assets-webpack-plugin;
-* new `transition` property optimizer;
-* preserves any CSS content between `/* clean-css ignore:start */` and `/* clean-css ignore:end */` comments;
-* allows filtering based on selector in `transform` callback, see [example](#how-to-apply-arbitrary-transformations-to-css-properties);
-* adds configurable line breaks via `format: { breakWith: 'lf' }` option.
 
 ## Constructor options
 

@@ -17,6 +17,16 @@ function assertEqualLineByLine(expected, actual) {
   });
 }
 
+function formatFor(testName) {
+  switch (testName) {
+    case 'issue-1119':
+      return 'beautify';
+
+    default:
+      return 'keep-breaks';
+  }
+}
+
 function batchContexts() {
   var context = {};
   var dir = path.join(__dirname, 'fixtures');
@@ -43,7 +53,7 @@ function batchContexts() {
         topic: function (data) {
           new CleanCSS({
             compatibility: isIE7Mode ? 'ie7' : '*',
-            format: 'keep-breaks',
+            format: formatFor(testName),
             level: {
               2: {
                 restructureRules: true
@@ -59,7 +69,7 @@ function batchContexts() {
         topic: function (data) {
           new CleanCSS({
             compatibility: isIE7Mode ? 'ie7' : '*',
-            format: 'keep-breaks',
+            format: formatFor(testName),
             level: {
               2: {
                 restructureRules: true

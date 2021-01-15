@@ -2648,6 +2648,10 @@ vows.describe('integration tests')
       'at-rule and rules': [
         'a{display:block;@apply(--rule1);color:red}',
         'a {' + lineBreak + '  display: block;' + lineBreak + '  @apply(--rule1);' + lineBreak + '  color: red' + lineBreak + '}'
+      ],
+      'inside quoted text': [
+        '.block::before{content:"\\"()"}',
+        '.block::before {' + lineBreak + '  content: "\\"()"' + lineBreak + '}'
       ]
     }, { format: 'beautify' })
   )

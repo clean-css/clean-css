@@ -885,6 +885,18 @@ vows.describe('integration tests')
     })
   )
   .addBatch(
+    optimizerContext('units with level 2', {
+      'uppercase': [
+        '.block{border:1PX solid #eee}',
+        '.block{border:1PX solid #eee}'
+      ],
+      'mixed case': [
+        '.block{border:1ReM solid #eee}',
+        '.block{border:1ReM solid #eee}'
+      ]
+    }, { level: 2 })
+  )
+  .addBatch(
     optimizerContext('floats', {
       'strips zero in fractions': [
         'a{ margin-bottom: 0.5em}',

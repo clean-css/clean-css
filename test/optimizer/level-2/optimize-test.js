@@ -27,6 +27,10 @@ vows.describe('level 2 optimizer')
       'backslash hacks': [
         '.block{color:red\\9;color:#0f0\\0}',
         ''
+      ],
+      'quoted font family only': [
+        '.block{font:60px/64px "Garamond WF"}',
+        '.block{font:60px/64px "Garamond WF"}'
       ]
     }, { level: 2 })
   )

@@ -2656,6 +2656,14 @@ vows.describe('integration tests')
     }, { format: 'beautify' })
   )
   .addBatch(
+    optimizerContext('beautify formatting with last semicolon on', {
+      'keeps semicolon': [
+        '.block{margin-top:1em;margin-bottom:1em;}',
+        '.block {' + lineBreak + '  margin-top: 1em;' + lineBreak + '  margin-bottom: 1em;' + lineBreak + '}'
+      ]
+    }, { format: { breaks: { afterAtRule: true, afterBlockBegins: true, afterBlockEnds: true, afterComment: true, afterProperty: true, afterRuleBegins: true, afterRuleEnds: true, beforeBlockEnds: true, betweenSelectors: true }, indentBy: 2, spaces: { aroundSelectorRelation: true, beforeBlockBegins: true, beforeValue: true }, semicolonAfterLastProperty: true } })
+  )
+  .addBatch(
     optimizerContext('custom formatting', {
       'rule': [
         'a{color:red}',

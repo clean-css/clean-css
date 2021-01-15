@@ -1069,6 +1069,18 @@ vows.describe('level 1 optimizations')
       'max-width': [
         'a{max-width:0%}',
         'a{max-width:0%}'
+      ],
+      'zero inside min function': [
+        '.block{width:min(0px, 30px)}',
+        '.block{width:min(0px,30px)}'
+      ],
+      'zero inside max function': [
+        '.block{width:max(0px, 30px)}',
+        '.block{width:max(0px,30px)}'
+      ],
+      'zero inside clamp function': [
+        '.block{width:clamp(0rem, 2.5vw, 2rem)}',
+        '.block{width:clamp(0rem,2.5vw,2rem)}'
       ]
     }, { level: 1 })
   )

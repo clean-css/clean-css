@@ -2680,6 +2680,18 @@ vows.describe('integration tests')
     }, { format: { breaks: { afterAtRule: true, afterBlockBegins: true, afterBlockEnds: true, afterComment: true, afterProperty: true, afterRuleBegins: true, afterRuleEnds: true, beforeBlockEnds: true, betweenSelectors: true }, indentBy: 2, spaces: { aroundSelectorRelation: true, beforeBlockBegins: true, beforeValue: true }, semicolonAfterLastProperty: true } })
   )
   .addBatch(
+    optimizerContext('beautify formatting with comments', {
+      'adds line break after comment inside property': [
+        '.block{/*! Comment 1 *//*! Comment 2 */margin-top:1em;margin-bottom:1em}',
+        '.block {' + lineBreak + '  /*! Comment 1 */' + lineBreak + '  /*! Comment 2 */' + lineBreak + '  margin-top: 1em;' + lineBreak + '  margin-bottom: 1em' + lineBreak + '}'
+      ],
+      'adds line break after comment inside nested block': [
+        '@media screen{/*! Comment 1 */.block{/*! Comment 2 */margin-top:1em;margin-bottom:1em}}',
+        '@media screen {' + lineBreak + '  /*! Comment 1 */' + lineBreak + '  .block {' + lineBreak + '    /*! Comment 2 */' + lineBreak + '    margin-top: 1em;' + lineBreak + '    margin-bottom: 1em' + lineBreak + '  }' + lineBreak + '}'
+      ]
+    }, { format: 'beautify' })
+  )
+  .addBatch(
     optimizerContext('custom formatting', {
       'rule': [
         'a{color:red}',

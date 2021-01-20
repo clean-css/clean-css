@@ -1,1 +1,5 @@
-@font-face{src:url(test/font/myfont.eot);/*! IE9 */src:url(test/font/myfont.eot?#iefix) format("embedded-opentype"),url(test/font/myfont.woff) format("woff"),url(test/font/myfont.ttf) format("truetype"),url(test/font/myfont.svg#myfont) format("svg");/*! IE6-IE8 *//*! chrome, firefox *//*! chrome, firefox, opera, Safari, Android, iOS 4.2+ */font-style:normal;font-weight:400}
+@font-face{src:url(test/font/myfont.eot);/*! IE9 */
+src:url(test/font/myfont.eot?#iefix) format("embedded-opentype"),url(test/font/myfont.woff) format("woff"),url(test/font/myfont.ttf) format("truetype"),url(test/font/myfont.svg#myfont) format("svg");/*! IE6-IE8 */
+/*! chrome, firefox */
+/*! chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+font-style:normal;font-weight:400}

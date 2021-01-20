@@ -260,6 +260,10 @@ vows.describe('level 1 optimizations')
       'space is not removed in multiple rules': [
         ':host-context(main footer),:host-context(main header){color:red}',
         ':host-context(main footer),:host-context(main header){color:red}'
+      ],
+      'space is not removed from :not pseudo-class': [
+        ':not(.block1 .block1__block2){color:red}',
+        ':not(.block1 .block1__block2){color:red}'
       ]
     }, { level: 1 })
   )

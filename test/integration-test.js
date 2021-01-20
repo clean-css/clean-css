@@ -2441,6 +2441,10 @@ vows.describe('integration tests')
         '@supports (display:flexbox){.flex{display:flexbox}}',
         '@supports (display:flexbox){.flex{display:flexbox}}'
       ],
+      '@supports with quoted text': [
+        '@supports (font-feature-settings:"liga" 0){html{--font:"font-with-features",helvetica,sans-serif}}',
+        '@supports (font-feature-settings:"liga" 0){html{--font:"font-with-features",helvetica,sans-serif}}'
+      ],
       '@-ms-viewport': [
         '@-ms-viewport{width:device-width}',
         '@-ms-viewport{width:device-width}'

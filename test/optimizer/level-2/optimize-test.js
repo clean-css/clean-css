@@ -39,6 +39,10 @@ vows.describe('level 2 optimizer')
       'skips merging when function withing function is used for compatibility reasons': [
         '.block{transform:translateX(-107%);transform:translateX(calc(-100% - 20px))}',
         '.block{transform:translateX(-107%);transform:translateX(calc(-100% - 20px))}'
+      ],
+      'keeps right order after merging into a shorthand': [
+        '.block{border-color:red;background-color:#000;color:#fff;border-width:5px;border-style:solid;font-style:italic;border-top:0;border-right:0;border-left:0}',
+        '.block{background-color:#000;color:#fff;border:5px solid red;font-style:italic;border-top:0;border-right:0;border-left:0}'
       ]
     }, { level: 2 })
   )

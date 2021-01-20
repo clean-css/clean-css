@@ -521,11 +521,6 @@ vows.describe(optimizeProperties)
           ],
           [
             'property',
-            ['property-name', 'width', [[1, 83, undefined]]],
-            ['property-value', '100px', [[1, 89, undefined]]]
-          ],
-          [
-            'property',
             ['property-name', 'padding', [
               [1, 2, undefined],
               [1, 19, undefined],
@@ -536,6 +531,11 @@ vows.describe(optimizeProperties)
             ['property-value', '2px', [[1, 79, undefined]]],
             ['property-value', '3px', [[1, 51, undefined]]],
             ['property-value', '5px', [[1, 32, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'width', [[1, 83, undefined]]],
+            ['property-value', '100px', [[1, 89, undefined]]]
           ]
         ]);
       }

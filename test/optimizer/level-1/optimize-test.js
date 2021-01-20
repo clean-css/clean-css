@@ -248,6 +248,22 @@ vows.describe('level 1 optimizations')
     }, { level: 1, compatibility: { selectors: { adjacentSpace: true } } })
   )
   .addBatch(
+    optimizerContext('selectors - rule list in a pseudo class', {
+      'space is not removed': [
+        ':host-context(main article){color:red}',
+        ':host-context(main article){color:red}'
+      ],
+      'extra spaces are removed': [
+        ':host-context(main   article){color:red}',
+        ':host-context(main article){color:red}'
+      ],
+      'space is not removed in multiple rules': [
+        ':host-context(main footer),:host-context(main header){color:red}',
+        ':host-context(main footer),:host-context(main header){color:red}'
+      ]
+    }, { level: 1 })
+  )
+  .addBatch(
     optimizerContext('selectors - disabled empty removal', {
       'no body': [
         'a{}',

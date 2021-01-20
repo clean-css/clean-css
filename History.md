@@ -8,6 +8,7 @@
 * Fixed issue [#1043](https://github.com/jakubpawlowicz/clean-css/issues/1043) - `calc` fallback removed within other function.
 * Fixed issue [#1055](https://github.com/jakubpawlowicz/clean-css/issues/1055) - supports 4- and 8-character hex with alpha color notation.
 * Fixed issue [#1057](https://github.com/jakubpawlowicz/clean-css/issues/1057) - level 2 optimizations and quoted font family name.
+* Fixed issue [#1062](https://github.com/jakubpawlowicz/clean-css/issues/1062) - wrong optimization of CSS pseudo-classes with selector list.
 * Fixed issue [#1073](https://github.com/jakubpawlowicz/clean-css/issues/1073) - adds support for non-standard `rpx` units.
 * Fixed issue [#1087](https://github.com/jakubpawlowicz/clean-css/issues/1087) - allow units with any case.
 * Fixed issue [#1117](https://github.com/jakubpawlowicz/clean-css/issues/1117) - don't change zero values inside `min`, `max`, and `clamp` functions.

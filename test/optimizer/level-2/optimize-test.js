@@ -35,6 +35,10 @@ vows.describe('level 2 optimizer')
       'overrides hex color only': [
         '.block{color:#696969;color:rgba(68,68,68,0.8);color:#444c}',
         '.block{color:rgba(68,68,68,.8);color:#444c}'
+      ],
+      'skips merging when function withing function is used for compatibility reasons': [
+        '.block{transform:translateX(-107%);transform:translateX(calc(-100% - 20px))}',
+        '.block{transform:translateX(-107%);transform:translateX(calc(-100% - 20px))}'
       ]
     }, { level: 2 })
   )

@@ -4,6 +4,7 @@
 * Adds level 1 and level 2 optimization plugins.
 * Drops support for Node.js 6 & 8 to support last 3 Node.js releases: 10, 12, and 14.
 * Fixed issue [#889](https://github.com/jakubpawlowicz/clean-css/issues/889) - whitelisted level 1 optimizations.
+* Fixed issue [#975](https://github.com/jakubpawlowicz/clean-css/issues/975) - incorrect block name optimization.
 * Fixed issue [#1009](https://github.com/jakubpawlowicz/clean-css/issues/1009) - whitespace around comments.
 * Fixed issue [#1021](https://github.com/jakubpawlowicz/clean-css/issues/1021) - allow one- and two-letter property names.
 * Fixed issue [#1043](https://github.com/jakubpawlowicz/clean-css/issues/1043) - `calc` fallback removed within other function.

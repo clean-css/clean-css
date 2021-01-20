@@ -1691,6 +1691,10 @@ vows.describe('integration tests')
       'remove quotes in vendor prefixed animation-name': [
         'div{-moz-animation-name:\'test\';-o-animation-name:\'test\';-webkit-animation-name:\'test\'}',
         'div{-moz-animation-name:test;-o-animation-name:test;-webkit-animation-name:test}'
+      ],
+      'animation named null': [
+        '@keyframes slideout-null{0%{opacity:1}100%{opacity:1}}.null{animation:slideout-null 10ms}',
+        '@keyframes slideout-null{0%{opacity:1}100%{opacity:1}}.null{animation:slideout-null 10ms}'
       ]
     })
   )

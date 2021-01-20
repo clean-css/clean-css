@@ -5,6 +5,7 @@
 * Drops support for Node.js 6 & 8 to support last 3 Node.js releases: 10, 12, and 14.
 * Fixed issue [#889](https://github.com/jakubpawlowicz/clean-css/issues/889) - whitelisted level 1 optimizations.
 * Fixed issue [#1021](https://github.com/jakubpawlowicz/clean-css/issues/1021) - allow one- and two-letter property names.
+* Fixed issue [#1055](https://github.com/jakubpawlowicz/clean-css/issues/1055) - supports 4- and 8-character hex with alpha color notation.
 * Fixed issue [#1057](https://github.com/jakubpawlowicz/clean-css/issues/1057) - level 2 optimizations and quoted font family name.
 * Fixed issue [#1073](https://github.com/jakubpawlowicz/clean-css/issues/1073) - adds support for non-standard `rpx` units.
 * Fixed issue [#1087](https://github.com/jakubpawlowicz/clean-css/issues/1087) - allow units with any case.

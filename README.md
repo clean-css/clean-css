@@ -166,6 +166,7 @@ Each of these modes is an alias to a [fine grained configuration](https://github
 new CleanCSS({
   compatibility: {
     colors: {
+      hexAlpha: false, // controls 4- and 8-character hex color support
       opacity: true // controls `rgba()` / `hsla()` color support
     },
     properties: {

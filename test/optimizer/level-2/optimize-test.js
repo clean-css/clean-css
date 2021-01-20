@@ -31,8 +31,20 @@ vows.describe('level 2 optimizer')
       'quoted font family only': [
         '.block{font:60px/64px "Garamond WF"}',
         '.block{font:60px/64px "Garamond WF"}'
+      ],
+      'overrides hex color only': [
+        '.block{color:#696969;color:rgba(68,68,68,0.8);color:#444c}',
+        '.block{color:rgba(68,68,68,.8);color:#444c}'
       ]
     }, { level: 2 })
+  )
+  .addBatch(
+    optimizerContext('colors with hex alpha support', {
+      'overrides all colors': [
+        '.block{color:#696969;color:rgba(68,68,68,0.8);color:#444c}',
+        '.block{color:#444c}'
+      ]
+    }, { compatibility: '+colors.hexAlpha', level: 2 })
   )
   .addBatch(
     optimizerContext('limit rule merging', {
@@ -59,10 +71,22 @@ vows.describe('level 2 optimizer')
     }, { compatibility: { selectors: { mergeLimit: 3 } }, level: { 2: { all: true } } })
   )
   .addBatch(
+    optimizerContext('in ie9 compatibility mode', {
+      'overrides hex color only': [
+        '.block{color:#696969;color:rgba(68,68,68,.8);color:#444c}',
+        '.block{color:rgba(68,68,68,.8);color:#444c}'
+      ]
+    }, { compatibility: 'ie9', level: 2 })
+  )
+  .addBatch(
     optimizerContext('in ie8 compatibility mode', {
       'backslash hacks': [
         '.block{color:red\\9;color:#0f0\\0}',
         '.block{color:red\\9;color:#0f0\\0}'
+      ],
+      'overrides hex color only': [
+        '.block{color:#696969;color:rgba(68,68,68,.8);color:#444c}',
+        '.block{color:#696969;color:rgba(68,68,68,.8);color:#444c}'
       ]
     }, { compatibility: 'ie8', level: 2 })
   )

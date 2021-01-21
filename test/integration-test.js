@@ -1365,6 +1365,10 @@ vows.describe('integration tests')
       'image-set': [
         'a{background:url(one.png);background:-webkit-image-set(url(one.png) 1x,url(two.png) 2x)}',
         'a{background:url(one.png);background:-webkit-image-set(url(one.png) 1x,url(two.png) 2x)}'
+      ],
+      'with square brackets and protocol-less value': [
+        '.block{background:url([//example.com/logo.png])}',
+        '.block{background:url([//example.com/logo.png])}'
       ]
     })
   )

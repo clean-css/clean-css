@@ -10,6 +10,7 @@
 * Fixed issue [#1022](https://github.com/jakubpawlowicz/clean-css/issues/1022) - merging into shorthands new property positioning.
 * Fixed issue [#1032](https://github.com/jakubpawlowicz/clean-css/issues/1032) - wrong order of merged shorthands with inherit.
 * Fixed issue [#1043](https://github.com/jakubpawlowicz/clean-css/issues/1043) - `calc` fallback removed within other function.
+* Fixed issue [#1045](https://github.com/jakubpawlowicz/clean-css/issues/1045) - non-standard protocol-less URL first slash removed.
 * Fixed issue [#1055](https://github.com/jakubpawlowicz/clean-css/issues/1055) - supports 4- and 8-character hex with alpha color notation.
 * Fixed issue [#1057](https://github.com/jakubpawlowicz/clean-css/issues/1057) - level 2 optimizations and quoted font family name.
 * Fixed issue [#1060](https://github.com/jakubpawlowicz/clean-css/issues/1060) - variable removed when shorthand's only value.

@@ -183,6 +183,14 @@ vows.describe('level 2 optimizer')
       'skip processing properties with variable values - border - 3rd value': [
         '.one{border:red solid var(--width)}',
         '.one{border:red solid var(--width)}'
+      ],
+      'keeps variable as border-left only value': [
+        ':root{--border-test:1px solid red}.u-test{border-left:var(--border-test)!important}',
+        ':root{--border-test:1px solid red}.u-test{border-left:var(--border-test)!important}'
+      ],
+      'keeps variable as border-left two of three values': [
+        ':root{--a:1px;--b:red}.u-test{border-left:var(--a) solid var(--b)!important}',
+        ':root{--a:1px;--b:red}.u-test{border-left:var(--a) solid var(--b)!important}'
       ]
     }, { level: 2 })
   )

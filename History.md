@@ -8,6 +8,7 @@
 * Fixed issue [#1009](https://github.com/jakubpawlowicz/clean-css/issues/1009) - whitespace around comments.
 * Fixed issue [#1021](https://github.com/jakubpawlowicz/clean-css/issues/1021) - allow one- and two-letter property names.
 * Fixed issue [#1022](https://github.com/jakubpawlowicz/clean-css/issues/1022) - merging into shorthands new property positioning.
+* Fixed issue [#1032](https://github.com/jakubpawlowicz/clean-css/issues/1032) - wrong order of merged shorthands with inherit.
 * Fixed issue [#1043](https://github.com/jakubpawlowicz/clean-css/issues/1043) - `calc` fallback removed within other function.
 * Fixed issue [#1055](https://github.com/jakubpawlowicz/clean-css/issues/1055) - supports 4- and 8-character hex with alpha color notation.
 * Fixed issue [#1057](https://github.com/jakubpawlowicz/clean-css/issues/1057) - level 2 optimizations and quoted font family name.

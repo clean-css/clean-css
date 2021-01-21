@@ -814,6 +814,35 @@ vows.describe(optimizeProperties)
           ]
         ]);
       }
+    },
+    '!important and default values': {
+      'topic': function () {
+        return _optimize('.block{border-color:currentColor!important;border-radius:0!important;border-style:none!important;border-width:medium!important;list-style-type:inherit!important;list-style-position:outside!important;list-style-image:none!important}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'border-radius', [[1, 43, undefined]]],
+            ['property-value', '0!important', [[1, 57, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'border', [[1, 7, undefined], [1, 69, undefined], [1, 97, undefined]]],
+            ['property-value', 'currentColor!important', [[1, 20, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'list-style', [[1, 161, undefined], [1, 199, undefined]]],
+            ['property-value', 'outside!important']
+          ],
+          [
+            'property',
+            ['property-name', 'list-style-type', [[1, 127, undefined]]],
+            ['property-value', 'inherit!important', [[1, 143, undefined]]]
+          ]
+        ]);
+      }
     }
   })
   .addBatch({

@@ -43,6 +43,10 @@ vows.describe('level 2 optimizer')
       'keeps right order after merging into a shorthand': [
         '.block{border-color:red;background-color:#000;color:#fff;border-width:5px;border-style:solid;font-style:italic;border-top:0;border-right:0;border-left:0}',
         '.block{background-color:#000;color:#fff;border:5px solid red;font-style:italic;border-top:0;border-right:0;border-left:0}'
+      ],
+      'treats calc as valid length value': [
+        '.block{border:calc(1px) solid #000;outline:#000 solid calc(1px)}',
+        '.block{border:calc(1px) solid #000;outline:#000 solid calc(1px)}'
       ]
     }, { level: 2 })
   )

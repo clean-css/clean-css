@@ -750,6 +750,25 @@ vows.describe(optimizeProperties)
         ]);
       }
     },
+    'shorthand then longhand - unset value in shorthand': {
+      'topic': function () {
+        return _optimize('p{padding:unset;padding-left:30px}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'padding', [[1, 2, undefined]]],
+            ['property-value', 'unset', [[1, 10, undefined]]]
+          ],
+          [
+            'property',
+            ['property-name', 'padding-left', [[1, 16, undefined]]],
+            ['property-value', '30px', [[1, 29, undefined]]]
+          ]
+        ]);
+      }
+    },
     'shorthand then shorthand - same values': {
       'topic': function () {
         return _optimize('p{background:red;background:red}');

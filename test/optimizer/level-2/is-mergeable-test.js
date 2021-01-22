@@ -111,6 +111,12 @@ vows.describe(isMergeable)
         assert.isTrue(isMergeable(selector, [':first-child', ':not'], mergeablePseudoElements, true));
       }
     },
+    ':not with vendor-prefixed pseudo-class': {
+      'topic': ':not(:-moz-focusring)',
+      'is not mergeable': function (selector) {
+        assert.isFalse(isMergeable(selector, [':not'], [], true));
+      }
+    },
     'supported pseudo-class with unsupported arguments': {
       'topic': 'div:after(test)',
       'is not mergeable': function (selector) {

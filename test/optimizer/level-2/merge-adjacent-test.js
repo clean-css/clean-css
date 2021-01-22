@@ -87,6 +87,10 @@ vows.describe('remove duplicates')
       'with different case hex colors': [
         '.one{color:#FFF}.two{color:#fff}',
         '.one,.two{color:#fff}'
+      ],
+      'with two unmixable vendor-prefixed :not': [
+        'a:not(:-moz-focusring){outline:0}a:not(:focus-visible){outline:0}',
+        'a:not(:-moz-focusring){outline:0}a:not(:focus-visible){outline:0}'
       ]
     }, { level: 2 })
   )

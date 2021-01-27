@@ -21,6 +21,7 @@
 * Fixed issue [#1073](https://github.com/jakubpawlowicz/clean-css/issues/1073) - adds support for non-standard `rpx` units.
 * Fixed issue [#1087](https://github.com/jakubpawlowicz/clean-css/issues/1087) - allow units with any case.
 * Fixed issue [#1103](https://github.com/jakubpawlowicz/clean-css/issues/1103) - don't allow merging longhand into `unset` shorthand.
+* Fixed issue [#1115](https://github.com/jakubpawlowicz/clean-css/issues/1115) - incorrect multiplex longhand into shorthand merging.
 * Fixed issue [#1117](https://github.com/jakubpawlowicz/clean-css/issues/1117) - don't change zero values inside `min`, `max`, and `clamp` functions.
 * Fixed issue [#1122](https://github.com/jakubpawlowicz/clean-css/issues/1122) - don't wrap data URI in single quotes.
 * Fixed issue [#1125](https://github.com/jakubpawlowicz/clean-css/issues/1125) - quotes stripped from withing `@supports` clause.

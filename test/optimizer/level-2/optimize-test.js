@@ -59,6 +59,10 @@ vows.describe('level 2 optimizer')
       'default value of transition-delay is default': [
         '.block-1{transition:opacity .3s linear,height 0s ease .3s}.block-2{transition:opacity .3s linear,height 1s ease .3s}',
         '.block-1{transition:opacity .3s linear,height 0s .3s}.block-2{transition:opacity .3s linear,height 1s .3s}'
+      ],
+      'rolling multiplex component into shorthand': [
+        '.block{transition-property:transform,margin-left;transition-delay:0ms;transition-duration:375ms;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1)}',
+        '.block{transition:transform 375ms cubic-bezier(0.4,0,0.2,1),margin-left 375ms cubic-bezier(0.4,0,0.2,1)}'
       ]
     }, { level: 2 })
   )

@@ -867,6 +867,33 @@ vows.describe(optimizeProperties)
           ]
         ]);
       }
+    },
+    'transition when one component is multiplex': {
+      'topic': function () {
+        return _optimize('.block{transition-property:transform,margin-left;transition-delay:0ms;transition-duration:375ms;transition-timing-function:ease-out}');
+      },
+      'into': function (properties) {
+        assert.deepEqual(properties, [
+          [
+            'property',
+            ['property-name', 'transition', [
+              [1, 7, undefined],
+              [1, 49, undefined],
+              [1, 70, undefined],
+              [1, 96, undefined]
+            ]],
+            ['property-value', 'transform', [[1, 27, undefined]]],
+            ['property-value', '375ms', [[1, 90, undefined]]],
+            ['property-value', 'ease-out', [[1, 123, undefined]]],
+            ['property-value', '0ms', [[1, 66, undefined]]],
+            ['property-value', ','],
+            ['property-value', 'margin-left', [[1, 37, undefined]]],
+            ['property-value', '375ms', [[1, 90, undefined]]],
+            ['property-value', 'ease-out', [[1, 123, undefined]]],
+            ['property-value', '0ms', [[1, 66, undefined]]]
+          ]
+        ]);
+      }
     }
   })
   .export(module);

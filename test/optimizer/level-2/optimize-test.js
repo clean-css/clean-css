@@ -71,6 +71,18 @@ vows.describe('level 2 optimizer')
       'takes dynamic properties (with variables) into account when reordering properties': [
         ':root{--border-opacity:1}.block{border-color:#3182ce;border-color:rgba(49,130,206,var(--border-opacity));border-top-color:transparent}',
         ':root{--border-opacity:1}.block{border-color:#3182ce;border-color:rgba(49,130,206,var(--border-opacity));border-top-color:transparent}'
+      ],
+      'requires shorthand with all components of same type to have all same values for merging into longhand #1': [
+        '.block{border-color:currentcolor currentcolor red;border-image:none 100%/1/0 stretch;border-width:0 0 1px;border-style:none none solid}',
+        '.block{border-color:currentcolor currentcolor red;border-image:none 100%/1/0 stretch;border-width:0 0 1px;border-style:none none solid}'
+      ],
+      'requires shorthand with all components of same type to have all same values for merging into longhand #2': [
+        '.block{border-color:red red red red;border-image:none 100%/1/0 stretch;border-width:1px 1px;border-style:solid solid solid}',
+        '.block{border:1px solid red;border-image:none 100%/1/0 stretch}'
+      ],
+      'requires shorthand with all components of same type to have all same values for merging into longhand #3': [
+        '.block{border-color:red red red red;border-width:1px 1px;border-style:solid solid solid;border-image:none 100%/1/0 stretch}',
+        '.block{border:1px solid red;border-image:none 100%/1/0 stretch}'
       ]
     }, { level: 2 })
   )

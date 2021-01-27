@@ -60,9 +60,13 @@ vows.describe('level 2 optimizer')
         '.block-1{transition:opacity .3s linear,height 0s ease .3s}.block-2{transition:opacity .3s linear,height 1s ease .3s}',
         '.block-1{transition:opacity .3s linear,height 0s .3s}.block-2{transition:opacity .3s linear,height 1s .3s}'
       ],
-      'rolling multiplex component into shorthand': [
+      'rolling multiplex component into shorthand #1': [
         '.block{transition-property:transform,margin-left;transition-delay:0ms;transition-duration:375ms;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1)}',
         '.block{transition:transform 375ms cubic-bezier(0.4,0,0.2,1),margin-left 375ms cubic-bezier(0.4,0,0.2,1)}'
+      ],
+      'rolling multiplex component into shorthand #2': [
+        '.block{animation-name:show,showAgain;animation-duration:1s,1.7s;animation-timing-function:linear,linear;animation-fill-mode:forwards,forwards;animation-delay:0s,2.5s;animation-iteration-count:1,1;animation-direction:normal,normal;animation-play-state:running,running}',
+        '.block{animation:1s linear forwards show,1.7s linear 2.5s forwards showAgain}'
       ]
     }, { level: 2 })
   )

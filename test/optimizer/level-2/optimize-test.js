@@ -47,6 +47,14 @@ vows.describe('level 2 optimizer')
       'treats calc as valid length value': [
         '.block{border:calc(1px) solid #000;outline:#000 solid calc(1px)}',
         '.block{border:calc(1px) solid #000;outline:#000 solid calc(1px)}'
+      ],
+      'calc() function as animation delay': [
+        '.block{animation:0.3s linear calc(0.04s * 2) backwards name}',
+        '.block{animation:0.3s linear calc(0.04s * 2) backwards name}'
+      ],
+      'calc() function as animation duration': [
+        '.block{animation:calc(0.3s * 2) linear 500ms backwards name}',
+        '.block{animation:calc(0.3s * 2) linear 0.5s backwards name}'
       ]
     }, { level: 2 })
   )

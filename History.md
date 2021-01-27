@@ -14,6 +14,7 @@
 * Fixed issue [#1053](https://github.com/jakubpawlowicz/clean-css/issues/1053) - treats `calc()` as first class width value.
 * Fixed issue [#1055](https://github.com/jakubpawlowicz/clean-css/issues/1055) - supports 4- and 8-character hex with alpha color notation.
 * Fixed issue [#1057](https://github.com/jakubpawlowicz/clean-css/issues/1057) - level 2 optimizations and quoted font family name.
+* Fixed issue [#1059](https://github.com/jakubpawlowicz/clean-css/issues/1059) - animation time units as CSS expressions.
 * Fixed issue [#1060](https://github.com/jakubpawlowicz/clean-css/issues/1060) - variable removed when shorthand's only value.
 * Fixed issue [#1062](https://github.com/jakubpawlowicz/clean-css/issues/1062) - wrong optimization of CSS pseudo-classes with selector list.
 * Fixed issue [#1073](https://github.com/jakubpawlowicz/clean-css/issues/1073) - adds support for non-standard `rpx` units.

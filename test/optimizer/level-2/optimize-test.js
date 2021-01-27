@@ -67,6 +67,10 @@ vows.describe('level 2 optimizer')
       'rolling multiplex component into shorthand #2': [
         '.block{animation-name:show,showAgain;animation-duration:1s,1.7s;animation-timing-function:linear,linear;animation-fill-mode:forwards,forwards;animation-delay:0s,2.5s;animation-iteration-count:1,1;animation-direction:normal,normal;animation-play-state:running,running}',
         '.block{animation:1s linear forwards show,1.7s linear 2.5s forwards showAgain}'
+      ],
+      'takes dynamic properties (with variables) into account when reordering properties': [
+        ':root{--border-opacity:1}.block{border-color:#3182ce;border-color:rgba(49,130,206,var(--border-opacity));border-top-color:transparent}',
+        ':root{--border-opacity:1}.block{border-color:#3182ce;border-color:rgba(49,130,206,var(--border-opacity));border-top-color:transparent}'
       ]
     }, { level: 2 })
   )

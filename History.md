@@ -25,6 +25,7 @@
 * Fixed issue [#1117](https://github.com/jakubpawlowicz/clean-css/issues/1117) - don't change zero values inside `min`, `max`, and `clamp` functions.
 * Fixed issue [#1122](https://github.com/jakubpawlowicz/clean-css/issues/1122) - don't wrap data URI in single quotes.
 * Fixed issue [#1125](https://github.com/jakubpawlowicz/clean-css/issues/1125) - quotes stripped from withing `@supports` clause.
+* Fixed issue [#1128](https://github.com/jakubpawlowicz/clean-css/issues/1128) - take variables into account when reordering properties.
 * Fixed issue [#1132](https://github.com/jakubpawlowicz/clean-css/issues/1132) - vendor-prefixed classes inside `:not()`.
 * Reworks all level 1 optimizations to conform to plugin style.
 

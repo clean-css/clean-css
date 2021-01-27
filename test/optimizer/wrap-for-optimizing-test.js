@@ -14,7 +14,7 @@ vows.describe(wrapForOptimizing)
             ['property-value', '0'],
             ['property-value', '0']
           ]
-        ], true);
+        ]);
       },
       'has one wrap': function (wrapped) {
         assert.lengthOf(wrapped, 1);
@@ -64,7 +64,7 @@ vows.describe(wrapForOptimizing)
             ['property-name', 'color'],
             ['property-value', 'red']
           ]
-        ], true);
+        ]);
       },
       'has two wraps': function (wrapped) {
         assert.lengthOf(wrapped, 2);
@@ -82,7 +82,7 @@ vows.describe(wrapForOptimizing)
             ['property-name', 'color'],
             ['property-value', 'red']
           ]
-        ], true);
+        ]);
       },
       'has one wrap': function (wrapped) {
         assert.lengthOf(wrapped, 1);
@@ -101,7 +101,7 @@ vows.describe(wrapForOptimizing)
             ['property-value', '/'],
             ['property-value', '2px']
           ]
-        ], true);
+        ]);
       },
       'has one wrap': function (wrapped) {
         assert.lengthOf(wrapped, 1);
@@ -124,7 +124,7 @@ vows.describe(wrapForOptimizing)
             ['property-name', '--color'],
             ['property-value', 'red']
           ]
-        ], true);
+        ]);
       },
       'has one wrap': function (wrapped) {
         assert.lengthOf(wrapped, 1);
@@ -144,7 +144,7 @@ vows.describe(wrapForOptimizing)
             ['property-name', 'color'],
             ['property-value', 'var(--red)']
           ]
-        ], true);
+        ]);
       },
       'has one wrap': function (wrapped) {
         assert.lengthOf(wrapped, 1);
@@ -154,20 +154,6 @@ vows.describe(wrapForOptimizing)
       },
       'has value': function (wrapped) {
         assert.deepEqual(wrapped[0].value, [['property-value', 'var(--red)']]);
-      }
-    },
-    'variable reference when variables are ignored': {
-      'topic': function () {
-        return wrapForOptimizing([
-          [
-            'property',
-            ['property-name', 'color'],
-            ['property-value', 'var(--red)']
-          ]
-        ], false);
-      },
-      'has one wrap': function (wrapped) {
-        assert.lengthOf(wrapped, 0);
       }
     },
     'variable block': {
@@ -192,7 +178,7 @@ vows.describe(wrapForOptimizing)
               ]
             ]
           ]
-        ], true);
+        ]);
       },
       'has one wrap': function (wrapped) {
         assert.lengthOf(wrapped, 1);
@@ -217,7 +203,7 @@ vows.describe(wrapForOptimizing)
               ]
             ]
           ]
-        ], true);
+        ]);
       },
       'is a block': function (wrapped) {
         assert.isTrue(wrapped[0].block);
@@ -230,7 +216,7 @@ vows.describe(wrapForOptimizing)
             'property',
             ['property-name', 'margin']
           ]
-        ], true);
+        ]);
       },
       'has one wrap': function (wrapped) {
         assert.lengthOf(wrapped, 1);
@@ -250,7 +236,7 @@ vows.describe(wrapForOptimizing)
             ['property-name', 'margin'],
             ['property-value', '0!important']
           ]
-        ], true);
+        ]);
       },
       'has one wrap': function (wrapped) {
         assert.lengthOf(wrapped, 1);
@@ -271,7 +257,7 @@ vows.describe(wrapForOptimizing)
             ['property-value', '0'],
             ['property-value', '!important']
           ]
-        ], true);
+        ]);
       },
       'has one wrap': function (wrapped) {
         assert.lengthOf(wrapped, 1);
@@ -292,7 +278,7 @@ vows.describe(wrapForOptimizing)
             ['property-value', '0!'],
             ['property-value', 'important']
           ]
-        ], true);
+        ]);
       },
       'has one wrap': function (wrapped) {
         assert.lengthOf(wrapped, 1);
@@ -314,7 +300,7 @@ vows.describe(wrapForOptimizing)
             ['property-value', '!'],
             ['property-value', 'important']
           ]
-        ], true);
+        ]);
       },
       'has one wrap': function (wrapped) {
         assert.lengthOf(wrapped, 1);
@@ -337,7 +323,7 @@ vows.describe(wrapForOptimizing)
             ['property-name', '_color'],
             ['property-value', 'red']
           ]
-        ], true);
+        ]);
       },
       'has one wrap': function (wrapped) {
         assert.lengthOf(wrapped, 1);
@@ -357,7 +343,7 @@ vows.describe(wrapForOptimizing)
             ['property-name', '*color'],
             ['property-value', 'red']
           ]
-        ], true);
+        ]);
       },
       'has one wrap': function (wrapped) {
         assert.lengthOf(wrapped, 1);
@@ -377,7 +363,7 @@ vows.describe(wrapForOptimizing)
             ['property-name', 'margin'],
             ['property-value', '0\\9']
           ]
-        ], true);
+        ]);
       },
       'has one wrap': function (wrapped) {
         assert.lengthOf(wrapped, 1);
@@ -397,7 +383,7 @@ vows.describe(wrapForOptimizing)
             ['property-name', 'margin'],
             ['property-value', '0']
           ]
-        ], true);
+        ]);
       },
       'has one wrap': function (wrapped) {
         assert.lengthOf(wrapped, 1);
@@ -418,7 +404,7 @@ vows.describe(wrapForOptimizing)
             ['property-value', '0'],
             ['property-value', '\\9']
           ]
-        ], true);
+        ]);
       },
       'has one wrap': function (wrapped) {
         assert.lengthOf(wrapped, 1);
@@ -438,7 +424,7 @@ vows.describe(wrapForOptimizing)
             ['property-name', 'margin'],
             ['property-value', '0!ie']
           ]
-        ], true);
+        ]);
       },
       'has one wrap': function (wrapped) {
         assert.lengthOf(wrapped, 1);
@@ -461,7 +447,7 @@ vows.describe(wrapForOptimizing)
             ['property-name', 'margin'],
             ['property-value', '0 !ie']
           ]
-        ], true);
+        ]);
       },
       'has one wrap': function (wrapped) {
         assert.lengthOf(wrapped, 1);
@@ -485,7 +471,7 @@ vows.describe(wrapForOptimizing)
             ['property-value', '0'],
             ['property-value', '!ie']
           ]
-        ], true);
+        ]);
       },
       'has one wrap': function (wrapped) {
         assert.lengthOf(wrapped, 1);
@@ -508,7 +494,7 @@ vows.describe(wrapForOptimizing)
             ['property-name', 'color'],
             ['property-value', 'red\\9!important']
           ]
-        ], true);
+        ]);
       },
       'has one wrap': function (wrapped) {
         assert.lengthOf(wrapped, 1);
@@ -531,7 +517,7 @@ vows.describe(wrapForOptimizing)
             ['property-name', 'color', [[1, 2, undefined]]],
             ['property-value', 'red', [[1, 2, undefined]]]
           ]
-        ], true);
+        ]);
       },
       'has one wrap': function (wrapped) {
         assert.lengthOf(wrapped, 1);
@@ -548,7 +534,7 @@ vows.describe(wrapForOptimizing)
             ['property-name', 'background', [[1, 2, undefined]]],
             ['property-value', 'red', [[1, 12, undefined]]]
           ]
-        ], true, ['background']);
+        ], ['background']);
       },
       'has no wrap': function (wrapped) {
         assert.lengthOf(wrapped, 0);

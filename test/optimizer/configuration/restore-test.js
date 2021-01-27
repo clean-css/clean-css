@@ -1051,6 +1051,50 @@ vows.describe(restore)
           ]);
         }
       }
+    },
+    'transition': {
+      'with two time units where both are default': {
+        'topic': function () {
+          return _restore(
+            _breakUp([
+              'property',
+              ['property-name', 'transition'],
+              ['property-value', 'opacity'],
+              ['property-value', '0s'],
+              ['property-value', 'ease-out'],
+              ['property-value', '0s']
+            ])
+          );
+        },
+        'gives right value back': function (restoredValue) {
+          assert.deepEqual(restoredValue, [
+            ['property-value', 'opacity'],
+            ['property-value', 'ease-out']
+          ]);
+        }
+      },
+      'with two time units where one is default': {
+        'topic': function () {
+          return _restore(
+            _breakUp([
+              'property',
+              ['property-name', 'transition'],
+              ['property-value', 'opacity'],
+              ['property-value', '0s'],
+              ['property-value', 'ease-out'],
+              ['property-value', '2s']
+            ])
+          );
+        },
+        'gives right value back': function (restoredValue) {
+          assert.deepEqual(restoredValue, [
+            ['property-value', 'opacity'],
+            ['property-value', '0s'],
+            ['property-value', 'ease-out'],
+            ['property-value', '2s']
+          ]);
+        }
+      }
     }
   })
   .export(module);

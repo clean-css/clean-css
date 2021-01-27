@@ -11,6 +11,7 @@
 * Fixed issue [#1032](https://github.com/jakubpawlowicz/clean-css/issues/1032) - wrong order of merged shorthands with inherit.
 * Fixed issue [#1043](https://github.com/jakubpawlowicz/clean-css/issues/1043) - `calc` fallback removed within other function.
 * Fixed issue [#1045](https://github.com/jakubpawlowicz/clean-css/issues/1045) - non-standard protocol-less URL first slash removed.
+* Fixed issue [#1050](https://github.com/jakubpawlowicz/clean-css/issues/1050) - correctly keeps default animation duration if delay is also set.
 * Fixed issue [#1053](https://github.com/jakubpawlowicz/clean-css/issues/1053) - treats `calc()` as first class width value.
 * Fixed issue [#1055](https://github.com/jakubpawlowicz/clean-css/issues/1055) - supports 4- and 8-character hex with alpha color notation.
 * Fixed issue [#1057](https://github.com/jakubpawlowicz/clean-css/issues/1057) - level 2 optimizations and quoted font family name.

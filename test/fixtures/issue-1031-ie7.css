@@ -1,0 +1,20 @@
+.archive-header {
+  margin-bottom: 24px;
+  margin-bottom: 1.714285714rem;
+}
+
+img.aligncenter,
+.wp-caption.aligncenter {
+  clear: both;
+  margin-top: 12px;
+  margin-top: 0.857142857rem;
+  margin-bottom: 12px;
+  margin-bottom: 0.857142857rem;
+}
+
+.wp-caption.alignleft,
+.wp-caption.alignright,
+.wp-caption.aligncenter {
+  margin-bottom: 24px;
+  margin-bottom: 1.714285714rem;
+}

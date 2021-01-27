@@ -1,0 +1,28 @@
+@media (min-width: 48em) {
+    .unrelated-share-media-query {
+        font-size: 5px;
+    }
+}
+
+.filler {
+    font-size: 15px;
+}
+
+.defines-variable {
+    --max-items: 1;
+    --col-width: calc(100%/var(--max-items));
+
+    display: flex;
+    width: calc(100% + 20px);
+    flex-wrap: wrap;
+}
+
+.uses-variable {
+    flex-basis: var(--col-width);
+}
+
+@media (min-width: 48em) {
+  .defines-variable {
+      --max-items: 3;
+  }
+}

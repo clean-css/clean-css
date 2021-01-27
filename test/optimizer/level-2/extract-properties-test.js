@@ -88,8 +88,18 @@ vows.describe(extractProperties)
       'topic': function () {
         return extractProperties(_tokenize('#one span{--color:red}')[0]);
       },
-      'has no properties': function (tokens) {
-        assert.deepEqual(tokens, []);
+      'has one property': function (tokens) {
+        assert.deepEqual(tokens, [
+          [
+            '--color',
+            'red',
+            'color',
+            ['property', ['property-name', '--color', [[1, 10, undefined]]], ['property-value', 'red', [[1, 18, undefined]]]],
+            '--color:red',
+            [['rule-scope', '#one span', [[1, 0, undefined]]]],
+            true
+          ]
+        ]);
       }
     },
     'one property - block variable': {
@@ -97,7 +107,20 @@ vows.describe(extractProperties)
         return extractProperties(_tokenize('#one span{--color:{color:red;display:block};}')[0]);
       },
       'has no properties': function (tokens) {
-        assert.deepEqual(tokens, []);
+          assert.deepEqual(tokens, [
+            [
+              '--color',
+              '{color:red;display:block}',
+              'color',
+              ['property',
+                ['property-name', '--color', [[1, 10, undefined]]],
+                ['property-block', [['property', ['property-name', 'color', [[1, 19, undefined]]], ['property-value', 'red', [[1, 25, undefined]]]], ['property', ['property-name', 'display', [[1, 29, undefined]]], ['property-value', 'block', [[1, 37, undefined]]]]]]
+              ],
+              '--color:{color:red;display:block}',
+              [['rule-scope', '#one span', [[1, 0, undefined]]]],
+              true
+            ]
+          ]);
       }
     },
     'one property - complex selector': {

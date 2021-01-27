@@ -19,6 +19,7 @@
 * Fixed issue [#1060](https://github.com/jakubpawlowicz/clean-css/issues/1060) - variable removed when shorthand's only value.
 * Fixed issue [#1062](https://github.com/jakubpawlowicz/clean-css/issues/1062) - wrong optimization of CSS pseudo-classes with selector list.
 * Fixed issue [#1073](https://github.com/jakubpawlowicz/clean-css/issues/1073) - adds support for non-standard `rpx` units.
+* Fixed issue [#1075](https://github.com/jakubpawlowicz/clean-css/issues/1075) - media merging and variables.
 * Fixed issue [#1087](https://github.com/jakubpawlowicz/clean-css/issues/1087) - allow units with any case.
 * Fixed issue [#1090](https://github.com/jakubpawlowicz/clean-css/issues/1090) - edge case in merging for `border` and `border-image`.
 * Fixed issue [#1103](https://github.com/jakubpawlowicz/clean-css/issues/1103) - don't allow merging longhand into `unset` shorthand.

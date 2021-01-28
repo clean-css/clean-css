@@ -21,7 +21,7 @@ According to [tests](http://goalsmashers.github.io/css-minification-benchmark/) 
 - [Node.js version support](#nodejs-version-support)
 - [Install](#install)
 - [Use](#use)
-  * [Important: 5.0 breaking changes](#important-50-breaking-changes)
+  * [What's new in version 5.0](#whats-new-in-version-50)
   * [What's new in version 4.2](#whats-new-in-version-42)
   * [What's new in version 4.1](#whats-new-in-version-41)
   * [Important: 4.0 breaking changes](#important-40-breaking-changes)
@@ -75,13 +75,17 @@ var options = { /* options */ };
 var output = new CleanCSS(options).minify(input);
 ```
 
-## Important: 5.0 breaking changes
+## What's new in version 5.0
 
 clean-css 5.0 will introduce some breaking changes:
 
 * Node.js 6.x and 8.x are officially no longer supported;
 * `transform` callback in level-1 optimizations is removed in favor of new [plugins](#plugins) interface;
 * changes default Internet Explorer compatibility from 10+ to >11, to revert the old default use `{ compatibility: 'ie10' }` flag;
+
+And on the new features side of things:
+
+* format options now accepts numerical values for all breaks, which will allow you to have more control over output formatting, e.g. `format: {breaks: {afterComment: 2}}` means clean-css will add two line breaks after each comment
 
 ## What's new in version 4.2
 
@@ -289,6 +293,28 @@ new CleanCSS({
   }
 })
 ```
+
+Also since clean-css 5.0 you can use numerical values for all line breaks, which will repeat a line break that many times, e.g:
+
+```js
+  new CleanCSS({
+    format: {
+      breaks: {
+        afterAtRule: 2,
+        afterBlockBegins: 1, // 1 is synonymous with `true`
+        afterBlockEnds: 2,
+        afterComment: 1,
+        afterProperty: 1,
+        afterRuleBegins: 1,
+        afterRuleEnds: 1,
+        beforeBlockEnds: 1,
+        betweenSelectors: 0 // 0 is synonymous with `false`
+      }
+    }
+  })
+```
+
+which will add nicer spacing between at rules and blocks.
 
 ## Inlining options
 

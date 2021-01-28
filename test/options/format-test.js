@@ -30,15 +30,15 @@ vows.describe(formatFrom)
       'is default': function (formatOptions) {
         assert.deepEqual(formatOptions, {
           breaks: {
-            afterAtRule: false,
-            afterBlockBegins: false,
-            afterBlockEnds: false,
-            afterComment: false,
-            afterProperty: false,
-            afterRuleBegins: false,
-            afterRuleEnds: false,
-            beforeBlockEnds: false,
-            betweenSelectors: false
+            afterAtRule: '',
+            afterBlockBegins: '',
+            afterBlockEnds: '',
+            afterComment: '',
+            afterProperty: '',
+            afterRuleBegins: '',
+            afterRuleEnds: '',
+            beforeBlockEnds: '',
+            betweenSelectors: ''
           },
           breakWith: systemLineBreak,
           indentBy: 0,
@@ -60,15 +60,45 @@ vows.describe(formatFrom)
       'is merged with default': function (formatOptions) {
         assert.deepEqual(formatOptions, {
           breaks: {
-            afterAtRule: false,
-            afterBlockBegins: false,
-            afterBlockEnds: false,
-            afterComment: false,
-            afterProperty: true,
-            afterRuleBegins: false,
-            afterRuleEnds: false,
-            beforeBlockEnds: false,
-            betweenSelectors: false
+            afterAtRule: '',
+            afterBlockBegins: '',
+            afterBlockEnds: '',
+            afterComment: '',
+            afterProperty: '\r\n',
+            afterRuleBegins: '',
+            afterRuleEnds: '',
+            beforeBlockEnds: '',
+            betweenSelectors: ''
+          },
+          breakWith: '\r\n',
+          indentBy: 1,
+          indentWith: ' ',
+          spaces: {
+            aroundSelectorRelation: false,
+            beforeBlockBegins: false,
+            beforeValue: false
+          },
+          wrapAt: false,
+          semicolonAfterLastProperty: false
+        });
+      }
+    },
+    'hash with breaks as numbers': {
+      'topic': function () {
+        return formatFrom({ breaks: { afterProperty: 2, beforeBlockEnds: 1 }, breakWith: '\r\n', indentBy: 1 });
+      },
+      'is merged with default': function (formatOptions) {
+        assert.deepEqual(formatOptions, {
+          breaks: {
+            afterAtRule: '',
+            afterBlockBegins: '',
+            afterBlockEnds: '',
+            afterComment: '',
+            afterProperty: '\r\n\r\n',
+            afterRuleBegins: '',
+            afterRuleEnds: '',
+            beforeBlockEnds: '\r\n',
+            betweenSelectors: ''
           },
           breakWith: '\r\n',
           indentBy: 1,
@@ -90,15 +120,15 @@ vows.describe(formatFrom)
       'is merged with default': function (formatOptions) {
         assert.deepEqual(formatOptions, {
           breaks: {
-            afterAtRule: false,
-            afterBlockBegins: false,
-            afterBlockEnds: false,
-            afterComment: false,
-            afterProperty: false,
-            afterRuleBegins: false,
-            afterRuleEnds: false,
-            beforeBlockEnds: false,
-            betweenSelectors: false
+            afterAtRule: '',
+            afterBlockBegins: '',
+            afterBlockEnds: '',
+            afterComment: '',
+            afterProperty: '',
+            afterRuleBegins: '',
+            afterRuleEnds: '',
+            beforeBlockEnds: '',
+            betweenSelectors: ''
           },
           breakWith: systemLineBreak,
           indentBy: 2,
@@ -120,15 +150,15 @@ vows.describe(formatFrom)
       'is merged with default': function (formatOptions) {
         assert.deepEqual(formatOptions, {
           breaks: {
-            afterAtRule: false,
-            afterBlockBegins: false,
-            afterBlockEnds: false,
-            afterComment: false,
-            afterProperty: false,
-            afterRuleBegins: false,
-            afterRuleEnds: false,
-            beforeBlockEnds: false,
-            betweenSelectors: false
+            afterAtRule: '',
+            afterBlockBegins: '',
+            afterBlockEnds: '',
+            afterComment: '',
+            afterProperty: '',
+            afterRuleBegins: '',
+            afterRuleEnds: '',
+            beforeBlockEnds: '',
+            betweenSelectors: ''
           },
           breakWith: systemLineBreak,
           indentBy: 0,
@@ -150,15 +180,15 @@ vows.describe(formatFrom)
       'is merged with default': function (formatOptions) {
         assert.deepEqual(formatOptions, {
           breaks: {
-            afterAtRule: false,
-            afterBlockBegins: false,
-            afterBlockEnds: false,
-            afterComment: false,
-            afterProperty: false,
-            afterRuleBegins: false,
-            afterRuleEnds: false,
-            beforeBlockEnds: false,
-            betweenSelectors: false
+            afterAtRule: '',
+            afterBlockBegins: '',
+            afterBlockEnds: '',
+            afterComment: '',
+            afterProperty: '',
+            afterRuleBegins: '',
+            afterRuleEnds: '',
+            beforeBlockEnds: '',
+            betweenSelectors: ''
           },
           breakWith: systemLineBreak,
           indentBy: 0,
@@ -180,15 +210,15 @@ vows.describe(formatFrom)
       'is merged with default': function (formatOptions) {
         assert.deepEqual(formatOptions, {
           breaks: {
-            afterAtRule: false,
-            afterBlockBegins: false,
-            afterBlockEnds: false,
-            afterComment: false,
-            afterProperty: true,
-            afterRuleBegins: false,
-            afterRuleEnds: false,
-            beforeBlockEnds: false,
-            betweenSelectors: false
+            afterAtRule: '',
+            afterBlockBegins: '',
+            afterBlockEnds: '',
+            afterComment: '',
+            afterProperty: systemLineBreak,
+            afterRuleBegins: '',
+            afterRuleEnds: '',
+            beforeBlockEnds: '',
+            betweenSelectors: ''
           },
           breakWith: systemLineBreak,
           indentBy: 3,
@@ -210,15 +240,15 @@ vows.describe(formatFrom)
       'is merged with default': function (formatOptions) {
         assert.deepEqual(formatOptions, {
           breaks: {
-            afterAtRule: false,
-            afterBlockBegins: false,
-            afterBlockEnds: false,
-            afterComment: false,
-            afterProperty: false,
-            afterRuleBegins: false,
-            afterRuleEnds: false,
-            beforeBlockEnds: false,
-            betweenSelectors: false
+            afterAtRule: '',
+            afterBlockBegins: '',
+            afterBlockEnds: '',
+            afterComment: '',
+            afterProperty: '',
+            afterRuleBegins: '',
+            afterRuleEnds: '',
+            beforeBlockEnds: '',
+            betweenSelectors: ''
           },
           breakWith: systemLineBreak,
           indentBy: 0,
@@ -240,15 +270,15 @@ vows.describe(formatFrom)
       'resolves correctly': function (formatOptions) {
         assert.deepEqual(formatOptions, {
           breaks: {
-            afterAtRule: true,
-            afterBlockBegins: true,
-            afterBlockEnds: true,
-            afterComment: true,
-            afterProperty: true,
-            afterRuleBegins: true,
-            afterRuleEnds: true,
-            beforeBlockEnds: true,
-            betweenSelectors: true
+            afterAtRule: systemLineBreak,
+            afterBlockBegins: systemLineBreak,
+            afterBlockEnds: systemLineBreak,
+            afterComment: systemLineBreak,
+            afterProperty: systemLineBreak,
+            afterRuleBegins: systemLineBreak,
+            afterRuleEnds: systemLineBreak,
+            beforeBlockEnds: systemLineBreak,
+            betweenSelectors: systemLineBreak
           },
           breakWith: systemLineBreak,
           indentBy: 2,
@@ -270,15 +300,15 @@ vows.describe(formatFrom)
       'resolves correctly': function (formatOptions) {
         assert.deepEqual(formatOptions, {
           breaks: {
-            afterAtRule: true,
-            afterBlockBegins: true,
-            afterBlockEnds: true,
-            afterComment: true,
-            afterProperty: false,
-            afterRuleBegins: false,
-            afterRuleEnds: true,
-            beforeBlockEnds: true,
-            betweenSelectors: false
+            afterAtRule: systemLineBreak,
+            afterBlockBegins: systemLineBreak,
+            afterBlockEnds: systemLineBreak,
+            afterComment: systemLineBreak,
+            afterProperty: '',
+            afterRuleBegins: '',
+            afterRuleEnds: systemLineBreak,
+            beforeBlockEnds: systemLineBreak,
+            betweenSelectors: ''
           },
           breakWith: systemLineBreak,
           indentBy: 0,

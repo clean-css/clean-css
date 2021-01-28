@@ -440,6 +440,25 @@ vows.describe('source-map')
         };
         assert.deepEqual(minified.sourceMap._mappings._array[2], mapping);
       }
+    },
+    'preserved CSS fragment': {
+      'topic': function () {
+        return new CleanCSS({ level: 2, sourceMap: true }).minify('/* clean-css ignore:start */a { margin: 0px; }/* clean-css ignore:end */');
+      },
+      'has 1 mapping': function (minified) {
+        assert.lengthOf(minified.sourceMap._mappings._array, 1);
+      },
+      'has all preserved content mapping': function (minified) {
+        var mapping = {
+          generatedLine: 1,
+          generatedColumn: 0,
+          originalLine: 1,
+          originalColumn: 28,
+          source: '$stdin',
+          name: null
+        };
+        assert.deepEqual(minified.sourceMap._mappings._array[0], mapping);
+      }
     }
   })
   .addBatch({

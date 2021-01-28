@@ -21,6 +21,7 @@
 * Fixed issue [#1073](https://github.com/jakubpawlowicz/clean-css/issues/1073) - adds support for non-standard `rpx` units.
 * Fixed issue [#1075](https://github.com/jakubpawlowicz/clean-css/issues/1075) - media merging and variables.
 * Fixed issue [#1087](https://github.com/jakubpawlowicz/clean-css/issues/1087) - allow units with any case.
+* Fixed issue [#1088](https://github.com/jakubpawlowicz/clean-css/issues/1088) - building source maps with source preserved via comments.
 * Fixed issue [#1090](https://github.com/jakubpawlowicz/clean-css/issues/1090) - edge case in merging for `border` and `border-image`.
 * Fixed issue [#1103](https://github.com/jakubpawlowicz/clean-css/issues/1103) - don't allow merging longhand into `unset` shorthand.
 * Fixed issue [#1115](https://github.com/jakubpawlowicz/clean-css/issues/1115) - incorrect multiplex longhand into shorthand merging.

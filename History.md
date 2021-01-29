@@ -1,4 +1,4 @@
-[5.0.0-pre / 2021-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/4.2...HEAD)
+[5.0.0 / 2021-01-29](https://github.com/jakubpawlowicz/clean-css/compare/4.2...v5.0.0)
 ==================
 
 * Adds a way process input files without bundling it into one big output file.

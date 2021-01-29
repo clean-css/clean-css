@@ -5,7 +5,7 @@ onmessage = function(event) {
     case 'initialize':
       if (!initialized) {
         initialized = true
-        importScripts('//jakubpawlowicz.github.io/clean-css-builds/v5.0.0.js')
+        importScripts('//jakubpawlowicz.github.io/clean-css-builds/v5.0.1.js')
       }
       break
     case 'optimize':

@@ -87,6 +87,14 @@ vows.describe('level 2 optimizer')
     }, { level: 2 })
   )
   .addBatch(
+    optimizerContext('with all optimizations', {
+      'handles clip correctly which has no `canOverride` set': [
+        '.block-1{clip:auto}.block-1{clip:auto;width:auto}',
+        '.block-1{clip:auto;width:auto}'
+      ]
+    }, { level: { 2: { all: true } } })
+  )
+  .addBatch(
     optimizerContext('colors with hex alpha support', {
       'overrides all colors': [
         '.block{color:#696969;color:rgba(68,68,68,0.8);color:#444c}',

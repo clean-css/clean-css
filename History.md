@@ -1,4 +1,4 @@
-[5.0.1 / 2021-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v5.0.0...HEAD)
+[5.0.1 / 2021-01-29](https://github.com/jakubpawlowicz/clean-css/compare/v5.0.0...v5.0.1)
 ==================
 
 * Fixed issue [#1139](https://github.com/jakubpawlowicz/clean-css/issues/1139) - overriding & merging properties without `canOverride` set.

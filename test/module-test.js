@@ -140,7 +140,7 @@ vows.describe('module tests').addBatch({
       return new CleanCSS({rebase: true}).minify('@import url(test/fixtures/partials/with-commented-import.css);');
     },
     'should minify correctly': function (error, minified) {
-      assert.equal(minified.styles, '@font-face{font-family:Font;src:url(/path/to/font)}');
+      assert.equal(minified.styles, '@font-face{font-family:Font;src:url("/path/to/font")}');
     },
     'should raise no errors': function (error, minified) {
       assert.isEmpty(minified.errors);
@@ -283,7 +283,7 @@ vows.describe('module tests').addBatch({
         new CleanCSS().minify('@import "test/fixtures/partials/with-commented-import.css";', this.callback);
       },
       'has right output': function (errors, minified) {
-        assert.equal(minified.styles, '@font-face{font-family:Font;src:url(/path/to/font)}');
+        assert.equal(minified.styles, '@font-face{font-family:Font;src:url("/path/to/font")}');
       }
     }
   },

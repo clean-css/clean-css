@@ -1278,21 +1278,21 @@ vows.describe('integration tests')
         'a{background:url(/images/blank.png)}',
         'a{background:url(/images/blank.png)}'
       ],
-      'strip quotes from base64 encoded PNG data URI': [
+      'keep quotes in base64 encoded PNG data URI': [
         '.icon-logo{background-image:url(\'data:image/png;base64,iVBORw0\')}',
-        '.icon-logo{background-image:url(data:image/png;base64,iVBORw0)}'
+        '.icon-logo{background-image:url(\'data:image/png;base64,iVBORw0\')}'
       ],
-      'strip quotes from base64 encoded ICO data URI': [
+      'keep quotes in base64 encoded ICO data URI': [
         '.icon-logo{background-image:url("data:image/x-icon;base64,AAABAAEAEBA")}',
-        '.icon-logo{background-image:url(data:image/x-icon;base64,AAABAAEAEBA)}'
+        '.icon-logo{background-image:url("data:image/x-icon;base64,AAABAAEAEBA")}'
       ],
-      'strip quotes from font data URI with mediatype': [
+      'keep quotes in font data URI with mediatype': [
         '@font-face{src:url("data:application/x-font-woff;base64,d09GRk9UVE8AAENAAA0AAAAA")}',
-        '@font-face{src:url(data:application/x-font-woff;base64,d09GRk9UVE8AAENAAA0AAAAA)}'
+        '@font-face{src:url("data:application/x-font-woff;base64,d09GRk9UVE8AAENAAA0AAAAA")}'
       ],
-      'strip quotes from font data URI without mediatype': [
+      'keep quotes in font data URI without mediatype': [
         '@font-face{src:url("data:;base64,d09GRk9UVE8AAENAAA0AAAAA")}',
-        '@font-face{src:url(data:;base64,d09GRk9UVE8AAENAAA0AAAAA)}'
+        '@font-face{src:url("data:;base64,d09GRk9UVE8AAENAAA0AAAAA")}'
       ],
       'cut off url content on selector level': [
         'a{background:url(image/}',
@@ -1306,14 +1306,6 @@ vows.describe('integration tests')
         '@font-face{src:url(data:application/x-font-woff;base64,d09GRk9UVE8AAENAAA0AAAAA',
         ''
       ],
-      'strip single parentheses': [
-        'a{background:url(\'/images/blank.png\')}',
-        'a{background:url(/images/blank.png)}'
-      ],
-      'strip double parentheses': [
-        'a{background:url("/images/blank.png")}',
-        'a{background:url(/images/blank.png)}'
-      ],
       'keep quoting if whitespace': [
         'a{background:url("/images/blank image.png")}',
         'a{background:url("/images/blank image.png")}'
@@ -1321,14 +1313,6 @@ vows.describe('integration tests')
       'keep quoting if whitespace inside @font-face': [
         '@font-face{src:url("Helvetica Neue.eot")}',
         '@font-face{src:url("Helvetica Neue.eot")}'
-      ],
-      'strip more': [
-        'p{background:url("/images/blank.png")}b{display:block}a{background:url("/images/blank2.png")}',
-        'p{background:url(/images/blank.png)}b{display:block}a{background:url(/images/blank2.png)}'
-      ],
-      'not strip comments if spaces inside': [
-        'p{background:url("/images/long image name.png")}b{display:block}a{background:url("/images/no-spaces.png")}',
-        'p{background:url("/images/long image name.png")}b{display:block}a{background:url(/images/no-spaces.png)}'
       ],
       'not add a space before url\'s hash': [
         'a{background:url(/fonts/d90b3358-e1e2-4abb-ba96-356983a54c22.svg#d90b3358-e1e2-4abb-ba96-356983a54c22)}',
@@ -1354,13 +1338,9 @@ vows.describe('integration tests')
         'a{background:url(/very/long/' + lineBreak + 'path)}',
         'a{background:url(/very/long/path)}'
       ],
-      'strip new line in urls which could be unquoted': [
-        'a{background:url("/very/long/' + lineBreak + 'path")}',
-        'a{background:url(/very/long/path)}'
-      ],
       'uppercase': [
         'a{background-image: URL("images/image.png");}',
-        'a{background-image:url(images/image.png)}'
+        'a{background-image:url("images/image.png")}'
       ],
       'image-set': [
         'a{background:url(one.png);background:-webkit-image-set(url(one.png) 1x,url(two.png) 2x)}',
@@ -1371,6 +1351,50 @@ vows.describe('integration tests')
         '.block{background:url([//example.com/logo.png])}'
       ]
     })
+  )
+  .addBatch(
+    optimizerContext('urls with URL quotes removing', {
+      'strip quotes from base64 encoded PNG data URI': [
+        '.icon-logo{background-image:url(\'data:image/png;base64,iVBORw0\')}',
+        '.icon-logo{background-image:url(data:image/png;base64,iVBORw0)}'
+      ],
+      'strip quotes from base64 encoded ICO data URI': [
+        '.icon-logo{background-image:url("data:image/x-icon;base64,AAABAAEAEBA")}',
+        '.icon-logo{background-image:url(data:image/x-icon;base64,AAABAAEAEBA)}'
+      ],
+      'strip quotes from font data URI with mediatype': [
+        '@font-face{src:url("data:application/x-font-woff;base64,d09GRk9UVE8AAENAAA0AAAAA")}',
+        '@font-face{src:url(data:application/x-font-woff;base64,d09GRk9UVE8AAENAAA0AAAAA)}'
+      ],
+      'strip quotes from font data URI without mediatype': [
+        '@font-face{src:url("data:;base64,d09GRk9UVE8AAENAAA0AAAAA")}',
+        '@font-face{src:url(data:;base64,d09GRk9UVE8AAENAAA0AAAAA)}'
+      ],
+      'strip single parentheses': [
+        'a{background:url(\'/images/blank.png\')}',
+        'a{background:url(/images/blank.png)}'
+      ],
+      'strip double parentheses': [
+        'a{background:url("/images/blank.png")}',
+        'a{background:url(/images/blank.png)}'
+      ],
+      'strip more': [
+        'p{background:url("/images/blank.png")}b{display:block}a{background:url("/images/blank2.png")}',
+        'p{background:url(/images/blank.png)}b{display:block}a{background:url(/images/blank2.png)}'
+      ],
+      'not strip comments if spaces inside': [
+        'p{background:url("/images/long image name.png")}b{display:block}a{background:url("/images/no-spaces.png")}',
+        'p{background:url("/images/long image name.png")}b{display:block}a{background:url(/images/no-spaces.png)}'
+      ],
+      'strip new line in urls': [
+        'a{background:url("/very/long/' + lineBreak + 'path")}',
+        'a{background:url(/very/long/path)}'
+      ],
+      'uppercase': [
+        'a{background-image: URL("images/image.png");}',
+        'a{background-image:url(images/image.png)}'
+      ],
+    }, { compatibility: { properties: { urlQuotes: false } } })
   )
   .addBatch(
     optimizerContext('urls custom protocol and url rewriting', {
@@ -1394,14 +1418,6 @@ vows.describe('integration tests')
   )
   .addBatch(
     optimizerContext('urls whitespace with url rewriting', {
-      'strip single parentheses': [
-        'a{background:url("/images/blank.png")}',
-        'a{background:url(/images/blank.png)}'
-      ],
-      'strip double parentheses': [
-        'a{background:url("/images/blank.png")}',
-        'a{background:url(/images/blank.png)}'
-      ],
       'keep quoting if whitespace': [
         'a{background:url("/images/blank image.png")}',
         'a{background:url("/images/blank image.png")}'
@@ -1420,7 +1436,7 @@ vows.describe('integration tests')
       ],
       'quotes SVG data URI trailed with !important': [
         'div{background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHOSURBVEhLrZa/SgNBEMZzh0WKCClSCKaIYOED+AAKeQQLG8HWztLCImBrYadgIdY+gIKNYkBFSwu7CAoqCgkkoGBI/E28PdbLZmeDLgzZzcx83/zZ2SSXC1j9fr+I1Hq93g2yxH4iwM1vkoBWAdxCmpzTxfkN2RcyZNaHFIkSo10+8kgxkXIURV5HGxTmFuc75B2RfQkpxHG8aAgaAFa0tAHqYFfQ7Iwe2yhODk8+J4C7yAoRTWI3w/4klGRgR4lO7Rpn9+gvMyWp+uxFh8+H+ARlgN1nJuJuQAYvNkEnwGFck18Er4q3egEc/oO+mhLdKgRyhdNFiacC0rlOCbhNVz4H9FnAYgDBvU3QIioZlJFLJtsoHYRDfiZoUyIxqCtRpVlANq0EU4dApjrtgezPFad5S19Wgjkc0hNVnuF4HjVA6C7QrSIbylB+oZe3aHgBsqlNqKYH48jXyJKMuAbiyVJ8KzaB3eRc0pg9VwQ4niFryI68qiOi3AbjwdsfnAtk0bCjTLJKr6mrD9g8iq/S/B81hguOMlQTnVyG40wAcjnmgsCNESDrjme7wfftP4P7SP4N3CJZdvzoNyGq2c/HWOXJGsvVg+RA/k2MC/wN6I2YA2Pt8GkAAAAASUVORK5CYII=")!important}',
-        'div{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHOSURBVEhLrZa/SgNBEMZzh0WKCClSCKaIYOED+AAKeQQLG8HWztLCImBrYadgIdY+gIKNYkBFSwu7CAoqCgkkoGBI/E28PdbLZmeDLgzZzcx83/zZ2SSXC1j9fr+I1Hq93g2yxH4iwM1vkoBWAdxCmpzTxfkN2RcyZNaHFIkSo10+8kgxkXIURV5HGxTmFuc75B2RfQkpxHG8aAgaAFa0tAHqYFfQ7Iwe2yhODk8+J4C7yAoRTWI3w/4klGRgR4lO7Rpn9+gvMyWp+uxFh8+H+ARlgN1nJuJuQAYvNkEnwGFck18Er4q3egEc/oO+mhLdKgRyhdNFiacC0rlOCbhNVz4H9FnAYgDBvU3QIioZlJFLJtsoHYRDfiZoUyIxqCtRpVlANq0EU4dApjrtgezPFad5S19Wgjkc0hNVnuF4HjVA6C7QrSIbylB+oZe3aHgBsqlNqKYH48jXyJKMuAbiyVJ8KzaB3eRc0pg9VwQ4niFryI68qiOi3AbjwdsfnAtk0bCjTLJKr6mrD9g8iq/S/B81hguOMlQTnVyG40wAcjnmgsCNESDrjme7wfftP4P7SP4N3CJZdvzoNyGq2c/HWOXJGsvVg+RA/k2MC/wN6I2YA2Pt8GkAAAAASUVORK5CYII=)!important}'
+        'div{background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHOSURBVEhLrZa/SgNBEMZzh0WKCClSCKaIYOED+AAKeQQLG8HWztLCImBrYadgIdY+gIKNYkBFSwu7CAoqCgkkoGBI/E28PdbLZmeDLgzZzcx83/zZ2SSXC1j9fr+I1Hq93g2yxH4iwM1vkoBWAdxCmpzTxfkN2RcyZNaHFIkSo10+8kgxkXIURV5HGxTmFuc75B2RfQkpxHG8aAgaAFa0tAHqYFfQ7Iwe2yhODk8+J4C7yAoRTWI3w/4klGRgR4lO7Rpn9+gvMyWp+uxFh8+H+ARlgN1nJuJuQAYvNkEnwGFck18Er4q3egEc/oO+mhLdKgRyhdNFiacC0rlOCbhNVz4H9FnAYgDBvU3QIioZlJFLJtsoHYRDfiZoUyIxqCtRpVlANq0EU4dApjrtgezPFad5S19Wgjkc0hNVnuF4HjVA6C7QrSIbylB+oZe3aHgBsqlNqKYH48jXyJKMuAbiyVJ8KzaB3eRc0pg9VwQ4niFryI68qiOi3AbjwdsfnAtk0bCjTLJKr6mrD9g8iq/S/B81hguOMlQTnVyG40wAcjnmgsCNESDrjme7wfftP4P7SP4N3CJZdvzoNyGq2c/HWOXJGsvVg+RA/k2MC/wN6I2YA2Pt8GkAAAAASUVORK5CYII=")!important}'
       ],
       'quotes SVG data URI trailed with !important without quotes': [
         'div{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHOSURBVEhLrZa/SgNBEMZzh0WKCClSCKaIYOED+AAKeQQLG8HWztLCImBrYadgIdY+gIKNYkBFSwu7CAoqCgkkoGBI/E28PdbLZmeDLgzZzcx83/zZ2SSXC1j9fr+I1Hq93g2yxH4iwM1vkoBWAdxCmpzTxfkN2RcyZNaHFIkSo10+8kgxkXIURV5HGxTmFuc75B2RfQkpxHG8aAgaAFa0tAHqYFfQ7Iwe2yhODk8+J4C7yAoRTWI3w/4klGRgR4lO7Rpn9+gvMyWp+uxFh8+H+ARlgN1nJuJuQAYvNkEnwGFck18Er4q3egEc/oO+mhLdKgRyhdNFiacC0rlOCbhNVz4H9FnAYgDBvU3QIioZlJFLJtsoHYRDfiZoUyIxqCtRpVlANq0EU4dApjrtgezPFad5S19Wgjkc0hNVnuF4HjVA6C7QrSIbylB+oZe3aHgBsqlNqKYH48jXyJKMuAbiyVJ8KzaB3eRc0pg9VwQ4niFryI68qiOi3AbjwdsfnAtk0bCjTLJKr6mrD9g8iq/S/B81hguOMlQTnVyG40wAcjnmgsCNESDrjme7wfftP4P7SP4N3CJZdvzoNyGq2c/HWOXJGsvVg+RA/k2MC/wN6I2YA2Pt8GkAAAAASUVORK5CYII=)!important}',
@@ -1435,6 +1451,18 @@ vows.describe('integration tests')
         'a{background:url(\'data:image/svg+xml,%3csvg%20xmlns%3d"http://www.w3.org/2000/svg"/%3e\')}'
       ]
     }, { rebase: true })
+  )
+  .addBatch(
+    optimizerContext('urls whitespace with url rewriting and no URL quotes', {
+      'strip single parentheses': [
+        'a{background:url("/images/blank.png")}',
+        'a{background:url(/images/blank.png)}'
+      ],
+      'strip double parentheses': [
+        'a{background:url("/images/blank.png")}',
+        'a{background:url(/images/blank.png)}'
+      ]
+    }, { compatibility: { properties: { urlQuotes: false } }, rebase: true })
   )
   .addBatch(
     optimizerContext('urls quotes in compatibility mode', {
@@ -1480,7 +1508,7 @@ vows.describe('integration tests')
       ],
       'chrome extension': [
         'a{background-image:url("chrome-extension://__MSG_@@extension_id__/someFile.png")}',
-        'a{background-image:url(chrome-extension://__MSG_@@extension_id__/someFile.png)}'
+        'a{background-image:url("chrome-extension://__MSG_@@extension_id__/someFile.png")}'
       ]
     }, { rebase: true, rebaseTo: path.join('test', 'fixtures') })
   )

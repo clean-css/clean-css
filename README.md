@@ -186,7 +186,7 @@ new CleanCSS({
       merging: true, // controls property merging based on understandability
       shorterLengthUnits: false, // controls shortening pixel units into `pc`, `pt`, or `in` units
       spaceAfterClosingBrace: true, // controls keeping space after closing brace - `url() no-repeat` into `url()no-repeat`
-      urlQuotes: false, // controls keeping quoting inside `url()`
+      urlQuotes: true, // controls keeping quoting inside `url()`
       zeroUnits: true // controls removal of units `0` value
     },
     selectors: {

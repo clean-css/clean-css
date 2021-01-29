@@ -1,2 +1,2 @@
-.test[title="my very long title"]{background-image:url(test/fixtures/very/long/path)}
-.test[title=my_very_long_title]{background-image:url(test/fixtures/my/very/long/path)}
+.test[title="my very long title"]{background-image:url("test/fixtures/very/long/path")}
+.test[title=my_very_long_title]{background-image:url("test/fixtures/my/very/long/path")}

@@ -21,7 +21,7 @@ vows.describe(compatibilityFrom)
         assert.isTrue(compat.properties.merging);
         assert.isFalse(compat.properties.shorterLengthUnits);
         assert.isTrue(compat.properties.spaceAfterClosingBrace);
-        assert.isFalse(compat.properties.urlQuotes);
+        assert.isTrue(compat.properties.urlQuotes);
         assert.isTrue(compat.properties.zeroUnits);
         assert.isFalse(compat.selectors.adjacentSpace);
         assert.isFalse(compat.selectors.ie7Hack);
@@ -98,7 +98,7 @@ vows.describe(compatibilityFrom)
         assert.isTrue(compat.properties.merging);
         assert.isFalse(compat.properties.shorterLengthUnits);
         assert.isTrue(compat.properties.spaceAfterClosingBrace);
-        assert.isFalse(compat.properties.urlQuotes);
+        assert.isTrue(compat.properties.urlQuotes);
         assert.isTrue(compat.properties.zeroUnits);
         assert.isFalse(compat.selectors.adjacentSpace);
         assert.isFalse(compat.selectors.ie7Hack);
@@ -132,7 +132,7 @@ vows.describe(compatibilityFrom)
         assert.isFalse(compat.properties.merging);
         assert.isFalse(compat.properties.shorterLengthUnits);
         assert.isTrue(compat.properties.spaceAfterClosingBrace);
-        assert.isFalse(compat.properties.urlQuotes);
+        assert.isTrue(compat.properties.urlQuotes);
         assert.isTrue(compat.properties.zeroUnits);
         assert.isFalse(compat.selectors.adjacentSpace);
         assert.isFalse(compat.selectors.ie7Hack);
@@ -166,7 +166,7 @@ vows.describe(compatibilityFrom)
         assert.isFalse(compat.properties.merging);
         assert.isFalse(compat.properties.shorterLengthUnits);
         assert.isTrue(compat.properties.spaceAfterClosingBrace);
-        assert.isFalse(compat.properties.urlQuotes);
+        assert.isTrue(compat.properties.urlQuotes);
         assert.isTrue(compat.properties.zeroUnits);
         assert.isFalse(compat.selectors.adjacentSpace);
         assert.isTrue(compat.selectors.ie7Hack);
@@ -209,7 +209,7 @@ vows.describe(compatibilityFrom)
         assert.isFalse(compat.properties.merging);
         assert.isFalse(compat.properties.shorterLengthUnits);
         assert.isTrue(compat.properties.spaceAfterClosingBrace);
-        assert.isFalse(compat.properties.urlQuotes);
+        assert.isTrue(compat.properties.urlQuotes);
         assert.isTrue(compat.properties.zeroUnits);
         assert.isFalse(compat.selectors.adjacentSpace);
         assert.isFalse(compat.selectors.ie7Hack);
@@ -243,7 +243,7 @@ vows.describe(compatibilityFrom)
         assert.isTrue(compat.properties.merging);
         assert.isFalse(compat.properties.shorterLengthUnits);
         assert.isTrue(compat.properties.spaceAfterClosingBrace);
-        assert.isFalse(compat.properties.urlQuotes);
+        assert.isTrue(compat.properties.urlQuotes);
         assert.isTrue(compat.properties.zeroUnits);
         assert.isFalse(compat.selectors.adjacentSpace);
         assert.isFalse(compat.selectors.ie7Hack);
@@ -277,7 +277,7 @@ vows.describe(compatibilityFrom)
         assert.isTrue(compat.properties.merging);
         assert.isFalse(compat.properties.shorterLengthUnits);
         assert.isTrue(compat.properties.spaceAfterClosingBrace);
-        assert.isFalse(compat.properties.urlQuotes);
+        assert.isTrue(compat.properties.urlQuotes);
         assert.isTrue(compat.properties.zeroUnits);
         assert.isFalse(compat.selectors.adjacentSpace);
         assert.isFalse(compat.selectors.ie7Hack);

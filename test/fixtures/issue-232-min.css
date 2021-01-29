@@ -1,2 +1,2 @@
 .bar{padding:0}
-.bug-selector,.bug-selector1{background:url(test/fixtures/images/b-toolbar.gif) #000;background:linear-gradient(#5e6081,#353340)}
+.bug-selector,.bug-selector1{background:url('test/fixtures/images/b-toolbar.gif') #000;background:linear-gradient(#5e6081,#353340)}

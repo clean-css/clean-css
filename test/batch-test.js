@@ -58,7 +58,8 @@ function batchContexts() {
               2: {
                 restructureRules: true
               }
-            }
+            },
+            rebase: true
           }).minify(data.input, this.callback.bind(null, data));
         },
         'outputs right content': function (data, error, output) {
@@ -75,6 +76,7 @@ function batchContexts() {
                 restructureRules: true
               }
             },
+            rebase: true,
             sourceMap: true
           }).minify(data.input, this.callback.bind(null, data));
         },

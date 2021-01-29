@@ -628,7 +628,7 @@ vows.describe('source-map')
     },
     'input map from source with rebaseTo': {
       'topic': function () {
-        return new CleanCSS({ level: 2, sourceMap: true, rebaseTo: './test/fixtures' }).minify('div > a {\n  color: red;\n}/*# sourceMappingURL=' + inputMapPath + ' */');
+        return new CleanCSS({ level: 2, sourceMap: true, rebase: true, rebaseTo: './test/fixtures' }).minify('div > a {\n  color: red;\n}/*# sourceMappingURL=' + inputMapPath + ' */');
       },
       'has 3 mappings': function (minified) {
         assert.lengthOf(minified.sourceMap._mappings._array, 3);
@@ -676,7 +676,7 @@ vows.describe('source-map')
     'input map as inlined data URI with explicit charset us-ascii, not base64': inlineDataUriContext('data:application/json;charset=us-ascii,' + escape(inputMap)),
     'complex input map': {
       'topic': function () {
-        return new CleanCSS({ level: 2, sourceMap: true }).minify('@import url(' + path.dirname(inputMapPath) + '/import.css);');
+        return new CleanCSS({ level: 2, rebase: true, sourceMap: true }).minify('@import url(' + path.dirname(inputMapPath) + '/import.css);');
       },
       'has 6 mappings': function (minified) {
         assert.lengthOf(minified.sourceMap._mappings._array, 6);
@@ -750,7 +750,7 @@ vows.describe('source-map')
     },
     'complex but partial input map referenced by path': {
       'topic': function () {
-        return new CleanCSS({ level: 2, sourceMap: true }).minify('@import url(test/fixtures/source-maps/no-map-import.css);');
+        return new CleanCSS({ level: 2, rebase: true, sourceMap: true }).minify('@import url(test/fixtures/source-maps/no-map-import.css);');
       },
       'has 6 mappings': function (minified) {
         assert.lengthOf(minified.sourceMap._mappings._array, 6);
@@ -770,7 +770,7 @@ vows.describe('source-map')
     },
     'complex input map with an existing file as rebaseTo': {
       'topic': function () {
-        return new CleanCSS({ level: 2, sourceMap: true, rebaseTo: path.join('test', 'fixtures', 'source-maps') }).minify('@import url(test/fixtures/source-maps/styles.css);');
+        return new CleanCSS({ level: 2, sourceMap: true, rebase: true, rebaseTo: path.join('test', 'fixtures', 'source-maps') }).minify('@import url(test/fixtures/source-maps/styles.css);');
       },
       'has 3 mappings': function (minified) {
         assert.lengthOf(minified.sourceMap._mappings._array, 3);
@@ -784,7 +784,7 @@ vows.describe('source-map')
     },
     'nested once': {
       'topic': function () {
-        return new CleanCSS({ level: 2, sourceMap: true }).minify('@import url(test/fixtures/source-maps/nested/once.css);');
+        return new CleanCSS({ level: 2, rebase: true, sourceMap: true }).minify('@import url(test/fixtures/source-maps/nested/once.css);');
       },
       'has 3 mappings': function (minified) {
         assert.lengthOf(minified.sourceMap._mappings._array, 3);
@@ -825,7 +825,7 @@ vows.describe('source-map')
     },
     'nested twice': {
       'topic': function () {
-        return new CleanCSS({ level: 2, sourceMap: true }).minify('@import url(test/fixtures/source-maps/nested/twice.css);');
+        return new CleanCSS({ level: 2, rebase: true, sourceMap: true }).minify('@import url(test/fixtures/source-maps/nested/twice.css);');
       },
       'has 3 mappings': function (minified) {
         assert.lengthOf(minified.sourceMap._mappings._array, 3);
@@ -1114,7 +1114,7 @@ vows.describe('source-map')
           .get('/remote.css.map')
           .reply(200, inputMap);
 
-        new CleanCSS({ inline: 'all', sourceMap: true }).minify('@import url(http://127.0.0.1/remote.css);', this.callback);
+        new CleanCSS({ inline: 'all', rebase: true, sourceMap: true }).minify('@import url(http://127.0.0.1/remote.css);', this.callback);
       },
       'has mapping': function (errors, minified) {
         assert.isDefined(minified.sourceMap);
@@ -1151,7 +1151,7 @@ vows.describe('source-map')
           .post('/remote.css.map')
           .reply(200, inputMap);
 
-        new CleanCSS({ inline: 'all', inlineRequest: { method: 'POST' }, sourceMap: true })
+        new CleanCSS({ inline: 'all', inlineRequest: { method: 'POST' }, rebase: true, sourceMap: true })
           .minify('@import url(http://127.0.0.1/remote.css);', this.callback);
       },
       'has mapping': function (errors, minified) {
@@ -1664,7 +1664,7 @@ vows.describe('source-map')
       },
       'multiple relative to rebaseTo path': {
         'topic': function () {
-          return new CleanCSS({ level: 2, sourceMap: true, sourceMapInlineSources: true, rebaseTo: './test' }).minify({
+          return new CleanCSS({ level: 2, sourceMap: true, sourceMapInlineSources: true, rebase: true, rebaseTo: './test' }).minify({
             'test/fixtures/source-maps/some.css': {
               styles: 'div {\n  color: red;\n}',
               sourceMap: '{"version":3,"sources":["some.less"],"names":[],"mappings":"AAAA;EACE,UAAA","file":"some.css","sourcesContent":["div {\\n  color: red;\\n}\\n"]}'

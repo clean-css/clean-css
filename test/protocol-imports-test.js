@@ -197,7 +197,7 @@ vows.describe('protocol imports').addBatch({
         .get('/urls.css')
         .reply(200, 'a{background:url(test.png)}');
 
-      new CleanCSS({ inline: 'all' }).minify('@import url(http://127.0.0.1/urls.css);', this.callback);
+      new CleanCSS({ inline: 'all', rebase: true }).minify('@import url(http://127.0.0.1/urls.css);', this.callback);
     },
     'should not raise errors': function (errors, minified) {
       assert.isNull(errors);
@@ -220,7 +220,7 @@ vows.describe('protocol imports').addBatch({
         .get('/deeply/nested/urls.css')
         .reply(200, 'a{background:url(../images/test.png)}');
 
-      new CleanCSS({ inline: 'all' }).minify('@import url(http://127.0.0.1/base.css);', this.callback);
+      new CleanCSS({ inline: 'all', rebase: true }).minify('@import url(http://127.0.0.1/base.css);', this.callback);
     },
     'should not raise errors': function (errors, minified) {
       assert.isNull(errors);

@@ -82,6 +82,7 @@ clean-css 5.0 will introduce some breaking changes:
 * Node.js 6.x and 8.x are officially no longer supported;
 * `transform` callback in level-1 optimizations is removed in favor of new [plugins](#plugins) interface;
 * changes default Internet Explorer compatibility from 10+ to >11, to revert the old default use `{ compatibility: 'ie10' }` flag;
+* changes default `rebase` option from `true` to `false` so URLs are not rebased by default. Please note that if you set `rebaseTo` option it still counts as setting `rebase: true` to preserve some of the backward compatibility.
 
 And on the new features side of things:
 
@@ -149,7 +150,7 @@ clean-css constructor accepts a hash as a parameter with the following options a
 * `inlineRequest` - controls extra options for inlining remote `@import` rules, can be any of [HTTP(S) request options](https://nodejs.org/api/http.html#http_http_request_options_callback);
 * `inlineTimeout` - controls number of milliseconds after which inlining a remote `@import` fails; defaults to 5000;
 * `level` - controls optimization level used; defaults to `1`; see [optimization levels](#optimization-levels) for examples;
-* `rebase` - controls URL rebasing; defaults to `true`;
+* `rebase` - controls URL rebasing; defaults to `false`;
 * `rebaseTo` - controls a directory to which all URLs are rebased, most likely the directory under which the output file will live; defaults to the current directory;
 * `returnPromise` - controls whether `minify` method returns a Promise object or not; defaults to `false`; see [promise interface](#promise-interface) for examples;
 * `sourceMap` - controls whether an output source map is built; defaults to `false`;

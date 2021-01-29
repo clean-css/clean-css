@@ -1434,7 +1434,7 @@ vows.describe('integration tests')
         'a{background:url(\'data:image/svg+xml,%3csvg%20xmlns%3d"http://www.w3.org/2000/svg"/%3e\')}',
         'a{background:url(\'data:image/svg+xml,%3csvg%20xmlns%3d"http://www.w3.org/2000/svg"/%3e\')}'
       ]
-    })
+    }, { rebase: true })
   )
   .addBatch(
     optimizerContext('urls quotes in compatibility mode', {
@@ -1454,7 +1454,7 @@ vows.describe('integration tests')
         }},
         'div{background:url(temp/test.png)}'
       ]
-    }, { compatibility: { properties: { urlQuotes: true } } })
+    }, { rebase: true, compatibility: { properties: { urlQuotes: true } } })
   )
   .addBatch(
     optimizerContext('urls rewriting - rebaseTo', {
@@ -1482,7 +1482,7 @@ vows.describe('integration tests')
         'a{background-image:url("chrome-extension://__MSG_@@extension_id__/someFile.png")}',
         'a{background-image:url(chrome-extension://__MSG_@@extension_id__/someFile.png)}'
       ]
-    }, { rebaseTo: path.join('test', 'fixtures') })
+    }, { rebase: true, rebaseTo: path.join('test', 'fixtures') })
   )
   .addBatch(
     optimizerContext('urls rewriting - rebaseTo as a missing directory', {
@@ -1498,7 +1498,7 @@ vows.describe('integration tests')
         '@import url(/test/fixtures/partials-relative/base.css);',
         'a{background:url(../fixtures/partials/extra/down.gif) 0 0 no-repeat}'
       ]
-    }, { rebaseTo: path.join('test', 'fixtures2') })
+    }, { rebase: true, rebaseTo: path.join('test', 'fixtures2') })
   )
   .addBatch(
     optimizerContext('urls rewriting - rebase off', {
@@ -1506,8 +1506,6 @@ vows.describe('integration tests')
         '@import url(test/fixtures/partials-relative/base.css);',
         'a{background:url(../partials/extra/down.gif) 0 0 no-repeat}'
       ]
-    }, {
-      rebase: false
     })
   )
   .addBatch(
@@ -2065,6 +2063,22 @@ vows.describe('integration tests')
         generateComments(30000) + '@import url(fonts.google.com/some.css);',
         ''
       ]
+    }, { rebase: true })
+  )
+  .addBatch(
+    optimizerContext('@import with rebase turned off', {
+      'of a file with a relative resource path': [
+        '@import url(test/fixtures/partials/three.css);',
+        '.three{background-image:url(extra/down.gif)}'
+      ],
+      'of a file with an absolute resource path': [
+        '@import url(test/fixtures/partials/four.css);',
+        '.four{background-image:url(/partials/extra/down.gif)}'
+      ],
+      'of a file with a resource URI': [
+        '@import url(test/fixtures/partials/five.css);',
+        '.five{background:url(data:image/jpeg;base64,/9j/)}'
+      ],
     })
   )
   .addBatch(

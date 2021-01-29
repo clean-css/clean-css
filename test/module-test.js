@@ -135,6 +135,21 @@ vows.describe('module tests').addBatch({
       assert.isEmpty(minified.warnings);
     }
   },
+  'warnings on missing explicit `rebaseTo`': {
+    'topic': function () {
+      return new CleanCSS({rebase: true}).minify('@import url(test/fixtures/partials/with-commented-import.css);');
+    },
+    'should minify correctly': function (error, minified) {
+      assert.equal(minified.styles, '@font-face{font-family:Font;src:url(/path/to/font)}');
+    },
+    'should raise no errors': function (error, minified) {
+      assert.isEmpty(minified.errors);
+    },
+    'should raise one warning': function (error, minified) {
+      assert.lengthOf(minified.warnings, 1);
+      assert.isTrue(minified.warnings[0].indexOf('`rebaseTo: process.cwd()`') > -1);
+    }
+  },
   'warnings on extra closing brace': {
     'topic': function () {
       return new CleanCSS().minify('a{display:block}}');
@@ -501,7 +516,7 @@ vows.describe('module tests').addBatch({
     'relative': {
       'with rebase to the current directory': {
         'topic': function () {
-          return new CleanCSS().minify([
+          return new CleanCSS({ rebase: true }).minify([
             'test/fixtures/partials/one.css',
             'test/fixtures/partials/three.css'
           ]);
@@ -523,7 +538,7 @@ vows.describe('module tests').addBatch({
       },
       'without rebase': {
         'topic': function () {
-          return new CleanCSS({ rebase: false }).minify([
+          return new CleanCSS().minify([
             'test/fixtures/partials/one.css',
             'test/fixtures/partials/three.css'
           ]);
@@ -536,7 +551,7 @@ vows.describe('module tests').addBatch({
     'absolute': {
       'with rebase to the current directory': {
         'topic': function () {
-          return new CleanCSS().minify([
+          return new CleanCSS({ rebase: true }).minify([
             path.resolve('test/fixtures/partials/one.css'),
             path.resolve('test/fixtures/partials/three.css')
           ]);
@@ -558,7 +573,7 @@ vows.describe('module tests').addBatch({
       },
       'without rebase': {
         'topic': function () {
-          return new CleanCSS({ rebase: false }).minify([
+          return new CleanCSS().minify([
             path.resolve('test/fixtures/partials/one.css'),
             path.resolve('test/fixtures/partials/three.css')
           ]);
@@ -633,7 +648,7 @@ vows.describe('module tests').addBatch({
     'relative': {
       'with rebase to the current directory': {
         'topic': function () {
-          return new CleanCSS().minify(
+          return new CleanCSS({ rebase: true }).minify(
             sourcesAsHash([
               'test/fixtures/partials/one.css',
               'test/fixtures/partials/three.css'
@@ -659,7 +674,7 @@ vows.describe('module tests').addBatch({
       },
       'without rebase': {
         'topic': function () {
-          return new CleanCSS({ rebase: false }).minify(
+          return new CleanCSS().minify(
             sourcesAsHash([
               'test/fixtures/partials/one.css',
               'test/fixtures/partials/three.css'
@@ -674,7 +689,7 @@ vows.describe('module tests').addBatch({
     'absolute': {
       'with rebase to the current directory': {
         'topic': function () {
-          return new CleanCSS().minify(
+          return new CleanCSS({ rebase: true }).minify(
             sourcesAsHash([
               'test/fixtures/partials/one.css',
               'test/fixtures/partials/three.css'
@@ -700,7 +715,7 @@ vows.describe('module tests').addBatch({
       },
       'without rebase': {
         'topic': function () {
-          return new CleanCSS({ rebase: false }).minify(
+          return new CleanCSS().minify(
             sourcesAsHash([
               'test/fixtures/partials/one.css',
               'test/fixtures/partials/three.css'
@@ -741,7 +756,7 @@ vows.describe('module tests').addBatch({
     },
     'with other imports and rebasing off': {
       'topic': function () {
-        return new CleanCSS({ rebase: false }).minify(
+        return new CleanCSS().minify(
           sourcesAsHash([
             'test/fixtures/partials/two.css'
           ])
@@ -779,7 +794,7 @@ vows.describe('module tests').addBatch({
     },
     'with a callback': {
       'topic': function () {
-        new CleanCSS().minify({
+        new CleanCSS({ rebase: true }).minify({
           'main.css': {
             styles: '@import url(test/fixtures/partials/one.css);\n@import url(test/fixtures/partials/three.css);'
           }
@@ -791,7 +806,7 @@ vows.describe('module tests').addBatch({
     },
     'with remote paths': {
       'topic': function() {
-        return new CleanCSS().minify({
+        return new CleanCSS({rebase: true}).minify({
           'http://127.0.0.1/styles.css': {
             styles: 'div{background-image:url(image.png)}'
           }
@@ -862,7 +877,7 @@ vows.describe('module tests').addBatch({
   },
   'accepts a list of source files as array of hashes': {
     'topic': function () {
-      return new CleanCSS().minify([
+      return new CleanCSS({rebase: true}).minify([
         sourcesAsHash(['test/fixtures/partials/one.css']),
         sourcesAsHash(['test/fixtures/partials/three.css'])
       ]);

@@ -1,6 +1,7 @@
 [5.0.0-pre / 2021-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/4.2...HEAD)
 ==================
 
+* Adds a way process input files without bundling it into one big output file.
 * Adds level 1 and level 2 optimization plugins.
 * Disables URL rebasing by default.
 * Disables URL unquoting by default.

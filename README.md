@@ -40,6 +40,7 @@ According to [tests](http://goalsmashers.github.io/css-minification-benchmark/) 
   * [CLI utility](#cli-utility)
 - [FAQ](#faq)
   * [How to optimize multiple files?](#how-to-optimize-multiple-files)
+  * [How to process multiple files without concatenating them into one output file?](#how-to-process-multiple-files-without-concatenating-them-into-one-output-file)
   * [How to process remote `@import`s correctly?](#how-to-process-remote-imports-correctly)
   * [How to apply arbitrary transformations to CSS properties?](#how-to-apply-arbitrary-transformations-to-css-properties)
   * [How to specify a custom rounding precision?](#how-to-specify-a-custom-rounding-precision)
@@ -87,6 +88,7 @@ clean-css 5.0 will introduce some breaking changes:
 And on the new features side of things:
 
 * format options now accepts numerical values for all breaks, which will allow you to have more control over output formatting, e.g. `format: {breaks: {afterComment: 2}}` means clean-css will add two line breaks after each comment
+* a new `batch` option (defaults to `false`) is added, when set to `true` it will process all inputs, given either as an array or a hash, without concatenating them.
 
 ## What's new in version 4.2
 
@@ -576,6 +578,16 @@ new CleanCSS().minify([
 Passing an array of hashes allows you to explicitly specify the order in which the input files are concatenated. Whereas when you use a single hash the order is determined by the [traversal order of object properties](http://2ality.com/2015/10/property-traversal-order-es6.html) - available since 4.1.0.
 
 Important note - any `@import` rules already present in the hash will be resolved in memory.
+
+## How to process multiple files without concatenating them into one output file?
+
+Since clean-css 5.0 you can, when passing an array of paths, hash, or array of hashes (see above), ask clean-css not to join styles into one output, but instead return stylesheets optimized one by one, e.g.
+
+```js
+var output = new CleanCSS({ batch: true }).minify(['path/to/file/one', 'path/to/file/two']);
+var outputOfFile1 = output['path/to/file/one'].styles // all other fields, like errors, warnings, or stats are there too
+var outputOfFile2 = output['path/to/file/two'].styles
+```
 
 ## How to process remote `@import`s correctly?
 

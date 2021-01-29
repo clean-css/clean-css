@@ -644,6 +644,33 @@ vows.describe('module tests').addBatch({
       }
     }
   },
+  'accepts a list of source files as array in batch mode': {
+    'with rebase to the current directory': {
+      'topic': function () {
+        return new CleanCSS({ batch: true, rebase: true, rebaseTo: process.cwd() }).minify([
+          'test/fixtures/partials/one.css',
+          'test/fixtures/partials/three.css'
+        ]);
+      },
+      'output should be a hash': function (minified) {
+        assert.equal(typeof minified, 'object');
+      },
+      'output should have input files as keys': function (minified) {
+        assert.isTrue('test/fixtures/partials/one.css' in minified);
+        assert.isTrue('test/fixtures/partials/three.css' in minified);
+      },
+      'output of first file should be in the first item': function (minified) {
+        assert.equal(minified['test/fixtures/partials/one.css'].styles, '.one{color:red}');
+        assert.deepEqual(minified['test/fixtures/partials/one.css'].errors, []);
+        assert.deepEqual(minified['test/fixtures/partials/one.css'].warnings, []);
+      },
+      'output of second file should be in the second item': function (minified) {
+        assert.equal(minified['test/fixtures/partials/three.css'].styles, '.three{background-image:url(test/fixtures/partials/extra/down.gif)}');
+        assert.deepEqual(minified['test/fixtures/partials/three.css'].errors, []);
+        assert.deepEqual(minified['test/fixtures/partials/three.css'].warnings, []);
+      }
+    }
+  },
   'accepts a list of source files as hash': {
     'relative': {
       'with rebase to the current directory': {
@@ -875,6 +902,35 @@ vows.describe('module tests').addBatch({
       }
     }
   },
+  'accepts a list of source files as hash in batch mode': {
+    'with rebase to the current directory': {
+      'topic': function () {
+        return new CleanCSS({ batch: true, rebase: true, rebaseTo: process.cwd() }).minify(
+          sourcesAsHash([
+            'test/fixtures/partials/one.css',
+            'test/fixtures/partials/three.css'
+          ])
+        );
+      },
+      'output should be a hash': function (minified) {
+        assert.equal(typeof minified, 'object');
+      },
+      'output should have input files as keys': function (minified) {
+        assert.isTrue('test/fixtures/partials/one.css' in minified);
+        assert.isTrue('test/fixtures/partials/three.css' in minified);
+      },
+      'output of first file should be in the first item': function (minified) {
+        assert.equal(minified['test/fixtures/partials/one.css'].styles, '.one{color:red}');
+        assert.deepEqual(minified['test/fixtures/partials/one.css'].errors, []);
+        assert.deepEqual(minified['test/fixtures/partials/one.css'].warnings, []);
+      },
+      'output of second file should be in the second item': function (minified) {
+        assert.equal(minified['test/fixtures/partials/three.css'].styles, '.three{background-image:url(extra/down.gif)}');
+        assert.deepEqual(minified['test/fixtures/partials/three.css'].errors, []);
+        assert.deepEqual(minified['test/fixtures/partials/three.css'].warnings, []);
+      }
+    }
+  },
   'accepts a list of source files as array of hashes': {
     'topic': function () {
       return new CleanCSS({rebase: true}).minify([
@@ -884,6 +940,31 @@ vows.describe('module tests').addBatch({
     },
     'should give right output': function (minified) {
       assert.equal(minified.styles, '.one{color:red}.three{background-image:url(test/fixtures/partials/extra/down.gif)}');
+    }
+  },
+  'accepts a list of source files as array of hashes in batch mode': {
+    'topic': function () {
+      return new CleanCSS({ batch: true, rebase: true, rebaseTo: process.cwd() }).minify([
+        sourcesAsHash(['test/fixtures/partials/one.css']),
+        sourcesAsHash(['test/fixtures/partials/three.css'])
+      ]);
+    },
+    'output should be a hash': function (minified) {
+      assert.equal(typeof minified, 'object');
+    },
+    'output should have input files as keys': function (minified) {
+      assert.isTrue('test/fixtures/partials/one.css' in minified);
+      assert.isTrue('test/fixtures/partials/three.css' in minified);
+    },
+    'output of first file should be in the first item': function (minified) {
+      assert.equal(minified['test/fixtures/partials/one.css'].styles, '.one{color:red}');
+      assert.deepEqual(minified['test/fixtures/partials/one.css'].errors, []);
+      assert.deepEqual(minified['test/fixtures/partials/one.css'].warnings, []);
+    },
+    'output of second file should be in the second item': function (minified) {
+      assert.equal(minified['test/fixtures/partials/three.css'].styles, '.three{background-image:url(extra/down.gif)}');
+      assert.deepEqual(minified['test/fixtures/partials/three.css'].errors, []);
+      assert.deepEqual(minified['test/fixtures/partials/three.css'].warnings, []);
     }
   },
   'keeps trailing semicolons if option is set': {

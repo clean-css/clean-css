@@ -7,6 +7,12 @@ var i;
 var start;
 var itTook;
 
+// warmup
+console.log('Warming up...');
+for (i = 1; i <= 10; i++) {
+  new CleanCSS({ level: 2 }).minify(input);
+}
+
 for (level = 0; level < 3; level ++) {
   total = 0;
 

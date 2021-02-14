@@ -1153,10 +1153,10 @@ vows.describe('module tests').addBatch({
             -moz-osx-font-smoothing: grayscale;\
           }\
           .glyphicon-asterisk:before {\
-            content: "\2a";\
+            content: "\\2a";\
           }\
           .glyphicon-plus:before {\
-            content: "\2b";\
+            content: "\\2b";\
           }\
         ';
 

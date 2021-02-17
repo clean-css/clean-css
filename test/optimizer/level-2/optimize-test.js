@@ -50,11 +50,11 @@ vows.describe('level 2 optimizer')
       ],
       'calc() function as animation delay': [
         '.block{animation:0.3s linear calc(0.04s * 2) backwards name}',
-        '.block{animation:0.3s linear calc(0.04s * 2) backwards name}'
+        '.block{animation:.3s linear calc(.04s * 2) backwards name}'
       ],
       'calc() function as animation duration': [
         '.block{animation:calc(0.3s * 2) linear 500ms backwards name}',
-        '.block{animation:calc(0.3s * 2) linear 0.5s backwards name}'
+        '.block{animation:calc(.3s * 2) linear .5s backwards name}'
       ],
       'default value of transition-delay is default': [
         '.block-1{transition:opacity .3s linear,height 0s ease .3s}.block-2{transition:opacity .3s linear,height 1s ease .3s}',

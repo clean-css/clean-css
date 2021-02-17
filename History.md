@@ -3,6 +3,8 @@
 
 * Fixes stripping '%' from inside color functions.
 * Improves tokenization speed by ~30%.
+* Fixed issue [#1143](https://github.com/jakubpawlowicz/clean-css/issues/1143) - some missing level 1 value optimizations.
+
 
 [5.0.1 / 2021-01-29](https://github.com/jakubpawlowicz/clean-css/compare/v5.0.0...v5.0.1)
 ==================

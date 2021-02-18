@@ -28,13 +28,14 @@
     "bench": "node ./test/bench.js",
     "check": "jshint .",
     "prepublish": "npm run check",
-    "test": "vows"
+    "test": "c8 vows"
   },
   "dependencies": {
     "source-map": "~0.6.0"
   },
   "devDependencies": {
     "browserify": "^17.0.0",
+    "c8": "^7.6.0",
     "http-proxy": "1.x",
     "jshint": "2.x",
     "nock": "^13.0.0",
@@ -44,5 +45,15 @@
   },
   "engines": {
     "node": ">= 10.0"
+  },
+  "c8": {
+    "include": [
+      "lib/**/*.js"
+    ],
+    "reporter": [
+      "html",
+      "lcovonly",
+      "text-summary"
+    ]
   }
 }

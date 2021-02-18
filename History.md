@@ -1,4 +1,4 @@
-[5.1.0 / 2021-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/5.0...HEAD)
+[5.1.0 / 2021-02-18](https://github.com/jakubpawlowicz/clean-css/compare/5.0...v5.1.0)
 ==================
 
 * Fixes stripping '%' from inside color functions.

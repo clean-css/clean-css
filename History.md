@@ -1,6 +1,7 @@
 [5.1.0 / 2021-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/5.0...HEAD)
 ==================
 
+* Fixes stripping '%' from inside color functions.
 * Improves tokenization speed by ~30%.
 
 [5.0.1 / 2021-01-29](https://github.com/jakubpawlowicz/clean-css/compare/v5.0.0...v5.0.1)

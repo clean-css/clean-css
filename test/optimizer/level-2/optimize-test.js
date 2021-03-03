@@ -199,6 +199,14 @@ vows.describe('level 2 optimizer')
       'eight value colors': [
         '.block{border:1px solid #00000001}',
         '.block{border:1px solid #00000001}'
+      ],
+      'hsl color with fractions': [
+        '.block{border:1px solid hsl(0, 0%, 65.5%)}',
+        '.block{border:1px solid hsl(0,0%,65.5%)}'
+      ],
+      'hsla color with fractions': [
+        '.block{border:1px solid hsla(0, 0%, 65.5%, 0.2)}',
+        '.block{border:1px solid hsla(0,0%,65.5%,.2)}'
       ]
     }, { level: 2 })
   )

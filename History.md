@@ -1,4 +1,4 @@
-[5.1.1 / 2021-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v5.1.0...5.1)
+[5.1.1 / 2021-03-03](https://github.com/jakubpawlowicz/clean-css/compare/v5.1.0...v5.1.1)
 ==================
 
 * Fixed issue [#1156](https://github.com/jakubpawlowicz/clean-css/issues/1156) - invalid hsl/hsla validation in level 2 optimizations.

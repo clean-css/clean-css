@@ -516,6 +516,111 @@ console.log(output.stats.minifiedSize); // optimized content size
 console.log(output.stats.timeSpent); // time spent on optimizations in milliseconds
 console.log(output.stats.efficiency); // `(originalSize - minifiedSize) / originalSize`, e.g. 0.25 if size is reduced from 100 bytes to 75 bytes
 ```
+Example: Minify valid CSS:
+
+```js
+const CleanCSS = require("clean-css");
+
+const output = new CleanCSS().minify(`
+    
+  a {
+    color: blue;
+  }
+  div {
+    margin: 5px
+  }
+    
+`);
+
+console.log(output);
+
+// Log:
+{
+  styles: 'a{color:#00f}div{margin:5.px}',
+  stats: {
+    efficiency: 0.6704545454545454,
+    minifiedSize: 29,
+    originalSize: 88,
+    timeSpent: 6
+  },
+  errors: [],
+  inlinedStylesheets: [],
+  warnings: []
+}
+```
+
+Example: Minify invalid CSS, resulting in two warnings:
+
+```js
+const CleanCSS = require("clean-css");
+
+const output = new CleanCSS().minify(`
+    
+  a {
+    -notarealproperty-: 5px;
+    color: 
+  }
+  div {
+    margin: 5px
+  }
+    
+`);
+
+console.log(output);
+
+// Log:
+{
+  styles: 'div{margin:5px}',
+  stats: {
+    efficiency: 0.8695652173913043,
+    minifiedSize: 15,
+    originalSize: 115,
+    timeSpent: 1
+  },
+  errors: [],
+  inlinedStylesheets: [],
+  warnings: [
+    "Invalid property name '-notarealproperty-' at 4:8. Ignoring.",
+    "Empty property 'color' at 5:8. Ignoring."
+  ]
+}
+```
+
+Example: Minify invalid CSS, resulting in one error:
+
+```js
+const CleanCSS = require("clean-css");
+
+const output = new CleanCSS().minify(`
+
+  @import "idontexist.css";
+  a {
+    color: blue;
+  }
+  div {
+    margin: 5px
+  }
+    
+`);
+
+console.log(output);
+
+// Log:
+{
+  styles: 'a{color:#00f}div{margin:5px}',
+  stats: {
+    efficiency: 0.7627118644067796,
+    minifiedSize: 28,
+    originalSize: 118,
+    timeSpent: 2
+  },
+  errors: [
+    'Ignoring local @import of "idontexist.css" as resource is missing.'
+  ],
+  inlinedStylesheets: [],
+  warnings: []
+}
+```
 
 The `minify` method also accepts an input source map, e.g.
 

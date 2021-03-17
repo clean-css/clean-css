@@ -49,6 +49,7 @@ According to [tests](http://goalsmashers.github.io/css-minification-benchmark/) 
   * [How to work with source maps?](#how-to-work-with-source-maps)
   * [How to apply level 1 & 2 optimizations at the same time?](#how-to-apply-level-1--2-optimizations-at-the-same-time)
   * [What level 2 optimizations do?](#what-level-2-optimizations-do)
+  * [What errors and warnings are?](#what-errors-and-warnings-are)
   * [How to use clean-css with build tools?](#how-to-use-clean-css-with-build-tools)
   * [How to use clean-css from web browser?](#how-to-use-clean-css-from-web-browser)
 - [Contributing](#contributing)
@@ -516,84 +517,13 @@ console.log(output.stats.minifiedSize); // optimized content size
 console.log(output.stats.timeSpent); // time spent on optimizations in milliseconds
 console.log(output.stats.efficiency); // `(originalSize - minifiedSize) / originalSize`, e.g. 0.25 if size is reduced from 100 bytes to 75 bytes
 ```
-Example: Minify valid CSS:
+Example: Minifying a CSS string:
 
 ```js
 const CleanCSS = require("clean-css");
 
 const output = new CleanCSS().minify(`
     
-  a {
-    color: blue;
-  }
-  div {
-    margin: 5px
-  }
-    
-`);
-
-console.log(output);
-
-// Log:
-{
-  styles: 'a{color:#00f}div{margin:5.px}',
-  stats: {
-    efficiency: 0.6704545454545454,
-    minifiedSize: 29,
-    originalSize: 88,
-    timeSpent: 6
-  },
-  errors: [],
-  inlinedStylesheets: [],
-  warnings: []
-}
-```
-
-Example: Minify invalid CSS, resulting in two warnings:
-
-```js
-const CleanCSS = require("clean-css");
-
-const output = new CleanCSS().minify(`
-    
-  a {
-    -notarealproperty-: 5px;
-    color: 
-  }
-  div {
-    margin: 5px
-  }
-    
-`);
-
-console.log(output);
-
-// Log:
-{
-  styles: 'div{margin:5px}',
-  stats: {
-    efficiency: 0.8695652173913043,
-    minifiedSize: 15,
-    originalSize: 115,
-    timeSpent: 1
-  },
-  errors: [],
-  inlinedStylesheets: [],
-  warnings: [
-    "Invalid property name '-notarealproperty-' at 4:8. Ignoring.",
-    "Empty property 'color' at 5:8. Ignoring."
-  ]
-}
-```
-
-Example: Minify invalid CSS, resulting in one error:
-
-```js
-const CleanCSS = require("clean-css");
-
-const output = new CleanCSS().minify(`
-
-  @import "idontexist.css";
   a {
     color: blue;
   }
@@ -609,14 +539,12 @@ console.log(output);
 {
   styles: 'a{color:#00f}div{margin:5px}',
   stats: {
-    efficiency: 0.7627118644067796,
-    minifiedSize: 28,
-    originalSize: 118,
-    timeSpent: 2
+    efficiency: 0.6704545454545454,
+    minifiedSize: 29,
+    originalSize: 88,
+    timeSpent: 6
   },
-  errors: [
-    'Ignoring local @import of "idontexist.css" as resource is missing.'
-  ],
+  errors: [],
   inlinedStylesheets: [],
   warnings: []
 }
@@ -864,6 +792,83 @@ All level 2 optimizations are dispatched [here](https://github.com/jakubpawlowic
 * `removeDuplicateFontAtRules` - removes duplicated `@font-face` rules;
 * `removeDuplicateMediaQueries` - removes duplicated `@media` nested blocks;
 * `mergeMediaQueries` - merges non-adjacent `@media` at-rules by the same rules as `mergeNonAdjacentBy*` above;
+
+## What errors and warnings are?
+
+If clean-css encounters invalid CSS, it will try to remove the invalid part and continue optimizing the rest of the code. It will make you aware of the problem by generating an error or warning. Although clean-css can work with invalid CSS, it is always recommended that you fix warnings and errors in your CSS.
+
+Example: Minify invalid CSS, resulting in two warnings:
+
+```js
+const CleanCSS = require("clean-css");
+
+const output = new CleanCSS().minify(`
+    
+  a {
+    -notarealproperty-: 5px;
+    color: 
+  }
+  div {
+    margin: 5px
+  }
+    
+`);
+
+console.log(output);
+
+// Log:
+{
+  styles: 'div{margin:5px}',
+  stats: {
+    efficiency: 0.8695652173913043,
+    minifiedSize: 15,
+    originalSize: 115,
+    timeSpent: 1
+  },
+  errors: [],
+  inlinedStylesheets: [],
+  warnings: [
+    "Invalid property name '-notarealproperty-' at 4:8. Ignoring.",
+    "Empty property 'color' at 5:8. Ignoring."
+  ]
+}
+```
+
+Example: Minify invalid CSS, resulting in one error:
+
+```js
+const CleanCSS = require("clean-css");
+
+const output = new CleanCSS().minify(`
+
+  @import "idontexist.css";
+  a {
+    color: blue;
+  }
+  div {
+    margin: 5px
+  }
+    
+`);
+
+console.log(output);
+
+// Log:
+{
+  styles: 'a{color:#00f}div{margin:5px}',
+  stats: {
+    efficiency: 0.7627118644067796,
+    minifiedSize: 28,
+    originalSize: 118,
+    timeSpent: 2
+  },
+  errors: [
+    'Ignoring local @import of "idontexist.css" as resource is missing.'
+  ],
+  inlinedStylesheets: [],
+  warnings: []
+}
+```
 
 ## How to use clean-css with build tools?
 

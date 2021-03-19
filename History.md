@@ -1,4 +1,4 @@
-[5.1.2 / 2021-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v5.1.1...5.1)
+[5.1.2 / 2021-03-19](https://github.com/jakubpawlowicz/clean-css/compare/v5.1.1...v5.1.2)
 ==================
 
 * Fixed issue [#996](https://github.com/jakubpawlowicz/clean-css/issues/996) - space removed from pseudo classes.

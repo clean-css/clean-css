@@ -257,6 +257,10 @@ vows.describe('level 1 optimizations')
         ':host-context(main   article){color:red}',
         ':host-context(main article){color:red}'
       ],
+      'extra spaces with comma are removed': [
+        ':host-context(main,   article){color:red}',
+        ':host-context(main,article){color:red}'
+      ],
       'space is not removed in multiple rules': [
         ':host-context(main footer),:host-context(main header){color:red}',
         ':host-context(main footer),:host-context(main header){color:red}'
@@ -264,6 +268,10 @@ vows.describe('level 1 optimizations')
       'space is not removed from :not pseudo-class': [
         ':not(.block1 .block1__block2){color:red}',
         ':not(.block1 .block1__block2){color:red}'
+      ],
+      'space in scoped pseudo class': [
+        '.container:not(#BorlabsCookieBox .container){max-width:1280px!important}',
+        '.container:not(#BorlabsCookieBox .container){max-width:1280px!important}'
       ]
     }, { level: 1 })
   )

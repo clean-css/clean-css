@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack",
-    "dev": "webpack serve --content-base public"
+    "dev": "webpack serve --content-base public",
+    "start": "sirv public --no-clear"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "css-loader": "^5.2.6",
     "file-loader": "^6.2.0",
     "https-browserify": "^1.0.0",

@@ -29,6 +29,4 @@
   }
 </style>
 
-<i class={`icon ${className}`}>
-  {@html icons[name]}
-</i>
+<img src={icons[name]} class={`icon ${className}`} alt={`Icon ${name}`} />

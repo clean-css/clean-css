@@ -1,55 +1,80 @@
 <script>
   import Dropzone from "svelte-file-dropzone"
+  import * as CleanCSS from 'clean-css'
+
 	import Legend from "./Legend.svelte"
   import LoadedFile from "./LoadedFile.svelte";
 
-  import {byteCount} from "./utils"
-
+  let isDroppedFileErrored = false
   let files = []
 
-  const reader = new FileReader();
+  const addFile = (file) => {
+    const {errors, styles, stats} = new CleanCSS({}).minify(file.target.result)
+    if (errors.length > 0) {
+      isDroppedFileErrored = true
+      return
+    }
 
-  const addFile = (originFile, file) => {
-    console.log(originFile, file)
     files = [...files, {
-      origin: {
-        name: originFile.name,
-        content: originFile.target.result
-      }, 
-      minified: {
-        name: file.name,
-        content: file.target.result
-      }
+      name: file.name,
+      content: styles,
+      originalSize: stats.originalSize,
+      minifiedSize: stats.minifiedSize
     }]
   }
 
   const handleFilesSelect = (e) => {
-    const { acceptedFiles, fileRejections } = e.detail
-    
-    acceptedFiles.forEach(file => {
-      const { name } = file
-      reader.addEventListener("loadend", (event) => {
-        event.name = name
-        addFile(event, event)
-      })
+    if (isDroppedFileErrored) isDroppedFileErrored = false
 
-      reader.readAsText(file)
+    const { acceptedFiles } = e.detail
+
+    const file = acceptedFiles[acceptedFiles.length - 1]
+    const { name } = file
+
+    const reader = new FileReader();
+    reader.addEventListener("loadend", (event) => {
+      event.name = name
+      addFile(event)
     })
-    
-    if (fileRejections) {
-      // TODO: show error
-    }
+
+    reader.readAsText(file)
   }
 </script>
 
-<div class="d-flex flex-column px-4">
-  <Dropzone on:drop={handleFilesSelect} accept={['text/css']}>
-    <p class="m-3">Drop your files here to optimize them</p>
+<div class="d-flex flex-column justify-center px-2 px-sm-5">
+  <Dropzone 
+    on:dropaccepted={handleFilesSelect}
+    on:droprejected={() => { isDroppedFileErrored = true }}
+    accept={['text/css']} 
+    containerClasses={`position-relative ${isDroppedFileErrored ? 'errored' : ''}`}
+  >
+    <p class="my-5 mx-3 fs-4 fw-bold">Drop your files here to optimize them</p>
+
+    {#if isDroppedFileErrored}
+       <div class="alert alert-danger position-absolute bottom-0 end-0 m-1 p-1" role="alert">
+        Please drop a valid <code>css</code> file!
+      </div>
+    {/if}
   </Dropzone>
-  <ol>
-    {#each files as { origin, minified }}
-      <LoadedFile filename={minified.name} sizeSaved={byteCount(origin.content) - byteCount(minified.content)} />
+
+  <ul class="list-group list-group-flush mt-2">
+    {#each files as file}
+      <LoadedFile name={file.name} sizeSaved={file.originalSize - file.minifiedSize} content={file.content} />
     {/each}
-  </ol>
+  </ul>
   <Legend />
 </div>
+
+<style>
+  div {
+    max-width: 900px;
+  }
+
+  div :global(.dropzone) {
+    cursor: pointer;
+  }
+
+  div :global(.dropzone.errored) {
+    border-color: red;
+  }
+</style>

@@ -56,8 +56,11 @@ module.exports = {
         use: [
           {
             loader: 'file-loader',
-          },
-        ],
+						options: {
+							outputPath: 'build/images',
+						}
+          }
+        ]
       },
 			{
 				// required to prevent errors from Svelte on Webpack 5+

@@ -1,27 +1,29 @@
 {
   "name": "svelte-app",
   "version": "1.0.0",
-  "private": true,
   "scripts": {
-    "build": "rollup -c",
-    "dev": "rollup -c -w",
-    "start": "sirv public --no-clear"
+    "build": "cross-env NODE_ENV=production webpack",
+    "dev": "webpack serve --content-base public"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^17.0.0",
-    "@rollup/plugin-node-resolve": "^11.0.0",
-    "rollup": "^2.3.4",
-    "rollup-plugin-css-only": "^3.1.0",
-    "rollup-plugin-inline-svg": "^2.0.0",
-    "rollup-plugin-livereload": "^2.0.0",
-    "rollup-plugin-svelte": "^7.0.0",
-    "rollup-plugin-terser": "^7.0.0",
+    "css-loader": "^5.2.6",
+    "file-loader": "^6.2.0",
+    "https-browserify": "^1.0.0",
+    "mini-css-extract-plugin": "^1.6.0",
     "svelte": "^3.0.0",
-    "svelte-file-dropzone": "^0.0.15"
+    "svelte-file-dropzone": "^0.0.15",
+    "svelte-loader": "^3.1.2",
+    "webpack": "^5.39.1",
+    "webpack-cli": "^4.7.2",
+    "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
     "bootstrap": "^5.0.1",
+    "clean-css": "^5.1.2",
     "file-saver": "^2.0.5",
-    "sirv-cli": "^1.0.0"
+    "os-browserify": "^0.3.0",
+    "path-browserify": "^1.0.1",
+    "sirv-cli": "^1.0.0",
+    "stream-http": "^3.2.0"
   }
 }

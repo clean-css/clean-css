@@ -41,7 +41,7 @@
   }
 </script>
 
-<div class="d-flex flex-column justify-center px-2 px-sm-5">
+<div class="d-flex flex-column justify-center">
   <Dropzone 
     on:dropaccepted={handleFilesSelect}
     on:droprejected={() => { isDroppedFileErrored = true }}
@@ -66,10 +66,6 @@
 </div>
 
 <style>
-  div {
-    max-width: 900px;
-  }
-
   div :global(.dropzone) {
     cursor: pointer;
   }

@@ -10,6 +10,6 @@
 
 <style>
   header :global(.icon) {
-    font-size: 12em;
+    font-size: 15em;
   }
 </style>

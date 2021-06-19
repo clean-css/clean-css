@@ -4,12 +4,11 @@
 	import FileDropzone from "./FileDropzone.svelte"
 </script>
 
-<main>
+<main class="d-flex flex-column align-items-center">
 	<Header />
 	<FileDropzone />
 	<Footer />
 </main>
 
 <style>
-
 </style>

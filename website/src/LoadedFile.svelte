@@ -2,25 +2,26 @@
   import { saveAs } from 'file-saver';
   import { setClipboard } from './utils'
 
-  export let filename
+  export let name
   export let sizeSaved
-  export let fileContent
+  export let content
 
   const saveToClipboard = () => {
-    setClipboard(fileContent)
+    setClipboard(content)
   }
 
   const saveFile = () => {
-    const blob = new Blob([fileContent + 42], { type: "text/css;charset=utf-8" })
-    saveAs(blob, filename);
+    console.log(content);
+    const blob = new Blob([content], { type: "text/css;charset=utf-8" })
+    saveAs(blob, name);
   }
 </script>
 
-<li>
-  <span class="dropped-files__file__name">{filename}</span>
-  <span class="dropped-files__file__summary"> - saved {sizeSaved}</span>
-  <button class="btn btn-link" on:click={saveToClipboard}>copy to clipboard</button>
-  <button class="btn btn-link" on:click={saveFile}>save</button>
+<li class="list-group list-group-item p-1">
+  <span class="fw-bold">{name}</span>
+  <span class="fw-lighter fst-italic"> - saved {sizeSaved / 1000}kB</span>
+  <button class="btn btn-link px-1 ms-4" on:click={saveToClipboard}>copy to clipboard</button>
+  <button class="btn btn-link px-1" on:click={saveFile}>save</button>
 </li>
 
 <style>

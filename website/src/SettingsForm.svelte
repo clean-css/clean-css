@@ -4,7 +4,7 @@
     compatibility: '',
     level: {
       1: {
-        cleanupCharsets: false,
+        cleanupCharsets: true,
         normalizeUrls: true,
         optimizeBackground: true,
         optimizeBorderRadius: true,
@@ -66,9 +66,9 @@
   }
   const DEFAULT_OPENED_LEVEL = {
     0: true,
-    1: false,
+    1: true,
     2: false,
-    format: true
+    format: false
   }
 
   let options = deepCopyObject(DEFAULT_OPTIONS)

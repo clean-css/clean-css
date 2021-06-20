@@ -1,4 +1,5 @@
 <script>
+  import { deepCopyObject } from './utils'
   const DEFAULT_OPTIONS = {
     level: {
       1: {
@@ -13,12 +14,12 @@
     format: false
   }
 
-  let options = {...DEFAULT_OPTIONS}
-  let openedLevel = {...DEFAULT_OPENED_LEVEL}
+  let options = deepCopyObject(DEFAULT_OPTIONS)
+  let openedLevel = deepCopyObject(DEFAULT_OPENED_LEVEL)
 
   const resetSettings = () => {
-    options = {...DEFAULT_OPTIONS}
-    openedLevel = {...DEFAULT_OPENED_LEVEL}
+    options = deepCopyObject(DEFAULT_OPTIONS)
+    openedLevel = deepCopyObject(DEFAULT_OPENED_LEVEL)
   }
 
   // $: console.log(options)

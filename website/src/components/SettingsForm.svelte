@@ -1,8 +1,9 @@
 <script>
-  import { deepCopyObject } from './utils'
+  import { deepCopyObject } from '../utils'
   const DEFAULT_OPTIONS = {
     compatibility: '',
     level: {
+      0: true,
       1: {
         cleanupCharsets: true,
         normalizeUrls: true,
@@ -79,8 +80,17 @@
     openedLevel = deepCopyObject(DEFAULT_OPENED_LEVEL)
   }
 
-  $: console.log(options)
-
+  const getConfig = () => {
+    return {
+      ...options,
+      format: openedLevel.format ? options.format : false,
+      level: {
+        ...options.level,
+        1: openedLevel['1'] ? options.level['1'] : false,
+        2: openedLevel['2'] ? options.level['2'] : false
+      }
+    }
+  }
 </script>
 
 <form class="settings mb-4 d-flex flex-column">

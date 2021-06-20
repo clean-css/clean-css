@@ -1,6 +1,6 @@
 <script>
   import { saveAs } from 'file-saver';
-  import { setClipboard } from './utils'
+  import { setClipboard } from '../utils'
 
   export let name
   export let sizeSaved

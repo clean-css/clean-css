@@ -1,8 +1,8 @@
 <script>
-	import Header from "./Header.svelte"
-	import Footer from "./Footer.svelte"
-	import FileDropzone from "./FileDropzone.svelte"
-	import Settings from "./Settings.svelte"
+	import Header from "./components/Header.svelte"
+	import Footer from "./components/Footer.svelte"
+	import FileDropzone from "./components/FileDropzone.svelte"
+	import Settings from "./components/Settings.svelte"
 </script>
 
 <Header />

@@ -1,6 +1,7 @@
 <script>
   import { deepCopyObject } from './utils'
   const DEFAULT_OPTIONS = {
+    compatibility: '',
     level: {
       1: {
         cleanupCharsets: false
@@ -22,7 +23,7 @@
     openedLevel = deepCopyObject(DEFAULT_OPENED_LEVEL)
   }
 
-  // $: console.log(options)
+  $: console.log(options)
 
 </script>
 
@@ -198,8 +199,8 @@
   </fieldset>
   <fieldset class="settings__group">
     <div class="settings__group__wrapper">
-      <select class="settings__option settings__option--select js-settings-compatibility js-settings-option" id="compatibility" name="compatibility">
-        <option value="" selected>Modern browsers compatibility (Internet Explorer 11+)</option>
+      <select class="form-select" bind:value={options.compatibility}>
+        <option value="">Modern browsers compatibility (Internet Explorer 11+)</option>
         <option value="ie10">Modern browsers &amp; Internet Explorer 10+ compatibility</option>
         <option value="ie9">Modern browsers &amp; Internet Explorer 9+ compatibility</option>
         <option value="ie8">Modern browsers &amp; Internet Explorer 8+ compatibility</option>

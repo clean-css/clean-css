@@ -4,7 +4,26 @@
     compatibility: '',
     level: {
       1: {
-        cleanupCharsets: false
+        cleanupCharsets: false,
+        normalizeUrls: true,
+        optimizeBackground: true,
+        optimizeBorderRadius: true,
+        optimizeFilter: true,
+        optimizeFontWeight: true,
+        optimizeOutline: true,
+        removeEmpty: true,
+        removeNegativePaddings: true,
+        removeQuotes: true,
+        removeWhitespace: true,
+        replaceMultipleZeros: true,
+        replaceTimeUnits: true,
+        replaceZeroUnits: true,
+        roundingPrecision: "",
+        selectorsSortingMethod: "standard",
+        specialComments: "all",
+        tidyAtRules: true,
+        tidyBlockScopes: true,
+        tidySelectors: true
       }
     }
   }
@@ -49,85 +68,91 @@
           <label for="level_1_cleanup_charsets">cleanup @charset at-rules</label>
         </li>
         <li class="fine-grained-options__option">
-          <input class="form-check-input" type="checkbox" id="level_1_normalize_urls" name="level[1][normalizeUrls]" checked />
+          <input class="form-check-input" type="checkbox" id="level_1_normalize_urls" bind:checked={options.level['1'].normalizeUrls} />
           <label for="level_1_normalize_urls">normalize URLs</label>
         </li>
         <li class="fine-grained-options__option">
-          <input class="form-check-input" type="checkbox" id="level_1_optimize_background" name="level[1][optimizeBackground]" checked />
+          <input class="form-check-input" type="checkbox" id="level_1_optimize_background" bind:checked={options.level['1'].optimizeBackground} />
           <label for="level_1_optimize_background">optimize <em>background</em> properties</label>
         </li>
         <li class="fine-grained-options__option">
-          <input class="form-check-input" type="checkbox" id="level_1_optimize_border_radius" name="level[1][optimizeBorderRadius]" checked />
+          <input class="form-check-input" type="checkbox" id="level_1_optimize_border_radius" bind:checked={options.level['1'].optimizeBorderRadius} />
           <label for="level_1_optimize_border_radius">optimize <em>border-radius</em> properties</label>
         </li>
         <li class="fine-grained-options__option">
-          <input class="form-check-input" type="checkbox" id="level_1_optimize_filter" name="level[1][optimizeFilter]" checked />
+          <input class="form-check-input" type="checkbox" id="level_1_optimize_filter" bind:checked={options.level['1'].optimizeFilter} />
           <label for="level_1_optimize_filter">optimize <em>filter</em> / <em>-ms-filter</em> properties</label>
         </li>
         <li class="fine-grained-options__option">
-          <input class="form-check-input" type="checkbox" id="level_1_optimize_font_weight" name="level[1][optimizeFontWeight]" checked />
+          <input class="form-check-input" type="checkbox" id="level_1_optimize_font_weight" bind:checked={options.level['1'].optimizeFontWeight} />
           <label for="level_1_optimize_font_weight">optimize <em>font-weight</em> properties</label>
         </li>
         <li class="fine-grained-options__option">
-          <input class="form-check-input" type="checkbox" id="level_1_optimize_outline" name="level[1][optimizeOutline]" checked />
+          <input class="form-check-input" type="checkbox" id="level_1_optimize_outline" bind:checked={options.level['1'].optimizeOutline} />
           <label for="level_1_optimize_outline">optimize <em>outline</em> properties</label>
         </li>
         <li class="fine-grained-options__option">
-          <input class="form-check-input" type="checkbox" id="level_1_remove_empty" name="level[1][removeEmpty]" checked />
+          <input class="form-check-input" type="checkbox" id="level_1_remove_empty" bind:checked={options.level['1'].removeEmpty} />
           <label for="level_1_remove_empty">remove empty rules and nested blocks (after level 1 optimizations)</label>
         </li>
         <li class="fine-grained-options__option">
-          <input class="form-check-input" type="checkbox" id="level_1_remove_negative_paddings" name="level[1][removeNegativePaddings]" checked />
+          <input class="form-check-input" type="checkbox" id="level_1_remove_negative_paddings" bind:checked={options.level['1'].removeNegativePaddings} />
           <label for="level_1_remove_negative_paddings">remove negative <em>padding</em>s</label>
         </li>
         <li class="fine-grained-options__option">
-          <input class="form-check-input" type="checkbox" id="level_1_remove_quotes" name="level[1][removeQuotes]" checked />
+          <input class="form-check-input" type="checkbox" id="level_1_remove_quotes" bind:checked={options.level['1'].removeQuotes} />
           <label for="level_1_remove_quotes">remove quotes</label>
         </li>
         <li class="fine-grained-options__option">
-          <input class="form-check-input" type="checkbox" id="level_1_remove_whitespace" name="level[1][removeWhitespace]" checked />
+          <input class="form-check-input" type="checkbox" id="level_1_remove_whitespace" bind:checked={options.level['1'].removeWhitespace} />
           <label for="level_1_remove_whitespace">remove whitespace</label>
         </li>
         <li class="fine-grained-options__option">
-          <input class="form-check-input" type="checkbox" id="level_1_replace_multiple_zeros" name="level[1][replaceMultipleZeros]" checked />
+          <input class="form-check-input" type="checkbox" id="level_1_replace_multiple_zeros" bind:checked={options.level['1'].replaceMultipleZeros} />
           <label for="level_1_replace_multiple_zeros">replace multiple zeros</label>
         </li>
         <li class="fine-grained-options__option">
-          <input class="form-check-input" type="checkbox" id="level_1_replace_time_units" name="level[1][replaceTimeUnits]" checked />
+          <input class="form-check-input" type="checkbox" id="level_1_replace_time_units" bind:checked={options.level['1'].replaceTimeUnits} />
           <label for="level_1_replace_time_units">replace time units</label>
         </li>
         <li class="fine-grained-options__option">
-          <input class="form-check-input" type="checkbox" id="level_1_replace_zero_units" name="level[1][replaceZeroUnits]" checked />
+          <input class="form-check-input" type="checkbox" id="level_1_replace_zero_units" bind:checked={options.level['1'].replaceZeroUnits} />
           <label for="level_1_replace_zero_units">replace <em>0</em> units</label>
         </li>
         <li class="fine-grained-options__option">
           <label for="level_1_rounding_precision">unit rounding precision</label>
-          <input class="settings__option js-settings-option" type="text" id="level_1_rounding_precision" name="level[1][roundingPrecision]" value="" placeholder="e.g 5 or *=off,px=4" />
+          <input 
+            class="form-control d-inline-flex" 
+            type="text" 
+            id="level_1_rounding_precision" 
+            bind:value={options.level['1'].roundingPrecision}  placeholder="e.g 5 or *=off,px=4" 
+            style="width: 200px;"
+          />
         </li>
         <li class="fine-grained-options__option">
-          <select class="settings__option settings__option--select js-settings-option" id="level_1_selectors_sorting_method" name="level[1][selectorsSortingMethod]">
+          <select class="form-select" bind:value={options.level['1'].selectorsSortingMethod}>
             <option value="natural">Selectors sorting method: natural</option>
             <option value="none">Selectors sorting method: none</option>
             <option value="standard" selected>Selectors sorting method: standard</option>
           </select>
         </li>
         <li class="fine-grained-options__option">
-          <select class="settings__option settings__option--select js-settings-option" id="level_1_special_comments" name="level[1][specialComments]">
-            <option value="all" selected>Special comments: keep all</option>
+          <select class="form-select" bind:value={options.level['1'].specialComments}>
+            <option value="all">Special comments: keep all</option>
             <option value="1">Special comments: remove all but the first one</option>
             <option value="0">Special comments: remove all</option>
           </select>
         </li>
         <li class="fine-grained-options__option">
-          <input class="form-check-input" type="checkbox" id="level_1_tidy_at_rules" name="level[1][tidyAtRules]" checked />
+          <input class="form-check-input" type="checkbox" id="level_1_tidy_at_rules" bind:checked={options.level['1'].tidyAtRules} />
           <label for="level_1_tidy_at_rules">tidy at-rules</label>
         </li>
         <li class="fine-grained-options__option">
-          <input class="form-check-input" type="checkbox" id="level_1_tidy_block_scopes" name="level[1][tidyBlockScopes]" checked />
+          <input class="form-check-input" type="checkbox" id="level_1_tidy_block_scopes" bind:checked={options.level['1'].tidyBlockScopes} />
           <label for="level_1_tidy_block_scopes">tidy block scopes</label>
         </li>
         <li class="fine-grained-options__option">
-          <input class="form-check-input" type="checkbox" id="level_1_tidy_selectors" name="level[1][tidySelectors]" checked />
+          <input class="form-check-input" type="checkbox" id="level_1_tidy_selectors" bind:checked={options.level['1'].tidySelectors} />
           <label for="level_1_tidy_selectors">tidy selectors</label>
         </li>
       </ul>

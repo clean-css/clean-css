@@ -28,16 +28,18 @@
 
     const { acceptedFiles } = e.detail
 
-    const file = acceptedFiles[acceptedFiles.length - 1]
-    const { name } = file
+    acceptedFiles.forEach(file => {
+      const { name } = file
 
-    const reader = new FileReader();
-    reader.addEventListener("loadend", (event) => {
-      event.name = name
-      addFile(event)
+      const reader = new FileReader();
+      reader.addEventListener("loadend", (event) => {
+        event.name = name
+        addFile(event)
+      })
+
+      reader.readAsText(file)
     })
-
-    reader.readAsText(file)
+    
   }
 </script>
 

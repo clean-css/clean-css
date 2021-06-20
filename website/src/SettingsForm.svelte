@@ -41,13 +41,34 @@
         restructureRules: false,
         skipProperties: ""
       }
+    },
+    format: {
+      breaks: {
+        afterAtRule: true,
+        afterBlockBegins: true,
+        afterBlockEnds: true,
+        afterComment: true,
+        afterProperty: true,
+        afterRuleBegins: true,
+        afterRuleEnds: true,
+        beforeBlockEnds: true,
+        betweenSelectors: true,
+      },
+      indentBy: 2,
+      indentWith: "space",
+      spaces: {
+        aroundSelectorRelation: true,
+        beforeBlockBegins: true,
+        beforeValue: true
+      },
+      wrapAt: false
     }
   }
   const DEFAULT_OPENED_LEVEL = {
     0: true,
-    1: true,
+    1: false,
     2: false,
-    format: false
+    format: true
   }
 
   let options = deepCopyObject(DEFAULT_OPTIONS)
@@ -248,71 +269,72 @@
     <label for="format">output formatting</label>
   </div>
     {#if openedLevel.format}
-    <ul class="fine-grained-options  js-settings-format-options">
+    <ul>
       <li>
-        <input class="form-check-input" type="checkbox" id="format_breaks_after_at_rule" name="format_breaks[afterAtRule]" checked />
+        <input class="form-check-input" type="checkbox" id="format_breaks_after_at_rule" bind:checked={options.format.breaks.afterAtRule} />
         <label for="format_breaks_after_at_rule">insert line break after at-rules</label>
       </li>
       <li>
-        <input class="form-check-input" type="checkbox" id="format_breaks_after_block_begins" name="format_breaks[afterBlockBegins]" checked />
+        <input class="form-check-input" type="checkbox" id="format_breaks_after_block_begins" bind:checked={options.format.breaks.afterBlockBegins} />
         <label for="format_breaks_after_block_begins">insert line break after block begins</label>
       </li>
       <li>
-        <input class="form-check-input" type="checkbox" id="format_breaks_after_block_ends" name="format_breaks[afterBlockEnds]" checked />
+        <input class="form-check-input" type="checkbox" id="format_breaks_after_block_ends" bind:checked={options.format.breaks.afterBlockEnds} />
         <label for="format_breaks_after_block_ends">insert line break after block ends</label>
       </li>
       <li>
-        <input class="form-check-input" type="checkbox" id="format_breaks_after_comment" name="format_breaks[afterComment]" checked />
+        <input class="form-check-input" type="checkbox" id="format_breaks_after_comment" bind:checked={options.format.breaks.afterComment} />
         <label for="format_breaks_after_comment">insert line break after comments</label>
       </li>
       <li>
-        <input class="form-check-input" type="checkbox" id="format_breaks_after_property" name="format_breaks[afterProperty]" checked />
+        <input class="form-check-input" type="checkbox" id="format_breaks_after_property" bind:checked={options.format.breaks.afterProperty} />
         <label for="format_breaks_after_property">insert line break after properties</label>
       </li>
       <li>
-        <input class="form-check-input" type="checkbox" id="format_breaks_after_rule_begins" name="format_breaks[afterRuleBegins]" checked />
+        <input class="form-check-input" type="checkbox" id="format_breaks_after_rule_begins" bind:checked={options.format.breaks.afterRuleBegins} />
         <label for="format_breaks_after_rule_begins">insert line break after rule begins</label>
       </li>
       <li>
-        <input class="form-check-input" type="checkbox" id="format_breaks_after_rule_ends" name="format_breaks[afterRuleEnds]" checked />
+        <input class="form-check-input" type="checkbox" id="format_breaks_after_rule_ends" bind:checked={options.format.breaks.afterRuleEnds} />
         <label for="format_breaks_after_rule_ends">insert line break after rule ends</label>
       </li>
       <li>
-        <input class="form-check-input" type="checkbox" id="format_breaks_before_block_ends" name="format_breaks[beforeBlockEnds]" checked />
+        <input class="form-check-input" type="checkbox" id="format_breaks_before_block_ends" bind:checked={options.format.breaks.beforeBlockEnds} />
         <label for="format_breaks_before_block_ends">insert line break before block ends</label>
       </li>
       <li>
-        <input class="form-check-input" type="checkbox" id="format_breaks_between_selectors" name="format_breaks[betweenSelectors]" checked />
+        <input class="form-check-input" type="checkbox" id="format_breaks_between_selectors" bind:checked={options.format.breaks.betweenSelectors} />
         <label for="format_breaks_between_selectors">insert line break between selectors</label>
       </li>
       <li>
         <label for="format_indent_by">indent with</label>
-        <input class="settings__option settings__option--number js-settings-option" type="number" min="0" max="16" id="format_indent_by" name="format[indentBy]" value="2" />
-        <select class="settings__option settings__option--inline-select js-settings-option" id="format_indent_with" name="format[indentWith]">
+        <input class="form-control d-inline-flex" style="width: 60px;" type="number" min="0" max="16" id="format_indent_by"  bind:value={options.format.indentBy} />
+        <select class="form-select d-inline-flex" style="width: 140px;" bind:value={options.format.indentWith}>
           <option value="space" selected>space(s)</option>
           <option value="tab">tab(s)</option>
         </select>
       </li>
       <li>
-        <input class="form-check-input" type="checkbox" id="format_spaces_around_selector_relation" name="format_spaces[aroundSelectorRelation]" checked />
+        <input class="form-check-input" type="checkbox" id="format_spaces_around_selector_relation" bind:checked={options.format.spaces.aroundSelectorRelation} />
         <label for="format_spaces_around_selector_relation">insert space between selector relation</label>
       </li>
       <li>
-        <input class="form-check-input" type="checkbox" id="format_spaces_before_block_begins" name="format_spaces[beforeBlockBegins]" checked />
+        <input class="form-check-input" type="checkbox" id="format_spaces_before_block_begins" bind:checked={options.format.spaces.beforeBlockBegins} />
         <label for="format_spaces_before_block_begins">insert space before block begins</label>
       </li>
       <li>
-        <input class="form-check-input" type="checkbox" id="format_spaces_before_value" name="format_spaces[beforeValue]" checked />
+        <input class="form-check-input" type="checkbox" id="format_spaces_before_value" bind:checked={options.format.spaces.beforeValue} />
         <label for="format_spaces_before_value">insert space before property value</label>
       </li>
       <li>
         <label for="format_wrap_at">wrap lines when longer than</label>
-        <input class="settings__option settings__option--number js-settings-option" type="number" min="0" id="format_wrap_at" name="format[wrapAt]" value="" />
+        <input class="form-control d-inline-flex" style="width: 60px;" type="number" min="0" id="format_wrap_at" bind:value={options.format.wrapAt} />
         <label for="format_wrap_at">characters</label>
       </li>
     </ul>
   {/if}
-  <button class="btn btn-primary mt-4 align-self-end" type="button" on:click={resetSettings}>Reset settings to defaults</button>
+
+  <button class="btn btn-outline-primary mt-4 align-self-end" type="button" on:click={resetSettings}>Reset settings to defaults</button>
 </form>
 
 <style>

@@ -19,7 +19,9 @@ module.exports = {
 			"path": require.resolve("path-browserify"),
 			"http": require.resolve("stream-http"),
 			"https": require.resolve("https-browserify"),
-			"fs": false
+			"fs": false,
+			"buffer": require.resolve("buffer/"),
+			"util": require.resolve("util/")
 		},
 		extensions: ['.mjs', '.js', '.svelte'],
 		mainFields: ['svelte', 'module', 'main']

@@ -705,6 +705,22 @@ vows.describe(breakUp)
           assert.deepEqual(components[6].name, 'background-clip');
           assert.deepEqual(components[6].value, [['property-value', 'padding-box']]);
         }
+      },
+      'tailing-comma': {
+        'topic': function () {
+          return _breakUp([
+            [
+              'property',
+              ['property-name', 'background'],
+              ['property-value', '#000'],
+              ['property-value', ',']
+            ]
+          ]);
+        },
+        'has background': function (components) {
+          assert.deepEqual(components[7].name, 'background-color');
+          assert.deepEqual(components[7].value, [['property-value', '#000']]);
+        },
       }
     },
     'border': {

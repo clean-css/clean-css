@@ -1,6 +1,6 @@
 <script>
-  import Icon from "./Icon/Icon.svelte"
-  import SettingsForm from "./SettingsForm.svelte"
+  import Icon from './Icon/Icon.svelte'
+  import SettingsForm from './SettingsForm.svelte'
 
   let open = false
 

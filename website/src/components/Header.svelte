@@ -1,5 +1,5 @@
 <script>
-  import Icon from "./Icon/Icon.svelte";
+  import Icon from './Icon/Icon.svelte'
 </script>
 
 <header class="d-flex justify-content-center p-6">

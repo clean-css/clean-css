@@ -1,5 +1,5 @@
 <script>
-  import { saveAs } from 'file-saver';
+  import { saveAs } from 'file-saver'
   import { setClipboard } from '../utils'
 
   export let name
@@ -11,9 +11,8 @@
   }
 
   const saveFile = () => {
-    console.log(content);
-    const blob = new Blob([content], { type: "text/css;charset=utf-8" })
-    saveAs(blob, name);
+    const blob = new Blob([content], { type: 'text/css;charset=utf-8' })
+    saveAs(blob, name)
   }
 </script>
 

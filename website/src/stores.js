@@ -32,9 +32,9 @@ const OPTIONS = {
       replaceMultipleZeros: true,
       replaceTimeUnits: true,
       replaceZeroUnits: true,
-      roundingPrecision: "",
-      selectorsSortingMethod: "standard",
-      specialComments: "all",
+      roundingPrecision: '',
+      selectorsSortingMethod: 'standard',
+      specialComments: 'all',
       tidyAtRules: true,
       tidyBlockScopes: true,
       tidySelectors: true
@@ -53,7 +53,7 @@ const OPTIONS = {
       removeEmpty: true,
       removeUnusedAtRules: false,
       restructureRules: false,
-      skipProperties: ""
+      skipProperties: ''
     }
   },
   format: {
@@ -66,10 +66,10 @@ const OPTIONS = {
       afterRuleBegins: true,
       afterRuleEnds: true,
       beforeBlockEnds: true,
-      betweenSelectors: true,
+      betweenSelectors: true
     },
     indentBy: 2,
-    indentWith: "space",
+    indentWith: 'space',
     spaces: {
       aroundSelectorRelation: true,
       beforeBlockBegins: true,
@@ -96,13 +96,13 @@ const createOptionsStore = () => {
 
   return {
     set,
-		subscribe,
+    subscribe,
     update,
     reset: () => {
       set(deepCopyObject(OPTIONS))
     },
     getNormalized
-	}
+  }
 }
 
 export const options = createOptionsStore()

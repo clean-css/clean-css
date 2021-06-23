@@ -1,0 +1,27 @@
+{
+  "env": {
+    "browser": true,
+    "es2020": true
+  },
+  "plugins": [
+    "svelte3"
+  ],
+  "extends": ["airbnb-base/legacy"],
+  "parserOptions": {
+    "ecmaVersion": 11,
+    "sourceType": "module"
+  },
+  "overrides": [
+    {
+      "files": ["*.svelte"],
+      "processor": "svelte3/svelte3"
+    }
+  ],
+  "rules": {
+    "eol-last": ["error", "always"],
+    "indent": ["warn", 2],
+    "max-len": ["error", { "code": 110, "ignoreComments": true }],
+    "no-param-reassign": "off",
+    "semi": ["error", "never"]
+   }
+}

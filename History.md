@@ -1,3 +1,8 @@
+[5.1.3 / 2021-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v5.1.2...5.1)
+==================
+
+* Fixed issue [#1161](https://github.com/jakubpawlowicz/clean-css/issues/1161) - extra whitespace in URLs.
+
 [5.1.2 / 2021-03-19](https://github.com/jakubpawlowicz/clean-css/compare/v5.1.1...v5.1.2)
 ==================
 

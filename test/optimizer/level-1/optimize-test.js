@@ -1196,6 +1196,10 @@ vows.describe('level 1 optimizations')
       'line breaks and special comments inside a rule': [
         'a{\ncolor:red;\n/*!*/\n\n\n\n\n\n\n/*!*/\n}',
         'a{color:red/*!*//*!*/}'
+      ],
+      'inside URL': [
+        'a{background:url(    "about:blank"  )}',
+        'a{background:url("about:blank")}'
       ]
     }, { level: 1 })
   )

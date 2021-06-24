@@ -2,6 +2,7 @@
 ==================
 
 * Fixed issue [#1161](https://github.com/jakubpawlowicz/clean-css/issues/1161) - extra whitespace in URLs.
+* Fixed issue [#1166](https://github.com/jakubpawlowicz/clean-css/issues/1166) - incorrect compoment splitting when empty multiplex part.
 
 [5.1.2 / 2021-03-19](https://github.com/jakubpawlowicz/clean-css/compare/v5.1.1...v5.1.2)
 ==================

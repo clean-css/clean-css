@@ -3,7 +3,7 @@
   import * as CleanCSS from 'clean-css'
   import { options } from '../stores'
 
-import Legend from './Legend.svelte'
+  import Legend from './Legend.svelte'
   import LoadedFile from './LoadedFile.svelte'
 
   let isDroppedFileErrored = false

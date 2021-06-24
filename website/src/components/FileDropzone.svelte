@@ -1,16 +1,16 @@
 <script>
-  import Dropzone from "svelte-file-dropzone"
+  import Dropzone from 'svelte-file-dropzone'
   import * as CleanCSS from 'clean-css'
   import { options } from '../stores'
 
-	import Legend from "./Legend.svelte"
-  import LoadedFile from "./LoadedFile.svelte";
+  import Legend from './Legend.svelte'
+  import LoadedFile from './LoadedFile.svelte'
 
   let isDroppedFileErrored = false
   let files = []
 
   const addFile = (file) => {
-    const {errors, styles, stats} = new CleanCSS(options.getNormalized($options)).minify(file.target.result)
+    const { errors, styles, stats } = new CleanCSS(options.getNormalized($options)).minify(file.target.result)
     if (errors.length > 0) {
       isDroppedFileErrored = true
       return
@@ -32,15 +32,14 @@
     acceptedFiles.forEach(file => {
       const { name } = file
 
-      const reader = new FileReader();
-      reader.addEventListener("loadend", (event) => {
+      const reader = new FileReader()
+      reader.addEventListener('loadend', (event) => {
         event.name = name
         addFile(event)
       })
 
       reader.readAsText(file)
     })
-    
   }
 </script>
 

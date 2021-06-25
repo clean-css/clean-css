@@ -22,7 +22,7 @@
   <span class="fw-bold">{name}</span>
   <span class="fw-lighter fst-italic"> - saved {sizeSaved / 1000} kB</span>
 
-  <CopySaveActions class="position-absolute top-50 end-0 translate-middle-y" onSavedToClipboard={saveToClipboard} onSave={saveFile} />
+  <CopySaveActions onSavedToClipboard={saveToClipboard} onSave={saveFile} class="position-absolute top-50 end-0 translate-middle-y" />
 </li>
 
 <style>

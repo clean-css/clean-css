@@ -30,7 +30,7 @@
 
 </script>
 
-<div class={`d-flex ${className}`}>
+<div class={`d-flex ${className} copy-save-actions`}>
   <button class="btn btn-link p-1" on:click={saveToClipboard}>
     <Icon name={isSavedToClipboard ? 'check': 'clipboard'}/>
   </button>

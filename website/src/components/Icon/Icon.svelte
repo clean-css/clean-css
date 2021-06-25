@@ -3,6 +3,9 @@
   import gear from './icons/gear.svg'
   import logo from './icons/logo.svg'
   import spinner from './icons/spinner.svg'
+  import check from './icons/check.svg'
+  import clipboard from './icons/clipboard.svg'
+  import download from './icons/download.svg'
 
   let className = ''
 
@@ -13,7 +16,10 @@
     'gear-highlighted': gearHighlighted,
     gear,
     logo,
-    spinner
+    spinner,
+    check,
+    clipboard,
+    download
   }
 </script>
 

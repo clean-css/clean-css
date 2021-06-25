@@ -5,7 +5,7 @@
     "build": "cross-env NODE_ENV=production webpack",
     "dev": "webpack serve --content-base public",
     "start": "sirv public --no-clear",
-    "lint": "yarn eslint ./src"
+    "lint": "eslint ./src"
   },
   "devDependencies": {
     "buffer": "^6.0.3",

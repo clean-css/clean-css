@@ -20,6 +20,7 @@
   "rules": {
     "eol-last": ["error", "always"],
     "indent": ["warn", 2],
+    "linebreak-style": "off",
     "max-len": ["error", { "code": 110, "ignoreComments": true }],
     "no-param-reassign": "off",
     "semi": ["error", "never"]

@@ -1,5 +1,10 @@
 <script>
+  import { saveAs } from 'file-saver'
   import * as CleanCSS from 'clean-css'
+  import CopySaveActions from './CopySaveActions.svelte'
+
+  import { setClipboard } from '../utils'
+
   import { options } from '../stores'
 
   let input = ''
@@ -13,15 +18,33 @@
       return
     }
 
-    console.log(styles)
     optimizedInput = styles
+  }
+
+  const saveToClipboard = () => {
+    setClipboard(optimizedInput)
+  }
+
+  const save = () => {
+    const blob = new Blob([optimizedInput], { type: 'text/css;charset=utf-8' })
+    saveAs(blob, 'styles.min.css')
   }
 </script>
 
 <textarea bind:value={input} class="form-control" rows="6"></textarea>
 <div class="row mt-2">
   <button class="btn btn-primary d-inline" on:click={optimize}>optimize ➜</button>
-  <input class="form-control ms-2" type="text" disabled={!optimizedInput} bind:value={optimizedInput}>
+
+  <div id="result" class="position-relative ms-2 flex-grow-1 d-flex p-0" style="width: 0;">
+    <input class="form-control" type="text" disabled={!optimizedInput} bind:value={optimizedInput}>
+    {#if optimizedInput}
+      <CopySaveActions
+        onSavedToClipboard={saveToClipboard}
+        onSave={save}
+        class="position-absolute top-50 end-0 translate-middle-y me-2 bg-light rounded border"
+      />
+    {/if}
+  </div>
 </div>
 
 <style>
@@ -34,8 +57,10 @@
   button {
     width: fit-content;
   }
-  input {
-    width: 0;
-    flex-grow: 1;
+  #result :global(.copy-save-actions) {
+    display: none!important;
+  }
+  #result:hover :global(.copy-save-actions) {
+    display: flex!important;
   }
 </style>

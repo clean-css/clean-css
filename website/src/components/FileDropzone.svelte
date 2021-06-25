@@ -43,7 +43,7 @@
   }
 </script>
 
-<div class="d-flex flex-column justify-center">
+<div class="d-flex flex-column justify-center mt-5">
   <Dropzone 
     on:dropaccepted={handleFilesSelect}
     on:droprejected={() => { isDroppedFileErrored = true }}

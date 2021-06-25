@@ -30,7 +30,7 @@
   }
 </script>
 
-<textarea bind:value={input} class="form-control" rows="6"></textarea>
+<textarea bind:value={input} class="form-control" rows="6" placeholder="enter your raw css here to optimize it..."></textarea>
 <div class="row mt-2">
   <button class="btn btn-primary d-inline" style="background-color: #27AAE1;" on:click={optimize}>optimize ➜</button>
 

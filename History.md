@@ -1,4 +1,4 @@
-[5.1.3 / 2021-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v5.1.2...5.1)
+[5.1.3 / 2021-06-25](https://github.com/jakubpawlowicz/clean-css/compare/v5.1.2...v5.1.3)
 ==================
 
 * Fixed issue [#1160](https://github.com/jakubpawlowicz/clean-css/issues/1160) - keep zero units when inside multiple functions.

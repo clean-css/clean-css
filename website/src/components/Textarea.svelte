@@ -9,12 +9,11 @@
 
   let input = ''
   let optimizedInput
-  let isCssErrored = false
 
   const optimize = () => {
     const { errors, styles } = new CleanCSS(options.getNormalized($options)).minify(input)
+    console.log(errors, styles)
     if (errors.length > 0) {
-      isCssErrored = true
       return
     }
 
@@ -33,11 +32,11 @@
 
 <textarea bind:value={input} class="form-control" rows="6"></textarea>
 <div class="row mt-2">
-  <button class="btn btn-primary d-inline" on:click={optimize}>optimize ➜</button>
+  <button class="btn btn-primary d-inline" style="background-color: #27AAE1;" on:click={optimize}>optimize ➜</button>
 
   <div id="result" class="position-relative ms-2 flex-grow-1 d-flex p-0" style="width: 0;">
-    <input class="form-control" type="text" disabled={!optimizedInput} bind:value={optimizedInput}>
-    {#if optimizedInput}
+    <input class="form-control" type="text" disabled={optimizedInput === undefined} bind:value={optimizedInput}>
+    {#if optimizedInput !== undefined}
       <CopySaveActions
         onSavedToClipboard={saveToClipboard}
         onSave={save}

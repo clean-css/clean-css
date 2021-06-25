@@ -1112,6 +1112,10 @@ vows.describe('level 1 optimizations')
       'zero inside clamp function': [
         '.block{width:clamp(0rem, 2.5vw, 2rem)}',
         '.block{width:clamp(0rem,2.5vw,2rem)}'
+      ],
+      'inside calc inside a gradient': [
+        '.block{background:linear-gradient(red 0rem calc(50% - 0rem),#00f calc(50% + 0rem) 100%)}',
+        '.block{background:linear-gradient(red 0 calc(50% - 0rem),#00f calc(50% + 0rem) 100%)}'
       ]
     }, { level: 1 })
   )

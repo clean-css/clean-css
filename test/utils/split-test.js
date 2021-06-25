@@ -63,6 +63,24 @@ vows.describe(split)
       split: function (input) {
         assert.deepEqual(split(input, ';'), ['apply(--var)', 'color:red']);
       }
+    },
+    'regex separated without matching': {
+      topic: '1rem auto/2rem auto,none',
+      split: function (input) {
+        assert.deepEqual(split(input, /[ \/,]/), ['1rem', 'auto', '2rem', 'auto', 'none']);
+      }
+    },
+    'regex separated with matching': {
+      topic: '1rem auto/2rem auto,none',
+      split: function (input) {
+        assert.deepEqual(split(input, /([ \/,])/), ['1rem', ' ', 'auto', '/', '2rem', ' ', 'auto', ',', 'none']);
+      }
+    },
+    'regex separated with matching and functions': {
+      topic: '1rem auto/calc(1rem + 1px) auto,none',
+      split: function (input) {
+        assert.deepEqual(split(input, /([ \/,])/), ['1rem', ' ', 'auto', '/', 'calc(1rem + 1px)', ' ', 'auto', ',', 'none']);
+      }
     }
   })
   .export(module);

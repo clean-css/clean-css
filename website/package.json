@@ -1,0 +1,38 @@
+{
+  "name": "svelte-app",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "cross-env NODE_ENV=production webpack",
+    "dev": "webpack serve --content-base public",
+    "start": "sirv public --no-clear",
+    "lint": "eslint ./src"
+  },
+  "devDependencies": {
+    "buffer": "^6.0.3",
+    "cross-env": "^7.0.3",
+    "css-loader": "^5.2.6",
+    "eslint": "^7.29.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-svelte3": "^3.2.0",
+    "file-loader": "^6.2.0",
+    "https-browserify": "^1.0.0",
+    "mini-css-extract-plugin": "^1.6.0",
+    "process": "^0.11.10",
+    "sirv-cli": "^1.0.12",
+    "svelte": "^3.0.0",
+    "svelte-file-dropzone": "^0.0.15",
+    "svelte-loader": "^3.1.2",
+    "util": "^0.12.4",
+    "webpack": "^5.39.1",
+    "webpack-cli": "^4.7.2",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "dependencies": {
+    "bootstrap": "^5.0.1",
+    "clean-css": "^5.1.2",
+    "file-saver": "^2.0.5",
+    "os-browserify": "^0.3.0",
+    "path-browserify": "^1.0.1",
+    "stream-http": "^3.2.0"
+  }
+}

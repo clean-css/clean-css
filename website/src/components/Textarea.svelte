@@ -2,6 +2,7 @@
   import { saveAs } from 'file-saver'
   import * as CleanCSS from 'clean-css'
   import CopySaveActions from './CopySaveActions.svelte'
+  import SavedSizeBadge from './SavedSizeBadge.svelte';
 
   import { setClipboard } from '../utils'
 
@@ -9,14 +10,16 @@
 
   let input = ''
   let optimizedInput
+  let savedSize
 
   const optimize = () => {
-    const { errors, styles } = new CleanCSS(options.getNormalized($options)).minify(input)
+    const { errors, styles, stats } = new CleanCSS(options.getNormalized($options)).minify(input)
     console.log(errors, styles)
     if (errors.length > 0) {
       return
     }
 
+    savedSize = stats.originalSize - stats.minifiedSize
     optimizedInput = styles
   }
 
@@ -34,13 +37,14 @@
 <div class="row mt-2">
   <button class="btn btn-primary d-inline" style="background-color: #27AAE1;" on:click={optimize}>optimize ➜</button>
 
-  <div id="result" class="position-relative ms-2 flex-grow-1 d-flex p-0" style="width: 0;">
+  <div id="result" class="position-relative ms-2 flex-grow-1 d-flex p-0 align-items-center" style="width: 0;">
     <input class="form-control" type="text" disabled={optimizedInput === undefined} bind:value={optimizedInput}>
     {#if optimizedInput !== undefined}
+      <SavedSizeBadge size={savedSize} class="text-nowrap ms-2" />
       <CopySaveActions
         onSavedToClipboard={saveToClipboard}
         onSave={save}
-        class="position-absolute top-50 end-0 translate-middle-y me-2 bg-light rounded border"
+        class="ms-1 me-2 rounded border"
       />
     {/if}
   </div>
@@ -55,11 +59,5 @@
   }
   button {
     width: fit-content;
-  }
-  #result :global(.copy-save-actions) {
-    display: none!important;
-  }
-  #result:hover :global(.copy-save-actions) {
-    display: flex!important;
   }
 </style>

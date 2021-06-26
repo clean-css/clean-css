@@ -2,7 +2,7 @@
   import { saveAs } from 'file-saver'
   import * as CleanCSS from 'clean-css'
   import CopySaveActions from './CopySaveActions.svelte'
-  import SavedSizeBadge from './SavedSizeBadge.svelte';
+  import SavedSizeBadge from './SavedSizeBadge.svelte'
 
   import { setClipboard } from '../utils'
 
@@ -14,7 +14,6 @@
 
   const optimize = () => {
     const { errors, styles, stats } = new CleanCSS(options.getNormalized($options)).minify(input)
-    console.log(errors, styles)
     if (errors.length > 0) {
       return
     }

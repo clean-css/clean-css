@@ -3,7 +3,7 @@
   import Footer from './components/Footer.svelte'
   import FileDropzone from './components/FileDropzone.svelte'
   import Settings from './components/Settings.svelte'
-  import Textarea from './components/Textarea.svelte';
+  import Textarea from './components/Textarea.svelte'
 </script>
 
 <Header />

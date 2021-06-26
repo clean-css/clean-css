@@ -1,5 +1,5 @@
 <script>
-  import Icon from "./Icon/Icon.svelte"
+  import Icon from './Icon/Icon.svelte'
 
   let className = ''
 
@@ -27,14 +27,13 @@
 
     onSave()
   }
-
 </script>
 
 <div class={`d-flex ${className} copy-save-actions`}>
   <button class="btn btn-link p-1" on:click={saveToClipboard}>
-    <Icon name={isSavedToClipboard ? 'check': 'clipboard'}/>
+    <Icon name={isSavedToClipboard ? 'check' : 'clipboard'}/>
   </button>
   <button class="btn btn-link p-1 ms-1" on:click={save}>
-    <Icon name={isSaved ? 'check': 'download'}/>
+    <Icon name={isSaved ? 'check' : 'download'}/>
   </button>
 </div>

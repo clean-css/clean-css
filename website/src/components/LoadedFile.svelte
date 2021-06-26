@@ -1,7 +1,7 @@
 <script>
   import { saveAs } from 'file-saver'
   import CopySaveActions from './CopySaveActions.svelte'
-  import SavedSizeBadge from './SavedSizeBadge.svelte';
+  import SavedSizeBadge from './SavedSizeBadge.svelte'
 
   import { setClipboard } from '../utils'
 

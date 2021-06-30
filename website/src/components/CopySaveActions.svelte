@@ -7,6 +7,7 @@
   export let onSavedToClipboard
   export let onSave
 
+  const VALIDATION_ANIMATION_DURATION = 700
   let isSavedToClipboard = false
   let isSaved = false
 
@@ -14,7 +15,7 @@
     isSavedToClipboard = true
     setTimeout(() => {
       isSavedToClipboard = false
-    }, 700)
+    }, VALIDATION_ANIMATION_DURATION)
 
     onSavedToClipboard()
   }
@@ -23,7 +24,7 @@
     isSaved = true
     setTimeout(() => {
       isSaved = false
-    }, 700)
+    }, VALIDATION_ANIMATION_DURATION)
 
     onSave()
   }

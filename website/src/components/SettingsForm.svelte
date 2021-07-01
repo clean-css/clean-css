@@ -5,7 +5,7 @@
 <form class="settings mb-4 d-flex flex-column">
   <fieldset class="settings__group">
     <select class="form-select" name="version">
-      <option value="v5.1.2" selected>5.1.2 (latest)</option>
+      <option value="v5.1.3" selected>5.1.3 (latest)</option>
     </select>
   </fieldset>
   <div class="mt-2">

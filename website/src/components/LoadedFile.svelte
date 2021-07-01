@@ -1,18 +1,15 @@
 <script>
   import { saveAs } from 'file-saver'
+  import CopySaveActions from './CopySaveActions.svelte'
+  import SavedSizeBadge from './SavedSizeBadge.svelte'
+
   import { setClipboard } from '../utils'
 
   export let name
   export let sizeSaved
   export let content
 
-  let isSavedToClipboard = false
-
   const saveToClipboard = () => {
-    isSavedToClipboard = true
-    setTimeout(() => {
-      isSavedToClipboard = false
-    }, 700)
     setClipboard(content)
   }
 
@@ -24,13 +21,9 @@
 
 <li class="list-group list-group-item d-flex flex-row align-items-center p-1">
   <span class="fw-bold">{name}</span>
-  <span class="fw-lighter fst-italic"> - saved {sizeSaved / 1000} kB</span>
-  <div class="d-flex justify-content-end flex-grow-1">
-    <button class="btn btn-link p-1 ms-4" on:click={saveToClipboard}>
-      {isSavedToClipboard ? 'done!' : 'copy to clipboard'}
-    </button>
-    <button class="btn btn-link p-1" on:click={saveFile}>save</button>
-  </div>
+  <SavedSizeBadge size={sizeSaved} />
+
+  <CopySaveActions onSavedToClipboard={saveToClipboard} onSave={saveFile} class="position-absolute top-50 end-0 translate-middle-y" />
 </li>
 
 <style>

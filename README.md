@@ -885,11 +885,11 @@ function css() {
     };
 
     return src('app/**/*.css')
+        .pipe(concat('style.min.css'))
         .on('data', function(file) {
             const buferFile = new CleanCSS(options).minify(file.contents)
             return file.contents = Buffer.from(buferFile.styles)
         })
-        .pipe(concat('style.min.css'))
         .pipe(dest('build'))
 }
 exports.css = series(css)

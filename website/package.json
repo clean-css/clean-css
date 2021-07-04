@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack",
-    "dev": "webpack serve --content-base public",
-    "start": "sirv public --no-clear",
+    "start": "webpack serve --content-base public",
+    "serve": "sirv public --no-clear",
     "lint": "eslint ./src"
   },
   "devDependencies": {
@@ -20,6 +20,7 @@
     "process": "^0.11.10",
     "sirv-cli": "^1.0.12",
     "svelte": "^3.0.0",
+    "svelte-bootstrap-icons": "^1.5.0",
     "svelte-file-dropzone": "^0.0.15",
     "svelte-loader": "^3.1.2",
     "util": "^0.12.4",

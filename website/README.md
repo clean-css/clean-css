@@ -12,7 +12,7 @@ npm install
 ...then start webpack:
 
 ```bash
-npm run dev
+npm run start
 ```
 
 Navigate to [localhost:8080](http://localhost:8080).

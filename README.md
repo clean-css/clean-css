@@ -869,6 +869,31 @@ console.log(output);
   warnings: []
 }
 ```
+## Clean-css for Gulp
+An example of how you can include clean-css in gulp
+```js
+const { src, dest, series } = require('gulp');
+const CleanCSS = require('clean-css');
+const concat = require('gulp-concat');
+
+function css() {
+    const options = {
+        compatibility: '*', // (default) - Internet Explorer 10+ compatibility mode
+        inline: ['all'], // enables all inlining, same as ['local', 'remote']
+        level: 2 // Optimization levels. The level option can be either 0, 1 (default), or 2, e.g.
+        // Please note that level 1 optimization options are generally safe while level 2 optimizations should be safe for most users.
+    };
+
+    return src('app/**/*.css')
+        .on('data', function(file) {
+            const buferFile = new CleanCSS(options).minify(file.contents)
+            return file.contents = Buffer.from(buferFile.styles)
+        })
+        .pipe(concat('style.min.css'))
+        .pipe(dest('build'))
+}
+exports.css = series(css)
+```
 
 ## How to use clean-css with build tools?
 

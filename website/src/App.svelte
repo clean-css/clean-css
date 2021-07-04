@@ -1,4 +1,5 @@
 <script>
+  import Navbar from './components/Navbar.svelte'
   import Header from './components/Header.svelte'
   import Footer from './components/Footer.svelte'
   import FileDropzone from './components/FileDropzone.svelte'
@@ -6,6 +7,7 @@
   import Textarea from './components/Textarea.svelte'
 </script>
 
+<Navbar />
 <Header />
 <main class="d-flex flex-column justify-content-center align-items-center px-2 px-sm-5">
   <Settings />

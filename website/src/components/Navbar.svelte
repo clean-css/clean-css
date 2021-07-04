@@ -1,5 +1,5 @@
 <script>
-  import { Github } from "svelte-bootstrap-icons"
+  import { Github } from 'svelte-bootstrap-icons'
 </script>
 
 

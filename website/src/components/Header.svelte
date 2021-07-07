@@ -3,7 +3,7 @@
 </script>
 
 <header class="d-flex justify-content-center p-6">
-  <a href="https://github.com/jakubpawlowicz/clean-css" target="_blank">
+  <a href="https://github.com/clean-css/clean-css" target="_blank">
     <Icon name="logo" />
   </a>
 </header>

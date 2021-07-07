@@ -290,21 +290,21 @@ vows.describe('module tests').addBatch({
   'external imports and no callback': {
     'without content': {
       'topic': function () {
-        return new CleanCSS().minify('@import url(http://jakubpawlowicz.com/styles.css);');
+        return new CleanCSS().minify('@import url(http://clean-css.github.io/styles.css);');
       },
       'has right output': function (minified) {
-        assert.equal(minified.styles, '@import url(http://jakubpawlowicz.com/styles.css);');
+        assert.equal(minified.styles, '@import url(http://clean-css.github.io/styles.css);');
       },
       'has no errors': function (minified) {
         assert.isEmpty(minified.errors);
       },
       'has a warning': function (minified) {
-        assert.deepEqual(minified.warnings, ['Skipping remote @import of "http://jakubpawlowicz.com/styles.css" as no callback given.']);
+        assert.deepEqual(minified.warnings, ['Skipping remote @import of "http://clean-css.github.io/styles.css" as no callback given.']);
       }
     },
     'after content': {
       'topic': function () {
-        return new CleanCSS().minify('a{color:red}@import url(http://jakubpawlowicz.com/styles.css);');
+        return new CleanCSS().minify('a{color:red}@import url(http://clean-css.github.io/styles.css);');
       },
       'has right output': function (minified) {
         assert.equal(minified.styles, 'a{color:red}');
@@ -313,12 +313,12 @@ vows.describe('module tests').addBatch({
         assert.isEmpty(minified.errors);
       },
       'has a warning': function (minified) {
-        assert.deepEqual(minified.warnings, ['Ignoring remote @import of "http://jakubpawlowicz.com/styles.css" as no callback given and after other content.']);
+        assert.deepEqual(minified.warnings, ['Ignoring remote @import of "http://clean-css.github.io/styles.css" as no callback given and after other content.']);
       }
     },
     'after local import': {
       'topic': function () {
-        return new CleanCSS().minify('@import url(test/fixtures/partials/one.css);@import url(http://jakubpawlowicz.com/styles.css);');
+        return new CleanCSS().minify('@import url(test/fixtures/partials/one.css);@import url(http://clean-css.github.io/styles.css);');
       },
       'has right output': function (minified) {
         assert.equal(minified.styles, '.one{color:red}');
@@ -327,23 +327,23 @@ vows.describe('module tests').addBatch({
         assert.isEmpty(minified.errors);
       },
       'has a warning': function (minified) {
-        assert.deepEqual(minified.warnings, ['Skipping remote @import of "http://jakubpawlowicz.com/styles.css" as no callback given.']);
+        assert.deepEqual(minified.warnings, ['Skipping remote @import of "http://clean-css.github.io/styles.css" as no callback given.']);
       }
     },
     'after remote import': {
       'topic': function () {
-        return new CleanCSS().minify('@import url(http://jakubpawlowicz.com/reset.css);@import url(http://jakubpawlowicz.com/styles.css);');
+        return new CleanCSS().minify('@import url(http://clean-css.github.io/reset.css);@import url(http://clean-css.github.io/styles.css);');
       },
       'has right output': function (minified) {
-        assert.equal(minified.styles, '@import url(http://jakubpawlowicz.com/reset.css);@import url(http://jakubpawlowicz.com/styles.css);');
+        assert.equal(minified.styles, '@import url(http://clean-css.github.io/reset.css);@import url(http://clean-css.github.io/styles.css);');
       },
       'has no errors': function (minified) {
         assert.isEmpty(minified.errors);
       },
       'has a warning': function (minified) {
         assert.deepEqual(minified.warnings, [
-          'Skipping remote @import of "http://jakubpawlowicz.com/reset.css" as no callback given.',
-          'Skipping remote @import of "http://jakubpawlowicz.com/styles.css" as no callback given.'
+          'Skipping remote @import of "http://clean-css.github.io/reset.css" as no callback given.',
+          'Skipping remote @import of "http://clean-css.github.io/styles.css" as no callback given.'
         ]);
       }
     }
@@ -605,7 +605,7 @@ vows.describe('module tests').addBatch({
           return new CleanCSS({ inline: 'none' }).minify(['./test/fixtures/partials/remote.css', './test/fixtures/partials-absolute/base.css']);
         },
         'should give right output': function (minified) {
-          assert.equal(minified.styles, '@import url(http://jakubpawlowicz.com/styles.css);@import url(test/fixtures/partials-absolute/extra/sub.css);.base{margin:0}');
+          assert.equal(minified.styles, '@import url(http://clean-css.github.io/styles.css);@import url(test/fixtures/partials-absolute/extra/sub.css);.base{margin:0}');
         }
       },
       'off - many files with content': {

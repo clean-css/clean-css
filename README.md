@@ -1,17 +1,17 @@
 <h1 align="center">
   <br/>
-  <img src="https://cdn.rawgit.com/jakubpawlowicz/clean-css/master/logo.v2.svg" alt="clean-css logo" width="525px"/>
+  <img src="https://cdn.rawgit.com/clean-css/clean-css/master/logo.v2.svg" alt="clean-css logo" width="525px"/>
   <br/>
   <br/>
 </h1>
 
 [![npm version](https://img.shields.io/npm/v/clean-css.svg?style=flat)](https://www.npmjs.com/package/clean-css)
-[![Build Status](https://img.shields.io/github/workflow/status/jakubpawlowicz/clean-css/Tests/master)](https://github.com/jakubpawlowicz/clean-css/actions?query=workflow%3ATests+branch%3Amaster)
-[![PPC Linux Build Status](https://img.shields.io/travis/jakubpawlowicz/clean-css/master.svg?style=flat&label=PPC%20Linux%20build)](https://travis-ci.org/jakubpawlowicz/clean-css)
-[![Dependency Status](https://img.shields.io/david/jakubpawlowicz/clean-css.svg?style=flat)](https://david-dm.org/jakubpawlowicz/clean-css)
+[![Build Status](https://img.shields.io/github/workflow/status/clean-css/clean-css/Tests/master)](https://github.com/clean-css/clean-css/actions?query=workflow%3ATests+branch%3Amaster)
+[![PPC Linux Build Status](https://img.shields.io/travis/clean-css/clean-css/master.svg?style=flat&label=PPC%20Linux%20build)](https://travis-ci.org/clean-css/clean-css)
+[![Dependency Status](https://img.shields.io/david/clean-css/clean-css.svg?style=flat)](https://david-dm.org/clean-css/clean-css)
 [![npm Downloads](https://img.shields.io/npm/dm/clean-css.svg)](https://npmcharts.com/compare/clean-css?minimal=true)
 
-clean-css is a fast and efficient CSS optimizer for [Node.js](http://nodejs.org/) platform and [any modern browser](https://jakubpawlowicz.github.io/clean-css).
+clean-css is a fast and efficient CSS optimizer for [Node.js](http://nodejs.org/) platform and [any modern browser](https://clean-css.github.io/clean-css).
 
 According to [tests](http://goalsmashers.github.io/css-minification-benchmark/) it is one of the best available.
 
@@ -117,13 +117,13 @@ clean-css 4.1 introduces the following changes / features:
 * `skipProperties` flag in level 2 optimizations controlling which properties won't be optimized;
 * new `animation` shorthand and `animation-*` longhand optimizers;
 * `removeUnusedAtRules` level 2 optimization controlling removal of unused `@counter-style`, `@font-face`, `@keyframes`, and `@namespace` at rules;
-* the [web interface](https://jakubpawlowicz.github.io/clean-css) gets an improved settings panel with "reset to defaults", instant option changes, and settings being persisted across sessions.
+* the [web interface](https://clean-css.github.io/clean-css) gets an improved settings panel with "reset to defaults", instant option changes, and settings being persisted across sessions.
 
 ## Important: 4.0 breaking changes
 
 clean-css 4.0 introduces some breaking changes:
 
-* API and CLI interfaces are split, so API stays in this repository while CLI moves to [clean-css-cli](https://github.com/jakubpawlowicz/clean-css-cli);
+* API and CLI interfaces are split, so API stays in this repository while CLI moves to [clean-css-cli](https://github.com/clean-css/clean-css-cli);
 * `root`, `relativeTo`, and `target` options are replaced by a single `rebaseTo` option - this means that rebasing URLs and import inlining is much simpler but may not be (YMMV) as powerful as in 3.x;
 * `debug` option is gone as stats are always provided in output object under `stats` property;
 * `roundingPrecision` is disabled by default;
@@ -167,7 +167,7 @@ There is a certain number of compatibility mode shortcuts, namely:
 * `new CleanCSS({ compatibility: 'ie8' })` - Internet Explorer 8+ compatibility mode
 * `new CleanCSS({ compatibility: 'ie7' })` - Internet Explorer 7+ compatibility mode
 
-Each of these modes is an alias to a [fine grained configuration](https://github.com/jakubpawlowicz/clean-css/blob/master/lib/options/compatibility.js), with the following options available:
+Each of these modes is an alias to a [fine grained configuration](https://github.com/clean-css/clean-css/blob/master/lib/options/compatibility.js), with the following options available:
 
 ```js
 new CleanCSS({
@@ -246,7 +246,7 @@ new CleanCSS({
 
 This option provides a convenient way of overriding the default fetching logic if it doesn't support a particular feature, say CONNECT proxies.
 
-Unless given, the default [loadRemoteResource](https://github.com/jakubpawlowicz/clean-css/blob/master/lib/reader/load-remote-resource.js) logic is used.
+Unless given, the default [loadRemoteResource](https://github.com/clean-css/clean-css/blob/master/lib/reader/load-remote-resource.js) logic is used.
 
 ## Formatting options
 
@@ -495,7 +495,7 @@ new CleanCSS({plugins: [myPlugin]})
 
 Search `test\module-test.js` for `plugins` or check out `lib/optimizer/level-1/property-optimizers` and `lib/optimizer/level-1/value-optimizers` for more examples.
 
-__Important__: To rewrite your old `transform` as a plugin, check out [this commit](https://github.com/jakubpawlowicz/clean-css/commit/b6ddc523267fc42cf0f6bd1626a79cad97319e17#diff-a71ef45f934725cdb25860dc0b606bcd59e3acee9788cd6df4f9d05339e8a153).
+__Important__: To rewrite your old `transform` as a plugin, check out [this commit](https://github.com/clean-css/clean-css/commit/b6ddc523267fc42cf0f6bd1626a79cad97319e17#diff-a71ef45f934725cdb25860dc0b606bcd59e3acee9788cd6df4f9d05339e8a153).
 
 ## Minify method
 
@@ -523,14 +523,14 @@ Example: Minifying a CSS string:
 const CleanCSS = require("clean-css");
 
 const output = new CleanCSS().minify(`
-    
+
   a {
     color: blue;
   }
   div {
     margin: 5px
   }
-    
+
 `);
 
 console.log(output);
@@ -577,7 +577,7 @@ new CleanCSS({ returnPromise: true })
 
 ## CLI utility
 
-Clean-css has an associated command line utility that can be installed separately using `npm install clean-css-cli`. For more detailed information, please visit https://github.com/jakubpawlowicz/clean-css-cli.
+Clean-css has an associated command line utility that can be installed separately using `npm install clean-css-cli`. For more detailed information, please visit https://github.com/clean-css/clean-css-cli.
 
 # FAQ
 
@@ -656,7 +656,7 @@ which sets all units rounding precision to 3 digits except `px` unit precision o
 
 ## How to optimize a stylesheet with custom `rpx` units?
 
-Since `rpx` is a non standard unit (see [#1074](https://github.com/jakubpawlowicz/clean-css/issues/1074)), it will be dropped by default as an invalid value.
+Since `rpx` is a non standard unit (see [#1074](https://github.com/clean-css/clean-css/issues/1074)), it will be dropped by default as an invalid value.
 
 However you can treat `rpx` units as regular ones:
 
@@ -779,7 +779,7 @@ will apply level 1 optimizations, except url normalization, and default level 2 
 
 ## What level 2 optimizations do?
 
-All level 2 optimizations are dispatched [here](https://github.com/jakubpawlowicz/clean-css/blob/master/lib/optimizer/level-2/optimize.js#L67), and this is what they do:
+All level 2 optimizations are dispatched [here](https://github.com/clean-css/clean-css/blob/master/lib/optimizer/level-2/optimize.js#L67), and this is what they do:
 
 * `recursivelyOptimizeBlocks` - does all the following operations on a nested block, like `@media` or `@keyframe`;
 * `recursivelyOptimizeProperties` - optimizes properties in rulesets and flat at-rules, like @font-face, by splitting them into components (e.g. `margin` into `margin-(bottom|left|right|top)`), optimizing, and restoring them back. You may want to use `mergeIntoShorthands` option to control whether you want to turn multiple components into shorthands;
@@ -803,15 +803,15 @@ Example: Minify invalid CSS, resulting in two warnings:
 const CleanCSS = require("clean-css");
 
 const output = new CleanCSS().minify(`
-    
+
   a {
     -notarealproperty-: 5px;
-    color: 
+    color:
   }
   div {
     margin: 5px
   }
-    
+
 `);
 
 console.log(output);
@@ -848,7 +848,7 @@ const output = new CleanCSS().minify(`
   div {
     margin: 5px
   }
-    
+
 `);
 
 console.log(output);
@@ -903,7 +903,7 @@ There is a number of 3rd party plugins to popular build tools:
 * [Brunch](http://brunch.io/): [clean-css-brunch](https://github.com/brunch/clean-css-brunch)
 * [Grunt](http://gruntjs.com): [grunt-contrib-cssmin](https://github.com/gruntjs/grunt-contrib-cssmin)
 * [Gulp](http://gulpjs.com/): [gulp-clean-css](https://github.com/scniro/gulp-clean-css)
-* [Gulp](http://gulpjs.com/): [using vinyl-map as a wrapper - courtesy of @sogko](https://github.com/jakubpawlowicz/clean-css/issues/342)
+* [Gulp](http://gulpjs.com/): [using vinyl-map as a wrapper - courtesy of @sogko](https://github.com/clean-css/clean-css/issues/342)
 * [component-builder2](https://github.com/component/builder2.js): [builder-clean-css](https://github.com/poying/builder-clean-css)
 * [Metalsmith](http://metalsmith.io): [metalsmith-clean-css](https://github.com/aymericbeaumet/metalsmith-clean-css)
 * [Lasso](https://github.com/lasso-js/lasso): [lasso-clean-css](https://github.com/yomed/lasso-clean-css)
@@ -911,20 +911,20 @@ There is a number of 3rd party plugins to popular build tools:
 
 ## How to use clean-css from web browser?
 
-* https://jakubpawlowicz.github.io/clean-css/ (official web interface)
+* https://clean-css.github.io/clean-css/ (official web interface)
 * http://refresh-sf.com/
 * http://adamburgess.github.io/clean-css-online/
 
 # Contributing
 
-See [CONTRIBUTING.md](https://github.com/jakubpawlowicz/clean-css/blob/master/CONTRIBUTING.md).
+See [CONTRIBUTING.md](https://github.com/clean-css/clean-css/blob/master/CONTRIBUTING.md).
 
 ## How to get started?
 
 First clone the sources:
 
 ```bash
-git clone git@github.com:jakubpawlowicz/clean-css.git
+git clone git@github.com:clean-css/clean-css.git
 ```
 
 then install dependencies:
@@ -937,7 +937,7 @@ npm install
 then use any of the following commands to verify your copy:
 
 ```bash
-npm run bench # for clean-css benchmarks (see [test/bench.js](https://github.com/jakubpawlowicz/clean-css/blob/master/test/bench.js) for details)
+npm run bench # for clean-css benchmarks (see [test/bench.js](https://github.com/clean-css/clean-css/blob/master/test/bench.js) for details)
 npm run browserify # to create the browser-ready clean-css version
 npm run check # to lint JS sources with [JSHint](https://github.com/jshint/jshint/)
 npm test # to run all tests
@@ -956,7 +956,7 @@ Sorted alphabetically by GitHub handle:
 * [@grandrath](https://github.com/grandrath) (Martin Grandrath) for improving `minify` method source traversal in ES6;
 * [@jmalonzo](https://github.com/jmalonzo) (Jan Michael Alonzo) for a patch removing node.js' old `sys` package;
 * [@lukeapage](https://github.com/lukeapage) (Luke Page) for suggestions and testing the source maps feature;
-  Plus everyone else involved in [#125](https://github.com/jakubpawlowicz/clean-css/issues/125) for pushing it forward;
+  Plus everyone else involved in [#125](https://github.com/clean-css/clean-css/issues/125) for pushing it forward;
 * [@madwizard-thomas](https://github.com/madwizard-thomas) for sharing ideas about `@import` inlining and URL rebasing.
 * [@ngyikp](https://github.com/ngyikp) (Ng Yik Phang) for testing early clean-css 4 versions, reporting bugs, and suggesting numerous improvements.
 * [@wagenet](https://github.com/wagenet) (Peter Wagenet) for suggesting improvements to `@import` inlining behavior;
@@ -966,4 +966,4 @@ Sorted alphabetically by GitHub handle:
 
 # License
 
-clean-css is released under the [MIT License](https://github.com/jakubpawlowicz/clean-css/blob/master/LICENSE).
+clean-css is released under the [MIT License](https://github.com/clean-css/clean-css/blob/master/LICENSE).

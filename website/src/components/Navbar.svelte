@@ -7,7 +7,7 @@
   <div class="container-fluid">
     <ul class="d-flex align-items-center ms-auto mb-0">
 			<li class="nav-item">
-				<a class="nav-link d-flex align-items-center fs-5 p-1" href="https://github.com/jakubpawlowicz/clean-css" target="_blank">
+				<a class="nav-link d-flex align-items-center fs-5 p-1" href="https://github.com/clean-css/clean-css" target="_blank">
 					<Github /> <p class="ms-1 p-0 m-0">GitHub</p>
 				</a>
       </li>
@@ -17,8 +17,8 @@
         </a>
       </li>
 			<li class="nav-item align-items-center">
-        <a class="p-1" href="https://github.com/jakubpawlowicz/clean-css/stargazers" target="_blank">
-				  <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/jakubpawlowicz/clean-css?style=social">
+        <a class="p-1" href="https://github.com/clean-css/clean-css/stargazers" target="_blank">
+				  <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/clean-css/clean-css?style=social">
         </a>
       </li>
     </ul>

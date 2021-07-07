@@ -1,20 +1,20 @@
 {
   "name": "clean-css",
   "version": "5.1.3",
-  "author": "Jakub Pawlowicz <contact@jakubpawlowicz.com> (https://jakubpawlowicz.com)",
+  "author": "Jakub Pawlowicz <contact@jakubpawlowicz.com>",
   "description": "A well-tested CSS minifier",
   "license": "MIT",
   "keywords": [
     "css",
     "minifier"
   ],
-  "homepage": "https://github.com/jakubpawlowicz/clean-css",
+  "homepage": "https://github.com/clean-css/clean-css",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jakubpawlowicz/clean-css.git"
+    "url": "https://github.com/clean-css/clean-css.git"
   },
   "bugs": {
-    "url": "https://github.com/jakubpawlowicz/clean-css/issues"
+    "url": "https://github.com/clean-css/clean-css/issues"
   },
   "main": "index.js",
   "files": [

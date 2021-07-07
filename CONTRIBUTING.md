@@ -5,7 +5,7 @@ Every piece of software has bugs, and squashing them should always be the priori
 If you spotted an incorrect behavior, knowing the following facts will help fixing it:
 
 * What's your input CSS and expected output?
-* Do you use clean-css directly or through any of the [plugins](https://github.com/jakubpawlowicz/clean-css#how-to-use-clean-css-with-build-tools)?
+* Do you use clean-css directly or through any of the [plugins](https://github.com/clean-css/clean-css#how-to-use-clean-css-with-build-tools)?
 * What options do you pass to clean-css / the plugin?
 * What version of clean-css do you use?
 * What operating system do you use?
@@ -38,7 +38,7 @@ At the end make sure code styling validation passes:
 npm run check
 ```
 
-Finally push to your fork and [submit a pull request](https://github.com/jakubpawlowicz/clean-css/compare/).
+Finally push to your fork and [submit a pull request](https://github.com/clean-css/clean-css/compare/).
 
 At this point you're waiting for a PR review which should not thake more than a day.
 

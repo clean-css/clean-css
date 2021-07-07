@@ -2077,7 +2077,7 @@ vows.describe('integration tests')
       ],
       'remote inside local': [
         '@import url(test/fixtures/partials/remote.css);',
-        '@import url(http://jakubpawlowicz.com/styles.css);'
+        '@import url(http://clean-css.github.io/styles.css);'
       ],
       'remote inside local after content': [
         'a{color:red}@import url(test/fixtures/partials/remote.css);',

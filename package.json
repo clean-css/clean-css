@@ -26,8 +26,7 @@
   "scripts": {
     "browserify": "browserify --standalone CleanCSS index.js | uglifyjs --compress --mangle -o cleancss-browser.js",
     "bench": "node ./test/bench.js",
-    "check:website": "npm i --prefix ./website && npm run lint --prefix ./website",
-    "check": "jshint . && npm run check:website",
+    "check": "jshint .",
     "prepublish": "npm run check",
     "test": "vows"
   },

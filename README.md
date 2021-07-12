@@ -11,7 +11,7 @@
 [![Dependency Status](https://img.shields.io/david/clean-css/clean-css.svg?style=flat)](https://david-dm.org/clean-css/clean-css)
 [![npm Downloads](https://img.shields.io/npm/dm/clean-css.svg)](https://npmcharts.com/compare/clean-css?minimal=true)
 
-clean-css is a fast and efficient CSS optimizer for [Node.js](http://nodejs.org/) platform and [any modern browser](https://clean-css.github.io/clean-css).
+clean-css is a fast and efficient CSS optimizer for [Node.js](http://nodejs.org/) platform and [any modern browser](https://clean-css.github.io/).
 
 According to [tests](http://goalsmashers.github.io/css-minification-benchmark/) it is one of the best available.
 
@@ -117,7 +117,7 @@ clean-css 4.1 introduces the following changes / features:
 * `skipProperties` flag in level 2 optimizations controlling which properties won't be optimized;
 * new `animation` shorthand and `animation-*` longhand optimizers;
 * `removeUnusedAtRules` level 2 optimization controlling removal of unused `@counter-style`, `@font-face`, `@keyframes`, and `@namespace` at rules;
-* the [web interface](https://clean-css.github.io/clean-css) gets an improved settings panel with "reset to defaults", instant option changes, and settings being persisted across sessions.
+* the [web interface](https://clean-css.github.io/) gets an improved settings panel with "reset to defaults", instant option changes, and settings being persisted across sessions.
 
 ## Important: 4.0 breaking changes
 
@@ -911,7 +911,7 @@ There is a number of 3rd party plugins to popular build tools:
 
 ## How to use clean-css from web browser?
 
-* https://clean-css.github.io/clean-css/ (official web interface)
+* https://clean-css.github.io/ (official web interface)
 * http://refresh-sf.com/
 * http://adamburgess.github.io/clean-css-online/
 

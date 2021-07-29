@@ -869,6 +869,34 @@ vows.describe('protocol imports').addBatch({
       nock.cleanAll();
     }
   },
+  'allowed imports - remote when local resource is missing': {
+    topic: function () {
+      var source = '@import url(http://127.0.0.1/remote.css);@import url(http://assets.127.0.0.1/remote.css);@import url(missing.css);';
+      this.reqMocks1 = nock('http://127.0.0.1')
+        .get('/remote.css')
+        .reply(200, 'div{border:0}');
+      this.reqMocks2 = nock('http://assets.127.0.0.1')
+        .get('/remote.css')
+        .reply(200, 'p{width:100%}');
+      new CleanCSS({ inline: ['remote'] }).minify(source, this.callback);
+    },
+    'should not raise errors': function (error, minified) {
+      assert.isEmpty(minified.errors);
+    },
+    'should raise a warning': function (error, minified) {
+      assert.lengthOf(minified.warnings, 1);
+    },
+    'should process imports': function (error, minified) {
+      assert.equal(minified.styles, 'div{border:0}p{width:100%}');
+    },
+    'hits endpoints': function () {
+      assert.isTrue(this.reqMocks1.isDone());
+      assert.isTrue(this.reqMocks2.isDone());
+    },
+    teardown: function () {
+      nock.cleanAll();
+    }
+  },
   'allowed imports - all': {
     topic: function () {
       var source = '@import url(http://127.0.0.1/remote.css);@import url(http://assets.127.0.0.1/remote.css);@import url(test/fixtures/partials/one.css);';

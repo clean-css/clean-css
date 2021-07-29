@@ -1,4 +1,4 @@
-[5.1.4 / 2021-xx-xx](https://github.com/clean-css/clean-css/compare/v5.1.3...5.1)
+[5.1.4 / 2021-07-29](https://github.com/clean-css/clean-css/compare/v5.1.3...v5.1.4)
 ==================
 
 * Fixed issue [#1177](https://github.com/clean-css/clean-css/issues/1177) - fix to missing local imports when only remote ones allowed.

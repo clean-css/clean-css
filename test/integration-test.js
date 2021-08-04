@@ -2642,9 +2642,33 @@ vows.describe('integration tests')
     })
   )
   .addBatch(
-    optimizerContext('variables', {
+    optimizerContext('variables - level 1', {
+      'whitespace inside definition #1': [
+        'a{--border:var(\n--default-border\n\n)}',
+        'a{--border:var(--default-border)}'
+      ],
+      'whitespace inside definition #2': [
+        'a{--border:1px solid var(\n--default-color\n\n)}',
+        'a{--border:1px solid var(--default-color)}'
+      ],
+      'whitespace inside declarations': [
+        'a{--border:#000}.one{border:1px solid var(\n--border\n)}',
+        'a{--border:#000}.one{border:1px solid var(--border)}'
+      ],
+      'more complex case': [
+        '.alert--primary{--ifm-alert-background-color:var(\n        --ifm-color-primary-contrast-background\n      );--ifm-alert-background-color-highlight:rgba(53, 120, 229, 0.15);--ifm-alert-foreground-color:var(\n        --ifm-color-primary-contrast-foreground\n      );--ifm-alert-border-color:var(--ifm-color-primary-dark)}',
+        '.alert--primary{--ifm-alert-background-color:var(--ifm-color-primary-contrast-background);--ifm-alert-background-color-highlight:rgba(53, 120, 229, 0.15);--ifm-alert-foreground-color:var(--ifm-color-primary-contrast-foreground);--ifm-alert-border-color:var(--ifm-color-primary-dark)}'
+      ]
+    })
+  )
+  .addBatch(
+    optimizerContext('variables - level 2', {
       'stripping': [
         'a{--border:#000}.one{border:1px solid var(--border)}',
+        'a{--border:#000}.one{border:1px solid var(--border)}'
+      ],
+      'whitespace inside declarations': [
+        'a{--border:#000}.one{border:1px solid var(\n--border\n)}',
         'a{--border:#000}.one{border:1px solid var(--border)}'
       ],
       'all values': [

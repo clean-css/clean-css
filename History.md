@@ -1,3 +1,8 @@
+[5.1.5 / 2021-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v5.1.4...5.1)
+==================
+
+* Fixed issue [#1178](https://github.com/jakubpawlowicz/clean-css/issues/1178) - fixes lack of space removal in variable blocks.
+
 [5.1.4 / 2021-07-29](https://github.com/jakubpawlowicz/clean-css/compare/v5.1.3...v5.1.4)
 ==================
 

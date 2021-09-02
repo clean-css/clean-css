@@ -247,6 +247,14 @@ vows.describe('level 2 optimizer')
       'keeps variable as border-left two of three values': [
         ':root{--a:1px;--b:red}.u-test{border-left:var(--a) solid var(--b)!important}',
         ':root{--a:1px;--b:red}.u-test{border-left:var(--a) solid var(--b)!important}'
+      ],
+      'variables with whitespace as value': [
+        'a{--test: }',
+        'a{--test: }'
+      ],
+      'multiple variables with whitespace as value': [
+        'a{--test1: ;--test2: }',
+        'a{--test1: ;--test2: }'
       ]
     }, { level: 2 })
   )

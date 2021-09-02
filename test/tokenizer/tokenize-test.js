@@ -3067,11 +3067,11 @@ vows.describe(tokenize)
         'a{--test: }',
         [
           [
-            "rule",
+            'rule',
             [
               [
-                "rule-scope",
-                "a",
+                'rule-scope',
+                'a',
                 [
                   [1, 0, undefined]
                 ]
@@ -3079,17 +3079,17 @@ vows.describe(tokenize)
             ],
             [
               [
-                "property",
+                'property',
                 [
-                  "property-name",
-                  "--test",
+                  'property-name',
+                  '--test',
                   [
                     [1, 2, undefined]
                   ]
                 ],
                 [
-                  "property-value",
-                  " ",
+                  'property-value',
+                  ' ',
                   [
                     [1, 10, undefined]
                   ]
@@ -3103,11 +3103,11 @@ vows.describe(tokenize)
         'a{--test:   }',
         [
           [
-            "rule",
+            'rule',
             [
               [
-                "rule-scope",
-                "a",
+                'rule-scope',
+                'a',
                 [
                   [1, 0, undefined]
                 ]
@@ -3115,17 +3115,17 @@ vows.describe(tokenize)
             ],
             [
               [
-                "property",
+                'property',
                 [
-                  "property-name",
-                  "--test",
+                  'property-name',
+                  '--test',
                   [
                     [1, 2, undefined]
                   ]
                 ],
                 [
-                  "property-value",
-                  " ",
+                  'property-value',
+                  ' ',
                   [
                     [1, 12, undefined]
                   ]
@@ -3139,11 +3139,11 @@ vows.describe(tokenize)
         'a{--test: ;}',
         [
           [
-            "rule",
+            'rule',
             [
               [
-                "rule-scope",
-                "a",
+                'rule-scope',
+                'a',
                 [
                   [1, 0, undefined]
                 ]
@@ -3151,17 +3151,17 @@ vows.describe(tokenize)
             ],
             [
               [
-                "property",
+                'property',
                 [
-                  "property-name",
-                  "--test",
+                  'property-name',
+                  '--test',
                   [
                     [1, 2, undefined]
                   ]
                 ],
                 [
-                  "property-value",
-                  " ",
+                  'property-value',
+                  ' ',
                   [
                     [1, 10, undefined]
                   ]
@@ -3175,11 +3175,11 @@ vows.describe(tokenize)
         'a{--test1: ;--test2: }',
         [
           [
-            "rule",
+            'rule',
             [
               [
-                "rule-scope",
-                "a",
+                'rule-scope',
+                'a',
                 [
                   [1, 0, undefined]
                 ]
@@ -3187,34 +3187,34 @@ vows.describe(tokenize)
             ],
             [
               [
-                "property",
+                'property',
                 [
-                  "property-name",
-                  "--test1",
+                  'property-name',
+                  '--test1',
                   [
                     [1, 2, undefined]
                   ]
                 ],
                 [
-                  "property-value",
-                  " ",
+                  'property-value',
+                  ' ',
                   [
                     [1, 11, undefined]
                   ]
                 ]
               ],
               [
-                "property",
+                'property',
                 [
-                  "property-name",
-                  "--test2",
+                  'property-name',
+                  '--test2',
                   [
                     [1, 12, undefined]
                   ]
                 ],
                 [
-                  "property-value",
-                  " ",
+                  'property-value',
+                  ' ',
                   [
                     [1, 21, undefined]
                   ]

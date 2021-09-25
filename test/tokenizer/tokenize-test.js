@@ -3063,6 +3063,167 @@ vows.describe(tokenize)
           ]
         ]
       ],
+      'variable declaration with whitespace as value': [
+        'a{--test: }',
+        [
+          [
+            'rule',
+            [
+              [
+                'rule-scope',
+                'a',
+                [
+                  [1, 0, undefined]
+                ]
+              ]
+            ],
+            [
+              [
+                'property',
+                [
+                  'property-name',
+                  '--test',
+                  [
+                    [1, 2, undefined]
+                  ]
+                ],
+                [
+                  'property-value',
+                  ' ',
+                  [
+                    [1, 10, undefined]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ],
+      'variable declaration with multiple whitespace as value': [
+        'a{--test:   }',
+        [
+          [
+            'rule',
+            [
+              [
+                'rule-scope',
+                'a',
+                [
+                  [1, 0, undefined]
+                ]
+              ]
+            ],
+            [
+              [
+                'property',
+                [
+                  'property-name',
+                  '--test',
+                  [
+                    [1, 2, undefined]
+                  ]
+                ],
+                [
+                  'property-value',
+                  ' ',
+                  [
+                    [1, 12, undefined]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ],
+      'variable declaration with whitespace as value and semicolon': [
+        'a{--test: ;}',
+        [
+          [
+            'rule',
+            [
+              [
+                'rule-scope',
+                'a',
+                [
+                  [1, 0, undefined]
+                ]
+              ]
+            ],
+            [
+              [
+                'property',
+                [
+                  'property-name',
+                  '--test',
+                  [
+                    [1, 2, undefined]
+                  ]
+                ],
+                [
+                  'property-value',
+                  ' ',
+                  [
+                    [1, 10, undefined]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ],
+      'multiple variable declarations with whitespace as value': [
+        'a{--test1: ;--test2: }',
+        [
+          [
+            'rule',
+            [
+              [
+                'rule-scope',
+                'a',
+                [
+                  [1, 0, undefined]
+                ]
+              ]
+            ],
+            [
+              [
+                'property',
+                [
+                  'property-name',
+                  '--test1',
+                  [
+                    [1, 2, undefined]
+                  ]
+                ],
+                [
+                  'property-value',
+                  ' ',
+                  [
+                    [1, 11, undefined]
+                  ]
+                ]
+              ],
+              [
+                'property',
+                [
+                  'property-name',
+                  '--test2',
+                  [
+                    [1, 12, undefined]
+                  ]
+                ],
+                [
+                  'property-value',
+                  ' ',
+                  [
+                    [1, 21, undefined]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ],
       '_:-ms-lang flat block': [
         '_:-ms-lang(x),@-ms-viewport{color:red}',
         [

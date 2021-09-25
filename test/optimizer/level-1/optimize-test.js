@@ -1384,6 +1384,18 @@ vows.describe('level 1 optimizations')
     }, { level: 1 })
   )
   .addBatch(
+    optimizerContext('variable declaration', {
+      'with whitespace as value': [
+        'a{--test: }',
+        'a{--test: }'
+      ],
+      'multiple variables': [
+        'a{--test1: ;--test2: }',
+        'a{--test1: ;--test2: }'
+      ],
+    }, { level: 1 })
+  )
+  .addBatch(
     optimizerContext('@charset cleanup off', {
       'stays where it is': [
         '.block{color:#f10}@charset \'utf-8\';b{font-weight:bolder}',

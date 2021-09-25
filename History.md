@@ -1,3 +1,8 @@
+[5.2.0 / 2021-09-25](https://github.com/clean-css/clean-css/compare/5.1...v5.2.0)
+==================
+
+* Fixed issue [#1180](https://github.com/clean-css/clean-css/issues/1180) - properly handle empty variable values.
+
 [5.1.5 / 2021-08-05](https://github.com/clean-css/clean-css/compare/v5.1.4...v5.1.5)
 ==================
 

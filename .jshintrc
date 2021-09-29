@@ -2,6 +2,7 @@
   "camelcase": true,
   "curly": false,
   "eqeqeq": false,
+  "esversion": 8,
   "immed": true,
   "indent": 2,
   "multistr": true,

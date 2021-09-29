@@ -931,6 +931,31 @@ vows.describe('module tests').addBatch({
       }
     }
   },
+  'sources list as a hash in batch + promise mode': {
+    'with rebase to the current directory': {
+      'topic': function () {
+        var vow = this;
+
+        async function doTopic() {
+          return await new CleanCSS({ batch: true, returnPromise: true }).minify([
+            {'path/to/file/one': {styles: 'html { color: #000000; }'}},
+            {'path/to/file/two': {styles: 'body { background: #ffffff; }'}}
+          ]);
+        }
+
+        doTopic()
+          .then(function (output) { vow.callback(null, output); })
+          .catch(function (errors) { vow.callback(errors, null); });
+      },
+      'output should be a hash': function (minified) {
+        assert.equal(typeof minified, 'object');
+      },
+      'output should be correct': function (minified) {
+        assert.equal(minified['path/to/file/one'].styles, 'html{color:#000}');
+        assert.equal(minified['path/to/file/two'].styles, 'body{background:#fff}');
+      }
+    }
+  },
   'accepts a list of source files as array of hashes': {
     'topic': function () {
       return new CleanCSS({rebase: true}).minify([

@@ -1,4 +1,4 @@
-[5.2.1 / 2021-xx-xx](https://github.com/clean-css/clean-css/compare/v5.2.0...5.2)
+[5.2.1 / 2021-09-30](https://github.com/clean-css/clean-css/compare/v5.2.0...v5.2.1)
 ==================
 
 * Fixed issue [#1186](https://github.com/clean-css/clean-css/issues/1186) - bad error handling in batch mode with promises.

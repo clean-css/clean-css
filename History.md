@@ -1,3 +1,8 @@
+[5.2.2 / 2021-xx-xx](https://github.com/clean-css/clean-css/compare/v5.2.1...5.2)
+==================
+
+* Fixed an unsafe data URI regex, which, when clean-css is used as a service, could be used in a DOS attack.
+
 [5.2.1 / 2021-09-30](https://github.com/clean-css/clean-css/compare/v5.2.0...v5.2.1)
 ==================
 

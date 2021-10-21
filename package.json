@@ -1,6 +1,6 @@
 {
   "name": "clean-css",
-  "version": "5.2.1",
+  "version": "5.2.2",
   "author": "Jakub Pawlowicz <contact@jakubpawlowicz.com>",
   "description": "A well-tested CSS minifier",
   "license": "MIT",

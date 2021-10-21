@@ -1,4 +1,4 @@
-[4.2.4 / 2020-xx-xx](https://github.com/jakubpawlowicz/clean-css/compare/v4.2.3...4.2)
+[4.2.4 / 2021-10-21](https://github.com/jakubpawlowicz/clean-css/compare/v4.2.3...v4.2.4)
 ==================
 
 * Backports prototype pollution fix from 5.x branch.

@@ -931,55 +931,56 @@ vows.describe('protocol imports').addBatch({
       assert.equal(minified.styles, '@import url(//127.0.0.1/remote.css);.one{color:red}');
     }
   },
-  'allowed imports - from specific URI': {
-    topic: function () {
-      var source = '@import url(http://127.0.0.1/remote.css);@import url(http://assets.127.0.0.1/remote.css);@import url(test/fixtures/partials/one.css);';
-      this.reqMocks = nock('http://assets.127.0.0.1')
-        .get('/remote.css')
-        .reply(200, 'p{width:100%}');
-      new CleanCSS({ inline: ['http://assets.127.0.0.1/remote.css', 'test/fixtures/partials/one.css'] }).minify(source, this.callback);
+  }).addBatch({
+    'allowed imports - from specific URI': {
+      topic: function () {
+        var source = '@import url(http://127.0.0.1/remote.css);@import url(http://assets.127.0.0.1/remote.css);@import url(test/fixtures/partials/one.css);';
+        this.reqMocks = nock('http://assets.127.0.0.1')
+          .get('/remote.css')
+          .reply(200, 'p{width:100%}');
+        new CleanCSS({ inline: ['http://assets.127.0.0.1/remote.css', 'test/fixtures/partials/one.css'] }).minify(source, this.callback);
+      },
+      'should not raise errors': function (error, minified) {
+        assert.isEmpty(minified.errors);
+      },
+      'should raise warnings': function (error, minified) {
+        assert.lengthOf(minified.warnings, 1);
+      },
+      'should process imports': function (error, minified) {
+        assert.equal(minified.styles, '@import url(http://127.0.0.1/remote.css);p{width:100%}.one{color:red}');
+      },
+      'hits the endpoint': function () {
+        assert.isTrue(this.reqMocks.isDone());
+      },
+      teardown: function () {
+        nock.cleanAll();
+      }
     },
-    'should not raise errors': function (error, minified) {
-      assert.isEmpty(minified.errors);
-    },
-    'should raise warnings': function (error, minified) {
-      assert.lengthOf(minified.warnings, 1);
-    },
-    'should process imports': function (error, minified) {
-      assert.equal(minified.styles, '@import url(http://127.0.0.1/remote.css);p{width:100%}.one{color:red}');
-    },
-    'hits the endpoint': function () {
-      assert.isTrue(this.reqMocks.isDone());
-    },
-    teardown: function () {
-      nock.cleanAll();
+    'allowed imports - from URI prefix': {
+      topic: function () {
+        var source = '@import url(http://127.0.0.1/remote.css);@import url(http://assets.127.0.0.1/remote.css);@import url(test/fixtures/partials/one.css);';
+        this.reqMocks = nock('http://assets.127.0.0.1')
+          .get('/remote.css')
+          .reply(200, 'p{width:100%}');
+        new CleanCSS({ inline: ['remote', '!http://127.0.0.1/', 'test/fixtures/partials'] }).minify(source, this.callback);
+      },
+      'should not raise errors': function (error, minified) {
+        assert.isEmpty(minified.errors);
+      },
+      'should raise warnings': function (error, minified) {
+        assert.lengthOf(minified.warnings, 1);
+      },
+      'should process imports': function (error, minified) {
+        assert.equal(minified.styles, '@import url(http://127.0.0.1/remote.css);p{width:100%}.one{color:red}');
+      },
+      'hits the endpoint': function () {
+        assert.isTrue(this.reqMocks.isDone());
+      },
+      teardown: function () {
+        nock.cleanAll();
+      }
     }
-  },
-  'allowed imports - from URI prefix': {
-    topic: function () {
-      var source = '@import url(http://127.0.0.1/remote.css);@import url(http://assets.127.0.0.1/remote.css);@import url(test/fixtures/partials/one.css);';
-      this.reqMocks = nock('http://assets.127.0.0.1')
-        .get('/remote.css')
-        .reply(200, 'p{width:100%}');
-      new CleanCSS({ inline: ['remote', '!http://127.0.0.1/', 'test/fixtures/partials'] }).minify(source, this.callback);
-    },
-    'should not raise errors': function (error, minified) {
-      assert.isEmpty(minified.errors);
-    },
-    'should raise warnings': function (error, minified) {
-      assert.lengthOf(minified.warnings, 1);
-    },
-    'should process imports': function (error, minified) {
-      assert.equal(minified.styles, '@import url(http://127.0.0.1/remote.css);p{width:100%}.one{color:red}');
-    },
-    'hits the endpoint': function () {
-      assert.isTrue(this.reqMocks.isDone());
-    },
-    teardown: function () {
-      nock.cleanAll();
-    }
-  }
-}).addBatch({
+  }).addBatch({
   'custom fetch callback with no request': {
     topic: function () {
       new CleanCSS({

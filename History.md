@@ -1,3 +1,8 @@
+[5.2.3 / 2022-xx-xx](https://github.com/clean-css/clean-css/compare/v5.2.2...5.2)
+==================
+
+* Fixed issue [#1185](https://github.com/clean-css/clean-css/issues/1185) - keeping comments inside variables.
+
 [5.2.2 / 2021-10-21](https://github.com/clean-css/clean-css/compare/v5.2.1...v5.2.2)
 ==================
 

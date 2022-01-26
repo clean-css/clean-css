@@ -2690,6 +2690,18 @@ vows.describe('integration tests')
       'Polymer mixins - inlined variables': [
         '.spinner{-webkit-animation:container-rotate var(--paper-spinner-container-rotation-duration) linear infinite}',
         '.spinner{-webkit-animation:container-rotate var(--paper-spinner-container-rotation-duration) linear infinite}'
+      ],
+      'comments #1': [
+        '.test {--tw-blur: var(--tw-empty,/*!*/ /*!*/);}',
+        '.test{--tw-blur:var(--tw-empty,/*!*/ /*!*/)}'
+      ],
+      'comments #2': [
+        '.test {--tw-blur: var(--tw-empty,/*!*/ /*!*/);display: block}',
+        '.test{--tw-blur:var(--tw-empty,/*!*/ /*!*/);display:block}'
+      ],
+      'comments #3': [
+        '.test {--tw-blur: var(--tw-empty,/*!*/ /*!*/);color:hsl(0, 1%, 99%)}',
+        '.test{--tw-blur:var(--tw-empty,/*!*/ /*!*/);color:#fcfcfc}'
       ]
     }, { level: 2 })
   )

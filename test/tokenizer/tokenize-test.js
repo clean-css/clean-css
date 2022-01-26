@@ -3224,6 +3224,42 @@ vows.describe(tokenize)
           ]
         ]
       ],
+      'variables with comments inside them 123456': [
+        'a{--test:var(--x,/*!*/ /*!*/);}',
+        [
+          [
+            'rule',
+            [
+              [
+                'rule-scope',
+                'a',
+                [
+                  [1, 0, undefined]
+                ]
+              ]
+            ],
+            [
+              [
+                'property',
+                [
+                  'property-name',
+                  '--test',
+                  [
+                    [1, 2, undefined]
+                  ]
+                ],
+                [
+                  'property-value',
+                  'var(--x,/*!*/ /*!*/)',
+                  [
+                    [1, 9, undefined]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ],
       '_:-ms-lang flat block': [
         '_:-ms-lang(x),@-ms-viewport{color:red}',
         [

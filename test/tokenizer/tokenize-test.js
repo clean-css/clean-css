@@ -3260,6 +3260,90 @@ vows.describe(tokenize)
           ]
         ]
       ],
+      'variable declarations with comments inside them 2': [
+        'a{--test1:1;/*!*/--test2:2;/*!*/--test3:3;}',
+        [
+          [
+            'rule',
+            [
+              [
+                'rule-scope',
+                'a',
+                [
+                  [1, 0, undefined]
+                ]
+              ]
+            ],
+            [
+              [
+                'property',
+                [
+                  'property-name',
+                  '--test1',
+                  [
+                    [1, 2, undefined]
+                  ]
+                ],
+                [
+                  'property-value',
+                  '1',
+                  [
+                    [1, 10, undefined]
+                  ]
+                ]
+              ],
+              [
+                'comment',
+                '/*!*/',
+                [
+                  [ 1, 12, undefined ]
+                ]
+              ],
+              [
+                'property',
+                [
+                  'property-name',
+                  '--test2',
+                  [
+                    [ 1, 17, undefined ]
+                  ]
+                ],
+                [
+                  'property-value',
+                  '2',
+                  [
+                    [ 1, 25, undefined ]
+                  ]
+                ]
+              ],
+              [
+                'comment',
+                '/*!*/',
+                [
+                  [ 1, 27, undefined ]
+                ]
+              ],
+              [
+                'property',
+                [
+                  'property-name',
+                  '--test3',
+                  [
+                    [ 1, 32, undefined ]
+                  ]
+                ],
+                [
+                  'property-value',
+                  '3',
+                  [
+                    [ 1, 40, undefined ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ],
       '_:-ms-lang flat block': [
         '_:-ms-lang(x),@-ms-viewport{color:red}',
         [

@@ -1,3 +1,8 @@
+[5.2.4 / 2022-xx-xx](https://github.com/clean-css/clean-css/compare/v5.2.3...5.2)
+==================
+
+* Fixed issue [#1196](https://github.com/clean-css/clean-css/issues/1196) - correctly parse variables & comments mix.
+
 [5.2.3 / 2022-01-26](https://github.com/clean-css/clean-css/compare/v5.2.2...v5.2.3)
 ==================
 

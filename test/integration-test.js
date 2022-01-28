@@ -2702,6 +2702,14 @@ vows.describe('integration tests')
       'comments #3': [
         '.test {--tw-blur: var(--tw-empty,/*!*/ /*!*/);color:hsl(0, 1%, 99%)}',
         '.test{--tw-blur:var(--tw-empty,/*!*/ /*!*/);color:#fcfcfc}'
+      ],
+      'comments #4': [
+        ':root{/* Site container */--a:20px;/* Z indices for modals and dialogs */--foo:5050}.bar{z-index:5050;z-index:var(--foo)}',
+        ':root{--a:20px;--foo:5050}.bar{z-index:5050;z-index:var(--foo)}'
+      ],
+      'comments #5': [
+        ':host{/* this will stay */--this_will_stay: 1;/* this will disappear */--this_will_disappear: 1;/* this will also disappear */--this_will_also_disappear: 1;--this_will_stay_aswell: 1;--this_will_stay_too: 1;width: 1px;height: 1px}',
+        ':host{--this_will_stay:1;--this_will_disappear:1;--this_will_also_disappear:1;--this_will_stay_aswell:1;--this_will_stay_too:1;width:1px;height:1px}'
       ]
     }, { level: 2 })
   )

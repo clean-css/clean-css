@@ -27,6 +27,7 @@
     "browserify": "browserify --standalone CleanCSS index.js | uglifyjs --compress --mangle -o cleancss-browser.js",
     "bench": "node ./test/bench.js",
     "check": "jshint .",
+    "lint": "eslint ./lib/clean.js --ext .js",
     "prepublish": "npm run check",
     "test": "vows"
   },
@@ -35,6 +36,8 @@
   },
   "devDependencies": {
     "browserify": "^17.0.0",
+    "eslint": "^8.8.0",
+    "eslint-config-airbnb-base": "^15.0.0",
     "http-proxy": "1.x",
     "jshint": "2.x",
     "nock": "^13.0.0",

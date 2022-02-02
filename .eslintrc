@@ -28,7 +28,7 @@
     "max-len": [
       "error",
       {
-        "code": 100,
+        "code": 120,
         "ignoreComments": true,
         "ignoreStrings": true,
         "ignoreTemplateLiterals": true
@@ -48,6 +48,7 @@
     "object-curly-spacing": "error",
     "one-var": "off",
     "one-var-declaration-per-line": "off",
+    "prefer-regex-literals": "off",
     "quote-props": ["error", "as-needed"],
     "radix": ["error", "as-needed"],
     "strict": [

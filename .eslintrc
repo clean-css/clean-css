@@ -4,7 +4,7 @@
     "airbnb-base/legacy"
   ],
   "env": {
-    "es6": true
+    "es2017": true
   },
   "rules": {
     "block-scoped-var": "off",

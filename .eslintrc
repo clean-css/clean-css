@@ -1,0 +1,41 @@
+{
+  "root": true,
+  "extends": [
+    "airbnb-base/legacy"
+  ],
+  "rules": {
+    "eol-last": [
+      "error",
+      "always"
+    ],
+    "curly": "error",
+    "func-names": "off",
+    "global": "off",
+    "global-strict": "off",
+    "indent": [
+      "warn",
+      2
+    ],
+    "linebreak-style": "off",
+    "lines-between-class-members": "off",
+    "max-len": [
+      "error",
+      {
+        "code": 100,
+        "ignoreComments": true,
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true
+      }
+    ],
+    "no-unused-vars": "off",
+    "no-param-reassign": "off",
+    "no-multi-assign": "off",
+    "no-underscore-dangle": "off",
+    "object-curly-spacing": "error",
+    "strict": [
+      "error",
+      "never"
+    ],
+    "space-before-function-paren": ["error", "never"]
+  }
+}

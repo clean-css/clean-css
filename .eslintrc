@@ -17,6 +17,7 @@
     "curly": "error",
     "func-names": "off",
     "global": "off",
+    "global-require": "off",
     "global-strict": "off",
     "guard-for-in": "off",
     "indent": [
@@ -34,7 +35,9 @@
         "ignoreTemplateLiterals": true
       }
     ],
+    "no-bitwise": "off",
     "no-continue": "off",
+    "no-labels": "off",
     "no-mixed-operators": "off",
     "no-multi-assign": "off",
     "no-nested-ternary": "off",

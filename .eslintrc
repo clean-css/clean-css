@@ -1,21 +1,21 @@
 {
   "root": true,
-  "extends": [
-    "airbnb-base/legacy"
-  ],
   "env": {
     "es2017": true
   },
+  "extends": [
+    "airbnb-base/legacy"
+  ],
   "rules": {
     "block-scoped-var": "off",
+    "consistent-return": "off",
+    "curly": "error",
     "default-case": "off",
     "eol-last": [
       "error",
       "always"
     ],
     "eqeqeq": "off",
-    "consistent-return": "off",
-    "curly": "error",
     "func-names": "off",
     "global": "off",
     "global-require": "off",
@@ -53,13 +53,22 @@
     "one-var": "off",
     "one-var-declaration-per-line": "off",
     "prefer-regex-literals": "off",
-    "quote-props": ["error", "as-needed"],
-    "radix": ["error", "as-needed"],
+    "quote-props": [
+      "error",
+      "as-needed"
+    ],
+    "radix": [
+      "error",
+      "as-needed"
+    ],
+    "space-before-function-paren": [
+      "error",
+      "never"
+    ],
     "strict": [
       "error",
       "never"
     ],
-    "space-before-function-paren": ["error", "never"],
     "vars-on-top": "off"
   }
 }

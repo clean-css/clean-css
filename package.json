@@ -27,7 +27,6 @@
     "browserify": "browserify --standalone CleanCSS index.js | uglifyjs --compress --mangle -o cleancss-browser.js",
     "bench": "node ./test/bench.js",
     "lint": "eslint ./lib/ --ext .js",
-    "prepublish": "npm run lint",
     "test": "vows"
   },
   "dependencies": {

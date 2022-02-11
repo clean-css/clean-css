@@ -9,7 +9,7 @@
   "rules": {
     "block-scoped-var": "off",
     "consistent-return": "off",
-    "curly": "error",
+    "curly": ["error", "all"],
     "default-case": "off",
     "eol-last": [
       "error",
@@ -49,6 +49,9 @@
     "no-underscore-dangle": "off",
     "no-unused-vars": "off",
     "no-use-before-define": "off",
+    "object-curly-newline": ["error", {
+      "ObjectExpression": { "multiline": true, "minProperties": 2 }
+    }],
     "object-curly-spacing": "error",
     "one-var": "off",
     "one-var-declaration-per-line": "off",

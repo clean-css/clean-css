@@ -38,6 +38,7 @@
     ],
     "no-bitwise": "off",
     "no-continue": "off",
+    "no-else-return": ["error", { "allowElseIf": true } ],
     "no-labels": "off",
     "no-mixed-operators": "off",
     "no-multi-assign": "off",

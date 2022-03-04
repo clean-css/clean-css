@@ -1550,9 +1550,17 @@ vows.describe('level 1 optimizations')
   .addBatch(
     optimizerContext('all optimizations off via `all` keyword', {
       'stays as it is': [
-          '.block > .another-block{animation-duration:500ms;font:"Arial";margin:010px}',
-          '.block > .another-block{animation-duration:500ms;font:"Arial";margin:010px}'
+        '.block > .another-block{animation-duration:500ms;font:"Arial";margin:010px}',
+        '.block > .another-block{animation-duration:500ms;font:"Arial";margin:010px}'
       ]
     }, { level: { 1: { all: false } } })
   )
+  .addBatch(
+  optimizerContext('optimize css custom properties', {
+    'long hex to short hex': [
+      ':root{--exotelis-was-here:#000000}',
+      ':root{--exotelis-was-here:#000}'
+    ],
+  }, { level: 1 })
+)
   .export(module);

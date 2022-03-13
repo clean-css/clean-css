@@ -1,6 +1,11 @@
 name: Tests
 
-on: [push, pull_request]
+on:
+  push:
+    branches-ignore:
+      - "dependabot/**"
+  pull_request:
+  workflow_dispatch:
 
 env:
   FORCE_COLOR: 2
@@ -13,17 +18,18 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node: [10, 12, 14, 15]
+        node: [10, 12, 14, 16]
         os: [ubuntu-latest, windows-latest]
 
     steps:
       - name: Clone repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
+          cache: npm
 
       - name: Install npm dependencies
         run: npm ci

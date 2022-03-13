@@ -11,6 +11,7 @@ on:
       - master
   schedule:
     - cron: "0 2 * * 5"
+  workflow_dispatch:
 
 jobs:
   analyze:
@@ -19,16 +20,13 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       # Initializes the CodeQL tools for scanning.
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v1
         with:
           languages: "javascript"
-
-      - name: Autobuild
-        uses: github/codeql-action/autobuild@v1
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v1

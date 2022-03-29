@@ -35,7 +35,7 @@ Then add tests for your change. Check if tests fail. Make your change. Make the 
 At the end make sure code styling validation passes:
 
 ```shell
-npm run check
+npm run lint
 ```
 
 Finally push to your fork and [submit a pull request](https://github.com/clean-css/clean-css/compare/).

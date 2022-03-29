@@ -1,0 +1,78 @@
+{
+  "root": true,
+  "env": {
+    "es2017": true
+  },
+  "extends": [
+    "airbnb-base/legacy"
+  ],
+  "rules": {
+    "block-scoped-var": "off",
+    "consistent-return": "off",
+    "curly": ["error", "all"],
+    "default-case": "off",
+    "eol-last": [
+      "error",
+      "always"
+    ],
+    "eqeqeq": "off",
+    "func-names": "off",
+    "global": "off",
+    "global-require": "off",
+    "global-strict": "off",
+    "guard-for-in": "off",
+    "indent": [
+      "warn",
+      2
+    ],
+    "linebreak-style": "off",
+    "lines-between-class-members": "off",
+    "max-len": [
+      "error",
+      {
+        "code": 120,
+        "ignoreComments": true,
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true
+      }
+    ],
+    "no-bitwise": "off",
+    "no-continue": "off",
+    "no-else-return": ["error", { "allowElseIf": true } ],
+    "no-labels": "off",
+    "no-mixed-operators": "off",
+    "no-multi-assign": "off",
+    "no-nested-ternary": "off",
+    "no-param-reassign": "off",
+    "no-plusplus": "off",
+    "no-restricted-syntax": "off",
+    "no-shadow": "off",
+    "no-underscore-dangle": "off",
+    "no-unused-vars": "off",
+    "no-use-before-define": "off",
+    "object-curly-newline": ["error", {
+      "ObjectExpression": { "multiline": true, "minProperties": 2 }
+    }],
+    "object-curly-spacing": "error",
+    "one-var": "off",
+    "one-var-declaration-per-line": "off",
+    "prefer-regex-literals": "off",
+    "quote-props": [
+      "error",
+      "as-needed"
+    ],
+    "radix": [
+      "error",
+      "as-needed"
+    ],
+    "space-before-function-paren": [
+      "error",
+      "never"
+    ],
+    "strict": [
+      "error",
+      "never"
+    ],
+    "vars-on-top": "off"
+  }
+}

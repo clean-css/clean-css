@@ -7,11 +7,56 @@ var httpProxy = require('http-proxy');
 var enableDestroy = require('server-destroy');
 var nock = require('nock');
 var url = require('url');
+var path = require('path');
 var CleanCSS = require('../index');
 
 var port = 24682;
 
 vows.describe('protocol imports').addBatch({
+  'using file:// protocol of a missing file': {
+    topic: function () {
+      new CleanCSS({ inline: 'all' }).minify('@import url(file://missing.css);a{color:#f00}', this.callback);
+    },
+    'should raise error': function (errors, minified) {
+      assert.lengthOf(errors, 1);
+    },
+    'should ignore @import': function (errors, minified) {
+      assert.equal(minified.styles, 'a{color:red}');
+    }
+  },
+  'using file:// protocol of an existing file': {
+    topic: function () {
+      new CleanCSS({ inline: 'all' }).minify('@import url(file://test/fixtures/partials/one.css);a{color:#f00}', this.callback);
+    },
+    'should not raise error': function (errors, minified) {
+      assert.isNull(errors);
+    },
+    'should ignore @import': function (errors, minified) {
+      assert.equal(minified.styles, '.one{color:red}a{color:red}');
+    }
+  },
+  'using file:// protocol to an existing file rebased to different root': {
+    topic: function () {
+      new CleanCSS({ inline: 'all', rebase: true, rebaseTo: path.join('test', 'fixtures') }).minify('@import url(file://partials/one.css);a{color:#f00}', this.callback);
+    },
+    'should not raise error': function (errors, minified) {
+      assert.isNull(errors);
+    },
+    'should ignore @import': function (errors, minified) {
+      assert.equal(minified.styles, '.one{color:red}a{color:red}');
+    }
+  },
+  'using file:// protocol to a file given by absolute path': {
+    topic: function () {
+      new CleanCSS({ inline: 'all' }).minify('@import url(file:///test/fixtures/partials/one.css);a{color:#f00}', this.callback);
+    },
+    'should not raise error': function (errors, minified) {
+      assert.isNull(errors);
+    },
+    'should ignore @import': function (errors, minified) {
+      assert.equal(minified.styles, '.one{color:red}a{color:red}');
+    }
+  },
   'of a missing file': {
     topic: function () {
       this.reqMocks = nock('http://127.0.0.1')

@@ -44,7 +44,7 @@ ul{list-style-type:disc}
 ol{list-style-type:decimal}
 dd{margin-left:1.5em}
 thead th{background:#c3d9ff}
-tbody tr.even td,tbody tr:nth-child(even) td{background:#e5ecf9}
+tbody tr.even td,tbody tr:nth-child(2n) td{background:#e5ecf9}
 tfoot{font-style:italic}
 caption{background:#eee}
 .small{font-size:.8em;margin-bottom:1.875em;line-height:1.875em}

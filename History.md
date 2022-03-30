@@ -1,6 +1,7 @@
 [5.3.0 / 2022-xx-xx](https://github.com/clean-css/clean-css/compare/v5.2.3...5.3)
 ==================
 
+* Fixed issue [#1159](https://github.com/clean-css/clean-css/issues/1159) - adds optimization for `nth-child` and `nth-of-type`.
 * Fixed issue [#1183](https://github.com/clean-css/clean-css/issues/1183) - fraction optimizer breaks `image-set`.
 * Fixed issue [#1208](https://github.com/clean-css/clean-css/issues/1208) - handling generic family names.
 * Fixed issue [#1210](https://github.com/clean-css/clean-css/issues/1210) - handling `file://` protocol.

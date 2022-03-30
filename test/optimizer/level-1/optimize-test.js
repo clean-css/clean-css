@@ -49,6 +49,30 @@ vows.describe('level 1 optimizations')
         'div  :first-child{color:red}',
         'div :first-child{color:red}'
       ],
+      'pseudo classes - nth-child(1) to first-child': [
+        '.block:nth-child(1){color:red}',
+        '.block:first-child{color:red}'
+      ],
+      'pseudo classes - nth-of-type(1) to first-of-type': [
+        '.block:nth-of-type(1){color:red}',
+        '.block:first-of-type{color:red}'
+      ],
+      'pseudo classes - nth-of-type(even) to nth-of-type(2n)': [
+        '.block:nth-of-type(even){color:red}',
+        '.block:nth-of-type(2n){color:red}'
+      ],
+      'pseudo classes - nth-child(even) to nth-child(2n)': [
+        '.block:nth-child(even){color:red}',
+        '.block:nth-child(2n){color:red}'
+      ],
+      'pseudo classes - nth-of-type(2n+1) to nth-of-type(odd)': [
+        '.block:nth-of-type(2n+1){color:red}',
+        '.block:nth-of-type(odd){color:red}'
+      ],
+      'pseudo classes - nth-child(2n+1) to nth-child(odd)': [
+        '.block:nth-child(2n+1){color:red}',
+        '.block:nth-child(odd){color:red}'
+      ],
       'tabs': [
         'div\t\t{color:red}',
         'div{color:red}'

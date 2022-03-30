@@ -2416,8 +2416,8 @@ vows.describe('integration tests')
         'a:focus,b{color:red}'
       ],
       'rules with well-supported pseudo classes should be merged #2': [
-        'a:nth-of-type(1){color:red}b{color:red}',
-        'a:nth-of-type(1),b{color:red}'
+        'a:nth-of-type(5){color:red}b{color:red}',
+        'a:nth-of-type(5),b{color:red}'
       ],
       'rules with well-supported pseudo classes should be merged #3': [
         'a:first-of-type{color:red}b{color:red}',

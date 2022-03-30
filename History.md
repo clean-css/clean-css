@@ -1,6 +1,7 @@
 [5.3.0 / 2022-xx-xx](https://github.com/clean-css/clean-css/compare/v5.2.3...5.3)
 ==================
 
+* Fixed issue [#1208](https://github.com/clean-css/clean-css/issues/1208) - handling generic family names.
 * Fixed issue [#1210](https://github.com/clean-css/clean-css/issues/1210) - handling `file://` protocol.
 
 [5.2.4 / 2022-01-28](https://github.com/clean-css/clean-css/compare/v5.2.3...v5.2.4)

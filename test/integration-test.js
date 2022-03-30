@@ -1550,6 +1550,10 @@ vows.describe('integration tests')
         'a{font-family:"Helvetica",\'Arial\'}',
         'a{font-family:Helvetica,Arial}'
       ],
+      'keeps quoting for generic families' : [
+        '.block{font-family:"cursive","default","emoji","fangsong","fantasy","inherit","initial","math","monospace",font-family: "sans-serif","serif","system-ui","ui-monospace","ui-rounded","ui-sans-serif","ui-serif","unset"}',
+        '.block{font-family:"cursive","default","emoji","fangsong","fantasy","inherit","initial","math","monospace",font-family: "sans-serif","serif","system-ui","ui-monospace","ui-rounded","ui-sans-serif","ui-serif","unset"}'
+      ],
       'do not remove font family double quotation if space inside': [
         'a{font-family:"Courier New"}',
         'a{font-family:"Courier New"}'

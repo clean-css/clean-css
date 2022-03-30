@@ -941,6 +941,14 @@ vows.describe('integration tests')
       'do not round ems': [
         'div{font-size:1.505em}',
         'div{font-size:1.505em}'
+      ],
+      'leave "fractions" in urls alone': [
+        '.block{background:url(\'foo.10.png\')}',
+        '.block{background:url(\'foo.10.png\')}'
+      ],
+      'leave "fractions" in image sets alone': [
+        '.block{background:image-set(url(\'foo.10.png\') 1x)}',
+        '.block{background:image-set(url(\'foo.10.png\') 1x)}'
       ]
     })
   )

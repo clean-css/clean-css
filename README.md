@@ -564,6 +564,16 @@ new CleanCSS(options).minify(source, function (error, output) {
 });
 ```
 
+To optimize a single file, without reading it first, pass a path to it to `minify` method as follows:
+
+```js
+var output = new CleanCSS(options).minify(['path/to/file.css'])
+```
+
+(if you won't enclose the path in an array, it will be treated as a CSS source instead).
+
+There are several ways to optimize multiple files at the same time, see [How to optimize multiple files?](#how-to-optimize-multiple-files).
+
 ## Promise interface
 
 If you prefer clean-css to return a Promise object then you need to explicitely ask for it, e.g.

@@ -15,6 +15,8 @@ clean-css is a fast and efficient CSS optimizer for [Node.js](http://nodejs.org/
 
 According to [tests](http://goalsmashers.github.io/css-minification-benchmark/) it is one of the best available.
 
+__IMPORTANT: clean-css is now in a [maintenance mode](https://github.com/clean-css/clean-css/discussions/1209). PRs are still welcome, and I will try do an occasional bugfix relase.__
+
 **Table of Contents**
 
 - [Node.js version support](#nodejs-version-support)

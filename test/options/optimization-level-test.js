@@ -38,7 +38,8 @@ vows.describe(optimizationLevelFrom)
           specialComments: 'all',
           tidyAtRules: true,
           tidyBlockScopes: true,
-          tidySelectors: true
+          tidySelectors: true,
+          variableValueOptimizers: []
         });
       }
     },
@@ -84,7 +85,8 @@ vows.describe(optimizationLevelFrom)
           specialComments: 'all',
           tidyAtRules: true,
           tidyBlockScopes: true,
-          tidySelectors: true
+          tidySelectors: true,
+          variableValueOptimizers: []
         });
       }
     },
@@ -119,7 +121,8 @@ vows.describe(optimizationLevelFrom)
           specialComments: 'all',
           tidyAtRules: true,
           tidyBlockScopes: true,
-          tidySelectors: true
+          tidySelectors: true,
+          variableValueOptimizers: []
         });
       },
       'has level 2 options': function (levelOptions) {
@@ -183,7 +186,8 @@ vows.describe(optimizationLevelFrom)
           specialComments: 0,
           tidyAtRules: true,
           tidyBlockScopes: true,
-          tidySelectors: true
+          tidySelectors: true,
+          variableValueOptimizers: []
         });
       },
       'has level 2 options': function (levelOptions) {
@@ -236,7 +240,8 @@ vows.describe(optimizationLevelFrom)
           specialComments: 'all',
           tidyAtRules: false,
           tidyBlockScopes: false,
-          tidySelectors: false
+          tidySelectors: false,
+          variableValueOptimizers: []
         });
       }
     },
@@ -271,7 +276,8 @@ vows.describe(optimizationLevelFrom)
           specialComments: 'all',
           tidyAtRules: false,
           tidyBlockScopes: false,
-          tidySelectors: false
+          tidySelectors: false,
+          variableValueOptimizers: []
         });
       }
     },
@@ -306,7 +312,8 @@ vows.describe(optimizationLevelFrom)
           specialComments: 0,
           tidyAtRules: true,
           tidyBlockScopes: true,
-          tidySelectors: true
+          tidySelectors: true,
+          variableValueOptimizers: []
         });
       },
       'has level 2 options': function (levelOptions) {
@@ -359,7 +366,8 @@ vows.describe(optimizationLevelFrom)
           specialComments: 0,
           tidyAtRules: true,
           tidyBlockScopes: true,
-          tidySelectors: true
+          tidySelectors: true,
+          variableValueOptimizers: []
         });
       },
       'has level 2 options': function (levelOptions) {
@@ -412,7 +420,8 @@ vows.describe(optimizationLevelFrom)
           specialComments: 0,
           tidyAtRules: true,
           tidyBlockScopes: true,
-          tidySelectors: true
+          tidySelectors: true,
+          variableValueOptimizers: []
         });
       }
     },
@@ -447,7 +456,8 @@ vows.describe(optimizationLevelFrom)
           specialComments: 'all',
           tidyAtRules: true,
           tidyBlockScopes: true,
-          tidySelectors: true
+          tidySelectors: true,
+          variableValueOptimizers: []
         });
       },
       'has level 2 options': function (levelOptions) {
@@ -500,7 +510,8 @@ vows.describe(optimizationLevelFrom)
           specialComments: 'all',
           tidyAtRules: true,
           tidyBlockScopes: true,
-          tidySelectors: true
+          tidySelectors: true,
+          variableValueOptimizers: []
         });
       },
       'has level 2 options': function (levelOptions) {
@@ -553,7 +564,8 @@ vows.describe(optimizationLevelFrom)
           specialComments: 'all',
           tidyAtRules: true,
           tidyBlockScopes: true,
-          tidySelectors: true
+          tidySelectors: true,
+          variableValueOptimizers: []
         });
       },
       'has level 2 options': function (levelOptions) {
@@ -606,7 +618,8 @@ vows.describe(optimizationLevelFrom)
           specialComments: 'all',
           tidyAtRules: true,
           tidyBlockScopes: true,
-          tidySelectors: true
+          tidySelectors: true,
+          variableValueOptimizers: []
         });
       },
       'has level 2 options': function (levelOptions) {
@@ -659,7 +672,8 @@ vows.describe(optimizationLevelFrom)
           specialComments: 'all',
           tidyAtRules: true,
           tidyBlockScopes: true,
-          tidySelectors: true
+          tidySelectors: true,
+          variableValueOptimizers: []
         });
       }
     },
@@ -711,7 +725,8 @@ vows.describe(optimizationLevelFrom)
           specialComments: 'all',
           tidyAtRules: true,
           tidyBlockScopes: true,
-          tidySelectors: true
+          tidySelectors: true,
+          variableValueOptimizers: []
         });
       }
     },
@@ -763,7 +778,8 @@ vows.describe(optimizationLevelFrom)
           specialComments: 'all',
           tidyAtRules: true,
           tidyBlockScopes: true,
-          tidySelectors: true
+          tidySelectors: true,
+          variableValueOptimizers: []
         });
       }
     },

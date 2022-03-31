@@ -1,6 +1,7 @@
 var vows = require('vows');
 
 var optimizerContext = require('../../test-helper').optimizerContext;
+var optimizers = require('../../../lib/optimizer/level-1/value-optimizers');
 
 vows.describe('level 1 optimizations')
   .addBatch(
@@ -1602,5 +1603,49 @@ vows.describe('level 1 optimizations')
           '.block > .another-block{animation-duration:500ms;font:"Arial";margin:010px}'
       ]
     }, { level: { 1: { all: false } } })
+  )
+  .addBatch(
+    optimizerContext('variable optimizations without optimizers given', {
+      'removes whitespace': [
+        '.block{--custom: #ff0000}',
+        '.block{--custom:#ff0000}'
+      ]
+    })
+  )
+  .addBatch(
+    optimizerContext('variable optimizations with optimizers given', {
+      'optimizes colors': [
+        '.block{--custom: #ff0000}',
+        '.block{--custom:red}'
+      ],
+      'optimizes precision': [
+        '.block{--custom: 0.12125111111rem}',
+        '.block{--custom:0.121rem}'
+      ]
+    }, {level: { 1: { roundingPrecision: 3, variableValueOptimizers: [optimizers.color, optimizers.precision] } } })
+  )
+  .addBatch(
+    optimizerContext('variable optimizations with optimizers given as strings', {
+      'optimizes colors': [
+        '.block{--custom: #ff0000}',
+        '.block{--custom:red}'
+      ],
+      'optimizes precision': [
+        '.block{--custom: 0.12125111111rem}',
+        '.block{--custom:0.121rem}'
+      ]
+    }, {level: { 1: { roundingPrecision: 3, variableValueOptimizers: ['color', 'precision'] } } })
+  )
+  .addBatch(
+    optimizerContext('variable optimizations with invalid optimizers', {
+      'optimizes colors': [
+        '.block{--custom: #ff0000}',
+        '.block{--custom:#ff0000}'
+      ],
+      'optimizes precision': [
+        '.block{--custom: 0.12125111111rem}',
+        '.block{--custom:0.12125111111rem}'
+      ]
+    }, {level: { 1: { variableValueOptimizers: ['boom!'] } } })
   )
   .export(module);

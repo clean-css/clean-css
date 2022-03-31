@@ -1,6 +1,7 @@
 [5.3.0 / 2022-xx-xx](https://github.com/clean-css/clean-css/compare/v5.2.3...5.3)
 ==================
 
+* Adds customizable value optimizers for variables.
 * Fixed issue [#1159](https://github.com/clean-css/clean-css/issues/1159) - adds optimization for `nth-child` and `nth-of-type`.
 * Fixed issue [#1181](https://github.com/clean-css/clean-css/issues/1181) - CSS level 4 color functions with spaces.
 * Fixed issue [#1183](https://github.com/clean-css/clean-css/issues/1183) - fraction optimizer breaks `image-set`.

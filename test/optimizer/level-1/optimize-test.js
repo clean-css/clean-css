@@ -421,6 +421,30 @@ vows.describe('level 1 optimizations')
         'a{color:rgba(240,0,0,0)}',
         'a{color:rgba(240,0,0,0)}'
       ],
+      'space-separated rgb': [
+        'a{color:rgba(240 0 0)}',
+        'a{color:rgba(240 0 0)}'
+      ],
+      'space-separated rgba': [
+        'a{color:rgba(240 0 0 / .1)}',
+        'a{color:rgba(240 0 0 / .1)}'
+      ],
+      'space-separated hsl': [
+        'a{color:hsla(240 0% 0%)}',
+        'a{color:hsla(240 0% 0%)}'
+      ],
+      'space-separated hsla': [
+        'a{color:hsla(240 0% 0% / 10%)}',
+        'a{color:hsla(240 0% 0% / 10%)}'
+      ],
+      'space-separated hsl with deg': [
+        'a{color:hsla(240deg 0% 0%)}',
+        'a{color:hsla(240deg 0% 0%)}'
+      ],
+      'space-separated hsla with deg': [
+        'a{color:hsla(240deg 0% 0% / .1)}',
+        'a{color:hsla(240deg 0% 0% / .1)}'
+      ],
       'partial hex to name': [
         'a{color:#f00000}',
         'a{color:#f00000}'

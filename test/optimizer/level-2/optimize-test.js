@@ -103,6 +103,34 @@ vows.describe('level 2 optimizer')
     }, { compatibility: '+colors.hexAlpha', level: 2 })
   )
   .addBatch(
+    optimizerContext('space separated colors', {
+      'keeps hsl colors': [
+        '.block{border:1px solid hsl(0deg 0% 85%)}',
+        '.block{border:1px solid hsl(0deg 0% 85%)}'
+      ],
+      'keeps hsla colors - with fraction opacity': [
+        '.block{border:1px solid hsla(0deg 0% 85% / .5)}',
+        '.block{border:1px solid hsla(0deg 0% 85% / .5)}'
+      ],
+      'keeps hsla colors - with percentage opacity': [
+        '.block{border:1px solid hsla(0deg 0% 85% / 50%)}',
+        '.block{border:1px solid hsla(0deg 0% 85% / 50%)}'
+      ],
+      'keeps rgb colors': [
+        '.block{border:1px solid rgb(20 20 20)}',
+        '.block{border:1px solid rgb(20 20 20)}'
+      ],
+      'keeps rgba colors - with fraction opacity': [
+        '.block{border:1px solid rgba(20 20 20 / .5)}',
+        '.block{border:1px solid rgba(20 20 20 / .5)}'
+      ],
+      'keeps rgba colors - with percentage opacity': [
+        '.block{border:1px solid rgba(20 20 20 / 50%)}',
+        '.block{border:1px solid rgba(20 20 20 / 50%)}'
+      ]
+    }, { level: 2 })
+  )
+  .addBatch(
     optimizerContext('limit rule merging', {
       'adjacent with as many rules as limit': [
         '.block--1{color:red}.block--2{color:red}.block--3{color:red}',

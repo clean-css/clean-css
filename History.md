@@ -1,4 +1,4 @@
-[5.3.0 / 2022-xx-xx](https://github.com/clean-css/clean-css/compare/v5.2.3...5.3)
+[5.3.0 / 2022-03-31](https://github.com/clean-css/clean-css/compare/v5.2.3...v5.3.0)
 ==================
 
 * Adds customizable value optimizers for variables.

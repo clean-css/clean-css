@@ -20,6 +20,7 @@ According to [tests](http://goalsmashers.github.io/css-minification-benchmark/) 
 - [Node.js version support](#nodejs-version-support)
 - [Install](#install)
 - [Use](#use)
+  * [What's new in version 5.3](#whats-new-in-version-53)
   * [What's new in version 5.0](#whats-new-in-version-50)
   * [What's new in version 4.2](#whats-new-in-version-42)
   * [What's new in version 4.1](#whats-new-in-version-41)
@@ -76,9 +77,15 @@ var options = { /* options */ };
 var output = new CleanCSS(options).minify(input);
 ```
 
+## What's new in version 5.3
+
+clean-css 5.3 introduces one new feature:
+
+* variables can be optimized using level 1's `variableValueOptimizers` option, which accepts a list of [value optimizers](https://github.com/clean-css/clean-css/blob/master/lib/optimizer/level-1/value-optimizers.js) or a list of their names, e.g. `variableValueOptimizers: ['color', 'fraction']`.
+
 ## What's new in version 5.0
 
-clean-css 5.0 will introduce some breaking changes:
+clean-css 5.0 introduced some breaking changes:
 
 * Node.js 6.x and 8.x are officially no longer supported;
 * `transform` callback in level-1 optimizations is removed in favor of new [plugins](#plugins) interface;
@@ -409,7 +416,8 @@ new CleanCSS({
       specialComments: 'all', // denotes a number of /*! ... */ comments preserved; defaults to `all`
       tidyAtRules: true, // controls at-rules (e.g. `@charset`, `@import`) optimizing; defaults to `true`
       tidyBlockScopes: true, // controls block scopes (e.g. `@media`) optimizing; defaults to `true`
-      tidySelectors: true, // controls selectors optimizing; defaults to `true`
+      tidySelectors: true, // controls selectors optimizing; defaults to `true`,
+      variableValueOptimizers: [] // controls value optimizers which are applied to variables
     }
   }
 });

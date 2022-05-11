@@ -74,6 +74,30 @@ vows.describe('level 1 optimizations')
         '.block:nth-child(2n+1){color:red}',
         '.block:nth-child(odd){color:red}'
       ],
+      'pseudo classes - nth-last-child(1) to last-child': [
+        '.block:nth-last-child(1){color:red}',
+        '.block:last-child{color:red}'
+      ],
+      'pseudo classes - nth-last-of-type(1) to last-of-type': [
+        '.block:nth-last-of-type(1){color:red}',
+        '.block:last-of-type{color:red}'
+      ],
+      'pseudo classes - nth-last-of-type(even) to nth-last-of-type(2n)': [
+        '.block:nth-last-of-type(even){color:red}',
+        '.block:nth-last-of-type(2n){color:red}'
+      ],
+      'pseudo classes - nth-last-child(even) to nth-last-child(2n)': [
+        '.block:nth-last-child(even){color:red}',
+        '.block:nth-last-child(2n){color:red}'
+      ],
+      'pseudo classes - nth-last-of-type(2n+1) to nth-last-of-type(odd)': [
+        '.block:nth-last-of-type(2n+1){color:red}',
+        '.block:nth-last-of-type(odd){color:red}'
+      ],
+      'pseudo classes - nth-last-child(2n+1) to nth-last-child(odd)': [
+        '.block:nth-last-child(2n+1){color:red}',
+        '.block:nth-last-child(odd){color:red}'
+      ],
       'tabs': [
         'div\t\t{color:red}',
         'div{color:red}'

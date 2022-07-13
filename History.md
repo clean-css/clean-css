@@ -1,3 +1,9 @@
+[5.3.1 / 2022-xx-xx](https://github.com/clean-css/clean-css/compare/v5.3.0...5.3)
+==================
+
+* Fixed issue [#1218](https://github.com/clean-css/clean-css/issues/1218) - double hyphen in at-rule breaks parsing.
+* Fixed issue [#1220](https://github.com/clean-css/clean-css/issues/1220) - adds optimization for nth-* rules.
+
 [5.3.0 / 2022-03-31](https://github.com/clean-css/clean-css/compare/v5.2.3...v5.3.0)
 ==================
 

@@ -410,6 +410,14 @@ vows.describe('level 1 optimizations')
         'a{color:rgba(255,254,253,.5)}',
         'a{color:rgba(255,254,253,.5)}'
       ],
+      'rgba of numbers': [
+        'a{color:rgba(255,255,255,50%)}',
+        'a{color:rgba(255,255,255,50%)}'
+      ],
+      'rgba of percentages': [
+        'a{color:rgba(100%,100%,100%,50%)}',
+        'a{color:rgba(100%,100%,100%,50%)}'
+      ],
       'hsl to hex': [
         'a{color:hsl(240,100%,50%)}',
         'a{color:#00f}'

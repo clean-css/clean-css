@@ -356,6 +356,14 @@ vows.describe('module tests').addBatch({
       assert.equal(minified.styles, '.one{color:red}');
     }
   },
+  'utf-8 bom': {
+    'topic': function () {
+      return new CleanCSS().minify(['test/fixtures/utf8-bom/utf8-bom.css']);
+    },
+    'should be processed correctly': function (error, minified) {
+      assert.equal(minified.styles, 'body{color:red}li,p,ul{margin:0;padding:0}h1{font-size:16px}p{font-size:14px}');
+    }
+  },
   'options': {
     'level 2': {
       'topic': function () {

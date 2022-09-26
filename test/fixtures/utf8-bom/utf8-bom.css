@@ -1,0 +1,11 @@
+﻿@import url('utf8-bom-common.css');
+
+h1 {
+    font-size: 16px;
+}
+
+p{
+    font-size:14px;
+}
+
+/* UTF8 BOM 测试文件 */

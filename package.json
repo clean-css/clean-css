@@ -27,7 +27,8 @@
     "browserify": "browserify --standalone CleanCSS index.js | uglifyjs --compress --mangle -o cleancss-browser.js",
     "bench": "node ./test/bench.js",
     "lint": "eslint ./lib/ --ext .js",
-    "test": "vows"
+    "test": "vows",
+    "utf8test": "node ./test/utf8-bom/test.js"
   },
   "dependencies": {
     "source-map": "~0.6.0"

@@ -13,6 +13,9 @@ on:
     - cron: "0 2 * * 5"
   workflow_dispatch:
 
+permissions:
+    security-events: write
+
 jobs:
   analyze:
     name: Analyze

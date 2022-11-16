@@ -13,6 +13,9 @@ on:
     - cron: "0 2 * * 5"
   workflow_dispatch:
 
+permissions:
+    security-events: write
+
 jobs:
   analyze:
     name: Analyze
@@ -29,6 +32,7 @@ jobs:
         uses: github/codeql-action/init@v2
         with:
           languages: "javascript"
+          queries: "security-and-quality"
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v2

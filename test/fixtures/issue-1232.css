@@ -1,0 +1,7 @@
+@container (min-width:300px) {
+    .test {
+        font-size: 15px;
+        font-weight: bold;
+        line-height: 10px;
+    }
+}

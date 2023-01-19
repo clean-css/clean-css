@@ -1089,6 +1089,49 @@ vows.describe(tokenize)
           ]
         ]
       ],
+      'comment as a first thing in a rule with two dashes': [
+        '.block--modifier{/* Comment */color:red}',
+        [
+          [
+            'rule',
+            [
+              [
+                'rule-scope',
+                '.block--modifier',
+                [
+                  [1, 0, undefined]
+                ]
+              ]
+            ],
+            [
+              [
+                'comment',
+                '/* Comment */',
+                [
+                  [1, 17, undefined]
+                ]
+              ],
+              [
+                'property',
+                [
+                  'property-name',
+                  'color',
+                  [
+                    [1, 30, undefined]
+                  ]
+                ],
+                [
+                  'property-value',
+                  'red',
+                  [
+                    [1, 36, undefined]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ],
       'rule wrapped between comments': [
         '/* comment 1 */div/* comment 2 */{color:red}',
         [

@@ -1,3 +1,12 @@
+[5.3.2 / 2023-xx-xx](https://github.com/clean-css/clean-css/compare/v5.3.1...5.3)
+==================
+
+* Fixed issue [#1224](https://github.com/clean-css/clean-css/issues/1224) - incorrect parsing of selectors with double hyphen.
+* Fixed issue [#1228](https://github.com/clean-css/clean-css/issues/1228) - incorrect appending of '%' inside rgba colors.
+* Fixed issue [#1232](https://github.com/clean-css/clean-css/issues/1232) - support for `@container` keyword.
+* Fixed issue [#1239](https://github.com/clean-css/clean-css/issues/1239) - edge case in handling `@import` statements.
+* Fixed issue [#1242](https://github.com/clean-css/clean-css/issues/1242) - support for `@layer` keyword.
+
 [5.3.1 / 2022-07-13](https://github.com/clean-css/clean-css/compare/v5.3.0...v5.3.1)
 ==================
 

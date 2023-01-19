@@ -1,4 +1,4 @@
-[5.3.2 / 2023-xx-xx](https://github.com/clean-css/clean-css/compare/v5.3.1...5.3)
+[5.3.2 / 2023-01-19](https://github.com/clean-css/clean-css/compare/v5.3.1...v5.3.2)
 ==================
 
 * Fixed issue [#1224](https://github.com/clean-css/clean-css/issues/1224) - incorrect parsing of selectors with double hyphen.

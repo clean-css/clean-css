@@ -8,7 +8,6 @@
 [![npm version](https://img.shields.io/npm/v/clean-css.svg?style=flat)](https://www.npmjs.com/package/clean-css)
 [![Build Status](https://img.shields.io/github/workflow/status/clean-css/clean-css/Tests/master)](https://github.com/clean-css/clean-css/actions?query=workflow%3ATests+branch%3Amaster)
 [![PPC Linux Build Status](https://img.shields.io/travis/clean-css/clean-css/master.svg?style=flat&label=PPC%20Linux%20build)](https://travis-ci.org/clean-css/clean-css)
-[![Dependency Status](https://img.shields.io/david/clean-css/clean-css.svg?style=flat)](https://david-dm.org/clean-css/clean-css)
 [![npm Downloads](https://img.shields.io/npm/dm/clean-css.svg)](https://npmcharts.com/compare/clean-css?minimal=true)
 
 clean-css is a fast and efficient CSS optimizer for [Node.js](http://nodejs.org/) platform and [any modern browser](https://clean-css.github.io/).

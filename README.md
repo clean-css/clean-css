@@ -14,7 +14,7 @@ clean-css is a fast and efficient CSS optimizer for [Node.js](http://nodejs.org/
 
 According to [tests](http://goalsmashers.github.io/css-minification-benchmark/) it is one of the best available.
 
-__IMPORTANT: clean-css is now in a [maintenance mode](https://github.com/clean-css/clean-css/discussions/1209). PRs are still welcome, and I will try do an occasional bugfix relase.__
+__IMPORTANT: clean-css is now in a [maintenance mode](https://github.com/clean-css/clean-css/discussions/1209). PRs are still welcome, and I will try do an occasional bugfix release.__
 
 **Table of Contents**
 
@@ -409,7 +409,7 @@ new CleanCSS({
       removeNegativePaddings: true, // controls removing negative paddings; defaults to `true`
       removeQuotes: true, // controls removing quotes when unnecessary; defaults to `true`
       removeWhitespace: true, // controls removing unused whitespace; defaults to `true`
-      replaceMultipleZeros: true, // contols removing redundant zeros; defaults to `true`
+      replaceMultipleZeros: true, // controls removing redundant zeros; defaults to `true`
       replaceTimeUnits: true, // controls replacing time units with shorter values; defaults to `true`
       replaceZeroUnits: true, // controls replacing zero values with units; defaults to `true`
       roundingPrecision: false, // rounds pixel values to `N` decimal places; `false` disables rounding; defaults to `false`

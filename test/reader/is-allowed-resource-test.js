@@ -67,13 +67,13 @@ vows.describe(isAllowedResource)
     'negated rules': {
       'topic': 'http://127.0.0.1/path/to/styles.css',
       'is not allowed': function (topic) {
-        assert.isFalse(isAllowedResource(topic, true, ['!127.0.0.1', '!assets.127.0.0.1']));
+        assert.isFalse(isAllowedResource(topic, true, ['!127.0.0.1', '!127.0.0.2']));
       }
     },
     'negated remote then local rules': {
       'topic': 'http://127.0.0.1/path/to/styles.css',
       'is not allowed': function (topic) {
-        assert.isFalse(isAllowedResource(topic, true, ['!127.0.0.1', '!assets.127.0.0.1', '!path/to/styles.css']));
+        assert.isFalse(isAllowedResource(topic, true, ['!127.0.0.1', '!127.0.0.2', '!path/to/styles.css']));
       }
     }
   })

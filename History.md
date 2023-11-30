@@ -1,4 +1,4 @@
-[5.3.3 / 2023-xx-xx](https://github.com/clean-css/clean-css/compare/v5.3.2...5.3)
+[5.3.3 / 2023-11-30](https://github.com/clean-css/clean-css/compare/v5.3.2...v5.3.3)
 ==================
 
 * Fixed issue [#1262](https://github.com/clean-css/clean-css/issues/1262) - dynamically require os for edge runtime compatibility.

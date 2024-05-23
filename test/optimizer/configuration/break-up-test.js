@@ -2286,12 +2286,13 @@ vows.describe(breakUp)
               ['property-value', 'all'],
               ['property-value', '1s'],
               ['property-value', 'ease-in'],
-              ['property-value', '2s']
+              ['property-value', '2s'],
+              ['property-value', 'allow-discrete'],
             ]
           ]);
         },
-        'has 4 components': function (components) {
-          assert.lengthOf(components, 4);
+        'has 5 components': function (components) {
+          assert.lengthOf(components, 5);
         },
         'has transition-property': function (components) {
           assert.deepEqual(components[0].name, 'transition-property');
@@ -2308,6 +2309,10 @@ vows.describe(breakUp)
         'has transition-delay': function (components) {
           assert.deepEqual(components[3].name, 'transition-delay');
           assert.deepEqual(components[3].value, [['property-value', '2s']]);
+        },
+        'has transition-behavior': function (components) {
+          assert.deepEqual(components[4].name, 'transition-behavior');
+          assert.deepEqual(components[4].value, [['property-value', 'allow-discrete']]);
         }
       },
       'all vendor prefixed': {
@@ -2319,12 +2324,13 @@ vows.describe(breakUp)
               ['property-value', 'all'],
               ['property-value', '1s'],
               ['property-value', 'ease-in'],
-              ['property-value', '2s']
+              ['property-value', '2s'],
+              ['property-value', 'allow-discrete']
             ]
           ]);
         },
-        'has 4 components': function (components) {
-          assert.lengthOf(components, 4);
+        'has 5 components': function (components) {
+          assert.lengthOf(components, 5);
         },
         'has -moz-transition-property': function (components) {
           assert.deepEqual(components[0].name, '-moz-transition-property');
@@ -2341,6 +2347,10 @@ vows.describe(breakUp)
         'has -moz-transition-delay': function (components) {
           assert.deepEqual(components[3].name, '-moz-transition-delay');
           assert.deepEqual(components[3].value, [['property-value', '2s']]);
+        },
+        'has -moz-transition-behavior': function (components) {
+          assert.deepEqual(components[4].name, '-moz-transition-behavior');
+          assert.deepEqual(components[4].value, [['property-value', 'allow-discrete']]);
         }
       },
       'all with reversed order': {
@@ -2352,7 +2362,8 @@ vows.describe(breakUp)
               ['property-value', '2s'],
               ['property-value', 'ease-in'],
               ['property-value', '1s'],
-              ['property-value', 'all']
+              ['property-value', 'all'],
+              ['property-value', 'allow-discrete'],
             ]
           ]);
         },
@@ -2371,6 +2382,10 @@ vows.describe(breakUp)
         'has transition-delay': function (components) {
           assert.deepEqual(components[3].name, 'transition-delay');
           assert.deepEqual(components[3].value, [['property-value', '1s']]);
+        },
+        'has transition-behavior': function (components) {
+          assert.deepEqual(components[4].name, 'transition-behavior');
+          assert.deepEqual(components[4].value, [['property-value', 'allow-discrete']]);
         }
       },
       'some': {
@@ -2399,6 +2414,10 @@ vows.describe(breakUp)
         'has transition-delay': function (components) {
           assert.deepEqual(components[3].name, 'transition-delay');
           assert.deepEqual(components[3].value, [['property-value', '0s']]);
+        },
+        'has transition-behavior': function (components) {
+          assert.deepEqual(components[4].name, 'transition-behavior');
+          assert.deepEqual(components[4].value, [['property-value', 'normal']]);
         }
       },
       'only property': {
@@ -2426,6 +2445,10 @@ vows.describe(breakUp)
         'has transition-delay': function (components) {
           assert.deepEqual(components[3].name, 'transition-delay');
           assert.deepEqual(components[3].value, [['property-value', '0s']]);
+        },
+        'has transition-behavior': function (components) {
+          assert.deepEqual(components[4].name, 'transition-behavior');
+          assert.deepEqual(components[4].value, [['property-value', 'normal']]);
         }
       },
       'only one `time`': {
@@ -2453,6 +2476,10 @@ vows.describe(breakUp)
         'has transition-delay': function (components) {
           assert.deepEqual(components[3].name, 'transition-delay');
           assert.deepEqual(components[3].value, [['property-value', '0s']]);
+        },
+        'has transition-behavior': function (components) {
+          assert.deepEqual(components[4].name, 'transition-behavior');
+          assert.deepEqual(components[4].value, [['property-value', 'normal']]);
         }
       },
       'only two `time`s': {
@@ -2481,6 +2508,10 @@ vows.describe(breakUp)
         'has transition-delay': function (components) {
           assert.deepEqual(components[3].name, 'transition-delay');
           assert.deepEqual(components[3].value, [['property-value', '2s']]);
+        },
+        'has transition-behavior': function (components) {
+          assert.deepEqual(components[4].name, 'transition-behavior');
+          assert.deepEqual(components[4].value, [['property-value', 'normal']]);
         }
       },
       'only timing function': {
@@ -2508,6 +2539,10 @@ vows.describe(breakUp)
         'has transition-delay': function (components) {
           assert.deepEqual(components[3].name, 'transition-delay');
           assert.deepEqual(components[3].value, [['property-value', '0s']]);
+        },
+        'has transition-behavior': function (components) {
+          assert.deepEqual(components[4].name, 'transition-behavior');
+          assert.deepEqual(components[4].value, [['property-value', 'normal']]);
         }
       },
       '`inherit`': {
@@ -2535,6 +2570,10 @@ vows.describe(breakUp)
         'has transition-delay': function (components) {
           assert.deepEqual(components[3].name, 'transition-delay');
           assert.deepEqual(components[3].value, [['property-value', 'inherit']]);
+        },
+        'has transition-behavior': function (components) {
+          assert.deepEqual(components[4].name, 'transition-behavior');
+          assert.deepEqual(components[4].value, [['property-value', 'inherit']]);
         }
       },
       'multiplex': {
@@ -2547,6 +2586,7 @@ vows.describe(breakUp)
               ['property-value', '1s'],
               ['property-value', 'ease-in'],
               ['property-value', '1s'],
+              ['property-value', 'allow-discrete'],
               ['property-value', ','],
               ['property-value', 'opacity'],
               ['property-value', '2s']
@@ -2568,6 +2608,10 @@ vows.describe(breakUp)
         'has transition-delay': function (components) {
           assert.deepEqual(components[3].name, 'transition-delay');
           assert.deepEqual(components[3].value, [['property-value', '1s'], ['property-value', ','], ['property-value', '0s']]);
+        },
+        'has transition-behavior': function (components) {
+          assert.deepEqual(components[4].name, 'transition-behavior');
+          assert.deepEqual(components[4].value, [['property-value', 'allow-discrete'], ['property-value', ','], ['property-value', 'normal']]);
         }
       },
       'three `time`s': {
@@ -2596,6 +2640,7 @@ vows.describe(breakUp)
               ['property-value', '1s'],
               ['property-value', 'ease-in'],
               ['property-value', '3s'],
+              ['property-value', 'allow-discrete'],
               ['property-value', 'extra', [[1, 30, undefined]]]
             ]
           ]);

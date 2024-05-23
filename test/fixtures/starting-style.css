@@ -1,0 +1,10 @@
+[popover]:popover-open {
+  opacity: 1;
+  transform: scaleX(1);
+}
+@starting-style {
+  [popover]:popover-open {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+}

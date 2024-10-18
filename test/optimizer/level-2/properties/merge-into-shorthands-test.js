@@ -848,7 +848,7 @@ vows.describe(optimizeProperties)
   .addBatch({
     'transition': {
       'topic': function () {
-        return _optimize('.block{transition-property:width;transition-duration:5s;transition-timing-function:ease-in;transition-delay:2s}');
+        return _optimize('.block{transition-property:width;transition-duration:5s;transition-timing-function:ease-in;transition-delay:2s;transition-behavior:allow-discrete}');
       },
       'into': function (properties) {
         assert.deepEqual(properties, [
@@ -858,19 +858,21 @@ vows.describe(optimizeProperties)
               [1, 7, undefined],
               [1, 33, undefined],
               [1, 56, undefined],
-              [1, 91, undefined]
+              [1, 91, undefined],
+              [1, 111, undefined],
             ]],
             ['property-value', 'width', [[1, 27, undefined]]],
             ['property-value', '5s', [[1, 53, undefined]]],
             ['property-value', 'ease-in', [[1, 83, undefined]]],
-            ['property-value', '2s', [[1, 108, undefined]]]
+            ['property-value', '2s', [[1, 108, undefined]]],
+            ['property-value', 'allow-discrete', [[1, 131, undefined]]]
           ]
         ]);
       }
     },
     'transition when one component is multiplex': {
       'topic': function () {
-        return _optimize('.block{transition-property:transform,margin-left;transition-delay:0ms;transition-duration:375ms;transition-timing-function:ease-out}');
+        return _optimize('.block{transition-property:transform,margin-left;transition-delay:0ms;transition-duration:375ms;transition-timing-function:ease-out;transition-behavior:allow-discrete}');
       },
       'into': function (properties) {
         assert.deepEqual(properties, [
@@ -880,17 +882,20 @@ vows.describe(optimizeProperties)
               [1, 7, undefined],
               [1, 49, undefined],
               [1, 70, undefined],
-              [1, 96, undefined]
+              [1, 96, undefined],
+              [1, 132, undefined]
             ]],
             ['property-value', 'transform', [[1, 27, undefined]]],
             ['property-value', '375ms', [[1, 90, undefined]]],
             ['property-value', 'ease-out', [[1, 123, undefined]]],
             ['property-value', '0ms', [[1, 66, undefined]]],
+            ['property-value', 'allow-discrete', [[1, 152, undefined ]]],
             ['property-value', ','],
             ['property-value', 'margin-left', [[1, 37, undefined]]],
             ['property-value', '375ms', [[1, 90, undefined]]],
             ['property-value', 'ease-out', [[1, 123, undefined]]],
-            ['property-value', '0ms', [[1, 66, undefined]]]
+            ['property-value', '0ms', [[1, 66, undefined]]],
+            ['property-value', 'allow-discrete', [[1, 152, undefined]]]
           ]
         ]);
       }

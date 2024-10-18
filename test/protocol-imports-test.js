@@ -728,7 +728,7 @@ vows.describe('protocol imports').addBatch({
         var options = {
           inline: 'all',
           inlineRequest: {
-            hostname: '127.0.0.1',
+            hostname: '127.0.0.2',
             port: 8080
           }
         };
